@@ -1,0 +1,515 @@
+<html>
+
+<head>
+
+  <style>
+
+    .order_item { 
+      width: 100%; 
+      background-color:transparent;
+      border: none;
+      white-space : normal;
+    }
+    
+
+    .menu_button 
+    {
+      font-size:9pt; font-weight:bold; height:100px; width:100px;
+      background-color:#a0a0a0;
+      white-space : normal;
+    }
+
+    .diaframe
+    {
+     position:absolute;
+     font-family:arial;
+     visibility:hidden;
+     width:150;
+     border:2px outset black;
+     background-color:#A0A0C0;
+    }
+
+    .diacapt
+    {
+     height:15px;
+     width: 95%;
+     background-color:#5070B0;	
+     padding-top:2px;
+     padding-bottom:3px;
+     padding-left:5%;
+     font-weight:bold;
+     color:white;	
+    }
+
+    .diabutt a{
+     height:15px;
+     font-family:arial;
+     font-weight:bold;
+     font-style:italic;
+     background-color:#A0F0FF;
+     text-align:center;
+     text-decoration:none;
+     padding-top:1px;
+     padding-bottom:3px;
+     margin-right:2px;
+     border:2px solid gray;
+    }
+
+    .diabody
+    {
+     padding-top:5%;
+     padding-left:5%;
+     padding-right:5%;
+     position:absolute;
+     top:17px
+    }
+
+    .diainput
+    {
+     padding-top:5%;
+     padding-bottom:5%;
+    }
+
+    .diabuttons
+    {
+     padding-top:5%;
+     padding-bottom:5%;
+    }
+
+    .diabuttons input
+    {
+      width:100%;
+    }
+
+    .diabuttons input:hover
+    {
+     color:red;
+    }
+
+    body,h1,h2,h3,h4,h5,h6 {font-family:Arial;}
+
+    body {background-color:gray; color:black}
+
+    h1 {font-size:28pt; font-weight:bold; margin:0px;}
+
+    h2 {font-size:16pt; margin:0px; font-weight:bold;}
+
+    h3 {font-size:8pt; margin:0px; font-weight:bold;}
+
+    #category {font-size:28pt; text-align: center}
+
+    .goHorizontalLink {float: left; font-size:28pt}
+    #goVerticalLink {float: right; font-size: 36pt; text-align: right}
+
+    #rightside {float: right }
+    #order_pane {width: 150px; border: 4px outset; margin-top:10px; }
+    #order_pane :hover {background-color: yellow;}
+    #select_area {width: 70%;}
+    
+    #table_display {width: 100%; margin: 5px; color: blue;}
+
+  </style>
+
+
+</head>
+
+
+<body onLoad="draw()" id='main'>
+
+  <script> 
+
+    // This is the only script on this page. It does basically
+    // everything. 
+    
+    GRIDWIDTH = 5; 
+    // GRIDWIDTH can be anything from one up.
+
+    g_currentTable = null; 
+
+    document.body.addEventListener('click',hidePopup, true)
+
+
+    function http_request(method, url, params)
+    {
+      http = new XMLHttpRequest();
+      if(method == "GET")
+      {
+        // append timestamp to url to prevent caching
+        url += "?timestamp=" + new Date().getTime();
+
+        if (params) {url += "&" + params;}
+        http.open(method, url, false);
+        http.send(null);
+      }
+      else
+      {
+        http.open(method, url, false);
+        http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+        http.setRequestHeader("Content-length", params.length);
+        http.setRequestHeader("Connection", "close");
+        http.send(params);
+      }
+
+      response = http.responseText;
+
+      if (http.status != 200)  {
+      // Display error message on page
+        document.write("Error getting config\n\n");
+        document.write(response);
+        return;
+      }
+
+      return eval('(' + response + ')');
+    }  
+
+    function load_config()
+    {
+      g_config = http_request("GET", "config/get", null);
+    }  
+      
+    function draw()
+    // This gets called when the document loads.
+    {
+      load_config();
+      drawCurrentCategory();
+      refresh_order(null, null);
+    }
+
+    function rotateCategory()
+    {
+      categories = g_config.menu.categories;
+      categories.push(categories.shift());
+    }
+
+    function category_is_table()
+    {
+      return getSuperCategory() == 'tables';
+    }  
+      
+    function goVertical()
+    {
+      rotateCategory();
+      if (category_is_table())
+      {
+        // Skip tables. Go to next category. Tables is reached by
+        // clicking table link.
+        rotateCategory();
+      } 
+      drawCurrentCategory();
+    }
+ 
+    function goHorizontal()
+    {
+      subs = g_config.menu.categories[0].subcategories;
+      subs.push(subs.shift());
+      drawCurrentCategory();
+    }
+
+    function getSubCategory()
+    {
+      return g_config.menu.categories[0].subcategories[0].name;
+    }  
+      
+    function getSuperCategory()
+    {
+      return g_config.menu.categories[0].name;
+    }  
+      
+    function drawCurrentCategory()
+    {
+      document.getElementById("category").innerHTML 
+        = getSuperCategory() + " : " + getSubCategory();
+      populateMenuItems(getSubCategory());
+    }  
+
+    function set_current_table(table_id)
+    {
+      g_currentTable = table_id;
+      refresh_order(null, null);
+    }
+
+    function populateMenuItems(category)
+    {
+      items = g_config.menu.categories[0].subcategories[0].items;
+      item_names = items.map(function(i) {return i.name});
+      drawBoard(item_names);
+    }
+
+    function drawBoard(item_names)
+    {
+      board=document.getElementById("board");
+      board.innerHTML = getTableHTML(item_names);
+    }
+        
+    function getTableHTML(items)
+    // This function is called when the page a new category is
+    // selected and the items in the table change. 
+    // By changing GRIDWIDTH, the programmer can alter the look
+    // of the table of items.
+    {
+      s="";
+
+      s = s + "<table border=0 cellpadding=0 cellspacing=15 >";
+
+      while (items.length)
+      {
+
+        s += "<tr>";    
+
+        for (c=1; c <= GRIDWIDTH && items.length; c++)
+        {
+          item = items.shift();
+
+          s += 
+            "<td" +
+            " class='square'" +
+            " onclick='grid_button_clicked(this)'" +
+            " id=" + item + 
+            ">" +
+            "<input " +
+            " class='menu_button'" +
+            " type='button'"  + 
+            " value='" + item + "'"
+            "'/>" +
+            "</td>";
+        }
+
+        s += "</tr>";
+
+      }
+
+      s += "</table>";
+
+      return s;
+    }
+
+    function grid_button_clicked(button)
+    {
+      if (category_is_table())
+      {
+        set_current_table(button.id);
+      }
+      else
+      {
+        add_to_order(button.id);
+      }
+    }
+
+    function go_to_tables()
+    {
+      while (!category_is_table())
+      {
+        rotateCategory();
+      } 
+      drawCurrentCategory();
+      g_currentTable = null;
+      update_order_pane([]);
+    }
+
+    function refresh_order(add_item, remove_item)
+    {
+      params="table="+g_currentTable;
+      if (add_item) {params += "&additem="+add_item;}
+      if (remove_item) {params += "&removeitem="+remove_item;}
+
+      order_items = http_request("POST", "action/order", params);
+      update_order_pane(order_items);
+    }
+
+    function remove_from_order(item)
+    {
+      refresh_order(null, item);
+    }  
+      
+    function order_item_click(button)
+    {
+    }  
+      
+    function update_order_pane(items)
+    {
+      document.getElementById("table_id_display").innerHTML = g_currentTable || '---';
+
+      order_items_html = "";
+      //order_items_html = "<ul>";
+
+      for (idx in items)
+      {
+        item = items[idx]["name"];
+        item_id = items[idx]["id"];
+        order_items_html += '<input class="order_item" type=button ' +
+          'onclick="menu_popup(\'' + item_id + '\', \'' + item + '\', event)" ' +
+          'value="'+item+'"</input>';
+
+        //order_items_html += '<input ' +
+          //'class="order_item" type=button' + 
+          //'value="'+item+'"</input>';
+        //order_items_html += '<li><a href="javascript:remove_from_order(\'' + item_id + '\')">'+item+'</a></li><BR>';
+      }  
+      //order_items_html += "</ul>";
+      order_items = document.getElementById("order_items");
+      order_items.innerHTML = order_items_html;
+    }
+      
+    function add_to_order(additem)
+    {
+      refresh_order(additem, null);
+    } 
+
+    popup_item_id = null;
+    // Order popup stuff
+    function menu_popup(item_id, item, e)
+    {
+      x = mouseX(e);
+      y = mouseY(e);
+      popup = document.getElementById("popup");
+      menu_popup_caption = document.getElementById("menu_popup_caption");
+      menu_popup_caption.innerHTML = item;
+      popup_item_id = item_id;
+      popup.style.visibility="visible";
+      popup.style.left= document.body.clientWidth - rightside.clientWidth - popup.clientWidth;
+      popup.style.top= y - popup.clientHeight / 2;
+      popup.focus();
+      popup.select();
+    }
+
+    // These functions are necessary to get the mouse position in a 
+    // way that works for all browsers
+    function mouseX(evt) 
+    {
+      if (evt.pageX) 
+      {
+        return evt.pageX;
+      }
+      else if (evt.clientX)
+      {
+       return evt.clientX + (document.documentElement.scrollLeft ?
+       document.documentElement.scrollLeft :
+       document.body.scrollLeft);
+      }
+      else return null;
+    }
+
+    function mouseY(evt) 
+    // See comment abouve mouseX, just above
+    {
+      if (evt.pageY)
+      {
+        return evt.pageY;
+      }
+      else if (evt.clientY)
+      {
+        return evt.clientY + (document.documentElement.scrollTop ?
+        document.documentElement.scrollTop :
+        document.body.scrollTop);
+      }
+      else return null;
+    }
+
+    function showPopup()
+    // show the popup in the desried location when user clicks a square
+    {
+    }
+    
+    function cancel_item()
+    {
+      remove_from_order(popup_item_id);
+    }  
+
+    function cancel()
+    // When the user hits the cancel or 'X' dialog buttons, the dialog
+    // just needs to go away
+    {
+      hidePopup();
+    }
+
+
+    function enter(event)
+    // When the user presses enter on the text editBox colorEdit we want
+    // to interperet this to mean apply so we capture the keypress events
+    // from the edit box and check if the key is the enter key
+    {
+      if (event.keyCode == 13)
+      {
+        colorEdit.blur(); 
+        //otherwise you can still see the cursor after the dialog is hidden
+        apply();
+      }
+    }
+
+    function hidePopup()
+    // this function hides the pop-up when any of various things happen
+    {
+      popup = document.getElementById("popup");
+      if (popup) { popup.style.visibility="hidden"; }
+    }
+
+  
+    popup_just_opened = false;
+    function dismissPopup()
+    {
+
+    }
+
+  </script>
+
+  <!-- now the body starts for real -->
+
+
+
+  <div id="rightside">
+    <center><a href="javascript:goVertical()" id="goVerticalLink">^</a>
+    <a href="javascript:goHorizontal()" class="goHorizontalLink" id="goHorizontalLink2">&lt;</a></center>
+    <div style="clear: both"></div>
+    <div id="order_pane">
+      <div id="table_display" onclick='go_to_tables()' onmousedown='this.style.color="red"' onmouseup='this.style.color="blue"'>
+        <center>
+          <a>TABLE:</a>
+          <a id="table_id_display">---</a>
+        </center>
+      </div>
+      <center><div>===========</div></center>
+      <div id="order_items" onclick="null"></div>
+    </div>
+  </div>  
+
+  <div id="select_area">
+    <center>
+      <a href="javascript:goHorizontal()"  class="goHorizontalLink" id="goHorizontalLink">&lt;</a>
+      <a id="category">---</a>
+      <div id="board"></div>
+    </center>
+  </div>
+
+  <!-- 
+    This div defines a popup dialog box. Ideally this shoud
+    probably be generated by a javascript function so it can be re-used
+    more easily, but for now, I've put it into the body of the HTML.
+    It's style is initially set to visibility:hidden and it will be
+    positioned when it is shown, so it doesn't really matter where we
+    put it in the HTML. So we put it at the begining.
+  
+    The popup div hooks onmouseleave to cancel so that the dialog goes
+    away before if the user looses interest and wants to do something else.
+    It is just nicer that trying to make it modal (everything else locks up
+    until the dialog is dismissed) and avoids conceptual problems like the 
+    user leaving the dialog in place and rotating the squares around then 
+    hitting cancel. Unfortunately, this only works in IE, Firefox and Opera 
+    don't respond to onmouseleave, and although they do respond to 
+    onmouseout, they have a different and not very useful idea of what 
+    'going out' of the div means. If we really had to solve this we could try
+    capturing every mouse movement and going through some complicated 
+    gymnastics to determine if the mouse is outside the popup div area.
+  
+  -->
+  <div id ="popup" class="diaframe" id="dlg">
+    <div id="menu_popup_caption" class="diacapt">---</div>
+    <div class="diabuttons">
+      <input id="cancel" type="button" value="cancel" onclick="cancel_item()"> 
+      <input id="delivered" class="diabutton" type="button" value="delivered" onclick="mark_delivered()"> 
+      <input id="comped" class="diabutton" type="button" value="comped" onclick="mark_comped()"> 
+      <input id="nothing" class="diabutton" type="button" value="do nothing"> 
+    </div>
+  </div>
+
+</body>
+</html>

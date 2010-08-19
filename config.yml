@@ -1,0 +1,105 @@
+
+menu:
+  categories:
+    - name: tables
+      subcategories:
+        - name: 1-9
+          items: 
+            - name: 1
+            - name: 2
+            - name: 3
+            - name: 4
+            - name: 5
+            - name: 6
+            - name: 7
+            - name: 8
+            - name: 9
+        - name: B1-B9
+          items: 
+            - name: B1
+            - name: B2
+            - name: B3
+            - name: B4
+            - name: B5
+            - name: B6
+            - name: B7
+            - name: B8
+            - name: B9
+        - name: B10-B18
+          items: 
+            - name: B10
+            - name: B11
+            - name: B12
+            - name: B13
+            - name: B14
+            - name: B15
+            - name: B15
+            - name: B16
+            - name: B17
+            - name: B18
+    - name: wine
+      subcategories:
+        - name: red
+          items: 
+            - name: 1-valpolicell
+              price: 17
+            - name: 2-ribiera
+              price: 27
+            - name: 3-cananau
+              price: 18
+            - name: 4-barolo
+              price: 87
+            - name: 5-dolcetto
+              price: 19
+        - name: white
+          items: 
+            - name: 1-asti
+              price: 17
+            - name: 2-soave
+              price: 27
+            - name: 3-margaux
+              price: 18
+            - name: 4-pouilly-fuise
+              price: 27
+            - name: 5-sancerre
+              price: 29
+    - name: food
+      subcategories:
+        - name: cold-tapas
+          items: 
+            - name: jamon & manchego
+              price: 7
+            - name: california salad
+              price: 7
+            - name: burratta
+              price: 7
+            - name: kraut
+              price: 7
+            - name: pesto
+              price: 7
+            - name: olives
+              price: 7
+            - {name: almonds, price: 5}
+            - {name: crudo, price: 9}
+            - {name: tortilla, price: 7}
+            - {name: foie gras, price: 11}
+            - {name: pate, price: 7}
+            - {name: 3 hams, price: 8}
+        - name: hot-tapas
+          items: 
+            - name: polenta
+              price: 7
+            - name: chicken
+              price: 7
+            - name: fondutta
+              price: 7
+            - name: empanada
+              price: 7
+            - name: mushroom
+              price: 7
+            - name: chorizo
+              price: 7
+            - name: oxtail
+              price: 7
+            - name: short rib
+              price: 7
