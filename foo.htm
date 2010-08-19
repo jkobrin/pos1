@@ -487,19 +487,6 @@
     It's style is initially set to visibility:hidden and it will be
     positioned when it is shown, so it doesn't really matter where we
     put it in the HTML. So we put it at the begining.
-  
-    The popup div hooks onmouseleave to cancel so that the dialog goes
-    away before if the user looses interest and wants to do something else.
-    It is just nicer that trying to make it modal (everything else locks up
-    until the dialog is dismissed) and avoids conceptual problems like the 
-    user leaving the dialog in place and rotating the squares around then 
-    hitting cancel. Unfortunately, this only works in IE, Firefox and Opera 
-    don't respond to onmouseleave, and although they do respond to 
-    onmouseout, they have a different and not very useful idea of what 
-    'going out' of the div means. If we really had to solve this we could try
-    capturing every mouse movement and going through some complicated 
-    gymnastics to determine if the mouse is outside the popup div area.
-  
   -->
   <div id ="popup" class="diaframe" id="dlg">
     <div id="menu_popup_caption" class="diacapt">---</div>
