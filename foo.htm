@@ -107,14 +107,9 @@
     #select_area {width: 70%;}
     
     #table_display {width: 100%; margin: 5px; color: blue;}
+    #table_id_display {width: 95%;}
 
   </style>
-
-
-</head>
-
-
-<body onLoad="draw()" id='main'>
 
   <script> 
 
@@ -126,7 +121,10 @@
 
     g_currentTable = null; 
 
-    document.body.addEventListener('click',hidePopup, true)
+    function init()
+    {
+      document.body.addEventListener('click',hidePopup, true)
+    }  
 
 
     function http_request(method, url, params)
@@ -170,6 +168,7 @@
     function draw()
     // This gets called when the document loads.
     {
+      init();
       load_config();
       drawCurrentCategory();
       refresh_order(null, null);
@@ -316,6 +315,13 @@
       update_order_pane(order_items);
     }
 
+    function close_check()
+    {
+      receipt_items = http_request("POST", "close_check", "table="+g_currentTable);
+      old_body = document.body.innerHTML;
+      document.body.innerHTML = receipt_popup_html(receipt_items);
+    }  
+
     function remove_from_order(item)
     {
       refresh_order(null, item);
@@ -327,25 +333,17 @@
       
     function update_order_pane(items)
     {
-      document.getElementById("table_id_display").innerHTML = g_currentTable || '---';
+      document.getElementById("table_id_display").innerHTML = "Table: " + (g_currentTable || '---');
 
       order_items_html = "";
-      //order_items_html = "<ul>";
-
       for (idx in items)
       {
         item = items[idx]["name"];
         item_id = items[idx]["id"];
         order_items_html += '<input class="order_item" type=button ' +
-          'onclick="menu_popup(\'' + item_id + '\', \'' + item + '\', event)" ' +
+          'onclick="orderitem_popup(\'' + item_id + '\', \'' + item + '\', event)" ' +
           'value="'+item+'"</input>';
-
-        //order_items_html += '<input ' +
-          //'class="order_item" type=button' + 
-          //'value="'+item+'"</input>';
-        //order_items_html += '<li><a href="javascript:remove_from_order(\'' + item_id + '\')">'+item+'</a></li><BR>';
       }  
-      //order_items_html += "</ul>";
       order_items = document.getElementById("order_items");
       order_items.innerHTML = order_items_html;
     }
@@ -357,20 +355,57 @@
 
     popup_item_id = null;
     // Order popup stuff
-    function menu_popup(item_id, item, e)
+    popup = null;
+    function orderitem_popup(item_id, item, e)
     {
-      x = mouseX(e);
-      y = mouseY(e);
-      popup = document.getElementById("popup");
-      menu_popup_caption = document.getElementById("menu_popup_caption");
+      popup = document.getElementById("orderitem_popup");
+      popup.item_id = item_id;
+      menu_popup_caption = document.getElementById("orderitem_popup_caption");
       menu_popup_caption.innerHTML = item;
-      popup_item_id = item_id;
+      
       popup.style.visibility="visible";
       popup.style.left= document.body.clientWidth - rightside.clientWidth - popup.clientWidth;
+      y = mouseY(e);
       popup.style.top= y - popup.clientHeight / 2;
       popup.focus();
-      popup.select();
     }
+
+    function table_popup(e)
+    {
+      popup = document.getElementById("table_popup");
+      popup_caption = document.getElementById("table_popup_caption");
+      popup_caption.innerHTML = "Table: " + g_currentTable;
+      
+      popup.style.visibility="visible";
+      popup.style.left= document.body.clientWidth - rightside.clientWidth - popup.clientWidth;
+      y = mouseY(e);
+      popup.style.top= y - popup.clientHeight / 2;
+      popup.focus();
+    }
+
+    function receipt_popup_html(receipt_items)
+    {
+      s = "<body><center>";
+      s += "<table>";
+       
+      for (idx in receipt_items)
+      {
+        item = receipt_items[idx];
+        s += "<tr>";
+        s += "<td>"+item.name+"</td>";
+        s += "<td>"+item.price+"</td>";
+        s += "</tr>";
+      }  
+      s += "<tr><td>Total:</td><td>" + receipt_items[0].sum + "</td>";
+      s += "</table>";
+      s += "<div><button onclick='restore_body()'>Done</button> <div>";
+      s += "</center></body>" ;
+      
+      return s;
+    }
+
+    old_body = null;
+    function restore_body(){document.body.innerHTML = old_body; go_to_tables()}
 
     // These functions are necessary to get the mouse position in a 
     // way that works for all browsers
@@ -412,7 +447,7 @@
     
     function cancel_item()
     {
-      remove_from_order(popup_item_id);
+      remove_from_order(popup.item_id);
     }  
 
     function cancel()
@@ -439,18 +474,16 @@
     function hidePopup()
     // this function hides the pop-up when any of various things happen
     {
-      popup = document.getElementById("popup");
       if (popup) { popup.style.visibility="hidden"; }
     }
 
-  
-    popup_just_opened = false;
-    function dismissPopup()
-    {
-
-    }
-
   </script>
+
+</head>
+
+
+<body onLoad="draw()" id='main'>
+
 
   <!-- now the body starts for real -->
 
@@ -461,13 +494,10 @@
     <a href="javascript:goHorizontal()" class="goHorizontalLink" id="goHorizontalLink2">&lt;</a></center>
     <div style="clear: both"></div>
     <div id="order_pane">
-      <div id="table_display" onclick='go_to_tables()' onmousedown='this.style.color="red"' onmouseup='this.style.color="blue"'>
-        <center>
-          <a>TABLE:</a>
-          <a id="table_id_display">---</a>
-        </center>
+      <div id="table_display" onclick='table_popup(event)'>
+        <button id="table_id_display" class="order_item">---</button>
       </div>
-      <center><div>===========</div></center>
+      <center>===========</center>
       <div id="order_items" onclick="null"></div>
     </div>
   </div>  
@@ -488,13 +518,22 @@
     positioned when it is shown, so it doesn't really matter where we
     put it in the HTML. So we put it at the begining.
   -->
-  <div id ="popup" class="diaframe" id="dlg">
-    <div id="menu_popup_caption" class="diacapt">---</div>
+  <div id ="orderitem_popup" class="diaframe">
+    <div id="orderitem_popup_caption" class="diacapt">---</div>
     <div class="diabuttons">
-      <input id="cancel" type="button" value="cancel" onclick="cancel_item()"> 
-      <input id="delivered" class="diabutton" type="button" value="delivered" onclick="mark_delivered()"> 
-      <input id="comped" class="diabutton" type="button" value="comped" onclick="mark_comped()"> 
-      <input id="nothing" class="diabutton" type="button" value="do nothing"> 
+      <input type="button" value="cancel" onclick="cancel_item()"> 
+      <input type="button" value="delivered" onclick="mark_delivered()"> 
+      <input type="button" value="comped" onclick="mark_comped()"> 
+      <input type="button" value="do nothing"> 
+    </div>
+  </div>
+
+  <div id ="table_popup" class="diaframe">
+    <div id="table_popup_caption" class="diacapt">---</div>
+    <div class="diabuttons">
+      <input type="button" value="switch" onclick="go_to_tables()"> 
+      <input type="button" value="close check" onclick="close_check()"> 
+      <input type="button" value="do nothing"> 
     </div>
   </div>
 
