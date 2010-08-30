@@ -1,6 +1,8 @@
 import json
 import MySQLdb
 
+log = open('/tmp/logq', 'a')
+
 
 def order(req, table, additem=None, removeitem=None):
 
@@ -14,7 +16,7 @@ def order(req, table, additem=None, removeitem=None):
   if additem:
     
     open_order_group = None
-    while True:
+    for time in (1,2):
       cursor.execute('''
         SELECT id FROM order_group 
         WHERE is_open = TRUE
