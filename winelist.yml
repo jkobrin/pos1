@@ -1,0 +1,517 @@
+﻿reds:
+  - name: "St Emillion Grand Cru 2003"
+    listprice: 40
+    byline: "by Chateau Roylland - Bordeaux, France"
+    grape: "Merlot / Cabernet blend"
+    catalog: "verity wp 624a "
+    from: 19.33
+
+  - name: "Bordeaux Cotes de Francs"
+    byline: "by Chateau Moulin de la Rouquille - Bordeaux, France"
+    listprice: 24
+    frontprice: 7
+    grape: "Cabernet / Merlot"
+    catalog: "Wineberry page 6 - box"
+     
+  - name: "Cote du Rhone 2007"
+    listprice: 26
+    byline: "by Chateau Mont-Thabor - Rhone Valley, France"
+    grape: "Grenache, Syrah"
+    catalog: "Wineberry"
+    frontprice: 10.50
+    mynotes: "B+. Tannin, brett, smoke. Red dark fruit. Pepper."
+
+  - name: "Cote du Rhone 2007"
+    listprice: 26
+    byline: "by Chateau Mont-Thabor - Rhone Valley, France"
+    grape: "Grenache, Syrah"
+    catalog: "Wineberry"
+    frontprice: 10.50
+    mynotes: "B+. Tannin, brett, smoke. Red dark fruit. Pepper."
+
+  - name: "Chateauneuf du Pape 2007"
+    listprice: 52
+    byline: "by Chateau Mont-Thabor - Rhone Valley, France"
+    grape: "Grenache, Syrah, Mourvedre, smattering of others"
+    catalog: "Wineberry"
+    frontprice: 28.00
+    mynotes: "Very good. Nice structure. Smooth & smoky."
+
+  - name: "Cote du Rhone 2008"
+    listprice: 24
+    byline: "by Domain Boisson - Rhone Valley, France"
+    grape: "Grenache, Syrah, Carignan, Cinsault, Mourvedre"
+    catalog: "verity 625a, "
+    frontprice: 9.33
+
+  - name: "Chateauneuf du Pape 2008"
+    listprice: 48
+    byline: "by Cuvee du Vatican - Rhone Valley, France"
+    grape: "Grenache, Syrah, Mourvedre, smattering of others"
+    catalog: "verity 625A "
+    frontprice: 25.00
+
+  - name: "Cotes du Rhone"
+    byline: "by Domain Le Garrigon - Rhone Valley, France"
+    listprice: 24
+    frontprice: 7
+    grape: "Cabernet / Merlot"
+    catalog: "Wineberry page 6 - box"
+     
+
+  - name: "Cote de Beaune Village 'Les Combottes' "
+    byline: "by Domain d'Ardhuy  - Burgundy, France"
+    grape: "Pinot Noir"
+    catalog: "Wineberry page 12"
+    frontprice: 16
+    listprice: 34
+
+  - name: "Beaujolais Villages"
+    byline: "by Chateau du Chatelard - Beaujolais, France"
+    grape: "Old Vine Gamay"
+    catalog: "Wineberry page 16"
+    frontprice: 10
+    listprice: 25
+
+  - name: "Cahors 2005"
+    listprice: 24
+    byline: "by Chateau GauToul - Cahors, France"
+    grape: "Grape: Malbec"
+    catalog: "verity 625A "
+    frontprice:  10.00
+
+  - name: "Merlot 2007"
+    listprice: 26
+    byline: "Rutherford Vinters - Napa Valley, California"
+    grape: "Grape: Merlot"
+    catalog: "opici 400 "
+    frontprice: 10.25
+
+  - name: "Merlot Maclise 2007"
+    listprice: 45
+    byline: "by Coturri - Sonoma, California"
+    grape: "Grape: Merlot"
+    frontprice: 23
+    catalog: "Jenny & Francois one of the last pages"
+
+  - name: "Petit Sirah 2008"
+    listprice: 40
+    byline: "by Fortress Vineyards - Lake County, California"
+    grape: "Grape: Petit Sirah"
+    catalog: "verity 620A "
+    frontprice: 21.33
+
+  - name: "Cabernet Sauvingon 2009"
+    listprice: 32
+    byline: "by Domaine Napa -- Napa Valley"
+    catalog: "opici page 395 "
+    frontprice: 14
+    grape: "Cabernet Sauvingon"
+    mynotes: "note: A- good round fruit, mellow oak"
+
+  - name: "'The Crusher' Cab 2009"
+    listprice: 25
+    byline: "by Wilson Vineyard - Clarksburg, California"
+    grape: "Cabernet Sauvignon"
+    catalog: "--opici 400 "
+    frontprice: 10.00
+    mynotes: "decent fruit, mellow tanins, LOTS of Vanilla"
+
+  - name: "2007 Bargetto Zinfindel"
+    listprice: 34
+    byline: "by Bargetto - Lodi, California"
+    grape: "Grape: Old Vine Zinfindel"
+    frontprice: 15
+    catalog: "east coast specialty"
+    mynotes: "Fruit/Barnyard. Good rasiny/berry fruit, good balance. Easy drinking."
+
+  - name: "Liberty School Cabernet Sauvignon"
+    listprice: 25
+    byline: "Paso Robles, California"
+    catalog: "winebow 733a"
+    frontprice: 10
+
+  - name: "Pinot Noir 2009"
+    listprice: 30
+    byline: "by Primarius Vineyards - Oregon  30"
+    grape: "Grape: Pinot Noir"
+    catalog: "opici page: 404 "
+    frontprice: 13.25
+
+  - name: "Pinot Noir Reserve 2009"
+    byline: "by Maison Nicolas - Vin de Pay D'Oc"
+    catalog: "--- opici 410a "
+    frontprice: 5.44
+    mynotes: "Notes: pleasant, boring, B"
+    listprice: 18
+    qtprice: 4
+
+  - name: "Leese-Fitch Cab Sauv 2009"
+    byline: "Leese-Fitch California"
+    mynotes: "notes: good, slightly raisiny = some fruit"
+    catalog: "--opici 397 "
+    frontprice: 8.67
+
+  - name: "Barbaresco 2005 - Rizzi"
+    mynotes: "shoe polish, good dryness, decent tanins, some fruit, decent acidity."
+    catalog: "opici"
+    frontprice: 29.34
+
+  - name: "Vino Nobile di Montepulciano"
+    catalog: "opici 404"
+    frontprice: 22.67
+    mynotes: "stemmy, good mild tanins, raisiny fruit, A-"
+    grape: "sangiovese grosso"
+
+  - name: "Liano "
+    byline: "Umberto Cesare"
+    catalog: "opici"
+    frontprice: 24
+    mynotes: "Berry (sweet?) jammy, mild, mild tanins. B+?"
+    grape: "80% sangiovese, 20% cab sauv"
+
+  - name: "Lui 2006"
+    byline: "Luiano -Tuscany"
+    catalog: "opici"
+    frontprice: 18.67
+    mynotes: "Med tanins, med fruit, med body. B?"
+    grape: "33% cab, 33% merlot, 33% colorino tuscano"
+
+  - name: "Barolo 2006"
+    listprice: 50
+    byline: "by Ascheri - Piedmonte, Italy"
+    grape: "Nebbiolo"
+    catalog: "verity 627a "
+    frontprice: 25
+
+  - name: "Barbera D'Asti 2004"
+    listprice: 26
+    frontprice: 10.67
+    byline: "by Mondianese - Piedmonte, Italy"
+    grape: "Nebbiolo"
+    catalog: "verity 627a"
+
+  - name: "Brunello di Montalcino 2005"
+    listprice: 60
+    byline: "by Aler Amici - Tuscany"
+    catalog: "verity 627a "
+    frontprice: 33.17
+    grape: "Sangiovese"
+
+  - name: "Chianti Rufina 2008"
+    listprice: 25
+    byline: "by Fattoria di Basciano - Tuscany"
+    grape: "Sangiovese"
+    catalog: "verity 627a"
+    frontprice: 10.00
+
+  - name: "Nero D'Avola 2008"
+    listprice: 26
+    byline: "by Fatascia - Sicily"
+    grape: "Nero D'Avola"
+    catalog: "verity 627a"
+    frontprice: 10.00
+
+  - name: "Cannonau Di Sardegna 2008"
+    listprice: 28
+    byline: "by Castiadas - Sardinia"
+    grape: "Cannonau"
+    catalog: "verity 627a"
+    frontprice: 12.67
+
+  - name: "Rioja 2008"
+    listprice: 24
+    byline: "by Sierra Cantabria - Rioja, Spain"
+    grape: "Tempranillo"
+    notes: "Hints mocha and blackberry. Well balanced and crisp."
+    catalog: "Tempanillo 70"
+    frontprice: 9
+    mynotes: " ?should taste again?"
+
+  - name: "Rioja Reserva 2005"
+    listprice: 44
+    byline: "by Bodegas Muga - Rioja, Spain"
+    grape: "Tempanillo, Garnacha, Mazuelo, Graciano"
+    catalog: "--tempranillo page 59"
+    frontprice: 22
+
+  - name: "El Chaparral 2008 (Vega Sindoa)"
+    listprice: 28
+    byline: "by Bodegas Nekeas - Navarra, Spain"
+    grape: "Old Vine Garnacha (aka Grenache)"
+    catalog: "tempranillo page "
+    frontprice: 12
+
+  - name: "Vega Sindoa Cabernet 2007"
+    listprice: 25
+    byline: "by Bodegas Nekeas - Navarra, Spain"
+    grape: "Cabernet Sauvingon"
+    notes: "Notes of chocolate, cherry & jalapeno. Fresh, spicy finish."
+    catalog: " tempranillo page 35"
+    frontprice: 9.50
+
+  - name: "Tinto Fino 2006"
+    listprice: 40
+    byline: "by Emilio Moro - Ribera Del Duero, Spain"
+    grape: "Tempranillo (aka Tinto Fino)"
+    note: "Smoke & roasted herbs over tons of firm ripe cherry and vanilla spice."
+    catalog: "--tempranillo page 44"
+    frontprice: 9.50
+
+  - name: "Clos de Torribas 2006 Crianza"
+    listprice: 22
+    byline: "by Bodegas Pinord - Penedes, Spain"
+    grape: "Tempanillo"
+    catalog: "east c specialty wines"
+    frontprice: 7.33
+    notes: "smooth smoky vanilla, good fruit A"
+
+  - name: "Beso de Vino Old Vine Garnacha"
+    listprice: 22
+    byline: "A Steve Miles Selection - Carin~ena, Spain"
+    grape: "Garnacha (Grenache)"
+    catalog: "opici B"
+    frontprice: 8
+
+  - name: "Wrongo Dongo 2008"
+    listprice: 20
+    byline: "by Bodegas Hijos de Juan Gil - Jumilla, Spain"
+    grape: "Monastrell (a.k.a Mouvedre)"
+    catalog: "tempranillo page 19"
+    frontprice: 6.60
+
+  - name: "Juan Gil 2008"
+    listprice: 30
+    byline: "by Bodegas Hijos de Juan Gil - Jumilla, Spain"
+    grape: "Monastrell (a.k.a Mouvedre)"
+    catalog: "tempranillo page 18. "
+    frontprice: 13
+    mynotes: "similiar to Wrongo Dongo?"
+          
+  - name: "Tres Picos Garnacha 2008"
+    listprice: 30
+    byline: "by Borsao - Aragon, Spain"
+    grape: "Old Vine Garnacha (aka Grenache)"
+    catalog: "--tempanillo page 12 "
+    frontprice: 13
+
+  - name: "Tempranillo 2008"
+    listprice: 36
+    byline: "by Triton - Zamora, Spain"
+    notes: "Heady aroma of coffee and spice. Firm crisp structure."
+    catalog: "tempranillo - page 86 "
+    frontprice: 16.67
+
+  - name: "Garnacha de Fuego"
+    listprice: 22
+    byline: "by Ateca - Calatayud, (Aragon) Spain"
+    grape: "Old vine Garnacha (aka Grenache) grown at 3000 ft"
+    notes: "Lots of sweet dark fruit."
+    catalog: "  --tempranillo page 7"
+    frontprice: 8
+    mynotes: "--lots of sweet dark fruit"
+
+  - name: "Borsao 2009"
+    listprice: 20
+    byline: "by Bodegas Borsao - Aragon, Spain"
+    grape: "Garnacha / Tempanillo"
+    catalog: "--tempranillo page 11, "
+    frontprice: 675
+    mynotes: "nice balance, good oak.  B+"
+
+  - name: "Baqueano"
+    byline: "by Neuquen - Patagonia, Argentina"
+    listprice: 20
+    grape: "Cabernet / Malbec blend"
+    catalog: "-- east coast spec. wines "
+    frontprice: 6.83
+    notes: "fruity, mild, easy B"
+
+  - name: "Malbec 2009"
+    listprice: 25
+    byline: "by Urban Uco - Valle de Uco, Mendoza, Argentina"
+    grape: "Malbec"
+    catalog: "tempranillo Page 92, "
+    frontprice: 9.50
+
+whites:
+
+  - name: "Opala Vinho Verde"
+    listprice: 16
+    byline: "by FelGuerras"
+    grape: "Loureiro, Arinto, Trajadura"
+    catalog: "--- opici product #32506"
+    frontprice: 5
+
+  - name: "Muga Rose 2009 by Bodegas Muga - Rioja, Spain"
+    listprice: 28
+    byline: "Garnacha, Viura, Tempranillo"
+    catalog: "---tempranillo page 61, "
+    frontprice: 11
+    grape: "Tempranillo"
+
+  - name: "Pinot Grigio 2009"
+    listprice: 18
+    byline: "by Casal Thaulero - Terre Di Chieti, Abruzzo, Italy"
+    catalog: "--- opici 412a - "
+    frontprice: 5.03
+    grape: "Pinot Grigio"
+
+  - name: "Shaya Verdejo"
+    listprice: 28
+    byline: "by Bodegas Shaya - Rueda, Spain"
+    grape: "old vine verdejo"
+    catalog: "--tempranillo page 82, "
+    frontprice: 12
+    mynotes: "nutt, frutty spicy B+"
+
+  - name: "Sauvingon Blanc 2009"
+    listprice: 18
+    byline: "by Ferrande - Bordeaux, France"
+    catalog: "-- opici 409a - "
+    frontprice: 6.03
+    mynotes: "great heavy nose, lightish body - A-"
+    grape: "Sauvingon Blanc"
+
+  - name: "Sauvignon Blanc 2009"
+    byline: "Coopers creek - Marlborough, New zealand"
+    frontprice: 10
+    listprice: 26
+    mynotes: "med tropical fruit nose. heavyish body, slightly creamy, lacking acidity"
+ 
+  - name: "Sauvignon Blanc 2009"
+    byline: "Yealands - Marlborough, New zealand"
+    frontprice: 8.33
+    listprice: 24
+    mynotes: "jalapeno & grass a touch of catpee nose, some mild fruit. light body, higher acidity, interesting wine"
+
+  - name: "Chateau Julien"
+    byline: "Monterry, California"
+    frontprice: 8.33
+    listprice: 24
+    catalog: "winebow 732a"
+    mynotes: "nose: barnyard, soapy oak, some flat butter, decent fruit - apple,  and good acid"
+
+  - name: "Resisling 2008"
+    byline: "Mercer - Yakima Valley, Washington"
+    catalog: "winebow 735a"
+    frontprice: 10 
+    listprice: 26
+    story: "they are growers primarily, keep choice fruit for own label"
+    mynotes: "nice fresh petrol nose, mild sweetness, little sweet than kabinett, good acid, round fruit"
+
+  - name: "Reisling Kabinett"
+    mynotes: "stinky petrol, sweet honeyish, but acidic enough to finish nicely. A"
+    byline: "by Ayler Krupp - Mosel, Germany"
+    frontprice: 10 #(12?)
+    listprice: 28
+
+  - name: "Vivanco Rose 2009"
+    byline: "by Bodegas Dinastia Vivanco - Rioja, Spain"
+    catalog: "tempranillo, garnacha"
+    mynotes: "--opici 417a, "
+    frontprice: 0
+
+  - name: "Verdejo 2009"
+    byline: "by Paso a Paso - La Mancha, Spain"
+    grape: "Verdejo"
+    catalog: "-- tempanillo pg: 21, "
+    frontprice: 9
+    listprice: 24
+    mynotes: "very nice nose, full fruity body, creamy, toast B+"
+    
+  - name: "Centauri Sauvignon Blanc"
+    listprice: 25
+    byline: "by Fournier - Maule Valley, Chile"
+    grape: "Sauvignon Blanc"
+    notes: "Aromas of lime, grapefruit & lychee. Taste of citrus and quinine."
+    catalog: "---tempranillo page: 90, "
+    frontprice: 9.33
+    mynotes: "--(lychee, durian, interesting)"
+
+  - name: "Isola's Vermentino Di Sardegna"
+    catalog: "--- east coast specialty wines page 3, B+"
+    frontprice: 10
+    listprice: 24
+    mynotes: "good light tropical fruit, good acid, mild but zingy"
+
+  - name: "Danae falanghina"
+    catalog: "--- east coast spec wines page 1"
+    frontprice: 9.16
+    listprice: 24
+    mynotes: "--- heavy body, bitter acid, B- Probably not"
+
+  - name: "Martin Ray Chardonnay -Russian River"
+    mynotes: "Fruit nose, bitter acid, heavy body,  touch of oak, B-"
+    catalog: "opici page 14"
+    frontprice: 14
+    listprice: 32
+
+  - name: "Hahn Winery Chardonnay -Santa Lucia Highlands"
+    mynotes: "Refined mineraly, lightly fruited nose. Mild round fruit. Med acid, med body, no oak, B. Derek: Person friendly."
+    catalog: "opici page 387"
+    frontprice: 8.67
+    listprice: 23
+
+  - name: "Angeline Sauvignon Blanc -Russian River"
+    mynotes: "Light tropical fruit, touch of cat pee, light body, mild acid. Touch of bitterness. B+"
+    catalog: "opici page 383"
+    frontprice: 10
+    listprice: 25
+
+sparkling:  
+  - name: "zardetto prosecco"
+    frontprice: 10 #(4 for little)
+    mynotes: "brut prosecco, off-dry, nice, B"
+    listprice: 25
+    qtprice: 8
+
+  - name: "Moscato D'Asti"
+    byline: "villa rosa"
+    mynotes: "sweet low alc, frizzante similar to Bartenura, good desert"
+    frontprice: 7.34
+    listprice: 21
+    qtprice: 7
+  
+
+    
+    
+#
+#Draft
+#  Lion Stout from Sri Lanka 71.99 for 20 litre 12oz = 60 pours $1.20
+#  --Meantime Chocolate Stout England 139.99
+#  --Belfast Bay Main, Mcgovern's Oatmeal stout
+#  Speakeasy Prohibition Ale (amber ale) 20 liter 71? Serve full pint 1.50?
+#  Speakeasy Prohibition Ale (amber ale) 15.5 gal  149.99 Serve full pint 1.15?
+#  Steven's Point wisconson $119.00 60 liter Belgian White 
+#  Raderberger 130.99 for a 50 liter
+#  WeihenStephaner HefeWeissBier 50 135 / 50 Liter
+#  Shipyard IPA Portland Main 57.99 / 20 litre brit style 5.8%
+#  --IPA Jai Alai 7.1% bitter 84.99 / 20 litre
+#  --IPA racer 5 california
+#
+#  Delerium 12.7 oz Tremens 20 Litre 161.99 = 80 pours = 2.25 $8
+#
+#
+#Bottled beer
+#Omer Belgian Traditional Blond Ale
+#3.25 btl 8%
+#
+#St Louis Kriek Premium Lambic Belgian Ale with Cherries
+#52.79 / 12 12.7 oz Btl
+#
+#Kasteel Rouge Belgian Ale cherry added
+#74.50 12 oz
+#
+#Raderberger Pilsner - Germany 
+#
+#Jai Alia in bottle 34.99 ? 
+#Speakeasy big daddy IPA 34.99
+#Meantime IPA -England 25.4 oz 36.75 / 6 
+#
+#JK Scrumpy 22 oz  organic 52.70 / 12 
+#
+#Holy Grail Light Ale  England - Black sheep brewery 26.24 / 24 
+#
+#Bamanac semi-dry reisling
+#Bacari Cab-Franc

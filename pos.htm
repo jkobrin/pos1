@@ -1,0 +1,604 @@
+<html>
+
+<head>
+
+  <style>
+
+    .order_item { 
+      width: 100%; 
+      background-color:transparent;
+      border: none;
+      font-size : 14pt;
+    }
+    
+    .nondelivered_item { color: red; }
+
+    .comped_item {}
+    
+    .menu_button 
+    {
+      font-size:14pt; font-weight:bold; height:100px; width:100px;
+      background-color:#a0a0a0;
+      white-space : normal;
+    }
+
+    .diaframe
+    {
+     position:absolute;
+     font-family:arial;
+     visibility:hidden;
+     width:250;
+     border:2px outset black;
+     background-color:#A0A0C0;
+    }
+
+    .diacapt
+    {
+     height:35px;
+     width: 95%;
+     background-color:#5070B0;	
+     padding-top:2px;
+     padding-bottom:3px;
+     padding-left:5%;
+     font-weight:bold;
+     color:white;	
+    }
+
+    .diabutt a{
+     height:15px;
+     font-family:arial;
+     font-weight:bold;
+     font-style:italic;
+     background-color:#A0F0FF;
+     text-align:center;
+     text-decoration:none;
+     padding-top:1px;
+     padding-bottom:3px;
+     margin-right:2px;
+     border:2px solid gray;
+    }
+
+    .diabody
+    {
+     padding-top:5%;
+     padding-left:5%;
+     padding-right:5%;
+     position:absolute;
+     top:17px
+    }
+
+    .diainput
+    {
+     padding-top:5%;
+     padding-bottom:5%;
+    }
+
+    .diabuttons
+    {
+     padding-top:5%;
+     padding-bottom:5%;
+    }
+
+    .diabuttons input
+    {
+      height: 55px;
+      width:100%;
+    }
+
+    .diabuttons input:hover
+    {
+     color:red;
+    }
+
+    #receipt_screen
+    {
+      display: none;
+    }
+
+    body,h1,h2,h3,h4,h5,h6 {font-family:Arial;}
+
+    body {background-color:gray; color:black}
+
+    h1 {font-size:28pt; font-weight:bold; margin:0px;}
+
+    h2 {font-size:16pt; margin:0px; font-weight:bold;}
+
+    h3 {font-size:8pt; margin:0px; font-weight:bold;}
+
+    #category {font-size:28pt; text-align: center}
+
+    .goHorizontalLink {float: left; font-size:48}
+    #goVerticalLink {float: right; font-size: 56; text-align: right}
+
+    #rightside {float: right }
+    #order_pane {width: 150px; border: 4px outset; margin-top:10px; }
+    #order_pane :hover {background-color: yellow;}
+    #select_area {width: 70%;}
+    
+    #table_display {width: 100%; margin: 5px; color: blue;}
+    #table_id_display {width: 95%;}
+    #receipt_text {font-family: monospace; font-size: 14pt;}
+
+  </style>
+
+  <script> 
+
+    // This is the only script on this page. It does basically
+    // everything. 
+    
+    GRIDWIDTH = 5; 
+    // GRIDWIDTH can be anything from one up.
+
+    g_currentTable = null; 
+
+    function init()
+    {
+      document.body.addEventListener('click',hidePopup, true)
+    }  
+
+
+    function http_request(method, url, params)
+    {
+      http = new XMLHttpRequest();
+      if(method == "GET")
+      {
+        // append timestamp to url to prevent caching
+        url += "?timestamp=" + new Date().getTime();
+
+        if (params) {url += "&" + params;}
+        http.open(method, url, false);
+        http.send(null);
+      }
+      else
+      {
+        http.open(method, url, false);
+        http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+        http.setRequestHeader("Content-length", params.length);
+        http.setRequestHeader("Connection", "close");
+        http.send(params);
+      }
+
+      response = http.responseText;
+
+      if (http.status != 200)  {
+      // Display error message on page
+        document.write("Error getting config\n\n");
+        document.write(response);
+        return;
+      }
+
+      return eval('(' + response + ')');
+    }  
+
+    function load_config()
+    {
+      g_config = http_request("GET", "config/get", null);
+    }  
+      
+    function draw()
+    // This gets called when the document loads.
+    {
+      init();
+      load_config();
+      drawCurrentCategory();
+      refresh_order(null, null);
+    }
+
+    function rotateCategory()
+    {
+      categories = g_config.menu.categories;
+      categories.push(categories.shift());
+    }
+
+    function category_is_table()
+    {
+      return getSuperCategory() == 'tables';
+    }  
+      
+    function goVertical()
+    {
+      rotateCategory();
+
+      /*
+      if (category_is_table())
+      {
+        // Skip tables. Go to next category. Tables is reached by
+        // clicking table link.
+        rotateCategory();
+      } 
+      */
+      drawCurrentCategory();
+    }
+ 
+    function goHorizontal()
+    {
+      subs = g_config.menu.categories[0].subcategories;
+      subs.push(subs.shift());
+      drawCurrentCategory();
+    }
+
+    function getSubCategory()
+    {
+      return g_config.menu.categories[0].subcategories[0].name;
+    }  
+      
+    function getSuperCategory()
+    {
+      return g_config.menu.categories[0].name;
+    }  
+      
+    coloredItems = null;
+
+    function drawCurrentCategory()
+    {
+      document.getElementById("category").innerHTML 
+        = getSuperCategory() + " : " + getSubCategory();
+      populateMenuItems(getSubCategory());
+
+    }  
+
+    function colorTables()
+    {
+      if (category_is_table())
+      {
+        tables = http_request("GET", "open_tabs", null);
+
+        for (idx in tables)
+        {
+          table_id = tables[idx].table_id;
+          undelivered = tables[idx].undelivered;
+          table_button = document.getElementById(table_id);
+          if (table_button != null)
+          {
+            table_button.firstChild.style.backgroundColor = undelivered > 0 ? 'magenta' : 'green';
+          }  
+        }
+      }
+    }
+
+    function set_current_table(table_id)
+    {
+      g_currentTable = table_id;
+      refresh_order(null, null);
+    }
+
+    function populateMenuItems(category)
+    {
+      items = g_config.menu.categories[0].subcategories[0].items;
+      item_names = items.map(function(i) {return i.name});
+      drawBoard(item_names);
+    }
+
+    function drawBoard(item_names)
+    {
+      board=document.getElementById("board");
+      board.innerHTML = getTableHTML(item_names);
+      colorTables();
+    }
+        
+    function getTableHTML(items)
+    // This function is called when the page a new category is
+    // selected and the items in the table change. 
+    // By changing GRIDWIDTH, the programmer can alter the look
+    // of the table of items.
+    {
+      s="";
+
+      s = s + "<table border=0 cellpadding=0 cellspacing=15 >";
+
+      while (items.length)
+      {
+
+        s += "<tr>";    
+
+        for (c=1; c <= GRIDWIDTH && items.length; c++)
+        {
+          item = items.shift();
+
+          s += 
+            "<td" +
+            " class='square'" +
+            " onclick='grid_button_clicked(this)'" +
+            " id=\"" + item + "\"" +
+            ">" +
+            "<input " + 
+            " class='menu_button'" +
+            " type='button'"  + 
+            " value=\"" + item + "\"" + 
+            "/>" +
+            "</td>";
+        }
+
+        s += "</tr>";
+
+      }
+
+      s += "</table>";
+
+      return s;
+    }
+
+    function grid_button_clicked(button)
+    {
+      if (category_is_table())
+      {
+        set_current_table(button.id);
+      }
+      else
+      {
+        add_to_order(button.id);
+      }
+    }
+
+    function go_to_tables()
+    {
+      while (!category_is_table())
+      {
+        rotateCategory();
+      } 
+      drawCurrentCategory();
+      g_currentTable = null;
+      update_order_pane([]);
+    }
+
+    function refresh_order(add_item, remove_item)
+    {
+      params="table="+g_currentTable;
+      if (add_item) {params += "&additem="+add_item;}
+      if (remove_item) {params += "&removeitem="+remove_item;}
+
+      order_items = http_request("POST", "action/order", params);
+      update_order_pane(order_items);
+    }
+
+    function mark_delivered()
+    {
+      params = "item_id="+popup.item_id;
+      http_request("POST", "set_item_status/delivered", params);
+      refresh_order(null, null);
+    }
+
+    function mark_comped()
+    {
+      params = "item_id="+popup.item_id;
+      http_request("POST", "set_item_status/comped", params);
+      refresh_order(null, null);
+    }
+
+    function go_to_receipt_sceen()
+    {
+      receipt_text = http_request("POST", "texttab", "table="+g_currentTable);
+      receipt_table.innerHTML = receipt_table_html(receipt_text);
+      main_screen.style.display = "none";
+      receipt_screen.style.display = "inline";
+    }  
+
+    function close_check(shouldPrint)
+    {
+      table = g_currentTable;
+      http_request("POST", "close_tab", 
+        "table="+table+
+        "&shouldPrint="+shouldPrint
+      );
+      go_to_tables();
+    }  
+
+    function remove_from_order(item)
+    {
+      refresh_order(null, item);
+    }  
+      
+    function order_item_click(button)
+    {
+    }  
+      
+    function update_order_pane(items)
+    {
+      document.getElementById("table_id_display").innerHTML = "Table: " + (g_currentTable || '---');
+
+      order_items_html = "";
+      for (idx in items)
+      {
+        item = items[idx];
+        classes = "order_item";
+        if (!item.is_delivered) {classes += ' nondelivered_item'}
+        if (item.is_comped) { classes += ' comped_item'; item.item_name += '*'}
+        item.item_name = item.item_name.replace("/'/g", "\\'");
+
+        order_items_html += '<input' +
+          ' class="'+ classes + '"' +
+          ' type=button' +
+          ' onclick="orderitem_popup(' + item.id + ',this , event)"' +
+          ' value="'+item.item_name+'"' +
+          '></input>';
+      }  
+      order_items = document.getElementById("order_items");
+      order_items.innerHTML = order_items_html;
+      window.scroll(0,0);
+    }
+      
+    function add_to_order(additem)
+    {
+      refresh_order(additem, null);
+    } 
+
+    popup_item_id = null;
+    // Order popup stuff
+    popup = null;
+    function orderitem_popup(item_id, inputbutton, e)
+    {
+      popup = document.getElementById("orderitem_popup");
+      popup.item_id = item_id;
+      menu_popup_caption = document.getElementById("orderitem_popup_caption");
+      menu_popup_caption.innerHTML = inputbutton.value;
+      
+      popup.style.visibility="visible";
+      popup.style.left= document.body.clientWidth - rightside.clientWidth - popup.clientWidth;
+      y = mouseY(e);
+      popup.style.top= y - popup.clientHeight / 2;
+      popup.focus();
+    }
+
+    function table_popup(e)
+    {
+      popup = document.getElementById("table_popup");
+      popup_caption = document.getElementById("table_popup_caption");
+      popup_caption.innerHTML = "Table: " + g_currentTable;
+      
+      popup.style.visibility="visible";
+      popup.style.left= document.body.clientWidth - rightside.clientWidth - popup.clientWidth;
+      y = mouseY(e);
+      popup.style.top= y - popup.clientHeight / 2;
+      popup.focus();
+    }
+
+    function receipt_table_html(receipt_text)
+    {
+      return "<pre id='receipt_text'>" + receipt_text + "<\pre>"
+    }
+
+    function leave_receipt_screen()
+    {
+      receipt_screen.style.display="none";
+      main_screen.style.display="inline"; 
+    }
+
+
+    // These functions are necessary to get the mouse position in a 
+    // way that works for all browsers
+    function mouseX(evt) 
+    {
+      if (evt.pageX) 
+      {
+        return evt.pageX;
+      }
+      else if (evt.clientX)
+      {
+       return evt.clientX + (document.documentElement.scrollLeft ?
+       document.documentElement.scrollLeft :
+       document.body.scrollLeft);
+      }
+      else return null;
+    }
+
+    function mouseY(evt) 
+    // See comment abouve mouseX, just above
+    {
+      if (evt.pageY)
+      {
+        return evt.pageY;
+      }
+      else if (evt.clientY)
+      {
+        return evt.clientY + (document.documentElement.scrollTop ?
+        document.documentElement.scrollTop :
+        document.body.scrollTop);
+      }
+      else return null;
+    }
+
+    function showPopup()
+    // show the popup in the desried location when user clicks a square
+    {
+    }
+    
+    function cancel_item()
+    {
+      remove_from_order(popup.item_id);
+    }  
+
+    function cancel()
+    // When the user hits the cancel or 'X' dialog buttons, the dialog
+    // just needs to go away
+    {
+      hidePopup();
+    }
+
+
+    function enter(event)
+    // When the user presses enter on the text editBox colorEdit we want
+    // to interperet this to mean apply so we capture the keypress events
+    // from the edit box and check if the key is the enter key
+    {
+      if (event.keyCode == 13)
+      {
+        colorEdit.blur(); 
+        //otherwise you can still see the cursor after the dialog is hidden
+        apply();
+      }
+    }
+
+    function hidePopup()
+    // this function hides the pop-up when any of various things happen
+    {
+      if (popup) { popup.style.visibility="hidden"; }
+    }
+
+  </script>
+
+</head>
+
+<body onLoad="draw()" id='main'>
+
+
+  <div id="main_screen">
+    <div id="rightside">
+      <center><a href="javascript:goVertical()" id="goVerticalLink">^</a>
+      <a href="javascript:goHorizontal()" class="goHorizontalLink" id="goHorizontalLink2">&lt;</a></center>
+      <div style="clear: both"></div>
+      <div id="order_pane">
+        <div id="table_display" onclick='go_to_receipt_sceen()'>
+          <button id="table_id_display" class="order_item">---</button>
+        </div>
+        <center>===========</center>
+        <div id="order_items" onclick="null"></div>
+      </div>
+    </div>  
+
+    <div id="select_area">
+      <center>
+        <a href="javascript:goHorizontal()"  class="goHorizontalLink" id="goHorizontalLink">&lt;</a>
+        <a id="category">---</a>
+        <div id="board"></div>
+      </center>
+    </div>
+  </div>
+  <!-- This div is another screen. Initially it set to 
+  visibility:hidden and it will take up the whole screen
+  when it is shown, so it doesn't really matter where we put it 
+  in the HTML. So we put it at the begining.
+  -->
+  <div id="receipt_screen">
+    <center>
+    <table id="receipt_table"></table>
+    <div onclick='leave_receipt_screen()'>
+      <button onclick='close_check(true)'>Print and Close</button>
+      <button onclick='close_check(false)'>Just Close</button>
+      <button onclick='go_to_tables()'> See Tables </button>
+      <button >Go Back</button>
+    </center>
+  </div>
+
+
+
+  <div id ="orderitem_popup" class="diaframe">
+    <div id="orderitem_popup_caption" class="diacapt">---</div>
+    <div class="diabuttons">
+      <input type="button" value="cancel" onclick="cancel_item()"> 
+      <input type="button" value="delivered" onclick="mark_delivered()"> 
+      <input type="button" value="comped" onclick="mark_comped()"> 
+      <input type="button" value="do nothing"> 
+    </div>
+  </div>
+
+  <div id ="table_popup" class="diaframe">
+    <div id="table_popup_caption" class="diacapt">---</div>
+    <div class="diabuttons">
+      <input type="button" value="switch" onclick="go_to_tables()"> 
+      <input type="button" value="close check" onclick="close_check()"> 
+      <input type="button" value="do nothing"> 
+    </div>
+  </div>
+
+</body>
+</html>
