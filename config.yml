@@ -3,7 +3,7 @@ menu:
   categories:
     - name: tables
       subcategories:
-        - name: 1-9
+        - name: all
           items: 
             - name: 1
             - name: 2
@@ -14,8 +14,6 @@ menu:
             - name: 7
             - name: 8
             - name: 9
-        - name: B1-B9
-          items: 
             - name: B1
             - name: B2
             - name: B3
@@ -25,8 +23,6 @@ menu:
             - name: B7
             - name: B8
             - name: B9
-        - name: B10-B18
-          items: 
             - name: B10
             - name: B11
             - name: B12
@@ -37,32 +33,6 @@ menu:
             - name: B16
             - name: B17
             - name: B18
-    - name: wine
-      subcategories:
-        - name: red
-          items: 
-            - name: 1-valpolicell
-              price: 17
-            - name: 2-ribiera
-              price: 27
-            - name: 3-cananau
-              price: 18
-            - name: 4-barolo
-              price: 87
-            - name: 5-dolcetto
-              price: 19
-        - name: white
-          items: 
-            - name: 1-asti
-              price: 17
-            - name: 2-soave
-              price: 27
-            - name: 3-margaux
-              price: 18
-            - name: 4-pouilly-fuise
-              price: 27
-            - name: 5-sancerre
-              price: 29
     - name: food
       subcategories:
         - name: cold-tapas

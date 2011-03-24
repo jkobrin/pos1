@@ -9,7 +9,7 @@ print_options = {
  'page-border':'double', 'page-left':'48', 'page-top':'36', 'media':'Custom.4.25x11in'
 }
 
-def index(req, table, shouldPrint):
+def index(req, table, shouldPrint, serverpin):
 
   shouldPrint = (shouldPrint == 'true')
 
@@ -26,7 +26,7 @@ def index(req, table, shouldPrint):
 
   cursor.execute('''
     UPDATE order_group
-    SET is_open = FALSE
+    SET is_open = FALSE, closedby = %(serverpin)s
     WHERE is_open = TRUE
     AND table_id = "%(table)s"
   ''' % locals())
@@ -40,8 +40,6 @@ def index(req, table, shouldPrint):
     recfile.write(receipt_text)
     filename = recfile.name
     recfile.close()
-
-    print filename
 
     conn = cups.Connection()
     conn.printFile(conn.getDefault(), filename, 'receipt', print_options)

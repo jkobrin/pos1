@@ -1,7 +1,8 @@
 import json
 import MySQLdb
+import utils
 
-log = open('/tmp/logq', 'a')
+#log = open('/tmp/logq', 'a')
 
 
 def order(req, table, additem=None, removeitem=None):
@@ -27,7 +28,7 @@ def order(req, table, additem=None, removeitem=None):
         break
       else:
         cursor.execute('''
-          INSERT INTO order_group VALUES (null, "%(table)s", TRUE, null)
+          INSERT INTO order_group VALUES (null, "%(table)s", TRUE, null, null)
           '''%locals())
 
     open_order_group = open_order_group[0];
@@ -39,21 +40,20 @@ def order(req, table, additem=None, removeitem=None):
   if removeitem:
     cursor.execute('''
       UPDATE order_item oi
-      set oi.item_cancelled =TRUE, oi.updated = NOW()
+      set oi.is_cancelled =TRUE, oi.updated = NOW()
       where oi.id = %(removeitem)s
     ''' % locals())
     
-  cursor.execute('''
-    SELECT oi.item_name, oi.id
+  order_items = \
+  utils.select('''
+    SELECT oi.item_name, oi.id, oi.is_delivered, oi.is_comped
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
     and og.is_open = TRUE
     and og.table_id = "%(table)s"
-    and oi.item_cancelled = FALSE
-  ''' % locals())
-  rows = cursor.fetchall()
-
-  order_items = [{'name': row[0], 'id': row[1]} for row in rows]
+    and oi.is_cancelled = FALSE
+  ''' % locals(),
+    cursor)
 
   cursor.close ()
   conn.close ()
@@ -62,4 +62,4 @@ def order(req, table, additem=None, removeitem=None):
 
 
 if __name__ == '__main__':
-  print order(None, 'B12', additem='y')
+  print order(None, 'B12', additem='food')

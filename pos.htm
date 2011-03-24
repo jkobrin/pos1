@@ -22,6 +22,21 @@
       white-space : normal;
     }
 
+    #keypad
+    {
+      padding-top:25px;
+    }
+
+    #keypad button
+    {
+      font-size:36pt;
+    }
+
+    #keypad input
+    {
+      font-size:36pt;
+    }
+
     .diaframe
     {
      position:absolute;
@@ -365,8 +380,16 @@
       refresh_order(null, null);
     }
 
+    function pin_is_good(pin)
+    {
+      params = "pin="+pin;
+      is_good = http_request("POST", "checkpin", params);
+      return is_good;
+    }
+
     function go_to_receipt_sceen()
     {
+      keypadclear();
       receipt_text = http_request("POST", "texttab", "table="+g_currentTable);
       receipt_table.innerHTML = receipt_table_html(receipt_text);
       main_screen.style.display = "none";
@@ -378,7 +401,8 @@
       table = g_currentTable;
       http_request("POST", "close_tab", 
         "table="+table+
-        "&shouldPrint="+shouldPrint
+        "&shouldPrint="+shouldPrint+
+        "&serverpin="+pin
       );
       go_to_tables();
     }  
@@ -403,7 +427,7 @@
         classes = "order_item";
         if (!item.is_delivered) {classes += ' nondelivered_item'}
         if (item.is_comped) { classes += ' comped_item'; item.item_name += '*'}
-        item.item_name = item.item_name.replace("/'/g", "\\'");
+        item.item_name = item.item_name.replace(/'/g, "\\'");
 
         order_items_html += '<input' +
           ' class="'+ classes + '"' +
@@ -439,16 +463,13 @@
       popup.focus();
     }
 
-    function table_popup(e)
+    function table_popup()
     {
       popup = document.getElementById("table_popup");
       popup_caption = document.getElementById("table_popup_caption");
       popup_caption.innerHTML = "Table: " + g_currentTable;
       
       popup.style.visibility="visible";
-      popup.style.left= document.body.clientWidth - rightside.clientWidth - popup.clientWidth;
-      y = mouseY(e);
-      popup.style.top= y - popup.clientHeight / 2;
       popup.focus();
     }
 
@@ -459,10 +480,54 @@
 
     function leave_receipt_screen()
     {
+      keypadclear();
       receipt_screen.style.display="none";
       main_screen.style.display="inline"; 
     }
 
+    pin = "";
+    function keypadpress(button, event)
+    {
+      event.stopPropagation();
+      if (button.value == "CLR") { return keypadclear(); }
+
+      pin += button.value;
+      keypadhead.innerHTML = pin.replace(/./g,"*");
+      if (pin.length == 4) 
+      { 
+        if (pin_is_good(pin)) 
+        {
+          print_and_close.disabled=false;
+          just_close.disabled=false;
+          disableKeyPad(true);    
+          keypadhead.innerHTML = 'PIN recognized'
+        }
+        else
+        {
+          keypadclear();
+          keypadhead.innerHTML = 'Unrecognized PIN';
+        }
+          
+      }
+    }
+
+    function disableKeyPad(should)
+    {
+        keypadbuttons = keypad.getElementsByTagName("input");
+        for (idx in keypadbuttons)
+        {
+          keypadbuttons[idx].disabled = should;
+        }
+    }
+
+    function keypadclear()
+    {
+      pin = "";
+      keypadhead.innerHTML = "Enter 4 digit PIN to close tab.";
+      print_and_close.disabled=true;
+      just_close.disabled=true;
+      disableKeyPad(false);
+    }
 
     // These functions are necessary to get the mouse position in a 
     // way that works for all browsers
@@ -572,10 +637,35 @@
     <center>
     <table id="receipt_table"></table>
     <div onclick='leave_receipt_screen()'>
-      <button onclick='close_check(true)'>Print and Close</button>
-      <button onclick='close_check(false)'>Just Close</button>
+      <button id=print_and_close onclick='close_check(true)'>Print and Close</button>
+      <button id=just_close onclick='close_check(false)'>Just Close</button>
       <button onclick='go_to_tables()'> See Tables </button>
       <button >Go Back</button>
+
+      <div id="keypad">
+        <div id=keypadhead colspan="3" align="center"></div>
+        <table cellpadding="2" cellspacing="2" border="0">
+          <tr>
+            <td><input class="keypadbutt" type="Button" value="1" onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="2" onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="3" onclick="keypadpress(this, event)"></td>
+          </tr>
+          <tr>
+            <td><input class="keypadbutt" type="Button" value="4" onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="5" onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="6" onclick="keypadpress(this, event)"></td>
+          </tr>
+          <tr>
+            <td><input class="keypadbutt" type="Button" value="7" onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="8" onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="9" onclick="keypadpress(this, event)"></td>
+          </tr>
+          <tr>
+            <td><input type="Button" value="0" onclick="keypadpress(this, event)"></td>
+            <td colspan=2><input type="Button" value="CLR" onclick="keypadpress(this, event)"></td>
+          </tr>
+        </table>
+      </div>
     </center>
   </div>
 
@@ -599,6 +689,7 @@
       <input type="button" value="do nothing"> 
     </div>
   </div>
+
 
 </body>
 </html>

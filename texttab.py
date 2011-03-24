@@ -16,13 +16,13 @@ def get_tab_text(table):
     where og.id = oi.order_group_id
     and og.is_open = TRUE
     and og.table_id = "%(table)s"
-    and oi.item_cancelled = FALSE
+    and oi.is_cancelled = FALSE
   ''' % locals())
 
   if not items: 
     return "no tab opened for table %s" %table
 
-  foodtotal = sum(item.price for item in items)
+  foodtotal = sum(item['price'] for item in items)
   tax = round(foodtotal * TAXRATE, 2)
   total = foodtotal + tax
 
@@ -35,8 +35,8 @@ def get_tab_text(table):
   tabtext += divider
 
   for item in items:
-    tabtext += item.name.ljust(TEXTWIDTH) \
-      + str(item.price).rjust(NUMWIDTH) + '\n'
+    tabtext += item['name'].ljust(TEXTWIDTH) \
+      + str(item['price']).rjust(NUMWIDTH) + '\n'
 
   tabtext += '\n' + \
     'FOOD'.ljust(TEXTWIDTH) + foodtotal + '\n'
