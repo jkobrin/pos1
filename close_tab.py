@@ -1,3 +1,5 @@
+fileencoding = "iso-8859-1"
+
 
 import json
 import MySQLdb
@@ -5,16 +7,25 @@ import cups
 import tempfile, os
 import texttab
 
-print_options = {
- 'page-border':'double', 'page-left':'48', 'page-top':'36', 'media':'Custom.4.25x11in'
+SPRINT_OPTIONS = {
+ 'page-border':'double', 'page-left':'48', 'page-top':'36',
 }
 
-def index(req, table, shouldPrint, serverpin):
+PRINT_OPTIONS = {
+ 'page-border':'single', 
+ 'page-left':'12',
+ 'media':'Custom.3.125x%(page_length)sin',
+ 'lpi': '4'
+}
 
-  shouldPrint = (shouldPrint == 'true')
+PRINTER_NAME = 'CITIZEN-CT-S310'
 
-  if shouldPrint:
-    receipt_text = texttab.get_tab_text(table)
+LINES_PER_INCH = 4
+CHARACTERS_PER_INCH = 10 # CUPS default
+PAGE_WIDTH_IN_INCHES = 3.125
+PAGE_WIDTH_IN_CHARS = PAGE_WIDTH_IN_INCHES * CHARACTERS_PER_INCH - 5
+
+def index(req, table, shouldPrint, serverpin, close=True):
 
 
   conn = MySQLdb.connect (host = "localhost",
@@ -24,12 +35,30 @@ def index(req, table, shouldPrint, serverpin):
 
   cursor = conn.cursor()
 
-  cursor.execute('''
-    UPDATE order_group
-    SET is_open = FALSE, closedby = %(serverpin)s
-    WHERE is_open = TRUE
-    AND table_id = "%(table)s"
-  ''' % locals())
+  shouldPrint = (shouldPrint == 'true')
+
+  if shouldPrint:
+    receipt_text = texttab.get_tab_text(table, serverpin, cursor)
+
+    # Figure out how long the receipt should be
+    receipt_lines = receipt_text.split('\n')
+    print receipt_lines
+    num_lines_of_text = len(receipt_lines);
+    num_wrapping_lines = \
+      len([line for line in receipt_lines if len(line) > PAGE_WIDTH_IN_CHARS])
+    # I assume no line wraps more than once  
+    print 'num_wrapping_lines', num_wrapping_lines
+    num_lines_of_text += num_wrapping_lines
+    print 'num_lines_of_text', num_lines_of_text
+    page_length_in_inches = num_lines_of_text / LINES_PER_INCH + .5 # +.5 for safety margin
+
+  if close:
+    cursor.execute('''
+      UPDATE order_group
+      SET is_open = FALSE, closedby = %(serverpin)s
+      WHERE is_open = TRUE
+      AND table_id = "%(table)s"
+    ''' % locals())
 
   cursor.close()
   conn.close()
@@ -42,10 +71,16 @@ def index(req, table, shouldPrint, serverpin):
     recfile.close()
 
     conn = cups.Connection()
-    conn.printFile(conn.getDefault(), filename, 'receipt', print_options)
+    #conn.getDefault()
+
+    PRINT_OPTIONS['media'] = PRINT_OPTIONS['media'] % \
+      {'page_length': page_length_in_inches}
+
+    print PRINT_OPTIONS
+    conn.printFile(PRINTER_NAME, filename, 'receipt', PRINT_OPTIONS)
     os.remove(filename)
 
   return json.dumps(None)
 
 if __name__ == '__main__':
-  print index(None, 'B12', 'true')
+  print index(None, 'B5', 'true', 4008, close=False)

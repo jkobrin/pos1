@@ -32,7 +32,7 @@ def execute(sql, incursor=None):
     conn.close()
 
 
-def select(query, incursor=None):
+def select(query, incursor=None, label=True):
   
   if not incursor:
     conn = MySQLdb.connect (host = "localhost",
@@ -46,11 +46,35 @@ def select(query, incursor=None):
 
   cursor.execute(query)
   rows = cursor.fetchall()
-  colnames = [coldesc[0] for coldesc in cursor.description]
-  results = label_query_rows(colnames, rows)
+  if label:
+    colnames = [coldesc[0] for coldesc in cursor.description]
+    results = label_query_rows(colnames, rows)
+  else:
+    results = rows
 
   if not incursor:
     cursor.close()
     conn.close()
 
   return results
+
+
+def tohtml(title, headings, rows):  
+  return (
+  ''' 
+    <h1> %(title)s </h1>
+    <table border=1 cellspacing=1 cellpadding=5>
+  ''' % locals() +
+  "<tr>" + "".join(["<th>%s</th>"%heading for heading in headings]) + "</tr>\n"
+  + ''.join(["<tr>"+"".join(["<td>%s</td>"%item for item in row]) + "</tr>\n"
+    for row in rows
+    ]) +
+  '''</table>
+  </body>
+  </html>
+  '''
+  )
+  
+
+if __name__ == '__main__':
+  print tohtml('goo', [{3: 'ewew', 5: 'hud'},{3: 'ewjd', 5: 'gf'}, {3: 'ewew', 5: 'hioud'},]) 

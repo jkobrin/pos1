@@ -35,27 +35,33 @@ menu:
             - name: B18
     - name: food
       subcategories:
-        - name: cold-tapas
+        - name: dinner
           items: 
-            - name: jamon & manchego
+            - name: warm olives
+              price: 5
+            - name: marcona almonds
+              price: 6
+            - name: cheese garlic bread
+              price: 8
+            - name: walnut pesto
               price: 7
-            - name: california salad
+            - name: mussels
               price: 7
-            - name: burratta
-              price: 7
-            - name: kraut
-              price: 7
-            - name: pesto
-              price: 7
-            - name: olives
-              price: 7
-            - {name: almonds, price: 5}
-            - {name: crudo, price: 9}
-            - {name: tortilla, price: 7}
-            - {name: foie gras, price: 11}
-            - {name: pate, price: 7}
-            - {name: 3 hams, price: 8}
-        - name: hot-tapas
+            - name: smoked anchovies
+              price: 6
+            - {name: patatas bravas, price: 5}
+            - {name: meatballs, price: 8}
+            - {name: roasted chorizo, price: 6}
+            - {name: marrow bones, price: 6}
+            - {name: polenta mushrooms, price: 7}
+            - {name: oxtail, price: 8}
+            - {name: green caprese, price: 7}
+            - {name: beet orange, price: 5}
+            - {name: grilled calabrian, price: 8}
+            - {name: pulled beef, price: 8}
+            - {name: short rib, price: 18}
+            - {name: chicken, price: 16}
+        - name: boards
           items: 
             - name: polenta
               price: 7

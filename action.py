@@ -7,6 +7,10 @@ import utils
 
 def order(req, table, additem=None, removeitem=None):
 
+  if table == 'null': return json.dumps(None)
+
+  assert len(table) <= 3, "table ID must be 3 or fewer chars"
+
   conn = MySQLdb.connect (host = "localhost",
                         user = "pos",
                         passwd = "pos",
@@ -44,16 +48,20 @@ def order(req, table, additem=None, removeitem=None):
       where oi.id = %(removeitem)s
     ''' % locals())
     
-  order_items = \
-  utils.select('''
-    SELECT oi.item_name, oi.id, oi.is_delivered, oi.is_comped
+  order_item_query = '''   
+    SELECT 
+      oi.item_name, og.table_id,
+      oi.id, oi.is_delivered, oi.is_comped,
+      TIMESTAMPDIFF(MINUTE, oi.created, now()) minutes_old
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
     and og.is_open = TRUE
-    and og.table_id = "%(table)s"
     and oi.is_cancelled = FALSE
-  ''' % locals(),
-    cursor)
+    '''
+
+  if table != 'ALL': order_item_query += 'and og.table_id = "%s"' % table
+
+  order_items = utils.select(order_item_query, cursor)
 
   cursor.close ()
   conn.close ()
@@ -62,4 +70,4 @@ def order(req, table, additem=None, removeitem=None):
 
 
 if __name__ == '__main__':
-  print order(None, 'B12', additem='food')
+  print order(None, 'XRTl', additem='food')

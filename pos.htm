@@ -4,11 +4,14 @@
 
   <style>
 
+    #linx {float: left; height: 500px}
+    #linx a {padding-bottom:80px}
+
     .order_item { 
       width: 100%; 
       background-color:transparent;
       border: none;
-      font-size : 14pt;
+      font-size : 24pt;
     }
     
     .nondelivered_item { color: red; }
@@ -96,8 +99,10 @@
 
     .diabuttons input
     {
-      height: 55px;
-      width:100%;
+      height: 60px;
+      width:90%;
+      font-size: 36px;
+      margin: 5%;
     }
 
     .diabuttons input:hover
@@ -110,9 +115,54 @@
       display: none;
     }
 
+    #cook_screen
+    {
+      display: none;
+    }
+
+    #cook_screen button
+    {
+      width:50%;
+      font-size: 30px;
+      float: left;
+    }
+
+    #cook_table{
+      width: 100%;
+      text-align: center;
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: outset;
+      border-color: transparent;
+      border-collapse: collapse;
+      background-color: #B0B080;
+      float: left;
+    }
+
+    #cook_table th 
+    {
+      border-width: 1px;
+      padding: 1px;
+      border-style: inset;
+      -moz-border-radius: 0px 0px 0px 0px;
+    }
+
+    #cook_table td
+    {
+      border-width: 1px;
+      padding: 1px;
+      border-style: inset;
+      -moz-border-radius: 0px 0px 0px 0px;
+    }
+
+    #receipt_screen button
+    {
+      font-size: 18pt;
+    }  
+
     body,h1,h2,h3,h4,h5,h6 {font-family:Arial;}
 
-    body {background-color:gray; color:black}
+    body {background-color:gray; color:black; font-size:18}
 
     h1 {font-size:28pt; font-weight:bold; margin:0px;}
 
@@ -126,7 +176,7 @@
     #goVerticalLink {float: right; font-size: 56; text-align: right}
 
     #rightside {float: right }
-    #order_pane {width: 150px; border: 4px outset; margin-top:10px; }
+    #order_pane {width: 220px; border: 4px outset; margin-top:10px; }
     #order_pane :hover {background-color: yellow;}
     #select_area {width: 70%;}
     
@@ -141,7 +191,9 @@
     // This is the only script on this page. It does basically
     // everything. 
     
-    GRIDWIDTH = 5; 
+    MAIN_REFRESH_INTERVAL = 10000; //10 seconds
+    COOK_SCREEN_REFRESH_INTERVAL = 10000; //10 seconds
+    GRIDWIDTH = 6; 
     // GRIDWIDTH can be anything from one up.
 
     g_currentTable = null; 
@@ -149,6 +201,8 @@
     function init()
     {
       document.body.addEventListener('click',hidePopup, true)
+      GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth) / 120
+      cook_screen_refresh_interval_id = setInterval("refresh_cook_screen()", COOK_SCREEN_REFRESH_INTERVAL);
     }  
 
 
@@ -197,6 +251,7 @@
       load_config();
       drawCurrentCategory();
       refresh_order(null, null);
+      setInterval("main_refresh()", MAIN_REFRESH_INTERVAL);
     }
 
     function rotateCategory()
@@ -275,6 +330,7 @@
     {
       g_currentTable = table_id;
       refresh_order(null, null);
+      window.scroll(0,0); 
     }
 
     function populateMenuItems(category)
@@ -333,6 +389,10 @@
       return s;
     }
 
+    function grid_button_dragged(button)
+    {
+    }
+
     function grid_button_clicked(button)
     {
       if (category_is_table())
@@ -354,10 +414,16 @@
       drawCurrentCategory();
       g_currentTable = null;
       update_order_pane([]);
+      window.scroll(0,0);
     }
 
     function refresh_order(add_item, remove_item)
     {
+      if (g_currentTable == null)
+      {
+        go_to_tables();
+      }
+
       params="table="+g_currentTable;
       if (add_item) {params += "&additem="+add_item;}
       if (remove_item) {params += "&removeitem="+remove_item;}
@@ -385,6 +451,42 @@
       params = "pin="+pin;
       is_good = http_request("POST", "checkpin", params);
       return is_good;
+    }
+
+    function refresh_cook_screen()
+    {
+      params="table=ALL";
+      order_items = http_request("POST", "action/order", params);
+
+      order_items_html = "";
+      for (idx in order_items)
+      {
+        item = order_items[idx];
+        classes = "order_item";
+        if (item.is_delivered) {continue; classes += ' nondelivered_item'}
+        if (item.is_comped) {classes += ' comped_item'; item.item_name += '*'}
+
+        order_items_html += '<tr class="'+ classes + '">'
+        order_items_html += '<td>'+item.table_id+'</td>'
+        order_items_html += '<td>'+item.item_name+'</td>';
+        order_items_html += '<td>'+item.minutes_old+'</td>'
+        order_items_html += '</tr>'
+
+      }  
+      cook_table.innerHTML = order_items_html;
+    }
+
+    function go_to_cook_screen()
+    {
+      refresh_cook_screen();
+      main_screen.style.display = "none";
+      cook_screen.style.display = "inline";
+    }
+
+    function leave_cook_screen()
+    {
+      cook_screen.style.display="none";
+      main_screen.style.display="inline"; 
     }
 
     function go_to_receipt_sceen()
@@ -415,6 +517,13 @@
     function order_item_click(button)
     {
     }  
+
+    function main_refresh()
+    {
+      refresh_order(null, null);
+      colorTables();
+      refresh_cook_screen();
+    }  
       
     function update_order_pane(items)
     {
@@ -427,7 +536,7 @@
         classes = "order_item";
         if (!item.is_delivered) {classes += ' nondelivered_item'}
         if (item.is_comped) { classes += ' comped_item'; item.item_name += '*'}
-        item.item_name = item.item_name.replace(/'/g, "\\'");
+        //item.item_name = item.item_name.replace(/'/g, "\'");
 
         order_items_html += '<input' +
           ' class="'+ classes + '"' +
@@ -438,12 +547,12 @@
       }  
       order_items = document.getElementById("order_items");
       order_items.innerHTML = order_items_html;
-      window.scroll(0,0);
     }
       
     function add_to_order(additem)
     {
       refresh_order(additem, null);
+      window.scroll(0,0);
     } 
 
     popup_item_id = null;
@@ -492,13 +601,13 @@
       if (button.value == "CLR") { return keypadclear(); }
 
       pin += button.value;
-      keypadhead.innerHTML = pin.replace(/./g,"*");
+      keypadhead.innerHTML = pin.replace(/./g,"#");
       if (pin.length == 4) 
       { 
         if (pin_is_good(pin)) 
         {
           print_and_close.disabled=false;
-          just_close.disabled=false;
+          //just_close.disabled=false;
           disableKeyPad(true);    
           keypadhead.innerHTML = 'PIN recognized'
         }
@@ -525,7 +634,7 @@
       pin = "";
       keypadhead.innerHTML = "Enter 4 digit PIN to close tab.";
       print_and_close.disabled=true;
-      just_close.disabled=true;
+      //just_close.disabled=true;
       disableKeyPad(false);
     }
 
@@ -622,8 +731,12 @@
 
     <div id="select_area">
       <center>
-        <a href="javascript:goHorizontal()"  class="goHorizontalLink" id="goHorizontalLink">&lt;</a>
         <a id="category">---</a>
+        <div id=linx>
+        <div><a href="javascript:goHorizontal()"  class="goHorizontalLink" id="goHorizontalLink">&lt;</a></div>
+        <div><a href="javascript:go_to_cook_screen()"  class="goHorizontalLink" id="cooklink">C</a></div>
+        <div><a href="javascript:go_to_tables()"  class="goHorizontalLink" id="tablelink">T</a></div>
+        </div>
         <div id="board"></div>
       </center>
     </div>
@@ -638,46 +751,61 @@
     <table id="receipt_table"></table>
     <div onclick='leave_receipt_screen()'>
       <button id=print_and_close onclick='close_check(true)'>Print and Close</button>
-      <button id=just_close onclick='close_check(false)'>Just Close</button>
-      <button onclick='go_to_tables()'> See Tables </button>
-      <button >Go Back</button>
+      <button onclick='go_to_tables()'>See Tables</button>
+      <button>Go Back</button>
 
       <div id="keypad">
-        <div id=keypadhead colspan="3" align="center"></div>
+        <h2 id=keypadhead colspan="3" align="center"></h2>
         <table cellpadding="2" cellspacing="2" border="0">
           <tr>
-            <td><input class="keypadbutt" type="Button" value="1" onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="2" onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="3" onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="1" 
+              onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="2" 
+              onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="3" 
+              onclick="keypadpress(this, event)"></td>
           </tr>
           <tr>
-            <td><input class="keypadbutt" type="Button" value="4" onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="5" onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="6" onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="4" 
+              onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="5" 
+              onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="6" 
+              onclick="keypadpress(this, event)"></td>
           </tr>
           <tr>
-            <td><input class="keypadbutt" type="Button" value="7" onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="8" onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="9" onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="7" 
+              onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="8" 
+              onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="9" 
+              onclick="keypadpress(this, event)"></td>
           </tr>
           <tr>
-            <td><input type="Button" value="0" onclick="keypadpress(this, event)"></td>
-            <td colspan=2><input type="Button" value="CLR" onclick="keypadpress(this, event)"></td>
+            <td><input type="Button" value="0" 
+              onclick="keypadpress(this, event)"></td>
+            <td colspan=2><input type="Button" value="CLR" 
+              onclick="keypadpress(this, event)"></td>
           </tr>
         </table>
       </div>
     </center>
   </div>
 
+  <div id="cook_screen">
+        <button id=cook_screen_go_back onclick='leave_cook_screen()'>Go Back</button>
+        <button id=cook_screen_refresh onclick='refresh_cook_screen()'>Refresh</button>
+        <table id="cook_table" cellspacing=2 cellpadding=2></table>
+  </div>
 
 
   <div id ="orderitem_popup" class="diaframe">
     <div id="orderitem_popup_caption" class="diacapt">---</div>
     <div class="diabuttons">
       <input type="button" value="cancel" onclick="cancel_item()"> 
-      <input type="button" value="delivered" onclick="mark_delivered()"> 
       <input type="button" value="comped" onclick="mark_comped()"> 
       <input type="button" value="do nothing"> 
+      <input type="button" value="delivered" onclick="mark_delivered()"> 
     </div>
   </div>
 
