@@ -11,6 +11,15 @@ WINELIST_FILE_NAME = '/var/www/winelist.yml'
 def get():
   cfg = yaml.load(open(CONFIG_FILE_NAME))
   populate_wine_category(cfg)  
+
+  #for category in cfg['menu']['categories']:
+  #  catname = category['name']
+  #  for subcat in category['subcategories']:
+  #    subcatname = subcat['name']
+  #    for item in subcat['items']:
+  #      item['catname'] = catname
+  #      item['subcatname'] = subcatname
+
   return json.dumps(cfg)
 
 
@@ -21,15 +30,27 @@ def populate_wine_category(cfg):
   #  if category['name'] = 'wine':
   #    winelist = category['items']
   #    break
-  wine_category = {'name': 'wine', 'subcategories': []}
+  bev_category = {'name': 'bev', 'subcategories': []}
+  redcat = {'name': 'red wine', 'items': []}
+  whitecat = {'name': 'white wine', 'items': []}
+  othercat = {'name': 'bubbly, beer & other', 'items': []}
+
+  for subcat in (redcat, whitecat, othercat):
+    bev_category['subcategories'].append(subcat)
 
   raw_winelist = yaml.load(open(WINELIST_FILE_NAME))
 
   for category in raw_winelist:
     raw_catname = category['name']
     raw_items = category['items']
-    subcat = {'name': raw_catname, 'items': []}
-    wine_category['subcategories'].append(subcat)
+    if 'red' in raw_catname.lower():
+      subcat = redcat
+    elif 'white' in raw_catname.lower():
+      subcat = whitecat
+    else:
+      subcat = othercat
+
+    raw_items.sort(key = lambda i: str(i.get('bin')))
     for raw_item in raw_items:
       log.debug('Parsing winelist item: ' + str(raw_item))
       try:
@@ -48,12 +69,12 @@ def populate_wine_category(cfg):
         subcat['items'].append(item)
 
         # now make quartino
-        if item.has_key('qtprice'):
-          price = item['qtprice']
-        else:
-          price = float(listprice) / 4 + 2
+        if raw_item.has_key('qtprice'):
+          price = raw_item['qtprice']
+        elif category is redcat or whitecat:  
+          price = listprice / 3
         qtitem = {
-          'name' : '%s %s'%(bin_num, 'qtino'),
+          'name' : 'qt: '+name,
           'price' : price
         }  
         subcat['items'].append(qtitem)
@@ -62,4 +83,4 @@ def populate_wine_category(cfg):
         log.error('Key error:' + ke.message)
   
 
-  cfg['menu']['categories'].append(wine_category)
+  cfg['menu']['categories'].append(bev_category)

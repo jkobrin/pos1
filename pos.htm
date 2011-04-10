@@ -614,7 +614,7 @@
         if (pin_is_good(pin)) 
         {
           print_and_close.disabled=false;
-          //just_close.disabled=false;
+          just_close.disabled=false;
           disableKeyPad(true);    
           keypadhead.innerHTML = 'PIN recognized'
         }
@@ -641,7 +641,7 @@
       pin = "";
       keypadhead.innerHTML = "Enter 4 digit PIN to close tab.";
       print_and_close.disabled=true;
-      //just_close.disabled=true;
+      just_close.disabled=true;
       disableKeyPad(false);
     }
 
@@ -758,6 +758,7 @@
     <table id="receipt_table"></table>
     <div onclick='leave_receipt_screen()'>
       <button id=print_and_close onclick='close_check(true)'>Print and Close</button>
+      <button id=just_close onclick='close_check(false)'>Just Close</button>
       <button onclick='go_to_tables()'>See Tables</button>
       <button>Go Back</button>
 
