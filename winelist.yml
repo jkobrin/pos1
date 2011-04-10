@@ -7,17 +7,18 @@
       catalog: "verity wp 624a "
       mynotes: "Pleasant. Not aggressive. B-"
       frontprice: 19.33
-      bin: get maybe
+      #bin: get maybe
       instock: 
       ordered: 
 
     - name: "Bordeaux Cotes de Francs"
-      byline: "by Chateau Moulin de la Rouquille - Bordeaux, France"
+      byline: "by Chateau Moulin de la Roquille - Bordeaux, France"
       listprice: 24
+      qtprice: 7
       frontprice: 7
       grape: "Cabernet / Merlot"
       catalog: "Wineberry page 6 - box"
-      bin: 999
+      bin: 601
       instock: 4
       ordered: 
         - date: '3/30/11'
@@ -38,12 +39,13 @@
 
     - name: "Chateauneuf du Pape 2007"
       listprice: 52
+      qtprice: 16
       byline: "by Chateau Mont-Thabor - Rhone Valley, France"
       grape: "Grenache, Syrah, Mourvedre, smattering of others"
       catalog: "Wineberry"
       frontprice: 28.00
       mynotes: "Very good. Nice structure. Smooth & smoky."
-      bin: 999
+      bin: 701
       instock: 3
       ordered: 
         - date: '3/30/11'
@@ -51,6 +53,7 @@
 
     - name: "Cote du Rhone 2008"
       listprice: 24
+      qtprice: 8
       byline: "by Domain Boisson - Rhone Valley, France"
       grape: "Grenache, Syrah, Carignan, Cinsault, Mourvedre"
       catalog: "verity 625a, "
@@ -61,6 +64,7 @@
 
     - name: "Chateauneuf du Pape 2008"
       listprice: 48
+      qtprice: 13
       byline: "by Cuvee du Vatican - Rhone Valley, France"
       grape: "Grenache, Syrah, Mourvedre, smattering of others"
       catalog: "verity 625A "
@@ -72,11 +76,12 @@
     - name: "Cotes du Rhone"
       byline: "by Domain Le Garrigon - Rhone Valley, France"
       listprice: 24
+      qtprice: 7
       frontprice: 7
       grape: "Cabernet / Merlot"
       catalog: "Wineberry page 6 - box"
       instock: 4
-      bin: 999
+      bin: 602
       ordered: 
         - date: '3/30/11'
           qty: 4
@@ -86,9 +91,12 @@
       byline: "by Domain d'Ardhuy  - Burgundy, France"
       grape: "Pinot Noir"
       catalog: "Wineberry page 12"
-      frontprice: 16
-      listprice: 34
+      frontprice: 18
+      listprice: 38
+      qtprice: 13
+      qtprice: 10
       bin: 401
+      todo: 'check price'
       instock: 12
       ordered: 
         - date: '3/30/11'
@@ -100,7 +108,10 @@
       grape: "Old Vine Gamay"
       catalog: "Wineberry page 16"
       frontprice: 10
+      qtprice: 8
       listprice: 25
+      todo: 'check price'
+      qtprice: 8
       bin: 403
       instock: 12
       ordered: 
@@ -110,7 +121,7 @@
     - name: "Cahors 2005"
       listprice: 24
       byline: "by Chateau GauToul - Cahors, France"
-      grape: "Grape: Malbec"
+      grape: "Malbec"
       catalog: "verity 625A "
       frontprice:  10.00
       bin:
@@ -121,8 +132,9 @@
 
     - name: "Merlot 2007"
       listprice: 26
+      qtprice: 8
       byline: "Rutherford Vinters - Napa Valley, California"
-      grape: "Grape: Merlot"
+      grape: "Merlot"
       catalog: "opici 400 "
       frontprice: 10.25
       bin: 202
@@ -134,17 +146,17 @@
     - name: "Merlot Maclise 2007"
       listprice: 45
       byline: "by Coturri - Sonoma, California"
-      grape: "Grape: Merlot"
+      grape: "Merlot"
       frontprice: 23
       catalog: "Jenny & Francois one of the last pages"
 
     - name: "Petit Sirah 2008"
       listprice: 40
       byline: "by Fortress Vineyards - Lake County, California"
-      grape: "Grape: Petit Sirah"
+      grape: "Petit Sirah"
       catalog: "verity 620A "
       frontprice: 21.33
-      bin: 117
+      bin: 120
       instock: 6
       ordered:  
         - date: "3/30/11"
@@ -161,10 +173,12 @@
 
     - name: "Educated Guess 2008"
       listprice: 26
+      qtprice: 8
       byline: "Napa Valley, California"
       grape: "Cabernet Sauvingon"
       catalog: "--opici "
       frontprice: 12.67
+      notes: "Very good California Cab with lots of jammy fruit and smooth powerful tannins."
       mynotes: "Very good cabernet, smooth smoke and vanilla. Good jammy fruit. A"
       bin: 203
       instock: 24
@@ -179,6 +193,7 @@
       catalog: "--opici 400 "
       frontprice: 10.00
       mynotes: "decent fruit, mellow tanins, LOTS of Vanilla"
+      notes: "Good fruit & mellow tanins with lots of vanilla."
       ordered: yes
       bin: 201
       instock: 12
@@ -188,10 +203,13 @@
 
     - name: "2007 Bargetto Zinfindel"
       listprice: 34
+      qtprice: 11
       byline: "by Bargetto - Lodi, California"
-      grape: "Grape: Old Vine Zinfindel"
+      grape: "Old Vine Zinfindel"
       frontprice: 15
+      qtprice: 9
       catalog: "east coast specialty"
+      notes: "Fruity, rustic nose. Heavy in the mouth with dark berries and rasins. Rich, but easy drinking."
       mynotes: "Fruit/Barnyard. Good rasiny/berry fruit, good balance. Easy drinking."
       bin: 205
       instock: 12
@@ -214,7 +232,7 @@
     - name: "Pinot Noir 2009"
       listprice: 30
       byline: "by Primarius Vineyards - Oregon  30"
-      grape: "Grape: Pinot Noir"
+      grape: "Pinot Noir"
       catalog: "opici page: 404 "
       frontprice: 13.25
       bin: 210
@@ -237,6 +255,20 @@
       catalog: "--opici 397 "
       frontprice: 8.67
 
+    - name: "Wolfer Cab Franc 2007"
+      byline: "Wolfer Estates - the Hamptons, Long Island"
+      catalog: "winebow"
+      listprice: 32
+      qtprice: 11
+      frontprice: 15
+      grape: "Cabernet Franc, Cabernet Sauvignon, Merlot"
+      mynotes: "Bordeaux blend in the Bordeaux style. Earthy, blackberry nose with hints of cedar. Palate has sweet berries and firm structure, with a long, dry finish."
+      bin: 1111
+      instock: 12
+      ordered: 
+        - date: '4/7/11' 
+          qty: 12
+
     - name: "Barbaresco 2005 - Rizzi"
       mynotes: "shoe polish, good dryness, decent tanins, some fruit, decent acidity."
       catalog: "opici"
@@ -248,7 +280,7 @@
       frontprice: 22.67
       mynotes: "stemmy, good mild tanins, raisiny fruit, A-"
       grape: "sangiovese grosso"
-      bin: 999
+      bin: 702
       instock: 3
       ordered:  
         - date: "3/30/11"
@@ -262,7 +294,7 @@
       frontprice: 24
       mynotes: "Berry (sweet?) jammy, mild, mild tanins. B+?"
       grape: "80% sangiovese, 20% cab sauv"
-      bin: 999
+      bin: 703
       instock: 3
       ordered:  
         - date: "3/30/11"
@@ -282,7 +314,7 @@
       grape: "Corvino, Rondinello, Molinari"
       catalog: "opici"
       frontprice: 35
-      bin: 999
+      bin: 704
       instock: 3
       ordered:  
         - date: "3/30/11"
@@ -309,8 +341,22 @@
       frontprice: 33.17
       grape: "Sangiovese"
 
+    - name: "Bossi Chianti Classico 2007"
+      listprice: 32
+      qtprice: 11
+      byline: "by Castello Di Bocce - Tuscany"
+      grape: "Sangiovese"
+      catalog: "winebow"
+      frontprice: 14.36
+      bin: 112
+      instock: 12
+      ordered: 
+        - date: '4/7/11'
+          qty: 12
+
     - name: "Chianti Rufina 2008"
       listprice: 25
+      qtprice: 8
       byline: "by Fattoria di Basciano - Tuscany"
       grape: "Sangiovese"
       catalog: "verity 627a"
@@ -323,6 +369,7 @@
 
     - name: "Nero D'Avola 2008"
       listprice: 26
+      qtprice: 9
       byline: "by Fatascia - Sicily"
       grape: "Nero D'Avola"
       catalog: "verity 627a"
@@ -335,6 +382,7 @@
 
     - name: "Cannonau Di Sardegna 2008"
       listprice: 28
+      qtprice: 9
       byline: "by Castiadas - Sardinia"
       grape: "Cannonau"
       catalog: "verity 627a"
@@ -347,13 +395,14 @@
 
     - name: "Rioja 2008"
       listprice: 24
+      qtprice: 8
       byline: "by Sierra Cantabria - Rioja, Spain"
       grape: "Tempranillo"
-      notes: "Hints mocha and blackberry. Well balanced and crisp."
+      notes: "Hints of mocha and blackberry. Well balanced and crisp."
       catalog: "Tempanillo 70"
       frontprice: 9
       mynotes: " ?should taste again?"
-      bin: 199
+      bin: 105
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -362,11 +411,13 @@
 
     - name: "Rioja Reserva 2005"
       listprice: 44
+      qtprice: 14
       byline: "by Bodegas Muga - Rioja, Spain"
       grape: "Tempanillo, Garnacha, Mazuelo, Graciano"
       catalog: "--tempranillo page 59"
+      notes: "Aromas of cherry and earth. Smooth vanilla and cherry palate with mellow, mouth-coating tannins."
       frontprice: 22
-      bin: 199
+      bin: 107
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -374,11 +425,12 @@
 
     - name: "El Chaparral 2008 (Vega Sindoa)"
       listprice: 28
+      qtprice: 8
       byline: "by Bodegas Nekeas - Navarra, Spain"
       grape: "Old Vine Garnacha (aka Grenache)"
       catalog: "tempranillo page "
       frontprice: 12
-      bin: 199
+      bin: 116
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -386,36 +438,40 @@
 
     - name: "Vega Sindoa Cabernet 2007"
       listprice: 25
+      qtprice: 8
       byline: "by Bodegas Nekeas - Navarra, Spain"
       grape: "Cabernet Sauvingon"
       notes: "Notes of chocolate, cherry & jalapeno. Fresh, spicy finish."
       catalog: " tempranillo page 35"
-      frontprice: 9.50
-      bin: 199
-      instock: 
+      frontprice: 10.00
+      bin: 109
+      instock: 12
       ordered: 
         - date: '4/2/11'
           qty: 12
 
-    - name: "Tinto Fino 2006"
+    - name: "Tinto Fino 2007"
       listprice: 40
+      qtprice: 13
       byline: "by Emilio Moro - Ribera Del Duero, Spain"
       grape: "Tempranillo (aka Tinto Fino)"
-      note: "Smoke & roasted herbs over tons of firm ripe cherry and vanilla spice."
+      notes: "Smoke & roasted herbs over tons of firm ripe cherry and vanilla spice."
       catalog: "--tempranillo page 44"
-      frontprice: 9.50
-      bin: 199
-      instock: 
+      frontprice: 19.33
+      bin: 113
+      instock: 12
       ordered: 
         - date: '4/2/11'
           qty: 12
 
     - name: "Clos de Torribas 2006 Crianza"
       listprice: 22
+      qtprice: 7
       byline: "by Bodegas Pinord - Penedes, Spain"
       grape: "Tempanillo"
       catalog: "east c specialty wines"
       frontprice: 7.33
+      notes: "Smooth smoky vanilla and good dark fruit."
       mynotes: "smooth smoky vanilla, good fruit A"
       bin: 103
       instock: 12
@@ -432,11 +488,13 @@
 
     - name: "Wrongo Dongo 2008"
       listprice: 20
+      qtprice:  7
       byline: "by Bodegas Hijos de Juan Gil - Jumilla, Spain"
       grape: "Monastrell (a.k.a Mouvedre)"
+      notes: "Dark berry aromas with baking spices. Juicy straightforward blackberry and cherry flavors. Finish is sweet and deep."
       catalog: "tempranillo page 19"
-      frontprice: 6.60
-      bin: 199
+      frontprice: 7.16
+      bin: 102
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -452,11 +510,12 @@
             
     - name: "Tres Picos Garnacha 2008"
       listprice: 30
+      qtprice: 10
       byline: "by Borsao - Aragon, Spain"
       grape: "Old Vine Garnacha (aka Grenache)"
       catalog: "--tempanillo page 12 "
-      frontprice: 13
-      bin: 199
+      frontprice: 13.33
+      bin: 117
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -470,14 +529,15 @@
       frontprice: 16.67
 
     - name: "Garnacha de Fuego"
-      listprice: 22
+      listprice: 20
+      qtprice: 7
       byline: "by Ateca - Calatayud, (Aragon) Spain"
       grape: "Old vine Garnacha (aka Grenache) grown at 3000 ft"
-      notes: "Lots of sweet dark fruit."
+      notes: "Smoky cherries and chocolate on the nose. Mouth has lots of sweet dark fruit. Good focus and finish."
       catalog: "  --tempranillo page 7"
-      frontprice: 8
+      frontprice: 6.66
       mynotes: "--lots of sweet dark fruit"
-      bin: 199
+      bin: 111
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -485,12 +545,14 @@
 
     - name: "Borsao 2009"
       listprice: 20
+      qtprice: 7
       byline: "by Bodegas Borsao - Aragon, Spain"
       grape: "Garnacha / Tempanillo"
       catalog: "--tempranillo page 11, "
       frontprice: 6.75
+      notes: "Well made, with nice balance, and good, clean oak."
       mynotes: "nice balance, good oak.  B+"
-      bin: 199
+      bin: 110
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -540,13 +602,32 @@
     - name: "Reisling Kabinett"
       mynotes: "stinky petrol, sweet honeyish, but acidic enough to finish nicely. A"
       byline: "by Ayler Krupp - Mosel, Germany"
+      listprice: 26 #(12?)
       frontprice: 10 #(12?)
       catalog: "winebow 735a" #get it
-      bin: get
+      bin: 710
+      instock: 0
+      ordered: 
+        - date: '3/30/11'
+          qty: 12
+
+    - name: "Saint Veran 2008"
+      listprice: 24
+      qtprice: 8
+      byline: "by Domain de la Chapelle - Burgundy, France"
+      grape: "Chardonnay"
+      catalog: "--- weygandt?"
+      frontprice: 16.66
+      bin: 407
+      instock: 12
+      ordered: 
+        - date: '3/30/11'
+          qty: 12
 
     - name: "Petit Chablis 2009"
-      listprice: 22
-      byline: "by Jean Marc Brocard - France"
+      listprice: 24
+      qtprice: 8
+      byline: "by Jean Marc Brocard - Burgundy, France"
       grape: "Chardonnay"
       catalog: "--- verity?"
       frontprice: 8
@@ -556,12 +637,55 @@
         - date: '3/30/11'
           qty: 12
 
+    - name: "Sancerre 2009"
+      listprice: 24
+      qtprice: 8
+      byline: "by Reverdy - Loire Valley, France"
+      notes: "A big, steely wine with chalky, stony notes, but there is melon as well as grapefruit and lemon."
+      grape: "Sauvingon Blanc"
+      catalog: "--- weygandt"
+      frontprice: 8
+      bin: 404
+      instock: 12
+      ordered: 
+        - date: '3/30/11'
+          qty: 12
+
+
     - name: "Sauvingon Blanc 2009"
       byline: "by Ferrande - Bordeaux, France"
       catalog: "-- opici 409a - "
       frontprice: 6.03
       mynotes: "great heavy nose, lightish body - A-"
       grape: "Sauvingon Blanc"
+
+    - name: "White Gascony 2009"
+      byline: "by Domaine Des Cassagnoles - Gascony, France"
+      notes: "A fragant, light and fruity wine made from the same grapes as Cognac. Interesting and easy drinking."
+      listprice: 22
+      qtprice: 8
+      catalog: "--- opici 412a - "
+      frontprice: 8
+      grape: "Ugni Blanc, Colombard"
+      bin: 308
+      instock: 12
+      ordered: 
+        - date: '4/07/11'
+          qty: 12
+
+    - name: "Viognier 2010"
+      listprice: 25
+      qtprice: 8
+      byline: "by Domain la Bastide - Rhone Valley, France"
+      grape: "Viognier"
+      catalog: "weygandt"
+      frontprice: 9.33
+      mynotes: "taste it"
+      bin: 210
+      instock: 12
+      ordered: 
+        - date: '4/7/11'
+          qty: 12
 
     - name: "Gewurzaminer"
       listprice: 30
@@ -582,8 +706,11 @@
       frontprice: 20
 
     - name: "Hahn Winery Chardonnay -Santa Lucia Highlands"
+      notes: "Refined mineral, lightly fruited nose. In the mouth, subtle, layered fruit flavors and nice balance. Goes down smooth."
       mynotes: "Refined mineraly, lightly fruited nose. Mild round fruit. Med acid, med body, no oak, B. Derek: Person friendly."
       catalog: "opici page 387"
+      listprice: 24
+      qtprice: 8
       frontprice: 8.67
       bin: 206
       instock: 12
@@ -640,13 +767,32 @@
       catalog: "winebow 732a"
       mynotes: "nose: barnyard, soapy oak, some flat butter, decent fruit - apple,  and good acid"
 
-    - name: "Resisling 2008"
+    - name: "Reisling 2008"
       byline: "Mercer - Yakima Valley, Washington"
       catalog: "winebow 735a"
+      listprice: 25 
       frontprice: 10 
       story: "they are growers primarily, keep choice fruit for own label" #get it
       mynotes: "nice fresh petrol nose, mild sweetness, little sweet than kabinett, good acid, round fruit"
-      bin: get
+      bin: 720
+      instock: 12
+      ordered:  
+        - date: "4/7/11"
+          qty: 12
+
+    - name: "Wolfer Estate Classic White"
+      byline: "Wolfer"
+      catalog: "winebow"
+      listprice: 26
+      frontprice: 10
+      grape: "Reisling, Gewurztraminer, Chardonnay"
+      notes: "Exotic tropical fruit bouquet. Light & crisp with clean apply flavour."
+      mynotes: "Some good exotic tropical fruit. Kinda light. Decent acid. Med body. B+."
+      bin: 114
+      instock: 12
+      ordered: 
+        - date: '4/7/11'
+          qty: 12
 
     - name: "Sauvignon Blanc 2009"
       byline: "Coopers creek - Marlborough, New zealand"
@@ -659,13 +805,16 @@
       frontprice: 8.33
       mynotes: "jalapeno & grass a touch of catpee nose, some mild fruit. light body, higher acidity, interesting wine"
       catalog: "winebow"
-      bin: get
+      #bin: get
 
     - name: "Clifford Bay 2009 Sauvignon Blanc - Marlborough, New Zealand"
       catalog: "opici"
+      listprice: 24
+      qtprice: 8
       frontprice: 9
+      notes: "Great racy nose with lime, mango, and fresh-cut grass. Grapefruit and pineapple in the mouth."
       mynotes: "great racy nose with lime, mango, grass, cat pee. Grapefruit and pineapple mouth. A-"
-      bin: 217
+      bin: 211
       instock: 11
       ordered:  
         - date: "3/30/11"
@@ -673,13 +822,14 @@
 
     - name: "Centauri Sauvignon Blanc"
       listprice: 25
+      qtprice: 8
       byline: "by Fournier - Maule Valley, Chile"
       grape: "Sauvignon Blanc"
       notes: "Aromas of lime, grapefruit & lychee. Taste of citrus and quinine."
       catalog: "---tempranillo page: 90, "
       frontprice: 9.33
       mynotes: "--(lychee, durian, interesting)"
-      bin: 199
+      bin: 208
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -687,9 +837,10 @@
 
     - name: "Sauvignon Blanc 2010"
       listprice: 20
+      qtprice: 7
       byline: "by Casa de Vinos - Maule Valley, Chile"
       grape: "Sauvignon Blanc"
-      notes: ""
+      notes: "Light citrus & floral notes. Lean and crisp."
       mynotes: "Light citrus, floral notes, light body,good acid.B+"
       catalog: "east coast page 10"
       frontprice: 6.83
@@ -698,6 +849,14 @@
       ordered: 
         - date: '3/30/11'
           qty: 12
+
+    - name: "Pinot Grigio 2009"
+      listprice: 24
+      qtprice: 8
+      byline: "by Ronco di Pino - Collio, Friuli, Italy"
+      catalog: "--- opici 412a - "
+      frontprice: 9.33
+      grape: "Pinot Grigio"
 
     - name: "Pinot Grigio 2009"
       listprice: 18
@@ -713,10 +872,25 @@
       frontprice: 
       grape: "Pinot Grigio"
 
+    - name: "Verdicchio 2010"
+      catalog: "--- east coast specialty wines page 3, B+"
+      byline: "by Accatoli - Marche, Italy"
+      listprice: 25
+      qtprice: 8
+      frontprice: 9.33
+      notes: "Crisp and light. Bitter almond and minerals compliment the lemon and apple fruit flavors."
+      bin: 1041
+      instock: 12
+      ordered: 
+        - date: '4/9/11'
+          qty: 12
+
     - name: "Isola's Vermentino Di Sardegna"
       catalog: "--- east coast specialty wines page 3, B+"
       listprice: 25
+      qtprice: 7
       frontprice: 10
+      notes: "Light tropical fruit. The palate is mild but refreshing."
       mynotes: "good light tropical fruit, good acid, mild but zingy"
       bin: 306
       instock: 12
@@ -731,6 +905,7 @@
 
     - name: "Opala Vinho Verde"
       listprice: 16
+      qtprice: 6
       byline: "by FelGuerras - Portugal"
       grape: "Loureiro, Arinto, Trajadura"
       catalog: "--- opici product #32506"
@@ -748,12 +923,13 @@
       frontprice: 0
 
     - name: "Muga Rose 2009 by Bodegas Muga - Rioja, Spain"
-      listprice: 28
+      listprice: 32
+      qtprice: 10
       byline: "Garnacha, Viura, Tempranillo"
       catalog: "---tempranillo page 61, "
-      frontprice: 11
+      frontprice: 10.86
       grape: "Tempranillo"
-      bin: 199
+      bin: 108
       instock:
       ordered:
         - date: '4/2/11'
@@ -761,12 +937,13 @@
 
     - name: "Shaya Verdejo"
       listprice: 28
+      qtprice: 9
       byline: "by Bodegas Shaya - Rueda, Spain"
       grape: "old vine verdejo"
       catalog: "--tempranillo page 82, "
       frontprice: 12
       mynotes: "nutt, frutty spicy B+"
-      bin: 199
+      bin: 115
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -781,11 +958,13 @@
       
     - name: "Botani 2009 Dry Moscatel"
       listprice: 28
+      qtprice: 9
       byline: "by Jorge Ordoñez & Co. - Mountains of Málaga, Spain"
       catalog: "---tempranillo page 61, "
-      frontprice: 12.67
-      grape: "Tempranillo"
-      bin: 199
+      notes: "Heavy, alluring perfume of flowers, honey & tropical fruit. Palate is dry, focused and refreshing with pear and melon flavors."
+      frontprice: 12.50
+      grape: "Muscato de Alexandria"
+      bin: 106
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -794,13 +973,59 @@
 - name: "Bubbly"
   items:
 
+    - name: "Cremant de Bourgogne (Sparking Burgundy)"
+      byline: "by Vissoux Pierre-Marie Chermette - Burgundy, France"
+      grape: "Chardonnay"
+      notes: "Very like the best champagne, but a bit earthier, with yeasty beer-like notes on top of cream and toast."
+      grape: "Chardonnay"
+      catalog: "--- weygandt"
+      listprice: 34
+      qtprice: 11
+      frontprice: 15.50
+      bin: 406
+      instock: 12
+      ordered: 
+        - date: '3/30/11'
+          qty: 12
+
+    - name: "Pinot Noir Brut"
+      byline: "by Codorniu - Penedes, Spain"
+      grape: "Pinot Noir"
+      notes: "An elegant sparkler - pale cherry-red with fine plentiful fizz. Smell of ripe raspberry and blackcurrants. Fresh crisp taste with citrus finish."
+      catalog: "opici"
+      bin: 104
+      instock: 6
+      frontprice: 12
+      listprice: 32
+      qtprice: 10
+      ordered: 
+        - date: '3/30/11'
+          qty: 6
+
+    - name: "Cava Anna"
+      byline: "by Codorniu - Penedes, Spain"
+      grape: "Chardonnay, Xare-lo"
+      notes: "Refreshing and creamy with notes of apple, bread and honey."
+      catalog: "opici"
+      bin: 119
+      instock: 6
+      frontprice: 12
+      listprice: 32
+      qtprice: 10
+      ordered: 
+        - date: '3/30/11'
+          qty: 6
+
     - name: "zardetto prosecco"
       frontprice: 10 #(4 for little)
       mynotes: "brut prosecco, off-dry, nice, B"
 
     - name: "Moscato D'Asti"
       byline: "villa rosa"
+      notes: "Lightly sweet & bubbly, with a crisp, refreshing finish. A desert wine, yes, but light enough to drink before a meal, or even during."
       mynotes: "sweet low alc, frizzante similar to Bartenura, good desert"
+      grape: 'Moscato'
+      listprice: 22
       frontprice: 7.34
       catalog: "opici"
       bin: 303
@@ -808,16 +1033,86 @@
       ordered: 
         - date: '3/30/11'
           qty: 12
-      
-    - name: "Pinot Noir Brut"
-      byline: "Cordoniu - Penedes, Spain"
+
+- name: 'Others'
+  items:
+    - name: "Madiera - 15 year old Bual"
+      byline: "Cossart Gordon - Island of Madiera, Portugal"
+      notes: "Dark nutty flavors with brown sugar and candied orange peel."
+      mynotes: "try it"
+      listprice: 44
+      frontprice: 22.72
+      qtprice: 7
       catalog: "opici"
-      bin: 104
-      instock: 6
+      bin: 1081
+      instock: 12
       ordered: 
         - date: '3/30/11'
-          qty: 6
+          qty: 12
+    
+    
+    - name: "Wolfer Estate Rose"
+      byline: "Wolfer"
+      catalog: "winebow"
+      frontprice: 10
+      grape: "Merlot, Cab franc, Cab Sauv, Chardonnay, Pinot Noir"
+      mynotes: "Very nice fruity nose. Decent acid. Short finish."
+      #bin: 104
+      #instock: 6
+      #ordered: 
+      #  - date: '3/30/11'
+      #    qty: 6
 
+    - name: "Wolfer Estate Chardonnay"
+      byline: "Wolfer"
+      catalog: "winebow"
+      frontprice: 10
+      grape: "Chardonnay"
+      mynotes: "Pleasant fruit, touch of oak. little creamy. B"
+      #bin: 104
+      #instock: 6
+      #ordered: 
+      #  - date: '3/30/11'
+      #    qty: 6
+
+    
+    - name: "Wolfer Estate Merlot"
+      byline: "Wolfer"
+      catalog: "winebow"
+      frontprice: 15
+      grape: "Merlot"
+      mynotes: "Little veggy, barny, dark fruit, ok structure. B-"
+      #bin: 104
+      #instock: 6
+      #ordered: 
+      #  - date: '3/30/11'
+      #    qty: 6
+
+    - name: "Big Apple Wine"
+      byline: "Wolfer"
+      catalog: "winebow"
+      frontprice: 7.33
+      grape: "apples"
+      mynotes: "Light apply nose, light body"
+      #bin: 104
+      #instock: 6
+      #ordered: 
+      #  - date: '3/30/11'
+      #    qty: 6
+
+    - name: "Fatalis Fatum 2006"
+      byline: "Wolfer"
+      catalog: "winebow"
+      frontprice: 25
+      grape: "Merlot/Cab Franc/ Cab/ Sauv/Barbera"
+      mynotes: "Good cabby nose, good power, decent fruit, B+"
+      #bin: 104
+      #instock: 6
+      #ordered: 
+      #  - date: '3/30/11'
+      #    qty: 6
+
+    
     
 #
 #Draft
@@ -885,6 +1180,18 @@
   items:
     - name: "Sierra Nevada Pale Ale"
       listprice: 6
+      bin: keg
+
+    - name: "Pilsner Urquell"
+      listprice: 7
+      bin: keg
+
+    - name: "Shipyard Stout"
+      listprice: 8
+      bin: keg
+
+    - name: "Delerium Tremens"
+      listprice: 10
       bin: keg
 
 - name: "Bottled Beer"

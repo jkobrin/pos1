@@ -25,7 +25,6 @@ def populate_wine_category(cfg):
 
   raw_winelist = yaml.load(open(WINELIST_FILE_NAME))
 
-  bin_num = 0
   for category in raw_winelist:
     raw_catname = category['name']
     raw_items = category['items']

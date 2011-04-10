@@ -41,10 +41,8 @@ menu:
               price: 5
             - name: marcona almonds
               price: 6
-            - name: cheese garlic bread
-              price: 8
             - name: walnut pesto
-              price: 7
+              price: 5
             - name: mussels
               price: 7
             - name: smoked anchovies
@@ -53,29 +51,42 @@ menu:
             - {name: meatballs, price: 8}
             - {name: roasted chorizo, price: 6}
             - {name: marrow bones, price: 6}
-            - {name: polenta mushrooms, price: 7}
-            - {name: oxtail, price: 8}
+            - {name: tapa polenta mushrooms , price: 7}
+            - {name: plate polenta mushrooms, price: 12}
+            - {name: oxtail, price: 9}
             - {name: green caprese, price: 7}
             - {name: beet orange, price: 5}
-            - {name: grilled calabrian, price: 8}
+            - {name: grilled calabrian, price: 9}
             - {name: pulled beef, price: 8}
             - {name: short rib, price: 18}
             - {name: chicken, price: 16}
         - name: boards
           items: 
-            - name: polenta
-              price: 7
-            - name: chicken
-              price: 7
-            - name: fondutta
-              price: 7
-            - name: empanada
-              price: 7
-            - name: mushroom
-              price: 7
-            - name: chorizo
-              price: 7
-            - name: oxtail
-              price: 7
-            - name: short rib
-              price: 7
+            - name: 3-board
+              price: 15
+            - name: 5-board
+              price: 22
+            - name: italian board
+              price: 26
+            - name: spaish board
+              price: 26
+            - name: french board
+              price: 26
+            - {name: manchego , price: 0}
+            - {name: granny goat, price: 0}
+            - {name: torta de cesar, price: 0}
+            - {name: comte, price: 0}
+            - {name: daffinois, price: 0}
+            - {name: fourme dambert, price: 0}
+            - {name: petit basque, price: 0}
+            - {name: tallaegio, price: 0}
+            - {name: paive, price: 0}
+            - {name: pecorino tartufo, price: 0}
+            - {name: seranno ham, price: 0}
+            - {name: prosciutto, price: 0}
+            - {name: lomo, price: 0}
+            - {name: hot capicolla, price: 0}
+            - {name: chorizo, price: 0}
+            - {name: rosette de lyon, price: 0}
+            - {name: cacciatorini, price: 0}
+            - {name: country pate, price: 0}

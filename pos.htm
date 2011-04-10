@@ -250,7 +250,7 @@
       init();
       load_config();
       drawCurrentCategory();
-      refresh_order(null, null);
+      refresh_order(null, null, null);
       setInterval("main_refresh()", MAIN_REFRESH_INTERVAL);
     }
 
@@ -282,8 +282,11 @@
  
     function goHorizontal()
     {
+      //alert(g_config.menu.categories[0].subcategories[0].items);
       subs = g_config.menu.categories[0].subcategories;
+      //alert(g_config.menu.categories[0].subcategories[0].items);
       subs.push(subs.shift());
+      //alert(g_config.menu.categories[0].subcategories[0].items);
       drawCurrentCategory();
     }
 
@@ -301,6 +304,7 @@
 
     function drawCurrentCategory()
     {
+      //alert("items " + g_config.menu.categories[0].subcategories[0].items);
       document.getElementById("category").innerHTML 
         = getSuperCategory() + " : " + getSubCategory();
       populateMenuItems(getSubCategory());
@@ -329,21 +333,21 @@
     function set_current_table(table_id)
     {
       g_currentTable = table_id;
-      refresh_order(null, null);
+      refresh_order(null, null, null);
       window.scroll(0,0); 
     }
 
     function populateMenuItems(category)
     {
       items = g_config.menu.categories[0].subcategories[0].items;
-      item_names = items.map(function(i) {return i.name});
-      drawBoard(item_names);
+      items_copy = items.map(function(i) {return i});
+      drawBoard(items_copy);
     }
 
-    function drawBoard(item_names)
+    function drawBoard(items)
     {
       board=document.getElementById("board");
-      board.innerHTML = getTableHTML(item_names);
+      board.innerHTML = getTableHTML(items);
       colorTables();
     }
         
@@ -353,6 +357,8 @@
     // By changing GRIDWIDTH, the programmer can alter the look
     // of the table of items.
     {
+
+      //alert(items.length);
       s="";
 
       s = s + "<table border=0 cellpadding=0 cellspacing=15 >";
@@ -369,13 +375,13 @@
           s += 
             "<td" +
             " class='square'" +
-            " onclick='grid_button_clicked(this)'" +
-            " id=\"" + item + "\"" +
+            " onclick='grid_button_clicked(this, " + item.price +")'" +
+            " id=\"" + item.name + "\"" +
             ">" +
             "<input " + 
             " class='menu_button'" +
             " type='button'"  + 
-            " value=\"" + item + "\"" + 
+            " value=\"" + item.name + "\"" + 
             "/>" +
             "</td>";
         }
@@ -393,7 +399,7 @@
     {
     }
 
-    function grid_button_clicked(button)
+    function grid_button_clicked(button, price)
     {
       if (category_is_table())
       {
@@ -401,7 +407,7 @@
       }
       else
       {
-        add_to_order(button.id);
+        add_to_order(button.id, price);
       }
     }
 
@@ -417,14 +423,15 @@
       window.scroll(0,0);
     }
 
-    function refresh_order(add_item, remove_item)
+    function refresh_order(add_item, remove_item, price)
     {
       if (g_currentTable == null)
       {
-        go_to_tables();
+        //go_to_tables();
       }
 
       params="table="+g_currentTable;
+      if (price) {params += "&price="+price;}
       if (add_item) {params += "&additem="+add_item;}
       if (remove_item) {params += "&removeitem="+remove_item;}
 
@@ -436,14 +443,14 @@
     {
       params = "item_id="+popup.item_id;
       http_request("POST", "set_item_status/delivered", params);
-      refresh_order(null, null);
+      refresh_order(null, null, null);
     }
 
     function mark_comped()
     {
       params = "item_id="+popup.item_id;
       http_request("POST", "set_item_status/comped", params);
-      refresh_order(null, null);
+      refresh_order(null, null, null);
     }
 
     function pin_is_good(pin)
@@ -511,7 +518,7 @@
 
     function remove_from_order(item)
     {
-      refresh_order(null, item);
+      refresh_order(null, item, null);
     }  
       
     function order_item_click(button)
@@ -520,7 +527,7 @@
 
     function main_refresh()
     {
-      refresh_order(null, null);
+      refresh_order(null, null, null);
       colorTables();
       refresh_cook_screen();
     }  
@@ -549,9 +556,9 @@
       order_items.innerHTML = order_items_html;
     }
       
-    function add_to_order(additem)
+    function add_to_order(additem, price)
     {
-      refresh_order(additem, null);
+      refresh_order(additem, null, price);
       window.scroll(0,0);
     } 
 

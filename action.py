@@ -5,7 +5,7 @@ import utils
 #log = open('/tmp/logq', 'a')
 
 
-def order(req, table, additem=None, removeitem=None):
+def order(req, table, additem=None, removeitem=None, price=None):
 
   if table == 'null': return json.dumps(None)
 
@@ -38,7 +38,7 @@ def order(req, table, additem=None, removeitem=None):
     open_order_group = open_order_group[0];
     cursor.execute('''
       INSERT INTO order_item (order_group_id, item_name, price) VALUES
-      (%(open_order_group)d, "%(additem)s", 7.0)
+      (%(open_order_group)d, "%(additem)s", "%(price)s")
       ''' % locals())
 
   if removeitem:
