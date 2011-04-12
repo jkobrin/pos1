@@ -3,6 +3,9 @@
 import MySQLdb
 
 import json, utils
+import datetime
+
+
 
 TAXRATE = .08625
 
@@ -56,8 +59,9 @@ def get_tab_text(table, serverpin = None, cursor = None):
 
   tabtext = "SALUMI".center(NUMWIDTH + TEXTWIDTH) + '\n'
   tabtext += "5600 Merrick Rd Massapequa".center(NUMWIDTH + TEXTWIDTH) + '\n'
-  tabtext += "516-620-0057".center(NUMWIDTH + TEXTWIDTH) + '\n'
-  tabtext += '%s\n' % table
+  tabtext += "516-620-0057".center(NUMWIDTH + TEXTWIDTH) + '\n\n'
+  now = datetime.datetime.now().strftime("%H:%M %m/%d")
+  tabtext += '  Table:%s  %s  \n\n' % (table,  now)
   tabtext += 'FOOD & DRINK' + "\n" 
   tabtext += divider
 
@@ -72,8 +76,7 @@ def get_tab_text(table, serverpin = None, cursor = None):
   tabtext += 'TOTAL'.ljust(TEXTWIDTH) + total + '\n'
   tabtext += '''
 
-   Thank You.    (¯`v´¯)
-                 `*.¸.*´
+      Thank You.
     
        - %s
 ''' % servername
@@ -91,4 +94,4 @@ def get_tab_text(table, serverpin = None, cursor = None):
 '''
 
 if __name__ == '__main__':
-  print get_tab_text('B15')
+  print get_tab_text('1')
