@@ -60,6 +60,8 @@ menu:
             - {name: pulled beef, price: 8}
             - {name: short rib, price: 18}
             - {name: chicken, price: 16}
+            - {name: mini_panini, price: 7}
+            - {name: beef_slider , price: 7}
         - name: boards
           items: 
             - name: 3-board
@@ -90,3 +92,13 @@ menu:
             - {name: rosette de lyon, price: 0}
             - {name: cacciatorini, price: 0}
             - {name: country pate, price: 0}
+        - name: dessert_etc
+          items: 
+            - {name: pelligrino, price: 6}
+            - {name: coffee, price: 3}
+            - {name: tea, price: 3}
+            - {name: soda, price: 3}
+            - {name: panacotta, price: 5}
+            - {name: chocolate, price: 5}
+            - {name: cktail7, price: 7}
+            - {name: cktail10, price: 10}
