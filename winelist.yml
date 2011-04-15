@@ -930,14 +930,6 @@
           qty: 12
 
     - name: "Pinot Grigio 2009"
-      listprice: 24
-      qtprice: 8
-      byline: "by Ronco di Pino - Collio, Friuli, Italy"
-      catalog: "--- opici 412a - "
-      frontprice: 9.33
-      grape: "Pinot Grigio"
-
-    - name: "Pinot Grigio 2009"
       listprice: 18
       byline: "by Casal Thaulero - Terre Di Chieti, Abruzzo, Italy"
       catalog: "--- opici 412a - "
