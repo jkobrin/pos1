@@ -59,20 +59,21 @@ def populate_wine_category(cfg):
         name = '%s %s' % (bin_num, raw_item['name'])
 
         listprice = raw_item.get('listprice')
-        if not listprice : continue
-
-        # make regular item
-        item = {
-          'name' : name,
-          'price' : listprice
-        }  
-        subcat['items'].append(item)
+        if listprice :
+          # make regular item
+          item = {
+            'name' : name,
+            'price' : listprice
+          }  
+          subcat['items'].append(item)
 
         # now make quartino
         if raw_item.has_key('qtprice'):
           price = raw_item['qtprice']
-        elif category is redcat or whitecat:  
+        elif category is redcat or whitecat and listprice:  
           price = listprice / 3
+	else: price = 10
+
         qtitem = {
           'name' : 'qt: '+name,
           'price' : price

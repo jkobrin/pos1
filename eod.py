@@ -15,7 +15,7 @@ def index(req):
     FROM order_item oi, order_group og, person p 
     WHERE oi.order_group_id = og.id 
     AND og.closedby = p.id 
-    AND og.created > SUBDATE(now(), 1)
+    AND og.created > now() - INTERVAL '12' HOUR
     GROUP BY p.id, p.last_name;''',
     incursor=None,
     label=False
@@ -26,7 +26,7 @@ def index(req):
     FROM order_item oi, order_group og, person p 
     WHERE oi.order_group_id = og.id 
     AND og.closedby = p.id
-    AND og.created > SUBDATE(now(), 1);''',
+    AND og.created > SUBDATE(now(), .5);''',
     incursor=None,
     label=False
   )

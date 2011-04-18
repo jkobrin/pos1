@@ -14,7 +14,7 @@ SPRINT_OPTIONS = {
 PRINT_OPTIONS = {
  'page-border':'single', 
  'page-left':'12',
- 'media':'Custom.3.125x%(page_length)sin',
+  'media':'Custom.3.125x%(page_length)sin',
  'lpi': '4'
 }
 
@@ -50,7 +50,8 @@ def index(req, table, shouldPrint, serverpin, close=True):
     print 'num_wrapping_lines', num_wrapping_lines
     num_lines_of_text += num_wrapping_lines
     print 'num_lines_of_text', num_lines_of_text
-    page_length_in_inches = num_lines_of_text / float(LINES_PER_INCH) + 1.5 # +.5 for safety margin
+    page_length_in_inches =  num_lines_of_text / float(LINES_PER_INCH) + 1
+    page_length_in_inches = min(page_length_in_inches, 11) 
 
   if close:
     cursor.execute('''
@@ -74,6 +75,7 @@ def index(req, table, shouldPrint, serverpin, close=True):
     #conn.getDefault()
 
     
+    page_length_in_inches
     PRINT_OPTIONS['media'] = PRINT_OPTIONS['media'] % \
       {'page_length': page_length_in_inches}
 
@@ -84,4 +86,4 @@ def index(req, table, shouldPrint, serverpin, close=True):
   return json.dumps(None)
 
 if __name__ == '__main__':
-  print index(None, '1', 'true', 4008, close=False)
+  print index(None, '1', 'true', 1, close=False)
