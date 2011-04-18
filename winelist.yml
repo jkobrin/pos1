@@ -33,7 +33,7 @@
       qt: yes
       qtprice: 7
       frontprice: 7
-      grape: "Cabernet / Merlot"
+      grape: "Grenache / Syrah"
       catalog: "Wineberry page 6 - box"
       instock: 4
       bin: 603
@@ -1108,7 +1108,7 @@
     - name: "Dry Amontillado Sherry"
       byline: "Barbadillo - Jerez, Spain"
       notes: "Unlike any other wine - dry & amber-colored with aroma & flavor of walnuts, almonds and old wood. Great with nuts, olive or dry ham."
-      listprice: 0
+      listprice: 28
       qtprice: 8
       qt: yes
       frontprice: 7.75
