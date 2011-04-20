@@ -42,7 +42,7 @@ menu:
             - name: marcona almonds
               price: 6
             - name: walnut pesto
-              price: 5
+              price: 6
             - name: mussels
               price: 7
             - name: smoked anchovies
@@ -54,10 +54,10 @@ menu:
             - {name: tapa polenta mushrooms , price: 7}
             - {name: plate polenta mushrooms, price: 12}
             - {name: oxtail, price: 9}
-            - {name: green caprese, price: 7}
+            - {name: asparagus, price: 7}
             - {name: beet orange, price: 5}
             - {name: grilled calabrian, price: 9}
-            - {name: pulled beef, price: 8}
+            - {name: pulled beef, price: 7}
             - {name: rib_tapa, price: 10}
             - {name: rib_plate, price: 18}
             - {name: chicken, price: 16}
