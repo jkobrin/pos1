@@ -1,8 +1,8 @@
 
 
 import yaml, json
-import mylog
-log = mylog.my_logger
+from mylog import my_logger
+log = my_logger
 
 CONFIG_FILE_NAME = '/var/www/config.yml'
 WINELIST_FILE_NAME = '/var/www/winelist.yml'

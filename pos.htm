@@ -25,17 +25,17 @@
       white-space : normal;
     }
 
-    #keypad
+    .keypad
     {
       padding-top:25px;
     }
 
-    #keypad button
+    .keypad button
     {
       font-size:36pt;
     }
 
-    #keypad input
+    .keypad input
     {
       font-size:36pt;
     }
@@ -111,6 +111,11 @@
     }
 
     #receipt_screen
+    {
+      display: none;
+    }
+
+    #clock_screen
     {
       display: none;
     }
@@ -505,6 +510,38 @@
       receipt_screen.style.display = "inline";
     }  
 
+    function go_to_clock_sceen()
+    {
+      keypadclear();
+      main_screen.style.display = "none";
+      clock_screen.style.display = "inline";
+      clock_screen_msg.innerHTML = "Time Clock";
+    }  
+
+    function leave_clock_screen()
+    {
+      keypadclear();
+      clock_screen.style.display="none";
+      main_screen.style.display="inline"; 
+    }
+
+    function clockin(in_)
+    {
+      resp = http_request("POST", "clockin", 
+        "in_="+in_+
+        "&serverpin="+pin
+      );
+
+      clock_screen_msg.innerHTML = resp;
+      clock_in.disabled=true;
+      clock_out.disabled=true;
+    }  
+
+    function server_is_in(serverpin)
+    {
+      return http_request("POST", "clockin/server_is_in", "serverpin="+pin);
+    }
+
     function close_check(shouldPrint)
     {
       table = g_currentTable;
@@ -608,20 +645,28 @@
       if (button.value == "CLR") { return keypadclear(); }
 
       pin += button.value;
-      keypadhead.innerHTML = pin.replace(/./g,"#");
+      set_keypadhead( pin.replace(/./g,"#"));
       if (pin.length == 4) 
       { 
         if (pin_is_good(pin)) 
         {
           print_and_close.disabled=false;
           just_close.disabled=false;
+          if (server_is_in(pin))
+          {
+            clock_out.disabled=false;
+          }
+          else
+          {
+            clock_in.disabled=false;
+          }  
           disableKeyPad(true);    
-          keypadhead.innerHTML = 'PIN recognized'
+          set_keypadhead( 'PIN recognized');
         }
         else
         {
           keypadclear();
-          keypadhead.innerHTML = 'Unrecognized PIN';
+          set_keypadhead('Unrecognized PIN');
         }
           
       }
@@ -629,19 +674,32 @@
 
     function disableKeyPad(should)
     {
-        keypadbuttons = keypad.getElementsByTagName("input");
+        keypadbuttons = keypad1.getElementsByTagName("input");
+        for (idx in keypadbuttons)
+        {
+          keypadbuttons[idx].disabled = should;
+        }
+        keypadbuttons = keypad2.getElementsByTagName("input");
         for (idx in keypadbuttons)
         {
           keypadbuttons[idx].disabled = should;
         }
     }
 
+    function set_keypadhead(msg)
+    {
+      keypadhead1.innerHTML = msg;
+      keypadhead2.innerHTML = msg;
+    }
+
     function keypadclear()
     {
       pin = "";
-      keypadhead.innerHTML = "Enter 4 digit PIN to close tab.";
+      set_keypadhead( "Enter 4 digit PIN to close tab.");
       print_and_close.disabled=true;
       just_close.disabled=true;
+      clock_out.disabled=true;
+      clock_in.disabled=true;
       disableKeyPad(false);
     }
 
@@ -743,6 +801,7 @@
         <div><a href="javascript:goHorizontal()"  class="goHorizontalLink" id="goHorizontalLink">&lt;</a></div>
         <div><a href="javascript:go_to_cook_screen()"  class="goHorizontalLink" id="cooklink">C</a></div>
         <div><a href="javascript:go_to_tables()"  class="goHorizontalLink" id="tablelink">T</a></div>
+        <div><a href="javascript:go_to_clock_sceen()"  class="goHorizontalLink" id="tablelink">P</a></div>
         </div>
         <div id="board"></div>
       </center>
@@ -753,17 +812,15 @@
   when it is shown, so it doesn't really matter where we put it 
   in the HTML. So we put it at the begining.
   -->
-  <div id="receipt_screen">
+  <div id="clock_screen">
     <center>
-    <table id="receipt_table"></table>
-    <div onclick='leave_receipt_screen()'>
-      <button id=print_and_close onclick='close_check(true)'>Print and Close</button>
-      <button id=just_close onclick='close_check(false)'>Just Close</button>
-      <button onclick='go_to_tables()'>See Tables</button>
-      <button>Go Back</button>
-
-      <div id="keypad">
-        <h2 id=keypadhead colspan="3" align="center"></h2>
+    <div>
+      <button id=clock_in onclick='clockin(true)'>Clock In</button>
+      <button id=clock_out onclick='clockin(false)'>Clock Out</button>
+      <button onclick='leave_clock_screen()'>Go Back</button>
+      <h1 id=clock_screen_msg></h1>
+      <div id="keypad1" class="keypad">
+        <h2 id=keypadhead1 colspan="3" align="center"></h2>
         <table cellpadding="2" cellspacing="2" border="0">
           <tr>
             <td><input class="keypadbutt" type="Button" value="1" 
@@ -790,9 +847,55 @@
               onclick="keypadpress(this, event)"></td>
           </tr>
           <tr>
-            <td><input type="Button" value="0" 
+            <td><input class="keypadbutt" type="Button" value="0" 
               onclick="keypadpress(this, event)"></td>
-            <td colspan=2><input type="Button" value="CLR" 
+            <td colspan=2><input class="keypadbutt" type="Button" value="CLR" 
+              onclick="keypadpress(this, event)"></td>
+          </tr>
+        </table>
+      </div>
+    </center>
+  </div>
+  <div id="receipt_screen">
+    <center>
+    <table id="receipt_table"></table>
+    <div onclick='leave_receipt_screen()'>
+      <button id=print_and_close onclick='close_check(true)'>Print and Close</button>
+      <button id=just_close onclick='close_check(false)'>Just Close</button>
+      <button onclick='go_to_tables()'>See Tables</button>
+      <button>Go Back</button>
+
+      <div id="keypad2" class="keypad">
+        <h2 id=keypadhead2 colspan="3" align="center"></h2>
+        <table cellpadding="2" cellspacing="2" border="0">
+          <tr>
+            <td><input class="keypadbutt" type="Button" value="1" 
+              onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="2" 
+              onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="3" 
+              onclick="keypadpress(this, event)"></td>
+          </tr>
+          <tr>
+            <td><input class="keypadbutt" type="Button" value="4" 
+              onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="5" 
+              onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="6" 
+              onclick="keypadpress(this, event)"></td>
+          </tr>
+          <tr>
+            <td><input class="keypadbutt" type="Button" value="7" 
+              onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="8" 
+              onclick="keypadpress(this, event)"></td>
+            <td><input class="keypadbutt" type="Button" value="9" 
+              onclick="keypadpress(this, event)"></td>
+          </tr>
+          <tr>
+            <td><input class="keypadbutt" type="Button" value="0" 
+              onclick="keypadpress(this, event)"></td>
+            <td colspan=2><input class="keypadbutt" type="Button" value="CLR" 
               onclick="keypadpress(this, event)"></td>
           </tr>
         </table>

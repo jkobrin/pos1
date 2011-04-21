@@ -3,7 +3,6 @@
 import MySQLdb
 
 import json, utils
-import datetime
 
 
 
@@ -60,7 +59,7 @@ def get_tab_text(table, serverpin = None, cursor = None):
   tabtext = "SALUMI".center(NUMWIDTH + TEXTWIDTH) + '\n'
   tabtext += "5600 Merrick Rd Massapequa".center(NUMWIDTH + TEXTWIDTH) + '\n'
   tabtext += "516-620-0057".center(NUMWIDTH + TEXTWIDTH) + '\n\n'
-  now = datetime.datetime.now().strftime("%H:%M %m/%d")
+  now = utils.now()
   tabtext += '  Table:%s  %s  \n\n' % (table,  now)
   tabtext += 'FOOD & DRINK' + "\n" 
   tabtext += divider

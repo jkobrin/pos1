@@ -22,3 +22,6 @@ handler.setFormatter(formatter)
 # Add the log message handler to the logger
 my_logger.addHandler(handler)
 
+
+if __name__ == '__main__':
+  my_logger.debug('hi there')

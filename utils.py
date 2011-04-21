@@ -1,4 +1,5 @@
 import MySQLdb
+import datetime
 
 def object_from_dict(the_dict):
   class an_object:
@@ -12,6 +13,8 @@ def label_query_rows(labels, rows):
   labeled_results = [dict(zip(labels, row)) for row in rows]
   return labeled_results
 
+def now():
+  return datetime.datetime.now().strftime("%H:%M %m/%d")
 
 def execute(sql, incursor=None):
   
