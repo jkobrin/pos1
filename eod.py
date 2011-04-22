@@ -16,7 +16,7 @@ def index(req):
     WHERE oi.order_group_id = og.id 
     AND oi.is_cancelled = False
     AND og.closedby = p.id 
-    AND date(og.created) > now() - INTERVAL '12' HOUR
+    AND og.created > now() - INTERVAL '12' HOUR
     GROUP BY p.id, p.last_name;''',
     incursor=None,
     label=False

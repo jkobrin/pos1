@@ -56,12 +56,12 @@ menu:
             - {name: oxtail, price: 9}
             - {name: asparagus, price: 7}
             - {name: beet orange, price: 5}
-            - {name: grilled calabrian, price: 9}
             - {name: pulled beef, price: 7}
             - {name: rib_tapa, price: 10}
             - {name: rib_plate, price: 18}
             - {name: chicken, price: 16}
             - {name: mini_panini, price: 7}
+            - {name: bacon, price: 6}
             - {name: beef_slider , price: 7}
             - {name: bread, price: 3}
         - name: boards
