@@ -165,6 +165,11 @@
       font-size: 18pt;
     }  
 
+    #clock_screen button
+    {
+      font-size: 18pt;
+    }  
+
     body,h1,h2,h3,h4,h5,h6 {font-family:Arial;}
 
     body {background-color:gray; color:black; font-size:18}
@@ -815,9 +820,9 @@
   <div id="clock_screen">
     <center>
     <div>
-      <button id=clock_in onclick='clockin(true)'>Clock In</button>
-      <button id=clock_out onclick='clockin(false)'>Clock Out</button>
-      <button onclick='leave_clock_screen()'>Go Back</button>
+      <button id=clock_in onclick='clockin(true)'/>Clock In</button>
+      <button id=clock_out onclick='clockin(false)'/>Clock Out</button>
+      <button onclick='leave_clock_screen()'/>Go Back</button>
       <h1 id=clock_screen_msg></h1>
       <div id="keypad1" class="keypad">
         <h2 id=keypadhead1 colspan="3" align="center"></h2>
