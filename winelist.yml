@@ -157,6 +157,175 @@
       frontprice: 23
       catalog: "Jenny & Francois one of the last pages"
 
+    - name: "Petit Sirah 2005"
+      listprice:  
+      qtprice:
+      byline: "by Mettler Familly Vineyards - Lodi, California"
+      notes: "Orgainc & Sustainable"
+      mynotes: "stemmy full petit sirah flavor, raisiny, but a bit watery, needs more acid."
+      lillynotes: "decent acidity, med tanins, smoky-ish"
+      grape: "Petite Sirah"
+      catalog: "opici"
+      frontprice: 16.67 #(13.34 for 2)
+      bin: 
+      instock:
+      ordered:  
+        - date:
+          qty:
+
+    - name: "Cabernet Sauvignon 2008"
+      listprice:  
+      qtprice:
+      byline: "by Mettler Familly Vineyards - Lodi, California"
+      mynotes: "nice vanilla, med acid, some fruit, mild tanins, a little hot"
+      grape: "Cabernet Sauvignon"
+      catalog: "opici"
+      frontprice: 16.67 #(13.34 for 3)
+      bin: 
+      instock:
+      ordered:
+        - date:
+          qty:
+
+    - name: "Epicenter Zinfindel"
+      listprice: 
+      qtprice:
+      byline: "by Mettler Familly Vineyards - Lodi, California"
+      notes: ""
+      mynotes: "nice, fruitty zin, med tanins, mild fruit"
+      grape: "Old Vine Zinfindel"
+      catalog: "opici"
+      frontprice: 13.34
+      bin: 
+      instock:
+      ordered:  
+        - date:
+          qty:
+
+    - name: "Petite Sirah 2006"
+      listprice:
+      qtprice: 
+      byline: "by Elyse Winery - Napa Valley, California"
+      mynotes: "Intense, tanins, some spice"
+      grape: "petite sirah"
+      catalog: "verity"
+      frontprice: 
+
+    - name: "Cabernet / 15% Petite Sirah 2006"
+      listprice:
+      qtprice: 
+      byline: "by Elyse Winery - (heart of the rutherford bench) Napa Valley, California"
+      mynotes: "Intense, bit hot, a little vanilla, stiff tanins, some spice"
+      grape: "petite sirah"
+      catalog: "verity"
+      frontprice: 33.33
+
+    - name: "Sauvignon Blanc"
+      listprice:
+      qtprice: 
+      byline: "by Mt. Beautiful - "
+      mynotes: "Good balance. Decent fruit. Nice mild tanins."
+      grape: "sb"
+      catalog: "winebow"
+      frontprice: 20
+
+    - name: "Sauvignon Blanc"
+      listprice:
+      qtprice: 
+      byline: "by root 1 - Chile"
+      mynotes: "unusual chard. Hint of tropical fruit. Faint nose. Fresh, light melon nose. "
+      grape: "sb"
+      catalog: "winebow"
+      frontprice: 7.33
+
+    - name: "Cabernet Sauvingon 2006"
+      listprice: 26
+      qtprice: 10
+      byline: "by Healdsburg Ranches - Sonoma, California"
+      mynotes: "Cabernet Sauvignon
+      notes: "Smoky, a little tanic, well balanced, not too acidic, smooth."
+      grape: "cs"
+      catalog: "winebow"
+      frontprice: 9.33
+
+    - name: "Barolo 2006"
+      listprice:
+      qtprice: 
+      byline: "by prunotto - piedmonte, Italy"
+      mynotes: "good bright fruit, tangy acid, cherries, mild tanins B+, not too heavy"
+      notes: ""
+      grape: "nebbiolo"
+      catalog: "winebow"
+      frontprice: 
+
+    - name: "Brunello"
+      listprice:
+      qtprice: 
+      byline: "by San polo- Montalcino, Tuscany, Italy"
+      mynotes: "good fruit, nice balance, light mouth-coating tanins"
+      notes: "52 acre winery  - parker 92, wine spectator: 91"
+      grape: "chard"
+      catalog: "winebow"
+      frontprice: 
+
+    - name: "Caste Rock Pinot Noir - Mendocino County"
+      listprice:
+      qtprice: 
+      byline: "by Caste Rock - Mendocino County"
+      mynotes: "Sweet, buttery nose. Sweet fruit, some berries, nice acid."
+      grape: "chard"
+      catalog: "winebow"
+      frontprice: 9.33
+
+
+    - name: "J vineyard chardonnay"
+      listprice:
+      qtprice: 
+      byline: "by J"
+      mynotes: "dry woody nose. little butter. Not sure."
+      grape: "chard"
+      catalog: "winebow"
+      frontprice: #6 pakc for 96 now
+
+
+    - name: "Elyse Petite Sirah"
+      listprice:
+      qtprice: 
+      byline: "by Elyse Winery - Napa Valley, California"
+      mynotes: "Good balance. Decent fruit. Nice mild tanins."
+      grape: "petite sirah"
+      catalog: "verity"
+      frontprice: 20
+
+    - name: "Elyse Morisoli Zinfindel"
+      listprice:
+      qtprice: 
+      byline: "by Elyse Winery from Hayne Vineyard - Napa Valley, California"
+      notes: "Layered Smoky, vanilla, decent acid, good wine. B+"
+      grape: "Zinfindel, Mouvedre"
+      catalog: "verity"
+      frontprice: 22.33
+
+    - name: "Elyse aka Zinfindel"
+      listprice:
+      qtprice: 
+      byline: "by Elyse Winery from Hayne Vineyard - Napa Valley, California"
+      notes: "Dark red, raisiny, full, touch of barnyard, nice acid, tiny touch of spice and vanilla"
+      grape: "Zinfindel, Petit Sirah"
+      derek: "Not too Jammy"
+      catalog: "verity"
+      frontprice: 18.67 #14
+
+    - name: "Elyse C'est si Bon"
+      listprice:
+      qtprice: 
+      byline: "by Nagiar Vineyards - Sierra Foothills, California"
+      notes: "Little Smoky. Good dark fruit, little stemmy, touch of french oak."
+      grape: "Petit Sirah"
+      derek: "Like it"
+      catalog: "verity"
+      frontprice: 16
+
     - name: "Petit Sirah 2008"
       listprice: 44
       qtprice: 14
@@ -188,7 +357,7 @@
       byline: "Napa Valley, California"
       grape: "Cabernet Sauvingon"
       catalog: "--opici "
-      frontprice: 14 #12.67
+      frontprice: 14.66 #12.67 #13.33
       notes: "Very good California Cab with lots of jammy fruit and smooth powerful tannins."
       mynotes: "Very Good cabernet. Smoke and vanilla. Good jammy fruit. A"
       bin: 203
@@ -682,7 +851,7 @@
 
     - name: "Petit Chablis 2009"
       listprice: 24
-      qtprice: 8
+      qtprice: 9
       notes: "Nice minerality with crisp apple and pear flavours."
       byline: "by Jean Marc Brocard - Burgundy, France"
       grape: "Chardonnay"
