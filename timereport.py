@@ -7,12 +7,25 @@ import utils
 
 def index(req):
 
-  weekly = utils.select('''SELECT week(intime), last_name, sum(hours_worked) as hours_worked from hours_worked group by week(intime), last_name''',
+  weekly = utils.select('''
+	SELECT week(intime), 
+	last_name, 
+	sum(hours_worked) as hours_worked 
+	from hours_worked group by week(intime), 
+	last_name 
+	order by week(intime), last_name''',
     incursor=None,
     label=False
   )
 
-  detail = utils.select('''SELECT date, last_name, time_in, time_out, hours_worked from hours_worked order by last_name''',
+  detail = utils.select('''
+	SELECT date, 
+	last_name, 
+	time_in, 
+	time_out, 
+	hours_worked 
+	from hours_worked 
+	order by last_name, intime''',
     incursor=None,
     label=False
   )

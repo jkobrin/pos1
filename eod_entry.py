@@ -32,7 +32,7 @@ class server_inf(object):
     )  
 
 #for row in info_by_server:
-  #server_info = {row[
+  serverinf(  	
 
 def prompt():
   global state, current_server_info
