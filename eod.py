@@ -19,12 +19,22 @@ def index(req):
     incursor=None,
     label=False
   )
-  
-  grand_total = utils.select('''
-    SELECT sum(price) total  
+
+  day_totals = utils.select('''
+    SELECT sum(price) total, dayname(og.created), date(og.created) date
     FROM order_item oi, order_group og, person p 
     WHERE oi.order_group_id = og.id 
     AND og.closedby = p.id
+    and oi.is_cancelled = false
+    group by date(og.created)''',
+    incursor=None,
+    label=False
+  )
+  
+  grand_total = utils.select('''
+    SELECT sum(price) total  
+    FROM order_item oi, order_group og
+    WHERE oi.order_group_id = og.id 
     and oi.is_cancelled = false
     AND oi.created > now() - INTERVAL '12' HOUR;''',
     incursor=None,
@@ -52,7 +62,14 @@ def index(req):
       ('Total',), 
       seven_day_total
     ) +
+
+    utils.tohtml(
+      "Day Totals",
+      ('Total', 'Day'), 
+      day_totals
+    ) +
     '''</body></html>'''
+
   )
 
   return html

@@ -9,10 +9,10 @@ def index(req):
 
   results = utils.select('''
     SELECT 
-	item_name, count(*) count, DATE(created) 
+	item_name, count(*) count, DATE(created)
 	from order_item where is_cancelled = false 
-	group by item_name, DATE(created)
-	order by DATE(created), item_name;
+	group by item_name, date(created)
+	order by date(created), item_name
   ''',
     incursor=None,
     label=False
