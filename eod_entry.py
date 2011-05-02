@@ -11,7 +11,7 @@ server_info = {}
 
 class server_inf(object):
     
-  def __init__(self, kv):
+  def __init__(self, server, sales, **kv):
     self.server = server
     self.sales = sales * (1 + texttab.TAXRATE)
     self.credit = None
@@ -24,18 +24,19 @@ class server_inf(object):
       
   def all_tips(self):
     if self.credit_tips is not None and self.cash_tips() is not None:
-      return self.credit_tips() + self.cash_tips()
+      return self.credit_tips + self.cash_tips()
       
   def format(self):
     return '%s --  cash:%s   credit:%s   sales:%s   credit tips:%s    cash tips:%s   all tips:%s' % (
       self.server, self.cash, self.credit, self.sales, self.credit_tips, self.cash_tips(), self.all_tips()
     )  
 
-#for row in info_by_server:
-  serverinf(  	
+for row in info_by_server:
+  server_info[row['server']] =  server_inf(**row)
+
 
 def prompt():
-  global state, current_server_info
+  global state, server_info
 
   return {
     take_name: "Server last name",
@@ -46,23 +47,18 @@ def prompt():
     }[state] + ": "
 
 
-def find(pred):
-  for row in info_by_server:
-    if pred(row):
-      return row
-
 def addto(category, num):
     try: num = float(num)
     except: return 'not a number'
-    current_server_info[category] = \
-      (current_server_info[category] or 0) + num
-    return current_server_info[category]  
+    current_server_info.__dict__[category] = \
+      (current_server_info.__dict__.get(category) or 0) + num
+    return current_server_info.__dict__[category]
 
 def gostate(newstate):
   global state
 
   state = newstate
-  return format_current_server_info()
+  return current_server_info.format()
 
 def respond(said):
   global state, current_server_info
@@ -72,7 +68,7 @@ def respond(said):
   if state == take_name:
     if not said: state = exit
     else:
-      current_server_info = find(lambda inf: inf['server'] == said)
+      current_server_info = server_info.get(said)
       if current_server_info:
         resp = gostate(take_cash)
       else: resp = 'no such server had sales tonight'
@@ -91,19 +87,19 @@ def respond(said):
 
   return resp
 
-for row in info_by_server:
-  current_server_info = row
-  print format_current_server_info()
+for k,v  in server_info.items():
+  current_server_info = v
+  print current_server_info.format()
 
 while state != exit:
   said = raw_input(prompt())
   print respond(said)
 
-for row in info_by_server:
-  row['cash_tips'] = row['credit'] + row['cash'] - row['sales']
-  row['total_tips'] = row['cash_tips'] + row['credit_tips']
+#for row in info_by_server:
+#  row['cash_tips'] = row['credit'] + row['cash'] - row['sales']
+#  row['total_tips'] = row['cash_tips'] + row['credit_tips']
 
-grand_total_tips = sum(row['total_tips'] for row in info_by_server)
+grand_total_tips = sum(inf.all_tips for inf in info_by_server)
 
 print info_by_server  
 
