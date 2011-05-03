@@ -99,9 +99,10 @@ while state != exit:
 #  row['cash_tips'] = row['credit'] + row['cash'] - row['sales']
 #  row['total_tips'] = row['cash_tips'] + row['credit_tips']
 
-grand_total_tips = sum(inf.all_tips for inf in info_by_server)
+grand_total_tips = sum(inf.all_tips() for inf in server_info.values())
 
-print info_by_server  
+for inf in server_info.values():
+  print inf.format() 
 
 print 'all tips: %s' % grand_total_tips
 
