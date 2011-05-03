@@ -21,12 +21,12 @@ def index(req):
   )
 
   day_totals = utils.select('''
-    SELECT sum(price) total, dayname(og.created), date(og.created) date
+    SELECT sum(price) total, dayname(oi.created), date(oi.created) date
     FROM order_item oi, order_group og, person p 
     WHERE oi.order_group_id = og.id 
     AND og.closedby = p.id
     and oi.is_cancelled = false
-    group by date(og.created)''',
+    group by date(oi.created)''',
     incursor=None,
     label=False
   )
