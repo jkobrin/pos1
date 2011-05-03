@@ -47,6 +47,16 @@ def order(req, table, additem=None, removeitem=None, price=None):
       set oi.is_cancelled =TRUE, oi.updated = NOW()
       where oi.id = %(removeitem)s
     ''' % locals())
+
+    # close tables with no un-cancelled items left
+    # TODO: make this query more selective to avoid search work
+    cursor.execute('''
+      UPDATE order_group og
+      set og.is_opened = False
+      where og.id not in (select order_group_id from order_items oi where oi.is_cancelled = False;
+    ''' % locals())
+
+
     
   order_item_query = '''   
     SELECT 
