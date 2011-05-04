@@ -16,7 +16,7 @@
     
     .nondelivered_item { color: red; }
 
-    .comped_item {}
+    .comped_item {font-style:italic; border: 6px solid #a0ffa0;}
     
     .menu_button 
     {
@@ -321,6 +321,15 @@
 
     }  
 
+    function resetTableColor(table_id)
+    {
+      table_button = document.getElementById(table_id);
+      if (table_button != null)
+      {
+        table_button.firstChild.style.backgroundColor = "#a0a0a0";
+      }
+    }
+
     function colorTables()
     {
       if (category_is_table())
@@ -443,10 +452,15 @@
       params="table="+g_currentTable;
       if (price) {params += "&price="+price;}
       if (add_item) {params += "&additem="+add_item;}
-      if (remove_item) {params += "&removeitem="+remove_item;}
+      if (remove_item) 
+      {
+        params += "&removeitem="+remove_item;
+        resetTableColor(g_currentTable);
+      }
 
       order_items = http_request("POST", "action/order", params);
       update_order_pane(order_items);
+      colorTables();
     }
 
     function mark_delivered()
@@ -481,7 +495,7 @@
         item = order_items[idx];
         classes = "order_item";
         if (item.is_delivered) {continue; classes += ' nondelivered_item'}
-        if (item.is_comped) {classes += ' comped_item'; item.item_name += '*'}
+        if (item.is_comped) {classes += ' comped_item'}
 
         order_items_html += '<tr class="'+ classes + '">'
         order_items_html += '<td>'+item.table_id+'</td>'
@@ -574,8 +588,22 @@
       refresh_cook_screen();
     }  
       
+    order_pane_items = null;
+    function get_order_pane_item(item_id)
+    {
+      for (idx in order_pane_items)
+      {
+        item = order_pane_items[idx];
+        if (item.id == item_id)
+        {
+          return item;
+        }
+      }
+    }
+      
     function update_order_pane(items)
     {
+      order_pane_items = order_items;
       document.getElementById("table_id_display").innerHTML = "Table: " + (g_currentTable || '---');
 
       order_items_html = "";
@@ -584,8 +612,7 @@
         item = items[idx];
         classes = "order_item";
         if (!item.is_delivered) {classes += ' nondelivered_item'}
-        if (item.is_comped) { classes += ' comped_item'; item.item_name += '*'}
-        //item.item_name = item.item_name.replace(/'/g, "\'");
+        if (item.is_comped) { classes += ' comped_item'}
 
         order_items_html += '<input' +
           ' class="'+ classes + '"' +
@@ -601,7 +628,7 @@
     function add_to_order(additem, price)
     {
       refresh_order(additem, null, price);
-      window.scroll(0,0);
+      //window.scroll(0,0);
     } 
 
     popup_item_id = null;
@@ -746,6 +773,12 @@
     {
     }
     
+    function plus_one()
+    {
+      item = get_order_pane_item(popup.item_id);
+      add_to_order(item.item_name, item.price);
+    }  
+
     function cancel_item()
     {
       remove_from_order(popup.item_id);
@@ -922,6 +955,7 @@
       <input type="button" value="comped" onclick="mark_comped()"> 
       <input type="button" value="do nothing"> 
       <input type="button" value="delivered" onclick="mark_delivered()"> 
+      <input type="button" value="plus 1" onclick="plus_one()"> 
     </div>
   </div>
 

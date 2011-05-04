@@ -52,8 +52,8 @@ def order(req, table, additem=None, removeitem=None, price=None):
     # TODO: make this query more selective to avoid search work
     cursor.execute('''
       UPDATE order_group og
-      set og.is_opened = False
-      where og.id not in (select order_group_id from order_items oi where oi.is_cancelled = False;
+      set og.is_open = False
+      where og.id not in (select order_group_id from order_item oi where oi.is_cancelled = False);
     ''' % locals())
 
 
@@ -61,7 +61,7 @@ def order(req, table, additem=None, removeitem=None, price=None):
   order_item_query = '''   
     SELECT 
       oi.item_name, og.table_id,
-      oi.id, oi.is_delivered, oi.is_comped,
+      oi.id, oi.is_delivered, oi.is_comped, oi.price,
       TIMESTAMPDIFF(MINUTE, oi.created, now()) minutes_old
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id

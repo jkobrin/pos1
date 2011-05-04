@@ -25,7 +25,7 @@ def get_tab_text(table, serverpin = None, cursor = None):
     cursor = conn.cursor()
 
   items = utils.select('''
-    SELECT oi.item_name name, oi.id id, oi.price price
+    SELECT oi.item_name name, oi.id id, oi.price, oi.is_comped
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
     and og.is_open = TRUE
@@ -46,7 +46,7 @@ def get_tab_text(table, serverpin = None, cursor = None):
   if not items: 
     return "no tab opened for table %s" %table
 
-  foodtotal = sum(item['price'] for item in items)
+  foodtotal = sum(item['price'] for item in items if not item['is_comped'])
   tax = round(foodtotal * TAXRATE, 2)
   total = foodtotal + tax
 
@@ -65,8 +65,12 @@ def get_tab_text(table, serverpin = None, cursor = None):
   tabtext += divider
 
   for item in items:
-    tabtext += item['name'].ljust(TEXTWIDTH) \
-      + ('%.2f'%item['price']).rjust(NUMWIDTH) + "\n"
+    if item['is_comped']:
+      price = 'comped'
+    else:  
+      price = '%.2f'%item['price']
+
+    tabtext += item['name'].ljust(TEXTWIDTH) + price.rjust(NUMWIDTH) + "\n"
 
   tabtext += '\n' + \
     'SUBTOTAL'.ljust(TEXTWIDTH) + foodtotal + '\n'

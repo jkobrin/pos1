@@ -451,8 +451,26 @@
         - date: '4/7/11' 
           qty: 12
 
+    - name: "Barolo"
+      mynotes: "half-empty falvor, woody, decent fruit, strong tanins"
+      byline: "pere allessandro"
+      catalog: "opici"
+      frontprice: 27.03
+
+    - name: "Langhe Nebbiolo"
+      mynotes: "a bit more barnyard than the barbera, some complexity, good fruit, a pleasant wine all together with nice acidity and mild tanins."
+      byline: "pere allessandro"
+      catalog: "opici"
+      frontprice: 13.36
+
+    - name: "Barbera d'alba"
+      mynotes: "nice shoe polish, fruity, decent tanins, nice italian ballsy wine."
+      catalog: "opici"
+      frontprice: 11.11
+
     - name: "Barbaresco 2005 - Rizzi"
       mynotes: "shoe polish, good dryness, decent tanins, some fruit, decent acidity."
+      byline: "pere allessandro"
       catalog: "opici"
       frontprice: 29.34
 
@@ -800,6 +818,24 @@
 
 - name: "White Wine"
   items:
+
+    - name: "Bibici B6 Riserva"
+      notes: ""
+      mynotes: "Subtle nose, with a bit of rustice butteriness..light zin flavor, but more peppery. easy drinking. some red cherry fruit"
+      byline: ""
+      listprice:
+      qtprice:
+      frontprice: 159 #144 on 3 
+      catalog: "Dan 917-576-6867, email dan@enocentric.com. Tasting Monday june 13 on Hudson Terrace."
+
+    - name: "Dubrovnik Malvasia"
+      notes: ""
+      mynotes: "Some nose, hint of petrol. Buttery, alky. Some acid, butter, full body, some round light fruit. . "
+      byline: ""
+      listprice:
+      qtprice:
+      frontprice: 13.25 # 3cs 12, 4cs 11.25
+      catalog: "croatian guy"
 
     - name: "Pinot Blanc"
       notes: ""
