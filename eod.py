@@ -22,9 +22,8 @@ def index(req):
 
   day_totals = utils.select('''
     SELECT sum(price) total, dayname(oi.created), date(oi.created) date
-    FROM order_item oi, order_group og, person p 
+    FROM order_item oi, order_group og
     WHERE oi.order_group_id = og.id 
-    AND og.closedby = p.id
     and oi.is_cancelled = false
     group by date(oi.created)''',
     incursor=None,
