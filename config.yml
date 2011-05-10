@@ -64,6 +64,7 @@ menu:
             - {name: bacon, price: 6}
             - {name: beef_slider , price: 7}
             - {name: bread, price: 3}
+            - {name: empanada, price: 5}
         - name: boards
           items: 
             - name: 3-board
@@ -104,3 +105,17 @@ menu:
             - {name: chocolate, price: 5}
             - {name: cktail7, price: 7}
             - {name: cktail10, price: 10}
+            - {name: flounder almondine, price: 12}
+            - {name: flounder verde, price: 12}
+        - name: breakfast
+          items: 
+            - {name: bacon egg, price: 6}
+            - {name: yogurt, price: 4}
+            - {name: masc fig, price: 3}
+            - {name: pb strawberry, price: 3}
+            - {name: nuttella zest, price: 3}
+            - {name: jamon cheese, price: 5}
+            - {name: prosciut cheese, price: 5}
+            - {name: breakfast tea, price: 3}
+            - {name: coffee, price: 3}
+            - {name: hot choco, price: 3}
