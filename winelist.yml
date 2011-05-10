@@ -1585,6 +1585,14 @@
         - date: '3/30/11'
           qty: 12
 
+    - name: "Jar Sangria"
+      byline: "house mad with red wine, Madiera, and fresh fruit"
+      listprice: 18
+      qtprice: 8
+      frontprice: 5
+      bin: 999
+      instock:  
+
 - name: "Beer on Tap"
   items:
     - name: "Sierra Nevada Pale Ale"
@@ -1613,6 +1621,7 @@
     - name: "WeihenStephaner" 
       byline: "12oz wheat beer - Belgium" 
       listprice: 8
+      bin: 999
       frontprice: 2.80
       bin: 999
       instock:  
