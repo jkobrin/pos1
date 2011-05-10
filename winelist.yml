@@ -1614,6 +1614,7 @@
       byline: "12oz wheat beer - Belgium" 
       listprice: 8
       frontprice: 2.80
+      bin: 999
       instock:  
       ordered: 
         - date: '3/30/11'
