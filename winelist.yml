@@ -36,11 +36,9 @@
       grape: "Grenache / Syrah"
       catalog: "Wineberry page 6 - box"
       instock: 4
-      bin: 603
       ordered: 
         - date: '3/30/11'
           qty: 4
-
 
     - name: "Cotes du Rhone 2007"
       listprice: 28
@@ -409,14 +407,44 @@
         - date:
           qty:
 
-    - name: "Pinot Noir 2009"
+    - name: "Primarius Pinot Noir 2009"
       listprice: 30
       qtprice: 11
-      byline: "by Primarius Vineyards - Oregon  30"
+      byline: "by Primarius Vineyards - Oregon"
       grape: "Pinot Noir"
       notes: "Aromatic with subtle strawberry and rhubarb flavors. Soft tannins and tartness carry the lingering fruit."
       catalog: "opici page: 404 "
       frontprice: 13.25
+      bin: 210
+      instock: 6
+      ordered:
+        - date: '3/30/11'
+          qty: 6
+
+    - name: "Lauca Pinot Noir Reserva 2008"
+      listprice: 30
+      qtprice: 11
+      byline: "by Lauca - Maule Valley, Chile"
+      grape: "Pinot Noir"
+      notes: "Bold red cherry flavors on nose and palate, with a bit of earthiness."
+      catalog: "Boening Bros."
+      frontprice: 8.50
+      bin: 290
+      instock: 10
+      ordered:
+        - date: 
+          qty:
+
+    #Cardinal Zin from southern/underdog for sangria?
+
+    - name: "Darcie Kent Pinot Noir"
+      listprice: 30
+      qtprice: 
+      byline: "by Darcie Kent - Monterrey"
+      grape: "Pinot Noir"
+      notes: "Earthy. Good manure-y scent. Pleasant. Not fruity."
+      catalog: "opici page: 404 "
+      frontprice: 9.66 #
       bin: 210
       instock: 6
       ordered:
@@ -436,10 +464,20 @@
       catalog: "--opici 397 "
       frontprice: 8.67
 
+    - name: "Cotes de Bordeaux"
+      byline: "Le Grange Clinet"
+      catalog: "opici"
+      listprice:
+      qtprice:
+      frontprice: 10
+      mynotes: "Jalapeno, some tar, little fruit, kinda hollow"
+      grape: "Merlot, Cabernet Franc, Cabernet Sauvignon"
+      bin:
+
     - name: "Wolfer Cab Franc 2007"
       byline: "Wolfer Estates - the Hamptons, Long Island"
       catalog: "winebow"
-      listprice: 32
+      listprice: 34
       qtprice: 13
       frontprice: 15
       grape: "Cabernet Franc, Cabernet Sauvignon, Merlot"
@@ -452,13 +490,15 @@
           qty: 12
 
     - name: "Barolo"
-      mynotes: "half-empty falvor, woody, decent fruit, strong tanins"
-      byline: "pere allessandro"
+      notes: 
+      mynotes: "Woody, dry and earthy with restrained fruit and long finish."
+      byline: "by Pere Allessandro - Piedmont, Italy"
       catalog: "opici"
       frontprice: 27.03
 
-    - name: "Langhe Nebbiolo"
-      mynotes: "a bit more barnyard than the barbera, some complexity, good fruit, a pleasant wine all together with nice acidity and mild tanins."
+    - name: "Langhe Nebbiolo 2005"
+      byline: "by Pere Alessandro - Piedmont, Italy"
+      mynotes: "Layers of dark fruit, earth and leather, with good structure."
       byline: "pere allessandro"
       catalog: "opici"
       frontprice: 13.36
@@ -813,7 +853,7 @@
       grape: "Malbec grown above 3000 ft."
       catalog: "tempranillo Page 92, "
       frontprice: 9.50
-      bin: 290
+      bin: 295
 
 
 - name: "White Wine"
@@ -1238,6 +1278,13 @@
         - date: '3/30/11'
           qty: 12
 
+    - name: "Rose D'Anjou"
+      byline: "by Louis Laurent, Jean Beuaquin"
+      catalog: "--opici"
+      frontprice: 7.33
+      mynotes: "Sweetish, fruity, crips short finish, quaffable"
+      grapes: "Cinsault?" #TODO
+
     - name: "Sable d'Azur"
       byline: "by Gassier en Provence- Cotes de Provence, France"
       catalog: "--opici 417a, "
@@ -1592,6 +1639,63 @@
       frontprice: 5
       bin: 999
       instock:  
+
+    - name: "Yangarra"
+      byline: "Yangarra - McClaren, Australia"
+      mynotes: "Fruity, some leather, spice"
+      listprice:
+      qtprice:
+      frontprice: 13.38
+      bin:
+      catalog: "liberty wine"
+      instock:  
+
+  
+    - name: "Bordeaux Supoeriour"
+      byline: "Abbaye Saint-Ferme"
+      mynotes: "light, some fruit, bit of leather, little butter"
+      listprice:
+      qtprice:
+      frontprice: 4.20 #3.33 on 2css
+      bin:
+      catalog: "liberty wine"
+      instock:  
+
+  
+    - name: "Saint Emillion"
+      byline: "Chateau Vignot"
+      mynotes: "mild tanins, good fruit, bit sloppy in structure"
+      listprice:
+      qtprice:
+      frontprice: 30
+      bin:
+      catalog: "liberty wine"
+      instock:  
+
+  
+    - name: "carmenier"
+      byline: "calina - Maule valley"
+      mynotes: "mild buttery leather nose, good structure and fruit, b+"
+      listprice:
+      qtprice:
+      frontprice: 7.67
+      bin:
+      catalog: "liberty wine"
+      instock:  
+
+  
+  
+    - name: "Albarino"
+      byline: "paco and lola"
+      listprice:
+      qtprice:
+      frontprice: 13.72 #12.38
+      bin:
+      catalog: "liberty wine"
+      instock:  
+
+  
+  
 
 - name: "Beer on Tap"
   items:
