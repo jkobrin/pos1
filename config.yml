@@ -65,6 +65,7 @@ menu:
             - {name: beef_slider , price: 7}
             - {name: bread, price: 3}
             - {name: empanada, price: 5}
+            - {name: duck confit, price: 11}
         - name: boards
           items: 
             - name: 3-board
@@ -93,7 +94,8 @@ menu:
             - {name: hot capicolla, price: 0}
             - {name: chorizo, price: 0}
             - {name: rosette de lyon, price: 0}
-            - {name: cacciatorini, price: 0}
+            - {name: salametto, price: 0}
+            - {name: duck rillette, price: 0}
             - {name: country pate, price: 0}
         - name: dessert_etc
           items: 
@@ -105,8 +107,8 @@ menu:
             - {name: chocolate, price: 5}
             - {name: cktail7, price: 7}
             - {name: cktail10, price: 10}
-            - {name: flounder almondine, price: 12}
-            - {name: flounder verde, price: 12}
+            - {name: red flight, price: 12}
+            - {name: white flight, price: 12}
         - name: breakfast
           items: 
             - {name: bacon egg, price: 6}
