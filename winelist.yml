@@ -661,7 +661,7 @@
 
     - name: "Rioja Reserva 2005"
       listprice: 44
-      qtprice: 15
+      qtprice: 13
       byline: "by Bodegas Muga - Rioja, Spain"
       grape: "Tempanillo, Garnacha, Mazuelo, Graciano"
       catalog: "--tempranillo page 59"
