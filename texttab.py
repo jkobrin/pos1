@@ -48,10 +48,11 @@ def get_tab_text(table, serverpin = None, cursor = None):
 
   foodtotal = sum(item['price'] for item in items if not item['is_comped'])
   tax = round(foodtotal * TAXRATE, 2)
-  total = foodtotal + tax
+  gratuity = round(foodtotal * .18, 2)
+  total = foodtotal + tax #+grat
 
-  foodtotal, tax, total = (
-    ('%.2f'%x).rjust(NUMWIDTH) for x in (foodtotal, tax, total)
+  foodtotal, tax, gratuity, total = (
+    ('%.2f'%x).rjust(NUMWIDTH) for x in (foodtotal, tax, gratuity, total)
   )
   divider = '-'*(NUMWIDTH + TEXTWIDTH) + "\n"
 
@@ -75,6 +76,7 @@ def get_tab_text(table, serverpin = None, cursor = None):
   tabtext += '\n' + \
     'SUBTOTAL'.ljust(TEXTWIDTH) + foodtotal + '\n'
   tabtext += 'TAX'.ljust(TEXTWIDTH) + tax + '\n'
+  #tabtext += 'GRATIUITY 18%'.ljust(TEXTWIDTH) + gratuity + '\n'
   tabtext += divider
   tabtext += 'TOTAL'.ljust(TEXTWIDTH) + total + '\n'
   tabtext += '''

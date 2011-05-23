@@ -109,6 +109,7 @@ menu:
             - {name: cktail10, price: 10}
             - {name: red flight, price: 12}
             - {name: white flight, price: 12}
+            - {name: preorder food, price: 400}
         - name: breakfast
           items: 
             - {name: bacon egg, price: 6}
