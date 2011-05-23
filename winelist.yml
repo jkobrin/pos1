@@ -13,6 +13,52 @@
       instock: 
       ordered: 
 
+    - name: "Bordeaux Superiour"
+      byline: "Abbaye Saint-Ferme"
+      mynotes: "light, some fruit, bit of leather, little butter"
+      listprice:
+      qtprice:
+      frontprice: 4.20 #3.33 on 2css
+      bin:
+      catalog: "liberty wine"
+      instock:  
+
+  
+    - name: "Saint Emillion"
+      byline: "Chateau Vignot"
+      mynotes: "mild tanins, good fruit, bit sloppy in structure"
+      listprice:
+      qtprice:
+      frontprice: 30
+      bin:
+      catalog: "liberty wine"
+      instock:  
+
+  
+    - name: "carmenier"
+      byline: "calina - Maule valley"
+      mynotes: "mild buttery leather nose, good structure and fruit, b+"
+      listprice:
+      qtprice:
+      frontprice: 7.67
+      bin:
+      catalog: "liberty wine"
+      instock:  
+
+  
+  
+    - name: "Albarino"
+      byline: "paco and lola"
+      listprice:
+      qtprice:
+      frontprice: 13.72 #12.38
+      bin:
+      catalog: "liberty wine"
+      instock:  
+
+  
+  
+
     - name: "Bordeaux Cotes de Francs"
       byline: "by Chateau Moulin de la Roquille - Bordeaux, France"
       notes: "Full-bodied, with woody tannins. Fruit, pepper, tar and leather."
@@ -106,7 +152,7 @@
           qty: 12
 
 
-    - name: "Beaujolais Villages"
+    - name: "Beaujolais Villages 2010"
       byline: "by Chateau du Chatelard - Beaujolais, France"
       grape: "Old Vine Gamay"
       catalog: "Wineberry page 16"
@@ -859,6 +905,7 @@
 
     - name: "Malbec 2009"
       listprice: 25
+      qtprice: 9
       notes: "Big wine with loads of pure ripe fruit. Fresh and lively with just a hint of oak."
       byline: "by Urban Uco - Valle de Uco, Mendoza, Argentina"
       grape: "Malbec grown above 3000 ft."
@@ -1049,7 +1096,8 @@
         - date: '4/12/11'
           qty: 12
 
-    - name: "Hahn Winery Chardonnay -Santa Lucia Highlands"
+    - name: "Hahn Chardonnay 2010"
+      byline: "by Hahn Winery - Santa Lucia Highlands"
       notes: "Refined, lightly fruited nose. In the mouth, well-balanced round fruit and minerality. Goes down smooth."
       mynotes: "Refined mineraly, lightly fruited nose. Mild round fruit. Med acid, med body, no oak, B. Derek: Person friendly."
       catalog: "opici page 387"
@@ -1472,6 +1520,7 @@
       byline: "Maison Nicolas"
       catalog: "opici"
       listprice: 24
+      qtprice: 8
       frontprice: 11.05
       grape: "Sauvignon Blanc, Semillon"
       notes: "Sauternes has great depth, luscious layers of apricot and honey, and also finesse, with flowers, apples and refreshing ripe peach."
@@ -1487,6 +1536,7 @@
       mynotes: "sweet low alc, frizzante similar to Bartenura, good desert"
       grape: 'Moscato'
       listprice: 22
+      qtprice: 8
       frontprice: 7.34
       catalog: "opici"
       bin: 303
@@ -1619,8 +1669,8 @@
       listprice: 20
       frontprice: 7.36
       bin: 999
-      instock:  
-      ordered: 
+      instock:
+      ordered:
         - date: '3/30/11'
           qty: 12
 
@@ -1635,73 +1685,18 @@
           qty: 12
 
     - name: "Jar Sangria"
-      byline: "house mad with red wine, Madiera, and fresh fruit"
+      byline: "House made - with red wine, orange liquer, Madiera, and fresh fruit"
       listprice: 18
       qtprice: 8
       frontprice: 5
       bin: 999
       instock:  
 
-    - name: "Yangarra"
-      byline: "Yangarra - McClaren, Australia"
-      mynotes: "Fruity, some leather, spice"
-      listprice:
-      qtprice:
-      frontprice: 13.38
-      bin:
-      catalog: "liberty wine"
-      instock:  
-
-  
-    - name: "Bordeaux Supoeriour"
-      byline: "Abbaye Saint-Ferme"
-      mynotes: "light, some fruit, bit of leather, little butter"
-      listprice:
-      qtprice:
-      frontprice: 4.20 #3.33 on 2css
-      bin:
-      catalog: "liberty wine"
-      instock:  
-
-  
-    - name: "Saint Emillion"
-      byline: "Chateau Vignot"
-      mynotes: "mild tanins, good fruit, bit sloppy in structure"
-      listprice:
-      qtprice:
-      frontprice: 30
-      bin:
-      catalog: "liberty wine"
-      instock:  
-
-  
-    - name: "carmenier"
-      byline: "calina - Maule valley"
-      mynotes: "mild buttery leather nose, good structure and fruit, b+"
-      listprice:
-      qtprice:
-      frontprice: 7.67
-      bin:
-      catalog: "liberty wine"
-      instock:  
-
-  
-  
-    - name: "Albarino"
-      byline: "paco and lola"
-      listprice:
-      qtprice:
-      frontprice: 13.72 #12.38
-      bin:
-      catalog: "liberty wine"
-      instock:  
-
-  
-  
 
 - name: "Beer on Tap"
   items:
     - name: "Sierra Nevada Pale Ale"
+      listprice: 6
       frontprice: TODO
 
     - name: "Pilsner Urquell"
@@ -1753,7 +1748,7 @@
         - date: '3/30/11'
           qty: 24
 
-    - name: "Speakeasy Prohibition amber" # 34.39 for 24 12 oz
+    - name: "Speakeasy Prohibition Amber" # 34.39 for 24 12 oz
       byline: "Speakeasy Ales & Lagers - San Francisco"
       frontprice: 1.43
       listprice: 6
@@ -1764,7 +1759,7 @@
           qty: 24
 
     - name: "Holy Grail Light Ale"
-      byline: "Black sheep brewery - Yorkshire, England"
+      byline: "Black Sheep Brewery - Yorkshire, England"
       listprice: 5
       frontprice: 1.09
       bin: 999

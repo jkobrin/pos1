@@ -19,6 +19,8 @@ for category in wl:
     numtabs = 1 #5 - len(name)/8
     listprice = wine.get('listprice') or ''
     qtprice = wine.get('qtprice') or ''
+    if not qtprice:
+      sys.stderr.write('no qt price for bin %s\n'%binnum)
     if not listprice:
       if qtprice:
         listprice = '|' + str(wine['qtprice'])

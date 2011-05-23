@@ -70,15 +70,11 @@ def populate_wine_category(cfg):
         # now make quartino
         if raw_item.has_key('qtprice'):
           price = raw_item['qtprice']
-        elif category is redcat or whitecat and listprice:  
-          price = listprice / 3
-	else: price = 10
-
-        qtitem = {
-          'name' : 'qt: '+name,
-          'price' : price
-        }  
-        subcat['items'].append(qtitem)
+          qtitem = {
+            'name' : 'qt: '+name,
+            'price' : price
+          }  
+          subcat['items'].append(qtitem)
 
       except KeyError as ke:
         log.error('Key error:' + ke.message)
