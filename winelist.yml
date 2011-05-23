@@ -960,7 +960,6 @@
       notes: "An elegant, crisp style with notes of lime, green plum, and herbs. Good length." 
       frontprice: 8
       TODO: 'check frontprice'
-      bin: 602
       instock: 12
       ordered: 
         - date: '3/30/11'
