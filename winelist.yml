@@ -1085,15 +1085,6 @@
       frontprice: 10.50
       mynotes: "Full body, some stemmyness."
 
-    - name: "Project Paso Chardonnay 2009"
-      listprice: 
-      byline: "Paso Robles, California"
-      grape: "Chardonnay"
-      catalog: "--opici "
-      frontprice: 10.00
-      mynotes: "Good dry oak on the nose, some some bitter acidity."
-
-
     - name: "'The Crusher' Viognier 2009"
       listprice: 26
       qtprice: 9
@@ -1376,8 +1367,7 @@
       frontprice: 8.66
       catalog: 'tempranillo'
       bin: 606
-      instock: 2
-
+      instock: 0
 
 - name: "Bubbly"
   items:

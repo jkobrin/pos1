@@ -12,6 +12,7 @@ def nightly_sales_by_server(label=False):
     AND oi.is_cancelled = False
     AND oi.is_comped = False
     AND og.closedby = p.id 
+    AND og.id != 502
     AND oi.created > now() - INTERVAL '12' HOUR
     GROUP BY p.id, p.last_name;''',
     incursor=None,

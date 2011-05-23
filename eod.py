@@ -21,6 +21,18 @@ def index(req):
     label=False
   )
 
+  fourteen_day_avg = utils.select('''
+    SELECT sum(price)/2 total  
+    FROM order_item oi, order_group og, person p 
+    WHERE oi.order_group_id = og.id 
+    AND og.closedby = p.id
+    and oi.is_cancelled = false
+    and oi.is_comped = false
+    AND oi.created > now() - INTERVAL '14' DAY;''',
+    incursor=None,
+    label=False
+  )
+
   day_totals = utils.select('''
     SELECT sum(price) total, dayname(oi.created), date(oi.created) date
     FROM order_item oi, order_group og
@@ -63,6 +75,11 @@ def index(req):
       "7 day Total",
       ('Total',), 
       seven_day_total
+    ) +
+    utils.tohtml(
+      "2 week average",
+      ('Total',), 
+      fourteen_day_avg
     ) +
 
     utils.tohtml(
