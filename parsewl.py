@@ -5,8 +5,6 @@ import sys
 wl = yaml.load(open(sys.argv[1]))
 wl_out = sys.stdout
 
-quartino_only = len(sys.argv) > 2 and sys.argv[2] == 'quartino-only'
-
 def prnt(strng = ''):
   strng = strng.encode('utf-8')
   wl_out.write(strng)
@@ -19,19 +17,14 @@ for category in wl:
     binnum = wine.get('bin')
     if not binnum: continue
     numtabs = 1 #5 - len(name)/8
-    frontprice = wine['frontprice']
-    #frontprice = wine.get('frontprice', 0) or 0
     listprice = wine.get('listprice') or ''
-    #  continue  
-    #listprice = wine.get('listprice', str(int(frontprice * 1.5 + 10)) + '?')
-    #if wine.get('qt'):
-    #  listprice = str(wine['qtprice']) + ' | ' + str(listprice)
-      #listprice = ' )--|  ' + str(wine['qtprice']) + '|' + str(listprice)
+    qtprice = wine.get('qtprice') or ''
     if not listprice:
-      listprice = '|' + str(wine['qtprice'])
+      if qtprice:
+        listprice = '|' + str(wine['qtprice'])
+      else:
+        raise Exception('no list or qt price for bin %s' %binnum)
     byline = wine.get('byline')
-    if quartino_only:
-      listprice = str(wine.get('qtprice'), 'no')
 
     prnt('%s.\t%s      %s'%(binnum, wine['name'], listprice))
     if byline:

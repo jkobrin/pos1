@@ -1,4 +1,6 @@
-﻿- name: Red Wine
+﻿#HRM REX goliath pinot noir
+
+- name: Red Wine
   items:
     - name: "St Emillion Grand Cru 2003"
       listprice: 40
@@ -20,25 +22,23 @@
       frontprice: 7
       grape: "Cabernet / Merlot"
       catalog: "Wineberry page 6 - box"
-      bin: 601
+      bin:
       instock: 4
       ordered: 
         - date: '3/30/11'
           qty: 4
 
-    - name: "Cotes du Rhone"
-      byline: "by Domain Le Garrigon - Rhone Valley, France"
-      notes: "Mild flavours of tart cherry and plum."
-      listprice:
+    - name: "Cotes du Rhone 2009"
+      byline: "by Domain Les Aphillantes - Rhone Valley, France"
+      notes: "Aromas of berry, earth, and herbs. Peppery fruit and smoke on the palate."
+      listprice: 29
       qt: yes
-      qtprice: 7
-      frontprice: 7
-      grape: "Grenache / Syrah"
-      catalog: "Wineberry page 6 - box"
-      instock: 4
-      ordered: 
-        - date: '3/30/11'
-          qty: 4
+      qtprice: 10
+      frontprice: 12
+      grape: "Grenache, Syrah, Mouvedre"
+      catalog: "Weygandt"
+      bin: 402
+      instock: 11
 
     - name: "Cotes du Rhone 2007"
       listprice: 28
@@ -49,7 +49,6 @@
       frontprice: 10.50
       notes: "Notes of wet hay and earth blow off as wine breathes to reveal bold, dark red fruit, pepper and smoke."
       mynotes: "Initially barnyard aromas dominate. With sufficient oxidation, there are tannins, brett, smoke. Red dark fruit. Pepper. B"
-      bin: 402
       instock: 5
       ordered: 
         - date: '3/30/11'
@@ -59,7 +58,7 @@
       listprice: 54
       qtprice: 17
       byline: "by Chateau Mont-Thabor - Rhone Valley, France"
-      grape: "Grenache, Syrah, Mourvedre, smattering of others"
+      grape: "Grenache, Syrah, Mouvedre, smattering of others"
       catalog: "Wineberry"
       frontprice: 28.00
       notes: "Cotes du Rhone's educated brother. Berries, pepper and smoke, but firmer structure & balance with hints of leather and tar."
@@ -213,7 +212,7 @@
       qtprice: 
       byline: "by Elyse Winery - (heart of the rutherford bench) Napa Valley, California"
       mynotes: "Intense, bit hot, a little vanilla, stiff tanins, some spice"
-      grape: "petite sirah"
+      grape: "Cab Sauv / petite sirah"
       catalog: "verity"
       frontprice: 33.33
 
@@ -270,7 +269,7 @@
       qtprice: 
       byline: "by Caste Rock - Mendocino County"
       mynotes: "Sweet, buttery nose. Sweet fruit, some berries, nice acid."
-      grape: "chard"
+      grape: "Pinot Noir"
       catalog: "winebow"
       frontprice: 9.33
 
@@ -443,13 +442,8 @@
       byline: "by Darcie Kent - Monterrey"
       grape: "Pinot Noir"
       notes: "Earthy. Good manure-y scent. Pleasant. Not fruity."
-      catalog: "opici page: 404 "
+      catalog: "southern?"
       frontprice: 9.66 #
-      bin: 210
-      instock: 6
-      ordered:
-        - date: '3/30/11'
-          qty: 6
 
     - name: "Pinot Noir Reserve 2009"
       byline: "by Maison Nicolas - Vin de Pay D'Oc"
@@ -489,19 +483,25 @@
         - date: '4/7/11' 
           qty: 12
 
-    - name: "Barolo"
-      notes: 
+    - name: "Barolo 2005"
+      listprice: 55
+      qtprice: 20
+      notes: "Called the king of wines and the wine of kings. This Barolo is woody, dry and earthy with dark fruit and a long, dry finish."
       mynotes: "Woody, dry and earthy with restrained fruit and long finish."
       byline: "by Pere Allessandro - Piedmont, Italy"
       catalog: "opici"
       frontprice: 27.03
+      bin: 298
 
     - name: "Langhe Nebbiolo 2005"
+      listprice: 32
+      qtprice: 11
       byline: "by Pere Alessandro - Piedmont, Italy"
+      notes: "Same grape as Barolo from the same region. This wine has layers of dark fruit, earth and leather, with good tanins."
       mynotes: "Layers of dark fruit, earth and leather, with good structure."
-      byline: "pere allessandro"
       catalog: "opici"
       frontprice: 13.36
+      bin: 299
 
     - name: "Barbera d'alba"
       mynotes: "nice shoe polish, fruity, decent tanins, nice italian ballsy wine."
@@ -515,18 +515,16 @@
       frontprice: 29.34
 
     - name: "Vino Nobile di Montepulciano"
+      qtprice: 16
       byline: "by Cesari - Tuscany"
       catalog: "opici 404"
       listprice: 45
       frontprice: 22.67
       notes: "Produced sincce medieval times, it's the older brother of Chianti and Brunello. Dry, full-bodied, and lively with notes of dark cherry, dried porcini mushrooms, raisins and roasted herbs."
       mynotes: "stemmy, good mild tanins, raisiny fruit, A-"
-      grape: "sangiovese grosso"
+      grape: "Sangiovese Grosso"
       bin: 702
-      instock: 3
-      ordered:  
-        - date: "3/30/11"
-          qty: 3
+      instock: 0
 
     - name: "Liano "
       byline: "by Umberto Cesare - Tuscany"
@@ -721,7 +719,7 @@
       qtprice: 7
       qt: yes
       byline: "by Bodegas Pinord - Penedes, Spain"
-      grape: "Tempanillo"
+      grape: "Tempranillo"
       catalog: "east coast specialty wines"
       frontprice: 7.33
       notes: "Smooth smoky vanilla and good dark fruit."
@@ -783,6 +781,19 @@
       catalog: "tempranillo - page 86 "
       frontprice: 16.67
 
+    - name: "Atalaya 2008"
+      listprice: 30
+      qtprice: 11
+      qt: no
+      byline: "by Atalaya - Almansa, Valencia, Spain"
+      grape: "Garnacha (aka Grenache), Monastrell (aka Mouvedre)"
+      notes: "Aromas of cedar, spice, violets and blackberry with a hint of licorice. Palate has layers of concentrated fruit, spice and long finish."
+      catalog: "tempranillo"
+      frontprice: 13.33
+      mynotes: "smoky, peppery garnacha with good balance and depth"
+      bin: 111
+      instock: 12
+
     - name: "Garnacha de Fuego"
       listprice: 22
       qtprice: 7
@@ -793,7 +804,7 @@
       catalog: "  --tempranillo page 7"
       frontprice: 6.66
       mynotes: "--lots of sweet dark fruit"
-      bin: 111
+      bin: 
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -1031,7 +1042,7 @@
       mynotes: "Great mineraly, Good creamy mild oak. Dense layered flavor. A"
       catalog: "opici"
       listprice: 52
-      qtprice: 20
+      qtprice: 18
       frontprice: 26
       bin: 2021
       instock: 12
@@ -1212,14 +1223,14 @@
       qtprice: 9
       qt: yes
       byline: "by Ronco Dei Pini - Collio, Friuli, Italy"
-      catalog: "verity?"
+      catalog: "verity"
       frontprice: 9.33
       grape: "Pinot Grigio"
       notes: "Aroma of apple, lime and musk melon. Quenching with minerality and citrus on the palate. Long limey finish."
       bin: 305
 
     - name: "Frascati"
-      catalog: "--- "
+      catalog: "verity? east coast?"
       byline: "by Campo Alle Rose - Rome, Italy"
       listprice: 24
       qtprice: 8
@@ -1306,9 +1317,9 @@
       frontprice: 0
 
     - name: "Muga Rose 2009"
+      listprice: 28
+      qtprice: 9
       byline: "by Bodegas Muga - Rioja, Spain"
-      listprice: 32
-      qtprice: 10
       notes: "Deep flavoured dry wine with strawberry and citrus. Pairs with many foods and great in warm weather."
       catalog: "---tempranillo page 61, "
       frontprice: 10.86
@@ -1319,7 +1330,7 @@
         - date: '4/2/11'
           qty: 12
 
-    - name: "Shaya Verdejo"
+    - name: "Shaya Verdejo 2008"
       listprice: 28
       qtprice: 10
       byline: "by Bodegas Shaya - Rueda, Spain"
@@ -1356,16 +1367,16 @@
         - date: '4/2/11'
           qty: 12
     
-    - name: "Dry Amontillado Sherry"
-      byline: "Barbadillo - Jerez, Spain"
-      notes: "Unlike any other wine - dry & amber-colored with aroma & flavor of walnuts, almonds and old wood. Great with nuts, olive or dry ham."
-      listprice: 28
-      qtprice: 8
+    - name: "Fino en Rama (Dry Sherry)"
+      byline: "Alvear - Cordoba, Spain"
+      notes: "Unlike any other wine - bone dry with aroma & flavor of walnuts, sea salt, and wood. Great with nuts, olives or cured meats."
+      listprice: 22
+      qtprice: 5
       qt: yes
-      frontprice: 7.75
-      catalog: 'opici'
+      frontprice: 8.66
+      catalog: 'tempranillo'
       bin: 606
-      instock: 1
+      instock: 2
 
 
 - name: "Bubbly"
@@ -1425,6 +1436,8 @@
       instock: 6
       frontprice: 12
       listprice: 32
+      frontprice: 12
+      listprice: 32
       qtprice: 11
       ordered: 
         - date: '3/30/11'
@@ -1458,7 +1471,7 @@
       listprice:
       frontprice: 22.72
       qt: yes
-      qtprice: 12
+      qtprice: 10
       catalog: "opici"
       bin: 1081
       instock: 12
@@ -1473,7 +1486,7 @@
       frontprice: 11.05
       grape: "Sauvignon Blanc, Semillon"
       notes: "Sauternes has great depth, luscious layers of apricot and honey, and also finesse, with flowers, apples and refreshing ripe peach."
-      bin: 290
+      bin: 291
       instock: 4
       ordered: 
         - date: '3/05/11'
@@ -1500,7 +1513,7 @@
       grape: "Merlot"
       catalog: "--opici "
       frontprice: 8.67
-      notes: "It's chocolate desert wine, but forget creamy Choco-Vine. Think good dark chocalate over sweet red cherries. Really works."
+      notes: "It's chocolate desert wine, but forget creamy Choco-Vine. Think good dark chocolate over sweet red cherries. Really works."
       mynotes: "Good chocalate over ripe red cherries. Sweet, but good acid."
       bin: 610
       ordered: 
@@ -1700,8 +1713,6 @@
 - name: "Beer on Tap"
   items:
     - name: "Sierra Nevada Pale Ale"
-      listprice: 6
-      bin: pint
       frontprice: TODO
 
     - name: "Pilsner Urquell"
