@@ -11,9 +11,8 @@ def index(req):
 
   seven_day_total = utils.select('''
     SELECT sum(price) total  
-    FROM order_item oi, order_group og, person p 
+    FROM order_item oi, order_group og
     WHERE oi.order_group_id = og.id 
-    AND og.closedby = p.id
     and oi.is_cancelled = false
     and oi.is_comped = false
     AND oi.created > now() - INTERVAL '7' DAY;''',

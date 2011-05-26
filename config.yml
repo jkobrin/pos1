@@ -53,7 +53,7 @@ menu:
             - {name: marrow bones, price: 6}
             - {name: tapa polenta mushrooms , price: 7}
             - {name: plate polenta mushrooms, price: 12}
-            - {name: oxtail, price: 9}
+            - {name: oxtail, price: 8}
             - {name: asparagus, price: 7}
             - {name: beet orange, price: 5}
             - {name: pulled beef, price: 7}
@@ -110,15 +110,15 @@ menu:
             - {name: red flight, price: 12}
             - {name: white flight, price: 12}
             - {name: preorder food, price: 400}
-        - name: breakfast
-          items: 
-            - {name: bacon egg, price: 6}
-            - {name: yogurt, price: 4}
-            - {name: masc fig, price: 3}
-            - {name: pb strawberry, price: 3}
-            - {name: nuttella zest, price: 3}
-            - {name: jamon cheese, price: 5}
-            - {name: prosciut cheese, price: 5}
-            - {name: breakfast tea, price: 3}
-            - {name: coffee, price: 3}
-            - {name: hot choco, price: 3}
+        #- name: breakfast
+        #  items: 
+        #    - {name: bacon egg, price: 6}
+        #    - {name: yogurt, price: 4}
+        #    - {name: masc fig, price: 3}
+        #    - {name: pb strawberry, price: 3}
+        #    - {name: nuttella zest, price: 3}
+        #    - {name: jamon cheese, price: 5}
+        #    - {name: prosciut cheese, price: 5}
+        #    - {name: breakfast tea, price: 3}
+        #    - {name: coffee, price: 3}
+        #    - {name: hot choco, price: 3}
