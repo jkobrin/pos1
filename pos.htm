@@ -251,7 +251,7 @@
 
     function load_config()
     {
-      g_config = http_request("GET", "config/get", null);
+      g_config = http_request("GET", "config.py/get", null);
     }  
       
     function draw()
@@ -334,7 +334,7 @@
     {
       if (category_is_table())
       {
-        tables = http_request("GET", "open_tabs", null);
+        tables = http_request("GET", "open_tabs.py", null);
 
         for (idx in tables)
         {
@@ -458,7 +458,7 @@
         resetTableColor(g_currentTable);
       }
 
-      order_items = http_request("POST", "action/order", params);
+      order_items = http_request("POST", "action.py/order", params);
       update_order_pane(order_items);
       colorTables();
     }
@@ -466,28 +466,28 @@
     function mark_delivered()
     {
       params = "item_id="+popup.item_id;
-      http_request("POST", "set_item_status/delivered", params);
+      http_request("POST", "set_item_status.py/delivered", params);
       refresh_order(null, null, null);
     }
 
     function mark_comped()
     {
       params = "item_id="+popup.item_id;
-      http_request("POST", "set_item_status/comped", params);
+      http_request("POST", "set_item_status.py/comped", params);
       refresh_order(null, null, null);
     }
 
     function pin_is_good(pin)
     {
       params = "pin="+pin;
-      is_good = http_request("POST", "checkpin", params);
+      is_good = http_request("POST", "checkpin.py", params);
       return is_good;
     }
 
     function refresh_cook_screen()
     {
       params="table=ALL";
-      order_items = http_request("POST", "action/order", params);
+      order_items = http_request("POST", "action.py/order", params);
 
       order_items_html = "";
       for (idx in order_items)
@@ -523,7 +523,7 @@
     function go_to_receipt_sceen()
     {
       keypadclear();
-      receipt_text = http_request("POST", "texttab", "table="+g_currentTable);
+      receipt_text = http_request("POST", "texttab.py", "table="+g_currentTable);
       receipt_table.innerHTML = receipt_table_html(receipt_text);
       main_screen.style.display = "none";
       receipt_screen.style.display = "inline";
@@ -546,7 +546,7 @@
 
     function clockin(in_)
     {
-      resp = http_request("POST", "clockin", 
+      resp = http_request("POST", "clockin.py", 
         "in_="+in_+
         "&serverpin="+pin
       );
@@ -558,13 +558,13 @@
 
     function server_is_in(serverpin)
     {
-      return http_request("POST", "clockin/server_is_in", "serverpin="+pin);
+      return http_request("POST", "clockin.py/server_is_in", "serverpin="+pin);
     }
 
     function close_check(shouldPrint)
     {
       table = g_currentTable;
-      http_request("POST", "close_tab", 
+      http_request("POST", "close_tab.py", 
         "table="+table+
         "&shouldPrint="+shouldPrint+
         "&serverpin="+pin

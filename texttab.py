@@ -1,18 +1,19 @@
-# -*- coding: utf-8 -*-
-
-import MySQLdb
-
 import json, utils
-
+import MySQLdb
 
 
 TAXRATE = .08625
-
 TEXTWIDTH = 18
 NUMWIDTH = 7 
 
 def index(req, table):
   return json.dumps(get_tab_text(table))
+
+def format_item(name, cnt):
+  ret = ' '.join([word for word in name.split() if not word.isdigit()][:3])
+  if cnt > 1: 
+    ret += ' @'+str(cnt)
+  return ret
 
 def get_tab_text(table, serverpin = None, cursor = None):
 
@@ -25,12 +26,13 @@ def get_tab_text(table, serverpin = None, cursor = None):
     cursor = conn.cursor()
 
   items = utils.select('''
-    SELECT oi.item_name name, oi.id id, oi.price, oi.is_comped
+    SELECT count(*) cnt, oi.item_name name, sum(oi.price) price, oi.is_comped
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
     and og.is_open = TRUE
     and og.table_id = "%(table)s"
     and oi.is_cancelled = FALSE
+    group by oi.item_name, oi.is_comped
   ''' % locals(),
     cursor)
 
@@ -56,7 +58,6 @@ def get_tab_text(table, serverpin = None, cursor = None):
   )
   divider = '-'*(NUMWIDTH + TEXTWIDTH) + "\n"
 
-
   tabtext = "SALUMI".center(NUMWIDTH + TEXTWIDTH) + '\n'
   tabtext += "5600 Merrick Rd Massapequa".center(NUMWIDTH + TEXTWIDTH) + '\n'
   tabtext += "516-620-0057".center(NUMWIDTH + TEXTWIDTH) + '\n\n'
@@ -71,7 +72,7 @@ def get_tab_text(table, serverpin = None, cursor = None):
     else:  
       price = '%.2f'%item['price']
 
-    tabtext += item['name'].ljust(TEXTWIDTH) + price.rjust(NUMWIDTH) + "\n"
+    tabtext += format_item(item['name'], item['cnt']).ljust(TEXTWIDTH) + price.rjust(NUMWIDTH) + "\n"
 
   tabtext += '\n' + \
     'SUBTOTAL'.ljust(TEXTWIDTH) + foodtotal + '\n'
@@ -88,15 +89,6 @@ def get_tab_text(table, serverpin = None, cursor = None):
 
   return tabtext
 
-'''
-(¯`v´¯)
-`*.¸.*´            
-¸.•´¸.•*¨) ¸.•*¨)  
- ¸.• Thank You! *.¸.•´•
-(¸.•´               .`
-¸¸.•¨¯`•.c u soon.•´
-
-'''
 
 if __name__ == '__main__':
   print get_tab_text('1')

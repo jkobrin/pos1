@@ -51,8 +51,8 @@ menu:
             - {name: meatballs, price: 8}
             - {name: roasted chorizo, price: 6}
             - {name: marrow bones, price: 6}
-            - {name: tapa polenta mushrooms , price: 7}
-            - {name: plate polenta mushrooms, price: 12}
+            - {name: tapa polenta, price: 7}
+            - {name: plate polenta, price: 12}
             - {name: oxtail, price: 8}
             - {name: asparagus, price: 7}
             - {name: beet orange, price: 5}
