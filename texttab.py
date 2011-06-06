@@ -10,7 +10,7 @@ def index(req, table):
   return json.dumps(get_tab_text(table))
 
 def format_item(name, cnt):
-  ret = ' '.join([word for word in name.split() if not word.isdigit()][:3])
+  ret = ' '.join([word for word in name.split() if not word.isdigit()][:3])[:TEXTWIDTH]
   if cnt > 1: 
     ret += ' @'+str(cnt)
   return ret
@@ -33,6 +33,7 @@ def get_tab_text(table, serverpin = None, cursor = None):
     and og.table_id = "%(table)s"
     and oi.is_cancelled = FALSE
     group by oi.item_name, oi.is_comped
+    order by oi.id
   ''' % locals(),
     cursor)
 
@@ -67,6 +68,8 @@ def get_tab_text(table, serverpin = None, cursor = None):
   tabtext += divider
 
   for item in items:
+    if item['price'] == 0:
+      continue
     if item['is_comped']:
       price = 'comped'
     else:  

@@ -14,8 +14,8 @@ class server_inf(object):
   def __init__(self, server, sales, **kv):
     self.server = server
     self.sales = sales * (1 + texttab.TAXRATE)
-    self.credit = None
-    self.credit_tips = None
+    self.credit = 0
+    self.credit_tips = 0
     self.cash = None
 
   def cash_tips(self):
@@ -26,13 +26,17 @@ class server_inf(object):
     if self.credit_tips is not None and self.cash_tips() is not None:
       return self.credit_tips + self.cash_tips()
       
+  def tip_pct(self):
+     if self.all_tips() is not None:
+       return self.all_tips() * 100/ self.sales
+
   def format(self):
-    return '%s --  cash:%s   credit:%s   sales:%s   credit tips:%s    cash tips:%s   all tips:%s' % (
-      self.server, self.cash, self.credit, self.sales, self.credit_tips, self.cash_tips(), self.all_tips()
+    return '%s --  cash:%s   credit:%s   sales:%s   credit tips:%s   cash tips:%s   all tips:%s  tip%%: %s' % (
+      self.server, self.cash, self.credit, self.sales, self.credit_tips, self.cash_tips(), self.all_tips(), self.tip_pct()
     )  
 
 for row in info_by_server:
-  server_info[row['server']] =  server_inf(**row)
+  server_info[row['server'].lower()] =  server_inf(**row)
 
 
 def prompt():
@@ -40,7 +44,7 @@ def prompt():
 
   return {
     take_name: "Server last name",
-    take_cash: "Cash collected (including cash tips)",
+    take_cash: "collected", #"Cash collected (including cash tips)",
     take_credit: "Credit sales",
     take_credit_tips: "Credit tips",
     exit: "Programming error",
@@ -66,14 +70,19 @@ def respond(said):
   resp = ''
 
   if state == take_name:
-    if not said: state = exit
+    if not said: 
+      for inf in server_info.values():
+        print inf.format() 
+      if all(inf.all_tips() for inf in server_info.values()):
+        grand_total_tips = sum(inf.all_tips() for inf in server_info.values())
+        print 'all tips: %s' % grand_total_tips
     else:
       current_server_info = server_info.get(said)
       if current_server_info:
         resp = gostate(take_cash)
       else: resp = 'no such server had sales tonight'
   elif state == take_cash:
-    if not said: resp = gostate(take_credit)
+    if not said: resp = gostate(take_name)
     else: resp = addto('cash', said)
   elif state == take_credit:
     if not said: resp = gostate(take_credit_tips)
@@ -93,7 +102,7 @@ for k,v  in server_info.items():
 
 while state != exit:
   said = raw_input(prompt())
-  print respond(said)
+  print respond(said.lower())
 
 #for row in info_by_server:
 #  row['cash_tips'] = row['credit'] + row['cash'] - row['sales']
