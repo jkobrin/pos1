@@ -2,6 +2,18 @@
 
 - name: Red Wine
   items:
+    - name: "Medoc 2006"
+      listprice: 35
+      qtprice: 12
+      byline: "by Chateau Tour Prignac - Bordeaux, France"
+      grape: "Merlot / Cabernet blend"
+      catalog: "opici"
+      mynotes: "need to taste"
+      frontprice: 13.33
+      bin: 757
+      instock: 
+      ordered: 
+
     - name: "St Emillion Grand Cru 2003"
       listprice: 40
       byline: "by Chateau Roylland - Bordeaux, France"
@@ -570,7 +582,7 @@
       mynotes: "stemmy, good mild tanins, raisiny fruit, A-"
       grape: "Sangiovese Grosso"
       bin: 702
-      instock: 0
+      instock: 2
 
     - name: "Liano "
       byline: "by Umberto Cesare - Tuscany"

@@ -19,13 +19,13 @@ def index(req):
   )
 
   detail = utils.select('''
-	SELECT date, 
+	SELECT concat('week ', week(intime),' ',dayname(intime),' ',date),
 	last_name, 
 	time_in, 
 	time_out, 
 	hours_worked 
 	from hours_worked 
-	order by last_name, intime''',
+	order by last_name, intime desc''',
     incursor=None,
     label=False
   )

@@ -56,7 +56,6 @@ menu:
             - {name: oxtail, price: 8}
             - {name: asparagus, price: 7}
             - {name: beet orange, price: 5}
-            - {name: pulled beef, price: 7}
             - {name: rib_tapa, price: 10}
             - {name: rib_plate, price: 18}
             - {name: chicken, price: 16}
@@ -64,29 +63,31 @@ menu:
             - {name: bacon, price: 6}
             - {name: beef_slider , price: 7}
             - {name: bread, price: 3}
-            - {name: empanada, price: 5}
+            - {name: empanada, price: 7}
             - {name: duck confit, price: 11}
         - name: boards
           items: 
+            - name: 1-board
+              price: 7
             - name: 3-board
-              price: 15
+              price: 16
             - name: 5-board
-              price: 22
+              price: 23
             - name: italian board
-              price: 26
-            - name: spaish board
-              price: 26
+              price: 27
+            - name: spanish board
+              price: 27
             - name: french board
-              price: 26
+              price: 27
             - {name: manchego , price: 0}
             - {name: granny goat, price: 0}
-            - {name: torta de cesar, price: 0}
+            - {name: nevat, price: 0}
             - {name: comte, price: 0}
             - {name: daffinois, price: 0}
             - {name: fourme dambert, price: 0}
             - {name: petit basque, price: 0}
-            - {name: tallaegio, price: 0}
-            - {name: paive, price: 0}
+            - {name: tallegio, price: 0}
+            - {name: piave, price: 0}
             - {name: pecorino tartufo, price: 0}
             - {name: seranno ham, price: 0}
             - {name: prosciutto, price: 0}
@@ -107,9 +108,8 @@ menu:
             - {name: chocolate, price: 5}
             - {name: cktail7, price: 7}
             - {name: cktail10, price: 10}
-            - {name: red flight, price: 12}
+            - {name: red flight, price: 14}
             - {name: white flight, price: 12}
-            - {name: preorder food, price: 400}
         #- name: breakfast
         #  items: 
         #    - {name: bacon egg, price: 6}

@@ -12,7 +12,7 @@ def index(req):
 	item_name, count(*) count, DATE(created)
 	from order_item where is_cancelled = false 
 	group by item_name, date(created)
-	order by date(created), item_name
+	order by date(created) desc, item_name
   ''',
     incursor=None,
     label=False
