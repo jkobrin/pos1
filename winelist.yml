@@ -102,7 +102,7 @@
 
     - name: "Chateauneuf du Pape 2007"
       listprice: 54
-      qtprice: 17
+      qtprice: 18
       byline: "by Chateau Mont-Thabor - Rhone Valley, France"
       grape: "Grenache, Syrah, Mouvedre, smattering of others"
       catalog: "Wineberry"
@@ -1697,6 +1697,7 @@
   items:
     - name: "Sierra Nevada Pale Ale"
       listprice: 6
+      bin: pint
       frontprice: TODO
 
     - name: "Pilsner Urquell"
