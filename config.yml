@@ -106,6 +106,7 @@ menu:
             - {name: soda, price: 3}
             - {name: panacotta, price: 5}
             - {name: chocolate, price: 5}
+            - {name: cktail5, price: 5}
             - {name: cktail7, price: 7}
             - {name: cktail10, price: 10}
             - {name: red flight, price: 14}
