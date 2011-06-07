@@ -8,7 +8,7 @@
       byline: "by Chateau Tour Prignac - Bordeaux, France"
       grape: "Merlot / Cabernet blend"
       catalog: "opici"
-      mynotes: "need to taste"
+      mynotes: "horrible mildewy nose. hollow taste, acid, no fruit, rough watery tanins"
       frontprice: 13.33
       bin: 757
       instock: 
@@ -143,7 +143,7 @@
       qtprice: 13
       byline: "by Cuvee du Vatican - Rhone Valley, France"
       grape: "Grenache, Syrah, Mourvedre, smattering of others"
-      catalog: "verity 625A "
+      catalog: "verity"
       frontprice: 25.00
       bin:
       instock: 
@@ -157,7 +157,6 @@
       frontprice: 18
       qtprice: 13
       bin: 401
-      TODO: 'check price'
       instock: 12
       ordered: 
         - date: '3/30/11'
@@ -397,7 +396,7 @@
 
     - name: "Cabernet Sauvingon 2009"
       listprice: 32
-      byline: "by Domaine Napa -- Napa Valley"
+      byline: "by Domaine Napa - Napa Valley"
       catalog: "opici page 395 "
       frontprice: 14
       grape: "Cabernet Sauvingon"
@@ -410,7 +409,7 @@
       qt: yes
       byline: "Napa Valley, California"
       grape: "Cabernet Sauvingon"
-      catalog: "--opici "
+      catalog: "opici "
       frontprice: 14.66 #12.67 #13.33
       notes: "Very good California Cab with lots of jammy fruit and smooth powerful tannins."
       mynotes: "Very Good cabernet. Smoke and vanilla. Good jammy fruit. A"
@@ -426,7 +425,7 @@
       qtprice: 8
       byline: "by Wilson Vineyard - Clarksburg, California"
       grape: "Cabernet Sauvignon"
-      catalog: "--opici 400 "
+      catalog: "opici 400 "
       frontprice: 10.00
       mynotes: "decent fruit, mellow tanins, LOTS of Vanilla"
       notes: "Good fruit & mellow tanins with lots of vanilla."
@@ -470,7 +469,7 @@
       byline: "by Primarius Vineyards - Oregon"
       grape: "Pinot Noir"
       notes: "Aromatic with subtle strawberry and rhubarb flavors. Soft tannins and tartness carry the lingering fruit."
-      catalog: "opici page: 404 "
+      catalog: "opici"
       frontprice: 13.25
       bin: 210
       instock: 6
@@ -505,7 +504,7 @@
 
     - name: "Pinot Noir Reserve 2009"
       byline: "by Maison Nicolas - Vin de Pay D'Oc"
-      catalog: "--- opici 410a "
+      catalog: "opici 410a "
       frontprice: 5.44
       mynotes: "Notes: pleasant, boring, B"
       listprice: 18
@@ -513,7 +512,7 @@
     - name: "Leese-Fitch Cab Sauv 2009"
       byline: "Leese-Fitch California"
       mynotes: "notes: good, slightly raisiny = some fruit"
-      catalog: "--opici 397 "
+      catalog: "opici 397 "
       frontprice: 8.67
 
     - name: "Cotes de Bordeaux"
@@ -720,7 +719,7 @@
       qtprice: 13
       byline: "by Bodegas Muga - Rioja, Spain"
       grape: "Tempanillo, Garnacha, Mazuelo, Graciano"
-      catalog: "--tempranillo page 59"
+      catalog: "tempranillo page 59"
       notes: "Aromas of cherry and earth. Smooth vanilla and cherry palate with mellow, mouth-coating tannins."
       frontprice: 22
       bin: 107
@@ -764,7 +763,7 @@
       byline: "by Emilio Moro - Ribera Del Duero, Spain"
       grape: "Tempranillo (aka Tinto Fino)"
       notes: "Smoke & roasted herbs over tons of firm ripe cherry and vanilla spice."
-      catalog: "--tempranillo page 44"
+      catalog: "tempranillo page 44"
       frontprice: 19.33
       bin: 113
       instock: 12
@@ -824,7 +823,7 @@
       byline: "by Borsao - Aragon, Spain"
       grape: "Old Vine Garnacha (aka Grenache)"
       notes: "Hints of coffee and spice. Firm structure and good fruit."
-      catalog: "--tempanillo page 12 "
+      catalog: "tempanillo page 12 "
       frontprice: 13.33
       bin: 117
       instock: 
@@ -859,9 +858,9 @@
       byline: "by Ateca - Calatayud, (Aragon) Spain"
       grape: "Old vine Garnacha (aka Grenache) grown at 3000 ft"
       notes: "Smoky cherries and chocolate on the nose. Mouth has lots of sweet dark fruit. Good focus and finish."
-      catalog: "  --tempranillo page 7"
+      catalog: "tempranillo page 7"
       frontprice: 6.66
-      mynotes: "--lots of sweet dark fruit"
+      mynotes: "lots of sweet dark fruit"
       bin: 
       instock: 
       ordered: 
@@ -873,7 +872,7 @@
       qtprice: 7
       byline: "by Bodegas Borsao - Aragon, Spain"
       grape: "Garnacha / Tempanillo"
-      catalog: "--tempranillo page 11, "
+      catalog: "tempranillo page 11, "
       frontprice: 6.75
       notes: "Well made, with nice balance, and good, clean oak."
       mynotes: "nice balance, good oak.  B+"
@@ -897,7 +896,7 @@
       qtprice: 7
       qt: yes
       grape: "Malbec blend"
-      catalog: "-- east coast spec. wines "
+      catalog: "east coast spec. wines "
       frontprice: 6
       notes: "Fruity with mild tanins, and a hint of earth. Easy-going enjoyment."
       mynotes: "fruity, some good tanin, little earth, B+. Better than more expensive Cristobal"
@@ -911,7 +910,7 @@
       byline: "by Neuquen - Patagonia, Argentina"
       listprice: 20
       grape: "Cabernet / Malbec blend"
-      catalog: "-- east coast spec. wines "
+      catalog: "east coast spec. wines "
       frontprice: 6.83
       mynotes: "fruity, mild, easy B"
 
@@ -986,7 +985,7 @@
       byline: "by Domain de la Chapelle - Burgundy, France"
       notes: "A lively, lemony and clean expression of Chardonnay. Elegant, lean white Burgundy."
       grape: "Chardonnay"
-      catalog: "--- weygandt?"
+      catalog: "weygandt"
       frontprice: 16.66
       bin: 407
       instock: 12
@@ -1000,7 +999,7 @@
       notes: "Nice minerality with crisp apple and pear flavours."
       byline: "by Jean Marc Brocard - Burgundy, France"
       grape: "Chardonnay"
-      catalog: "--- verity?"
+      catalog: "verity"
       frontprice: 8
       bin: 405
       instock: 12
@@ -1031,7 +1030,7 @@
       byline: "by Reverdy - Loire Valley, France"
       notes: "A big, steely wine with chalky, stony notes, but there is melon as well as grapefruit and lemon."
       grape: "Sauvingon Blanc"
-      catalog: "--- weygandt"
+      catalog: "weygandt"
       frontprice: 16.77
       bin: 404
       instock: 12
@@ -1042,7 +1041,7 @@
 
     - name: "Sauvingon Blanc 2009"
       byline: "by Ferrande - Bordeaux, France"
-      catalog: "-- opici 409a - "
+      catalog: "opici 409a - "
       frontprice: 6.03
       mynotes: "great heavy nose, lightish body - A-"
       grape: "Sauvingon Blanc"
@@ -1052,7 +1051,7 @@
       notes: "A fragant, light and fruity wine made from the same grapes as Cognac. Interesting and easy drinking."
       listprice: 22
       qtprice: 8
-      catalog: "--- opici 412a - "
+      catalog: "opici 412a - "
       frontprice: 8
       grape: "Ugni Blanc, Colombard"
       bin: 308
@@ -1080,7 +1079,7 @@
       listprice: 30
       byline: "by Bargetto - California Central Coast"
       grape: "Gewurzaminer"
-      catalog: "--- east coast page 5"
+      catalog: "east coast page 5"
       frontprice: 13.33
       mynotes: " some tropical fruit, little durian, volatile acid"
 
@@ -1132,7 +1131,7 @@
       listprice: 25
       byline: "Paso Robles, California"
       grape: "Chardonnay"
-      catalog: "--opici "
+      catalog: "opici "
       frontprice: 10.00
       mynotes: "Good dry oak on the nose, some some bitter acidity."
 
@@ -1140,7 +1139,7 @@
       listprice: 26
       byline: "Napa Valley, California"
       grape: "Chardonnay"
-      catalog: "--opici "
+      catalog: "opici "
       frontprice: 10.50
       mynotes: "Full body, some stemmyness."
 
@@ -1149,7 +1148,7 @@
       qtprice: 9
       byline: "by Wilson Vineyard - Clarksburg, California"
       grape: "Viognier"
-      catalog: "--opici 400 "
+      catalog: "opici 400 "
       frontprice: 10.00
       mynotes: "Liked it at la bottega"
       notes: "Very ripe peaches, and pineapple in the nose, with mouth-filling body and fruit."
@@ -1230,9 +1229,9 @@
       byline: "by Fournier - Maule Valley, Chile"
       grape: "Sauvignon Blanc"
       notes: "Aromas of lime, grapefruit & lychee. Taste of citrus and quinine."
-      catalog: "---tempranillo page: 90, "
+      catalog: "tempranillo page: 90, "
       frontprice: 9.33
-      mynotes: "--(lychee, durian, interesting)"
+      mynotes: "lychee, durian, interesting)"
       bin: 208
       instock: 
       ordered: 
@@ -1257,7 +1256,7 @@
     - name: "Pinot Grigio 2009"
       listprice: 18
       byline: "by Casal Thaulero - Terre Di Chieti, Abruzzo, Italy"
-      catalog: "--- opici 412a - "
+      catalog: "opici 412a - "
       frontprice: 5.03
       grape: "Pinot Grigio"
 
@@ -1294,7 +1293,7 @@
           qty: 12
 
     - name: "Verdicchio 2010"
-      catalog: "--- east coast specialty wines page 3, B+"
+      catalog: "east coast specialty wines page 3, B+"
       byline: "by Accatoli - Marche, Italy"
       listprice: 25
       qtprice: 8
@@ -1307,7 +1306,7 @@
           qty: 12
 
     - name: "Isola's Vermentino Di Sardegna"
-      catalog: "--- east coast specialty wines page 3, B+"
+      catalog: "east coast specialty wines page 3, B+"
       listprice: 26
       qtprice: 9
       frontprice: 10
@@ -1320,9 +1319,9 @@
           qty: 12
 
     - name: "Danae falanghina"
-      catalog: "--- east coast spec wines page 1"
+      catalog: "east coast spec wines page 1"
       frontprice: 9.16
-      mynotes: "--- heavy body, bitter acid, B- Probably not"
+      mynotes: "heavy body, bitter acid, B- Probably not"
 
     - name: "Opala Vinho Verde"
       listprice: 16
@@ -1331,7 +1330,7 @@
       notes: "Wonderfully light and fragrant with a spritzness that makes it the perfect fresh, easy-drinking white."
       byline: "by FelGuerras - Portugal"
       grape: "Loureiro, Arinto, Trajadura"
-      catalog: "--- opici product #32506"
+      catalog: "opici product #32506"
       frontprice: 4.46
       bin: 101
       instock: 12
@@ -1341,21 +1340,21 @@
 
     - name: "Rose D'Anjou"
       byline: "by Louis Laurent, Jean Beuaquin"
-      catalog: "--opici"
+      catalog: "opici"
       frontprice: 7.33
       mynotes: "Sweetish, fruity, crips short finish, quaffable"
       grapes: "Cinsault?" #TODO
 
     - name: "Sable d'Azur"
       byline: "by Gassier en Provence- Cotes de Provence, France"
-      catalog: "--opici 417a, "
+      catalog: "opici 417a, "
       frontprice: 9.34
       mynotes: "Vanilla nose. Good cripsness, light fruit, briny, mineral slightly bitter. Fairly refreshing."
       grapes: "Cinsault?" #TODO
 
     - name: "Rose of Sangiovese"
       byline: "by Robert Oatley - Mudgee, Australia"
-      catalog: "--opici"
+      catalog: "opici"
       frontprice: 14 # 6.67 on 4 six packs
       mynotes: "med acid. mild nose, good red fruit. Dark bold rose. Dry. Some heat. "
       grapes: "Sangiovese" #TODO
@@ -1363,7 +1362,7 @@
     - name: "Vivanco Rose 2009"
       byline: "by Bodegas Dinastia Vivanco - Rioja, Spain"
       catalog: "tempranillo, garnacha"
-      mynotes: "--opici 417a, "
+      mynotes: "opici 417a, "
       frontprice: 0
 
     - name: "Muga Rose 2009"
@@ -1371,7 +1370,7 @@
       qtprice: 9
       byline: "by Bodegas Muga - Rioja, Spain"
       notes: "Deep flavoured dry wine with strawberry and citrus. Pairs with many foods and great in warm weather."
-      catalog: "---tempranillo page 61, "
+      catalog: "tempranillo page 61, "
       frontprice: 10.86
       grape:  "Garnacha, Viura, Tempranillo"
       bin: 108
@@ -1385,7 +1384,7 @@
       qtprice: 10
       byline: "by Bodegas Shaya - Rueda, Spain"
       grape: "old vine verdejo"
-      catalog: "--tempranillo page 82, "
+      catalog: "tempranillo page 82, "
       frontprice: 12
       notes: "An elegant, complex Spanish white with aromas and flavours of melon, hazelnuts and spice."
       mynotes: "nutt, frutty spicy B+"
@@ -1398,7 +1397,7 @@
     - name: "Verdejo 2009"
       byline: "by Paso a Paso - La Mancha, Spain"
       grape: "Verdejo"
-      catalog: "-- tempranillo pg: 21, "
+      catalog: "tempranillo pg: 21, "
       frontprice: 9
       mynotes: "very nice nose, full fruity body, creamy, toast B+"
       
@@ -1407,7 +1406,7 @@
       qtprice: 11
       qt: yes
       byline: "by Jorge Ordoñez & Co. - Mountains of Málaga, Spain"
-      catalog: "---tempranillo page 61, "
+      catalog: "tempranillo page 61, "
       notes: "Heavy, alluring perfume of flowers, honey & tropical fruit. Palate is dry, focused and refreshing with pear and melon flavors."
       frontprice: 12.50
       grape: "Muscato de Alexandria"
@@ -1435,7 +1434,7 @@
       byline: "by Perrier-Juet - Champagne, France"
       notes: "Fine dense bubbles. Notes of cream and toasty bread, baked apple and spiced orange peel. Crisp finsih."
       grape: "Chardonnay, Pinot Noir, Pinot Meunier"
-      catalog: "--- southern"
+      catalog: "southern"
       listprice: 95
       qtprice: 95
       frontprice: 55.47
@@ -1450,7 +1449,7 @@
       grape: "Chardonnay"
       notes: "Very like the best champagne, but a bit earthier, with yeasty beer-like notes on top of cream and toast."
       grape: "Chardonnay"
-      catalog: "--- weygandt"
+      catalog: "weygandt"
       listprice: 36
       qtprice: 14
       frontprice: 15.50
@@ -1562,7 +1561,7 @@
       qtprice: 6
       byline: "Chocolate Shop Wine - Walla Walla, Washington"
       grape: "Merlot"
-      catalog: "--opici "
+      catalog: "opici "
       frontprice: 8.67
       notes: "It's chocolate desert wine, but forget creamy Choco-Vine. Think good dark chocolate over sweet red cherries. Really works."
       mynotes: "Good chocalate over ripe red cherries. Sweet, but good acid."

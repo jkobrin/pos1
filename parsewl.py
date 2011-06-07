@@ -5,6 +5,8 @@ import sys
 wl = yaml.load(open(sys.argv[1]))
 wl_out = sys.stdout
 
+orderview = len(sys.argv) > 2 and sys.argv[2] == 'order'
+
 def prnt(strng = ''):
   strng = strng.encode('utf-8')
   wl_out.write(strng)
@@ -28,6 +30,10 @@ for category in wl:
         raise Exception('no list or qt price for bin %s' %binnum)
     byline = wine.get('byline')
 
+    if orderview:
+      prnt('%s %s %s %s' %(wine.get('catalog'), wine['name'], byline, wine['frontprice']))
+      continue
+      
     prnt('%s.\t%s      %s'%(binnum, wine['name'], listprice))
     if byline:
       prnt('\t' + byline)
