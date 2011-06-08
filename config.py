@@ -12,13 +12,13 @@ def get():
   cfg = yaml.load(open(CONFIG_FILE_NAME))
   populate_wine_category(cfg)  
 
-  #for category in cfg['menu']['categories']:
-  #  catname = category['name']
-  #  for subcat in category['subcategories']:
-  #    subcatname = subcat['name']
-  #    for item in subcat['items']:
-  #      item['catname'] = catname
-  #      item['subcatname'] = subcatname
+  for category in cfg['menu']['categories']:
+    catname = category['name']
+    for subcat in category['subcategories']:
+      subcatname = subcat['name']
+      for item in subcat['items']:
+        item['catname'] = catname
+        item['subcatname'] = subcatname
 
   return json.dumps(cfg)
 

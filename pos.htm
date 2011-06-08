@@ -17,6 +17,9 @@
     .nondelivered_item { color: red; }
 
     .comped_item {font-style:italic; border: 6px solid #a0ffa0;}
+
+    .bev_item {color: blue;}
+    .board_item {color: maroon;}
     
     .menu_button 
     {
@@ -253,6 +256,29 @@
     {
       g_config = http_request("GET", "config.py/get", null);
     }  
+
+    function get_config_item(item_name)
+    {
+      for(cat_idx in g_config.menu.categories)
+      {
+        cat = g_config.menu.categories[cat_idx];
+        for(subcat_idx in cat.subcategories)
+        {
+          subcat = cat.subcategories[subcat_idx];
+          for(item_idx in subcat.items)
+          {
+            citem = subcat.items[item_idx];
+            if (citem.name == item_name)
+            {
+              citem.cat = cat.name;
+              citem.subcat = subcat.name;
+              return citem;
+            }
+          }
+        }
+      }
+    }
+
       
     function draw()
     // This gets called when the document loads.
@@ -260,7 +286,7 @@
       init();
       load_config();
       drawCurrentCategory();
-      refresh_order(null, null, null);
+      refresh_order(null, null);
       setInterval("main_refresh()", MAIN_REFRESH_INTERVAL);
     }
 
@@ -352,7 +378,7 @@
     function set_current_table(table_id)
     {
       g_currentTable = table_id;
-      refresh_order(null, null, null);
+      refresh_order(null, null);
       window.scroll(0,0); 
     }
 
@@ -394,7 +420,7 @@
           s += 
             "<td" +
             " class='square'" +
-            " onclick='grid_button_clicked(this, " + item.price +")'" +
+            " onclick='grid_button_clicked(this)'" +
             " id=\"" + item.name + "\"" +
             ">" +
             "<input " + 
@@ -418,7 +444,7 @@
     {
     }
 
-    function grid_button_clicked(button, price)
+    function grid_button_clicked(button)
     {
       if (category_is_table())
       {
@@ -426,7 +452,7 @@
       }
       else
       {
-        add_to_order(button.id, price);
+        add_to_order(button.id);
       }
     }
 
@@ -442,16 +468,23 @@
       window.scroll(0,0);
     }
 
-    function refresh_order(add_item, remove_item, price)
+    function refresh_order(add_item, remove_item)
     {
-      if (g_currentTable == null)
+      params="table="+g_currentTable;
+      if(add_item)
       {
-        //go_to_tables();
+        // add_item is just a name, get the full object
+        add_item = get_config_item(add_item);
+        if(add_item == null)
+        {
+          alert("add item: " + add_item + " not found in config. Try reload.")
+          return;
+        }
+
+        params += "&price="+add_item.price;
+        params += "&additem="+add_item.name;
       }
 
-      params="table="+g_currentTable;
-      if (price) {params += "&price="+price;}
-      if (add_item) {params += "&additem="+add_item;}
       if (remove_item) 
       {
         params += "&removeitem="+remove_item;
@@ -467,14 +500,14 @@
     {
       params = "item_id="+popup.item_id;
       http_request("POST", "set_item_status.py/delivered", params);
-      refresh_order(null, null, null);
+      refresh_order(null, null);
     }
 
     function mark_comped()
     {
       params = "item_id="+popup.item_id;
       http_request("POST", "set_item_status.py/comped", params);
-      refresh_order(null, null, null);
+      refresh_order(null, null);
     }
 
     function pin_is_good(pin)
@@ -493,8 +526,12 @@
       for (idx in order_items)
       {
         item = order_items[idx];
+        if (item.is_delivered) {continue}
+
         classes = "order_item";
-        if (item.is_delivered) {continue; classes += ' nondelivered_item'}
+        config_item = get_config_item(item.item_name);
+        if (config_item && config_item.cat == 'bev') {classes += ' bev_item'}
+        if (config_item && config_item.subcat == 'boards') {classes += ' board_item'}
         if (item.is_comped) {classes += ' comped_item'}
 
         order_items_html += '<tr class="'+ classes + '">'
@@ -574,7 +611,7 @@
 
     function remove_from_order(item)
     {
-      refresh_order(null, item, null);
+      refresh_order(null, item);
     }  
       
     function order_item_click(button)
@@ -583,7 +620,7 @@
 
     function main_refresh()
     {
-      refresh_order(null, null, null);
+      refresh_order(null, null);
       colorTables();
       refresh_cook_screen();
     }  
@@ -625,9 +662,9 @@
       order_items.innerHTML = order_items_html;
     }
       
-    function add_to_order(additem, price)
+    function add_to_order(additem)
     {
-      refresh_order(additem, null, price);
+      refresh_order(additem, null);
       //window.scroll(0,0);
     } 
 
