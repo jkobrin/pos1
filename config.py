@@ -7,6 +7,7 @@ log = my_logger
 CONFIG_FILE_NAME = '/var/www/config.yml'
 WINELIST_FILE_NAME = '/var/www/winelist.yml'
 
+MAX_NAME_LEN = 32
 
 def get():
   cfg = yaml.load(open(CONFIG_FILE_NAME))
@@ -62,7 +63,7 @@ def populate_wine_category(cfg):
         if listprice :
           # make regular item
           item = {
-            'name' : name,
+            'name' : name[:MAX_NAME_LEN],  # truncate it to DB field len
             'price' : listprice
           }  
           subcat['items'].append(item)
@@ -71,7 +72,7 @@ def populate_wine_category(cfg):
         if raw_item.has_key('qtprice'):
           price = raw_item['qtprice']
           qtitem = {
-            'name' : 'qt: '+name,
+            'name' : ('qt: '+name)[:MAX_NAME_LEN], # truncate it to DB field len
             'price' : price
           }  
           subcat['items'].append(qtitem)

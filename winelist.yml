@@ -1,50 +1,51 @@
 ﻿#HRM REX goliath pinot noir
 
 
-    - name: "deep blue white ponto noir"
-      listprice:
-      qtprice: 
-      byline: "by some german thing"
-      grape: "pinot noir"
-      catalog: "wine symphony"
-      mynotes: " good. nice mellow fruit nose. some sweet heaviness of body"
-      frontprice: 21
-      instock: 
-      ordered: 
 
-    - name: " argus"
-      listprice:
-      qtprice: 
-      byline: "by - carnerros, napa"
-      grape: "pinot noir"
-      catalog: "wine symphony"
-      mynotes: "aged 12 months fr oak. Buttery, earthy, bit oaky. a-"
-      frontprice: 17
-      instock: 
-      ordered: 
-
-    - name: " cab sauv"
-      listprice:
-      qtprice: 
-      byline: "by - martellotto"
-      grape: "cab sauvi reserv -paso robles"
-      catalog: "wine symphony"
-      mynotes: " cabby, pettit syr nose, raisiny shoe polish, heavy, sweetish mouth. High alc. some harsh acid, petit syrah, B"
-      frontprice: 20 #3cs 17 #10 13
-      instock: 
-      ordered: 
-
-    - name: " tool box"
-      listprice:
-      qtprice: 
-      byline: "by tool box - oak knoll, napa"
-      grape: "chardonnay"
-      catalog: "wine symphony"
-      mynotes: " a bit hot, little bitter, some unintegrated oak. Not creamy."
-      frontprice: 12
-      instock: 
-      ordered: 
-
+#    - name: "deep blue white ponto noir"
+#      listprice:
+#      qtprice: 
+#      byline: "by some german thing"
+#      grape: "pinot noir"
+#      catalog: "wine symphony"
+#      mynotes: " good. nice mellow fruit nose. some sweet heaviness of body"
+#      frontprice: 21
+#      instock: 
+#      ordered: 
+#
+#    - name: " argus"
+#      listprice:
+#      qtprice: 
+#      byline: "by - carnerros, napa"
+#      grape: "pinot noir"
+#      catalog: "wine symphony"
+#      mynotes: "aged 12 months fr oak. Buttery, earthy, bit oaky. a-"
+#      frontprice: 17
+#      instock: 
+#      ordered: 
+#
+#    - name: " cab sauv"
+#      listprice:
+#      qtprice: 
+#      byline: "by - martellotto"
+#      grape: "cab sauvi reserv -paso robles"
+#      catalog: "wine symphony"
+#      mynotes: " cabby, pettit syr nose, raisiny shoe polish, heavy, sweetish mouth. High alc. some harsh acid, petit syrah, B"
+#      frontprice: 20 #3cs 17 #10 13
+#      instock: 
+#      ordered: 
+#
+#    - name: " tool box"
+#      listprice:
+#      qtprice: 
+#      byline: "by tool box - oak knoll, napa"
+#      grape: "chardonnay"
+#      catalog: "wine symphony"
+#      mynotes: " a bit hot, little bitter, some unintegrated oak. Not creamy."
+#      frontprice: 12
+#      instock: 
+#      ordered: 
+#
 
 - name: Red Wine
   items:
