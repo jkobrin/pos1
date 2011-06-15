@@ -55,13 +55,14 @@ menu:
             - {name: plate polenta, price: 12}
             - {name: oxtail, price: 8}
             - {name: asparagus, price: 7}
-            - {name: beet orange, price: 5}
+            - {name: beet watermelon, price: 5}
             - {name: rib_tapa, price: 10}
             - {name: rib_plate, price: 18}
             - {name: chicken, price: 16}
-            - {name: mini_panini, price: 7}
+            - {name: mini panini , price: 7}
             - {name: bacon, price: 6}
-            - {name: beef_slider , price: 7}
+            - {name: lobster slider , price: 14}
+            - {name: beef slider , price: 7}
             - {name: bread, price: 3}
             - {name: empanada, price: 7}
             - {name: duck confit, price: 11}
@@ -109,7 +110,7 @@ menu:
             - {name: cktail5, price: 5}
             - {name: cktail7, price: 7}
             - {name: cktail10, price: 10}
-            - {name: red flight, price: 14}
+            - {name: red flight, price: 16}
             - {name: white flight, price: 12}
         #- name: breakfast
         #  items: 

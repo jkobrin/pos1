@@ -1783,3 +1783,13 @@
 
 
 
+    - name: "Jai Alai"
+      byline: "Cigar City Brewing, Florida, USA"
+      listprice: 7
+      frontprice: 1.09
+      bin: 999
+      instock:
+      ordered:
+        - date: '6/30/11'
+          qty: 24
+

@@ -20,7 +20,7 @@ def index(req):
     label=False
   )
 
-  fourteen_day_avg = utils.select('''
+  avg = utils.select('''
     SELECT sum(price)/2 total  
     FROM order_item oi, order_group og, person p 
     WHERE oi.order_group_id = og.id 
@@ -78,7 +78,7 @@ def index(req):
     utils.tohtml(
       "2 week average",
       ('Total',), 
-      fourteen_day_avg
+      avg
     ) +
 
     utils.tohtml(
