@@ -120,8 +120,6 @@
 #      catalog: "wine symphony"
 #      mynotes: "fruity full body, lowish acid. not very sancerre-like"
 #      frontprice: 20
-#      instock: 
-#      ordered: 
 #
 #    - name: "deep blue white ponto noir"
 #      listprice:
@@ -1220,7 +1218,7 @@
 
     - name: "Saint Veran 2008"
       listprice: 36
-      qtprice: 14
+      qtprice: 12
       byline: "by Domain de la Chapelle - Burgundy, France"
       notes: "A lively, lemony and clean expression of Chardonnay. Elegant, lean white Burgundy."
       grape: "Chardonnay"
@@ -1791,7 +1789,7 @@
       byline: "Maison Nicolas"
       catalog: "opici"
       listprice: 24
-      qtprice: 8
+      qtprice: 9
       frontprice: 11.05
       grape: "Sauvignon Blanc, Semillon"
       notes: "Sauternes has great depth, luscious layers of apricot and honey, and also finesse, with flowers, apples and refreshing ripe peach."
@@ -1817,7 +1815,7 @@
           qty: 12
           
     - name: "Chocolate Shop"
-      listprice: 0
+      listprice: 22
       qtprice: 6
       byline: "Chocolate Shop Wine - Walla Walla, Washington"
       grape: "Merlot"
