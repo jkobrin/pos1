@@ -31,7 +31,7 @@ for category in wl:
     byline = wine.get('byline')
 
     if orderview:
-      prnt('%s %s %s %s' %(wine.get('catalog'), wine['name'], byline, wine['frontprice']))
+      prnt('%s %s %s %s #%s' %(wine.get('catalog'), wine['name'], byline, wine['frontprice'], binnum))
       continue
       
     prnt('%s.\t%s      %s'%(binnum, wine['name'], listprice))

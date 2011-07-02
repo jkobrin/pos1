@@ -2,6 +2,127 @@
 
 
 
+#    - name: "valpollicella ripaso"
+#      listprice:
+#      qtprice: 
+#      byline: "by cantina valpolicella"
+#      grape: "cab sauv / carmeniere"
+#      catalog: "east coast"
+#      mynotes: "second pressing from amarone - good deep raininy flavor. lots of dry tanins at finsih."
+#      frontprice: 18.33
+#      instock: 
+#      ordered: 
+#
+#    - name: "casa de vinos reserve"
+#      listprice:
+#      qtprice: 
+#      byline: "by casa de vinos - chile"
+#      grape: "cab sauv / carmeniere"
+#      catalog: "east coast"
+#      mynotes: "coffee on the nose and palate with some dark fruit, some cooked. B+"
+#      frontprice: 14.16
+#      instock: 
+#      ordered: 
+#
+#    - name: "dolcetto"
+#      listprice:
+#      qtprice: 
+#      byline: "by bargetto california"
+#      grape: ""
+#      catalog: "east coast"
+#      mynotes: "nice veggy barnyard nose. some shoe polish. Hot, but juicy fruity in the mouth."
+#      frontprice:
+#      instock: 
+#      ordered: 
+#
+#    - name: "aglianico"
+#      listprice:
+#      qtprice: 
+#      byline: "by IGT somewhere in italy"
+#      grape: "aglianico"
+#      catalog: "east coast"
+#      mynotes: "no tanin. not much nose. Good grapey dark fruit. purplish. Pleasant."
+#      frontprice: 9.16
+#      instock: 
+#      ordered: 
+#
+#    - name: "tochuelo"
+#      listprice:
+#      qtprice: 
+#      byline: "by some vinos de madrid"
+#      grape: "tempranillo, granacha"
+#      catalog: "east coast"
+#      mynotes: "Straight up cheap euro wine. fruity watery. Nice dried apricot raisin finish. quaffable"
+#      frontprice: 4.75
+#      instock: 
+#      ordered: 
+#
+#    - name: "Two Iron Cab Sauv."
+#      listprice:
+#      qtprice: 
+#      byline: "by napa valley"
+#      grape: "Cab S 79%, cab franc, merlot"
+#      catalog: "wine symphony"
+#      mynotes: "2x4 oak. Nice dark fruit, strong tanin, no vanilla. B+"
+#      frontprice: 16
+#      instock: 
+#      ordered: 
+#
+#    - name: "seguret cotes du rhone villages"
+#      listprice:
+#      qtprice: 
+#      byline: "by domaine de l'amandine - cdr, france"
+#      grape: "syrah 60%, grenache"
+#      catalog: "wine symphony"
+#      mynotes: "spicy, veggy nose - blackberry, licorice, very tanic - not complex, but bold"
+#      frontprice: 10.33 #9.82 on 3cs
+#      instock: 
+#      ordered: 
+#
+#    - name: "bergerac"
+#      listprice:
+#      qtprice: 
+#      byline: "by france"
+#      grape: "sb"
+#      catalog: "wine symphony"
+#      mynotes: "some decent fruit, greenish tanins, bit hot"
+#      frontprice: 9
+#      instock: 
+#      ordered: 
+#
+#    - name: "bergerac"
+#      listprice:
+#      qtprice: 
+#      byline: "by france"
+#      grape: "sb"
+#      catalog: "wine symphony"
+#      mynotes: "some decent fruit, greenish tanins, bit hot"
+#      frontprice: 9
+#      instock: 
+#      ordered: 
+#
+#    - name: "albarino"
+#      listprice:
+#      qtprice: 
+#      byline: "by bodegas lagarde pintos - rias biaxas"
+#      grape: "sb"
+#      catalog: "wine symphony"
+#      mynotes: "fruity mellow - some bitter acidity - not bad."
+#      frontprice: 20
+#      instock: 
+#      ordered: 
+#
+#    - name: "sancerre"
+#      listprice:
+#      qtprice: 
+#      byline: "by alain geneau"
+#      grape: "sb"
+#      catalog: "wine symphony"
+#      mynotes: "fruity full body, lowish acid. not very sancerre-like"
+#      frontprice: 20
+#      instock: 
+#      ordered: 
+#
 #    - name: "deep blue white ponto noir"
 #      listprice:
 #      qtprice: 
@@ -49,6 +170,27 @@
 
 - name: Red Wine
   items:
+    - name: "Graves Rouge 2008"
+      listprice:
+      qtprice:
+      byline: "by Chateau Le Pavillon de Boyrein"
+      grape: "Cabernet / Merlot blend"
+      catalog: "winebow"
+      mynotes: "Good raisiny, woody nose. Little watery on the palate. Lack of fruit."
+      frontprice: 10.66
+
+    - name: "Bordeaux Superiuer 2008"
+      listprice:
+      qtprice:
+      byline: "by Chateau vivecourt"
+      grape: "Merlot  / Cab Franc"
+      catalog: "winebow"
+      mynotes: "fruity.  nothing much"
+      frontprice: 10.66
+      bin:
+      instock: 
+      ordered: 
+
     - name: "Medoc 2006"
       listprice: 35
       qtprice: 12
@@ -132,6 +274,38 @@
       ordered: 
         - date: '3/30/11'
           qty: 4
+
+    - name: "'Cercius' Cotes du Rhone Villages 2009"
+      byline: "by Michel Gassier - Rhone Valley, France"
+      notes: "Aromas of berry, earth, and herbs. Peppery fruit and smoke on the palate."
+      mynotes: "Peppery nose. Good dark fruit. Gamey. Some balls to it. Bit of tanins."
+      listprice:
+      mynotes:
+      qtprice:
+      frontprice: 11.33
+      grape: "85% Grenache, 15% Syrah"
+      catalog: "verity"
+
+    - name: "Chateauneuf du Pape 2007"
+      byline: "by Domaine des Senechaux - Rhone Valley, France"
+      notes: "Aromas of berry, earth, and herbs. Peppery fruit and smoke on the palate."
+      mynotes: "nice heavy nose of muddy veggy cabby stuff. Light body, little buttery, decent smoke and tanins"
+      listprice:
+      mynotes:
+      qtprice:
+      frontprice: 31.67
+      grape: "Grenache, Syrah"
+      catalog: "verity"
+
+    - name: "'La Granacha' Cotes du Rhone Villages 2009"
+      byline: "by Domaine d'Anderzon - Rhone Valley, France"
+      notes: "All garnacha. Very similar to spanosh garnacha. Fruit, bit of pepper not much else."
+      listprice:
+      mynotes:
+      qtprice:
+      frontprice:
+      grape: "Grenache, Syrah"
+      catalog: "verity"
 
     - name: "Cotes du Rhone 2009"
       byline: "by Domain Les Aphillantes - Rhone Valley, France"
@@ -469,7 +643,7 @@
     - name: "'The Crusher' Cab 2009"
       listprice: 25
       qt: yes
-      qtprice: 8
+      qtprice: 9
       byline: "by Wilson Vineyard - Clarksburg, California"
       grape: "Cabernet Sauvignon"
       catalog: "opici 400 "
@@ -993,6 +1167,24 @@
       frontprice: 13.25 # 3cs 12, 4cs 11.25
       catalog: "croatian guy"
 
+    - name: "Licia Albarino"
+      listprice: 
+      qtprice: 
+      byline: "by Licia - Rias Biaxas"
+      grape: "Albarino"
+      catalog: "winebow"
+      mynotes: "very mild all around. Heavy body."
+      frontprice: 10.66 #10 2-cases
+
+    - name: "Stadt Krems Gruner"
+      listprice: 28
+      qtprice: 
+      byline: "by Weingut Stadt Krems"
+      grape: "Gruner Veltliner"
+      catalog: "winebow"
+      mynotes: "Subtle nose. Smooth and a bit creamy and sweet. Full body. Glycerol. Good acidity. Zesty finish. Goes with anything."
+      frontprice: 10.66 #10 2-cases
+
     - name: "Pinot Blanc"
       notes: ""
       mynotes: "Full fruity body, taste sweet, but not, mellow, rich. B+="
@@ -1340,7 +1532,7 @@
           qty: 12
 
     - name: "Verdicchio 2010"
-      catalog: "east coast specialty wines page 3, B+"
+      catalog: "verity"
       byline: "by Accatoli - Marche, Italy"
       listprice: 25
       qtprice: 8
@@ -1426,6 +1618,27 @@
         - date: '4/2/11'
           qty: 12
 
+    - name: "Txacoli"
+      listprice:
+      qtprice:
+      byline: "by la cana"
+      grape: "albarino"
+      catalog: "tempranillo"
+      frontprice: 16
+      notes: "nice and citrusy."
+      mynotes: ""
+
+    - name: "Albariño 2010"
+      listprice: 30
+      qtprice: 10
+      byline: "by Bodegas La Caña - Rias Baixas, Spain"
+      grape: "albariño"
+      catalog: "tempranillo"
+      frontprice: 13
+      mynotes: "lIght sweet fruit in nose. Percieved sweetness, heavy body. Nice round fruit. Pleasant."
+      notes: "Refreshing and crisp with lemon, floral, and peach aromas. On the palate, citrus and minerals complement the full, creamy texture."
+      bin: 108
+    
     - name: "Shaya Verdejo 2008"
       listprice: 28
       qtprice: 10
@@ -1826,8 +2039,6 @@
       ordered:
         - date: '3/30/11'
           qty: 24
-
-
 
 
     - name: "Jai Alai"
