@@ -2,6 +2,17 @@
 
 
 
+#    - name: "tochuelo"
+#      listprice:
+#      qtprice: 
+#      byline: "by some german thing"
+#      grape: "tempranillo garnacha"
+#      catalog: "east coast specialty"
+#      mynotes: " good. nice mellow fruit nose. some sweet heaviness of body"
+#      frontprice: 21
+#      instock: 
+#      ordered: 
+#
 #    - name: "deep blue white ponto noir"
 #      listprice:
 #      qtprice: 
@@ -469,7 +480,7 @@
     - name: "'The Crusher' Cab 2009"
       listprice: 25
       qt: yes
-      qtprice: 8
+      qtprice: 9
       byline: "by Wilson Vineyard - Clarksburg, California"
       grape: "Cabernet Sauvignon"
       catalog: "opici 400 "
@@ -1028,7 +1039,7 @@
 
     - name: "Saint Veran 2008"
       listprice: 36
-      qtprice: 14
+      qtprice: 12
       byline: "by Domain de la Chapelle - Burgundy, France"
       notes: "A lively, lemony and clean expression of Chardonnay. Elegant, lean white Burgundy."
       grape: "Chardonnay"
@@ -1578,7 +1589,7 @@
       byline: "Maison Nicolas"
       catalog: "opici"
       listprice: 24
-      qtprice: 8
+      qtprice: 9
       frontprice: 11.05
       grape: "Sauvignon Blanc, Semillon"
       notes: "Sauternes has great depth, luscious layers of apricot and honey, and also finesse, with flowers, apples and refreshing ripe peach."
@@ -1604,7 +1615,7 @@
           qty: 12
           
     - name: "Chocolate Shop"
-      listprice: 0
+      listprice: 22
       qtprice: 6
       byline: "Chocolate Shop Wine - Walla Walla, Washington"
       grape: "Merlot"
@@ -1826,8 +1837,6 @@
       ordered:
         - date: '3/30/11'
           qty: 24
-
-
 
 
     - name: "Jai Alai"
