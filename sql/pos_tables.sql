@@ -21,6 +21,7 @@ CREATE TABLE order_item (
   is_cancelled BOOLEAN NOT NULL DEFAULT FALSE,
   is_delivered BOOLEAN NOT NULL DEFAULT FALSE,
   is_comped BOOLEAN NOT NULL DEFAULT FALSE,
+  is_held BOOLEAN NOT null DEFAULT FALSE;
   created TIMESTAMP DEFAULT NOW(),
   updated TIMESTAMP DEFAULT 0,
   INDEX order_idx (order_group_id),

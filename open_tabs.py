@@ -11,7 +11,10 @@ def index(req):
         og.table_id,
         (select count(*) from order_item oi 
           where oi.order_group_id = og.id and is_cancelled = FALSE and is_delivered = FALSE
-        ) as undelivered
+        ) as undelivered,
+        (select count(*) from order_item oi 
+          where oi.order_group_id = og.id and is_cancelled = FALSE and is_held = TRUE
+        ) as held
         from order_group og
         where og.is_open = TRUE'''
   )

@@ -61,15 +61,15 @@ def order(req, table, additem=None, removeitem=None, price=None):
   order_item_query = '''   
     SELECT 
       oi.item_name, og.table_id,
-      oi.id, oi.is_delivered, oi.is_comped, oi.price,
+      oi.id, oi.is_delivered, oi.is_held, oi.is_comped, oi.price,
       TIMESTAMPDIFF(MINUTE, oi.created, now()) minutes_old
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
     and og.is_open = TRUE
     and oi.is_cancelled = FALSE
     '''
-
-  if table != 'ALL': order_item_query += 'and og.table_id = "%s"' % table
+  if table != 'ALL': order_item_query += 'and og.table_id = "%s"\n' % table
+  order_item_query += "order by oi.is_held, oi.created"
 
   order_items = utils.select(order_item_query, cursor)
 

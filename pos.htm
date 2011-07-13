@@ -17,6 +17,7 @@
     .nondelivered_item { color: red; }
 
     .comped_item {font-style:italic; border: 6px solid #a0ffa0;}
+    .held_item {border: 3px solid yellow;}
 
     .bev_item {color: blue;}
     .board_item {color: maroon;}
@@ -366,11 +367,13 @@
         {
           table_id = tables[idx].table_id;
           undelivered = tables[idx].undelivered;
+          held = tables[idx].held;
+          undelivered -= held;
           table_button = document.getElementById(table_id);
           if (table_button != null)
           {
-            table_button.firstChild.style.backgroundColor = undelivered > 0 ? 'magenta' : 'green';
-          }  
+            table_button.firstChild.style.backgroundColor = undelivered > 0 ? 'magenta' : (held > 0 ? 'yellow' : 'green');
+          }
         }
       }
     }
@@ -503,6 +506,13 @@
       refresh_order(null, null);
     }
 
+    function toggle_held()
+    {
+      params = "item_id="+popup.item_id;
+      http_request("POST", "set_item_status.py/toggle_held", params);
+      refresh_order(null, null);
+    }
+
     function mark_comped()
     {
       params = "item_id="+popup.item_id;
@@ -533,6 +543,7 @@
         if (config_item && config_item.cat == 'bev') {classes += ' bev_item'}
         if (config_item && config_item.subcat == 'boards') {classes += ' board_item'}
         if (item.is_comped) {classes += ' comped_item'}
+        if (item.is_held) {classes += ' held_item'}
 
         order_items_html += '<tr class="'+ classes + '">'
         order_items_html += '<td>'+item.table_id+'</td>'
@@ -648,7 +659,8 @@
       {
         item = items[idx];
         classes = "order_item";
-        if (!item.is_delivered) {classes += ' nondelivered_item'}
+        if (item.is_held) {classes += ' held_item'}
+        else if (!item.is_delivered) {classes += ' nondelivered_item'}
         if (item.is_comped) { classes += ' comped_item'}
 
         order_items_html += '<input' +
@@ -678,6 +690,11 @@
       menu_popup_caption = document.getElementById("orderitem_popup_caption");
       menu_popup_caption.innerHTML = inputbutton.value;
       
+      holdgo_button = document.getElementById("holdgo");
+      item = get_order_pane_item(popup.item_id);
+      holdgo_button.style.display = item.is_delivered ? "none" : "inline";
+      holdgo_button.value = item.is_held ? "release" : "hold";
+
       popup.style.visibility="visible";
       popup.style.left= document.body.clientWidth - rightside.clientWidth - popup.clientWidth;
       y = mouseY(e);
@@ -992,6 +1009,7 @@
       <input type="button" value="comped" onclick="mark_comped()"> 
       <input type="button" value="do nothing"> 
       <input type="button" value="delivered" onclick="mark_delivered()"> 
+      <input id="holdgo" type="button" value="hold" onclick="toggle_held()"> 
       <input type="button" value="plus 1" onclick="plus_one()"> 
     </div>
   </div>

@@ -57,6 +57,54 @@
 #      instock: 
 #      ordered: 
 #
+#    - name: "Walnut City 2009 Pinot Noir"
+#      listprice:
+#      qtprice: 
+#      byline: "Walnut City Wineworks - Wallamette Valley, Oregon"
+#      grape: ""
+#      catalog: "wine symphony"
+#      notes: ""
+#      mynotes: "peppery nose, nice sweet peppery oaky tanins, med fruit"
+#      frontprice: 21
+#      instock: 
+#      ordered: 
+
+#    - name: "Mystic Merlot"
+#      listprice:
+#      qtprice: 
+#      byline: "by Frisky ZebraS - Western Cape, South Africa"
+#      grape: ""
+#      catalog: "wine symphony"
+#      notes: ""
+#      mynotes: "Earth Friendly practice. Biting nose of chocolate, coffee, tobacco, wood, and grassy manure. Full palate of same with red fruit and tobacco bite."
+#      frontprice: 9
+#      instock: 
+#      ordered: 
+
+#    - name: "Red Rhone (VdP)"
+#      listprice:
+#      qtprice: 
+#      byline: "by Domaine de l'Amandine - Princip. d'Orange, Rhone Valley, France.
+#      grape: "grenache 30%, merlot 30%, Sirah 10%, 10% cinsault, %10 carrignan, marselan %5, caladoc 5%"
+#      catalog: "wine symphony"
+#      notes: "From vineyards in the south Rhone neighboring Gigondas and Rasteau, this bold country wine boast full spicy aromas and flavours of black and green pepper and dark fruit with good tanins. Big, brawny, and, yes, a bit rough and rustic.
+
+#      mynotes: "lovely heavy spice, veg, pepper nose. Heavy pepper leather and dark fruit on the palate, good tanins. tiny bit rough."
+#      frontprice: 7
+#      instock: 
+#      ordered: 
+
+#    - name: "Laird Pinot Grigio
+#      listprice:
+#      qtprice: 
+#      byline: "by Laird - Carnerros, Sonoma, California"
+#      grape: "pinot girigio"
+#      catalog: "wine symphony"
+#      mynotes: "nice floral nose, some good fruit. Heavy body, med acid, bit lack in flavour, good bitter finish with orange pith and grapefruit"
+#      frontprice: 14
+#      instock: 
+#      ordered: 
+
 #    - name: "Two Iron Cab Sauv."
 #      listprice:
 #      qtprice: 
@@ -164,6 +212,121 @@
 #      frontprice: 12
 #      instock: 
 #      ordered: 
+#
+#    - name: "Laird SB"
+#      listprice:
+#      qtprice: 
+#      byline: "by Laird - Napa"
+#      grape: "sauv blanc
+#      catalog: "wine symphony"
+#      mynotes: "Pleasant nose - bit too light and alky. Nice grapefruit mouth. Bit of loose acidity."
+#      frontprice: 13
+#
+
+#    - name: "Arbois"
+#      listprice:
+#      qtprice: 
+#      byline: "by Frederic Lornet - Jura"
+#      grape: "chardonnay"
+#      catalog: "wine symphony"
+#      mynotes: "Dark golden color. Funky golden apple nose. Full body, apply flavor. Band-aids. Little chewy somehow. Quite interesting."
+#      frontprice: 18
+#
+
+#    - name: "Casa Del Bosque Chardonnay Reserva"
+#      listprice:
+#      qtprice: 
+#      byline: "by CDB - Chile"
+#      grape: "chardonnay"
+#      catalog: "wine symphony"
+#      mynotes: "heavy sweetish body. Touch of oak on the nose."
+#      frontprice: 13
+#
+#    - name: "Casa Del Bosque Small Production Pinot Noir"
+#      listprice:
+#      qtprice: 
+#      byline: "by CDB - Chile"
+#      grape: "chardonnay"
+#      catalog: "wine symphony"
+#      mynotes: "band-aids, butter, ballsy burgundy smell with lots of oak"
+#      frontprice: 19
+#
+#    - name: "Aphrodite"
+#      listprice:
+#      qtprice: 
+#      byline: "by Leopard Frog - Stelllenbosch"
+#      grape: "cab franc"
+#      catalog: "wine symphony"
+#      mynotes: "Nice oaky smell, band-aids, spice. Full and mellow. Decent tanninis, dry spicy finish. Long."
+#      frontprice: 48
+#
+#    - name: "Dourthe"
+#      listprice:
+#      qtprice: 
+#      byline: "by Dourthe - Beaurdaux, Ste emillion, entre Dexu Mers"
+#      grape: "Sauv B.
+#      catalog: "Verity"
+#      mynotes: "light SB nose. nice sweet body. Decent fruit. Mellow. Pleasant.""
+#      frontprice: 9 
+#
+
+#    - name: "St. Estephe"
+#      listprice:
+#      qtprice: 
+#      byline: "by Cheatu Le Boscq Cru Bourgeous - St. Estephe 2006"
+#      grape: "Merlot / Cab s / petit Verdot"
+#      catalog: "Verity"
+#      mynotes: "good old wordly nose. band-aidy. Decent acid round fruit. Some decent tanins. Little smooth spicy well balanced.""
+#      frontprice: 30
+#
+
+#    - name: "Haut Medoc"
+#      listprice:
+#      qtprice: 
+#      byline: "by Cheatu Reysson - Haut Medoc reserve"
+#      grape: "Merlot 90% / Cab s 
+#      catalog: "Verity"
+#      mynotes: "mild old world nose. soft, but spicy palate... Mellow pleasant."
+#      frontprice: 16.67
+#
+
+#    - name: "Pessac Leognan"
+#      listprice:
+#      qtprice: 
+#      byline: "by Chateau La Garde - Bordeaux, pL, France"
+#      grape: "Cabernet Sauv 58% / Merlot 32% / Cab Franc 6 / Petit Verd 4
+#      catalog: "Verity"
+#      mynotes: "Good full cabby fruit. Nice tanins. Bit of spice. Could be. B+"
+#      frontprice: 28
+#
+
+#    - name: "Clos de la siete 2008"
+#      listprice:
+#      qtprice: 
+#      byline: "by - argentina"
+#      grape: "Malbec / Merlot 23%"
+#      catalog: "Verity"
+#      mynotes: "fruity, delicious, easy and nice."
+#      frontprice: 14
+#
+
+#    - name: "DiamAndes"
+#      listprice:
+#      qtprice: 
+#      byline: "by - DiamAndes"
+#      grape: "Malbec 70%/ Cab sauve 30%"
+#      catalog: "Verity"
+#      mynotes: "nice cabby nose. good fruit. Some smoke and tanin. b+"
+#      frontprice: 25.33 #comes in 6
+#
+#    - name: "Clos de la siete 2008"
+#      listprice:
+#      qtprice: 
+#      byline: "by - argentina"
+#      grape: "Malbec / Merlot 23%"
+#      catalog: "Verity"
+#      mynotes: "fruity, delicious, easy and nice."
+#      frontprice: 14
 #
 
 - name: Red Wine
@@ -967,7 +1130,7 @@
       qt: yes
       byline: "by Bodegas Nekeas - Navarra, Spain"
       grape: "Cabernet Sauvingon"
-      notes: "An different expression of Cabernet with notes of chocolate, cherry & jalapeno. Fresh, spicy finish."
+      notes: "A different expression of Cabernet with notes of chocolate, cherry & jalapeno. Fresh, spicy finish."
       catalog: " tempranillo page 35"
       frontprice: 10.00
       bin: 109
@@ -1288,7 +1451,7 @@
       notes: "A fragant, light and fruity wine made from the same grapes as Cognac. Interesting and easy drinking."
       listprice: 22
       qtprice: 8
-      catalog: "opici 412a - "
+      catalog: ""
       frontprice: 8
       grape: "Ugni Blanc, Colombard"
       bin: 308
