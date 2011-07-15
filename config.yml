@@ -47,6 +47,7 @@ menu:
               price: 7
             - name: smoked anchovies
               price: 6
+            - {name: burrata, price: 14}
             - {name: patatas bravas, price: 5}
             - {name: meatballs, price: 8}
             - {name: roasted chorizo, price: 6}
@@ -54,11 +55,10 @@ menu:
             - {name: tapa polenta, price: 7}
             - {name: plate polenta, price: 12}
             - {name: oxtail, price: 8}
-            - {name: asparagus, price: 7}
+            - {name: summer harvest, price: 7}
             - {name: beet watermelon, price: 5}
             - {name: rib_tapa, price: 10}
             - {name: rib_plate, price: 18}
-            - {name: chicken, price: 16}
             - {name: mini panini , price: 7}
             - {name: bacon, price: 6}
             - {name: lobster slider , price: 18}
@@ -81,9 +81,9 @@ menu:
             - name: french board
               price: 27
             - {name: manchego , price: 0}
-            - {name: granny goat, price: 0}
-            - {name: nevat, price: 0}
-            - {name: comte, price: 0}
+            - {name: cana de cabra, price: 0}
+            - {name: campo de montalban, price: 0}
+            - {name: pyrennese, price: 0}
             - {name: daffinois, price: 0}
             - {name: fourme dambert, price: 0}
             - {name: petit basque, price: 0}
