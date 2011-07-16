@@ -436,6 +436,7 @@
         - date: '3/30/11'
           qty: 4
 
+<<<<<<< HEAD
     - name: "'Cercius' Cotes du Rhone Villages 2009"
       byline: "by Michel Gassier - Rhone Valley, France"
       notes: "Aromas of berry, earth, and herbs. Peppery fruit and smoke on the palate."
@@ -468,9 +469,19 @@
       grape: "Grenache, Syrah"
       catalog: "verity"
 
+    - name: "Cairanne Cotes du Rhone 2009"
+      byline: "by Earl Dionysos - Rhone Valley France"
+      notes: "Peppers and leather on the nose. Palate has loads of dark berry fruit, pepper and good intensity with a hint of vanilla."
+      listprice: 29
+      qtprice: 10
+      frontprice: 12
+      grape: "Grenache, Syrah, Mouvedre, Carrignan"
+      catalog: "opici"
+      bin: 4021
+
     - name: "Cotes du Rhone 2009"
       byline: "by Domain Les Aphillantes - Rhone Valley, France"
-      notes: "Aromas of berry, earth, and herbs. Peppery fruit and smoke on the palate."
+      notes: "Aromas of red berry, earth, and herbs. Peppery fruit and smoke on the palate."
       listprice: 29
       qt: yes
       qtprice: 10
@@ -859,6 +870,16 @@
         - date: '3/30/11'
           qty: 6
 
+    - name: "Pinot Evil"
+      listprice: 30
+      qtprice: 8
+      byline: "by Pinto Evil - Corsica, France"
+      grape: "Pinot Noir"
+      notes: "Bold red cherry flavors on nose and palate, with a bit of earthiness."
+      catalog: "Southern"
+      frontprice: 5.50
+      bin: 290
+
     - name: "Lauca Pinot Noir Reserva 2008"
       listprice: 30
       qtprice: 11
@@ -867,7 +888,7 @@
       notes: "Bold red cherry flavors on nose and palate, with a bit of earthiness."
       catalog: "Boening Bros."
       frontprice: 8.50
-      bin: 290
+      bin:
       instock: 10
       ordered:
         - date: 
@@ -1611,8 +1632,7 @@
     - name: "Clifford Bay 2009 Sauvignon Blanc - Marlborough, New Zealand"
       catalog: "opici"
       listprice: 26
-      qtprice: 8
-      qt: yes
+      qtprice: 9
       frontprice: 9
       notes: "Great racy nose with lime, mango, and fresh-cut grass. Grapefruit and pineapple in the mouth."
       mynotes: "great racy nose with lime, mango, grass, cat pee. Grapefruit and pineapple mouth. A-"
