@@ -360,7 +360,6 @@
       catalog: "opici"
       mynotes: "horrible mildewy nose. hollow taste, acid, no fruit, rough watery tanins"
       frontprice: 13.33
-      bin: 757
       instock: 
       ordered: 
 
@@ -476,7 +475,7 @@
       frontprice: 12
       grape: "Grenache, Syrah, Mouvedre, Carrignan"
       catalog: "opici"
-      bin: 4021
+      bin: 402
 
     - name: "Cotes du Rhone 2009"
       byline: "by Domain Les Aphillantes - Rhone Valley, France"
@@ -487,7 +486,7 @@
       frontprice: 12
       grape: "Grenache, Syrah, Mouvedre"
       catalog: "Weygandt"
-      bin: 402
+      bin: 4021
       instock: 11
 
     - name: "Cotes du Rhone 2007"
@@ -870,7 +869,7 @@
           qty: 6
 
     - name: "Pinot Evil"
-      listprice: 30
+      listprice: 18
       qtprice: 8
       byline: "by Pinto Evil - Corsica, France"
       grape: "Pinot Noir"
@@ -887,7 +886,6 @@
       notes: "Bold red cherry flavors on nose and palate, with a bit of earthiness."
       catalog: "Boening Bros."
       frontprice: 8.50
-      bin:
       instock: 10
       ordered:
         - date: 
@@ -1526,6 +1524,16 @@
       ordered: 
         - date: '4/12/11'
           qty: 12
+
+    - name: "Lincourt Chardonnay 2008"
+      byline: "by Lincourt Vineyards - Santa Rita Hills, Santa Barbara, Claifornia "
+      notes: "Distinct tropical fruit and citrus aromas enhanced by vanilla, butterscotch and toasty oak notes."
+      mynotes: "bit oakier than hahn. decent"
+      catalog: "opici"
+      listprice: 26
+      qtprice: 9
+      frontprice: 9
+      bin: 206
 
     - name: "Hahn Chardonnay 2010"
       byline: "by Hahn Winery - Santa Lucia Highlands"
