@@ -46,10 +46,12 @@
 
     .diaframe
     {
+     opacity:0.9;
+     filter:alpha(opacity=40);
      position:absolute;
+     width: 75%;
      font-family:arial;
      visibility:hidden;
-     width:250;
      border:2px outset black;
      background-color:#A0A0C0;
     }
@@ -60,7 +62,7 @@
      width: 95%;
      background-color:#5070B0;	
      padding-top:2px;
-     padding-bottom:3px;
+     padding-bottom:0px;
      padding-left:5%;
      font-weight:bold;
      color:white;	
@@ -97,21 +99,25 @@
 
     .diabuttons
     {
-     padding-top:5%;
-     padding-bottom:5%;
+     padding-top:0%;
     }
 
     .diabuttons input
     {
       height: 60px;
-      width:90%;
+      width: 90%;
       font-size: 36px;
-      margin: 5%;
+      margin: 2%;
     }
 
     .diabuttons input:hover
     {
      color:red;
+    }
+
+    #main_screen
+    {
+      display: inline;
     }
 
     #receipt_screen
@@ -206,7 +212,6 @@
     // everything. 
     
     MAIN_REFRESH_INTERVAL = 10000; //10 seconds
-    COOK_SCREEN_REFRESH_INTERVAL = 10000; //10 seconds
     GRIDWIDTH = 6; 
     // GRIDWIDTH can be anything from one up.
 
@@ -216,7 +221,6 @@
     {
       document.body.addEventListener('click',hidePopup, true)
       GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth) / 120
-      cook_screen_refresh_interval_id = setInterval("refresh_cook_screen()", COOK_SCREEN_REFRESH_INTERVAL);
     }  
 
 
@@ -503,21 +507,21 @@
     {
       params = "item_id="+popup.item_id;
       http_request("POST", "set_item_status.py/delivered", params);
-      refresh_order(null, null);
+      main_refresh();
     }
 
     function toggle_held()
     {
       params = "item_id="+popup.item_id;
       http_request("POST", "set_item_status.py/toggle_held", params);
-      refresh_order(null, null);
+      main_refresh();
     }
 
     function mark_comped()
     {
       params = "item_id="+popup.item_id;
       http_request("POST", "set_item_status.py/comped", params);
-      refresh_order(null, null);
+      main_refresh();
     }
 
     function pin_is_good(pin)
@@ -531,6 +535,7 @@
     {
       params="table=ALL";
       order_items = http_request("POST", "action.py/order", params);
+      order_pane_items = order_items;
 
       order_items_html = "";
       for (idx in order_items)
@@ -547,7 +552,13 @@
 
         order_items_html += '<tr class="'+ classes + '">'
         order_items_html += '<td>'+item.table_id+'</td>'
-        order_items_html += '<td>'+item.item_name+'</td>';
+        order_items_html += 
+        '<td>' + 
+          ' <input class="'+ classes + '" ' + 
+          ' type=Button' +
+          ' onclick="orderitem_popup(' + item.id + ', event)"' +
+          ' value="' + item.item_name +'"></input>'+
+        '</td>';
         order_items_html += '<td>'+item.minutes_old+'</td>'
         order_items_html += '</tr>'
 
@@ -566,6 +577,7 @@
     {
       cook_screen.style.display="none";
       main_screen.style.display="inline"; 
+      main_refresh();
     }
 
     function go_to_receipt_sceen()
@@ -623,6 +635,7 @@
     function remove_from_order(item)
     {
       refresh_order(null, item);
+      refresh_cook_screen();
     }  
       
     function order_item_click(button)
@@ -631,10 +644,16 @@
 
     function main_refresh()
     {
-      refresh_order(null, null);
-      colorTables();
-      refresh_cook_screen();
-    }  
+      if(main_screen.style.display != "none") 
+      {
+        refresh_order(null, null);
+        colorTables();
+      }
+      if(cook_screen.style.display == "inline") 
+      {
+        refresh_cook_screen();
+      }
+    }
       
     order_pane_items = null;
     function get_order_pane_item(item_id)
@@ -651,7 +670,7 @@
       
     function update_order_pane(items)
     {
-      order_pane_items = order_items;
+      order_pane_items = order_items
       document.getElementById("table_id_display").innerHTML = "Table: " + (g_currentTable || '---');
 
       order_items_html = "";
@@ -666,7 +685,7 @@
         order_items_html += '<input' +
           ' class="'+ classes + '"' +
           ' type=button' +
-          ' onclick="orderitem_popup(' + item.id + ',this , event)"' +
+          ' onclick="orderitem_popup(' + item.id + ', event)"' +
           ' value="'+item.item_name+'"' +
           '></input>';
       }  
@@ -677,27 +696,26 @@
     function add_to_order(additem)
     {
       refresh_order(additem, null);
-      //window.scroll(0,0);
+      refresh_cook_screen();
     } 
 
-    popup_item_id = null;
     // Order popup stuff
     popup = null;
-    function orderitem_popup(item_id, inputbutton, e)
+    function orderitem_popup(item_id, event)
     {
       popup = document.getElementById("orderitem_popup");
       popup.item_id = item_id;
+      item = get_order_pane_item(item_id);
       menu_popup_caption = document.getElementById("orderitem_popup_caption");
-      menu_popup_caption.innerHTML = inputbutton.value;
+      menu_popup_caption.innerHTML = "table: "+item.table_id + " - " + item.item_name;
       
       holdgo_button = document.getElementById("holdgo");
-      item = get_order_pane_item(popup.item_id);
       holdgo_button.style.display = item.is_delivered ? "none" : "inline";
       holdgo_button.value = item.is_held ? "release" : "hold";
 
       popup.style.visibility="visible";
-      popup.style.left= document.body.clientWidth - rightside.clientWidth - popup.clientWidth;
-      y = mouseY(e);
+      popup.style.left= document.body.clientWidth /8;
+      y = mouseY(event);
       popup.style.top= y - popup.clientHeight / 2;
       popup.focus();
     }
@@ -862,7 +880,8 @@
     function hidePopup()
     // this function hides the pop-up when any of various things happen
     {
-      if (popup) { popup.style.visibility="hidden"; }
+      if (popup) {popup.style.visibility="hidden"; }
+      
     }
 
   </script>
@@ -1005,12 +1024,16 @@
   <div id ="orderitem_popup" class="diaframe">
     <div id="orderitem_popup_caption" class="diacapt">---</div>
     <div class="diabuttons">
-      <input type="button" value="cancel" onclick="cancel_item()"> 
-      <input type="button" value="comped" onclick="mark_comped()"> 
-      <input type="button" value="do nothing"> 
-      <input type="button" value="delivered" onclick="mark_delivered()"> 
-      <input id="holdgo" type="button" value="hold" onclick="toggle_held()"> 
-      <input type="button" value="plus 1" onclick="plus_one()"> 
+      <div style="float: right; width: 50%">
+        <input type="button" value="plus 1" onclick="plus_one()"> 
+        <input type="button" value="delivered" onclick="mark_delivered()"> 
+        <input type="button" value="do nothing"> 
+      </div>
+      <div style="float: left; width: 50%">
+        <input id="holdgo" type="button" value="hold" onclick="toggle_held()"> 
+        <input type="button" value="comped" onclick="mark_comped()"> 
+        <input type="button" value="cancel" onclick="cancel_item()"> 
+      </div>
     </div>
   </div>
 

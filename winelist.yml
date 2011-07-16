@@ -409,7 +409,7 @@
 
   
   
-    - name: "Albarino"
+    - name: "Albariño"
       byline: "paco and lola"
       listprice:
       qtprice:
@@ -531,7 +531,7 @@
       instock: 
       ordered: 
 
-    - name: "Cote de Beaune Village 'Les Combottes' "
+    - name: "Cote de Beaune Village 2009 'Les Combottes' "
       byline: "by Domain d'Ardhuy  - Burgundy, France"
       grape: "Pinot Noir"
       catalog: "Wineberry page 12"
@@ -1796,7 +1796,7 @@
       grape: "albariño"
       catalog: "tempranillo"
       frontprice: 13
-      mynotes: "lIght sweet fruit in nose. Percieved sweetness, heavy body. Nice round fruit. Pleasant."
+      mynotes: "light sweet fruit in nose. Percieved sweetness, heavy body. Nice round fruit. Pleasant."
       notes: "Refreshing and crisp with lemon, floral, and peach aromas. On the palate, citrus and minerals complement the full, creamy texture."
       bin: 108
     
