@@ -2,6 +2,9 @@
 
 
 
+# laurie reccomends gragnano and french malbec chateua du cedre
+#
+#
 #    - name: "valpollicella ripaso"
 #      listprice:
 #      qtprice: 
@@ -81,6 +84,30 @@
 #      instock: 
 #      ordered: 
 
+#    - name: "Cab Sauv Reserva"
+#      listprice:
+#      qtprice: 
+#      byline: "by Casas del Bosque -  Rapel Valley, Chile
+#      grape: "Syrah / Grenache"
+#      catalog: "wine symphony"
+#      mynotes: "Great coffee and bitter flower nose. Rasiny and coffee palate short finish."
+#      frontprice: 13
+#      instock: 
+#      ordered: 
+#      pepper"
+
+#    - name: "Seguret Cote du Rhone Villages"
+#      listprice:
+#      qtprice: 
+#      byline: "by Domaine de l'Amandine -  Rhone Valley, France.
+#      grape: "Syrah / Grenache"
+#      catalog: "wine symphony"
+#      mynotes: "Nose is heady manure and black and white pepper. Palate is same with some dark fruit, and dry but thin tanins."
+#      frontprice: 10.33
+#      instock: 
+#      ordered: 
+#      pepper"
+
 #    - name: "Red Rhone (VdP)"
 #      listprice:
 #      qtprice: 
@@ -89,8 +116,9 @@
 #      catalog: "wine symphony"
 #      notes: "From vineyards in the south Rhone neighboring Gigondas and Rasteau, this bold country wine boast full spicy aromas and flavours of black and green pepper and dark fruit with good tanins. Big, brawny, and, yes, a bit rough and rustic.
 
-#      mynotes: "lovely heavy spice, veg, pepper nose. Heavy pepper leather and dark fruit on the palate, good tanins. tiny bit rough."
-#      frontprice: 7
+#      mynotes: "lovely heavy spice, veg, pepper nose. Heavy
+#      pepper leather and dark fruit on the palate, good tanins.
+#      tiny bit rough.#      frontprice: 7
 #      instock: 
 #      ordered: 
 
