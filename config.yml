@@ -62,7 +62,7 @@ menu:
             - {name: mini panini , price: 7}
             - {name: bacon, price: 6}
             - {name: lobster slider , price: 18}
-            - {name: beef slider , price: 7}
+            - {name: beef slider, price: 8}
             - {name: bread, price: 3}
             - {name: empanada, price: 7}
             - {name: duck confit, price: 11}
