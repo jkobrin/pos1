@@ -56,7 +56,7 @@ def index(req, table, shouldPrint, serverpin, close=True):
   if close:
     cursor.execute('''
       UPDATE order_group
-      SET is_open = FALSE, closedby = %(serverpin)s
+      SET is_open = FALSE, closedby = %(serverpin)s, updated = now()
       WHERE is_open = TRUE
       AND table_id = "%(table)s"
     ''' % locals())

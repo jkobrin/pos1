@@ -7,6 +7,7 @@ CREATE TABLE order_group (
   is_open boolean NOT NULL DEFAULT TRUE,
   closedby INT,
   created TIMESTAMP DEFAULT NOW(),
+  updated TIMESTAMP DEFAULT 0,
   FOREIGN KEY (closedby) REFERENCES person(id) ON DELETE CASCADE
 );
 

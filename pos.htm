@@ -455,12 +455,26 @@
     {
       if (category_is_table())
       {
+        if(g_currentTable == button.id)
+        {
+          reopen_id = http_request("GET", "reopen/get_reopen_id", "table="+button.id);
+          if (reopen_id != null && confirm("Re-open table "+button.id+"?"))
+          {
+            http_request("POST", "reopen", "reopen_id="+reopen_id);
+          }  
+        }
+
         set_current_table(button.id);
       }
       else
       {
         add_to_order(button.id);
       }
+    }
+
+    function reopen()
+    {
+      alert('open');
     }
 
     function go_to_tables()

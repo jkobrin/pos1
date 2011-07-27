@@ -32,7 +32,7 @@ def order(req, table, additem=None, removeitem=None, price=None):
         break
       else:
         cursor.execute('''
-          INSERT INTO order_group VALUES (null, "%(table)s", TRUE, null, null)
+          INSERT INTO order_group VALUES (null, "%(table)s", TRUE, null, null, null)
           '''%locals())
 
     open_order_group = open_order_group[0];
@@ -52,17 +52,19 @@ def order(req, table, additem=None, removeitem=None, price=None):
     # TODO: make this query more selective to avoid search work
     cursor.execute('''
       UPDATE order_group og
-      set og.is_open = False
-      where og.id not in (select order_group_id from order_item oi where oi.is_cancelled = False);
+      set og.is_open = False, updated = now()
+      where og.table_id = %(table)s
+      and og.id not in (select order_group_id from order_item oi where oi.is_cancelled = False);
     ''' % locals())
 
 
     
   order_item_query = '''   
     SELECT 
-      oi.item_name, og.table_id,
+      oi.item_name, og.table_id, 
       oi.id, oi.is_delivered, oi.is_held, oi.is_comped, oi.price,
-      TIMESTAMPDIFF(MINUTE, oi.created, now()) minutes_old
+      TIMESTAMPDIFF(MINUTE, oi.created, now()) minutes_old,
+      TIMESTAMPDIFF(MINUTE, oi.updated, now()) minutes_closed
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
     and og.is_open = TRUE

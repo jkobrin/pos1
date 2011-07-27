@@ -72,18 +72,6 @@
 #      instock: 
 #      ordered: 
 
-#    - name: "Mystic Merlot"
-#      listprice:
-#      qtprice: 
-#      byline: "by Frisky ZebraS - Western Cape, South Africa"
-#      grape: ""
-#      catalog: "wine symphony"
-#      notes: ""
-#      mynotes: "Earth Friendly practice. Biting nose of chocolate, coffee, tobacco, wood, and grassy manure. Full palate of same with red fruit and tobacco bite."
-#      frontprice: 9
-#      instock: 
-#      ordered: 
-
 #    - name: "Cab Sauv Reserva"
 #      listprice:
 #      qtprice: 
@@ -107,20 +95,6 @@
 #      instock: 
 #      ordered: 
 #      pepper"
-
-#    - name: "Red Rhone (VdP)"
-#      listprice:
-#      qtprice: 
-#      byline: "by Domaine de l'Amandine - Princip. d'Orange, Rhone Valley, France.
-#      grape: "grenache 30%, merlot 30%, Sirah 10%, 10% cinsault, %10 carrignan, marselan %5, caladoc 5%"
-#      catalog: "wine symphony"
-#      notes: "From vineyards in the south Rhone neighboring Gigondas and Rasteau, this bold country wine boast full spicy aromas and flavours of black and green pepper and dark fruit with good tanins. Big, brawny, and, yes, a bit rough and rustic.
-
-#      mynotes: "lovely heavy spice, veg, pepper nose. Heavy
-#      pepper leather and dark fruit on the palate, good tanins.
-#      tiny bit rough.#      frontprice: 7
-#      instock: 
-#      ordered: 
 
 #    - name: "Laird Pinot Grigio
 #      listprice:
@@ -177,13 +151,35 @@
 #      instock: 
 #      ordered: 
 #
+#    - name: "bergerac"
+#      listprice:
+#      qtprice: 
+#      byline: "by france"
+#      grape: "sb"
+#      catalog: "wine symphony"
+#      mynotes: "some decent fruit, greenish tanins, bit hot"
+#      frontprice: 9
+#      instock: 
+#      ordered: 
+#
+#    - name: "Tempranillo Crianza 2004"
+#      listprice:
+#      qtprice: 
+#      byline: "by valdrinal - ribera del duero"
+#      grape: "tempranillo"
+#      catalog: "wine symphony"
+#      mynotes: "nice heavy musky nose, not much fruit, good oak."
+#      frontprice: 16
+#      instock: 
+#      ordered: 
+#
 #    - name: "albarino"
 #      listprice:
 #      qtprice: 
 #      byline: "by bodegas lagarde pintos - rias biaxas"
 #      grape: "sb"
 #      catalog: "wine symphony"
-#      mynotes: "fruity mellow - some bitter acidity - not bad."
+#      mynotes: "fruity mellow - nice golden apple, med body, some bitter acidity - not bad."
 #      frontprice: 20
 #      instock: 
 #      ordered: 
@@ -327,17 +323,6 @@
 #      mynotes: "Good full cabby fruit. Nice tanins. Bit of spice. Could be. B+"
 #      frontprice: 28
 #
-
-#    - name: "Clos de la siete 2008"
-#      listprice:
-#      qtprice: 
-#      byline: "by - argentina"
-#      grape: "Malbec / Merlot 23%"
-#      catalog: "Verity"
-#      mynotes: "fruity, delicious, easy and nice."
-#      frontprice: 14
-#
-
 #    - name: "DiamAndes"
 #      listprice:
 #      qtprice: 
@@ -567,6 +552,18 @@
       bin:
       instock: 
       ordered: 
+
+    - name: "Red Rhone (VdP)"
+      listprice: 22
+      qtprice: 7
+      byline: "by Domaine de l'Amandine - Princip. d'Orange, Rhone Valley, France."
+      grape: "Grenache 30%, Merlot 30%, Sirah 10%, Cinsault, Carrignan, Marselan, Caladoc"
+      catalog: "wine symphony"
+      notes: "From vineyards in the south Rhone neighboring Gigondas and Rasteau, this bold country wine boasts full spicy aromas and flavours of black and green pepper and dark fruit with good leathery tanins. Big, brawny, and rustic."
+      mynotes: "lovely heavy spice, veg, pepper nose. Heavy pepper leather and dark fruit on the palate, good tanins. tiny bit rough."
+      frontprice: 7
+      bin: 1
+
 
     - name: "Cote de Beaune Village 2009 'Les Combottes' "
       byline: "by Domain d'Ardhuy  - Burgundy, France"
@@ -967,6 +964,17 @@
       ordered: 
         - date: '4/7/11' 
           qty: 12
+
+    - name: "Mystic Merlot"
+      listprice: 26
+      qtprice: 9
+      byline: "by Frisky ZebraS - Western Cape, South Africa"
+      grape: "Merlot"
+      catalog: "wine symphony"
+      notes: "Grown naturally with earth friendly practices, this African Merlot has exotic, biting aromas of chocolate, coffee and warm forest floor. The palate is full of red cherries, wood and tobacco."
+      mynotes: "Earth Friendly practice. Biting nose of chocolate, coffee, tobacco, wood, and grassy manure. Full palate of same with red fruit and tobacco bite."
+      frontprice: 9
+      bin: 1 
 
     - name: "Barolo 2005"
       listprice: 55
