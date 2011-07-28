@@ -700,6 +700,7 @@
           ' class="'+ classes + '"' +
           ' type=button' +
           ' onclick="orderitem_popup(' + item.id + ', event)"' +
+          ' onmousedown="orderitem_mousedown(' + item.id + ', event, this)"' +
           ' value="'+item.item_name+'"' +
           '></input>';
       }  
@@ -712,6 +713,12 @@
       refresh_order(additem, null);
       refresh_cook_screen();
     } 
+
+    function orderitem_mousedown(item_id, event, button)
+    {
+      button.style.backgroundColor = 'maroon';
+    }  
+      
 
     // Order popup stuff
     popup = null;

@@ -57,8 +57,8 @@ menu:
             - {name: oxtail, price: 8}
             - {name: summer harvest, price: 7}
             - {name: beet watermelon, price: 5}
-            - {name: rib_tapa, price: 14}
-            - {name: rib_plate, price: 22}
+            - {name: rib_tapa, price: 12}
+            - {name: rib_plate, price: 20}
             - {name: mini panini , price: 7}
             - {name: bacon, price: 6}
             - {name: lobster slider , price: 18}
