@@ -29,10 +29,18 @@ menu:
             - name: B13
             - name: B14
             - name: B15
-            - name: B15
             - name: B16
             - name: B17
-            - name: B18
+            - name: F1
+            - name: F2
+            - name: F3
+            - name: F4
+            - name: F5
+            - name: O1
+            - name: O2
+            - name: O3
+            - name: O4
+            - name: O5
     - name: food
       subcategories:
         - name: dinner
@@ -110,7 +118,7 @@ menu:
             - {name: cktail5, price: 5}
             - {name: cktail7, price: 7}
             - {name: cktail10, price: 10}
-            - {name: red flight, price: 16}
+            - {name: red flight, price: 14}
             - {name: white flight, price: 12}
         #- name: breakfast
         #  items: 

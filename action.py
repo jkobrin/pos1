@@ -53,7 +53,7 @@ def order(req, table, additem=None, removeitem=None, price=None):
     cursor.execute('''
       UPDATE order_group og
       set og.is_open = False, updated = now()
-      where og.table_id = %(table)s
+      where og.table_id = "%(table)s"
       and og.id not in (select order_group_id from order_item oi where oi.is_cancelled = False);
     ''' % locals())
 
