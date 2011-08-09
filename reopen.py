@@ -7,14 +7,14 @@ import utils
 def get_reopen_id(req, table):
 
   results = utils.select(
-    '''select id
+    '''select id, is_open
        from order_group og
        where og.table_id = "%(table)s"
-       and og.is_open = False 
-       and og.updated > now() - INTERVAL '20' minute''' % locals()
+       and og.updated > now() - INTERVAL '20' minute
+       order by id desc''' % locals()
   )
 
-  if results:
+  if results: and not results[0]['is_open']:
     retval = results[0]['id']
   else:
     retval = None
