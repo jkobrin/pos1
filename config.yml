@@ -94,7 +94,7 @@ menu:
             - {name: pyrennese, price: 0}
             - {name: daffinois, price: 0}
             - {name: fourme dambert, price: 0}
-            - {name: petit basque, price: 0}
+            - {name: morbiere, price: 0}
             - {name: tallegio, price: 0}
             - {name: piave, price: 0}
             - {name: pecorino tartufo, price: 0}
@@ -113,6 +113,7 @@ menu:
             - {name: coffee, price: 3}
             - {name: tea, price: 3}
             - {name: soda, price: 3}
+            - {name: seltzer, price: 2}
             - {name: panacotta, price: 5}
             - {name: chocolate, price: 5}
             - {name: cktail5, price: 5}
@@ -120,6 +121,10 @@ menu:
             - {name: cktail10, price: 10}
             - {name: red flight, price: 14}
             - {name: white flight, price: 12}
+            - {name: gift25, price: 25}
+            - {name: gift50, price: 50}
+            - {name: gift75, price: 75}
+            - {name: gift100, price: 100}
         #- name: breakfast
         #  items: 
         #    - {name: bacon egg, price: 6}

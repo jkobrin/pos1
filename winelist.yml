@@ -344,6 +344,17 @@
 
 - name: Red Wine
   items:
+    - name: "Zin"
+      listprice: 18
+      qtprice: 7
+      byline: "by Crane Lake - Napa/Sonoma, California"
+      grape: "Zin"
+      catalog: "opici"
+      notes: "glass"
+      mynotes: "glass"
+      frontprice: 2
+      bin: 1
+
     - name: "Graves Rouge 2008"
       listprice:
       qtprice:
@@ -470,6 +481,17 @@
       grape: "Grenache, Syrah"
       catalog: "verity"
 
+    - name: "Chateauneuf du Pape 2007"
+      byline: "by Domaine des Senechaux - Rhone Valley, France"
+      notes: "Aromas of berry, earth, and herbs. Peppery fruit and smoke on the palate."
+      mynotes: "nice heavy nose of muddy veggy cabby stuff. Light body, little buttery, decent smoke and tanins"
+      listprice:
+      mynotes:
+      qtprice:
+      frontprice: 31.67
+      grape: "Grenache, Syrah"
+      catalog: "verity"
+
     - name: "'La Granacha' Cotes du Rhone Villages 2009"
       byline: "by Domaine d'Anderzon - Rhone Valley, France"
       notes: "All garnacha. Very similar to spanosh garnacha. Fruit, bit of pepper not much else."
@@ -518,7 +540,7 @@
 
     - name: "Chateauneuf du Pape 2007"
       listprice: 54
-      qtprice: 18
+      qtprice: 15
       byline: "by Chateau Mont-Thabor - Rhone Valley, France"
       grape: "Grenache, Syrah, Mouvedre, smattering of others"
       catalog: "Wineberry"
@@ -555,7 +577,7 @@
 
     - name: "Red Rhone (VdP)"
       listprice: 22
-      qtprice: 7
+      qtprice: 8
       byline: "by Domaine de l'Amandine - Princip. d'Orange, Rhone Valley, France."
       grape: "Grenache 30%, Merlot 30%, Sirah 10%, Cinsault, Carrignan, Marselan, Caladoc"
       catalog: "wine symphony"
@@ -724,16 +746,6 @@
       mynotes: "good bright fruit, tangy acid, cherries, mild tanins B+, not too heavy"
       notes: ""
       grape: "nebbiolo"
-      catalog: "winebow"
-      frontprice: 
-
-    - name: "Brunello"
-      listprice:
-      qtprice: 
-      byline: "by San polo- Montalcino, Tuscany, Italy"
-      mynotes: "good fruit, nice balance, light mouth-coating tanins"
-      notes: "52 acre winery  - parker 92, wine spectator: 91"
-      grape: "chard"
       catalog: "winebow"
       frontprice: 
 
@@ -1007,7 +1019,7 @@
       catalog: "opici"
       frontprice: 29.34
 
-    - name: "Vino Nobile di Montepulciano"
+    - name: "Vino Nobile di Montepulciano 2005"
       qtprice: 16
       byline: "by Cesari - Tuscany"
       catalog: "opici 404"
@@ -1019,7 +1031,18 @@
       bin: 702
       instock: 2
 
-    - name: "Liano "
+    - name: "Brunello di Montalcino 2004"
+      listprice: 95
+      qtprice: 
+      byline: "by San Polo - Tuscany, Italy"
+      mynotes: "good fruit, nice balance, light mouth-coating tanins"
+      notes: "This tiny 52 acre winery recieves consistent high marks for its Brunellos. Thw wine is ruby red with aromas of violets and red berries, followed by spicy, nutty nuances. Deeply-woven, robust texture with long finish and round tannins."
+      grape: "chard"
+      catalog: "winebow"
+      frontprice: 61
+      bin: 1181
+
+    - name: "Liano 2007"
       byline: "by Umberto Cesare - Tuscany"
       catalog: "opici"
       listprice: 48
@@ -1209,7 +1232,7 @@
 
     - name: "Clos de Torribas 2006 Crianza"
       listprice: 22
-      qtprice: 7
+      qtprice: 8
       qt: yes
       byline: "by Bodegas Pinord - Penedes, Spain"
       grape: "Tempranillo"
@@ -1229,6 +1252,17 @@
       grape: "Garnacha (Grenache)"
       catalog: "opici B"
       frontprice: 8
+
+
+    - name: "Anima Negra 2008"
+      listprice: 36
+      qtprice: 12
+      byline: "by Anima Negra"
+      grape: "Callet, Manto Negra, Fogoneu"
+      catalog: "winebow"
+      mynotes: "Nice balance. Smoky, fruity, soft tanins."
+      frontprice: 16.66 
+      bin: 1031
 
     - name: "Wrongo Dongo 2008"
       listprice: 20
@@ -1441,6 +1475,20 @@
       grape: "Chardonnay"
       catalog: "weygandt"
       frontprice: 16.66
+      bin: 407
+      instock: 12
+      ordered: 
+        - date: '3/30/11'
+          qty: 12
+
+    - name: "Mersault 2008 'Le Limozin'"
+      listprice: 56
+      qtprice: 20
+      byline: "by Jobard-Chabloz - Cote-d'Or, Burgundy, France"
+      notes: "Rich, luxurious Chardonnay from the heart of Burgundy. Hazelnut and golden apple nose with cream and honey flavours over bracing minerality."
+      grape: "Chardonnay"
+      catalog: "weygandt"
+      frontprice: 30
       bin: 407
       instock: 12
       ordered: 
@@ -2200,7 +2248,7 @@
       bin: pint
       frontprice: TODO
 
-    - name: "Shipyard Stout"
+    - name: "Snaggletooth Stout"
       listprice: 8
       bin: pint
       frontprice: TODO
@@ -2234,11 +2282,27 @@
         - date: '3/30/11'
           qty: 12
 
-    - name: "Speakeasy Big Daddy IPA" #34.39 for 24 12 oz
-      byline: "Speakeasy Ales & Lagers - San Francisco"
+    - name: "Chimay"
+      byline: "Belgium"
+      frontprice: 
+      listprice: 8
+      bin: 999
+
+    - name: "Centenial IPA" #34.39 for 24 12 oz
+      byline: "Founders Brewery - Grand Rapids, Michigan"
       frontprice: 1.43
       listprice: 6
       bin: 999
+      instock:  
+      ordered: 
+        - date: '3/30/11'
+          qty: 24
+
+    - name: "Big Daddy IPA" #34.39 for 24 12 oz
+      byline: "Speakeasy Ales & Lagers - San Francisco"
+      frontprice: 1.43
+      listprice: 6
+      bin:
       instock:  
       ordered: 
         - date: '3/30/11'

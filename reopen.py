@@ -14,7 +14,7 @@ def get_reopen_id(req, table):
        order by id desc''' % locals()
   )
 
-  if results: and not results[0]['is_open']:
+  if results and not results[0]['is_open']:
     retval = results[0]['id']
   else:
     retval = None

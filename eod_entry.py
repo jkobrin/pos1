@@ -52,6 +52,9 @@ def prompt():
     }[state] + ": "
 
 
+def get_server_info(name):
+    return server_info.get(name) 
+
 def addto(category, num):
     try: num = float(num)
     except: return 'not a number'
@@ -78,7 +81,7 @@ def respond(said):
         grand_total_tips = sum(inf.all_tips() for inf in server_info.values())
         print 'all tips: %s' % grand_total_tips
     else:
-      current_server_info = server_info.get(said)
+      current_server_info = get_server_info(said)
       if current_server_info:
         resp = gostate(take_cash)
       else: resp = 'no such server had sales tonight'
