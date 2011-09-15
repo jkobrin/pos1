@@ -832,7 +832,7 @@
       ordered: no
 
     - name: "Educated Guess 2008"
-      listprice: 32
+      listprice: 34
       qtprice: 12
       qt: yes
       byline: "Napa Valley, California"
@@ -1036,8 +1036,8 @@
       qtprice: 
       byline: "by San Polo - Tuscany, Italy"
       mynotes: "good fruit, nice balance, light mouth-coating tanins"
-      notes: "This tiny 52 acre winery recieves consistent high marks for its Brunellos. Thw wine is ruby red with aromas of violets and red berries, followed by spicy, nutty nuances. Deeply-woven, robust texture with long finish and round tannins."
-      grape: "chard"
+      notes: "This tiny 52 acre winery recieves consistent high marks for its Brunellos. Ruby red with aromas of violets and red berries, followed by spicy, nutty nuances. Deeply-woven, robust texture with long finish and round tannins."
+      grape: "Sangiovese"
       catalog: "winebow"
       frontprice: 61
       bin: 1181
