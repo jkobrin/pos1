@@ -1,3 +1,5 @@
+set @the_tip = $1;
+
 create or replace view last_night_items
 as
 select * from order_item
@@ -21,7 +23,7 @@ as
 select lni_id, price / count(p_id) split_price from person_items group by lni_id; 
 
 
-select sum(split_price)/(select sum(price) from last_night_items), p_id, last_name
+select last_name, sum(split_price)/(select sum(price) from last_night_items) * @the_tip
 from 
   item_split spl
   ,person_items pi

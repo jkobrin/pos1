@@ -831,6 +831,18 @@
       mynotes: "note: A- good round fruit, mellow oak"
       ordered: no
 
+    - name: "Rutherford Ranch"
+      listprice: 32
+      qtprice: 12
+      qt: yes
+      byline: "Napa Valley, California"
+      grape: "Cabernet Sauvingon"
+      catalog: "opici "
+      frontprice: 13.33
+      notes: ""
+      mynotes: ""
+      bin:
+
     - name: "Educated Guess 2008"
       listprice: 32
       qtprice: 12
