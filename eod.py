@@ -38,7 +38,7 @@ def index(req):
     WHERE oi.order_group_id = og.id 
     and oi.is_cancelled = false
     and oi.is_comped = false
-    group by date(oi.created - INTERVAL '4' HOUR)''',
+    group by date(oi.created - INTERVAL '16' HOUR)''',
     incursor=None,
     label=False
   )
@@ -49,7 +49,7 @@ def index(req):
     WHERE oi.order_group_id = og.id 
     and oi.is_cancelled = false
     and oi.is_comped = false
-    AND oi.created > now() - INTERVAL '20' HOUR;''',
+    AND oi.created > now() - INTERVAL '12' HOUR;''',
     incursor=None,
     label=False
   )
