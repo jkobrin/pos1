@@ -1,4 +1,4 @@
-set @the_tip = $1;
+set @the_tip = 543;
 
 create or replace view last_night_items
 as
@@ -15,7 +15,7 @@ from
   ,hours h
   ,person p
 where h.person_id = p.id
-  and lni.created between h.intime and h.outtime
+  and lni.created between h.intime and if(h.outtime=0, h.intime + interval '12' hour, h.outtime)
 ;
 
 create or replace view item_split
