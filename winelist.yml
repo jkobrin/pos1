@@ -1241,11 +1241,11 @@
         - date: "3/30/11"
           qty: 3
 
-    - name: "Chico d'Uva (IGT)"
+    - name: "Chicco d'Uva (IGT)"
       byline: "by San Giuseppe - Veneto, Italy"
       listprice: 30
       qtprice: 10
-      notes: "This Venetian vintner blends the indeginous Amarone grapes with Merlot to produce a 'Super-Venetian' full of fresh and cooked dark fruit flavor with firm tanins and a long, sweet-dry finish."
+      notes: "Blends of Amarone grapes and Merlot produces a 'Super-Venetian' full of fresh and cooked dark fruit flavor with firm tanins and a long, sweet-dry finish."
       grape: "Merlot, Corvino, Rondinello, Molinari"
       catalog: "opici"
       frontprice: 13.5
@@ -1954,6 +1954,7 @@
       notes: "At 4000 ft, the vineyards of Morgex and La Salle at the foot of Mont Blanc's Italian side are the highest in Europe. The wine is fresh and crisp with good body and minerality and light floral and citrusy notes."
       mynotes: "good acidity"
       frontprice: 12
+      bin: 801
 
     - name: "Pinot Grigio 2009"
       listprice: 18
