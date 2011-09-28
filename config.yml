@@ -62,8 +62,8 @@ menu:
             - {name: marrow bones, price: 6}
             - {name: tapa polenta, price: 7}
             - {name: plate polenta, price: 12}
-            - {name: oxtail, price: 8}
-            - {name: summer harvest, price: 7}
+            - {name: raclette, price: 7}
+            - {name: caesar salad, price: 8}
             - {name: beet watermelon, price: 5}
             - {name: rib_tapa, price: 12}
             - {name: rib_plate, price: 20}

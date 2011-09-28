@@ -1,10 +1,15 @@
 import queries
 import texttab
+import sys
 
 take_name, take_cash, take_credit, take_credit_tips, exit = xrange(5)
 state =  take_name
 
-info_by_server =  queries.nightly_sales_by_server(label=True)
+if len(sys.argv) > 1 and sys.argv[0] == 'late':
+  info_by_server =  queries.nightly_sales_by_server(label=True)
+else:
+  info_by_server =  queries.last_nightly_sales_by_server(label=True)
+
 current_server_info = None
 
 server_info = {}
