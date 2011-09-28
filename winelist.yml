@@ -1,8 +1,64 @@
 ﻿#HRM REX goliath pinot noir 
+# cooke chateau du cas
 
-
+# fat monk pinot noir -- opici St. julien, big merlot, cab - full
+# bodied
 # laurie reccomends gragnano and french malbec chateua du cedre
 #
+#
+#    - name: "Serra Da Estrela Rias Baixas"
+#      listprice:
+#      qtprice: 
+#      byline: "Bodegas Valvino"
+#      grape: "albarino"
+#      catalog: "Lauber - Southern Maria Stevens"
+#      mynotes: "Nice acidity, lemony fruit, "
+#      frontprice:  10.75
+#
+#    - name: "Faustino Rioja"
+#      listprice:
+#      qtprice: 
+#      byline: "JM Fonseca"
+#      grape: "Tempranillo, masuleo"
+#      catalog: "Lauber - Southern Maria Stevens"
+#      mynotes: "Nice tempranillo tipical minty nose, reserva is not really better than standard"
+#      frontprice:  i4 / 9.5
+#
+#    - name: "Domini Plus"
+#      listprice:
+#      qtprice: 
+#      byline: "JM Fonseca - Douro"
+#      grape: "Port grapes
+#      catalog: "Lauber - Southern Maria Stevens"
+#      mynotes: "Minty tempranillo type. B.
+#      frontprice: 5
+#
+#    - name: "Periquita"
+#      listprice:
+#      qtprice: 
+#      byline: "JM Fonseca"
+#      grape: "castellao, trincadeira, "
+#      catalog: "Lauber - Southern Maria Stevens"
+#      mynotes: "funky musky fruit, some decent bdry tanins, ok acidity, b+"
+#      frontprice: 6 or 7
+#
+#    - name: "Twin Vines Vinho Verde"
+#      listprice:
+#      qtprice: 
+#      byline: "JM Fonseca"
+#      grape: "alvarinho"
+#      catalog: "Lauber - Southern Maria Stevens"
+#      mynotes: ""
+#      frontprice: 5
+#
+#    - name: "Faustino White Rioja"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: "Viura"
+#      catalog: "Lauber - Southern Maria Stevens"
+#      mynotes: "Band-aids and golden apple. heavy slippery body.     B-"
+#      frontprice: 
 #
 #    - name: "Chateauneuf du Pape"
 #      listprice: 
@@ -42,14 +98,61 @@
 #      mynotes: "nice deep round fruit nose. smooth.i strange "
 #      frontprice: 26
 #
-#    - name: "Camins del Priorat"
+#    - name: "Fleur Pinot Noir"
 #      listprice:
 #      qtprice: 
-#      byline: "by Alvaro Palacios - Priorat, Spain"
-#      grape: "60% Carrignan, 30% Grenache, 5% Cab Sauv, 5% P. Sirah"
+#      byline: "by Carneros"
+#      grape: "Pinot Noir"
 #      catalog: "polaner"
-#      mynotes: "big dark fruit, nice chewy tanins"
-#      frontprice: 16
+#      mynotes: "subtle light. good fruit. nice buttery nose."
+#      frontprice: 12.8
+#
+#    - name: "Walter Hansel PInot Noir"
+#      listprice:
+#      qtprice: 
+#      byline: "by Walter Hansel - Russian River"
+#      grape: "Pinot Noir"
+#      catalog: "polaner"
+#      mynotes: "Good fruit. Black cherry white flowers. Nice acidity. Not enough dust."
+#      structure.
+#      frontprice: 28
+
+#    - name: "Morrelino di Scansano 2009"
+#      listprice:
+#      qtprice: 
+#      byline: "by Vandemmia - just south of bulgary, Tuscany"
+#      grape: "Sangiovese / cab 5 / sirah 5"
+#      catalog: "polaner"
+#      mynotes: "nice nose. light, but dusty, bit hot. mellow ta. raisny."
+#      frontprice: 12
+#
+#    - name: "Valpolicella Superiore Ripasso"
+#      listprice: 35
+#      qtprice: 12
+#      byline: "by Bussola- Valpollicella, Veneto, Italy"
+#      grape: "Sangiovese / cab 5 / sirah 5"
+#      catalog: "polaner"
+#      mynotes: "good raisiny fruit. nice structure and balance. good dusty leathery nose. bright and dark fruit"
+#      frontprice: 16.33
+#
+#    - name: "graffito"
+#      listprice: 35
+#      qtprice: 12
+#      byline: "by Jimena Lopez - Lujan de Cuyo, Mendoza, Argentina"
+#      grape: "Malbec"
+#      catalog: "polaner"
+#      mynotes: "low acid , very buttery. vlevety. some red and dark fruit"
+#      frontprice: 14.66
+#
+#
+#    - name: "Ex Libris"
+#      listprice:
+#      qtprice:
+#      byline: "by Doug Polaner - Columbia Valley, Washington"
+#      grape: "Sangiovese / cab 5 / sirah 5"
+#      catalog: "polaner"
+#      mynotes: "good lummy fruit, dusty tanins, little polish, sweet cherry, subtle."
+#      frontprice: 12
 #
 #    - name: "Chateau Cantelaudette"
 #      listprice:
@@ -154,7 +257,7 @@
 #      grape: "Syrah / Grenache"
 #      catalog: "wine symphony"
 #      mynotes: "Great coffee and bitter flower nose. Rasiny and coffee palate short finish."
-#      frontprice: 13
+#      frontprice: 13 #10 cs $7
 #      instock: 
 #      ordered: 
 #      pepper"
@@ -313,7 +416,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Frederic Lornet - Jura"
-#      grape: "savingnin"
+#      grape: "savignnin"
 #      catalog: "wine symphony"
 #      notes: "curry and walnuts"
 #      mynotes: ""
@@ -1194,6 +1297,17 @@
       bin: 702
       instock: 2
 
+    - name: "Brunello di Montalcino 2000"
+      listprice: 60
+      qtprice: 36.50
+      byline: "by Il Marronetto - Tuscany, Italy"
+      mynotes: "good red cherry fruit, mellow, nice tanins"
+      notes: "Brunellos."
+      grape: "Sangiovese"
+      catalog: "winebow"
+      frontprice: 61
+      bin: 1181
+
     - name: "Brunello di Montalcino 2004"
       listprice: 95
       qtprice: 25
@@ -1401,6 +1515,16 @@
         - date: '3/30/11'
           qty: 12
 
+    - name: "Camins del Priorat"
+      listprice: 34
+      qtprice: 11
+      byline: "by Alvaro Palacios - Priorat, Spain"
+      grape: "60% Carrignan, 30% Grenache, 5% Cab Sauv, 5% P. Sirah"
+      catalog: "polaner"
+      notes: "Big dark fruit, nice chewy tanins"
+      mynotes: "Big dark fruit, sweet herbs and nice chewy tanins."
+      frontprice: 16
+
     - name: "Beso de Vino Old Vine Garnacha"
       listprice: 22
       byline: "A Steve Miles Selection - Carin~ena, Spain"
@@ -1462,7 +1586,7 @@
       notes: "Hints of coffee and spice. Firm structure and good fruit."
       catalog: "tempanillo page 12 "
       frontprice: 13.33
-      bin: 
+      bin: 117
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -1628,7 +1752,7 @@
       qtprice: 9
       frontprice: 10 #(12?)
       catalog: "winebow 735a" #get it
-      bin: 117
+      bin: 717
       instock: 0
       ordered: 
         - date: '3/30/11'
