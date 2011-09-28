@@ -2216,6 +2216,17 @@
       notes: "nice and citrusy."
       mynotes: ""
 
+    - name: "Albariño"
+      listprice: 26
+      qtprice: 8
+      byline: "by Lagar de Pintos - Rias Biaxas"
+      grape: "Albariño"
+      catalog: "wine symphony"
+      frontprice: 6
+      mynotes: "six case closeout deal"
+      notes: "Full-bodied and fragrant with a hint of briny tang."
+      bin: 1
+
     - name: "Albariño 2010"
       listprice: 30
       qtprice: 10
