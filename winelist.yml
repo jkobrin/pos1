@@ -431,15 +431,6 @@
 #      mynotes: ""
 #      frontprice: 46
 #
-#    - name: "Arbois"
-#      listprice:
-#      qtprice: 
-#      byline: "by Frederic Lornet - Jura"
-#      grape: "chardonnay"
-#      catalog: "wine symphony"
-#      mynotes: "Dark golden color. Funky golden apple nose. Full body, apply flavor. Band-aids. Little chewy somehow. Quite interesting."
-#      frontprice: 18
-#
 
 #    - name: "Monbazillac"
 #      listprice:
@@ -1295,7 +1286,7 @@
           qty: 12
 
     - name: "Vino Nobile di Montepulciano 2005"
-      qtprice: 1
+      qtprice: 14
       byline: "by Cesari - Tuscany"
       catalog: "opici 404"
       listprice: 45
@@ -1327,6 +1318,17 @@
       catalog: "winebow"
       frontprice: 61
       bin: 1181
+
+    - name: "Brunello 2000"
+      listprice: 60
+      qtprice: 25
+      byline: "by Il Marronetto - Tuscany, Italy"
+      mynotes: "good red cherry fruit, mellow, nice tanins"
+      notes: "A mellow old Brunello with soft red cherry flavors and smooth tanins."
+      grape: "Sangiovese"
+      catalog: "boening"
+      frontprice: 36.50
+      bin: 713
 
     - name: "Liano 2007"
       byline: "by Umberto Cesare - Tuscany"
@@ -1675,6 +1677,17 @@
         - date: '4/2/11'
           qty: 12
 
+    - name: "Camins del Priorat"
+      listprice: 34
+      qtprice: 
+      byline: "by Alvaro Palacios - Priorat, Spain"
+      grape: "60% Carrignan, 30% Grenache, 5% Cab Sauv, 5% P. Sirah"
+      catalog: "polaner"
+      notes: "Widely grown, but poorly regarded in France, Carrignan is originally a Spanish variety. The rugged terrior of its native Priorat brings out the grape's true character - full, dark fruit; stoney notes; and soft but chewy tanins."
+      mynotes: "big dark fruit, nice chewy tanins"
+      frontprice: 16
+      bin: 790
+
     - name: "Malbec Cristobal 1492"
       listprice: 25
       byline: "by Cristobal - Mendoza, Argentina"
@@ -1690,7 +1703,7 @@
       qt: yes
       grape: "Malbec blend"
       catalog: "east coast spec. wines "
-      frontprice: 6
+      frontprice: 7
       notes: "Fruity with mild tanins, and a hint of earth. Easy-going enjoyment."
       mynotes: "fruity, some good tanin, little earth, B+. Better than more expensive Cristobal"
       bin: 2071
@@ -1843,6 +1856,17 @@
       ordered: 
         - date: '3/30/11'
           qty: 12
+
+    - name: "Arbois 2008 Chardonnay"
+      listprice: 38
+      qtprice: 12
+      byline: "by Frederic Lornet - Jura"
+      grape: "chardonnay"
+      catalog: "wine symphony"
+      notes: "Tucked between Burgundy and the Alps, Jura is an enclave of traditional wine-making. Ageing on the lees gives this golden-apple-scented, full-bodied Chardonnay a deep golden color and chewy, nutty character ."
+      mynotes: "Dark golden color. Funky golden apple nose. Full body, apply flavor. Band-aids. Little chewy somehow. Quite interesting."
+      frontprice: 18
+      bin: 791
 
     - name: "Petit Chablis 2009"
       listprice: 24

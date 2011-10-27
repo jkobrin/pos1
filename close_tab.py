@@ -15,7 +15,8 @@ PRINT_OPTIONS = {
  'page-border':'single', 
  'page-left':'12',
   'media':'Custom.3.125x%(page_length)sin',
- 'lpi': '4'
+ 'lpi': '4',
+  #'penwidth': '3000', #no effect
 }
 
 PRINTER_NAME = 'CITIZEN-CT-S310'
@@ -74,8 +75,6 @@ def index(req, table, shouldPrint, serverpin, close=True):
     conn = cups.Connection()
     #conn.getDefault()
 
-    
-    page_length_in_inches
     PRINT_OPTIONS['media'] = PRINT_OPTIONS['media'] % \
       {'page_length': page_length_in_inches}
 

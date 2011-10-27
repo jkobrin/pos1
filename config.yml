@@ -41,6 +41,17 @@ menu:
             - name: O3
             - name: O4
             - name: O5
+        - name: staff
+          items: 
+            - name: JWK
+            - name: DL
+            - name: LQK
+            - name: JL
+            - name: DS
+            - name: JA
+            - name: MN
+            - name: DW
+            - name: DP
     - name: food
       subcategories:
         - name: dinner
@@ -87,7 +98,6 @@ menu:
             - {name: manchego , price: 0}
             - {name: cana de cabra, price: 0}
             - {name: campo de montalban, price: 0}
-            - {name: pyrennese, price: 0}
             - {name: daffinois, price: 0}
             - {name: fourme dambert, price: 0}
             - {name: morbiere, price: 0}
@@ -98,9 +108,9 @@ menu:
             - {name: prosciutto, price: 0}
             - {name: jambon, price: 0}
             - {name: lomo, price: 0}
-            - {name: hot capicolla, price: 0}
             - {name: chorizo, price: 0}
-            - {name: rosette de lyon, price: 0}
+            - {name: prosciutto, price: 0}
+            - {name: hot capicolla, price: 0}
             - {name: salametto, price: 0}
         - name: dessert_etc
           items: 
@@ -114,7 +124,7 @@ menu:
             - {name: cktail5, price: 5}
             - {name: cktail7, price: 7}
             - {name: cktail10, price: 10}
-            - {name: red flight, price: 16}
+            - {name: red flight, price: 14}
             - {name: white flight, price: 12}
             - {name: gift25, price: 25}
             - {name: gift50, price: 50}
