@@ -5,13 +5,17 @@ import utils
 import queries
 
 
-def index(req):
+def index(req, late=False):
 
-  results = queries.nightly_sales_by_server()
+  results = queries.nightly_sales_by_server(late=late)
+
+  utils.execute('''
+    create or replace view revenue_item as select * from order_item where is_comped = false and is_cancelled = false and item_name not like 'gift%';
+  ''');
 
   seven_day_total = utils.select('''
     SELECT sum(price) total  
-    FROM order_item oi, order_group og
+    FROM revenue_item oi, order_group og
     WHERE oi.order_group_id = og.id 
     and oi.is_cancelled = false
     and oi.is_comped = false
@@ -22,7 +26,7 @@ def index(req):
 
   avg = utils.select('''
     SELECT sum(price)/2 total  
-    FROM order_item oi, order_group og, person p 
+    FROM revenue_item oi, order_group og, person p 
     WHERE oi.order_group_id = og.id 
     AND og.closedby = p.id
     and oi.is_cancelled = false
@@ -34,7 +38,7 @@ def index(req):
 
   day_totals = utils.select('''
     SELECT sum(price) total, dayname(oi.created), date(oi.created) date
-    FROM order_item oi, order_group og
+    FROM revenue_item oi, order_group og
     WHERE oi.order_group_id = og.id 
     and oi.is_cancelled = false
     and oi.is_comped = false
@@ -45,7 +49,7 @@ def index(req):
   
   grand_total = utils.select('''
     SELECT sum(price) total  
-    FROM order_item oi, order_group og
+    FROM revenue_item oi, order_group og
     WHERE oi.order_group_id = og.id 
     and oi.is_cancelled = false
     and oi.is_comped = false
@@ -61,7 +65,7 @@ def index(req):
     ''' + 
     utils.tohtml(
       'Nightly Receipts by Server',
-      ('Server', 'Receipts', 'Tabs Closed'), 
+      ('Server', 'Receipts', 'Taxable', 'Tabs Closed'), 
       results
     ) +
     utils.tohtml(

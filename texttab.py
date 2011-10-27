@@ -50,7 +50,8 @@ def get_tab_text(table, serverpin = None, cursor = None):
     return "no tab opened for table %s" %table
 
   foodtotal = sum(item['price'] for item in items if not item['is_comped'])
-  tax = round(foodtotal * TAXRATE, 2)
+  notaxtotal = sum(item['price'] for item in items if item['name'].startswith('gift'))
+  tax = round((foodtotal - notaxtotal) * TAXRATE, 2)
   gratuity = round(foodtotal * .18, 2)
   total = foodtotal + tax #+grat
 

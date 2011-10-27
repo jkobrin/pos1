@@ -5,10 +5,8 @@ import sys
 take_name, take_cash, take_credit, take_credit_tips, exit = xrange(5)
 state =  take_name
 
-if len(sys.argv) > 1 and sys.argv[0] == 'late':
-  info_by_server =  queries.nightly_sales_by_server(label=True)
-else:
-  info_by_server =  queries.last_nightly_sales_by_server(label=True)
+late = (len(sys.argv) > 1 and sys.argv[1] == 'late')
+info_by_server =  queries.nightly_sales_by_server(label=True, late=late)
 
 current_server_info = None
 
@@ -16,10 +14,10 @@ server_info = {}
 
 class server_inf(object):
     
-  def __init__(self, server, sales, **kv):
+  def __init__(self, server, sales, taxable_sales, **kv):
     self.server = server
-    self.presales = sales
-    self.sales = sales * (1 + texttab.TAXRATE)
+    self.presales = taxable_sales
+    self.sales = sales + taxable_sales * texttab.TAXRATE
     self.credit = 0
     self.credit_tips = 0
     self.cash = None

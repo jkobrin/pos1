@@ -489,6 +489,12 @@
       window.scroll(0,0);
     }
 
+    function is_staff(table_id)
+    {
+      tab = get_config_item(table_id);
+      return (tab && tab.subcat == 'staff')
+    }
+
     function refresh_order(add_item, remove_item)
     {
       params="table="+g_currentTable;
@@ -502,6 +508,7 @@
           return;
         }
 
+        if(is_staff(g_currentTable)) {add_item.price = 0;}
         params += "&price="+add_item.price;
         params += "&additem="+add_item.name;
       }
@@ -556,6 +563,9 @@
       {
         item = order_items[idx];
         if (item.is_delivered) {continue}
+
+        
+        if (is_staff(item.table_id)) {continue}
 
         classes = "order_item";
         config_item = get_config_item(item.item_name);
