@@ -6,6 +6,15 @@
 # laurie reccomends gragnano and french malbec chateua du cedre
 #
 #
+# - name: "Teroldego Rotaliano"
+      #frontprice: 14,67 #six pack #12=13.32
+      #mynotes: "nice round dark fruit. flowers black cherry, berries, pomeganite. Similar to Morgon."
+      #catalog: southern 
+
+# - name: "Amarone 2006"
+      #frontprice: 28
+      #catalog:
+
 #    - name: "Serra Da Estrela Rias Baixas"
 #      listprice:
 #      qtprice: 
@@ -190,7 +199,7 @@
 #      grape: "cab sauv / carmeniere"
 #      catalog: "east coast"
 #      mynotes: "second pressing from amarone - good deep raininy flavor. lots of dry tanins at finsih."
-#      frontprice: 18.33
+#      frontprice: 15  #10.83 classico
 #      instock: 
 #      ordered: 
 #
@@ -1286,7 +1295,7 @@
           qty: 12
 
     - name: "Vino Nobile di Montepulciano 2005"
-      qtprice: 16
+      qtprice: 1
       byline: "by Cesari - Tuscany"
       catalog: "opici 404"
       listprice: 45
@@ -1299,14 +1308,14 @@
 
     - name: "Brunello di Montalcino 2000"
       listprice: 60
-      qtprice: 36.50
+      qtprice: 25
       byline: "by Il Marronetto - Tuscany, Italy"
       mynotes: "good red cherry fruit, mellow, nice tanins"
       notes: "Brunellos."
       grape: "Sangiovese"
-      catalog: "winebow"
-      frontprice: 61
-      bin: 1181
+      catalog: "boening"
+      frontprice: 36.50
+      bin: 713
 
     - name: "Brunello di Montalcino 2004"
       listprice: 95
@@ -1555,6 +1564,21 @@
       frontprice: 7.50
       bin: 102
 
+    - name: "DXG Meritage 2007"
+      listprice: 20
+      qtprice:  7
+      qt: yes
+      byline: "by Daryl Groom - Yorkville Highlands, Sonoma, CA"
+      grape: "Monastrell (a.k.a Mouvedre)"
+      notes: "Dark berry aromas with baking spices. Juicy straightforward blackberry and cherry flavors. Finish is sweet and deep."
+      catalog: "boening bros." #call Juliet for extra 2 bottles at 516-776-2035
+      frontprice: 24.85 #on 6pk  #
+      bin:
+      instock: 
+      ordered: 
+        - date: '4/2/11'
+          qty: 12
+
     - name: "Wrongo Dongo 2008"
       listprice: 20
       qtprice:  7
@@ -1574,7 +1598,15 @@
       listprice: 30
       byline: "by Bodegas Hijos de Juan Gil - Jumilla, Spain"
       grape: "Monastrell (a.k.a Mouvedre)"
-      catalog: "tempranillo page 18. "
+      catalog: "opici"
+      frontprice: 13
+      mynotes: "similiar to Wrongo Dongo?"
+            
+    - name: "Juan Gil 2008"
+      listprice: 30
+      byline: "by Bodegas Hijos de Juan Gil - Jumilla, Spain"
+      grape: "Monastrell (a.k.a Mouvedre)"
+      catalog: "opici"
       frontprice: 13
       mynotes: "similiar to Wrongo Dongo?"
             
@@ -1586,7 +1618,7 @@
       notes: "Hints of coffee and spice. Firm structure and good fruit."
       catalog: "tempanillo page 12 "
       frontprice: 13.33
-      bin: 117
+      bin: 115
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -2247,7 +2279,7 @@
       frontprice: 12
       notes: "An elegant, complex Spanish white with aromas and flavors of melon, hazelnuts and spice."
       mynotes: "nutt, frutty spicy B+"
-      bin: 115
+      bin: 117
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -2669,4 +2701,37 @@
       ordered:
         - date: '6/30/11'
           qty: 24
+
+    - name: "Red Wagon IPA"
+      listprice:
+      qtprice: 
+      byline: "Fire Island Beer Company"
+      catalog: "Manhattan Beer"
+      mynotes: "7% "
+      frontprice:  1.41 #69
+
+    - name: "Lighthouse Ale"
+      listprice:
+      qtprice: 
+      byline: "Fire Island Beer Company"
+      catalog: "Manhattan Beer"
+      mynotes: "5.2%, balanced smooth, touch of sweetness. Beery, light, fairly nostalgic, summery, little bitter. Light."
+      frontprice: 1.41 #64
+
+    - name: "Pumpkin Barrel Ale"
+      listprice:
+      qtprice: 
+      byline: "Fire Island Beer Company"
+      catalog: "Manhattan Beer"
+      mynotes: "4.8% Molassy nose. Dark golden. Nicely sweet. Creamy. Good."
+      frontprice:  1.41 #69
+
+    - name: "Palm Belgium's Amber Beer"
+      listprice:
+      qtprice: 
+      byline: "Palm Brewery"
+      catalog: "Manhattan Beer"
+      mynotes: "5.4 % skunk cabbage, budweiser, creamy body. laid back."
+      frontprice:  1.40 
+
 

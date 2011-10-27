@@ -55,25 +55,21 @@ menu:
               price: 7
             - name: smoked anchovies
               price: 6
-            - {name: burrata, price: 14}
             - {name: patatas bravas, price: 5}
             - {name: meatballs, price: 8}
-            - {name: roasted chorizo, price: 6}
-            - {name: marrow bones, price: 6}
-            - {name: tapa polenta, price: 7}
-            - {name: plate polenta, price: 12}
-            - {name: raclette, price: 7}
-            - {name: caesar salad, price: 8}
-            - {name: beet watermelon, price: 5}
-            - {name: rib_tapa, price: 12}
-            - {name: rib_plate, price: 20}
-            - {name: mini panini , price: 7}
-            - {name: bacon, price: 6}
-            - {name: lobster slider , price: 18}
-            - {name: beef slider, price: 8}
-            - {name: bread, price: 3}
             - {name: empanada, price: 7}
-            - {name: duck confit, price: 11}
+            - {name: mini panini , price: 7}
+            - {name: marrow bones, price: 8}
+            - {name: raclette, price: 7}
+            - {name: bocadillo, price: 8}
+            - {name: polenta tapa, price: 7}
+            - {name: polenta plate, price: 12}
+            - {name: rib tapa, price: 12}
+            - {name: rib plate, price: 20}
+            - {name: chicken, price: 21}
+            - {name: bread, price: 3}
+            - {name: caesar salad, price: 8}
+            - {name: beet orange, price: 5}
         - name: boards
           items: 
             - name: 1-board
@@ -100,13 +96,12 @@ menu:
             - {name: pecorino tartufo, price: 0}
             - {name: seranno ham, price: 0}
             - {name: prosciutto, price: 0}
+            - {name: jambon, price: 0}
             - {name: lomo, price: 0}
             - {name: hot capicolla, price: 0}
             - {name: chorizo, price: 0}
             - {name: rosette de lyon, price: 0}
             - {name: salametto, price: 0}
-            - {name: duck rillette, price: 0}
-            - {name: country pate, price: 0}
         - name: dessert_etc
           items: 
             - {name: pelligrino, price: 6}
