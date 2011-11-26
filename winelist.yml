@@ -1,4 +1,6 @@
-﻿#HRM REX goliath pinot noir 
+﻿#domaine alfred unoaked chard malo inocculated
+# chard
+#HRM REX goliath pinot noir 
 # cooke chateau du cas
 
 # fat monk pinot noir -- opici St. julien, big merlot, cab - full
@@ -283,7 +285,7 @@
 #      ordered: 
 #      pepper"
 
-#    - name: "Laird Pinot Grigio
+#    - name: "Laird Pinot Grigio"
 #      listprice:
 #      qtprice: 
 #      byline: "by Laird - Carnerros, Sonoma, California"
@@ -893,6 +895,24 @@
 #      mynotes: "Nice balance. Smoky, fruity, soft tanins."
 #      frontprice: 16.66 
 #
+#    - name: French Apple Cider"
+#      listprice:
+#      qtprice:
+#      byline: ""
+#      grape: "apple"
+#      catalog: "polaner"
+#      mynotes: "bit watery. very low alc. 4%. nice complexity"
+#      frontprice: 11.33
+#
+#    - name: French Pear Cider"
+#      listprice:
+#      qtprice:
+#      byline: ""
+#      grape: "pear"
+#      catalog: "polaner"
+#      mynotes: "nice bitter pear skin finish. bit light"
+#      frontprice: 11.33
+#
 - name: Red Wine
   items:
     - name: "Chateauneuf-du-Pape 2006"
@@ -1256,7 +1276,7 @@
       catalog: "opici"
       frontprice: 29.34
 
-    - name: "Chianti Rufina 2008"
+    - name: "Chianti Rufina 2009"
       listprice: 26
       notes: "Smoky and fruity, with hints of grilled meat. Full-bodied and silky."
       qtprice: 9
@@ -1297,20 +1317,9 @@
       bin: 702
       instock: 2
 
-    - name: "Brunello di Montalcino 2000"
-      listprice: 60
-      qtprice: 25
-      byline: "by Il Marronetto - Tuscany, Italy"
-      mynotes: "good red cherry fruit, mellow, nice tanins"
-      notes: "Brunellos."
-      grape: "Sangiovese"
-      catalog: "boening"
-      frontprice: 36.50
-      bin: 713
-
     - name: "Brunello di Montalcino 2004"
       listprice: 95
-      qtprice: 25
+      qtprice: 30
       byline: "by San Polo - Tuscany, Italy"
       mynotes: "good fruit, nice balance, light mouth-coating tanins"
       notes: "This tiny 52 acre winery recieves consistent high marks for its Brunellos. Ruby red with aromas of violets and red berries, followed by spicy, nutty nuances. Deeply-woven, robust texture with long finish and round tannins."
@@ -1319,9 +1328,9 @@
       frontprice: 61
       bin: 1181
 
-    - name: "Brunello 2000"
+    - name: "Brunello di Montalcino 2000"
       listprice: 60
-      qtprice: 25
+      qtprice: 20
       byline: "by Il Marronetto - Tuscany, Italy"
       mynotes: "good red cherry fruit, mellow, nice tanins"
       notes: "A mellow old Brunello with soft red cherry flavors and smooth tanins."
@@ -1432,7 +1441,7 @@
       byline: "by Sierra Cantabria - Rioja, Spain"
       grape: "Tempranillo"
       notes: "Spain's iconic red wine. Hints of mocha and blackberry. Well balanced and crisp."
-      catalog: "Tempanillo"
+      catalog: "Tempranillo"
       frontprice: 9
       mynotes: " ?should taste again?"
       bin: 105
@@ -1487,7 +1496,7 @@
 
     - name: "Tinto Fino 2007"
       listprice: 40
-      qtprice: 15
+      qtprice: 13
       byline: "by Emilio Moro - Ribera Del Duero, Spain"
       grape: "Tempranillo (aka Tinto Fino)"
       notes: "Smoke & roasted herbs over tons of firm ripe cherry and vanilla spice."
@@ -1535,6 +1544,7 @@
       notes: "Big dark fruit, nice chewy tanins"
       mynotes: "Big dark fruit, sweet herbs and nice chewy tanins."
       frontprice: 16
+      bin: 801
 
     - name: "Beso de Vino Old Vine Garnacha"
       listprice: 22
@@ -1679,7 +1689,7 @@
 
     - name: "Camins del Priorat"
       listprice: 34
-      qtprice: 
+      qtprice: 11
       byline: "by Alvaro Palacios - Priorat, Spain"
       grape: "60% Carrignan, 30% Grenache, 5% Cab Sauv, 5% P. Sirah"
       catalog: "polaner"
@@ -1868,14 +1878,14 @@
       frontprice: 18
       bin: 791
 
-    - name: "Petit Chablis 2009"
+    - name: "Petit Chablis 2010"
       listprice: 24
       qtprice: 9
       notes: "Nice minerality with crisp apple and pear flavors."
       byline: "by Jean Marc Brocard - Burgundy, France"
       grape: "Chardonnay"
       catalog: "verity"
-      frontprice: 8
+      frontprice: 10.67
       bin: 405
       instock: 12
       ordered: 
@@ -2394,7 +2404,7 @@
       byline: "by San Giuseppe - Veneto, Italy"
       mynotes: ""
       notes: "Purple-red, lightly sweet and bubbly. A fun, party wine that's also nice with cheese and cured meat."
-      grape: "Prosecco"
+      grape: ""
       listprice: 22
       qtprice: 8
       frontprice: 8
@@ -2435,7 +2445,7 @@
     - name: "Madiera - 15 year old Bual"
       byline: "Cossart Gordon - Island of Madiera, Portugal"
       notes: "Dark rasiny, nutty flavors with brown sugar and candied orange peel. Endless finish."
-      mynotes: "try it"
+      mynotes: "good"
       listprice:
       frontprice: 22.72
       qt: yes
