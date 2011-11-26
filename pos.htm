@@ -219,7 +219,7 @@
 
     function init()
     {
-      document.body.addEventListener('click',hidePopup, true)
+      document.body.addEventListener('click', clicked, true)
       GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth) / 120
     }  
 
@@ -463,7 +463,14 @@
             http_request("POST", "reopen", "reopen_id="+reopen_id);
           }  
         }
-
+        if(g_tab_to_move != null)
+        {
+          if(confirm("Move all items from table "+g_tab_to_move+" to " + button.id+"?"))
+          {
+            http_request("POST", "move_tab", "p_from="+g_tab_to_move+"&p_to="+button.id);
+          }
+          g_tab_to_move = null;
+        }
         set_current_table(button.id);
       }
       else
@@ -475,6 +482,17 @@
     function reopen()
     {
       alert('open');
+    }
+
+    g_tab_to_move = null;
+    function move_tab()
+    {
+      g_tab_to_move = g_currentTable;
+      while (!category_is_table())
+      {
+        rotateCategory();
+      } 
+      drawCurrentCategory();
     }
 
     function go_to_tables()
@@ -908,6 +926,14 @@
       }
     }
 
+    function clicked()
+    {
+      hidePopup();
+      if (g_tab_to_move != null)
+      {
+      }
+    }
+
     function hidePopup()
     // this function hides the pop-up when any of various things happen
     {
@@ -1004,7 +1030,7 @@
     <div onclick='leave_receipt_screen()'>
       <button id=print_and_close onclick='close_check(true)'>Print and Close</button>
       <button id=just_close onclick='close_check(false)'>Just Close</button>
-      <button onclick='go_to_tables()'>See Tables</button>
+      <button onclick='move_tab()'>Move Tab</button>
       <button>Go Back</button>
 
       <div id="keypad2" class="keypad">
