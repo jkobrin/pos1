@@ -16,6 +16,221 @@
 # - name: "Amarone 2006"
       #frontprice: 28
       #catalog:
+#    - name: "Vouvray Petillant
+#      listprice:
+#      qtprice: 
+#      byline: "Domaine Huet"
+#      grape: "chenin blanc"
+#      catalog: "polaner"
+#      mynotes: "nose flowers, honey, apply, stony, dry, nice medium bubbles. hint of chocolate"
+#      frontprice:  20
+#
+#    - name: "Pic Paul vdp"
+#      listprice:
+#      qtprice: 
+#      byline: "Gaujal de Saint Bon -Languedoc"
+#      grape: "pic paul"
+#      catalog: "Domaine de Pajot"
+#      mynotes: "Full body, med acid, bitter overtone. Briny, albarino-like. not bad."
+#      frontprice:  8.66
+#
+#    - name: "White Gascony 2010"
+#      listprice: 22
+#      qtprice: 
+#      byline: "Domain de Pajot"
+#      grape: "Ugni Blanc, Colombard, Gros Manseng, Sauv. B."
+#      catalog: "polaner"
+#      mynotes: "Soft, good SB type nose, med acid. not bad."
+#      frontprice: 7.50 #76 on 3 72 on 5
+#
+#    - name: "Savigny-Les-Beaune Premier Cru 2007"
+#      listprice: 52
+#      qtprice: 
+#      byline: "by Domaine Camus-Bruchon et Fils - Cote d'Or, Burgundy, France"
+#      grape: "Pinot Noir"
+#      catalog: "Polaner"
+#      notes: "Red Burgundy wine made Pinot Noir famous. This one
+#      is aromatic of rasberries, red currant, and flower petals
+#      witha a dry, earthy finish.
+#      mynotes: "Flowers, perfume, little lipstic/bandaids. Tiny hint of barnyard. Lively fruit. fairly american. good. touch of buttery gaminess."
+#      frontprice: 26
+#
+#    - name: "Sparkling Rose Touraine"
+#      listprice:
+#      qtprice: 
+#      byline: "Francoise Chidaine"
+#      grape: "Gamay"
+#      catalog: "Polaner"
+#      mynotes: ""
+#      frontprice: 13.33 
+#
+
+
+#    - name: "Croze-Hermitage"
+#      listprice:
+#      qtprice: 
+#      byline: "Domaine Entrefaux"
+#      grape: "Sirah"
+#      catalog: "Polaner"
+#      mynotes: "peppery dark mellow fruit, bit of barnyard, nice subtlety."
+#      frontprice: 15.33
+#
+
+
+
+
+#    - name: "Sean Minor 2009 Red Wine"
+#      listprice: 45
+#      qtprice: 
+#      byline: "by Sean Minor - Napa Valley"
+#      grape: "70% Merlot, 30% Cab franc"
+#      catalog: "Polaner"
+#      mynotes: "juicy, little dry dusty tanins, decent fruit"
+#      frontprice: 15.33
+#
+
+#    - name: "Lalande de Pomerol 2007"
+#      listprice: 45
+#      qtprice: 
+#      byline: "by Chateau de Tournefuille"
+#      grape: "70% Merlot, 30% Cab franc"
+#      catalog: "Polaner"
+#      mynotes: "Coffee nose, nice dry tanins, some dark cherry. B"
+#      frontprice: 21.33
+#
+
+#    - name: "St Estephe 2001"
+#      listprice: 
+#      qtprice: 
+#      byline: "by Chateau Beau Site Haut Vignoble"
+#      grape: "Cab Sauv, Merlot, Petit Verdot"
+#      catalog: "Wine symphony"
+#      mynotes: "Good oaky nose, herbal character smooth, nice persimonny tanins, very little fruit."
+#      frontprice: 29 #
+#
+
+#    - name: "Laird Cabernet Sauv, Napa, Yountville, California"
+#      listprice: 
+#      qtprice: 
+#      byline: "by Laird - Napa, California"
+#      grape: "
+#      catalog: "Wine symphony"
+#      mynotes: "Sweet vanilla tanins, deep fruit, smoky, good grip on the gums, nice complexity, not unlike crusher."
+#      frontprice: 30
+#
+
+#    - name: "Chardonnay Reserve 2010"
+#      listprice: 
+#      qtprice: 
+#      byline: "by casaas del bosque"
+#      grape: "
+#      catalog: "Wine symphony"
+#      mynotes: "Light fresh pineapply. little hot."
+#      frontprice: 13 #5
+#
+
+#    - name: "Cotes du Rhone Blanc"
+#      listprice: 
+#      qtprice: 
+#      byline: "by domaine de lamondine"
+#      grape: "Viognier, rousanne, claret"
+#      catalog: "Wine symphony"
+#      mynotes: "Light fresh nose of apple and cinamon. bit watery on the palate."
+#      frontprice: 12
+#
+
+#  
+#    - name: "Lalande de Pomerol 2007"
+#      listprice: 45
+#      qtprice: 
+#      byline: "by Chateau de Tournefuille"
+#      grape: "70% Merlot, 30% Cab franc"
+#      catalog: "Polaner"
+#      mynotes: "Coffee nose, nice dry tanins, some dark cherry. B"
+#      frontprice: 21.33
+#
+
+#  
+
+
+
+
+#    - name: "St. Estephe 2006"
+#      listprice: 55
+#      qtprice: 
+#      byline: "Chateau Le Boscq - St. Estephe, Bordeaux, France"
+#      grape: "%60 cab franc, 40% merlot"
+#      catalog: "Verity"
+#      mynotes: "Minty, oaky nose, very muted dark fruit, persimmony tanins."
+#      frontprice: 30
+#
+#    - name: "Haut-Medoc 2007"
+#      listprice: 35
+#      qtprice: 
+#      byline: "Chateau Bellevue - Haut-Medoc, Bordeaux, France"
+#      grape: "%60 cab franc, 40% merlot"
+#      catalog: "Verity"
+#      mynotes: "Black cherry, light body, good structure, herby, great oak"
+#      frontprice: 16.67
+#
+#    - name: "Bordeaux Rouge 2009"
+#      listprice:
+#      qtprice: 
+#      byline: "Chateau Blouin 2009"
+#      grape: "80% merlot, %20 cab franc"
+#      catalog: "Verity"
+#      mynotes: "Merlot nose, black cherry, dusty tanins, some decent grip"
+#      frontprice: 8 #2 = 7.33, 3=6.66
+#
+#    - name: "Pinto Grigio 2010"
+#      listprice:
+#      qtprice: 
+#      byline: "by Zemmer - alto-adige"
+#      grape: "pinot grigio"
+#      catalog: "Verity"
+#      mynotes: "fullish body - refined fruit, bitter, nutty finish, not bad, touch of sweetness, some flowers"
+#      frontprice: 11.33
+#
+#    - name: "Pinto Grigio 2010"
+#      listprice:
+#      qtprice: 
+#      byline: "by La Fiera -Veneto"
+#      grape: "70% Merlot, 30% Cab franc"
+#      catalog: "Verity"
+#      mynotes: "nice nose, apply, bitter finish"
+#      frontprice: 6.67 #5 5.33
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #    - name: "Serra Da Estrela Rias Baixas"
 #      listprice:
@@ -1535,17 +1750,6 @@
         - date: '3/30/11'
           qty: 12
 
-    - name: "Camins del Priorat"
-      listprice: 34
-      qtprice: 11
-      byline: "by Alvaro Palacios - Priorat, Spain"
-      grape: "60% Carrignan, 30% Grenache, 5% Cab Sauv, 5% P. Sirah"
-      catalog: "polaner"
-      notes: "Big dark fruit, nice chewy tanins"
-      mynotes: "Big dark fruit, sweet herbs and nice chewy tanins."
-      frontprice: 16
-      bin: 801
-
     - name: "Beso de Vino Old Vine Garnacha"
       listprice: 22
       byline: "A Steve Miles Selection - Carin~ena, Spain"
@@ -1696,7 +1900,7 @@
       notes: "Widely grown, but poorly regarded in France, Carrignan is originally a Spanish variety. The rugged terrior of its native Priorat brings out the grape's true character - full, dark fruit; stoney notes; and soft but chewy tanins."
       mynotes: "big dark fruit, nice chewy tanins"
       frontprice: 16
-      bin: 790
+      bin: 801
 
     - name: "Malbec Cristobal 1492"
       listprice: 25
@@ -1713,7 +1917,7 @@
       qt: yes
       grape: "Malbec blend"
       catalog: "east coast spec. wines "
-      frontprice: 7
+      frontprice: 7 #
       notes: "Fruity with mild tanins, and a hint of earth. Easy-going enjoyment."
       mynotes: "fruity, some good tanin, little earth, B+. Better than more expensive Cristobal"
       bin: 2071
