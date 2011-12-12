@@ -9,7 +9,8 @@ WINELIST_FILE_NAME = '/var/www/winelist.yml'
 
 MAX_NAME_LEN = 32
 
-def get():
+def iget():
+  items = {}
   cfg = yaml.load(open(CONFIG_FILE_NAME))
   populate_wine_category(cfg)  
 
@@ -20,7 +21,13 @@ def get():
       for item in subcat['items']:
         item['catname'] = catname
         item['subcatname'] = subcatname
+        if type(item['name']) == str:
+          item['name'] = (item['name'])[:MAX_NAME_LEN]
+        items[item['name']] = item
+  return cfg, items      
 
+def get():  
+  cfg, items = iget()
   return json.dumps(cfg)
 
 
@@ -82,3 +89,8 @@ def populate_wine_category(cfg):
   
 
   cfg['menu']['categories'].append(bev_category)
+
+if __name__ == '__main__':
+  cfg, items = iget()
+  for it in items.items():
+    print it

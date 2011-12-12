@@ -1130,6 +1130,17 @@
 #
 - name: Red Wine
   items:
+    - name: "Bordeaux"
+      listprice: 22
+      qtprice: 7
+      byline: "by Chateau D'Haurets"
+      grape: "Merlot"
+      catalog: "opici"
+      frontprice: 4
+      mynotes: "six case closeout deal"
+      notes: "Full-bodied and bright."
+      bin: 1001
+
     - name: "Chateauneuf-du-Pape 2006"
       listprice: 48
       qtprice:  16
@@ -2211,6 +2222,16 @@
       qtprice: 9
       frontprice: 9
       bin:
+
+    - name: "Walter Hansel Chardonnay"
+      byline: "by oWalter Hansel - Russian River, Sonoma, California"
+      notes: "Rich, buttery and well-oaked with hints of golden apple - the kind of full-bodied luxurious wine that California Chardonnay famous."
+      mynotes: "try it"
+      catalog: "polaner"
+      listprice: 32
+      qtprice: 11
+      frontprice: 14.66
+      bin: 708
 
     - name: "Hahn Chardonnay 2010"
       byline: "by Hahn Winery - Santa Lucia Highlands"
