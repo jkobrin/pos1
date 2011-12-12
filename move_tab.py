@@ -7,8 +7,6 @@ log = my_logger
 
 def index(req, p_from, p_to):
   log.debug('move tab : ' + p_from + "  " + p_to)
-  logy = open("/var/www/foo.log", "w")
-  logy.write('move tab : ' + p_from + "  " + p_to +'\n')
 
 
   #is_to_tab_open = utils.select(

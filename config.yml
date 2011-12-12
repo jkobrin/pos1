@@ -66,21 +66,22 @@ menu:
               price: 7
             - name: smoked anchovies
               price: 6
+            - {name: oxtail, price: 11}
             - {name: patatas bravas, price: 5}
             - {name: meatballs, price: 8}
             - {name: empanada, price: 7}
             - {name: mini panini , price: 7}
             - {name: marrow bones, price: 8}
-            - {name: raclette, price: 7}
+            - {name: french onion, price: 7}
             - {name: bocadillo, price: 8}
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
             - {name: rib tapa, price: 12}
             - {name: rib plate, price: 20}
-            - {name: chicken, price: 21}
+            - {name: chicken, price: 18}
             - {name: bread, price: 3}
             - {name: caesar salad, price: 8}
-            - {name: beet orange, price: 5}
+            - {name: burrata , price: 14}
         - name: boards
           items: 
             - name: 1-board
@@ -100,10 +101,10 @@ menu:
             - {name: campo de montalban, price: 0}
             - {name: daffinois, price: 0}
             - {name: fourme dambert, price: 0}
-            - {name: morbiere, price: 0}
             - {name: tallegio, price: 0}
             - {name: piave, price: 0}
             - {name: pecorino tartufo, price: 0}
+            - {name: raclette, price: 0}
             - {name: seranno ham, price: 0}
             - {name: prosciutto, price: 0}
             - {name: jambon, price: 0}
@@ -112,6 +113,8 @@ menu:
             - {name: prosciutto, price: 0}
             - {name: hot capicolla, price: 0}
             - {name: salametto, price: 0}
+            - {name: rosette de lyon, price: 0}
+            - {name: duck, price: 0}
         - name: dessert_etc
           items: 
             - {name: pelligrino, price: 6}
@@ -124,7 +127,7 @@ menu:
             - {name: cktail5, price: 5}
             - {name: cktail7, price: 7}
             - {name: cktail10, price: 10}
-            - {name: red flight, price: 14}
+            - {name: red flight, price: 16}
             - {name: white flight, price: 12}
             - {name: gift25, price: 25}
             - {name: gift50, price: 50}
