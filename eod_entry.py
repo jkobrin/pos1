@@ -5,8 +5,8 @@ import sys
 take_name, take_cash, take_credit, take_credit_tips, exit = xrange(5)
 state =  take_name
 
-late = (len(sys.argv) > 1 and sys.argv[1] == 'late')
-info_by_server =  queries.nightly_sales_by_server(label=True, late=late)
+lag_hours = (len(sys.argv) > 1 and sys.argv[1]) or 16
+info_by_server =  queries.nightly_sales_by_server(label=True, lag_hours=lag_hours)
 
 current_server_info = None
 

@@ -5,9 +5,9 @@ import utils
 import queries
 
 
-def index(req, late=False):
+def index(req, lag=0):
 
-  results = queries.nightly_sales_by_server(late=late)
+  results = queries.nightly_sales_by_server(lag_hours=lag)
 
   utils.execute('''
     create or replace view revenue_item as select * from order_item where is_comped = false and is_cancelled = false and item_name not like 'gift%';
