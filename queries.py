@@ -1,11 +1,6 @@
 import utils
 
-def nightly_sales_by_server(label=False, late=False):
-
-  if late: 
-    lag_hours = 24
-  else:
-    lag_hours = 16
+def nightly_sales_by_server(label=False, lag_hours=16):
 
   return utils.select('''
     SELECT 
