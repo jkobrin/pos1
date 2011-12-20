@@ -43,18 +43,6 @@
 #      mynotes: "Soft, good SB type nose, med acid. not bad."
 #      frontprice: 7.50 #76 on 3 72 on 5
 #
-#    - name: "Savigny-Les-Beaune Premier Cru 2007"
-#      listprice: 52
-#      qtprice: 
-#      byline: "by Domaine Camus-Bruchon et Fils - Cote d'Or, Burgundy, France"
-#      grape: "Pinot Noir"
-#      catalog: "Polaner"
-#      notes: "Red Burgundy wine made Pinot Noir famous. This one
-#      is aromatic of rasberries, red currant, and flower petals
-#      witha a dry, earthy finish.
-#      mynotes: "Flowers, perfume, little lipstic/bandaids. Tiny hint of barnyard. Lively fruit. fairly american. good. touch of buttery gaminess."
-#      frontprice: 26
-#
 #    - name: "Sparkling Rose Touraine"
 #      listprice:
 #      qtprice: 
@@ -89,15 +77,6 @@
 #      frontprice: 15.33
 #
 
-#    - name: "Lalande de Pomerol 2007"
-#      listprice: 45
-#      qtprice: 
-#      byline: "by Chateau de Tournefuille"
-#      grape: "70% Merlot, 30% Cab franc"
-#      catalog: "Polaner"
-#      mynotes: "Coffee nose, nice dry tanins, some dark cherry. B"
-#      frontprice: 21.33
-#
 
 #    - name: "St Estephe 2001"
 #      listprice: 
@@ -170,7 +149,6 @@
 #      byline: "Chateau Bellevue - Haut-Medoc, Bordeaux, France"
 #      grape: "%60 cab franc, 40% merlot"
 #      catalog: "Verity"
-#      mynotes: "Black cherry, light body, good structure, herby, great oak"
 #      frontprice: 16.67
 #
 #    - name: "Bordeaux Rouge 2009"
@@ -241,14 +219,6 @@
 #      mynotes: "Nice acidity, lemony fruit, "
 #      frontprice:  10.75
 #
-#    - name: "Faustino Rioja"
-#      listprice:
-#      qtprice: 
-#      byline: "JM Fonseca"
-#      grape: "Tempranillo, masuleo"
-#      catalog: "Lauber - Southern Maria Stevens"
-#      mynotes: "Nice tempranillo tipical minty nose, reserva is not really better than standard"
-#      frontprice:  i4 / 9.5
 #
 #    - name: "Domini Plus"
 #      listprice:
@@ -609,6 +579,34 @@
 #      instock: 
 #      ordered: 
 #
+#    - name: "
+#      listprice:
+#      qtprice: 
+#      byline: "by Alain Gueneau"
+#      grape: "Pinot Noir"
+#      catalog: "wine symphony"
+#      mynotes: "25-35% nerw oak 12-14 months. Restrained fruit. buttery. loose palate. lots of oak. not bad. Tanins."
+#      frontprice: 21
+#
+#    - name: "Red Sancerre"
+#      listprice:
+#      qtprice: 
+#      byline: "by Alain Gueneau"
+#      grape: "Pinot Noir"
+#      catalog: "wine symphony"
+#      mynotes: "Partial oak barrel. Theirs: light aromatic. Cherry lipstick. Light, nice lively fruit, bit loose in structuire. Gummy tanins. Strawberry finish."
+#      frontprice: 21
+#
+#    - name: "Christopher Creek Chardonnay"
+#      listprice:
+#      qtprice: 
+#      byline: "by Chris Russi (geyser peak)- Russian River, Sonoma"
+#      grape: "chardonnay"
+#      catalog: "wine symphony"
+#      mynotes: "Single vineyard, Saphire Hill Vineyard.  Tiny bit of oak. Not too funky. Fairly elegant"
+#      mynotes2: " little bitter, some unintegrated oak. Not too creamy. Funk."
+#      frontprice: 20
+#
 #    - name: " tool box"
 #      listprice:
 #      qtprice: 
@@ -616,9 +614,8 @@
 #      grape: "chardonnay"
 #      catalog: "wine symphony"
 #      mynotes: " a bit hot, little bitter, some unintegrated oak. Not creamy."
+#      mynotes2: " little bitter, some unintegrated oak. Not too creamy. Funk."
 #      frontprice: 12
-#      instock: 
-#      ordered: 
 #
 #    - name: "Laird SB"
 #      listprice:
@@ -641,7 +638,7 @@
 #    - name: "Arbois Vin Jaune 2002"
 #      listprice:
 #      qtprice: 
-#      byline: "by Frederic Lornet - Jura"
+#      byline: "by Frederic Lornet - Jura, France"
 #      grape: "savignnin"
 #      catalog: "wine symphony"
 #      notes: "curry and walnuts"
@@ -1141,6 +1138,38 @@
       notes: "Full-bodied and bright."
       bin: 1001
 
+    - name: "Haut-Medoc 2007"
+      listprice: 35
+      qtprice: 11
+      byline: "Chateau Haut Bellevue - Haut-Medoc, Bordeaux, France"
+      grape: "60% Cab Franc, 40% Merlot"
+      catalog: "Verity"
+      mynotes: "Black cherry, light body, good structure, herby, great oak"
+      notes: "Light-bodied with herby, oaky nose followed by currant, cassis and licorice on the palate. Long dry finish."
+      frontprice: 16.67
+      bin: 311
+
+    - name: "Lalande-de-Pomerol 2007"
+      listprice: 45
+      qtprice: 15
+      byline: "by Chateau de Tournefuille - Lalande-de-Pomerol, Bordeaux, France"
+      grape: "70% Merlot, 30% Cab franc"
+      catalog: "Polaner"
+      notes: "Classic right-bank Bordeaux. Nose has coffee and spice and the palate of black cherry and smoke is supported by good dry tanins."
+      frontprice: 21.33
+      bin: 4011
+
+    - name: "Bordeaux Rouge 2009"
+      listprice: 24
+      qtprice: 8
+      byline: "Chateau Blouin 2009"
+      grape: "80% merlot, %20 cab franc"
+      catalog: "Verity"
+      notes: "Easy-drinking with earth and musky fruit nose. Mouth is soft black cherry with dusty tanins and a bit of grip."
+      frontprice: 8 #2 = 7.33, 3=6.66
+      bin: 4012
+
+
     - name: "Chateauneuf-du-Pape 2006"
       listprice: 48
       qtprice:  16
@@ -1194,6 +1223,17 @@
       frontprice: 7
       bin: 118
 
+    - name: "Savigny-Les-Beaune Premier Cru 2007"
+      listprice: 52
+      qtprice: 16
+      byline: "by Domaine Camus-Bruchon et Fils - Cote d'Or, Burgundy, France"
+      grape: "Pinot Noir"
+      catalog: "Polaner"
+      notes: "Red Burgundy wine made Pinot Noir famous. This one is aromatic of rasberries, red currant, and flower petals with a lively mid-palate and dry, earthy finish."
+      mynotes: "Flowers, perfume, little lipstic/bandaids. Tiny hint of barnyard. Lively fruit. fairly american. good. touch of buttery gaminess."
+      frontprice: 26
+      bin: 401
+
     - name: "Cote de Beaune Village 2009 'Les Combottes' "
       byline: "by Domain d'Ardhuy  - Burgundy, France"
       grape: "Pinot Noir"
@@ -1202,7 +1242,6 @@
       listprice: 40
       frontprice: 18
       qtprice: 13
-      bin: 401
 
     - name: "Beaujolais Villages 2010"
       byline: "by Chateau du Chatelard - Beaujolais, France"
@@ -1212,12 +1251,7 @@
       frontprice: 10
       qtprice: 9
       notes: "This Beaujolais is not the unaged Nouveau that comes out each November. Instead of simple fruit flavors, it's got a leathery depth, with hints of stewed game, spice and forest floor."
-      TODO: 'check price'
       bin: 403
-      instock: 12
-      ordered:
-        - date: '3/30/11'
-          qty: 12
 
     - name: "Cahors 2005"
       listprice: 24
@@ -1537,7 +1571,7 @@
       catalog: "opici 404"
       listprice: 45
       frontprice: 22.67
-      notes: "Produced sincce medieval times, it's the older brother of Chianti and Brunello. Dry, full-bodied, and lively with notes of dark cherry, dried porcini mushrooms, raisins and roasted herbs."
+      notes: "Produced since medieval times, it's the older brother of Chianti and Brunello. Dry, full-bodied, and lively with notes of dark cherry, dried porcini mushrooms, raisins and roasted herbs."
       mynotes: "stemmy, good mild tanins, raisiny fruit, A-"
       grape: "Sangiovese Grosso"
       bin: 702
@@ -1676,6 +1710,16 @@
         - date: '4/2/11'
           qty: 12
         
+    - name: "Faustino Rioja"
+      listprice: 25
+      qtprice: 8
+      byline: "JM Fonseca"
+      grape: "Tempranillo, masuleo"
+      catalog: "Lauber - Southern Maria Stevens"
+      notes: "Nose shows menthol and cedar. Light red fruit on the palate with a bit of baking spice. Finish is light and fresh."
+      mynotes: "Nice tempranillo tipical minty nose, reserva is not really better than standard"
+      frontprice: 9.5 #?
+      bin: 111
 
     - name: "Rioja Reserva 2005"
       listprice: 44
@@ -1868,7 +1912,6 @@
       catalog: "tempranillo"
       frontprice: 13.33
       mynotes: "smoky, peppery garnacha with good balance and depth"
-      bin: 111
       instock: 12
 
     - name: "Garnacha de Fuego"
@@ -2052,7 +2095,6 @@
       qtprice: 11
       frontprice: 14 
       notes: "Light fruity nose, mild sweetness, and fresh round fruit flavors."
-      bin: 721
 
     - name: "Saint Veran 2008"
       listprice: 36
@@ -2062,7 +2104,6 @@
       grape: "Chardonnay"
       catalog: "weygandt"
       frontprice: 16.66
-      bin: 407
       instock: 12
       ordered: 
         - date: '3/30/11'
@@ -2152,7 +2193,7 @@
       mynotes: "great heavy nose, lightish body - A-"
       grape: "Sauvingon Blanc"
 
-    - name: "White Gascony 2009"
+    - name: "Cotes de Gasconge 2010"
       byline: "by Domaine Des Cassagnoles - Gascony, France"
       notes: "A fragant, light and fruity wine made from the same grapes as Cognac. Interesting and easy drinking."
       listprice: 22
@@ -2224,8 +2265,8 @@
       bin:
 
     - name: "Walter Hansel Chardonnay"
-      byline: "by oWalter Hansel - Russian River, Sonoma, California"
-      notes: "Rich, buttery and well-oaked with hints of golden apple - the kind of full-bodied luxurious wine that California Chardonnay famous."
+      byline: "by Walter Hansel - Russian River, Sonoma, California"
+      notes: "Rich, buttery and well-oaked with hints of golden apple - the kind of full-bodied, luxurious wine that made California Chardonnay famous."
       mynotes: "try it"
       catalog: "polaner"
       listprice: 32
