@@ -59,9 +59,8 @@ menu:
             - name: tasting menu
               price: 85
             - {name: fish, price: 0}
-            - {name: liver, price: 0}
+            - {name: foie, price: 0}
             - {name: beef, price: 0}
-            - {name: kraut, price: 0}
             - {name: cheese, price: 0}
             - {name: cream, price: 0}
         - name: dinner
