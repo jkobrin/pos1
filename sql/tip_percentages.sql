@@ -1,4 +1,4 @@
-set @the_tip = 608.5;
+set @the_tip = 522;
 
 create or replace view last_night_items
 as
@@ -6,7 +6,7 @@ select * from order_item
 where is_cancelled = False
   and item_name not like 'gift%'
   and created > now() - INTERVAL '24' HOUR
-  #and date(created- interval '8' hour) =  '2011-12-14'
+  #and date(created- interval '8' hour) =  '2011-12-26'
 ;
 
 create or replace view person_items
@@ -22,7 +22,7 @@ where h.person_id = p.id
 
 create or replace view item_split
 as
-select lni_id, price / (count(p_id)+.7) split_price from person_items group by lni_id; 
+select lni_id, price / (count(p_id)+.8) split_price from person_items group by lni_id; 
 
 
 select last_name, sum(split_price)/(select sum(price) from last_night_items) * @the_tip

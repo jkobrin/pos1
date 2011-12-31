@@ -11,9 +11,10 @@ def index(req):
 	SELECT week(intime), 
 	last_name, 
 	sum(hours_worked) as hours_worked 
-	from hours_worked group by week(intime), 
-	last_name 
-	order by week(intime), last_name''',
+	from hours_worked 
+  where week(now()) - week(intime) < 3
+  group by week(intime), last_name 
+	order by week(intime) desc, last_name''',
     incursor=None,
     label=False
   )
@@ -25,7 +26,8 @@ def index(req):
 	time_out, 
 	hours_worked 
 	from hours_worked 
-	order by last_name, intime desc''',
+  where week(now()) - week(intime) < 3
+	order by week(intime) desc, last_name''',
     incursor=None,
     label=False
   )

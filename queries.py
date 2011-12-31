@@ -6,7 +6,7 @@ def nightly_sales_by_server(label=False, lag_hours=16):
     SELECT 
       p.last_name server, 
       sum(oi.price) sales, 
-      sum(ri.price) taxable_sales, 
+      sum(ri.price) taxable_sales,
       count(distinct og.id) tabs_closed
     FROM (order_item oi left join revenue_item ri on ri.id = oi.id), order_group og, person p 
     WHERE oi.order_group_id = og.id 

@@ -15,6 +15,7 @@ server_info = {}
 class server_inf(object):
     
   def __init__(self, server, sales, taxable_sales, **kv):
+    taxable_sales = taxable_sales or 0
     self.server = server
     self.presales = taxable_sales
     self.sales = sales + taxable_sales * texttab.TAXRATE
@@ -32,7 +33,9 @@ class server_inf(object):
       
   def tip_pct(self):
      if self.all_tips() is not None:
-       return self.all_tips() * 100/ self.presales
+       if self.presales:
+        return self.all_tips() * 100/ self.presales
+       else: return None
 
   def format(self):
     return '%s --  cash:%s   credit:%s   sales:%s   credit tips:%s   cash tips:%s   all tips:%s  tip%%: %s' % (
