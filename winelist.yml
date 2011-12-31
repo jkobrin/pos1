@@ -1,4 +1,9 @@
-﻿#domaine alfred unoaked chard malo inocculated
+﻿# east coast col de lan luna riposo/pinot noir sparkle. $10. Deep
+# strawberry to cherry flavour. Slightly soapy finish.
+# Concentrated sweetish fruit. Maybe good.
+# Socco. Sweet waxy bitterness. Don't care for it. $10, down to
+# 6.5
+#domaine alfred unoaked chard malo inocculated
 # chard
 #HRM REX goliath pinot noir 
 # cooke chateau du cas
@@ -16,14 +21,6 @@
 # - name: "Amarone 2006"
       #frontprice: 28
       #catalog:
-#    - name: "Vouvray Petillant
-#      listprice:
-#      qtprice: 
-#      byline: "Domaine Huet"
-#      grape: "chenin blanc"
-#      catalog: "polaner"
-#      mynotes: "nose flowers, honey, apply, stony, dry, nice medium bubbles. hint of chocolate"
-#      frontprice:  20
 #
 #    - name: "Pic Paul vdp"
 #      listprice:
@@ -2634,6 +2631,17 @@
       ordered: 
         - date: '3/12/11'
           qty: 3
+
+    - name: "Vouvray Petillant"
+      listprice: 44
+      qtprice: 14
+      byline: "by Domaine Huet - Vouvray, Loir Valley, France"
+      grape: "Chenin Blanc"
+      catalog: "polaner"
+      notes: "Lush, but nuanced nose of flowers & honey. Palate is apply, stony and dry, with soft bubbles. Hints of cream and chocolate on the finish."
+      mynotes: "nose flowers, honey, apply, stony, dry, nice medium bubbles. hint of chocolate"
+      frontprice:  20
+      bin: 4061
 
     - name: "Cremant de Bourgogne (Sparking Burgundy)"
       byline: "by Vissoux Pierre-Marie Chermette - Burgundy, France"

@@ -476,6 +476,15 @@
       else
       {
         add_to_order(button.id);
+        if (button.id == "tasting menu")
+        {
+          add_to_order("fish");
+          add_to_order("liver");
+          add_to_order("beef");
+          add_to_order("kraut");
+          add_to_order("cheese");
+          add_to_order("cream");
+        }  
       }
     }
 

@@ -9,7 +9,7 @@ def delivered(req, item_id):
 
     utils.execute('''
       UPDATE order_item oi
-      set oi.is_delivered =TRUE, oi.is_held = FALSE, oi.updated = NOW()
+      set oi.is_delivered = NOT oi.is_delivered, oi.is_held = FALSE, oi.updated = NOW()
       where oi.id = %(item_id)s
     ''' % locals())
 
@@ -31,7 +31,7 @@ def comped(req, item_id):
 
     utils.execute('''
       UPDATE order_item oi
-      set oi.is_comped =TRUE, oi.updated = NOW()
+      set oi.is_comped = NOT oi.is_comped, oi.updated = NOW()
       where oi.id = %(item_id)s
     ''' % locals())
     
