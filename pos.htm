@@ -515,7 +515,16 @@
 
     function refresh_order(add_item, remove_item)
     {
-      params="table="+g_currentTable;
+      if (popup && popup.table_id)
+      {
+        params="table="+popup.table_id;
+        popup.table_id = null;
+      }
+      else
+      {
+        params="table="+g_currentTable;
+      }
+
       if(add_item)
       {
         // add_item is just a name, get the full object
@@ -755,6 +764,7 @@
       popup = document.getElementById("orderitem_popup");
       popup.item_id = item_id;
       item = get_order_pane_item(item_id);
+      popup.table_id = item.table_id;
       menu_popup_caption = document.getElementById("orderitem_popup_caption");
       menu_popup_caption.innerHTML = "table: "+item.table_id + " - " + item.item_name;
       
@@ -897,7 +907,7 @@
     function plus_one()
     {
       item = get_order_pane_item(popup.item_id);
-      add_to_order(item.item_name, item.price);
+      add_to_order(item.item_name);
     }  
 
     function cancel_item()
