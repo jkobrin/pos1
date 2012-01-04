@@ -1,4 +1,4 @@
-set @the_tip = 522;
+set @the_tip = 201;
 
 create or replace view last_night_items
 as
@@ -22,7 +22,7 @@ where h.person_id = p.id
 
 create or replace view item_split
 as
-select lni_id, price / (count(p_id)+.8) split_price from person_items group by lni_id; 
+select lni_id, price / (count(p_id)) split_price from person_items group by lni_id; 
 
 
 select last_name, sum(split_price)/(select sum(price) from last_night_items) * @the_tip

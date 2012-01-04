@@ -5,6 +5,7 @@ import MySQLdb
 TAXRATE = .08625
 TEXTWIDTH = 18
 NUMWIDTH = 7 
+add_grat = False
 
 def index(req, table):
   return json.dumps(get_tab_text(table))
@@ -53,7 +54,9 @@ def get_tab_text(table, serverpin = None, cursor = None):
   notaxtotal = sum(item['price'] for item in items if item['name'].startswith('gift'))
   tax = round((foodtotal - notaxtotal) * TAXRATE, 2)
   gratuity = round(foodtotal * .18, 2)
-  total = foodtotal + tax #+grat
+  total = foodtotal + tax 
+  if add_grat:
+    total = total + gratuity
 
   foodtotal, tax, gratuity, total = (
     ('%.2f'%x).rjust(NUMWIDTH) for x in (foodtotal, tax, gratuity, total)
@@ -81,7 +84,8 @@ def get_tab_text(table, serverpin = None, cursor = None):
   tabtext += '\n' + \
     'SUBTOTAL'.ljust(TEXTWIDTH) + foodtotal + '\n'
   tabtext += 'TAX'.ljust(TEXTWIDTH) + tax + '\n'
-  #tabtext += 'GRATIUITY 18%'.ljust(TEXTWIDTH) + gratuity + '\n'
+  if add_grat:
+    tabtext += 'GRATIUITY 18%'.ljust(TEXTWIDTH) + gratuity + '\n'
   tabtext += divider
   tabtext += 'TOTAL'.ljust(TEXTWIDTH) + total + '\n'
   tabtext += '''

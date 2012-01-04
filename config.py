@@ -1,5 +1,4 @@
 
-
 import yaml, json
 from mylog import my_logger
 log = my_logger
