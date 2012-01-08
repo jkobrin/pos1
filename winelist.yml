@@ -95,6 +95,43 @@
 #      frontprice: 30
 #
 
+#    - name: "Fess Parker Chardonnay 2010"
+#      listprice: 
+#      qtprice: 
+#      byline: "by Santa Barbara County"
+#      grape: "
+#      catalog: "verity"
+#      mynotes: "From various lots within Parker vineyards Fess was actor - estate bottled - touch of french oak - pineapply, buttery"
+#      frontprice: 12 - #10.67 on 3
+#
+#    - name: "Sancerre 2010"
+#      listprice: 
+#      qtprice: 
+#      byline: "by Paul Prieur et Fils"
+#      grape: "
+#      catalog: "verity"
+#      mynotes: "Light flowers, peaches on the nose, fruity acidity on palate. hint of sweetness and peaches. Little bitterness."
+#      frontprice: 14.76  #176 #14 on 2 #13.33 on 3
+#
+#    - name: "Felino Vina Cobos 2010 Chardonay"
+#      listprice: 
+#      qtprice: 
+#      byline: "by Mendoza Argentine"
+#      grape: "
+#      catalog: "verity"
+#      mynotes: "Paul Hobbes from california - 2010 - skunky - heavy creamy body, medium oak, good fruit - smooth"
+#      frontprice: 13? 10.67? 
+#
+#    - name: "Dry Reisling 2009"
+#      listprice: 
+#      qtprice: 
+#      byline: "by Lemelson Vineyard - Willamette Valley, Oregon"
+#      grape: "
+#      catalog: "verity"
+#      mynotes: "certified organic and biodynamic - waxy, deisly nose. some stone fruit. nice"
+#      frontprice: 13.33 #12 on 2 - 11.33 on 3
+#
+
 #    - name: "Chardonnay Reserve 2010"
 #      listprice: 
 #      qtprice: 
@@ -155,7 +192,7 @@
 #      grape: "80% merlot, %20 cab franc"
 #      catalog: "Verity"
 #      mynotes: "Merlot nose, black cherry, dusty tanins, some decent grip"
-#      frontprice: 8 #2 = 7.33, 3=6.66
+#      frontprice: 8 #2 = 7.33, 3=6.67
 #
 #    - name: "Pinto Grigio 2010"
 #      listprice:
