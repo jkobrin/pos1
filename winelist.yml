@@ -402,16 +402,6 @@
 #      mynotes: "High acid, nice light grape flavor, little taninny brightness. Pinot noir-ish."
 #      frontprice: 8.66
 #
-#    - name: "White Gascony"
-#      listprice:
-#      qtprice: 
-#      byline: "by Domaine De Pajot - Gascony"
-#      grape: "Ugni Blanc / Colombard / SB"
-#      catalog: "polaner"
-#      mynotes: "Grapefruit. nice, acidity, some decent fruit. pleasant. Organic."
-#      frontprice: 6.67
-#      instock: 
-#      ordered: 
 #
 #    - name: "valpollicella ripaso"
 #      listprice:
@@ -1206,7 +1196,7 @@
 
     - name: "Chateauneuf-du-Pape 2006"
       listprice: 48
-      qtprice:  16
+      qtprice:  14
       byline: "by Dommain De Saint. Paul - Rhone Valley, France"
       grape: "Grenache, Syrah"
       catalog: "opici"
@@ -1307,7 +1297,7 @@
       grape: "Merlot"
       notes: "Lots of sweet berry fruit and light, smooth vanilla oak."
       catalog: "opici"
-      frontprice: 10.25
+      frontprice: 10.67 #2 9.33 #3 8.67
       bin: 202
 
     - name: "Merlot Maclise 2007"
@@ -1408,7 +1398,7 @@
       qtprice: 12
       byline: "by Bargetto - Lodi, California"
       grape: "Old Vine Zinfindel"
-      frontprice: 15
+      frontprice: 15 #3=14.25, 5=13.5
       catalog: "east coast specialty"
       notes: "Fruity, rustic nose. Heavy in the mouth with dark berries and rasins. Rich, but easy drinking."
       mynotes: "Fruit/Barnyard. Good rasiny/berry fruit, good balance. Easy drinking."
@@ -1448,7 +1438,7 @@
       grape: "Pinot Noir"
       notes: "Aromatic with subtle strawberry and rhubarb flavors. Soft tannins and tartness carry the lingering fruit."
       catalog: "opici"
-      frontprice: 13.25
+      frontprice: 15.34 #3 10
       bin: 210
 
     - name: "Pinot Evil"
@@ -1562,7 +1552,7 @@
       byline: "by Pere Alessandro - Piedmont, Italy"
       notes: "Barbera is grown side by side with the esteemed Barolo grape, Nebbiolo, on the hillsides around Alba. The wine is bold and full-bodied with fresh cherry flavors, good acidity, and soft tanins."
       catalog: "opici"
-      bin: 306
+      bin: 906
 
     - name: "Barbaresco 2005 - Rizzi"
       mynotes: "shoe polish, good dryness, decent tanins, some fruit, decent acidity."
@@ -1830,7 +1820,7 @@
       byline: "by Bodegas Pinord - Penedes, Spain"
       grape: "Tempranillo"
       catalog: "east coast specialty wines"
-      frontprice: 7.33
+      frontprice: 8  #3=7.6, 5=7.2, 10 = 6.8
       notes: "Smooth oaky vanilla and pure red fruit."
       mynotes: "smooth smoky vanilla, good fruit A"
       bin: 103
@@ -2005,7 +1995,7 @@
       qt: yes
       grape: "Malbec blend"
       catalog: "east coast spec. wines "
-      frontprice: 7 #
+      frontprice: 7.42 #3=7.05, 5=6.68, 10=6.3
       notes: "Fruity with mild tanins, and a hint of earth. Easy-going enjoyment."
       mynotes: "fruity, some good tanin, little earth, B+. Better than more expensive Cristobal"
       bin: 2071
@@ -2227,19 +2217,25 @@
       mynotes: "great heavy nose, lightish body - A-"
       grape: "Sauvingon Blanc"
 
+
+    - name: "Cotes de Gascogne 2010"
+      listprice:
+      qtprice: 
+      byline: "by Domaine De Pajot - Gascony, France"
+      grape: "Ugni Blanc, Colombard"
+      catalog: "polaner"
+      notes: "Certified organic, this is a fragant, light and fruity wine made from the same grapes as Cognac. Interesting and easy drinking."
+      frontprice: 6.67
+      bin: 308
+
     - name: "Cotes de Gasconge 2010"
       byline: "by Domaine Des Cassagnoles - Gascony, France"
       notes: "A fragant, light and fruity wine made from the same grapes as Cognac. Interesting and easy drinking."
       listprice: 22
       qtprice: 8
-      catalog: ""
+      catalog: "weygandt"
       frontprice: 8
       grape: "Ugni Blanc, Colombard"
-      bin: 308
-      instock: 12
-      ordered: 
-        - date: '4/07/11'
-          qty: 12
 
     - name: "Viognier 2010"
       listprice: 25
@@ -2395,7 +2391,7 @@
       catalog: "opici"
       listprice: 26
       qtprice: 9
-      frontprice: 9
+      frontprice: 9 #2 8.33 #5 6.67
       notes: "Great racy nose with lime, mango, and fresh-cut grass. Grapefruit and pineapple in the mouth."
       mynotes: "great racy nose with lime, mango, grass, cat pee. Grapefruit and pineapple mouth. A-"
       bin: 211
@@ -2502,10 +2498,10 @@
       catalog: "east coast specialty wines page 3, B+"
       listprice: 26
       qtprice: 9
-      frontprice: 10
+      frontprice: 10  #3=8.5, 5=7 +1, 10=6.50 +2
       notes: "Light tropical fruit. The palate is mild but refreshing."
       mynotes: "good light tropical fruit, good acid, mild but zingy"
-      bin: 800
+      bin: 306
       instock: 12
       ordered: 
         - date: '3/30/11'

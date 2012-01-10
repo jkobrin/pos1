@@ -59,7 +59,15 @@ def prompt():
 
 
 def get_server_info(name):
-    return server_info.get(name) 
+    name = name.lower()
+    results = [sname for sname in server_info if sname.startswith(name)]
+    if len(results) == 1:
+      return server_info.get(results[0]), None
+    elif len(results) > 1:
+      return None, str(results) + '?'
+    else:
+      return None, 'no matching server with sales'
+
 
 def addto(category, num):
     try: num = float(num)
@@ -87,10 +95,9 @@ def respond(said):
         grand_total_tips = sum(inf.all_tips() for inf in server_info.values())
         print 'all tips: %s' % grand_total_tips
     else:
-      current_server_info = get_server_info(said)
+      current_server_info, resp = get_server_info(said)
       if current_server_info:
         resp = gostate(take_cash)
-      else: resp = 'no such server had sales tonight'
   elif state == take_cash:
     if not said: resp = gostate(take_name)
     else: resp = addto('cash', said)
