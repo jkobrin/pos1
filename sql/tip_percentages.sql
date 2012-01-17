@@ -1,4 +1,4 @@
-set @the_tip = 173;
+set @the_tip = 135.145;
 
 create or replace view last_night_items
 as
@@ -28,10 +28,13 @@ create or replace view item_split
 as
 select lni_id, price / sum(person_share) split_price from person_items group by lni_id; 
 
-
-select last_name, sum(split_price)/(select sum(price) from last_night_items) * @the_tip * person_share
+select '--------',dayname(min(created)), date(min(created)),'------------' from last_night_items;
+select last_name, round(sum(split_price)/(select sum(price) from last_night_items) * @the_tip * person_share)
 from 
   item_split spl
   ,person_items pi
 where spl.lni_id = pi.lni_id
+and person_share !=0
 group by pi.p_id;
+
+select 'total', round(@the_tip) from dual;;
