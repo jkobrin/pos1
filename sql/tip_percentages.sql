@@ -1,19 +1,19 @@
-set @the_tip = 135.145;
+set @the_tip = 167.52;
 
 create or replace view last_night_items
 as
 select * from order_item
 where is_cancelled = False
   and item_name not like 'gift%'
-  and created > now() - INTERVAL '24' HOUR
-  #and date(created- interval '8' hour) =  '2012-1-11'
+  and DATE(created- INTERVAL '8' HOUR) =  DATE(NOW()) - INTERVAL '1' DAY
+  #and DATE(created- INTERVAL '8' HOUR) =  '2012-1-18'
 ;
 
 create or replace view person_items
 as
 select lni.id as lni_id, lni.price, p.id as p_id, last_name
   , if(p.last_name = 'Barbagallo', 0,
-    if(p.last_name = 'Smith', .5, 
+    if(p.last_name = 'Smith', .8, 
     if(p.last_name = 'Addy', .5, 
         1)))person_share
 from 

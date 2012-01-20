@@ -1160,7 +1160,7 @@
       frontprice: 4
       mynotes: "six case closeout deal"
       notes: "Full-bodied and bright."
-      bin: 1001
+      bin:
 
     - name: "Haut-Medoc 2007"
       listprice: 35

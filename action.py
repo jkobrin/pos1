@@ -49,12 +49,16 @@ def order(req, table, additem=None, removeitem=None, price=None):
     ''' % locals())
 
     # close tables with no un-cancelled items left
-    # TODO: make this query more selective to avoid search work
+    # TODO: make sure this works...Also: is this really
+    # necessary? Could just leave it open.
     cursor.execute('''
       UPDATE order_group og
-      set og.is_open = False, updated = now()
-      where og.table_id = "%(table)s"
-      and og.id not in (select order_group_id from order_item oi where oi.is_cancelled = False);
+      set og.is_open = False, updated = now(), closedby = null
+      where id = (select order_group_id from order_item oi where oi.id = %(removeitem)s)
+      and NOT EXISTS (
+        select 1 from order_item oi 
+        where order_group_id = og.id
+        and oi.is_cancelled = False );
     ''' % locals())
 
 
@@ -82,4 +86,4 @@ def order(req, table, additem=None, removeitem=None, price=None):
 
 
 if __name__ == '__main__':
-  print order(None, 'XRTl', additem='food')
+  print order(None, 'XRT', additem='food')
