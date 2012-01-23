@@ -12,7 +12,41 @@
 # bodied
 # laurie reccomends gragnano and french malbec chateua du cedre
 #
+#      pere jacques -- very sweet carmelly, yeasty -- case 55,
+#      sophie - very light, little citrusy, aged in 20% chardonnay
+#      with orange peel
+#      pepe nero -  little bitter, nothing impressive
+#      matilda - funky sweet, light bitter
+#      vintage    case 55 12oz, 101.95 sixtel
 #
+#    - name: "Handcraft Petite Sirah"
+#      listprice: 26
+#      qtprice: 
+#      byline: ""
+#      grape: "Petite Sirah / Zinfandel"
+#      catalog: "southern"
+#      mynotes: "Smoky, sweet concentrated fruit, hint of zinfandel raisin"
+#      frontprice: 10, #2=8, 3=7.33
+#
+#    - name: "Bin 555"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: ""
+#      catalog: "southern"
+#      mynotes: "Good deep grapey nose, some sweet concentration, licorice, black berry. good."
+#      frontprice: 8.67 #2=8 5=.7.33, 7=6, 15=5.67
+#
+#    - name: "Baron De Escal"
+#      listprice:
+#      qtprice: 
+#      byline: "Rioja"
+#      grape: "Tempanillo, Mazuelo, Garnacha"
+#      catalog: "east coast"
+#      mynotes: "light body, little fruit, some harshish tanins."
+#      frontprice: 6.5
+#
+
 # - name: "Teroldego Rotaliano"
       #frontprice: 14,67 #six pack #12=13.32
       #mynotes: "nice round dark fruit. flowers black cherry, berries, pomeganite. Similar to Morgon."
@@ -21,6 +55,51 @@
 # - name: "Amarone 2006"
       #frontprice: 28
       #catalog:
+
+#    - name: "Verdejo 2010"
+#      listprice:
+#      qtprice: 
+#      byline: "Protos - Rueda"
+#      grape: ""
+#      catalog: "winebow"
+#      mynotes: "Aged on lees for three months. Good acid, tiny bitterness. some waxy apple, pears?. Heavy body. Glycerol sweetness."
+#      frontprice: 10.66 #2=10 3=9.33
+#
+#    - name: "Tinto Fino 2009"
+#      listprice:
+#      qtprice: 
+#      byline: "Protos - Ribera Del Duero"
+#      grape: ""
+#      catalog: "winebow"
+#      mynotes: "Buttery, touch of menthol, good concentration, dark cherry. 60 40 oak. medium toast. Nice mild vanilla toast. B+"
+#      frontprice: 12 #2=11
+#
+#    - name: "Crianza 2007"
+#      listprice:
+#      qtprice: 
+#      byline: "Protos - Ribera Del Duero"
+#      grape: ""
+#      catalog: "winebow"
+#      mynotes: "Good meaty nose, deep grapey flavor, little mint, mild dusty small tanins. Touch of oak. B"
+#      frontprice: 21
+#
+#    - name: "Reserva 2005"
+#      listprice:
+#      qtprice: 
+#      byline: "Protos - Ribera Del Duero"
+#      grape: "Meaty, grapey nose. Lots of dark fruit, some concentration. mouth filling grippy but soft dusty tanins"
+#      catalog: "winebow"
+#      mynotes: ""
+#      frontprice: 34
+#
+#    - name: "Gran Reserva 2004"
+#      listprice:
+#      qtprice: 
+#      byline: "Protos - Ribera Del Duero"
+#      grape: ""
+#      catalog: "winebow"
+#      mynotes: "60 yr vine, 2yrs oak, 3yrs bottle. Hint of menthol. Grape. Good fruit concentration. Soft but mouth filling tanins."
+#      frontprice: 57
 #
 #    - name: "Pic Paul vdp"
 #      listprice:
