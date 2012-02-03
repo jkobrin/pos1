@@ -9,10 +9,6 @@ def index(req, lag=0):
 
   results = queries.nightly_sales_by_server(lag_hours=lag)
 
-  utils.execute('''
-    create or replace view revenue_item as select * from order_item where is_comped = false and is_cancelled = false and item_name not like 'gift%';
-  ''');
-
   seven_day_total = utils.select('''
     SELECT sum(price) total  
     FROM revenue_item oi, order_group og
@@ -36,16 +32,7 @@ def index(req, lag=0):
     label=False
   )
 
-  day_totals = utils.select('''
-    SELECT sum(price) total, dayname(oi.created), date(oi.created) date
-    FROM revenue_item oi, order_group og
-    WHERE oi.order_group_id = og.id 
-    and oi.is_cancelled = false
-    and oi.is_comped = false
-    group by date(oi.created - INTERVAL '16' HOUR)''',
-    incursor=None,
-    label=False
-  )
+  day_totals = utils.select('''select * from nd_tots''', incursor=None, label=False)
   
   grand_total = utils.select('''
     SELECT sum(price) total  
@@ -87,7 +74,7 @@ def index(req, lag=0):
 
     utils.tohtml(
       "Day Totals",
-      ('Total', 'Day'), 
+      ('Dinner', 'Day', 'Date', 'Lunch'), 
       day_totals
     ) +
     '''</body></html>'''
