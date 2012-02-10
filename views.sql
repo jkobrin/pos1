@@ -1,11 +1,19 @@
 
 create or replace view revenue_item as select * from order_item where is_comped = false and is_cancelled = false and item_name not like 'gift%';
 
+create or replace view sales_by_week
+as
+select sum(price) total, year(created) year, week(created) week
+from
+revenue_item
+group by year(created), week(created)
+;
+
 
 
 create or replace view night_tots
 as
-SELECT sum(price) total, dayname(oi.created) dname, date(og.created) dat
+SELECT sum(price) total, dayname(og.created) dname, date(og.created) dat
 FROM revenue_item oi, order_group og
 WHERE oi.order_group_id = og.id 
 and (time(og.created) not between '06:00:00' and '16:00:00')
@@ -13,7 +21,7 @@ group by date(og.created - INTERVAL '6' HOUR);
 
 create or replace view day_tots
 AS
-SELECT sum(price) total, date(og.created) dat
+SELECT sum(price) total, dayname(og.created) dname, date(og.created) dat
 FROM revenue_item oi, order_group og
 WHERE oi.order_group_id = og.id 
 and (time(og.created) between '06:00:00' and '16:00:00')
@@ -22,4 +30,8 @@ group by date(og.created);
 create or replace view nd_tots
 as
 SELECT nt.*, dt.total as dtotal from
-(night_tots nt left outer join day_tots dt on nt.dat = dt.dat);
+(night_tots nt left outer join day_tots dt on nt.dat = dt.dat)
+union
+SELECT nt.total, dt.dname, dt.dat, dt.total as dtotal from
+(day_tots dt left outer join night_tots nt on nt.dat = dt.dat)
+;

@@ -1308,6 +1308,17 @@
       catalog: "Jenny & Francois one of the last pages"
 
 
+    - name: "Handcraft Petit Sirah"
+      listprice: 28
+      qtprice: 9
+      qt: yes
+      byline: "by Handcraft"
+      notes: ""
+      grape: "Petit Sirah"
+      catalog: ""
+      frontprice: 12
+      bin: 1
+
     - name: "Petit Sirah 2008"
       listprice: 44
       qtprice: 14
