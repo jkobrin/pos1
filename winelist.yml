@@ -2184,7 +2184,7 @@
       frontprice: 10 
       story: "they are growers primarily, keep choice fruit for own label" #get it
       mynotes: "Light interesting nose, mild sweetness, and fresh round fruit flavors."
-      bin:
+      bin: 118
       instock: 12
       ordered:  
         - date: "4/7/11"
@@ -2298,8 +2298,8 @@
 
 
     - name: "Cotes de Gascogne 2010"
-      listprice:
-      qtprice: 
+      listprice: 20
+      qtprice: 7
       byline: "by Domaine De Pajot - Gascony, France"
       grape: "Ugni Blanc, Colombard"
       catalog: "polaner"
