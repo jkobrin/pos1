@@ -2227,8 +2227,8 @@
 
 
     - name: "Cotes de Gascogne 2010"
-      listprice:
-      qtprice: 
+      listprice: 20
+      qtprice: 7
       byline: "by Domaine De Pajot - Gascony, France"
       grape: "Ugni Blanc, Colombard"
       catalog: "polaner"
