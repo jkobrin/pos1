@@ -13,7 +13,7 @@ def nightly_sales_by_server(label=False, lag_hours=16):
     AND oi.is_cancelled = False
     AND oi.is_comped = False
     AND og.closedby = p.id 
-    AND date(oi.created - interval '16' HOUR) = date(now() - INTERVAL '%(lag_hours)s' HOUR)
+    AND date(oi.created - interval '6' HOUR) = date(now() - INTERVAL '%(lag_hours)s' HOUR)
     GROUP BY p.id, p.last_name;''' % locals(),
     incursor=None,
     label=label

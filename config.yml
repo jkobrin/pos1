@@ -133,7 +133,23 @@ menu:
             - {name: gift100, price: 100}
         - name: specials
           items: 
-            - {name: salmon tartar, price: 7}
+            - {name: salmon tartar, price: 9}
+            - {name: egg purg, price: 6}
+        - name: lunch
+          items: 
+            - {name: salmon_san, price: 8}
+            - {name: burrata_san, price: 9}
+            - {name: prosciutto_san, price: 10}
+            - {name: spanish_san, price: 9}
+            - {name: soppresatta_san, price: 7}
+            - {name: cuban_san, price: 9}
+            - {name: goat_mush_san, price: 8}
+            - {name: pork_san, price: 9}
+            - {name: beef_san, price: 10}
+            - {name: ceasar_lun, price: 8}
+            - {name: beet_ora_lun, price: 6}
+            - {name: copa_goat_lun, price: 9}
+            - {name: soup, price: 6}
         #- name: breakfast
         #  items: 
         #    - {name: bacon egg, price: 6}

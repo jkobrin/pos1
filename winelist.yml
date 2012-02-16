@@ -1239,7 +1239,7 @@
       frontprice: 4
       mynotes: "six case closeout deal"
       notes: "Full-bodied and bright."
-      bin: 1001
+      bin:
 
     - name: "Haut-Medoc 2007"
       listprice: 35
@@ -1386,6 +1386,17 @@
       frontprice: 23
       catalog: "Jenny & Francois one of the last pages"
 
+
+    - name: "Handcraft Petit Sirah"
+      listprice: 28
+      qtprice: 9
+      qt: yes
+      byline: "by Handcraft"
+      notes: ""
+      grape: "Petit Sirah"
+      catalog: ""
+      frontprice: 12
+      bin: 1
 
     - name: "Petit Sirah 2008"
       listprice: 44
@@ -1992,7 +2003,7 @@
       notes: "Hints of coffee and spice. Firm structure and good fruit."
       catalog: "tempanillo page 12 "
       frontprice: 13.33
-      bin: 115
+      bin: 
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -2027,11 +2038,8 @@
       catalog: "tempranillo page 7"
       frontprice: 6.66
       mynotes: "lots of sweet dark fruit"
-      bin: 
+      bin: 108
       instock: 
-      ordered: 
-        - date: '4/2/11'
-          qty: 12
 
     - name: "Borsao 2009"
       listprice: 21

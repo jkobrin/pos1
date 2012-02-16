@@ -12,9 +12,9 @@ def index(req):
 	last_name, 
 	sum(hours_worked) as hours_worked 
 	from hours_worked 
-  where week(now()) - week(intime) < 3
-  group by week(intime), last_name 
-	order by week(intime) desc, last_name''',
+  where (week(now()) - week(intime)+52)%52 < 3
+  group by year(intime), week(intime), last_name 
+	order by year(intime) desc, week(intime) desc, last_name''',
     incursor=None,
     label=False
   )
@@ -26,7 +26,7 @@ def index(req):
 	time_out, 
 	hours_worked 
 	from hours_worked 
-  where week(now()) - week(intime) < 3
+  where (week(now()) - week(intime)+52)%52 < 3
 	order by week(intime) desc, last_name''',
     incursor=None,
     label=False
