@@ -19,14 +19,124 @@
 #      matilda - funky sweet, light bitter
 #      vintage    case 55 12oz, 101.95 sixtel
 #
-#    - name: "Handcraft Petite Sirah"
-#      listprice: 26
+#
+#    - name: "Artesa Chardonnay 2010"
+#      listprice:
+#      qtprice: 
+#      byline: "Artesa - Carneros"
+#      grape: ""
+#      catalog: "southern"
+#      mynotes: "funky, peachy fruity, creamy, light oak. Not bad."
+#      frontprice: 14.67 #2=14 #3=12.67
+#
+#    - name: " Chardonnay 2010"
+#      listprice:
+#      qtprice: 
+#      byline: " franciscan estate, oakville - Napa"
+#      grape: ""
+#      catalog: "southern"
+#      mynotes: "creamy hint of vanilla and butter, nice low fruit"
+#      frontprice:  11.33
+#
+#    - name: "Red Diamond Malbec"
+#      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: "Petite Sirah / Zinfandel"
+#      grape: ""
 #      catalog: "southern"
-#      mynotes: "Smoky, sweet concentrated fruit, hint of zinfandel raisin"
-#      frontprice: 10, #2=8, 3=7.33
+#      mynotes: "Jammy, bubble gum, sweet, little tanininy finish"
+#      frontprice: 7.33
+#
+#    - name: "Trapiche Oak Cask Malbec"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: ""
+#      catalog: "southern"
+#      mynotes: "Med body bit of spice , not too much oak, "
+#      frontprice: 7.68 #2=7.35 #5=6.72 #10=5.93
+#
+#    - name: "Castel Malbec VdP"
+#      listprice:
+#      qtprice: 
+#      byline: "south of france"
+#      grape: ""
+#      catalog: "southern"
+#      mynotes: "Black cherry lipstic, violets, strong gummy tanins, acid"
+#      frontprice: 8 #36.67
+#
+#    - name: "Prisoner 2010"
+#      listprice:
+#      qtprice: 
+#      byline: "orin swift - napa valley, California"
+#      grape: "44% zuin, 26% cab, 18% cab"
+#      catalog: "southern"
+#      mynotes: "light nose of pepper and musk, very concentrated palate, bit of pepper and some burn, blackberry jam, not too tannic"
+#      frontprice: 30 #
+#
+#    - name: "The Sum"
+#      listprice:
+#      qtprice: 
+#      byline: "Tuck Beckstaffer 75 wine company -t. helenam cal"
+#      grape: "Cab Sauv, petit sirah, sirah""
+#      catalog: "southern"
+#      mynotes: "heavy cabby sweetness, lively, nice chewy finish"
+#      frontprice: 16.33
+#
+#    - name: "Franc 2007"
+#      listprice:
+#      qtprice: 
+#      byline: "costention - Healdsburg, Ca"
+#      grape: "Cab Franc"
+#      catalog: "southern"
+#      mynotes: "Hint of mint on the nose, oaky, lightish, but sweet concentration""
+#      frontprice:  10 #3=9.33
+#
+#    - name: "Prum Blue"
+#      listprice:
+#      qtprice: 
+#      byline: "S.A. Prum - Mosel, Germany"
+#      grape: ""
+#      catalog: "southern"
+#      mynotes: ""
+#      frontprice: 13.33 #3 = 12.66
+#
+#    - name: "Leonard Kreusch Reisling 2007"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: ""
+#      catalog: "southern"
+#      mynotes: ""
+#      frontprice: 7.33
+#
+#    - name: ""
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: ""
+#      catalog: "southern"
+#      mynotes: ""
+#      frontprice: 
+#
+#    - name: ""
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: ""
+#      catalog: "southern"
+#      mynotes: ""
+#      frontprice: 
+#
+#    - name: ""
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: ""
+#      catalog: "southern"
+#      mynotes: ""
+#      frontprice: 
+#
 #
 #    - name: "Bin 555"
 #      listprice:
