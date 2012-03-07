@@ -12,6 +12,126 @@
 # bodied
 # laurie reccomends gragnano and french malbec chateua du cedre
 #
+#    - name: "Boschendal Chardonnay"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: "Chardonnay"
+#      catalog: "verity"
+#      mynotes: "iNose of light tropical fruit and wax. Palate sweetish and little bitter. hint of oak maybe. med acid."
+#      frontprice: 11.33 #2=10.67, #3=10
+
+#    - name: "Patz and hall 2009"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: "Chardonnay"
+#      catalog: "verity"
+#      mynotes: "Bit of funk and golden apple, med oak, complex but light, well balanced"
+#      frontprice: 
+
+
+#    - name: ""
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: ""
+#      catalog: "verity"
+#      mynotes: ""
+#      frontprice:
+
+
+#    - name: "nofo"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: "chardonnay with peach extract"
+#      catalog: "vineyard 48"
+#      mynotes: "plain white with peachy nose. nothing great"
+#      frontprice: 7.58 #normailly #9.66
+
+
+#    - name: "reisling 2010"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: "reisling"
+#      catalog: "vineyard 48"
+#      mynotes: "slightly waxy reisling nose - crisp, lightly fruited,  tiny bit spritzy, honey finish, B+"
+#      frontprice: 11.33
+
+#    - name: "table white"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: "51% reisling, 26% sauvgnon blanc, 23% chardonnay"
+#      catalog: "vineyard 48"
+#      mynotes: ""
+#      frontprice: 6.83
+
+
+#    - name: "sauvignon blanc 2010"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: "Sauvngon Blanc"
+#      catalog: "vineyard 48"
+#      mynotes: "pineapple and musky nose - nice acidity, decent"
+#      frontprice:  #ret 21.99 #11.55
+
+
+#    - name: "48 RED"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: "55% cabernet sauv, 25% cab franc, 20% meerlot"
+#      catalog: "vineyard 48"
+#      mynotes: "meaty nose, lighlty peppery, hint of fresh herbs, little oak, very french"
+#      frontprice: 6.83
+
+
+
+#    - name: "cabernet sauvingon"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: "cabernet sauv"
+#      catalog: "vineyard 48"
+#      mynotes: "sweet, fruity, light finish"
+#      frontprice: 10.28
+
+
+
+#    - name: "merlot 2007"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: "merlot "
+#      catalog: "vineyard 48"
+#      mynotes: "sweet, fruity, light finish, nicre balance"
+#      frontprice: 22
+
+#    - name: "caberbet 2007"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: "cab sauv"
+#      catalog: "vineyard 48"
+#      mynotes: "nice, but nor unusual"
+#      frontprice: 21
+
+
+
+
+
+
+
+
+
+
+
+
+
 #      pere jacques -- very sweet carmelly, yeasty -- case 55,
 #      sophie - very light, little citrusy, aged in 20% chardonnay
 #      with orange peel
@@ -1398,6 +1518,17 @@
       frontprice: 12
       bin: 1
 
+    - name: "Vineyard 48 Red"
+      listprice: 22
+      qtprice: 8
+      qt: yes
+      byline: "by Vineyard 48"
+      notes: ""
+      grape: "55% Cabernet Sauvignon, 25% Cabernet Franc, 20% Merlot"
+      catalog: ""
+      frontprice: 7
+      bin: 100
+
     - name: "Petit Sirah 2008"
       listprice: 44
       qtprice: 14
@@ -2058,7 +2189,7 @@
 
     - name: "Camins del Priorat"
       listprice: 34
-      qtprice: 11
+      qtprice: 9
       byline: "by Alvaro Palacios - Priorat, Spain"
       grape: "60% Carrignan, 30% Grenache, 5% Cab Sauv, 5% P. Sirah"
       catalog: "polaner"
