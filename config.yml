@@ -64,9 +64,9 @@ menu:
               price: 6
             - {name: salmon, price: 7}
             - {name: foie gras, price: 16}
-            - {name: caesar salad, price: 8}
+            - {name: warm salad, price: 9}
             - {name: burrata , price: 14}
-            - {name: smoked anchovies, price: 6}
+            - {name: peppers, price: 7}
             - {name: patatas bravas, price: 5}
             - {name: meatballs, price: 8}
             - {name: empanada, price: 7}
@@ -133,6 +133,7 @@ menu:
             - {name: gift100, price: 100}
         - name: specials
           items: 
+            - {name: extras, price: 1}
             - {name: salmon tartar, price: 9}
             - {name: egg purg, price: 6}
         - name: lunch
