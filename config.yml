@@ -77,6 +77,7 @@ menu:
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
             - {name: truffle rib, price: 19}
+            - {name: rib_tapa, price: 12}
             - {name: oxtail, price: 9}
             - {name: chicken, price: 18}
             - {name: bread, price: 3}
@@ -133,6 +134,7 @@ menu:
             - {name: gift100, price: 100}
         - name: specials
           items: 
+            - {name: discount, price: -1}
             - {name: extras, price: 1}
             - {name: salmon tartar, price: 9}
             - {name: egg purg, price: 6}
