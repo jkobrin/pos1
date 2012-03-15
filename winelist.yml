@@ -185,24 +185,6 @@
 #      mynotes: "Black cherry lipstic, violets, strong gummy tanins, acid"
 #      frontprice: 8 #36.67
 #
-#    - name: "Prisoner 2010"
-#      listprice:
-#      qtprice: 
-#      byline: "orin swift - napa valley, California"
-#      grape: "44% zuin, 26% cab, 18% cab"
-#      catalog: "southern"
-#      mynotes: "light nose of pepper and musk, very concentrated palate, bit of pepper and some burn, blackberry jam, not too tannic"
-#      frontprice: 30 #
-#
-#    - name: "The Sum"
-#      listprice:
-#      qtprice: 
-#      byline: "Tuck Beckstaffer 75 wine company -t. helenam cal"
-#      grape: "Cab Sauv, petit sirah, sirah""
-#      catalog: "southern"
-#      mynotes: "heavy cabby sweetness, lively, nice chewy finish"
-#      frontprice: 16.33
-#
 #    - name: "Franc 2007"
 #      listprice:
 #      qtprice: 
@@ -1724,6 +1706,28 @@
         - date: '3/30/11'
           qty: 12
 
+    - name: "The Prisoner 2010"
+      listprice: 55
+      qtprice: 16
+      byline: "by Orin-Swift - Napa Valley, California"
+      grape: "Zinfindel, Cabernet Sauvignon, Merlot"
+      frontprice: 30
+      catalog: "southern"
+      notes: ""
+      mynotes: ""
+      bin: 730
+
+    - name: "The Sum"
+      listprice: 34
+      qtprice: 11
+      byline: "by Tuck Beckstoffer - St. Helena, California"
+      grape: "Cabernet Sauvignon, Merlot, Cabernet Franc"
+      frontprice: 15
+      catalog: "southern"
+      notes: ""
+      mynotes: ""
+      bin: 731
+
     - name: "2007 Bargetto Zinfindel"
       listprice: 34
       qtprice: 12
@@ -2643,6 +2647,16 @@
       frontprice: 8.67
       bin: 206
 
+    - name: "Patz and Hall 2009"
+      listprice: 36
+      qtprice: 13
+      byline: ""
+      grape: "Chardonnay"
+      catalog: "verity"
+      mynotes: "Bit of funk and golden apple, med oak, complex but light, well balanced"
+      frontprice: 17.5
+
+
     - name: "Angeline Sauvignon Blanc -Russian River"
       mynotes: "Light tropical fruit, touch of cat pee, light body, mild acid. Touch of bitterness. B+"
       catalog: "opici page 383"
@@ -3305,11 +3319,18 @@
         - date: '3/30/11'
           qty: 24
 
+
+    - name: "St Louis Kriek Premium Lambic Belgian Ale with Cherries"
+      byline: "by Castle Brewery - Van Honsebrouck, Belgium"
+      listprice: 12
+      frontprice: 5.08
+      bin: 999
+
     - name: "Kasteel Rouge Belgian Cherry Ale" #with added cherry 74.50 12 oz
       byline: "by Brouwerij Van Honsebrouck N.V. - Ingelmunster, Belgium."
       listprice: 8
       frontprice: 3.10 
-      bin: 999
+      bin:
       instock:  
       ordered: 
         - date: '3/30/11'
