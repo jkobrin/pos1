@@ -18,18 +18,26 @@
 #      byline: ""
 #      grape: "Chardonnay"
 #      catalog: "verity"
-#      mynotes: "iNose of light tropical fruit and wax. Palate sweetish and little bitter. hint of oak maybe. med acid."
+#      mynotes: "Nose of light tropical fruit and wax. Palate sweetish and little bitter. hint of oak maybe. med acid."
 #      frontprice: 11.33 #2=10.67, #3=10
 
-#    - name: "Patz and hall 2009"
-#      listprice:
+#    - name: "Game Keeper's Shiraz"
+#      listprice: 21
+#      qtprice: 7
+#      byline: "Australia"
+#      grape: "Shiraz"
+#      catalog: "southern"
+#      mynotes: "Lots of med dark fruit, med acid, Some fresh fruit. Hint of coffee."
+#      frontprice: 7
+
+#    - name: "Chardonnay 2009"
+#      listprice: 36
 #      qtprice: 
-#      byline: ""
+#      byline: "Patz and Hall - Sonoma Coast, California"
 #      grape: "Chardonnay"
 #      catalog: "verity"
 #      mynotes: "Bit of funk and golden apple, med oak, complex but light, well balanced"
-#      frontprice: 
-
+#      frontprice: 17.5
 
 #    - name: ""
 #      listprice:
@@ -91,7 +99,7 @@
 
 
 
-#    - name: "cabernet sauvingon"
+#    - name: "cabernet sauvignon"
 #      listprice:
 #      qtprice: 
 #      byline: ""
@@ -358,7 +366,61 @@
 #      mynotes: ""
 #      frontprice: 13.33 
 #
+#    - name: "Ruby Port"
+#      listprice:
+#      qtprice: 
+#      byline: "Niepoort - Portugal"
+#      grape: ""
+#      catalog: "Polaner"
+#      mynotes: "Good fresh fruit to it, not too sweet, light tanins. More tanins would be nice. The Tawny is a bit too simple and sweet."
+#      frontprice: 10
+#
+#    - name: "Ferrer Crianza 2008"
+#      listprice: 34
+#      qtprice: 11
+#      byline: "Jose Ferrer - Mallorca, Spain"
+#      grape: "53% Manto Negro, 22% Cabernet Sauvignon, 19% Tempanillo, 3% Callet, 2% Syrah"
+#      catalog: "Polaner"
+#      mynotes: "Nose is oaky with musty fruit, palate has some jammyness, nutty and well-balanced. Very nice."
+#      frontprice: 16 #2=14.66
+#
+#    - name: "Stafford Hill Pinot Noir 2009"
+#      listprice: 25
+#      qtprice: 9
+#      byline: "Stafford Hill - Eola-Amity Hills, Oregon"
+#      grape: "Pinot Noir"
+#      catalog: "Polaner"
+#      mynotes: "Wonderfully earthy, medium body, medium acid with raspberry and spice. Dijon clones."
+#      frontprice: 10 #3=8.66, #5=8, #10=7.66
+#
+#    - name: "Wyatt Cabernet Sauvignon 2010"
+#      listprice: 25
+#      qtprice: 9
+#      byline: "Wyatt - California"
+#      grape: "Cabernet Sauvignon
+#      catalog: "Polaner"
+#      mynotes: "Subtle, medium body, few tanins. nice."
+#      frontprice: 10 #3=8.66, #5=8, #10=7.66
+#
+#    - name: "Verdejo 2011"
+#      listprice: 22
+#      qtprice: 7
+#      byline: "Rey Santo - Rueda, Spain"
+#      grape: "Verdejo, Viura"
+#      catalog: "Polaner"
+#      mynotes: "SB tropical fruit, low acid, candied heavy body."
+#      frontprice: 8 #3=7.33 #5=6.66 #10=6
+#
 
+#    - name: "Mokora Txakolina"
+#      listprice: 28
+#      qtprice: 10
+#      byline: "Getariako"
+#      grape: "Txakoli"
+#      catalog: "Polaner"
+#      mynotes: "Lemony and bright - very nice."
+#      frontprice: 11.33 #3=10
+#
 
 #    - name: "Croze-Hermitage"
 #      listprice:
@@ -1335,7 +1397,7 @@
 #      catalog: "winebow"
 #      frontprice: 7.33
 #
-#    - name: "Cabernet Sauvingon 2006"
+#    - name: "Cabernet Sauvignon 2006"
 #      listprice: 26
 #      qtprice: 10
 #      byline: "by Healdsburg Ranches - Sonoma, California"
@@ -1654,12 +1716,12 @@
         - date: "3/30/11"
           qty: 6
 
-    - name: "Cabernet Sauvingon 2009"
+    - name: "Cabernet Sauvignon 2009"
       listprice: 32
       byline: "by Domaine Napa - Napa Valley"
       catalog: "opici page 395 "
       frontprice: 14
-      grape: "Cabernet Sauvingon"
+      grape: "Cabernet Sauvignon"
       mynotes: "note: A- good round fruit, mellow oak"
       ordered: no
 
@@ -1668,7 +1730,7 @@
       qtprice: 12
       qt: yes
       byline: "Napa Valley, California"
-      grape: "Cabernet Sauvingon"
+      grape: "Cabernet Sauvignon"
       catalog: "opici "
       frontprice: 13.33
       notes: ""
@@ -1680,7 +1742,7 @@
       qtprice: 12
       qt: yes
       byline: "Napa Valley, California"
-      grape: "Cabernet Sauvingon"
+      grape: "Cabernet Sauvignon"
       catalog: "opici "
       frontprice: 14.66 #12.67 #13.33
       notes: "Good California Cab with lots of lively and jammy fruit and smooth tannins."
@@ -1739,6 +1801,55 @@
         - date: '3/30/11'
           qty: 12
 
+    - name: "Sauvignon Blanc 2010"
+      listprice: 
+      byline: "Mercer - Columbia Valley"
+      catalog: "winebow"
+      mynotes: "bit low in acid"
+      frontprice: 10.66 #2= 10, #3=9.33
+      bin:
+
+    - name: "Pinot Gris"
+      listprice: 
+      byline: "Mercer - Columbia Valley"
+      catalog: "winebow"
+      mynotes: "Candied, but zingy fruits on the nose. Full candied body."
+      frontprice: 10.66 #2= 10, #3=9.33
+      bin:
+
+    - name: "Merlot 2008"
+      listprice: 
+      byline: "Mercer - Columbia, Valley "
+      catalog: "winebow"
+      mynotes: "Nice spicey, tanniny nose, sweet Jumilla type notes. Vanilla, nice tanin structure, not as sweet as rutherford, but some sweetness, good spice."
+      frontprice: 15 #2=13.66
+
+      bin:
+
+    - name: "Cabernet"
+      listprice: 
+      byline: "Mercer - Columbia Valley"
+      catalog: "winebow"
+      grapes: "85% Cab Sauv, 10% Merlot, %Petit Verdot"
+      mynotes: "Very well balanced, pleasant. NIce grapey fruit hit at the middle, good vanilla, medium tanins"
+      frontprice: 15 #2=13.66
+      bin:
+
+    - name: "Dead Canyon"
+      listprice: 
+      byline: "Mercer - Horse Heaven Hills, Oregon "
+      catalog: "winebow"
+      mynotes: "NIce and mellow "
+      grapes: "Cabernet, 5% Sirah"
+      frontprice: 12, #2=11.33 #3=10
+      bin:
+
+    - name: ""
+      listprice: 
+      byline: "Mercer - "
+      catalog: "winebow"
+      frontprice:
+      bin:
 
     - name: "Liberty School Cabernet Sauvignon"
       listprice: 25
@@ -1962,7 +2073,7 @@
       frontprice: 24
       notes: "This Super-Tuscan livens up the native Chianti grapes with a bit of Cabernet. There are berry flavors, jammy fruit and soft tanins."
       mynotes: "Berry (sweet?) jammy, mild, mild tanins. B+?"
-      grape: "80% Sangiovese, 20% Cabernet Sauvgnon"
+      grape: "80% Sangiovese, 20% Cabernet Sauvignon"
       bin: 703
       instock: 3
       ordered:  
@@ -2109,7 +2220,7 @@
       qtprice: 9
       qt: yes
       byline: "by Bodegas Nekeas - Navarra, Spain"
-      grape: "Cabernet Sauvingon"
+      grape: "Cabernet Sauvignon"
       notes: "A different expression of Cabernet with notes of chocolate, cherry & jalapeno. Fresh, spicy finish."
       catalog: " tempranillo page 35"
       frontprice: 10.00
@@ -2522,7 +2633,7 @@
       qtprice: 14
       byline: "by Reverdy - Loire Valley, France"
       notes: "A big, steely wine with chalky, stony notes, but there is melon as well as grapefruit and lemon."
-      grape: "Sauvingon Blanc"
+      grape: "Sauvignon Blanc"
       catalog: "weygandt"
       frontprice: 16.77
       bin: 404
@@ -2538,12 +2649,12 @@
       frontprice: 10
       bin: 306
 
-    - name: "Sauvingon Blanc 2009"
+    - name: "Sauvignon Blanc 2009"
       byline: "by Ferrande - Bordeaux, France"
       catalog: "opici 409a - "
       frontprice: 6.03
       mynotes: "great heavy nose, lightish body - A-"
-      grape: "Sauvingon Blanc"
+      grape: "Sauvignon Blanc"
 
 
     - name: "Cotes de Gascogne 2010"
@@ -3025,7 +3136,7 @@
       notes: "Light, with fine bubbles and peach and pear flavors. Clean, crisp finsih."
       grape: "Prosecco"
       listprice: 25
-      qtprice: 10
+      qtprice: 7
       qt: yes
       frontprice: 10
       catalog: "opici"
