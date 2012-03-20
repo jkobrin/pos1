@@ -192,7 +192,7 @@
 
     #category {font-size:28pt; text-align: center}
 
-    .goHorizontalLink {float: left; font-size:48}
+    .leftLink {float: left; font-size:48}
     #goVerticalLink {float: right; font-size: 56; text-align: right}
 
     #rightside {float: right }
@@ -321,13 +321,17 @@
       drawCurrentCategory();
     }
  
-    function goHorizontal()
+    function goLeft()
     {
-      //alert(g_config.menu.categories[0].subcategories[0].items);
       subs = g_config.menu.categories[0].subcategories;
-      //alert(g_config.menu.categories[0].subcategories[0].items);
       subs.push(subs.shift());
-      //alert(g_config.menu.categories[0].subcategories[0].items);
+      drawCurrentCategory();
+    }
+
+    function goRight()
+    {
+      subs = g_config.menu.categories[0].subcategories;
+      subs.unshift(subs.pop());
       drawCurrentCategory();
     }
 
@@ -610,7 +614,12 @@
           ' onclick="orderitem_popup(' + item.id + ', event)"' +
           ' value="' + item.item_name +'"></input>'+
         '</td>';
-        order_items_html += '<td>'+item.minutes_old+'</td>'
+        time_display = (
+          item.minutes_since_mod == null?
+            item.minutes_old : 
+            item.minutes_old + '/' + item.minutes_since_mod
+        )    
+        order_items_html += '<td>'+time_display+'</td>'
         order_items_html += '</tr>'
 
       }  
@@ -961,7 +970,8 @@
   <div id="main_screen">
     <div id="rightside">
       <center><a href="javascript:goVertical()" id="goVerticalLink">^</a>
-      <a href="javascript:goHorizontal()" class="goHorizontalLink" id="goHorizontalLink2">&lt;</a></center>
+      <a href="javascript:goRight()" class="leftLink" id="goleftLink">&gt;</a>
+      </center>
       <div style="clear: both"></div>
       <div id="order_pane">
         <div id="table_display" onclick='go_to_receipt_sceen()'>
@@ -976,10 +986,10 @@
       <center>
         <a id="category">---</a>
         <div id=linx>
-        <div><a href="javascript:goHorizontal()"  class="goHorizontalLink" id="goHorizontalLink">&lt;</a></div>
-        <div><a href="javascript:go_to_cook_screen()"  class="goHorizontalLink" id="cooklink">C</a></div>
-        <div><a href="javascript:go_to_tables()"  class="goHorizontalLink" id="tablelink">T</a></div>
-        <div><a href="javascript:go_to_clock_sceen()"  class="goHorizontalLink" id="tablelink">P</a></div>
+        <div><a href="javascript:goLeft()"  class="leftLink" id="goLeftLink">&lt;</a></div>
+        <div><a href="javascript:go_to_cook_screen()"  class="leftLink" id="cooklink">C</a></div>
+        <div><a href="javascript:go_to_tables()"  class="leftLink" id="tablelink">T</a></div>
+        <div><a href="javascript:go_to_clock_sceen()"  class="leftLink" id="clocklink">P</a></div>
         </div>
         <div id="board"></div>
       </center>
