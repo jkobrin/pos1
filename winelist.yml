@@ -257,6 +257,42 @@
 #      mynotes: "Good deep grapey nose, some sweet concentration, licorice, black berry. good."
 #      frontprice: 8.67 #2=8 5=.7.33, 7=6, 15=5.67
 #
+#    - name: "Patagon"
+#      listprice:
+#      qtprice: 
+#      byline: "Bodega N - Mendoza, Argentina"
+#      grape: ""
+#      catalog: "east coast"
+#      mynotes: "Musky nose, red fruit, sweet ropey tanins. Not bad."
+#      frontprice: 8 
+#
+#    - name: "Patagon Private Collection"
+#      listprice:
+#      qtprice: 
+#      byline: "Bodega N - Mendoza, Argentina"
+#      grape: ""
+#      catalog: "east coast"
+#      mynotes: ""
+#      frontprice: 7
+#
+#    - name: "mwitu"
+#      listprice:
+#      qtprice: 
+#      byline: "mwitu"
+#      grape: "Pinotage (Pinot Noir / Cinsault cross)
+#      catalog: "east coast"
+#      mynotes: "nose hint of musky, rubber barnyard, mouth is fruity, grapey, red fruit, some acidity, some light tanins, decent length "
+#      frontprice: 8
+#
+#    - name: "Baron De Escal"
+#      listprice:
+#      qtprice: 
+#      byline: "Rioja"
+#      grape: "Tempanillo, Mazuelo, Garnacha"
+#      catalog: "east coast"
+#      mynotes: "light body, little fruit, some harshish tanins."
+#      frontprice: 6.5
+#
 #    - name: "Baron De Escal"
 #      listprice:
 #      qtprice: 
@@ -338,6 +374,51 @@
 #      catalog: "polaner"
 #      mynotes: "Soft, good SB type nose, med acid. not bad."
 #      frontprice: 7.50 #76 on 3 72 on 5
+#
+#    - name: "Prosecco Rosato"
+#      listprice:
+#      qtprice: 
+#      byline: "Berlo Raboso - Veneto, Italy"
+#      grape: ""
+#      catalog: "Polaner"
+#      mynotes: "Hint of sweetness. nice strawberry fruit. no bitterness"
+#      frontprice: 8.88 #104 #96 on 3, 88 on 5
+#
+#    - name: "Cava Rosat"
+#      listprice:
+#      qtprice: 
+#      byline: "Bohigas - Catalunya, Spain"
+#      grape: "trepat?"
+#      catalog: "Polaner"
+#      mynotes: "Sagne (sp?)method - nice concentration, good acidity, strong raspberry and strawberry, full bodied."
+#      frontprice: 12 #136 on 3 120 on 5
+#
+#    - name: "Rose of Malbec"
+#      listprice:
+#      qtprice: 
+#      byline: "by Reginato - Mendoza, Argentina"
+#      grape: ""
+#      catalog: "Polaner"
+#      mynotes: "Champenoise method - full red apple, nice concentration hint of sweetness, hint of baking spices and caramel - elevation 3500 - in san carlos - non- filtered"
+#      frontprice:
+#
+#    - name: "Xarel-lo"
+#      listprice:
+#      qtprice: 
+#      byline: "by Bohigas- Catalunya, Spain"
+#      grape: ""
+#      catalog: "Polaner"
+#      mynotes: "Nice acidity. buttery, apply, hint of caramel, good sourness. NIce white."
+#      frontprice: 8
+#
+#    - name: "Beaujolais"
+#      listprice:
+#      qtprice: 
+#      byline: "by Michel Guignier - Burgundy, France"
+#      grape: ""
+#      catalog: "Polaner"
+#      mynotes: "Nice acidity. little concentration, cherry bubble gum. Good sour cherry fruity""
+#      frontprice: 10.66
 #
 #    - name: "Sparkling Rose Touraine"
 #      listprice:
