@@ -23,11 +23,6 @@ def iget():
         if type(item['name']) == str:
           item['name'] = (item['name'])[:MAX_NAME_LEN]
         items[item['name']] = item
-        if item.has_key('qt') and item['qt'] != 'no':
-          qtitem = item.copy()
-          qtitem['catname'] = 'quartino'
-          items[item['name']] = item
-
   return cfg, items      
 
 def get():  

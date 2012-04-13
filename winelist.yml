@@ -2154,7 +2154,7 @@
       byline: "by Umberto Cesare - Tuscany"
       catalog: "opici"
       listprice: 48
-      qtprice: 16
+      qtprice: 13
       frontprice: 24
       notes: "This Super-Tuscan livens up the native Chianti grapes with a bit of Cabernet. There are berry flavors, jammy fruit and soft tanins."
       mynotes: "Berry (sweet?) jammy, mild, mild tanins. B+?"
@@ -2440,7 +2440,7 @@
       notes: "Hints of coffee and spice. Firm structure and good fruit."
       catalog: "tempanillo page 12 "
       frontprice: 13.33
-      bin: 
+      bin: 115
       instock: 
       ordered: 
         - date: '4/2/11'
@@ -3252,6 +3252,16 @@
       catalog: "opici"
       bin: 299
 
+    - name: "Rose of Malbec"
+      byline: "by Reginato - Mendoza, Argentina"
+      grape: "Malbec"
+      notes: "Full-bodied frizzante rose with nose of sweet red apple and raspberry with toasty notes. Mouth rounds out with baking spice, hint of caramel sweetness and nice tanin structure. This unlikely sparkler evokes very traditional Spanish Tintos and good pink Champagne."
+      catalog: "polaner"
+      frontprice: 12
+      listprice: 30
+      qtprice: 8
+      bin: 802
+
     - name: "Pinot Noir Brut"
       byline: "by Codorniu - Penedes, Spain"
       grape: "Pinot Noir"
@@ -3260,7 +3270,7 @@
       frontprice: 12
       listprice: 32
       qtprice: 10
-      bin: 104
+      bin:
 
     - name: "Cava Anna"
       byline: "by Codorniu - Penedes, Spain"
