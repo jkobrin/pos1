@@ -2546,7 +2546,7 @@
         - date: '3/30/11'
           qty: 12
 
-    - name: "Malbec 2009"
+    - name: "Urban Uco Malbec 2009"
       listprice: 25
       qtprice: 9
       notes: "Lots of pure ripe fruit. Mellow and buttery but fresh with just a hint of oak."
@@ -2555,6 +2555,17 @@
       catalog: "tempranillo Page 92, "
       frontprice: 9.50
       bin: 295
+
+    - name: "Crios Malbec 2010"
+      listprice: 26
+      qtprice: 9
+      notes: "Vibrant plum and blackberry flavors with hints of smoke and cedar. Firm tanin structure."
+      byline: "Susana Balbo - Mendoza, Argentina"
+      grape: "Malbec"
+      catalog: "polaner"
+      frontprice: 10.66
+      bin: 3061
+
 
 
 - name: "White Wine"
@@ -2949,6 +2960,16 @@
       ordered: 
         - date: '4/2/11'
           qty: 12
+
+    - name: "Torrontes 2010"
+      listprice: 26
+      qtprice: 9
+      notes: "Fascinating, heady nose of elderberry and white flowers. Palate is round and rich with topical fruit flavors."
+      byline: "Susana Balbo - Mendoza, Argentina"
+      grape: "Malbec"
+      catalog: "polaner"
+      frontprice: 10.66
+      bin: 297
 
     - name: "Sauvignon Blanc 2010"
       listprice: 21

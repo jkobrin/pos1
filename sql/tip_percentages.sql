@@ -1,5 +1,5 @@
 #TODO: exclude lunch the following day
-set @the_tip = 317.27;
+set @the_tip = 203.18;
 
 create or replace view last_night_items
 as
@@ -20,7 +20,7 @@ select lni.id as lni_id, lni.price, p.id as p_id, last_name
     if(p.last_name = 'Labossier', 1,
     if(p.last_name = 'Salazar', 1, 
     if(p.last_name = 'Lilli', 1,
-    if(p.last_name = 'Young', 1, 
+    if(p.last_name = 'Young', .5, 
     if(p.last_name = 'Imbriani', .2, 
     if(p.last_name = 'Addy', 0, 
         1))))))))))person_share
