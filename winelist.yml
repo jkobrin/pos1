@@ -1593,7 +1593,7 @@
 #      catalog: "verity"
 #      frontprice: 20
 #
-#    - name: "Elyse Morisoli Zinfindel"
+#    - name: "Elyse  - Sonoma Coast, Californiai Morisoli Zinfindel"
 #      listprice:
 #      qtprice: 
 #      byline: "by Elyse Winery from Hayne Vineyard - Napa Valley, California"
@@ -1763,6 +1763,7 @@
       notes: "Bold country wine with spicy scents of black and green pepper. Palate of dark fruit with leathery tanins. Big, brawny, and rustic."
       mynotes: "lovely heavy spice, veg, pepper nose. Heavy pepper leather and dark fruit on the palate, good tanins. tiny bit rough."
       frontprice: 7
+      bin: 1191
 
     - name: "Savigny-Les-Beaune Premier Cru 2007"
       listprice: 52
@@ -2248,6 +2249,17 @@
         - date: "3/30/11"
           qty: 3
 
+    - name: "Monteregio Toscana 2009"
+      listprice: 30
+      notes: "Well-priced Super-Tuscan with plush cherry and blackberry flavors, balanced oak, and earthiness."
+      qtprice: 10
+      qt: yes
+      byline: "by Morris Farms - Tuscany"
+      grape: "90% Sangiovese, 10% Cabernet Sauvignon"
+      catalog: "polaner"
+      frontprice: 13.33
+      bin: 3021
+
     - name: "Lui 2006"
       byline: "Luiano -Tuscany"
       catalog: "opici"
@@ -2597,7 +2609,7 @@
         - date: '3/30/11'
           qty: 12
 
-    - name: "Malbec 2009"
+    - name: "Urban Uco Malbec 2009"
       listprice: 25
       qtprice: 9
       notes: "Lots of pure ripe fruit. Mellow and buttery but fresh with just a hint of oak."
@@ -2606,6 +2618,17 @@
       catalog: "tempranillo Page 92, "
       frontprice: 9.50
       bin: 295
+
+    - name: "Crios Malbec 2010"
+      listprice: 26
+      qtprice: 9
+      notes: "Vibrant plum and blackberry flavors with hints of smoke and cedar. Firm tanin structure."
+      byline: "Susana Balbo - Mendoza, Argentina"
+      grape: "Malbec"
+      catalog: "polaner"
+      frontprice: 10.66
+      bin: 3061
+
 
 
 - name: "White Wine"
@@ -2842,13 +2865,23 @@
       catalog: "opici"
       frontprice: 20
 
+    - name: "L'Angevin Chardonnay 2009"
+      byline: "Laughlin Family Vineyard - Russian River, Sonoma, California"
+      notes: "Elegant, rich California Chard. Dried apricot, pistachio and butterscotch aromas and flavors build effortlessly to the long, creamy finish"
+      mynotes: ""
+      catalog: "opici"
+      listprice: 55
+      qtprice: 15
+      frontprice: 30
+      bin: 2021
+
     - name: "Chalk Hill Chardonnay 2009"
       byline: "Estate bottled by Chalk Hill Vineyard - Russian River, Sonoma, California"
       notes: "Elegant, rich California Chard. Great minerality and creamy, mellow oak with dense layered fruit."
       mynotes: "Great mineraly, Good creamy mild oak. Dense layered flavor. A"
       catalog: "opici"
       listprice: 52
-      qtprice: 18
+      qtprice: 15
       frontprice: 26
       bin: 2021
 
@@ -2870,7 +2903,7 @@
       listprice: 32
       qtprice: 11
       frontprice: 14.66
-      bin: 708
+      bin:
 
     - name: "Hahn Chardonnay 2010"
       byline: "by Hahn Winery - Santa Lucia Highlands"
@@ -2886,11 +2919,11 @@
     - name: "Patz and Hall 2009"
       listprice: 36
       qtprice: 12
-      byline: ""
+      byline: "Patz and Hall - Sonoma Coast, California"
       grape: "Chardonnay"
       catalog: "verity"
       mynotes: "Bit of funk and golden apple, med oak, complex, light, and well balanced"
-      notes: "Rich golden apple with with stony minerality and a touch of oak. Light, but complex and well-balanced."
+      notes: "Rich golden apple with hints of pear and hazelnut, stony minerality and a touch of oak. Light, complex and well-balanced."
       frontprice: 17.5
       bin: 206
 
@@ -2990,6 +3023,16 @@
       ordered: 
         - date: '4/2/11'
           qty: 12
+
+    - name: "Torrontes 2010"
+      listprice: 26
+      qtprice: 9
+      notes: "Fascinating, heady nose of elderberry and white flowers. Palate is round and rich with topical fruit flavors."
+      byline: "Susana Balbo - Mendoza, Argentina"
+      grape: "Malbec"
+      catalog: "polaner"
+      frontprice: 10.66
+      bin: 297
 
     - name: "Sauvignon Blanc 2010"
       listprice: 21
