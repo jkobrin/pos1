@@ -342,6 +342,60 @@
       #frontprice: 28
       #catalog:
 
+#    - name: "Merlot 2007"
+#      listprice:
+#      qtprice: 
+#      byline: "Franz Haas -Alto Adige"
+#      grape: ""
+#      catalog: "winebow"
+#      mynotes: ""
+#      frontprice:
+#
+#    - name: "Pinot Noir 2007"
+#      listprice:
+#      qtprice: 
+#      byline: "kris"
+#      grape: ""
+#      catalog: "winebow"
+#      mynotes: "Nice acidity. Also buttery. Muted fruit. Tart fruits. Prrtty subtle."
+#      frontprice: 10 #3 = 8.66
+#
+#    - name: "Pinot Nero 2007"
+#      listprice:
+#      qtprice: 
+#      byline: "Franz Haas -Alto Adige"
+#      grape: ""
+#      catalog: "winebow"
+#      mynotes: "92 parker Herby nose of sage and pepper. Bit earthy on the palate. Some length. Not much tanins. Quite nice"
+#      frontprice: 33.33
+#
+#    - name: "Lagrein"
+#      listprice:
+#      qtprice: 
+#      byline: "Franz Haas -Alto Adige"
+#      grape: "Lagrein"
+#      catalog: "winebow"
+#      mynotes: "Soft ripe cherries, little butteriness, little tanin, bit of lipstic"
+#      frontprice: 24
+#
+#    - name: "Heart Rosso 2009`"
+#      listprice:
+#      qtprice: 
+#      byline: "kris"
+#      grape: ""
+#      catalog: "winebow"
+#      mynotes: "Mild and buttrty"
+#      frontprice: 10
+#
+#    - name: "Merlot 2007"
+#      listprice:
+#      qtprice: 
+#      byline: "Franz Haas - alto adige"
+#      grape: ""
+#      catalog: "winebow"
+#      mynotes: "Nice fruit, hint of band-aids, mellow tanins"
+#      frontprice:  13.33
+#
 #    - name: "Verdejo 2010"
 #      listprice:
 #      qtprice: 
@@ -404,6 +458,15 @@
 #      catalog: "polaner"
 #      mynotes: "Soft, good SB type nose, med acid. not bad."
 #      frontprice: 7.50 #76 on 3 72 on 5
+#
+#    - name: "Prosecco "
+#      listprice:
+#      qtprice: 
+#      byline: "Berlo Raboso - Veneto, Italy"
+#      grape: ""
+#      catalog: "Polaner"
+#      mynotes: "Hint of sweetness. nice strawberry fruit. no bitterness"
+#      frontprice: 8.88 #104 #96 on 3, 88 on 5
 #
 #    - name: "Prosecco Rosato"
 #      listprice:
