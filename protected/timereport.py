@@ -8,11 +8,14 @@ import utils
 def index(req):
 
   weekly = utils.select('''
-	SELECT week(intime), 
-	last_name, 
-	sum(hours_worked) as hours_worked 
+	SELECT week(intime), year(intime), 
+	last_name,
+	sum(hours_worked) as hours_worked,
+  pay_rate, 
+  weekly_tax,
+  round(sum(hours_worked)*pay_rate - weekly_tax) as weekly_pay
 	from hours_worked 
-  where (week(now()) - week(intime)+52)%52 < 3
+  where (week(now()) + year(now())*52) - (week(intime)+year(intime)*52) < 3
   group by year(intime), week(intime), last_name 
 	order by year(intime) desc, week(intime) desc, last_name''',
     incursor=None,
@@ -26,7 +29,7 @@ def index(req):
 	time_out, 
 	hours_worked 
 	from hours_worked 
-  where (week(now()) - week(intime)+52)%52 < 3
+  where (week(now()) + year(now())*52) - (week(intime)+year(intime)*52) < 3
 	order by week(intime) desc, last_name, date(intime)''',
     incursor=None,
     label=False
@@ -38,9 +41,10 @@ def index(req):
       <body>
     ''' + 
     utils.tohtml(
-      'Hours worked per week by server',
-      ('week', 'last name', 'hours_worked'), 
-      weekly
+      'Hours worked per week by person',
+      ('week', 'year', 'last name',  'hours_worked', 'rate', 'tax', 'weekly_pay'), 
+      weekly,
+      breakonfirst = True
     ) +
     utils.tohtml(
       "detail hours",

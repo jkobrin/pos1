@@ -136,9 +136,17 @@ menu:
           items: 
             - {name: discount, price: -1}
             - {name: extras, price: 1}
-            - {name: salmon tartar, price: 9}
-            - {name: chx_pate, price: 6}
+            - {name: special3, price: 3}
+            - {name: special4, price: 4}
+            - {name: special5, price: 5}
+            - {name: special6, price: 6}
+            - {name: special7, price: 7}
+            - {name: special8, price: 8}
+            - {name: special9, price: 9}
             - {name: special10, price: 10}
+            - {name: special11, price: 11}
+            - {name: special12, price: 12}
+            - {name: special13, price: 13}
         - name: lunch
           items: 
             - {name: salmon_san, price: 8}

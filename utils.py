@@ -62,21 +62,38 @@ def select(query, incursor=None, label=True):
   return results
 
 
-def tohtml(title, headings, rows):  
-  return (
-  ''' 
-    <h1> %(title)s </h1>
-    <table border=1 cellspacing=1 cellpadding=5>
-  ''' % locals() +
-  "<tr>" + "".join(["<th>%s</th>"%heading for heading in headings]) + "</tr>\n"
-  + ''.join(["<tr>"+"".join(["<td>%s</td>"%item for item in row]) + "</tr>\n"
-    for row in rows
-    ]) +
-  '''</table>
-  </body>
-  </html>
-  '''
-  )
+def tohtml(title, headings, rows, breakonfirst=False):  
+
+  if breakonfirst:
+    ret = "<h1> %(title)s </h1>"%locals()
+
+    subtab = []
+    for row in rows:
+      if subtab and row[0] != subtab[0][0]:
+        #raise Exception('here' + str(row[0]) + str(subtab))
+        ret += tohtml(subtab[0][0], headings, subtab, breakonfirst = False)
+        subtab = []
+      subtab.append(row)
+       
+    ret += tohtml(subtab[0][0], headings, subtab, breakonfirst = False)
+  
+    return ret
+  else:
+
+    return (
+    ''' 
+      <h1> %(title)s </h1>
+      <table border=1 cellspacing=1 cellpadding=5>
+    ''' % locals() +
+    "<tr>" + "".join(["<th>%s</th>"%heading for heading in headings]) + "</tr>\n"
+    + ''.join(["<tr>"+"".join(["<td>%s</td>"%item for item in row]) + "</tr>\n"
+      for row in rows
+      ]) +
+    '''</table>
+    </body>
+    </html>
+    '''
+    )
   
 
 if __name__ == '__main__':

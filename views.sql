@@ -1,4 +1,18 @@
 
+CREATE or REPLACE view hours_worked as
+select 
+  p.last_name, p.first_name, p.pay_rate, p.weekly_tax,
+  intime,
+  date_format(intime,"%m/%d") as date,
+  date_format(intime, "%H:%i") time_in, 
+  date_format(outtime, "%H:%i") time_out, 
+  hour(timediff(outtime, intime)) + minute(timediff(outtime, intime))/60 hours_worked 
+from 
+  hours h, 
+  person p 
+  where h.person_id = p.id;
+
+
 create or replace view revenue_item as select * from order_item where is_comped = false and is_cancelled = false and item_name not like 'gift%';
 
 create or replace view sales_by_week
