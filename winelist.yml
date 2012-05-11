@@ -21,6 +21,150 @@
 #      mynotes: "Nose of light tropical fruit and wax. Palate sweetish and little bitter. hint of oak maybe. med acid."
 #      frontprice: 11.33 #2=10.67, #3=10
 
+#    - name: "Nobilo Sauvignon Blanc"
+#      listprice:
+#      qtprice:
+#      byline: "Nobilo - Regional Collection. Marlborough, New Zealand"
+#      grape: "Sauvignon Blanc"
+#      catalog: "southern"
+#      mynotes: ""
+#      frontprice: 11 #8.67 on 3
+
+#    - name: "Diseño Malbec 2011"
+#      listprice:
+#      qtprice: 
+#      byline: "Diseño - Mendoza, Argentina"
+#      grape: "Malbec"
+#      catalog: "southern"
+#      mynotes: ""
+#      frontprice: 8 #6.67 on 3
+
+#    - name: "Chardonnay 2010"
+#      listprice: 21
+#      qtprice: 7
+#      byline: "Franciscan Estate - Napa, Valley"
+#      grape: "Chardonnay"
+#      catalog: "southern"
+#      mynotes: "Funky slightly oaky nose. Palate is sweet and creamy with well-integrated but pronounced oak."
+#      frontprice: 11.33 #10.67 on 3
+
+#    - name: "BluFeld Reisling 2010"
+#      listprice:
+#      qtprice:
+#      byline: "Mosel, Germany"
+#      grape: "Reisling
+#      catalog: "southern"
+#      mynotes: "not alot of nose, sweet no character"
+#      frontprice: 7.33 #6.67
+
+#    - name: "BluFeld Reisling 2010"
+#      listprice:
+#      qtprice:
+#      byline: "Mosel, Germany"
+#      grape: "Reisling
+#      catalog: "southern"
+#      mynotes: ""
+#      frontprice: 6.67 #on 1 #6 on 3
+
+#    - name: "Primal Roots White Blend"
+#      listprice:
+#      qtprice:
+#      byline: "Franciscan Estate - Napa, Valley"
+#      grape: "Gewurz, Viognier, Reisling, Colombard"
+#      catalog: "southern"
+#      mynotes: "light gewurz nose, candied heavy body, hint of sweet. fruity"
+#      frontprice: 6.67 #on 1 #6 on 3
+
+#    - name: "Diseño Torrontes 2011"
+#      listprice: 21
+#      qtprice: 7
+#      byline: "Diseño - Salta, Argentina"
+#      grape: "Torrentes"
+#      catalog: "southern"
+#      mynotes: "light acidic, SB like grapefruityness. so-so"
+#      frontprice: 8 #6.67 on 3
+
+#    - name: "Cabernet Sauvignon"
+#      listprice: 
+#      qtprice:
+#      byline: "Dreaming Tree - North Coast, California"
+#      grape: "Cabernet Sauvignon"
+#      catalog: "southern"
+#      mynotes: "Steve Reeder and Dave Mathews - good fruit, nice concentration. decent"
+#      frontprice: 11.33 #10.67 on 2
+
+#    - name: "THe Crush"
+#      listprice: 
+#      qtprice:
+#      byline: "Dreaming Tree - North Coast, California"
+#      grape: "66% Merlot, 34% Zinfandel"
+#      catalog: "southern"
+#      mynotes: "Steve Reeder and Dave Mathews - nice musky nose, baking spice, vanilla, good concentration. little oak. med finish. good."
+#      frontprice: 11.33 #10.67 on 2
+
+#    - name: "Hogue Red Blend"
+#      listprice: 
+#      qtprice:
+#      byline: "Hogue winery - Columbia Valley"
+#      grape: "Cab sauvignon, merlot, Shiraz"
+#      catalog: "southern"
+#      mynotes: "very midlle of the road. nothing speicla. cool climate cab type"
+#      frontprice:
+
+#    - name: "Vidal Ice wine"
+#      listprice: 34
+#      qtprice: 12
+#      byline: "by Jackson-Triggs - Niagara Peninsula, Canada"
+#      grape: "Vidal"
+#      catalog: "southern"
+#      mynotes: "nice sweetness, not cloying good complexity. Sauterne-like."
+#      frontprice: 16 #on a case of 187mils
+
+#    - name: "Game Keeper's Shiraz"
+#      listprice: 21
+#      qtprice: 7
+#      byline: "Australia"
+#      grape: "Shiraz"
+#      catalog: "southern"
+#      mynotes: "Lots of med dark fruit, med acid, Some fresh fruit. Hint of coffee."
+#      frontprice: 7
+
+#    - name: "Game Keeper's Shiraz"
+#      listprice: 21
+#      qtprice: 7
+#      byline: "Australia"
+#      grape: "Shiraz"
+#      catalog: "southern"
+#      mynotes: "Lots of med dark fruit, med acid, Some fresh fruit. Hint of coffee."
+#      frontprice: 7
+
+#    - name: "Game Keeper's Shiraz"
+#      listprice: 21
+#      qtprice: 7
+#      byline: "Australia"
+#      grape: "Shiraz"
+#      catalog: "southern"
+#      mynotes: "Lots of med dark fruit, med acid, Some fresh fruit. Hint of coffee."
+#      frontprice: 7
+
+#    - name: "Game Keeper's Shiraz"
+#      listprice: 21
+#      qtprice: 7
+#      byline: "Australia"
+#      grape: "Shiraz"
+#      catalog: "southern"
+#      mynotes: "Lots of med dark fruit, med acid, Some fresh fruit. Hint of coffee."
+#      frontprice: 7
+
+#    - name: "Game Keeper's Shiraz"
+#      listprice: 21
+#      qtprice: 7
+#      byline: "Australia"
+#      grape: "Shiraz"
+#      catalog: "southern"
+#      mynotes: "Lots of med dark fruit, med acid, Some fresh fruit. Hint of coffee."
+#      frontprice: 7
+
 #    - name: "Game Keeper's Shiraz"
 #      listprice: 21
 #      qtprice: 7
@@ -827,7 +971,7 @@
 #      mynotes: "light grenachy fruit. hint of vanilla. butter. pleasant. some complexity."
 #      frontprice: 26
 #
-#    - name: "Holystone Zinfindel"
+#    - name: "Holystone Zinfandel"
 #      listprice: 50
 #      qtprice: 
 #      byline: "by Benessere"
@@ -837,7 +981,7 @@
 #      fruit, sandalwood, cooked cherry pie "
 #      frontprice: 26
 #
-#    - name: "Black Glass Zinfindel"
+#    - name: "Black Glass Zinfandel"
 #      listprice:
 #      qtprice: 
 #      byline: "by Benessere"
@@ -1493,13 +1637,13 @@
 #        - date:
 #          qty:
 #
-#    - name: "Epicenter Zinfindel"
+#    - name: "Epicenter Zinfandel"
 #      listprice: 
 #      qtprice:
 #      byline: "by Mettler Familly Vineyards - Lodi, California"
 #      notes: ""
 #      mynotes: "nice, fruitty zin, med tanins, mild fruit"
-#      grape: "Old Vine Zinfindel"
+#      grape: "Old Vine Zinfandel"
 #      catalog: "opici"
 #      frontprice: 13.34
 #      bin: 
@@ -1593,21 +1737,21 @@
 #      catalog: "verity"
 #      frontprice: 20
 #
-#    - name: "Elyse  - Sonoma Coast, Californiai Morisoli Zinfindel"
+#    - name: "Elyse  - Sonoma Coast, Californiai Morisoli Zinfandel"
 #      listprice:
 #      qtprice: 
 #      byline: "by Elyse Winery from Hayne Vineyard - Napa Valley, California"
 #      notes: "Layered Smokey, vanilla, decent acid, good wine. B+"
-#      grape: "Zinfindel, Mouvedre"
+#      grape: "Zinfandel, Mouvedre"
 #      catalog: "verity"
 #      frontprice: 22.33
 #
-#    - name: "Elyse aka Zinfindel"
+#    - name: "Elyse aka Zinfandel"
 #      listprice:
 #      qtprice: 
 #      byline: "by Elyse Winery from Hayne Vineyard - Napa Valley, California"
 #      notes: "Dark red, raisiny, full, touch of barnyard, nice acid, tiny touch of spice and vanilla"
-#      grape: "Zinfindel, Petit Sirah"
+#      grape: "Zinfandel, Petit Sirah"
 #      derek: "Not too Jammy"
 #      catalog: "verity"
 #      frontprice: 18.67 #14
@@ -1938,7 +2082,7 @@
       listprice: 55
       qtprice: 16
       byline: "by Orin-Swift - Napa Valley, California"
-      grape: "44% Zinfindel, 26% Cabernet Sauvignon, 18% Syrah, others."
+      grape: "44% Zinfandel, 26% Cabernet Sauvignon, 18% Syrah, others."
       frontprice: 30
       catalog: "southern"
       notes: "California winemakers have discovered blends and the public seems approve. Intense but well-balanced and complex wines like this one are probably why. Cherry and dried flowers on the nose, then deep plum-and-raisin fruit with soft, sweet tanins."
@@ -1956,11 +2100,11 @@
       mynotes: ""
       bin: 731
 
-    - name: "2007 Bargetto Zinfindel"
+    - name: "2007 Bargetto Zinfandel"
       listprice: 34
       qtprice: 12
       byline: "by Bargetto - Lodi, California"
-      grape: "Old Vine Zinfindel"
+      grape: "Old Vine Zinfandel"
       frontprice: 15 #3=14.25, 5=13.5
       catalog: "east coast specialty"
       notes: "Fruity, rustic nose. Heavy in the mouth with dark berries and rasins. Savory mid-palate and good length. Rich, but easy drinking."
