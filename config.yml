@@ -147,6 +147,8 @@ menu:
             - {name: special11, price: 11}
             - {name: special12, price: 12}
             - {name: special13, price: 13}
+            - {name: special14, price: 14}
+            - {name: special15, price: 15}
         - name: lunch
           items: 
             - {name: salmon_san, price: 8}
