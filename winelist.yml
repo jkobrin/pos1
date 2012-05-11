@@ -203,6 +203,24 @@
 #      frontprice: 10.66 #10 on 2
 
 
+#    - name: "Gruner-Veltliner"
+#      listprice: 21 
+#      qtprice: 7
+#      byline: "cwMarc Aurel - NiederÖsterreich, Austria"
+#      grape: "Carmenére"
+#      catalog: "winebow"
+#      mynotes: "lime and pineapple, soft rounded, hint of sweetness, peppery finish. "
+#      frontprice: 7.33
+
+#    - name: "Carmenére 2010"
+#      listprice: 21 
+#      qtprice: 7
+#      byline: "Leyda - Rapel Valley, Chile"
+#      grape: "Carmenére"
+#      catalog: "winebow"
+#      mynotes: "Nice nose, salty vanilla, white pepper, thyme, raspberry? raisiny, pork fat? aged in french oak 10 months"
+#      frontprice: 7
+
 #    - name: "The Reveler"
 #      listprice:
 #      qtprice: 
@@ -2289,6 +2307,16 @@
       frontprice: 27.03
       bin: 298
 
+    - name: "Nebbiolo D'Alba 2009"
+      listprice: 32
+      qtprice: 10
+      byline: "by Giribaldi - Piedmont, Italy"
+      notes: "Same grape as Barolo from the same region. This wine has layers of dark fruit, earth and leather, with good tanins."
+      mynotes: ""
+      catalog: "opici"
+      frontprice: 13.36
+      bin: 307
+
     - name: "Langhe Nebbiolo 2005"
       listprice: 32
       qtprice: 11
@@ -3458,7 +3486,7 @@
       qt: yes
       frontprice: 10
       catalog: "opici"
-      bin: 307
+      bin: 3018
       instock: 12
       ordered: 
         - date: '4/12/11'
