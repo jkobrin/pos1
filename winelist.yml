@@ -1,4 +1,5 @@
 ﻿# east coast col de lan luna riposo/pinot noir sparkle. $10. Deep
+
 # strawberry to cherry flavour. Slightly soapy finish.
 # Concentrated sweetish fruit. Maybe good.
 # Socco. Sweet waxy bitterness. Don't care for it. $10, down to
@@ -38,15 +39,6 @@
 #      catalog: "southern"
 #      mynotes: ""
 #      frontprice: 8 #6.67 on 3
-
-#    - name: "Chardonnay 2010"
-#      listprice: 21
-#      qtprice: 7
-#      byline: "Franciscan Estate - Napa, Valley"
-#      grape: "Chardonnay"
-#      catalog: "southern"
-#      mynotes: "Funky slightly oaky nose. Palate is sweet and creamy with well-integrated but pronounced oak."
-#      frontprice: 11.33 #10.67 on 3
 
 #    - name: "BluFeld Reisling 2010"
 #      listprice:
@@ -93,7 +85,7 @@
 #      mynotes: "Steve Reeder and Dave Mathews - good fruit, nice concentration. decent"
 #      frontprice: 11.33 #10.67 on 2
 
-#    - name: "THe Crush"
+#    - name: "The Crush"
 #      listprice: 
 #      qtprice:
 #      byline: "Dreaming Tree - North Coast, California"
@@ -2009,17 +2001,6 @@
       frontprice: 12
       bin: 1
 
-    - name: "Vineyard 48 Red"
-      listprice: 22
-      qtprice: 8
-      qt: yes
-      byline: "by Vineyard 48"
-      notes: ""
-      grape: "55% Cabernet Sauvignon, 25% Cabernet Franc, 20% Merlot"
-      catalog: ""
-      frontprice: 7
-      bin: 100
-
     - name: "Petit Sirah 2008"
       listprice: 44
       qtprice: 14
@@ -2115,8 +2096,7 @@
       frontprice: 15
       catalog: "southern"
       notes: "Another California red blend, but this is straight Bordeaux grapes. The wine is aromatic, fruity and deep with notes of pepper and old oak and soft dusty tanins on the finish."
-      mynotes: ""
-      bin: 731
+      mynotes: " kinda dull. not worth the price. Get The Reveler instead."
 
     - name: "2007 Bargetto Zinfandel"
       listprice: 34
@@ -2286,6 +2266,18 @@
       ordered: 
         - date: '4/7/11' 
           qty: 12
+
+    - name: "Vineyard 48 Red"
+      listprice: 22
+      qtprice: 8
+      qt: yes
+      byline: "by Vineyard 48 - Cotchogue, Long Island"
+      notes: "Vineyard 48 is known mostly for its drunken revelry in the DJ-dance-party tent, but -- go know -- the wine is actually good. This Bordeaux blend falls somewhere between California and France with medium body, spicy green notes, and a bit of fruity concentration. Bacchus would be pleased."
+      grape: "55% Cabernet Sauvignon, 25% Cabernet Franc, 20% Merlot"
+      catalog: ""
+      frontprice: 7
+      bin: 100
+
 
     - name: "Mystic Merlot"
       listprice: 26
@@ -2699,11 +2691,6 @@
       notes: "Hints of coffee and spice. Firm structure and good fruit."
       catalog: "tempanillo page 12 "
       frontprice: 13.33
-      bin: 115
-      instock: 
-      ordered: 
-        - date: '4/2/11'
-          qty: 12
 
     - name: "Tempranillo 2008"
       listprice: 36
@@ -3039,7 +3026,7 @@
 
     - name: "L'Angevin Chardonnay 2009"
       byline: "Laughlin Family Vineyard - Russian River, Sonoma, California"
-      notes: "Elegant, rich California Chard. Dried apricot, pistachio and butterscotch aromas and flavors build effortlessly to the long, creamy finish"
+      notes: "Elegant, rich California Chard. Dried apricot, pistachio and butterscotch aromas and flavors build effortlessly to the long, creamy finish."
       mynotes: ""
       catalog: "opici"
       listprice: 55
@@ -3055,7 +3042,6 @@
       listprice: 52
       qtprice: 15
       frontprice: 26
-      bin: 2021
 
     - name: "Lincourt Chardonnay 2008"
       byline: "by Lincourt Vineyards - Santa Rita Hills, Santa Barbara, Claifornia "
@@ -3076,6 +3062,42 @@
       qtprice: 11
       frontprice: 14.66
       bin:
+
+#    - name: "Magnificat"
+#      listprice:
+#      qtprice:
+#      byline: "Franciscan Estate, Napa, CA.
+#      grape: ""
+#      catalog: "southern"
+#      mynotes: "Very tanniny, not much fruit, hints of dried tobacco leaf and coffee.
+#      frontprice: 33.68 #26.67
+
+#    - name: "Simi Landslide"
+#      listprice:
+#      qtprice:
+#      byline: "Simi - Alexander Valley, Sonoma, CA.
+#      grape: ""
+#      catalog: "southern"
+    #      mynotes: "Nice fruit. Dark cherry. Bit of spice and coffee. Pleasant. Brown Sugar? "
+#      frontprice: 22.67 on 12 #27 front
+
+#    - name: "Reserve Meritage 2008"
+#      listprice:
+#      qtprice:
+#      byline: "Estancia - Paso Robles, California"
+#      grape: "Cab Sauv 51%, Merlot 38%, 11% Petit Verdot"
+#      catalog: "southern"
+#      mynotes: "Lighish body. some smokey spice, hint of sweetness. so-so."
+#      frontprice: 18.67 #15.38
+
+#    - name: "Chardonnay 2010"
+#      listprice: 21
+#      qtprice: 7
+#      byline: "Franciscan Estate - Napa, Valley"
+#      grape: "Chardonnay"
+#      catalog: "southern"
+#      mynotes: "Funky slightly oaky nose. Palate is sweet and creamy with well-integrated but pronounced oak. Grilled pineapple. Yummy."
+#      frontprice: 11.33 #10.67 on 3
 
     - name: "Hahn Chardonnay 2010"
       byline: "by Hahn Winery - Santa Lucia Highlands"
