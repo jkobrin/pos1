@@ -3090,15 +3090,6 @@
 #      mynotes: "Lighish body. some smokey spice, hint of sweetness. so-so."
 #      frontprice: 18.67 #15.38
 
-#    - name: "Chardonnay 2010"
-#      listprice: 21
-#      qtprice: 7
-#      byline: "Franciscan Estate - Napa, Valley"
-#      grape: "Chardonnay"
-#      catalog: "southern"
-#      mynotes: "Funky slightly oaky nose. Palate is sweet and creamy with well-integrated but pronounced oak. Grilled pineapple. Yummy."
-#      frontprice: 11.33 #10.67 on 3
-
     - name: "Hahn Chardonnay 2010"
       byline: "by Hahn Winery - Santa Lucia Highlands"
       notes: "Refined, lightly fruited nose. Creamy body with a hint of butter, good round fruit and minerality."
@@ -3109,6 +3100,17 @@
       qt: yes
       frontprice: 8.67
       bin: 206
+
+    - name: "Chardonnay 2010"
+      listprice: 28
+      qtprice: 9
+      byline: "Franciscan Estate - Napa, Valley"
+      grape: "Chardonnay"
+      catalog: "southern"
+      mynotes: "Funky slightly oaky nose. Palate is sweet and creamy with well-integrated but pronounced oak. Grilled pineapple. Yummy."
+      frontprice: 11.33 #10.67 on 3
+      bin: 2041
+
 
     - name: "Patz and Hall 2009"
       listprice: 36
