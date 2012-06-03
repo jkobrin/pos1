@@ -1,27 +1,27 @@
 #TODO: exclude lunch the following day
-set @the_tip = 491.89;
+set @the_tip = 632.94;
 
 create or replace view last_night_items
 as
 select * from order_item
 where is_cancelled = False
   and item_name not like 'gift%'
-  and DATE(created- INTERVAL '16' HOUR) =  DATE(NOW()) - INTERVAL '1' DAY
-  #and DATE(created- INTERVAL '16' HOUR) =  '2012-21-18'
+  and DATE(created- INTERVAL '4' HOUR) =  DATE(NOW()) - INTERVAL '1' DAY 
+  and (time(created) > '16:00:00' or time(created) < '04:00:00')
 ;
 
 create or replace view person_items
 as
 select lni.id as lni_id, lni.price, p.id as p_id, last_name
   , if(p.last_name = 'Kobrin', .7,
-    if(p.last_name = 'Pampalone', 2, 
+    if(p.last_name = 'Pampalone', 1, 
     if(p.last_name = 'Ponce', .5, 
     if(p.last_name = 'Smith', .5,
     if(p.last_name = 'Labossier', 1,
     if(p.last_name = 'Salazar', 1, 
     if(p.last_name = 'Lilli', 1,
-    if(p.last_name = 'Young', .5, 
-    if(p.last_name = 'Imbriani', .2, 
+    if(p.last_name = 'Young', .5,
+    if(p.last_name = 'DiLemme', 1, 
     if(p.last_name = 'Addy', 0, 
         1))))))))))person_share
 from 
