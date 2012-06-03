@@ -1154,6 +1154,54 @@
 #      ordered: 
 #      pepper"
 
+#    - name: "Gigondas"
+#      listprice:
+#      qtprice: 
+#      byline: "by "
+#      grape: "60%"
+#      catalog: "Touton"
+#      mynotes: ""
+#      frontprice: 11.33 # 120 on 3 104 on 5
+
+#    - name: "Crozes Hermitage"
+#      listprice:
+#      qtprice: 
+#      byline: "by Tomasi"
+#      grape: "60%"
+#      catalog: "Touton"
+#      mynotes: ""
+#      frontprice: 11.33 # 120 on 3 104 on 5
+
+#    - name: "Poggio al tuffo"
+#      listprice:
+#      qtprice: 
+#      byline: "by Tomasi"
+#      grape: "60%"
+#      catalog: "Touton"
+#      mynotes: "Fruity, some raisin"
+#      frontprice: 11.33 # 120 on 3 104 on 5
+
+#    - name: "Chateaux Reccugne Bordeaux Sup"
+#      listprice:
+#      qtprice: 
+#      byline: "by Bordeaux"
+#      grape: ""
+#      catalog: "Touton"
+#      mynotes: "Brambly wooody, peppery. Salty savory"
+#      frontprice: 11.33 # 112 on 3 104 on 5
+
+#    - name: "White Cote du Rhone 2010"
+#      listprice:
+#      qtprice: 
+#      byline: "by Guigal - Cote Du Rhone""
+#      grape: "Viognier"
+#      catalog: "Touton"
+#      mynotes: "Mellow, little waxy, candied finsih. "
+#      frontprice: 11.33 #128 on 2 118 non 3
+#      instock: 
+#      ordered: 
+#      pepper"
+
 #    - name: "Seguret Cote du Rhone Villages"
 #      listprice:
 #      qtprice: 
@@ -3193,15 +3241,6 @@
 #      mynotes: "Lighish body. some smokey spice, hint of sweetness. so-so."
 #      frontprice: 18.67 #15.38
 
-#    - name: "Chardonnay 2010"
-#      listprice: 21
-#      qtprice: 7
-#      byline: "Franciscan Estate - Napa, Valley"
-#      grape: "Chardonnay"
-#      catalog: "southern"
-#      mynotes: "Funky slightly oaky nose. Palate is sweet and creamy with well-integrated but pronounced oak. Grilled pineapple. Yummy."
-#      frontprice: 11.33 #10.67 on 3
-
     - name: "Hahn Chardonnay 2010"
       byline: "by Hahn Winery - Santa Lucia Highlands"
       notes: "Refined, lightly fruited nose. Creamy body with a hint of butter, good round fruit and minerality."
@@ -3212,6 +3251,17 @@
       qt: yes
       frontprice: 8.67
       bin: 206
+
+    - name: "Chardonnay 2010"
+      listprice: 28
+      qtprice: 9
+      byline: "Franciscan Estate - Napa, Valley"
+      grape: "Chardonnay"
+      catalog: "southern"
+      mynotes: "Funky slightly oaky nose. Palate is sweet and creamy with well-integrated but pronounced oak. Grilled pineapple. Yummy."
+      frontprice: 11.33 #10.67 on 3
+      bin: 2041
+
 
     - name: "Patz and Hall 2009"
       listprice: 36
@@ -3628,6 +3678,16 @@
       catalog: "opici"
       bin: 299
 
+    - name: "Gran Sarao Rosé Cava"
+      byline: "by Josep Masachs - Penedes, Spain"
+      grape: "Pinot Noir"
+      notes: "Not sweet, but fruity and full-bodied with mellow bubbles and a tart finish."
+      catalog: "opici"
+      frontprice: 10
+      listprice: 26
+      qtprice: 8
+      bin: 802
+
     - name: "Rosé of Malbec"
       byline: "by Reginato - Mendoza, Argentina"
       grape: "Malbec"
@@ -3657,7 +3717,7 @@
       instock: 6
       frontprice: 12
       listprice: 32
-      qtprice: 10
+      qtprice: 8
       ordered: 
         - date: '3/30/11'
           qty: 6
@@ -3875,9 +3935,9 @@
       frontprice: TODO
 
     - name: "Delerium Tremens"
-      listprice: 10
+      listprice: 9
       bin: bowl
-      frontprice: TODO
+      frontprice: 2.00 #per 8ox pour - #162 for 20 littre keg
 
 - name: "Bottled Beer"
   items:
