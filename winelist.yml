@@ -1233,6 +1233,111 @@
 #      instock: 
 #      ordered: 
 #
+
+#    - name: "Mohua"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: ""
+#      catalog: "verity"
+#      mynotes: "tropical fruit nose, med acid, green pepper notes"
+#      frontprice: 10 #9.33 on 2
+#
+#
+#    - name: "Cono Sur"
+#      listprice:
+#      qtprice: 
+#      byline: ""
+#      grape: ""
+#      catalog: "verity"
+#      mynotes: "no nose. nice sweet-sour heavy moutn feel. pleasant"
+#      frontprice: 8.66 #8 on 2 #3 7.33
+#
+#
+#    - name: "Deusa Nai 2010"
+#      listprice:
+#      qtprice: 
+#      byline: "Marques de Caceres - Rias Baixas"
+#      grape: "Albariño"
+#      catalog: "verity"
+#      mynotes: "Full mouth, bitter golden apple, little nose."
+#      frontprice: 13.66 #12 on 2 #3=9.33
+#
+#    - name: "Vielle Ferme"
+#      listprice:
+#      qtprice: 
+#      byline: "Perrine Vineyard - Rhone Valley"
+#      grape: "50% 30% carrignan, 10% cinsault, 10% sirah"
+#      catalog: "verity"
+#      mynotes: "Nice balance of fruit and butter. Good medium length tanins"
+#      frontprice: 7.33 #3 6 #5 5.33
+#
+#    - name: "Perrine Corte Du Rhone"
+#      listprice:
+#      qtprice: 
+#      byline: "Perrine Vineyard - Cote Du Rhone"
+#      grape: "60% Grenahce, 20 sirah , 20% mouv"
+#      catalog: "verity"
+#      mynotes: "red cherry light lipstic"
+#      frontprice: 8
+#
+#
+#    - name: "Chakalaka 2009"
+#      listprice:
+#      qtprice: 
+#      byline: "Spice Route Winery -  Swartland, South Africa"
+#      grape: "Syrah, Mouvedre, Carignan, Petite Sirah,  Grenache"
+#      catalog: "verity"
+#      mynotes: "Middle of the road , some dark fruit. "
+#      frontprice: 15 
+#
+#
+#    - name: "2011 Padrillos Malbec"
+#      listprice:
+#      qtprice: 
+#      byline: "Cantina Zapata - Uco Valley"
+#      grape: "Malbec "
+#      catalog: "verity"
+#      mynotes: "Mellow sweet baking spice."
+#      frontprice: 8.66 #2=8, 5=6.66 
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#    - name: "sancerre"
+#      listprice:
+#      qtprice: 
+#      byline: "by alain geneau"
+#      grape: "sb"
+#      catalog: "wine symphony"
+#      mynotes: "fruity full body, lowish acid. not very sancerre-like"
+#      frontprice: 20
+#
 #    - name: "sancerre"
 #      listprice:
 #      qtprice: 
@@ -2788,9 +2893,7 @@
       frontprice: 10.66
       bin: 3061
 
-
-
-- name: "White Wine"
+ name: "White Wine"
   items:
 
     - name: "Bibici B6 Riserva"

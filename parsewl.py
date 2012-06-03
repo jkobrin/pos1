@@ -2,10 +2,15 @@
 import yaml
 import sys
 
-wl = yaml.load(open(sys.argv[1]))
+if len(sys.argv) > 1:
+  wlfile = sys.argv[1]
+else:
+  wlfile = 'winelist.yml'
+
+wl = yaml.load(open(wlfile))
 wl_out = sys.stdout
 
-orderview = len(sys.argv) > 2 and sys.argv[2] == 'order'
+orderview = (sys.argv[0] == 'wineorder')
 
 def prnt(strng = ''):
   strng = strng.encode('utf-8')
