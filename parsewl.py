@@ -1,6 +1,7 @@
 #! /usr/bin/python
 import yaml
 import sys
+import os.path
 
 if len(sys.argv) > 1:
   wlfile = sys.argv[1]
@@ -10,7 +11,8 @@ else:
 wl = yaml.load(open(wlfile))
 wl_out = sys.stdout
 
-orderview = (sys.argv[0] == 'wineorder')
+print sys.argv[0]
+orderview = (os.path.basename(sys.argv[0]) == 'wineorder')
 
 def prnt(strng = ''):
   strng = strng.encode('utf-8')

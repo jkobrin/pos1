@@ -2921,6 +2921,17 @@
         - date: '3/30/11'
           qty: 12
 
+    - name: "The Marshal Malbec 2009"
+      listprice: 31
+      qtprice: 10
+      notes: ""
+      byline: "by Bodegas Goulart - Argentina"
+      grape: "Malbec"
+      catalog: "opici"
+      notes: "Aromas of dark fruit, and spice, esp. cloves and white pepper. Big, fruity palate with tobacco, wood and soft, sweet tanins."
+      frontprice: 14 # got it for 12
+      bin: 295
+
     - name: "Urban Uco Malbec 2009"
       listprice: 25
       qtprice: 9
@@ -2941,7 +2952,7 @@
       frontprice: 10.66
       bin: 3061
 
- name: "White Wine"
+- name: "White Wine"
   items:
 
     - name: "Bibici B6 Riserva"
