@@ -16,7 +16,7 @@ def format_item(name, cnt):
     ret += ' @'+str(cnt)
   return ret
 
-def get_tab_text(table, serverpin = None, cursor = None):
+def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_time = None):
 
   if cursor is None:
     conn = MySQLdb.connect (host = "localhost",
@@ -30,8 +30,7 @@ def get_tab_text(table, serverpin = None, cursor = None):
     SELECT count(*) cnt, oi.item_name name, sum(oi.price) price, oi.is_comped
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
-    and og.is_open = TRUE
-    and og.table_id = "%(table)s"
+    and (og.is_open = TRUE and og.table_id = "%(table)s" and "%(ogid)s" = "None" or og.id = "%(ogid)s")
     and oi.is_cancelled = FALSE
     group by oi.item_name, oi.is_comped
     order by oi.id
@@ -67,7 +66,7 @@ def get_tab_text(table, serverpin = None, cursor = None):
   tabtext += "5600 Merrick Rd Massapequa".center(NUMWIDTH + TEXTWIDTH) + '\n'
   tabtext += "516-620-0057".center(NUMWIDTH + TEXTWIDTH) + '\n\n'
   now = utils.now()
-  tabtext += '  Table:%s  %s  \n\n' % (table,  now)
+  tabtext += '  Table:%s  %s  \n\n' % (table,  closed_time or now)
   tabtext += 'FOOD & DRINK' + "\n" 
   tabtext += divider
 
