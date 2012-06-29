@@ -60,7 +60,8 @@ menu:
             - {name: marcona almonds, price: 6}
             - {name: walnut pesto, price: 6}
             - {name: anchovy, price: 6}
-            - {name: peppers, price: 7}
+            #- {name: peppers, price: 7}
+            - {name: cauli, price: 7}
             - {name: mussels, price: 7}
             - {name: salmon, price: 7}
             - {name: prawn, price: 10}
@@ -71,11 +72,11 @@ menu:
             - {name: empanada, price: 7}
             - {name: mini panini , price: 7}
             - {name: marrow bones, price: 8}
-            - {name: french onion, price: 7}
+            #- {name: french onion, price: 7}
             - {name: bocadillo, price: 8}
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
-            - {name: oxtail, price: 9}
+            #- {name: oxtail, price: 9}
             - {name: chicken, price: 18}
             - {name: truffle rib, price: 19}
             - {name: bread, price: 3}
