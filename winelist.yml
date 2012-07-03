@@ -2905,6 +2905,16 @@
       frontprice: 9.17
       mynotes: "buttery, rustic. nothing offensive or great either"
 
+    - name: "Carmenére 2010"
+      listprice: 21 
+      qtprice: 7
+      byline: "Leyda - Rapel Valley, Chile"
+      grape: "Carmenére"
+      catalog: "winebow"
+      notes: "Nose of vanilla, cedar, white and black pepper and thyme. Palate shows raspberry as well with great balance and structure."
+      mynotes: "Nice nose, salty vanilla, white pepper, thyme, raspberry? raisiny, pork fat? aged in french oak 10 months"
+      frontprice: 7
+
     - name: "Baqueano Malbec 2010"
       byline: "by Neuquen - Patagonia, Argentina"
       listprice: 20
