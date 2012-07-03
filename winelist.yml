@@ -3948,6 +3948,11 @@
 
     - name: "Pilsner Urquell"
       listprice: 7
+      bin:
+      frontprice: TODO
+
+    - name: "Brooklyn Weisse"
+      listprice: 7
       bin: pint
       frontprice: TODO
 
