@@ -3015,17 +3015,16 @@
       bin:
 
 
-    - name: "Reisling Kabinett"
+    - name: "Reisling Kabinett 2011"
       notes: "Exotic oily aromas of wild yeast, then sweet apricot and honey in the mouth, followed by a refreshing crispness."
-      mynotes: "stinky petrol, sweet honeyish, but acidic enough to finish nicely. A"
-      byline: "by Ayler Krupp - Mosel, Germany"
+      mynotes: ""
+      byline: "by Kreuznacher - Kronenberg, Germany"
       grape: "Reisling"
-      listprice: 26 #(12?)
-      TODO: check
-      qtprice: 9
-      frontprice: 10 #(12?)
-      catalog: "winebow 735a" #get it
-      bin:
+      listprice: 22
+      qtprice: 7
+      frontprice: 6.70 #6 on 3
+      catalog: "winebow"
+      bin: 1179
       
       - name: "Reisling 2010"
       byline: "Mercer - Yakima Valley, Washington"
