@@ -1,5 +1,28 @@
 #TODO: exclude lunch the following day
-set @the_tip = 344.14;
+#07/15
+#Labossier --  cash:528.0   credit:0   sales:369.37375   credit tips:0   cash tips:158.62625   all tips:158.62625  tip%: 58.5336715867
+#Salazar --  cash:1115.0   credit:0   sales:928.74375   credit tips:0   cash tips:186.25625   all tips:186.25625  tip%: 21.7843567251
+#all tips: 344.8825
+
+#07/16
+#Lilli --  cash:579.87   credit:0   sales:474.69125   credit tips:0   cash tips:105.17875   all tips:105.17875  tip%: 24.0683638444
+#Young --  cash:350.0   credit:0   sales:326.96125   credit tips:0   cash tips:23.03875   all tips:23.03875  tip%: 7.65406976744
+#Ponce --  cash:67.0   credit:0   sales:51.05375   credit tips:0   cash tips:15.94625   all tips:15.94625  tip%: 33.9281914894
+#all tips: 144.16375
+#ADJUST YOUNGS TIPS
+#Server last name: Y   
+#Young --  cash:350.0   credit:0   sales:326.96125   credit tips:0   cash tips:23.03875   all tips:23.03875  tip%: 7.65406976744
+#collected: 60
+#Young --  cash:410.0   credit:0   sales:326.96125   credit tips:0   cash tips:83.03875   all tips:83.03875  tip%: 27.5876245847
+#Server last name: 
+#Lilli --  cash:579.87   credit:0   sales:474.69125   credit tips:0   cash tips:105.17875   all tips:105.17875  tip%: 24.0683638444
+#Young --  cash:410.0   credit:0   sales:326.96125   credit tips:0   cash tips:83.03875   all tips:83.03875  tip%: 27.5876245847
+#Ponce --  cash:67.0   credit:0   sales:51.05375   credit tips:0   cash tips:15.94625   all tips:15.94625  tip%: 33.9281914894
+#all tips: 204.16375
+
+
+
+set @the_tip = 265.71;
 
 create or replace view last_night_items
 as
@@ -18,8 +41,8 @@ select lni.id as lni_id, lni.price, p.id as p_id, last_name
     if(p.last_name = 'Ponce', .5, 
     if(p.last_name = 'Smith', .5,
     if(p.last_name = 'Labossier', 1,
-    if(p.last_name = 'Salazar', 1, 
-    if(p.last_name = 'Lilli', 1.4,
+    if(p.last_name = 'Salazar', 1.0, 
+    if(p.last_name = 'Lilli', 1.0,
     if(p.last_name = 'Young', .5, 
     if(p.last_name = 'DiLemme', 1, 
     if(p.last_name = 'Addy', 0, 

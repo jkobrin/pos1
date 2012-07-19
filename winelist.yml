@@ -3008,12 +3008,9 @@
       byline: "by Pffafenheim - Alsace, France"
       listprice: 28 #(12?)
       qtprice: 9
-      TODO: check
-      qtprice: 9
       frontprice: 10 #8.67 on 2
       catalog: "opici"
       bin:
-
 
     - name: "Reisling Kabinett 2011"
       notes: "Exotic oily aromas of wild yeast, then sweet apricot and honey in the mouth, followed by a refreshing crispness."
@@ -3026,7 +3023,7 @@
       catalog: "winebow"
       bin: 1179
       
-      - name: "Reisling 2010"
+    - name: "Reisling 2010"
       byline: "Mercer - Yakima Valley, Washington"
       grape: "Reisling"
       catalog: "winebow"
