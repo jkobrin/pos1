@@ -61,6 +61,8 @@ menu:
             - {name: walnut pesto, price: 6}
             - {name: anchovy, price: 6}
             #- {name: peppers, price: 7}
+            - {name: corn, price: 5}
+            - {name: summer harvest, price: 8}
             - {name: cauli, price: 7}
             - {name: mussels, price: 7}
             - {name: salmon, price: 7}

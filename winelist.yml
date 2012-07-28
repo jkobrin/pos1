@@ -2914,6 +2914,7 @@
       notes: "Nose of vanilla, cedar, white and black pepper and thyme. Palate shows raspberry as well with great balance and structure."
       mynotes: "Nice nose, salty vanilla, white pepper, thyme, raspberry? raisiny, pork fat? aged in french oak 10 months"
       frontprice: 7
+      bin: 296
 
     - name: "Baqueano Malbec 2010"
       byline: "by Neuquen - Patagonia, Argentina"
@@ -3007,26 +3008,22 @@
       byline: "by Pffafenheim - Alsace, France"
       listprice: 28 #(12?)
       qtprice: 9
-      TODO: check
-      qtprice: 9
       frontprice: 10 #8.67 on 2
       catalog: "opici"
       bin:
 
-
-    - name: "Reisling Kabinett"
+    - name: "Reisling Kabinett 2011"
       notes: "Exotic oily aromas of wild yeast, then sweet apricot and honey in the mouth, followed by a refreshing crispness."
-      mynotes: "stinky petrol, sweet honeyish, but acidic enough to finish nicely. A"
-      byline: "by Ayler Krupp - Mosel, Germany"
+      mynotes: ""
+      byline: "by Kreuznacher - Kronenberg, Germany"
       grape: "Reisling"
-      listprice: 26 #(12?)
-      TODO: check
-      qtprice: 9
-      frontprice: 10 #(12?)
-      catalog: "winebow 735a" #get it
-      bin:
+      listprice: 22
+      qtprice: 7
+      frontprice: 6.70 #6 on 3
+      catalog: "winebow"
+      bin: 1179
       
-      - name: "Reisling 2010"
+    - name: "Reisling 2010"
       byline: "Mercer - Yakima Valley, Washington"
       grape: "Reisling"
       catalog: "winebow"
