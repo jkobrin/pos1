@@ -3270,7 +3270,7 @@
       listprice: 26
       qtprice: 9
       qt: yes
-      frontprice: 8.67
+      frontprice: 10 #8.67 # on 3
       bin: 206
 
     - name: "Chardonnay 2010"
@@ -3324,7 +3324,7 @@
       byline: "by Wilson Vineyard - Clarksburg, California"
       grape: "Viognier"
       catalog: "opici 400 "
-      frontprice: 10.00
+      frontprice: 10.00     #8 on 3
       mynotes: "Liked it at la bottega"
       notes: "Very ripe peaches, and pineapple in the nose, with mouth-filling body and fruit."
       bin: 204
