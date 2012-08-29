@@ -49,3 +49,22 @@ union
 SELECT nt.total, dt.dname, dt.dat, dt.total as dtotal from
 (day_tots dt left outer join night_tots nt on nt.dat = dt.dat)
 ;
+
+
+create or replace view wine_tots
+as
+select sum(price) total, date(created - interval '4' hour) dat
+from revenue_item
+where item_name rlike "([0-9]+ )|(pint )|flight|cktail"
+group by date(created - interval '4' hour)
+;
+
+
+create or replace view fw_tots
+as
+select wt.total wine_tot, nt.total n_tot, 100*wt.total/nt.total as wine_pct, nt.dname dname, nt.dat dat
+from wine_tots wt, night_tots nt
+where wt.dat = nt.dat
+;
+
+

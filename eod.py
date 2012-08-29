@@ -32,7 +32,7 @@ def index(req, lag=0):
     label=False
   )
 
-  day_totals = utils.select('''select * from nd_tots''', incursor=None, label=False)
+  day_totals = utils.select('''select * from nd_tots order by dat desc''', incursor=None, label=False)
   
   grand_total = utils.select('''
     SELECT sum(price) total  
@@ -84,4 +84,4 @@ def index(req, lag=0):
   return html
 
 if __name__ == '__main__':
-  print 'hi'
+  print index(None)
