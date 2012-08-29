@@ -197,16 +197,16 @@
 
 #    - name: "Gruner-Veltliner"
 #      listprice: 21 
-#      qtprice: 7
+#      qtprice: 8
 #      byline: "cwMarc Aurel - NiederÖsterreich, Austria"
-#      grape: "Carmenére"
+#      grape: "Carmenere"
 #      catalog: "winebow"
 #      mynotes: "lime and pineapple, soft rounded, hint of sweetness, peppery finish. "
 #      frontprice: 7.33
 
 #    - name: "Carmenére 2010"
 #      listprice: 21 
-#      qtprice: 7
+#      qtprice: 8
 #      byline: "Leyda - Rapel Valley, Chile"
 #      grape: "Carmenére"
 #      catalog: "winebow"
@@ -703,14 +703,6 @@
 #      mynotes: "Subtle, medium body, few tanins. nice."
 #      frontprice: 10 #3=8.66, #5=8, #10=7.66
 #
-#    - name: "Verdejo 2011"
-#      listprice: 22
-#      qtprice: 7
-#      byline: "Rey Santo - Rueda, Spain"
-#      grape: "Verdejo, Viura"
-#      catalog: "Polaner"
-#      mynotes: "SB tropical fruit, low acid, candied heavy body."
-#      frontprice: 8 #3=7.33 #5=6.66 #10=6
 #
 
 #    - name: "Mokora Txakolina"
@@ -2152,7 +2144,6 @@
       grape: "Petit Sirah"
       catalog: ""
       frontprice: 12
-      bin: 1
 
     - name: "Petit Sirah 2008"
       listprice: 44
@@ -2327,6 +2318,17 @@
         - date:
           qty:
 
+    - name: "Fleur Pinot Noir 2010"
+      listprice: 30
+      qtprice: 10
+      byline: "by Fleur de California - Carneros"
+      grape: "Pinot Noir"
+      catalog: "polaner"
+      notes: "Subtle, well-balanced Pinot from Carneros (which spans parts of both Napa and Sonoma). Fresh red cherry with hints of spice, butter and game."
+      mynotes: "subtle light. good fruit. nice buttery nose."
+      frontprice: 12.8
+      bin: 207
+
     - name: "Wyatt Pinot Noir"
       listprice: 28
       qtprice: 9
@@ -2336,7 +2338,6 @@
       notes: "Rich, Burgundy-style Pinot from fruit sourced in Napa and Sonoma. Earthy with musky fruit and supple tanins."
       mynotes: "Good earthyness, musky fruit, some dusty nice tanins."
       frontprice: 12
-      bin: 207
 
     - name: "Primarius Pinot Noir 2009"
       listprice: 30
@@ -3570,7 +3571,6 @@
       frontprice: 6
       mynotes: "six case closeout deal"
       notes: "Full-bodied and fragrant with a hint of briny tang."
-      bin: 1
 
     - name: "Albariño 2010"
       listprice: 30
@@ -3583,6 +3583,16 @@
       notes: "Refreshing and crisp with lemon, floral, and peach aromas. On the palate, citrus and minerals complement the full, creamy texture."
       bin: 108
     
+    - name: "Santo Verdejo 2011"
+      listprice: 22
+      qtprice: 7
+      byline: "Rey Santo - Rueda, Spain"
+      grape: "Verdejo, Viura"
+      catalog: "Polaner"
+      notes: "Alluring nose of tropical fruit. Palate is soft and full with candy notes."
+      mynotes: "SB tropical fruit, low acid, candied heavy body."
+      frontprice: 8 #3=7.33 #5=6.66 #10=6
+
     - name: "Shaya Verdejo 2010"
       listprice: 28
       qtprice: 10
