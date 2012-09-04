@@ -5,6 +5,7 @@ def nightly_sales_by_server(label=False, lag_hours=16):
   return utils.select('''
     SELECT 
       p.last_name server, 
+      p.ccid,
       sum(oi.price) sales, 
       sum(ri.price) taxable_sales,
       count(distinct og.id) tabs_closed

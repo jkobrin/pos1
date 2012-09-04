@@ -703,10 +703,11 @@
 #
 #    - name: "Verdejo 2011"
 #      listprice: 22
-#      qtprice: 7
+#      qtprice: 8
 #      byline: "Rey Santo - Rueda, Spain"
 #      grape: "Verdejo, Viura"
 #      catalog: "Polaner"
+#      bin: 699
 
 #      mynotes: "SB tropical fruit, low acid, candied heavy body."
 #      frontprice: 8 #3=7.33 #5=6.66 #10=6
@@ -3570,9 +3571,10 @@
       byline: "Rey Santo - Rueda, Spain"
       grape: "Verdejo, Viura"
       catalog: "Polaner"
-      notes: "Alluring nose of tropical fruit. Palate is soft and full with candy notes."
+      notes: "Alluring nose of tropical fruit. Palate is soft and full with hard candy notes."
       mynotes: "SB tropical fruit, low acid, candied heavy body."
       frontprice: 8 #3=7.33 #5=6.66 #10=6
+      bin: 699
 
     - name: "Shaya Verdejo 2010"
       listprice: 28

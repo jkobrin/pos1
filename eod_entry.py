@@ -14,7 +14,7 @@ server_info = {}
 
 class server_inf(object):
     
-  def __init__(self, server, sales, taxable_sales, **kv):
+  def __init__(self, server, ccid, sales, taxable_sales, **kv):
     taxable_sales = taxable_sales or 0
     self.server = server
     self.presales = taxable_sales
@@ -22,6 +22,7 @@ class server_inf(object):
     self.credit = 0
     self.credit_tips = 0
     self.cash = None
+    self.ccid = str(ccid)
 
   def cash_tips(self):
     if self.credit is not None and self.cash is not None:
@@ -38,8 +39,8 @@ class server_inf(object):
        else: return None
 
   def format(self):
-    return '%s --  cash:%s   credit:%s   sales:%s   credit tips:%s   cash tips:%s   all tips:%s  tip%%: %s' % (
-      self.server, self.cash, self.credit, self.sales, self.credit_tips, self.cash_tips(), self.all_tips(), self.tip_pct()
+    return '%s %s --  cash:%s   credit:%s   sales:%s   credit tips:%s   cash tips:%s   all tips:%s  tip%%: %s' % (
+      self.server, self.ccid, self.cash, self.credit, self.sales, self.credit_tips, self.cash_tips(), self.all_tips(), self.tip_pct()
     )  
 
 for row in info_by_server:
@@ -60,7 +61,7 @@ def prompt():
 
 def get_server_info(name):
     name = name.lower()
-    results = [sname for sname in server_info if sname.startswith(name)]
+    results = [sname for sname in server_info if sname.startswith(name) or server_info[sname].ccid == name]
     if len(results) == 1:
       return server_info.get(results[0]), None
     elif len(results) > 1:

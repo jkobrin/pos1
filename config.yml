@@ -52,6 +52,7 @@ menu:
             - name: MN
             - name: DW
             - name: DP
+            - name: RP
     - name: food
       subcategories:
         - name: dinner
