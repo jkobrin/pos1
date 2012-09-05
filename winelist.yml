@@ -2237,7 +2237,7 @@
       catalog: "southern"
       notes: "California winemakers have discovered blends and the public seems to approve. Intense but well-balanced and complex wines like this one are probably why. Cherry and dried flowers on the nose, then deep plum-and-raisin fruit with soft, sweet tanins."
       mynotes: ""
-      bin: 730
+      bin: 707
 
     - name: "The Reveler"
       listprice: 28
@@ -2247,6 +2247,7 @@
       catalog: "verity"
       mynotes: "This classic red blend has a lovely, spicy nose with hints of clove and black cherry, medium body with dark fruit and smoke, and a long, soft finsih."
       frontprice: 11.33 #no deals
+      bin: 3031
 
 
     - name: "The Sum"
@@ -2343,7 +2344,7 @@
       catalog: "polaner"
       notes: "Subtle, well-balanced Pinot from Carneros (which spans parts of both Napa and Sonoma). Fresh red cherry with hints of spice, butter and game."
       mynotes: "subtle light. good fruit. nice buttery nose."
-      frontprice: 12.8
+      frontprice: 12.8 #152, 3=144, 5=136
       bin: 207
 
     - name: "Wyatt Pinot Noir"
@@ -2447,7 +2448,7 @@
       grape: "55% Cabernet Sauvignon, 25% Cabernet Franc, 20% Merlot"
       catalog: ""
       frontprice: 7
-      bin: 100
+      bin:
 
 
     - name: "Mystic Merlot"
@@ -2468,7 +2469,7 @@
       byline: "by Pere Allessandro - Piedmont, Italy"
       catalog: "opici"
       frontprice: 27.03
-      bin: 298
+      bin: 704
 
     - name: "Nebbiolo D'Alba 2009"
       listprice: 32
@@ -2498,7 +2499,7 @@
       byline: "by Pere Alessandro - Piedmont, Italy"
       notes: "Barbera is grown side by side with the esteemed Barolo grape, Nebbiolo, on the hillsides around Alba. The wine is bold and full-bodied with fresh cherry flavors, good acidity, and soft tanins."
       catalog: "opici"
-      bin: 906
+      bin:
 
     - name: "Barbaresco 2005 - Rizzi"
       mynotes: "shoe polish, good dryness, decent tanins, some fruit, decent acidity."
@@ -2513,13 +2514,9 @@
       qt: yes
       byline: "by Fattoria di Basciano - Tuscany"
       grape: "Sangiovese"
-      catalog: "verity 627a"
+      catalog: "verity"
       frontprice: 10.00
       bin: 302
-      instock: 12
-      ordered: 
-        - date: '3/30/11'
-          qty: 12
 
     - name: "Bossi Chianti Classico 2007"
       listprice: 34
@@ -2530,10 +2527,6 @@
       catalog: "winebow"
       frontprice: 14.36 
       bin: 112
-      instock: 12
-      ordered: 
-        - date: '4/7/11'
-          qty: 12
 
     - name: "Vino Nobile di Montepulciano 2005"
       qtprice: 14
@@ -2544,8 +2537,7 @@
       notes: "Produced since medieval times, it's the older brother of Chianti and Brunello. Dry, full-bodied, and lively with notes of dark cherry, dried porcini mushrooms, raisins and roasted herbs."
       mynotes: "stemmy, good mild tanins, raisiny fruit, A-"
       grape: "Sangiovese Grosso"
-      bin: 702
-      instock: 2
+      bin: 703
 
     - name: "Brunello di Montalcino 2004"
       listprice: 95
@@ -2556,7 +2548,7 @@
       grape: "Sangiovese"
       catalog: "winebow"
       frontprice: 61
-      bin: 1181
+      bin: 701
 
     - name: "Brunello di Montalcino 2000"
       listprice: 60
@@ -2567,7 +2559,7 @@
       grape: "Sangiovese"
       catalog: "boening"
       frontprice: 36.50
-      bin: 713
+      bin: 702
 
     - name: "Liano 2007"
       byline: "by Umberto Cesare - Tuscany"
@@ -2578,11 +2570,7 @@
       notes: "This Super-Tuscan livens up the native Chianti grapes with a bit of Cabernet. There are berry flavors, jammy fruit and soft tanins."
       mynotes: "Berry (sweet?) jammy, mild, mild tanins. B+?"
       grape: "80% Sangiovese, 20% Cabernet Sauvignon"
-      bin: 703
-      instock: 3
-      ordered:  
-        - date: "3/30/11"
-          qty: 3
+      bin: 706
 
     - name: "Monteregio Toscana 2009"
       listprice: 30
@@ -2610,11 +2598,7 @@
       grape: "Corvino, Rondinello, Molinari"
       catalog: "opici"
       frontprice: 35
-      bin: 704
-      instock: 3
-      ordered:  
-        - date: "3/30/11"
-          qty: 3
+      bin: 705
 
     - name: "Chicco d'Uva (IGT)"
       byline: "by San Giuseppe - Veneto, Italy"
@@ -2656,10 +2640,6 @@
       catalog: "verity 627a"
       frontprice: 10.00
       bin: 301
-      instock: 12
-      ordered: 
-        - date: '3/30/11'
-          qty: 12
 
     - name: "Cannonau Di Sardegna 2008"
       listprice: 29
@@ -2670,10 +2650,6 @@
       notes: "This is the hearty red wine of Sardinia. Ripe forest fruit, oak and pepper flavors fit the remote mediterranean island."
       frontprice: 12.67
       bin: 304
-      instock: 12
-      ordered:  
-        - date: '3/30/11'
-          qty: 12
 
     - name: "Rioja 2008"
       listprice: 24
@@ -2686,10 +2662,6 @@
       frontprice: 9
       mynotes: " ?should taste again?"
       bin: 105
-      instock: 
-      ordered: 
-        - date: '4/2/11'
-          qty: 12
         
     - name: "Faustino Rioja"
       listprice: 25
@@ -2711,10 +2683,6 @@
       notes: "Aromas of cherry and earth. Smooth vanilla and cherry palate with mellow, mouth-coating tannins."
       frontprice: 22
       bin: 107
-      instock: 
-      ordered: 
-        - date: '4/2/11'
-          qty: 12
 
     - name: "El Chaparral 2008 (Vega Sindoa)"
       listprice: 28
@@ -2944,11 +2912,19 @@
       frontprice: 7.42 #3=7.05, 5=6.68, 10=6.3
       notes: "Fruity with mild tanins, and a hint of earth. Easy-going enjoyment."
       mynotes: "fruity, some good tanin, little earth, B+. Better than more expensive Cristobal"
+      bin:
+
+    - name: "Padrillos Malbec 2011"
+      byline: "by Ernesto Catena - Mendoza, Argentina"
+      listprice: 21
+      qtprice: 7
+      qt: yes
+      grape: "Malbec"
+      catalog: "east coast spec. wines "
+      frontprice: #5.66 on 5
+      notes: "Dark red cherry with mild tanins, and hints of mocha and sweet spices. Easy-going and rich."
+      mynotes: "like a full-bodied warm climate pinot noir"
       bin: 2071
-      instock: 12
-      ordered: 
-        - date: '3/30/11'
-          qty: 12
 
     - name: "The Marshal Malbec 2009"
       listprice: 31
@@ -2977,7 +2953,7 @@
       byline: "Susana Balbo - Mendoza, Argentina"
       grape: "Malbec"
       catalog: "polaner"
-      frontprice: 10.66
+      frontprice: 10.66  #128, 3=120, 5=104
       bin: 3061
 
 - name: "White Wine"
@@ -3175,7 +3151,7 @@
       catalog: "weygandt"
       frontprice: 9.33
       mynotes: "taste it"
-      bin: 210
+      bin:
 
     - name: "Gewurzaminer"
       listprice: 30
@@ -3399,7 +3375,7 @@
       byline: "Susana Balbo - Mendoza, Argentina"
       grape: "Torrontes"
       catalog: "polaner"
-      frontprice: 10.66
+      frontprice: 10.66  #128, 3=120, 5=104
       bin: 297
 
     - name: "Sauvignon Blanc 2010"
@@ -3531,7 +3507,7 @@
       catalog: "tempranillo page 61, "
       frontprice: 10.86
       grape:  "Garnacha, Viura, Tempranillo"
-      bin: 108
+      bin:
 
     - name: "Txacoli"
       listprice:
@@ -3573,6 +3549,7 @@
       notes: "Alluring nose of tropical fruit. Palate is soft and full with candy notes."
       mynotes: "SB tropical fruit, low acid, candied heavy body."
       frontprice: 8 #3=7.33 #5=6.66 #10=6
+      bin: 1181
 
     - name: "Shaya Verdejo 2010"
       listprice: 28
@@ -3584,10 +3561,6 @@
       notes: "An elegant, complex Spanish white with aromas and flavors of melon, hazelnuts and spice."
       mynotes: "nutt, frutty spicy B+"
       bin: 117
-      instock: 
-      ordered: 
-        - date: '4/2/11'
-          qty: 12
     
     - name: "Verdejo 2009"
       byline: "by Paso a Paso - La Mancha, Spain"
@@ -3615,6 +3588,7 @@
       qt: yes
       frontprice: 8.66
       catalog: 'tempranillo'
+      bin: 708
 
 - name: "Bubbly"
   items:
@@ -3627,7 +3601,7 @@
       listprice: 95
       qtprice: 95
       frontprice: 55.47
-      bin: 4061
+      bin: 699
 
     - name: "Vouvray Petillant"
       listprice: 44
@@ -3638,7 +3612,7 @@
       notes: "Lush, but nuanced nose of flowers & honey. Palate is apply, stony and dry, with soft bubbles. Hints of cream and chocolate on the finish."
       mynotes: "nose flowers, honey, apply, stony, dry, nice medium bubbles. hint of chocolate"
       frontprice:  20
-      bin: 4061
+      bin: 405
 
     - name: "Cremant de Bourgogne (Sparking Burgundy)"
       byline: "by Vissoux Pierre-Marie Chermette - Burgundy, France"
@@ -3649,6 +3623,7 @@
       listprice: 36
       qtprice: 14
       frontprice: 15.50
+      bin: 698
 
     - name: "Prosecco"
       byline: "by Dom Bertiol - Veneto, Italy"
@@ -3660,7 +3635,7 @@
       qt: yes
       frontprice: 10
       catalog: "opici"
-      bin: 3018
+      bin: 790
 
     - name: "Lambrusco"
       byline: "by San Giuseppe - Veneto, Italy"
@@ -3671,7 +3646,7 @@
       qtprice: 8
       frontprice: 8
       catalog: "opici"
-      bin: 299
+      bin: 791
 
     - name: "Gran Sarao Rosé Cava"
       byline: "by Josep Masachs - Penedes, Spain"
@@ -3681,7 +3656,7 @@
       frontprice: 10
       listprice: 26
       qtprice: 8
-      bin: 802
+      bin: 1191
 
     - name: "Rosé of Malbec"
       byline: "by Reginato - Mendoza, Argentina"
@@ -3728,7 +3703,7 @@
       qt: yes
       qtprice: 10
       catalog: "polaner"
-      bin: 1081
+      bin: 680
     
     - name: "Sauternes 2006 Reserve"
       byline: "Maison Nicolas"
@@ -3738,7 +3713,7 @@
       frontprice: 11.05
       grape: "Sauvignon Blanc, Semillon"
       notes: "Sauternes has great depth, luscious layers of apricot and honey, and also finesse, with flowers, apples and refreshing ripe peach."
-      bin: 291
+      bin: 691
       instock: 4
       ordered: 
         - date: '3/05/11'
@@ -3755,16 +3730,16 @@
       catalog: "opici"
       bin: 303
           
-    - name: "Chocolate Shop"
+    - name: "Chocolate Merlot"
       listprice: 22
       qtprice: 6
-      byline: "Chocolate Shop Wine - Walla Walla, Washington"
+      byline: ""
       grape: "Merlot"
       catalog: "opici "
       frontprice: 8.67
-      notes: "It's chocolate desert wine, but forget creamy Choco-Vine. Think good dark chocolate over sweet red cherries. Really works."
-      mynotes: "Good chocalate over ripe red cherries. Sweet, but good acid."
-      bin: 305
+      notes: "We mix fruity Rutherford Vintners Merlot with a shot of sweet, chocolaty creme de cacao to make a delicoius desert wine. Think good dark chocolate over sweet red cherries. We think it really works."
+      mynotes: ""
+      bin: 202
 
     - name: "Wolfer Estate Rosé"
       byline: "Wolfer"
@@ -3911,7 +3886,7 @@
       bin:
       frontprice: TODO
 
-    - name: "Brooklyn Weisse"
+    - name: "Sorachi Ace"
       listprice: 7
       bin: pint
       frontprice: TODO
@@ -3934,11 +3909,6 @@
       listprice: 8
       bin: 999
       frontprice: 2.80
-      bin: 999
-      instock:  
-      ordered: 
-        - date: '3/30/11'
-          qty: 24
 
 
     - name: "St Louis Kriek Premium Lambic Belgian Ale with Cherries"
