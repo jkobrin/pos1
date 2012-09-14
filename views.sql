@@ -13,6 +13,8 @@ from
   where h.person_id = p.id;
 
 
+create or replace view served_item as select * from order_item where is_cancelled = false and item_name not like 'gift%';
+
 create or replace view revenue_item as select * from order_item where is_comped = false and is_cancelled = false and item_name not like 'gift%';
 
 create or replace view sales_by_week
@@ -50,6 +52,25 @@ SELECT nt.total, dt.dname, dt.dat, dt.total as dtotal from
 (day_tots dt left outer join night_tots nt on nt.dat = dt.dat)
 ;
 
+create or replace view comped_food
+as
+select sum(if(is_comped = true, price, 0)) total, date(created - interval '4' hour) dat
+from order_item
+where item_name not rlike "([0-9]+ )|(pint )|flight|cktail"
+and is_cancelled = false
+group by date(created - interval '4' hour)
+;
+
+
+create or replace view comped_booze
+as
+select sum(if(is_comped = true, price, 0)) total, date(created - interval '4' hour) dat
+from order_item
+where item_name rlike "([0-9]+ )|(pint )|flight|cktail"
+and is_cancelled = false
+group by date(created - interval '4' hour)
+;
+
 
 create or replace view wine_tots
 as
@@ -62,9 +83,24 @@ group by date(created - interval '4' hour)
 
 create or replace view fw_tots
 as
-select wt.total wine_tot, nt.total n_tot, 100*wt.total/nt.total as wine_pct, nt.dname dname, nt.dat dat
+select wt.total wine_tot, nt.total n_tot, round(100*wt.total/nt.total,1) as wine_pct, nt.dname dname, nt.dat dat
 from wine_tots wt, night_tots nt
 where wt.dat = nt.dat
+;
+
+create or replace view who_worked
+as
+select date(intime) dat, group_concat(p.last_name) ppl
+from hours h, person p where p.id = h.person_id 
+group by date(intime)
+;
+
+create or replace view fw_tots_and_staff
+as
+select cb.total comped, fw.*, substr(ww.ppl,1, 80) ppl
+from fw_tots fw, who_worked ww, comped_booze cb
+where fw.dat = ww.dat
+and fw.dat = cb.dat
 ;
 
 
