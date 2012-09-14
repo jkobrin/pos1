@@ -1974,6 +1974,36 @@
 #      mynotes: "nice bitter pear skin finish. bit light"
 #      frontprice: 11.33
 #
+#    - name: "Rully"
+#      listprice:
+#      qtprice:
+#      byline: "Roux Pere et Fils - Burgundy, France"
+#      grape: "chardonnay"
+#      catalog: "opici"
+#      mynotes: "very delicate, but funky hints of oak and butter. caramel finish."
+#      frontprice: 18.00
+#
+#    - name: "Mersault"
+#      listprice:
+#      qtprice:
+#      byline: "Roux Pere et Fils - Burgundy, France"
+#      grape: "chardonnay"
+#      catalog: "opici"
+#      mynotes: "light but rich with oak butter and nuts."
+#      frontprice: 36.67 #btl
+#
+#
+#    - name: "Pouilly-Fuisse"
+#      listprice:
+#      qtprice:
+#      byline: "Roux Pere et Fils - Burgundy, France"
+#      grape: "chardonnay"
+#      catalog: "opici"
+#      mynotes: "hint of oak and butter"
+#      frontprice: 18.64
+#
+#
+#
 - name: Red Wine
   items:
     - name: "Bordeaux"
@@ -2019,7 +2049,7 @@
       bin: 4012
 
 
-    - name: "Chateauneuf-du-Pape 2006"
+    - name: "Chateauneuf-du-Pape 2010"
       listprice: 48
       qtprice:  14
       byline: "by Dommain De Saint. Paul - Rhone Valley, France"
@@ -2027,9 +2057,9 @@
       catalog: "opici"
       notes: "A big wine with concentrated cherry and blackberry fruit and firm, abundant tanins. Spicey, smokey and smooth. "
       frontprice: 25
-      bin: 309
+      bin: 407
 
-    - name: "Cairanne Cotes du Rhone 2009"
+    - name: "Cairanne Cotes du Rhone 2010"
       byline: "by Earl Dionysos - Rhone Valley France"
       notes: "Chateauneuf's little brother. Peppers and leather on the nose. Palate has loads of dark berry fruit, pepper and good intensity with a hint of vanilla."
       listprice: 29
@@ -2101,7 +2131,7 @@
       mynotes: "Nice acidity. little concentration, cherry bubble gum. Good sour cherry fruity"
       notes: "This Beaujolais is not the unaged Nouveau that comes out each November. There are bright cherry flavors, hints of candy and tropical fruit, but also depth and concentration, with dark raspberry and currant flavors and good length."
       frontprice: 10.66
-      bin: 403
+      bin: 406
 
     - name: "Beaujolais Villages 2010"
       byline: "by Chateau du Chatelard - Beaujolais, France"
@@ -2153,6 +2183,17 @@
       catalog: ""
       frontprice: 12
 
+    - name: "Petite Sirah 2009"
+      byline: "Four Vines, Paso Robles, California"
+      notes: "Nose of black cherry, and baking spice. Palate has sweet, plummy fruit and velvety tannins."
+      listprice: 21
+      qtprice: 7
+      qt: yes
+      grape: "Petit Sirah"
+      catalog: "opici"
+      frontprice: 6.66
+      bin: 114
+
     - name: "Petit Sirah 2008"
       listprice: 44
       qtprice: 14
@@ -2163,10 +2204,6 @@
       catalog: "verity 620A "
       frontprice: 21.33
       bin: 120
-      instock: 6
-      ordered:  
-        - date: "3/30/11"
-          qty: 6
 
     - name: "Cabernet Sauvignon 2009"
       listprice: 32
@@ -2216,7 +2253,7 @@
       mynotes: ""
       notes: "Bordeaux blend, but definitely a new-world wine. Sweet, dark fruit and mellow tanins with an earthy finish."
 
-    - name: "'The Crusher' Cab 2009"
+    - name: "'The Crusher' Cab 2010"
       listprice: 25
       qt: yes
       qtprice: 9
@@ -2582,7 +2619,7 @@
       grape: "90% Sangiovese, 10% Cabernet Sauvignon"
       catalog: "polaner"
       frontprice: 13.33
-      bin: 3021
+      bin: 305
 
     - name: "Lui 2006"
       byline: "Luiano -Tuscany"
@@ -2652,13 +2689,13 @@
       frontprice: 12.67
       bin: 304
 
-    - name: "Rioja 2008"
+    - name: "Rioja 2009"
       listprice: 24
       qtprice: 8
       qt: yes
       byline: "by Sierra Cantabria - Rioja, Spain"
       grape: "Tempranillo"
-      notes: "Spain's iconic red wine. Hints of mocha and blackberry. Well balanced and crisp."
+      notes: "Good example of Spain's iconic red wine. Hints of mocha and blackberry. Well balanced and crisp."
       catalog: "Tempranillo"
       frontprice: 9
       mynotes: " ?should taste again?"
@@ -2673,7 +2710,7 @@
       notes: "Nose shows menthol and cedar. Light red fruit on the palate with a bit of baking spice. Finish is light and fresh."
       mynotes: "Nice tempranillo tipical minty nose, reserva is not really better than standard"
       frontprice: 9.5 #?
-      bin: 111
+      bin: 104
 
     - name: "Rioja Reserva 2005"
       listprice: 44
@@ -2714,7 +2751,7 @@
         - date: '4/2/11'
           qty: 12
 
-    - name: "Tinto Fino 2007"
+    - name: "Tinto Fino 2008"
       listprice: 40
       qtprice: 13
       byline: "by Emilio Moro - Ribera Del Duero, Spain"
@@ -2722,13 +2759,13 @@
       notes: "Smoke & roasted herbs over tons of firm ripe cherry and vanilla spice."
       catalog: "tempranillo page 44"
       frontprice: 19.33
-      bin: 113
+      bin: 1111
       instock: 12
       ordered: 
         - date: '4/2/11'
           qty: 12
 
-    - name: "Maudes Tempranillo 2008"
+    - name: "Maudes Tempranillo 2009"
       listprice: 28
       qtprice: 9
       byline: "by Bodega Lezcano-Lacalle - Ciglaes, Spain"
@@ -2739,7 +2776,7 @@
       frontprice: 12
       bin: 109
 
-    - name: "Clos de Torribas 2006 Crianza"
+    - name: "Clos de Torribas 2008 Crianza"
       listprice: 22
       qtprice: 8
       qt: yes
@@ -2750,10 +2787,6 @@
       notes: "Pure red fruit, light body, and fragrant oak."
       mynotes: "smooth smokey vanilla, good fruit A"
       bin: 103
-      instock: 12
-      ordered: 
-        - date: '3/30/11'
-          qty: 12
 
     - name: "Beso de Vino Old Vine Garnacha"
       listprice: 22
@@ -2763,7 +2796,7 @@
       frontprice: 8
 
 
-    - name: "Anima Negra 2008"
+    - name: "Anima Negra 2009"
       listprice: 36
       qtprice: 12
       byline: "by Anima Negra - Mallorca, Spain"
@@ -2772,9 +2805,9 @@
       notes: "From the Mediterranean resort island of Mallorca, a medium-bodied wine of indigenous grape varieties with great balance, smokey spice, and soft tanins."
       mynotes: "Nice balance. Smokey, fruity, soft tanins."
       frontprice: 16.66 
-      bin: 1031
+      bin: 1071
 
-    - name: "Tarima 2009"
+    - name: "Tarima"
       listprice: 21
       qtprice:  7
       qt: yes
@@ -2850,18 +2883,17 @@
       frontprice: 13.33
       mynotes: "smokey, peppery garnacha with good balance and depth"
 
-    - name: "Garnacha de Fuego"
+    - name: "Garnacha de Fuego 2011"
       listprice: 22
       qtprice: 7
       qt: yes
-      byline: "by Ateca - Calatayud, (Aragon) Spain"
+      byline: "by Ateca - Aragon, Spain"
       grape: "Old vine Garnacha (aka Grenache) grown at 3000 ft"
       notes: "Smokey cherries and chocolate on the nose. Mouth has lots of sweet dark fruit. Good focus and finish."
       catalog: "tempranillo page 7"
       frontprice: 6.66
       mynotes: "lots of sweet dark fruit"
       bin: 108
-      instock: 
 
     - name: "Borsao 2009"
       listprice: 21
@@ -2873,7 +2905,7 @@
       notes: "Well made, with nice balance, and juicy fruit."
       mynotes: "nice balance, good oak.  B+"
 
-    - name: "Camins del Priorat"
+    - name: "Camins del Priorat 2010"
       listprice: 34
       qtprice: 9
       byline: "by Alvaro Palacios - Priorat, Spain"
@@ -2882,7 +2914,7 @@
       notes: "Widely grown, but poorly regarded in France, Carrignan is originally a Spanish variety. The rugged terrior of its native Priorat brings out the grape's true character - full, dark fruit; stoney notes; and soft but chewy tanins."
       mynotes: "big dark fruit, nice chewy tanins"
       frontprice: 16
-      bin: 801
+      bin: 115
 
     - name: "Malbec Cristobal 1492"
       listprice: 25
@@ -2892,7 +2924,7 @@
       frontprice: 9.17
       mynotes: "buttery, rustic. nothing offensive or great either"
 
-    - name: "Carmenére 2010"
+    - name: "Carmenere 2010"
       listprice: 21 
       qtprice: 7
       byline: "Leyda - Rapel Valley, Chile"
@@ -2901,7 +2933,7 @@
       notes: "Nose of vanilla, cedar, white and black pepper and thyme. Palate shows raspberry, as well, with great balance and structure."
       mynotes: "Nice nose, salty vanilla, white pepper, thyme, raspberry? raisiny, pork fat? aged in french oak 10 months"
       frontprice: 7
-      bin: 296
+      bin: 113
 
     - name: "Baqueano Malbec 2010"
       byline: "by Neuquen - Patagonia, Argentina"
@@ -2921,7 +2953,7 @@
       qtprice: 7
       qt: yes
       grape: "Malbec"
-      catalog: "east coast spec. wines "
+      catalog: "verity"
       frontprice: #5.66 on 5
       notes: "Dark red cherry with mild tanins, and hints of mocha and sweet spices. Easy-going and rich."
       mynotes: "like a full-bodied warm climate pinot noir"
@@ -2955,7 +2987,7 @@
       grape: "Malbec"
       catalog: "polaner"
       frontprice: 10.66  #128, 3=120, 5=104
-      bin: 3061
+      bin: 307
 
 - name: "White Wine"
   items:
@@ -3015,7 +3047,7 @@
       qtprice: 7
       frontprice: 6.70 #6 on 3
       catalog: "winebow"
-      bin: 1179
+      bin: 119
       
     - name: "Reisling 2010"
       byline: "Mercer - Yakima Valley, Washington"
@@ -3075,7 +3107,30 @@
       grape: "Chardonnay"
       catalog: "verity"
       frontprice: 10.67
-      bin: 405
+
+    - name: "Rully (roo-yee) 2010"
+      listprice: 37
+      qtprice: 12
+      byline: "Roux Pere et Fils - Burgundy, France"
+      grape: "Chardonnay"
+      catalog: "opici"
+      notes: "Delicate Burgundian Chardonnay from the Cotes d'Or, just south of Mersault. Light and almost briny, but  with hints of oak and butter and a long caramely finish."
+      mynotes: "very delicate, but funky hints of oak and butter. caramel finish."
+      frontprice: 18.00
+      bin: 694
+
+    - name: "Macon Villages"
+      listprice: 27
+      qtprice: 9
+      byline: "Roux Pere et Fils - Burgundy, France"
+      grape: "Chardonnay"
+      catalog: "opici"
+      notes: "Classic Macon Chardonnay. Unoaked, simple but well-built with lots of fresh, juicy apple and pear flavors, and a crisp, flinty finish."
+      mynotes: "bright pineapple, very pleasant"
+      frontprice: 11.34 #3=10
+      bin: 404
+
+
 
     - name: "White Burgundy"
       listprice:
@@ -3104,7 +3159,7 @@
       grape: "Sauvignon Blanc"
       catalog: "polaner"
       frontprice: 14 #?
-      bin: 404
+      bin: 4041
 
     - name: "Touraine Sauvignon Blanc 2010"
       listprice: 26
@@ -3176,11 +3231,10 @@
       byline: "Laughlin Family Vineyard - Russian River, Sonoma, California"
       notes: "Elegant, rich California Chard. Dried apricot, pistachio and butterscotch aromas and flavors build effortlessly to the long, creamy finish."
       mynotes: ""
-      catalog: "opici"
+      catalog: "polaner"
       listprice: 55
       qtprice: 15
       frontprice: 30
-      bin: 2021
 
     - name: "Chalk Hill Chardonnay 2009"
       byline: "Estate bottled by Chalk Hill Vineyard - Russian River, Sonoma, California"
@@ -3258,7 +3312,7 @@
       mynotes: "Funky slightly oaky nose. Palate is sweet and creamy with well-integrated but pronounced oak. Grilled pineapple. Yummy."
       notes: "Ripe, woody nose. Palate is buttery with bright tropical fruit and hints of toasted oak. Like grilled pineapple brushed with butter. Yum."
       frontprice: 11.33 #10.67 on 3
-      bin: 2041
+      bin: 310
 
 
     - name: "Patz and Hall 2009"
@@ -3270,7 +3324,7 @@
       mynotes: "Bit of funk and golden apple, med oak, complex, light, and well balanced"
       notes: "Rich golden apple with hints of pear and hazelnut, good minerality as well as toasty oak and butter. Complex and well-balanced."
       frontprice: 17.5
-      bin: 206
+      bin: 2061
 
 
     - name: "Angeline Sauvignon Blanc -Russian River"
@@ -3294,7 +3348,7 @@
       frontprice: 10.50
       mynotes: "Full body, some stemmyness."
 
-    - name: "'The Crusher' Viognier 2009"
+    - name: "'The Crusher' Viognier 2010"
       listprice: 26
       qtprice: 9
       byline: "by Wilson Vineyard - Clarksburg, California"
@@ -3304,10 +3358,6 @@
       mynotes: "Liked it at la bottega"
       notes: "Very ripe peaches, and pineapple in the nose, with mouth-filling body and fruit."
       bin: 204
-      instock: 12
-      ordered: 
-        - date: '3/30/11'
-          qty: 12
 
     - name: "Chateau Julien"
       byline: "Monterry, California"
@@ -3340,7 +3390,7 @@
       catalog: "winebow"
       #bin: get
 
-    - name: "Clifford Bay 2010 Sauvignon Blanc - Marlborough, New Zealand"
+    - name: "Clifford Bay 2011 Sauvignon Blanc - Marlborough, New Zealand"
       catalog: "opici"
       listprice: 26
       qtprice: 9
@@ -3353,7 +3403,7 @@
         - date: "3/30/11"
           qty: 12
 
-    - name: "Centauri Sauvignon Blanc 2010"
+    - name: "Centauri Sauvignon Blanc 2008"
       listprice: 26
       qtprice: 8
       qt: yes
@@ -3377,7 +3427,7 @@
       grape: "Torrontes"
       catalog: "polaner"
       frontprice: 10.66  #128, 3=120, 5=104
-      bin: 297
+      bin: 697
 
     - name: "Sauvignon Blanc 2010"
       listprice: 21
@@ -3394,7 +3444,7 @@
         - date: '3/30/11'
           qty: 12
 
-    - name: "Morgex 2010"
+    - name: "Morgex 2011"
       listprice: 28
       qtprice: 9
       byline: "Cave du Vin Blanc de Morgex et de La Salle- Valle D'Aosta, Italy"
@@ -3403,7 +3453,7 @@
       notes: "At 4000 ft, the vineyards of Morgex and La Salle at the foot of Mont Blanc's Italian side are the highest in Europe. The wine is fresh and crisp with good body and minerality and light floral and citrusy notes."
       mynotes: "good acidity"
       frontprice: 12
-      bin: 801
+      bin: 698
 
     - name: "Pinot Grigio 2009"
       listprice: 18
@@ -3437,7 +3487,7 @@
       qt: yes
       frontprice: 7.67
       notes: "Very light with mild lemon and green apple flavors. Easy drinking."
-      bin: 350
+      bin:
 
     - name: "Verdicchio 2010"
       catalog: "verity"
@@ -3446,7 +3496,7 @@
       qtprice: 8
       frontprice: 9.33
       notes: "Crisp and light. Bitter almond and minerals compliment the lemon and apple fruit flavors."
-      bin: 1041
+      bin: 636
 
     - name: "Isola's Vermentino Di Sardegna"
       catalog: "east coast specialty wines page 3, B+"
@@ -3530,7 +3580,7 @@
       mynotes: "six case closeout deal"
       notes: "Full-bodied and fragrant with a hint of briny tang."
 
-    - name: "Albariño 2010"
+    - name: "Albariño 2011"
       listprice: 30
       qtprice: 10
       byline: "by Bodegas La Caña - Rias Baixas, Spain"
@@ -3539,7 +3589,7 @@
       frontprice: 13
       mynotes: "light sweet fruit in nose. Percieved sweetness, heavy body. Nice round fruit. Pleasant."
       notes: "Refreshing and crisp with lemon, floral, and peach aromas. On the palate, citrus and minerals complement the full, creamy texture."
-      bin: 108
+      bin: 110
     
     - name: "Santo Verdejo 2011"
       listprice: 22
@@ -3550,7 +3600,7 @@
       notes: "Alluring nose of tropical fruit. Palate is soft and full with hard candy notes."
       mynotes: "SB tropical fruit, low acid, candied heavy body."
       frontprice: 8 #3=7.33 #5=6.66 #10=6
-      bin: 699
+      bin: 111
 
     - name: "Shaya Verdejo 2010"
       listprice: 28
@@ -3561,7 +3611,7 @@
       frontprice: 12
       notes: "An elegant, complex Spanish white with aromas and flavors of melon, hazelnuts and spice."
       mynotes: "nutt, frutty spicy B+"
-      bin: 117
+      bin: 623
     
     - name: "Verdejo 2009"
       byline: "by Paso a Paso - La Mancha, Spain"
@@ -3570,7 +3620,7 @@
       frontprice: 9
       mynotes: "very nice nose, full fruity body, creamy, toast B+"
       
-    - name: "Botani 2009 Dry Moscatel"
+    - name: "Botani 2010 Dry Moscatel"
       listprice: 30
       qtprice: 11
       qt: yes
@@ -3581,15 +3631,15 @@
       grape: "Muscato de Alexandria"
       bin: 106
     
-    - name: "Fino en Rama (Dry Sherry)"
+    - name: "Fino en Rama (Dry Sherry) 2006"
       byline: "Alvear - Cordoba, Spain"
-      notes: "Unlike any other wine - bone dry with aroma & flavor of walnuts, sea salt, and wood. Great with nuts, olives or cured meats."
-      listprice: 22
-      qtprice: 5
+      notes: "Unlike any other wine - pale straw color and bone dry with aroma & flavor of walnuts, sea salt, and wood. Great with nuts, olives or cured meats."
+      listprice: 23
+      qtprice: 6
       qt: yes
       frontprice: 8.66
       catalog: 'tempranillo'
-      bin: 708
+      bin: 1181
 
 - name: "Bubbly"
   items:
@@ -3657,7 +3707,7 @@
       frontprice: 10
       listprice: 26
       qtprice: 8
-      bin: 1191
+      bin: 117
 
     - name: "Rosé of Malbec"
       byline: "by Reginato - Mendoza, Argentina"
@@ -3683,10 +3733,10 @@
       grape: "Chardonnay, Xarel-lo"
       notes: "Refreshing and creamy with notes of apple, bread and honey."
       catalog: "opici"
-      bin: 119
       frontprice: 12
       listprice: 32
       qtprice: 8
+      bin: 1171
 
     - name: "zardetto prosecco"
       frontprice: 10 #(4 for little)
