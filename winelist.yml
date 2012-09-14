@@ -2173,7 +2173,7 @@
       catalog: "Jenny & Francois one of the last pages"
 
 
-    - name: "Handcraft Petit Sirah"
+    - name: "Handcraft Petite Sirah"
       listprice: 28
       qtprice: 9
       qt: yes
@@ -2183,8 +2183,8 @@
       catalog: ""
       frontprice: 12
 
-    - name: "Petite Sirah 2009"
-      byline: "Four Vines, Paso Robles, California"
+    - name: "Petite Sirah 2010"
+      byline: "Four Vines - Lodi, California"
       notes: "Nose of black cherry, and baking spice. Palate has sweet, plummy fruit and velvety tannins."
       listprice: 21
       qtprice: 7
@@ -2194,7 +2194,7 @@
       frontprice: 6.66
       bin: 114
 
-    - name: "Petit Sirah 2008"
+    - name: "Petite Sirah 2008"
       listprice: 44
       qtprice: 14
       qt: yes
