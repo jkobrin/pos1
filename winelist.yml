@@ -3963,6 +3963,18 @@
           qty: 24
 
 
+    - name: "Birra Roma"
+      byline: "Birrademare - Rome, Italy"
+      listprice: 8
+      frontprice: 3.30
+      bin:999
+
+    - name: "Pumpkinhead"
+      byline: "Shipyard Brewing Co. - Maine, USA"
+      listprice: 8
+      frontprice: 2.70
+      bin:999
+
     - name: "Jai Alai"
       byline: "Cigar City Brewing, Florida, USA"
       listprice: 7
