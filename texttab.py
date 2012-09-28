@@ -25,17 +25,19 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
                           db = "pos")
 
     cursor = conn.cursor()
-
-  items = utils.select('''
+    
+  items_query = '''
     SELECT count(*) cnt, oi.item_name name, sum(oi.price) price, oi.is_comped
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
-    and (og.is_open = TRUE and og.table_id = "%(table)s" and "%(ogid)s" = "None" or og.id = "%(ogid)s")
+    and (og.is_open = TRUE or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
     and oi.is_cancelled = FALSE
     group by oi.item_name, oi.is_comped
     order by oi.id
-  ''' % locals(),
-    cursor)
+  ''' % locals()
+
+
+  items = utils.select(items_query, cursor)
 
   if serverpin:
     servername = \

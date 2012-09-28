@@ -24,6 +24,19 @@ def index(req):
     label=False
   )
 
+  payroll = utils.select('''
+	SELECT week(intime), year(intime), 
+	sum(hours_worked) as hours_worked,
+  round(sum(hours_worked*pay_rate)) + 194 + 480 + 750 as payroll
+	from hours_worked 
+  where (week(now()) + year(now())*52) - (week(intime)+year(intime)*52) < 3
+  and last_name not in ('Kobrin', 'DiLemme', 'Kanarova')
+  group by year(intime), week(intime)
+	order by year(intime) desc, week(intime) desc''',
+    incursor=None,
+    label=False
+  )
+
   detail = utils.select('''
 	SELECT concat('week ', week(intime),' ',dayname(intime),' ',date),
 	last_name, 
@@ -46,6 +59,12 @@ def index(req):
       'Hours worked per week by person',
       ('week', 'year', 'last name',  'hours_worked', 'rate', 'tax', 'weekly_pay'), 
       weekly,
+      breakonfirst = True
+    ) +
+    utils.tohtml(
+      'Payroll',
+      ('week', 'year', 'hours_worked', 'payroll'), 
+      payroll,
       breakonfirst = True
     ) +
     utils.tohtml(
