@@ -63,24 +63,25 @@ menu:
             - {name: anchovy, price: 6}
             #- {name: peppers, price: 7}
             #- {name: corn, price: 5}
-            - {name: summer harvest, price: 8}
+            #- {name: summer harvest, price: 8}
+            - {name: ceasar, price: 8}
             - {name: cauli, price: 7}
             #- {name: mussels, price: 7}
             - {name: salmon, price: 7}
             #- {name: prawn, price: 10}
             - {name: octopus, price: 12}
             - {name: burrata , price: 14}
-            - {name: patatas bravas, price: 5}
+            #- {name: patatas bravas, price: 5}
+            - {name: gratin, price: 6}
             - {name: meatballs, price: 8}
             - {name: empanada, price: 7}
             - {name: mini panini , price: 7}
             - {name: marrow bones, price: 8}
             #- {name: french onion, price: 7}
-            - {name: gratin, price: 7}
             - {name: bocadillo, price: 8}
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
-            - {name: oxtail, price: 10}
+            - {name: oxtail, price: 9}
             - {name: chicken, price: 18}
             #- {name: truffle rib, price: 19}
             - {name: bread, price: 3}
@@ -105,6 +106,7 @@ menu:
             - {name: piave, price: 0}
             - {name: pecorino tartufo, price: 0}
             - {name: daffinois, price: 0}
+            - {name: floret, price: 0}
             - {name: fourme dambert, price: 0}
             - {name: capri, price: 0}
             - {name: seranno ham, price: 0}

@@ -3643,9 +3643,20 @@
       grape: "Muscato de Alexandria"
       bin: 106
     
+    - name: "Retsina Nobilis"
+      byline: "by Gaia Estate - Greece"
+      notes: "Traditional Greek white wine flavored with pine resin. Very unusual. Light, crisp and quite piney."
+      listprice: 27
+      qtprice: 9
+      qt: yes
+      frontprice: 11
+      catalog: 'winebow'
+      bin: 690
+
     - name: "Fino en Rama (Dry Sherry) 2006"
       byline: "Alvear - Cordoba, Spain"
       notes: "Unlike any other wine - pale straw color and bone dry with aroma & flavor of walnuts, sea salt, and wood. Great with nuts, olives or cured meats."
+      grape: "Pedro Ximenez"
       listprice: 23
       qtprice: 6
       qt: yes
@@ -3757,7 +3768,7 @@
 
 - name: 'Desert'
   items:
-    - name: "Madiera - Charleston Sercial"
+    - name: "Madeira - Charleston Sercial"
       byline: "Rare Wine Co. - Island of Madiera, Portugal"
       notes: "Dark rasiny, nutty flavors with brown sugar and candied orange peel. Endless finish."
       mynotes: "good"
@@ -3767,6 +3778,17 @@
       qtprice: 10
       catalog: "polaner"
       bin: 680
+    
+    - name: "Porto Ruby Reserva, NV"
+      byline: "Quinta do Passadouro - Vale de Mendiz, Portugal"
+      notes: "Deep ruby red, intensely aromatic and full-bodied with bright fruit and good grip."
+      mynotes: "good ropey taninns"
+      listprice: 35
+      frontprice: 16.72
+      qt: yes
+      qtprice: 9
+      catalog: "winebow"
+      bin: 681
     
     - name: "Sauternes 2006 Reserve"
       byline: "Maison Nicolas"
