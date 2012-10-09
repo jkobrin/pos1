@@ -63,7 +63,8 @@ menu:
             - {name: anchovy, price: 6}
             #- {name: peppers, price: 7}
             #- {name: corn, price: 5}
-            - {name: summer harvest, price: 8}
+            #- {name: summer harvest, price: 8}
+            - {name: ceasar, price: 8}
             - {name: cauli, price: 7}
             #- {name: mussels, price: 7}
             - {name: salmon, price: 7}
@@ -105,6 +106,7 @@ menu:
             - {name: piave, price: 0}
             - {name: pecorino tartufo, price: 0}
             - {name: daffinois, price: 0}
+            - {name: floret, price: 0}
             - {name: fourme dambert, price: 0}
             - {name: capri, price: 0}
             - {name: seranno ham, price: 0}
@@ -154,7 +156,6 @@ menu:
             - {name: special13, price: 13}
             - {name: special14, price: 14}
             - {name: special15, price: 15}
-            - {name: prix-fix-27, price: 27}
         - name: lunch
           items: 
             - {name: salmon_san, price: 8}
