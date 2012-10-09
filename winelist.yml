@@ -2102,6 +2102,18 @@
       frontprice: 7
       bin: 1191
 
+
+    - name: "Corbieres"
+      listprice: 21
+      qtprice: 7
+      byline: ""
+      grape: ""
+      catalog: "Verity"
+      notes: ""
+      mynotes: ""
+      frontprice: 7.33 #3=10
+      bin: 409
+
     - name: "Savigny-Les-Beaune Premier Cru 2007"
       listprice: 52
       qtprice: 16
@@ -3157,7 +3169,7 @@
       byline: "by Paul Prieur et Fils - Loire Valley, France"
       notes: "A big, steely wine with chalky, stony notes, but there is melon as well as grapefruit and lemon."
       grape: "Sauvignon Blanc"
-      catalog: "polaner"
+      catalog: "verity"
       frontprice: 14 #?
       bin: 4041
 
@@ -3311,7 +3323,7 @@
       catalog: "southern"
       mynotes: "Funky slightly oaky nose. Palate is sweet and creamy with well-integrated but pronounced oak. Grilled pineapple. Yummy."
       notes: "Ripe, woody nose. Palate is buttery with bright tropical fruit and hints of toasted oak. Like grilled pineapple brushed with butter. Yum."
-      frontprice: 11.33 #10.67 on 3
+      frontprice: 11.33 #10.67 on 3, 10 on 5
       bin: 310
 
 
@@ -4067,3 +4079,67 @@
       frontprice:  1.40 
 
 
+#monsier touton
+
+# Touton SB Bordeaux: Nice nose. sweet round fruit. bitter soapy
+# finish. Lime peel? FL: 6.66. 6 on 5.
+#
+# SB> South Africa. Oracle of the Wind. Funky fruit nose. Sweet
+# fruit.round finish. Med acid. FL:5.33. 5 on 3.
+#
+# Barco Viejo Chile chardonnay. Bright fruit. Some good chard
+# skunky funk. Light toasty oak. FL: 5.33 4.66 on 4 . Get this
+# instead on hahn.
+#
+#Cotes du rhone Domaine st. jean. Buttery. slightly bitter. fl: 6
+#
+# Vacqueyras Chapelle St-Amour. fl: 12.66 11.33 on 2. Little
+# butter, cherry. nice mellow. borderline.
+#
+#Hindsight Napa Valley Cab. 2010.  fl: 16.58  15 on 2
+# sweet red berries. light. soft easy tanins. Savory. drinkable.
+# easy.
+
+#
+# Poggio Al Tufo. Rompicollo super tuscan. Tomasi. Super Tuscan.:
+# bland. sort of watery. Nice fruit but very light and mellow.
+# fl: 12. 10 on 2
+
+# Arele - amarone grapes. Spicey. nice red fruit. some savor in
+# the acid. godd, but not much tanin. fl: 13.33 net
+#
+# Cahors La Tour Chambert 2008 - 104 net
+
+# Marchigue Cab Sauv. Gran Reserva FL: 8. 7.33 on 3 6.67 on 5
+
+###########VERITY#################
+# Mistral winds Domaine Gasier - Cercius 2011 Cotes Du rhone Old Vines
+# GRenache 85 / Syrah 15 -- sharp grapey edge, blackberry, bit of
+# heavy butteriness - mid mouth tanins, little hot - savory bark berry nose, 
+# mocha finish. Mellows nicely good round fruit. FL: 136, 128, 120 on 3
+#
+# Corbieres - mostly Syrah. Sweaty nose. Herby. Blackberry. 13.5 alc.
+# Some sweet dark berry. some herbal. tarry. FL: 9.33, 104 on2, 8
+# on 3., 88 on 5
+# Coffee after 15 minutes. Good toasty notes. Like a nice dark Rioja.  organic.
+#
+# Goats do Roam. GSM + Cinsault. Big fruity nose, some plum stone, sweet butter, spicey nose.
+# Soft overall. No tanins on the finish. New world/ old. FL: 88, 80 on 3, 72 on 5
+#
+#  Chateua Poitevin 2008 Medoc. PLumy spicey nose. Nice fruit. Short fromt of the mouth tanins.
+# Low acid.
+#
+# Chateau de Bel Aire. Lalande de- Pommerol 2007. Funky fruit
+# nose, some spice. Nice acid structure. Fruity enough. Med FOM
+# tanins. FL: 12, 10.66 on 2. Nice balance savory. 
+####################################
+#
+# Touton
+#
+# La Commanderie du Bartelet  64 on 5 - dark and bitter. coffee,
+# licorice. not much
+# tanins. not much fruit.
+#
+#
+#
+# 
