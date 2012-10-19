@@ -17,7 +17,7 @@ def index(req):
   from revenue_item ri, order_group og 
   where ri.order_group_id = og.id 
   and date(og.created) = date(now()) - interval '1' day 
-  group by og.table_id, og.updated;
+  group by og.table_id, og.updated order by closed_time;
 	''',
     incursor=None,
     label=True

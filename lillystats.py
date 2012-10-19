@@ -8,6 +8,14 @@ import utils
 
 
 def index(req):
+  
+  grand_total = utils.select('''
+  SELECT total, dtotal  
+  FROM nd_tots  
+  WHERE dat = date(now());''',
+  incursor=None,
+  label=False
+  )
 
   seven_day_total1 = utils.select('''
   SELECT sum(total) night, sum(dtotal) lunch  
@@ -66,14 +74,19 @@ def index(req):
     '''  
       <html>
       <body>
-    ''' + 
+    ''' +
     utils.tohtml(
-      'Total today',
+      "Nightly Total",
+      ('Dinner','Lunch'), 
+      grand_total
+    ) +
+    utils.tohtml(
+      '7 Day Total today',
       ('Night', 'Lunch'), 
       seven_day_total1 
     ) +
     utils.tohtml(
-      'Total yesterday',
+      '7 Day Total yesterday',
       ('Night', 'Lunch'), 
       seven_day_total2 
     ) +
