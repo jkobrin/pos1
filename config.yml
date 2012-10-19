@@ -83,7 +83,7 @@ menu:
             - {name: polenta plate, price: 12}
             - {name: oxtail, price: 9}
             - {name: chicken, price: 18}
-            #- {name: truffle rib, price: 19}
+            - {name: short rib, price: 21}
             - {name: bread, price: 3}
         - name: boards
           items: 

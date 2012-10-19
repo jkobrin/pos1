@@ -4001,9 +4001,9 @@
 
     - name: "WeihenStephaner Wheat Beer" 
       byline: "WeihenStephan Brewery - Freising, Bavaria" 
-      listprice: 8
+      listprice: 6
       bin: 999
-      frontprice: 2.80
+      frontprice: 1.45
 
 
     - name: "St Louis Kriek Premium Lambic Belgian Ale with Cherries"
@@ -4067,6 +4067,18 @@
       byline: "Shipyard Brewing Co. - Maine, USA"
       listprice: 8
       frontprice: 2.70
+      bin: 999
+
+    - name: "Framboise"
+      byline: "Timmerman's - Belgium"
+      listprice: 9
+      frontprice: 4.00
+      bin: 999
+
+    - name: "Lost Dog"
+      byline: "Napa Smith Brewery - CA, USA"
+      listprice: 6
+      frontprice: 1.66 
       bin: 999
 
     - name: "Jai Alai"
@@ -4226,3 +4238,37 @@
 #
 # Sean Minor - can sauv - napa - light red fruit, some spice,
 # very smooth, little SOM tanins. maybe. 168.
+# ####################################
+#
+#
+# Hamilton Russel Vineyards
+#
+# Chardonnay - Hemel-En-Aarde - light skunk cabbage - hint of
+# butter and oak.
+#
+# Chardonnay / Sauvingnon - Ashbourne - interesting blend
+# -amphorae, stone fruit, hint of oxidation 
+
+# Pinot Noir - savory - poopy nose, little bit of a bite, rich,
+# good acid, little tanin
+
+# Pinotage - gamey some raisiny, hint of raisiny tanin,  bit
+# watery
+#
+# Pinotage - Cab Sauv - Syrah, - funky, cheesy, poopy, acid
+# structure, bit watery - savory, inky, licorice
+##
+##
+##  # Dark and Stormy - Goslings Black Seal & house ginger beer
+##  # Ginger Dragon - house-made grenadine powdered ginger, gin, lime
+##  # Margarita - Tequila
+##  # Bloody Maria - Tequila
+##  # caipirinha - Cahacha
+##  # Negroni
+##  # Aperol Spritz
+##  # Vodka Collins
+##  # Hot Toddy - Lemon, hot water, honey, tea, Bourbon
+##  # hot mulled cider?
+##  # Gingery Old Fashioned - Bourbon, gingerale, lemon, honey -- cherry?
+##  # Raspberry, chocolate, vodka - martini. 
+##  # 
