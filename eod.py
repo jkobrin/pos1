@@ -7,7 +7,7 @@ import queries
 
 def index(req, lag=0):
 
-  results = queries.nightly_sales_by_server(lag_hours=lag)
+  results = queries.nightly_sales_by_server(lag_days=lag)
 
   seven_day_total = utils.select('''
     SELECT sum(total) night, sum(dtotal) lunch  

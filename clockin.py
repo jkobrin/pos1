@@ -14,7 +14,7 @@ def index(serverpin, in_):
   wantsin = (in_ == 'true')
   wantsout = not wantsin
 
-  sqlin = 'INSERT INTO hours VALUES(null, %(serverpin)s, NOW(), 0)' % locals()
+  sqlin = 'INSERT INTO hours VALUES(null, %(serverpin)s, NOW(), 0, 1.0, null)' % locals()
   sqlout = 'UPDATE hours SET outtime = NOW() WHERE person_id = %(serverpin)s AND outtime = 0' % locals()
 
   conn = MySQLdb.connect (host = "localhost",

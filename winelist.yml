@@ -2264,6 +2264,18 @@
         - date: '3/30/11'
           qty: 24
 
+    - name: "Alexander Valley Vineyards Cabernet 2008"
+      listprice: 36
+      qtprice: 12
+      qt: yes
+      byline: "Alexander Valley, California"
+      grape: "Cabernet Sauvignon"
+      catalog: " "
+      frontprice: 14.66 #13.33 on 2
+      notes: "Manly but gentle, with hints of leather and tobacco as well as some sweet cherry and vanilla. Mellow, dry finish."
+      mynotes: "Grilled green pepper, good wet fruit, good cherry vanilla, nice finesse. Some leather and light tobacco. ROM tanins."
+      bin: 2021
+
     - name: "Hahn Meritage 2009"
       listprice: 25
       qt: yes
@@ -2308,6 +2320,17 @@
       mynotes: "This classic red blend has a lovely, spicy nose with hints of clove and black cherry, medium body with dark fruit and smoke, and a long, soft finsih."
       frontprice: 11.33 #no deals
       bin: 3031
+
+    - name: "E 2011"
+      listprice: 30
+      qtprice: 10
+      byline: "by Orin-Swift"
+      grape: "Grenache, Tempranillo and Carrigan from Rioja, Priorat and Ribera Del Duero, Spain."
+      frontprice: 13.33
+      catalog: "Polaner"
+      notes: "Orin Swift's 'The Prisoner' California red blend, made him a cult hero. Now he takes his show on the road with 'E' for España. The grapes are from Spain, but the wine definitely speaks with an American accent. The nose of warm spice and oak leads into a palate of concentrated fruit and spice like blueberry pie and then a finsih of soft, ripe tanins. Fun to drink."
+      mynotes: ""
+      bin: 708
 
 
     - name: "The Sum"
@@ -2691,6 +2714,15 @@
       frontprice: 33.17
       grape: "Sangiovese"
 
+    - name: "Etna Rosso 2009"
+      listprice: 36
+      qtprice: 12
+      notes: "Complex and lovely wine of indigenous Sicilian grapes. Nose has spiced cherries and palate is soft, red fruit, with a musky, woody undertone.  Reminiscent of a good, full-bodied Pinot Noir."
+      grape: "Nerello Mascelese 80%"
+      catalog: "verity 627a"
+      frontprice: 10.00
+      bin: 708
+
     - name: "Nero D'Avola 2008"
       listprice: 26
       qtprice: 9
@@ -3060,14 +3092,14 @@
       catalog: "opici"
       bin:
 
-    - name: "Reisling Kabinett 2011"
-      notes: "Sweet, but light and fresh with apricot and peach flavors and refreshing crispness."
+    - name: "Reisling 2008 (QbA)"
+      notes: "Exotic oily aromas of wild yeast and ripe fruit with sweet apricot palate. Drinks like good Mosel Kabinett."
       mynotes: ""
-      byline: "by Kreuznacher - Kronenberg, Germany"
+      byline: "by Ayler Kupp - Mosel, Germany"
       grape: "Reisling"
-      listprice: 22
-      qtprice: 7
-      frontprice: 6.70 #6 on 3
+      listprice: 32
+      qtprice: 8
+      frontprice: 10.03
       catalog: "winebow"
       bin: 119
       
@@ -3151,6 +3183,17 @@
       mynotes: "bright pineapple, very pleasant"
       frontprice: 11.34 #3=10
       bin: 404
+
+    - name: "Macon Villages 'Chameroy' 2010"
+      listprice: 24
+      qtprice: 8
+      byline: "Louis Latour - Burgundy, France"
+      grape: "Chardonnay"
+      catalog: "Touton"
+      notes: "This Macon Chardonnay drinks more like one of the ritzier appelations to the north. Elegant and creamy with notes of oak, hazelnut and honey."
+      mynotes: ""
+      frontprice: 8.66
+      bin: 405
 
 
 
@@ -3323,6 +3366,17 @@
       qtprice: 9
       qt: yes
       frontprice: 10 #8.67 # on 3
+      bin: 206
+
+    - name: "Barco Viejo Chardonnay"
+      byline: "BV Wines - Cotchagua Valley, Chile"
+      notes: "Toasted oak and musky notes on the nose. Full-bodied with bright fruit and a hint of butter."
+      mynotes: "Bright fruit. Some good chard skunky funk. Light toasty oak."
+      catalog: "Touton"
+      listprice: 20
+      qtprice: 7
+      qt: yes
+      frontprice: 5.33 #4.66 on 4
       bin: 206
 
     - name: "Franciscan Chardonnay 2010"
@@ -3945,7 +3999,7 @@
       byline: "Large Bottle (25.4 oz) - Belgium"
       listprice: 20
       frontprice: 7.36
-      bin: 999
+      bin:
       instock:
       ordered:
         - date: '3/30/11'
@@ -3960,6 +4014,13 @@
       ordered: 
         - date: '3/30/11'
           qty: 12
+
+    - name: "White Sangria"
+      byline: ""
+      listprice: 18
+      qtprice: 8
+      frontprice: 5
+      bin: 999
 
     - name: "Jar Sangria"
       byline: "House-made with red or white wine, orange liquer, Madiera, and fresh fruit"
@@ -3992,7 +4053,7 @@
       frontprice: TODO
 
     - name: "Delerium Tremens"
-      listprice: 9
+      listprice: 8
       bin: bowl
       frontprice: 2.00 #per 8ox pour - #162 for 20 littre keg
 
@@ -4006,11 +4067,17 @@
       frontprice: 1.45
 
 
+    - name: "Dogfish Head Chicory Stout"
+      byline: "by Castle Brewery - Van Honsebrouck, Belgium"
+      listprice: 6
+      frontprice: 1.98
+      bin: 999
+
     - name: "St Louis Kriek Premium Lambic Belgian Ale with Cherries"
       byline: "by Castle Brewery - Van Honsebrouck, Belgium"
       listprice: 12
       frontprice: 5.08
-      bin: 999
+      bin:
 
     - name: "Kasteel Rouge Belgian Cherry Ale" #with added cherry 74.50 12 oz
       byline: "by Brouwerij Van Honsebrouck N.V. - Ingelmunster, Belgium."
@@ -4067,7 +4134,7 @@
       byline: "Shipyard Brewing Co. - Maine, USA"
       listprice: 8
       frontprice: 2.70
-      bin: 999
+      bin:
 
     - name: "Framboise"
       byline: "Timmerman's - Belgium"

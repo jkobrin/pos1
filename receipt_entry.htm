@@ -1,0 +1,379 @@
+<html>
+
+<head>
+
+  <style>
+
+    #linx {float: left; height: 500px}
+    #linx a {padding-bottom:80px}
+
+    body,h1,h2,h3,h4,h5,h6 {font-family:Arial;}
+
+    body {background-color:pink; color:black; font-size:18}
+
+    h1 {font-size:28pt; font-weight:bold; margin:0px;}
+
+    h2 {font-size:16pt; margin:0px; font-weight:bold;}
+
+    h3 {font-size:8pt; margin:0px; font-weight:bold;}
+
+    #category {font-size:28pt; text-align: center}
+
+    .leftLink {float: left; font-size:48}
+    #goVerticalLink {float: right; font-size: 56; text-align: right}
+
+    #rightside {float: right }
+    #order_pane {width: 220px; border: 4px outset; margin-top:10px; }
+    #order_pane :hover {background-color: yellow;}
+    #select_area {width: 70%;}
+    
+    #table_display {width: 100%; margin: 5px; color: blue;}
+    #table_id_display {width: 95%;}
+    #receipt_text {font-family: monospace; font-size: 14pt;}
+
+  </style>
+
+  <script> 
+
+    // This is the only script on this page. It does basically
+    // everything. 
+    
+    function http_request(method, url, params)
+    {
+      http = new XMLHttpRequest();
+      if(method == "GET")
+      {
+        // append timestamp to url to prevent caching
+        url += "?timestamp=" + new Date().getTime();
+
+        if (params) {url += "&" + params;}
+        http.open(method, url, false);
+        http.send(null);
+      }
+      else
+      {
+        http.open(method, url, false);
+        http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+        http.setRequestHeader("Content-length", params.length);
+        http.setRequestHeader("Connection", "close");
+        http.send(params);
+      }
+
+      response = http.responseText;
+
+      if (http.status != 200)  {
+      // Display error message on page
+        document.write("Error getting config\n\n");
+        document.write(response);
+        return;
+      }
+
+      return eval('(' + response + ')');
+    }  
+
+    function draw()
+    // This gets called when the document loads.
+    {
+      init();
+      document.getElementById('top_heading').innerHTML = "Receipt entry for " + g_lag_days + "day(s) ago";
+      load_sales_by_server();
+      drawSales();
+
+      load_hours();
+      drawHours();
+    }
+
+    function getQueryParams() 
+    {
+      qs = document.location.search;
+      qs = qs.split("+").join(" ");
+      params = {};
+      tokens = null;
+      re = /[?&]?([^=]+)=([^&]*)/g;
+
+      while (tokens = re.exec(qs)) 
+      {
+        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+      }
+
+      return params;
+    }
+
+    g_params = null;
+    g_lag_days = null;
+    function init()
+    {
+      document.body.addEventListener('click', clicked, true)
+      g_params = getQueryParams();
+      if (g_params['lag_days'] == undefined)
+      {
+        g_lag_days = 1;
+      }
+      else
+      {
+        g_lag_days = g_params['lag_days'];
+      }
+    }  
+
+    g_sales_by_server = null;
+    function load_sales_by_server()
+    {
+      g_sales_by_server = http_request("GET", "sales_by_server.py/get", "lag_days="+g_lag_days);
+      for (idx in g_sales_by_server)
+      {
+        sales_by_server = g_sales_by_server[idx];
+        sales_by_server.cc1 = "";
+        sales_by_server.cc2 = Number(0);
+        sales_by_server.cash1 = "";
+        sales_by_server.cash2 = Number(-80);
+        sales_by_server.tip_amt= "";
+        sales_by_server.tip_pct = "";
+      }
+    }  
+
+    g_hours = null;
+    function load_hours()
+    {
+      g_hours = http_request("GET", "get_hours.py", "lag_days="+g_lag_days);
+    }  
+
+    function drawSales()
+    {
+      board=document.getElementById("sales_table");
+      board.innerHTML = getTableHTML();
+      calculate();
+
+    }
+
+    function drawHours()
+    {
+      hours_tab=document.getElementById("hours_table");
+      hours_tab.innerHTML = getHoursHTML();
+    }
+
+    g_tip_total = 0;
+    g_receipts_total = 0;
+    g_tip_pct = 0;
+    function calculate()
+    {
+      g_tip_total = 0;
+      g_receipts_total = 0;
+      for (idx in g_sales_by_server)
+      {
+        ss = g_sales_by_server[idx];
+        ss.tip_amt =  ss.cc1 + ss.cc2 + ss.cash1 + ss.cash2 - ss.receipts;
+        tip_amt_element = document.getElementById("tip_amt_"+ss.server);
+        tip_amt_element.innerHTML = Math.round(ss.tip_amt);
+
+        ss.tip_pct =  Math.round(ss.tip_amt *100 / ss.receipts);
+        tip_pct_element = document.getElementById("tip_pct_"+ss.server);
+        tip_pct_element.innerHTML = ss.tip_pct;
+
+        g_tip_total += ss.tip_amt;
+        g_receipts_total += ss.receipts;
+      }  
+
+      document.getElementById("tip_amt_total").innerHTML = Math.round(g_tip_total);
+      document.getElementById("receipts_total").innerHTML = g_receipts_total;
+
+      g_tip_pct =  Math.round(g_tip_total *100 / g_receipts_total);
+      document.getElementById("tip_pct_total").innerHTML = g_tip_pct;
+
+    }  
+
+    function send_data(value, field, server)
+    {
+      for (idx in g_sales_by_server)
+      {
+        ss = g_sales_by_server[idx];
+        if (ss.server == server) 
+        {
+          ss[field] = value;
+          break;
+        }
+      } 
+      calculate();
+    }
+
+    function update_hours(value, field, hours_id)
+    {
+      params = "hours_id="+hours_id+"&field_name="+field+"&new_value="+value;
+      resp = http_request("POST", "update_hours.py", params);
+    }  
+
+    function calc_tip_pay()
+    {
+      document.body.style.cursor = 'wait';
+      params = "lag_days="+g_lag_days;
+      params += "&the_tip="+g_tip_total;
+      http_request("POST", "calc_tip_pay.py", params);
+      
+      load_hours();
+      drawHours();
+      document.body.style.cursor = 'default';
+    }  
+      
+        
+    function getTableHTML()
+    {
+      s="";
+
+      s = s + "<table border=1 cellpadding=6 cellspacing=5 >";
+
+      cols = ["server", "ccid", /*"sales", "taxable_sales",*/ "receipts", /*"tabs_closed",*/ "cc1", "cc2", "cash1", "cash2", "tip_amt", "tip_pct"]
+      for (cidx in cols)
+      {
+        s += 
+          "<th" +
+          " onclick='grid_button_clicked(this)'" +
+          " id=\"" + cidx + "_header\"" +
+          ">" +
+          cols[cidx] +
+          "</th>";
+      }
+
+      for (idx in g_sales_by_server)
+      {
+        server_sales = g_sales_by_server[idx];
+        s += "<tr>";    
+
+        for (cidx in cols)
+        {
+          field = cols[cidx];
+          if (field == "cc1" || field == 'cc2' || field == 'cash1' || field == 'cash2')
+          {
+            td_guts = "<input type='edit' value='"+server_sales[field] + 
+              "' onblur = 'send_data(eval(this.value), \""+field+"\", \""+server_sales.server+"\")'/>"
+          }
+          else
+          {
+            td_guts = server_sales[field];
+          }
+          s += 
+            "<td" +
+            " class=''" +
+            " onclick='grid_button_clicked(this)'" +
+            " id='" + cols[cidx] + "_" + server_sales.server+"'" +
+            ">" +
+            td_guts +
+            "</td>";
+        }
+
+        s += "</tr>";
+      }
+      s+="<tr>";
+      for (cidx in cols)
+      {
+        if(cidx == 1) { s+= "<th>Totals</th>"; continue;}
+        field = cols[cidx];
+        s += "<td id='" + field + "_total'/>";
+      }
+
+      s += "</table>";
+
+      return s;
+    }
+
+    function getHoursHTML()
+    {
+      s="";
+
+      s = s + "<table border=1 cellpadding=6 cellspacing=5 >";
+
+      cols = ["last_name", "intime", "outtime", "tip_share", "tip_pay"]
+      for (cidx in cols)
+      {
+        s += 
+          "<th" +
+          " onclick='grid_button_clicked(this)'" +
+          " id=\"" + cidx + "_header\"" +
+          ">" +
+          cols[cidx] +
+          "</th>";
+      }
+
+      for (idx in g_hours)
+      {
+        hours = g_hours[idx];
+        s += "<tr>";    
+
+        for (cidx in cols)
+        {
+          field = cols[cidx];
+          if (field == "intime" || field == "outtime" || field == "tip_share" || field == "tip_pay")
+          {
+            td_guts = "<input type='edit' value='"+hours[field] + 
+              "' onblur = 'update_hours(this.value, \""+field+"\", \""+hours.id+"\")'/>"
+          }
+          else
+          {
+            td_guts = hours[field];
+          }
+          s += 
+            "<td" +
+            " class=''" +
+            " onclick='grid_button_clicked(this)'" +
+            " id='" + cols[cidx] + "_" + hours.id+"'" +
+            ">" +
+            td_guts +
+            "</td>";
+        }
+
+        s += "</tr>";
+      }
+
+      s += "</table>";
+
+      return s;
+    }
+
+    function grid_button_dragged(button)
+    {
+    }
+
+    function grid_button_clicked(button)
+    {
+      //alert(button.id);
+    }
+
+    function enter(event)
+    // When the user presses enter on the text editBox colorEdit we want
+    // to interperet this to mean apply so we capture the keypress events
+    // from the edit box and check if the key is the enter key
+    {
+      if (event.keyCode == 13)
+      {
+        colorEdit.blur(); 
+        //otherwise you can still see the cursor after the dialog is hidden
+        apply();
+      }
+    }
+
+    function clicked()
+    {
+    }
+
+  </script>
+
+</head>
+
+<body onLoad="draw()" id='main'>
+
+
+  <div id="main_screen">
+    <h1 id ="top_heading" style="{margin: 24pt;}"/>
+    <h2>Enter receipts by server</h2>
+    <div id="sales_table">
+    </div>  
+
+    <br>
+    <br>
+    <h2>Adjust hours and tip share if needed and calculate tips</h2>
+    <div id="hours_table">
+    </div>  
+    <button onclick="calc_tip_pay()">calculate tip pay</button>
+
+  </div>
+
+</body>
+</html>
