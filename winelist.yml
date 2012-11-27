@@ -1612,7 +1612,7 @@
 #      frontprice: 14
 #
 
-#    - name: "Tic Yok Pinot Grigio"
+#    - name: "Tic Tok Pinot Grigio"
 #      listprice:
 #      qtprice: 
 #      byline: "by - James Oatley - SE, Australia"
@@ -2075,7 +2075,7 @@
       listprice: 29
       qtprice: 10
       frontprice: 12
-      grape: "Grenache, Syrah, Mouvedre, Carrignan"
+      grape: "Grenache, Syrah, Mouvedre, Carignan"
       catalog: "opici"
       bin: 402
 
@@ -2105,7 +2105,7 @@
       listprice: 22
       qtprice: 8
       byline: "by Domaine de l'Amandine - Princip. d'Orange, Rhone Valley, France."
-      grape: "Grenache 30%, Merlot 30%, Sirah 10%, Cinsault, Carrignan, Marselan, Caladoc"
+      grape: "Grenache 30%, Merlot 30%, Sirah 10%, Cinsault, Carignan, Marselan, Caladoc"
       catalog: "wine symphony"
       notes: "Bold country wine with spicy scents of black and green pepper. Palate of dark fruit with leathery tanins. Big, brawny, and rustic."
       mynotes: "lovely heavy spice, veg, pepper nose. Heavy pepper leather and dark fruit on the palate, good tanins. tiny bit rough."
@@ -2116,10 +2116,10 @@
     - name: "Corbieres"
       listprice: 21
       qtprice: 7
-      byline: ""
-      grape: ""
+      byline: "Chateau Pech-Latt - Provencal, France"
+      grape: "Carignan 60%, Syrah 15%, Grenache 15%, Mourvedre 10%"
       catalog: "Verity"
-      notes: ""
+      notes: "Rich, but elegant wine from the South of France. Hints of red and dark berries with sweet and meaty spices and nice balance."
       mynotes: ""
       frontprice: 7.33 #3=10
       bin: 409
@@ -2133,7 +2133,7 @@
       notes: "Red Burgundy wine made Pinot Noir famous. This one is aromatic of rasberries, red currant, and flower petals with a lively mid-palate and dry, earthy finish."
       mynotes: "Flowers, perfume, little lipstic/bandaids. Tiny hint of barnyard. Lively fruit. fairly american. good. touch of buttery gaminess."
       frontprice: 26
-      bin: 401
+      bin:
 
     - name: "Cote de Beaune Village 2009 'Les Combottes' "
       byline: "by Domain d'Ardhuy  - Burgundy, France"
@@ -2305,7 +2305,8 @@
       byline: "Revelry Vintners - Columbia Valley, Washington"
       grape: "38% Cab Franc, 36% Merlot, 28% Cabernet Sauvignon"
       catalog: "verity"
-      mynotes: "This classic red blend has a lovely, spicy nose with hints of clove and black cherry, medium body with dark fruit and smoke, and a long, soft finsih."
+      notes: "This classic red blend has a lovely, spicy nose with hints of clove and black cherry, medium body with dark fruit and smoke, and a long, soft finsih."
+      mynotes: ""
       frontprice: 11.33 #no deals
       bin: 3031
 
@@ -2664,7 +2665,7 @@
       byline: "by San Giuseppe - Veneto, Italy"
       listprice: 30
       qtprice: 10
-      notes: "Blends of Amarone grapes and Merlot produces a 'Super-Venetian' full of fresh and cooked dark fruit flavor with firm tanins and a long, sweet-dry finish."
+      notes: "Blend of Amarone grapes and Merlot produces a 'Super-Venetian' full of fresh and cooked dark fruit flavor with firm tanins and a long, sweet-dry finish."
       grape: "Merlot, Corvino, Rondinello, Molinari"
       catalog: "opici"
       frontprice: 13.5
@@ -2931,9 +2932,9 @@
       listprice: 34
       qtprice: 9
       byline: "by Alvaro Palacios - Priorat, Spain"
-      grape: "60% Carrignan, 30% Grenache, 5% Cab Sauv, 5% P. Sirah"
+      grape: "60% Carignan, 30% Grenache, 5% Cab Sauv, 5% P. Sirah"
       catalog: "polaner"
-      notes: "Widely grown, but poorly regarded in France, Carrignan is originally a Spanish variety. The rugged terrior of its native Priorat brings out the grape's true character - full, dark fruit; stoney notes; and soft but chewy tanins."
+      notes: "Widely grown, but poorly regarded in France, Carignan is originally a Spanish variety. The rugged terrior of its native Priorat brings out the grape's true character - full, dark fruit; stoney notes; and soft but chewy tanins."
       mynotes: "big dark fruit, nice chewy tanins"
       frontprice: 16
       bin: 115
@@ -3769,6 +3770,16 @@
       frontprice: 12
       listprice: 32
       qtprice: 8
+      bin:
+
+    - name: "Cava Brut Reserva"
+      byline: "by Bohigas - Catalunya, Spain"
+      grape: "Xarel-lo, Macabeo"
+      notes: "Lots of tiny bubbles with crisp apple and pear, and light bready notes."
+      catalog: "polaner"
+      frontprice: 12
+      listprice: 32
+      qtprice: 8
       bin: 1171
 
     - name: "zardetto prosecco"
@@ -3793,7 +3804,7 @@
       byline: "Quinta do Passadouro - Vale de Mendiz, Portugal"
       notes: "Deep ruby red, intensely aromatic and full-bodied with bright fruit and good grip."
       mynotes: "good ropey taninns"
-      listprice: 35
+      listprice: #35
       frontprice: 16.72
       qt: yes
       qtprice: 9
@@ -3826,8 +3837,8 @@
       bin: 303
           
     - name: "Chocolate Merlot"
-      listprice: 22
-      qtprice: 6
+      listprice:
+      qtprice: 9
       byline: ""
       grape: "Merlot"
       catalog: "opici "
@@ -3945,21 +3956,13 @@
       byline: "Large Bottle (25.4 oz) - Belgium"
       listprice: 20
       frontprice: 7.36
-      bin: 999
-      instock:
-      ordered:
-        - date: '3/30/11'
-          qty: 12
-
+      bin:
+      
     - name: "Traditional Organic Hard Cider 24 oz"  #52.70 / 12
       byline: "JK  Scrumpy - Vermont"
       listprice: 15
       frontprice: 4.39
       bin: 999
-      instock:  
-      ordered: 
-        - date: '3/30/11'
-          qty: 12
 
     - name: "Jar Sangria"
       byline: "House-made with red or white wine, orange liquer, Madiera, and fresh fruit"
