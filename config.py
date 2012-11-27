@@ -23,7 +23,7 @@ def iget():
         if type(item['name']) == str:
           item['name'] = (item['name'])[:MAX_NAME_LEN]
         items[item['name']] = item
-  return cfg, items      
+  return cfg, items
 
 def get():  
   cfg, items = iget()
@@ -37,7 +37,10 @@ def populate_wine_category(cfg):
   #  if category['name'] = 'wine':
   #    winelist = category['items']
   #    break
-  bev_category = {'name': 'bev', 'subcategories': []}
+  bev_category_results = [cat for cat in cfg['menu']['categories'] if cat['name'] == 'bev']
+  if len(bev_category_results) != 1: raise Exception('Problem loading bev category')
+  bev_category = bev_category_results[0]
+
   redcat = {'name': 'red wine', 'items': []}
   whitecat = {'name': 'white wine', 'items': []}
   othercat = {'name': 'bubbly, beer & other', 'items': []}
@@ -87,7 +90,7 @@ def populate_wine_category(cfg):
         log.error('Key error:' + ke.message)
   
 
-  cfg['menu']['categories'].append(bev_category)
+  #cfg['menu']['categories'].append(bev_category)
 
 if __name__ == '__main__':
   cfg, items = iget()

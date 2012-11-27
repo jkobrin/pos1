@@ -68,8 +68,9 @@ menu:
             - {name: cauli, price: 7}
             #- {name: mussels, price: 7}
             - {name: salmon, price: 7}
+            - {name: pate, price: 7}
             #- {name: prawn, price: 10}
-            - {name: octopus, price: 12}
+            #- {name: octopus, price: 12}
             - {name: burrata , price: 14}
             #- {name: patatas bravas, price: 5}
             - {name: gratin, price: 6}
@@ -82,7 +83,7 @@ menu:
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
             - {name: oxtail, price: 9}
-            - {name: chicken, price: 18}
+            #- {name: chicken, price: 18}
             - {name: short rib, price: 21}
             - {name: bread, price: 3}
         - name: boards
@@ -117,23 +118,13 @@ menu:
             - {name: salametto, price: 0}
             - {name: jambon, price: 0}
             - {name: rosette de lyon, price: 0}
-            - {name: pate, price: 0}
+            - {name: gruyere, price: 0}
+            - {name: gouda, price: 0}
+            - {name: cheddar, price: 0}
         - name: dessert_etc
           items: 
-            - {name: pelligrino, price: 6}
-            - {name: coffee, price: 3}
-            - {name: tea, price: 3}
-            - {name: soda, price: 3}
-            - {name: seltzer, price: 2}
             - {name: panacotta, price: 5}
             - {name: chocolate, price: 5}
-            - {name: cktail5, price: 5}
-            - {name: cktail7, price: 7}
-            - {name: cktail10, price: 10}
-            - {name: cktail12, price: 12}
-            - {name: liquor flight, price: 16}
-            - {name: red flight, price: 16}
-            - {name: white flight, price: 10}
             - {name: gift25, price: 25}
             - {name: gift40, price: 40}
             - {name: gift50, price: 50}
@@ -156,7 +147,21 @@ menu:
             - {name: special13, price: 13}
             - {name: special14, price: 14}
             - {name: special15, price: 15}
-            - {name: special15, price: 24}
+            - {name: special16, price: 15}
+            - {name: special17, price: 15}
+            - {name: special18, price: 15}
+            - {name: special19, price: 15}
+            - {name: special20, price: 15}
+            - {name: special21, price: 15}
+            - {name: special22, price: 15}
+            - {name: special23, price: 15}
+            - {name: special24, price: 15}
+            - {name: special25, price: 15}
+            - {name: special26, price: 15}
+            - {name: special27, price: 15}
+            - {name: special28, price: 15}
+            - {name: special29, price: 15}
+            - {name: special30, price: 15}
         - name: lunch
           items: 
             - {name: salmon_san, price: 8}
@@ -184,3 +189,47 @@ menu:
         #    - {name: breakfast tea, price: 3}
         #    - {name: coffee, price: 3}
         #    - {name: hot choco, price: 3}
+    - name: bev
+      subcategories:
+        - name: bar
+          items: 
+            - {name: pelligrino sm, price: 3}
+            - {name: pelligrino lg, price: 6}
+            - {name: coffee, price: 3}
+            - {name: tea, price: 3}
+            - {name: liquor flight, price: 16}
+            - {name: red flight, price: 16}
+            - {name: white flight, price: 12}
+            - {name: seltzer, price: 2}
+            - {name: coke, price: 3}
+            - {name: dcoke, price: 3}
+            - {name: lemon, price: 3}
+            - {name: ginger, price: 3}
+            - {name: tonic, price: 3}
+            - {name: cran, price: 3}
+            - {name: cktail5, price: 5}
+            - {name: cktail7, price: 7}
+            - {name: cktail10, price: 10}
+            - {name: cktail12, price: 12}
+            - {name: vodka tonic, price: 7}
+            - {name: vodka cran, price: 7}
+            - {name: vodka sprite, price: 7}
+            - {name: vodka soda, price: 7}
+            - {name: rum coke, price: 7}
+            - {name: dark n stormy, price: 7}
+            - {name: wine spritz, price: 10}
+            - {name: old-fashioned, price: 10}
+            - {name: manhattan, price: 10}
+            - {name: martini, price: 10}
+            - {name: drty mart, price: 10}
+            - {name: cosmo, price: 10}
+            - {name: margarita, price: 10}
+            - {name: caipirnha, price: 10}
+            - {name: citrus smash (virgin), price: 5}
+            - {name: ciirus smash rum, price: 10}
+            - {name: jack-coke, price: 10}
+            - {name: patron shot, price: 10}
+            - {name: pueblo shot, price: 10}
+            - {name: vodka shot, price: 7}
+            - {name: sambucca shot, price: 7}
+            - {name: frangelico shot, price: 7}

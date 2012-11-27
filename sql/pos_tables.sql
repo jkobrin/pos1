@@ -48,6 +48,8 @@ CREATE TABLE hours (
   person_id INT NOT NULL,
   intime TIMESTAMP DEFAULT 0,
   outtime TIMESTAMP DEFAULT 0,
+  tip_share DECIMAL(2,1) default 1, 
+  tip_pay DECIMAL(3,0) default 0,
   INDEX person_idx (person_id),
   FOREIGN KEY (person_id) REFERENCES person(id) ON DELETE CASCADE
 );
