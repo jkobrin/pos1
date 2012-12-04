@@ -11,9 +11,9 @@ def nightly_sales_by_server(label=False, lag_days=1):
       p.ccid,
       sum(oi.price) sales, 
       sum(ri.price) taxable_sales,
-      sum(oi.price) + round(sum(ri.price) * %(tax_rate)s, 2) receipts,
+      sum(oi.price) + COALESCE(round(sum(ri.price) * %(tax_rate)s, 2),0) receipts,
       count(distinct og.id) tabs_closed
-    FROM (order_item oi left join revenue_item ri on ri.id = oi.id), order_group og, person p 
+    FROM (order_item oi left outer join revenue_item ri on ri.id = oi.id), order_group og, person p 
     WHERE oi.order_group_id = og.id 
     AND oi.is_cancelled = False
     AND oi.is_comped = False
