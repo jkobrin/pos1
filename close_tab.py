@@ -40,8 +40,7 @@ def index(req, table, shouldPrint, serverpin, close=True):
 
   shouldPrint = (shouldPrint == 'true')
 
-  if shouldPrint:
-    receipt_text = texttab.get_tab_text(table, serverpin, cursor)
+  receipt_text, gift_certs = texttab.get_tab_text(table, serverpin, cursor)
 
   if close:
     cursor.execute('''
@@ -62,6 +61,9 @@ def index(req, table, shouldPrint, serverpin, close=True):
 
     subprocess.call(['enscript', '--font=Courier-Bold@11/16', '-B', '-MEnv10', filename])
     os.remove(filename)
+
+  for cert in gift_certs:
+    cert.print_out()
 
   return json.dumps(None)
 

@@ -154,10 +154,12 @@
     g_tip_total = 0;
     g_receipts_total = 0;
     g_tip_pct = 0;
+    g_taxable_total = 0;
     function calculate()
     {
       g_tip_total = 0;
       g_receipts_total = 0;
+      g_taxable_total = 0;
       for (idx in g_sales_by_server)
       {
         ss = g_sales_by_server[idx];
@@ -165,18 +167,19 @@
         tip_amt_element = document.getElementById("tip_amt_"+ss.server);
         tip_amt_element.innerHTML = Math.round(ss.tip_amt);
 
-        ss.tip_pct =  Math.round(ss.tip_amt *100 / ss.receipts);
+        ss.tip_pct =  Math.round(ss.tip_amt *100 / ss.taxable_sales);
         tip_pct_element = document.getElementById("tip_pct_"+ss.server);
         tip_pct_element.innerHTML = ss.tip_pct;
 
         g_tip_total += ss.tip_amt;
         g_receipts_total += ss.receipts;
+        g_taxable_total += ss.taxable_sales;
       }  
 
       document.getElementById("tip_amt_total").innerHTML = Math.round(g_tip_total);
       document.getElementById("receipts_total").innerHTML = g_receipts_total;
 
-      g_tip_pct =  Math.round(g_tip_total *100 / g_receipts_total);
+      g_tip_pct =  Math.round(g_tip_total *100 / g_taxable_total);
       document.getElementById("tip_pct_total").innerHTML = g_tip_pct;
 
     }  
