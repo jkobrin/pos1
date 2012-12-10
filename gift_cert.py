@@ -26,6 +26,6 @@ class GiftCert(object):
 
 
 if __name__ == '__main__':
-  gc = GiftCert(123456, 55)
+  gc = GiftCert(123456, 180)
   gc.print_out()
     
