@@ -2119,7 +2119,7 @@
       notes: "Bold country wine with spicy scents of black and green pepper. Palate of dark fruit with leathery tanins. Big, brawny, and rustic."
       mynotes: "lovely heavy spice, veg, pepper nose. Heavy pepper leather and dark fruit on the palate, good tanins. tiny bit rough."
       frontprice: 7
-      bin: 1191
+      bin:
 
 
     - name: "Corbieres"
