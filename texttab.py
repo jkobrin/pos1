@@ -36,7 +36,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
     where og.id = oi.order_group_id
     and (og.is_open = TRUE or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
     and oi.is_cancelled = FALSE
-    group by oi.item_name, oi.is_comped
+    group by oi.item_name, oi.is_comped, IF(item_name like 'gift%%', oi.id, 1)
     order by oi.id
   ''' % locals()
 
@@ -53,7 +53,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
     servername = 'Salumi'
  
   if not items: 
-    return "no tab opened for table %s" %table
+    return "no tab opened for table %s" %table, []
 
   foodtotal = sum(item['price'] for item in items if not item['is_comped'])
   notaxtotal = sum(item['price'] for item in items if is_gift(item))

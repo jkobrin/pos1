@@ -192,21 +192,21 @@ menu:
             - {name: special13, price: 13}
             - {name: special14, price: 14}
             - {name: special15, price: 15}
-            - {name: special16, price: 15}
-            - {name: special17, price: 15}
-            - {name: special18, price: 15}
-            - {name: special19, price: 15}
-            - {name: special20, price: 15}
-            - {name: special21, price: 15}
-            - {name: special22, price: 15}
-            - {name: special23, price: 15}
-            - {name: special24, price: 15}
-            - {name: special25, price: 15}
-            - {name: special26, price: 15}
-            - {name: special27, price: 15}
-            - {name: special28, price: 15}
-            - {name: special29, price: 15}
-            - {name: special30, price: 15}
+            - {name: special16, price: 16}
+            - {name: special17, price: 17}
+            - {name: special18, price: 18}
+            - {name: special19, price: 19}
+            - {name: special20, price: 20}
+            - {name: special21, price: 21}
+            - {name: special22, price: 22}
+            - {name: special23, price: 23}
+            - {name: special24, price: 24}
+            - {name: special25, price: 25}
+            - {name: special26, price: 26}
+            - {name: special27, price: 27}
+            - {name: special28, price: 28}
+            - {name: special29, price: 29}
+            - {name: special30, price: 30}
         - name: lunch
           items: 
             - {name: salmon_san, price: 8}

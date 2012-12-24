@@ -13,7 +13,7 @@ class GiftCert(object):
     denom = self.value.ljust(3)
     rjust_denom = self.value.rjust(3)
 
-    args = [b16encode(arg) for arg in (serial, denom, rjust_denom)]
+    args = [b16encode(arg) for arg in (serial, denom, rjust_denom)] + [serial]
 
     olddir = os.getcwd()
     thisdir = os.path.dirname(__file__) 
