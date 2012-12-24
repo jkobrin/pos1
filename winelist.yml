@@ -3030,7 +3030,7 @@
       frontprice: #5.66 on 5
       notes: "Dark red cherry with mild tanins, and hints of mocha and sweet spices. Easy-going and rich."
       mynotes: "like a full-bodied warm climate pinot noir"
-      bin: 2071
+      bin:
 
     - name: "The Marshal Malbec 2009"
       listprice: 31
