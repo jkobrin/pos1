@@ -936,6 +936,15 @@
 #      frontprice:  10.75
 #
 #
+#    - name: "Altano Douro"
+#      listprice:
+#      qtprice: 
+#      byline: "Symington Family Vintners - Douro Valley, Portugal"
+#      grape: "Tauriga Nacional"
+#      catalog: "verity"
+#      notes: "Light, savory, and herbaceous."
+#      frontprice: 5
+
 #    - name: "Domini Plus"
 #      listprice:
 #      qtprice: 
@@ -2048,7 +2057,7 @@
       frontprice: 21.33
       bin: 4011
 
-    - name: "Bordeaux Rouge 2009"
+    - name: "Bordeaux Rouge 2010"
       listprice: 24
       qtprice: 8
       byline: "Chateau Blouin 2009"
@@ -2144,7 +2153,7 @@
       frontprice: 18
       qtprice: 13
 
-    - name: "Beaujolais 2010"
+    - name: "Beaujolais 2011"
       listprice: 26
       qtprice: 9
       byline: "by Michel Guignier - Burgundy, France"
@@ -2176,7 +2185,7 @@
         - date:
           qty:
 
-    - name: "Merlot 2007"
+    - name: "Merlot 2009"
       listprice: 26
       qtprice: 9
       qt: yes
@@ -2248,8 +2257,8 @@
       mynotes: "boring"
       bin:
 
-    - name: "Educated Guess 2008"
-      listprice: 34
+    - name: "Educated Guess 2010"
+      listprice: 36
       qtprice: 12
       qt: yes
       byline: "Napa Valley, California"
@@ -2309,9 +2318,9 @@
       catalog: "southern"
       notes: "California winemakers have discovered blends and the public seems to approve. Intense but well-balanced and complex wines like this one are probably why. Cherry and dried flowers on the nose, then deep plum-and-raisin fruit with soft, sweet tanins."
       mynotes: ""
-      bin: 707
+      bin:
 
-    - name: "The Reveler"
+    - name: "The Reveler 2009"
       listprice: 28
       qtprice:  9
       byline: "Revelry Vintners - Columbia Valley, Washington"
@@ -2343,7 +2352,7 @@
       notes: "Another California red blend, but this is straight Bordeaux grapes. The wine is aromatic, fruity and deep with notes of pepper and old oak and soft dusty tanins on the finish."
       mynotes: " kinda dull. not worth the price. Get The Reveler instead."
 
-    - name: "2007 Bargetto Zinfandel"
+    - name: "2010 Bargetto Zinfandel"
       listprice: 34
       qtprice: 12
       byline: "by Bargetto - Lodi, California"
@@ -2440,7 +2449,7 @@
       mynotes: "Good earthyness, musky fruit, some dusty nice tanins."
       frontprice: 12
 
-    - name: "Primarius Pinot Noir 2009"
+    - name: "Primarius Pinot Noir 2010"
       listprice: 30
       qtprice: 11
       byline: "by Primarius Vineyards - Oregon"
@@ -2507,7 +2516,7 @@
       grape: "Merlot, Cabernet Franc, Cabernet Sauvignon"
       bin:
 
-    - name: "Wolfer Cab Franc 2007"
+    - name: "Wolfer Cab Franc 2010"
       byline: "Wolfer Estates - the Hamptons, Long Island"
       catalog: "winebow"
       listprice: 34
@@ -2544,7 +2553,7 @@
       mynotes: "Earth Friendly practice. Biting nose of chocolate, coffee, tobacco, wood, and grassy manure. Full palate of same with red fruit and tobacco bite."
       frontprice: 9
 
-    - name: "Barolo 2005"
+    - name: "Barolo 2007"
       listprice: 55
       qtprice: 20
       notes: "Called the king of wines and the wine of kings. This Barolo is woody, dry and earthy with dark fruit and a long, dry finish."
@@ -2554,7 +2563,7 @@
       frontprice: 27.03
       bin: 704
 
-    - name: "Nebbiolo D'Alba 2009"
+    - name: "Nebbiolo D'Alba 2010"
       listprice: 32
       qtprice: 10
       byline: "by Giribaldi - Piedmont, Italy"
@@ -2590,7 +2599,7 @@
       catalog: "opici"
       frontprice: 29.34
 
-    - name: "Chianti Rufina 2009"
+    - name: "Chianti Rufina 2010"
       listprice: 26
       notes: "Smokey and fruity, with hints of grilled meat. Full-bodied and silky."
       qtprice: 9
@@ -2601,7 +2610,7 @@
       frontprice: 10.00
       bin: 302
 
-    - name: "Bossi Chianti Classico 2007"
+    - name: "Bossi Chianti Classico 2008"
       listprice: 34
       qtprice: 12
       notes: "Dry and woodsy with dried cherry aroma and a citrusy tang. Needs to breathe for best flavor."
@@ -2611,7 +2620,7 @@
       frontprice: 14.36 
       bin: 112
 
-    - name: "Vino Nobile di Montepulciano 2005"
+    - name: "Vino Nobile di Montepulciano 2006"
       qtprice: 14
       byline: "by Cesari - Tuscany"
       catalog: "opici 404"
@@ -2644,7 +2653,7 @@
       frontprice: 36.50
       bin: 702
 
-    - name: "Liano 2007"
+    - name: "Liano 2009"
       byline: "by Umberto Cesare - Tuscany"
       catalog: "opici"
       listprice: 48
@@ -2673,7 +2682,7 @@
       mynotes: "Med tanins, med fruit, med body. B?"
       grape: "33% cab, 33% merlot, 33% colorino tuscano"
 
-    - name: "Amarone 2006"
+    - name: "Amarone 2008"
       listprice: 68
       qtprice: 20
       notes: "Produced by drying fresh grapes on straw mats to concentrate the flavor. Taste of warm cherry preserves and moist raisins lingers on the palate."
@@ -2715,15 +2724,16 @@
       grape: "Sangiovese"
 
     - name: "Etna Rosso 2009"
+      byline: "Phiale - Sicily"
       listprice: 36
       qtprice: 12
-      notes: "Complex and lovely wine of indigenous Sicilian grapes. Nose has spiced cherries and palate is soft, red fruit, with a musky, woody undertone.  Reminiscent of a good, full-bodied Pinot Noir."
+      notes: "Complex and delicate wine of indigenous Sicilian grapes. Nose has spiced cherries and palate is soft, red fruit, with a musky, woody undertone.  Reminiscent of a good, full-bodied Pinot Noir."
       grape: "Nerello Mascelese 80%"
-      catalog: "verity 627a"
-      frontprice: 10.00
+      catalog: "verity"
+      frontprice: 14.66
       bin: 708
 
-    - name: "Nero D'Avola 2008"
+    - name: "Nero D'Avola 2010"
       listprice: 26
       qtprice: 9
       notes: "Full dark fruit, with a meaty, spicy undertone. Good food wine."
@@ -2733,7 +2743,7 @@
       frontprice: 10.00
       bin: 301
 
-    - name: "Cannonau Di Sardegna 2008"
+    - name: "Cannonau Di Sardegna 2009"
       listprice: 29
       qtprice: 11
       byline: "by Castiadas - Sardinia"
@@ -2743,7 +2753,7 @@
       frontprice: 12.67
       bin: 304
 
-    - name: "Rioja 2009"
+    - name: "Rioja 2010"
       listprice: 24
       qtprice: 8
       qt: yes
@@ -2766,7 +2776,7 @@
       frontprice: 9.5 #?
       bin: 104
 
-    - name: "Rioja Reserva 2005"
+    - name: "Rioja Reserva 2008"
       listprice: 44
       qtprice: 13
       byline: "by Bodegas Muga - Rioja, Spain"
@@ -2819,7 +2829,7 @@
         - date: '4/2/11'
           qty: 12
 
-    - name: "Maudes Tempranillo 2009"
+    - name: "Maudes Tempranillo 2010"
       listprice: 28
       qtprice: 9
       byline: "by Bodega Lezcano-Lacalle - Ciglaes, Spain"
@@ -2861,7 +2871,7 @@
       frontprice: 16.66 
       bin: 1071
 
-    - name: "Tarima"
+    - name: "Tarima 2010"
       listprice: 21
       qtprice:  7
       qt: yes
@@ -2871,6 +2881,15 @@
       catalog: "tempranillo"
       frontprice: 7.50
       bin: 102
+
+    - name: "Altano Douro"
+      listprice: 20
+      qtprice: 7
+      byline: "Symington Family Vintners - Douro Valley, Portugal"
+      grape: "Tauriga Nacional"
+      catalog: "verity"
+      notes: "Light, savory, and herbaceous with a tart, but earthy finish."
+      frontprice: 5
 
     - name: "DXG Meritage 2007"
       listprice: 20
@@ -3195,8 +3214,6 @@
       frontprice: 8.66
       bin: 405
 
-
-
     - name: "White Burgundy"
       listprice:
       qtprice: 8
@@ -3216,7 +3233,7 @@
       catalog: "weygandt"
       frontprice: 16.77
 
-    - name: "Sancerre 2010"
+    - name: "Sancerre 2011"
       listprice: 32
       qtprice: 11
       byline: "by Paul Prieur et Fils - Loire Valley, France"
@@ -3244,7 +3261,7 @@
       grape: "Sauvignon Blanc"
 
 
-    - name: "Cotes de Gascogne 2010"
+    - name: "Cotes de Gascogne 2011"
       listprice: 20
       qtprice: 7
       byline: "by Domaine De Pajot - Gascony, France"
@@ -3366,9 +3383,9 @@
       qtprice: 9
       qt: yes
       frontprice: 10 #8.67 # on 3
-      bin: 206
+      bin:
 
-    - name: "Barco Viejo Chardonnay"
+    - name: "Barco Viejo Chardonnay 2011"
       byline: "BV Wines - Cotchagua Valley, Chile"
       notes: "Toasted oak and musky notes on the nose. Full-bodied with bright fruit and a hint of butter."
       mynotes: "Bright fruit. Some good chard skunky funk. Light toasty oak."
@@ -3379,7 +3396,7 @@
       frontprice: 5.33 #4.66 on 4
       bin: 206
 
-    - name: "Franciscan Chardonnay 2010"
+    - name: "Franciscan Chardonnay 2011"
       listprice: 28
       qtprice: 9
       byline: "Franciscan Estate - Napa, Valley"
@@ -3391,7 +3408,7 @@
       bin: 310
 
 
-    - name: "Patz and Hall 2009"
+    - name: "Patz and Hall 2010"
       listprice: 36
       qtprice: 12
       byline: "Patz and Hall - Sonoma Coast, California"
@@ -3401,7 +3418,6 @@
       notes: "Rich golden apple with hints of pear and hazelnut, good minerality as well as toasty oak and butter. Complex and well-balanced."
       frontprice: 17.5
       bin: 2061
-
 
     - name: "Angeline Sauvignon Blanc -Russian River"
       mynotes: "Light tropical fruit, touch of cat pee, light body, mild acid. Touch of bitterness. B+"
@@ -3416,7 +3432,7 @@
       frontprice: 10.00
       mynotes: "Good dry oak on the nose, some some bitter acidity."
 
-    - name: "Educated Guess Chardonnay 2008"
+    - name: "Educated Guess Chardonnay 2010"
       listprice: 26
       byline: "Napa Valley, California"
       grape: "Chardonnay"
@@ -3495,7 +3511,7 @@
         - date: '4/2/11'
           qty: 12
 
-    - name: "Torrontes 2010"
+    - name: "Torrontes 2012"
       listprice: 26
       qtprice: 9
       notes: "Fascinating, heady nose of elderberry and white flowers. Palate is round and rich with topical fruit flavors."
@@ -3572,7 +3588,7 @@
       qtprice: 8
       frontprice: 9.33
       notes: "Crisp and light. Bitter almond and minerals compliment the lemon and apple fruit flavors."
-      bin: 636
+      bin:
 
     - name: "Isola's Vermentino Di Sardegna"
       catalog: "east coast specialty wines page 3, B+"
@@ -3715,7 +3731,7 @@
       qt: yes
       frontprice: 11
       catalog: 'winebow'
-      bin: 690
+      bin:
 
     - name: "Fino en Rama (Dry Sherry) 2006"
       byline: "Alvear - Cordoba, Spain"
@@ -4059,6 +4075,19 @@
 
 - name: "Bottled Beer"
   items:
+
+    - name: "Quimera 25oz"
+      byline: "Casa Cervecera Quinta Normal - Chile"
+      listprice: 25
+      qtprice: 8
+      frontprice: 10
+      bin: 999
+
+    - name: "Magic Hat #9" 
+      byline: "Magic Hat Brewing Co.- Burlington, VT." 
+      listprice: 5
+      bin: 999
+      frontprice: 1.25
 
     - name: "WeihenStephaner Wheat Beer" 
       byline: "WeihenStephan Brewery - Freising, Bavaria" 
