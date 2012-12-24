@@ -37,6 +37,9 @@ for category in wl:
         raise Exception('no list or qt price for bin %s' %binnum)
     byline = wine.get('byline')
 
+
+    prnt('%s %s %s %s #%s' %(wine.get('catalog'), wine['name'], byline, wine['frontprice'], binnum))
+
     if orderview:
       prnt('%s %s %s %s #%s' %(wine.get('catalog'), wine['name'], byline, wine['frontprice'], binnum))
       continue

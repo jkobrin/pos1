@@ -1,6 +1,6 @@
 import json, utils
 import MySQLdb
-
+from gift_cert import GiftCert
 
 TAXRATE = .08625
 TEXTWIDTH = 18
@@ -8,13 +8,17 @@ NUMWIDTH = 7
 add_grat = False
 
 def index(req, table):
-  return json.dumps(get_tab_text(table))
+  tab_text, gift_certs = get_tab_text(table)
+  return json.dumps(tab_text)
 
 def format_item(name, cnt):
   ret = ' '.join([word for word in name.split() if not word.isdigit()][:3])[:TEXTWIDTH]
   if cnt > 1: 
     ret += ' @'+str(cnt)
   return ret
+
+def is_gift(item):
+  return item['name'].startswith('gift')
 
 def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_time = None):
 
@@ -27,12 +31,12 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
     cursor = conn.cursor()
     
   items_query = '''
-    SELECT count(*) cnt, oi.item_name name, sum(oi.price) price, oi.is_comped
+    SELECT count(*) cnt, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
     and (og.is_open = TRUE or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
     and oi.is_cancelled = FALSE
-    group by oi.item_name, oi.is_comped
+    group by oi.item_name, oi.is_comped, IF(item_name like 'gift%%', oi.id, 1)
     order by oi.id
   ''' % locals()
 
@@ -49,12 +53,12 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
     servername = 'Salumi'
  
   if not items: 
-    return "no tab opened for table %s" %table
+    return "no tab opened for table %s" %table, []
 
   foodtotal = sum(item['price'] for item in items if not item['is_comped'])
-  notaxtotal = sum(item['price'] for item in items if item['name'].startswith('gift'))
+  notaxtotal = sum(item['price'] for item in items if is_gift(item))
   tax = round((foodtotal - notaxtotal) * TAXRATE, 2)
-  gratuity = round(foodtotal * .18, 2)
+  gratuity = round((foodtotal - notaxtotal) * .18, 2)
   total = foodtotal + tax 
   if add_grat:
     total = total + gratuity
@@ -72,7 +76,11 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   tabtext += 'FOOD & DRINK' + "\n" 
   tabtext += divider
 
+  gift_certs = []
+
   for item in items:
+    if is_gift(item):
+      gift_certs.append(GiftCert(item['id'], item['price']))
     if item['price'] == 0:
       continue
     if item['is_comped']:
@@ -96,7 +104,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
        - %s
 ''' % servername
 
-  return tabtext
+  return tabtext, gift_certs
 
 
 if __name__ == '__main__':

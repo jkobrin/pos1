@@ -89,10 +89,7 @@ def tohtml(title, headings, rows, breakonfirst=False):
     + ''.join(["<tr>"+"".join(["<td>%s</td>"%item for item in row]) + "</tr>\n"
       for row in rows
       ]) +
-    '''</table>
-    </body>
-    </html>
-    '''
+    '''</table> '''
     )
   
 
