@@ -3703,7 +3703,7 @@
       frontprice: 12
       notes: "An elegant, complex Spanish white with aromas and flavors of melon, hazelnuts and spice."
       mynotes: "nutt, frutty spicy B+"
-      bin: 623
+      bin:
     
     - name: "Verdejo 2009"
       byline: "by Paso a Paso - La Mancha, Spain"
