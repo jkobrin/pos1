@@ -2214,6 +2214,17 @@
       catalog: ""
       frontprice: 12
 
+    - name: "Rare Red 4 Grape Blend"
+      byline: "Rare Wines - Lodi, California"
+      notes: "Bright, luscious fruit flavors. Big fun."
+      listprice: 21
+      qtprice: 7
+      qt: yes
+      grape: "Sangiovese, Merlot, Zinfindel, Primitivo"
+      catalog: "Touton"
+      frontprice: 5
+      bin: 299
+
     - name: "Petite Sirah 2010"
       byline: "Four Vines - Lodi, California"
       notes: "Nose of black cherry, and baking spice. Palate has sweet, plummy fruit and velvety tannins."
@@ -2526,11 +2537,7 @@
       grape: "Cabernet Franc, Cabernet Sauvignon, Merlot"
       notes: "Bordeaux blend in the Bordeaux style. Earthy, blackberry nose with hints of cedar. Palate has sweet berries and firm structure, with a long, dry finish. Shows how good Long Island reds can be."
       mynotes: "Bordeaux blend in the Bordeaux style. Earthy, blackberry nose with hints of cedar. Palate has sweet berries and firm structure, with a long, dry finish. Shows how good Long Island reds can be."
-      bin: 116
-      instock: 12
-      ordered: 
-        - date: '4/7/11' 
-          qty: 12
+      bin: 1161
 
     - name: "Vineyard 48 Red"
       listprice: 22
@@ -2891,7 +2898,7 @@
       catalog: "verity"
       notes: "Light, savory, and herbaceous with a tart, but earthy finish."
       frontprice: 5
-
+      bin: 116
     - name: "DXG Meritage 2007"
       listprice: 20
       qtprice:  7
@@ -3033,6 +3040,18 @@
       mynotes: "like a full-bodied warm climate pinot noir"
       bin:
 
+    - name: "Kaiken Malbec 2010"
+      byline: "by Ernesto Catena - Mendoza, Argentina"
+      listprice: 24
+      qtprice: 7
+      qt: yes
+      grape: "Malbec"
+      catalog: "verity"
+      frontprice: #5.66 on 5
+      notes: "Dark red cherry with mild tanins, and hints of mocha and sweet spices. Easy-going and rich."
+      mynotes: "like a full-bodied warm climate pinot noir"
+      bin: 2061
+    
     - name: "The Marshal Malbec 2009"
       listprice: 31
       qtprice: 10
@@ -3052,6 +3071,7 @@
       grape: "Malbec grown above 3000 ft."
       catalog: "tempranillo Page 92, "
       frontprice: 9.50
+      bin:
 
     - name: "Crios Malbec 2010"
       listprice: 26
@@ -3062,6 +3082,16 @@
       catalog: "polaner"
       frontprice: 10.66  #128, 3=120, 5=104
       bin: 307
+
+   # - name: "Douro"
+   #   listprice: 22
+   #   qtprice: 7
+   #   notes: "."
+   #   byline: "."
+   #   grape: ""
+   #   catalog: ""
+   #   frontprice: 10.66  #128, 3=120, 5=104
+   #   bin: 116 
 
 - name: "White Wine"
   items:
