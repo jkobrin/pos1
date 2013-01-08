@@ -10,42 +10,42 @@ import utils
 def index(req):
 
   weekly = utils.select('''
-	SELECT week(intime), year(intime), 
+	SELECT yearweek(intime),
 	last_name,
 	sum(hours_worked) as hours_worked,
   pay_rate, 
   weekly_tax,
   round(sum(hours_worked)*pay_rate - weekly_tax) as weekly_pay
 	from hours_worked 
-  where (week(now()) + year(now())*52) - (week(intime)+year(intime)*52) < 3
-  group by year(intime), week(intime), last_name 
-	order by year(intime) desc, week(intime) desc, last_name''',
+  where yearweek(intime) > yearweek(now() - interval '5' week)
+  group by yearweek(intime), last_name 
+	order by yearweek(intime) desc, last_name''',
     incursor=None,
     label=False
   )
 
   payroll = utils.select('''
-	SELECT week(intime), year(intime), 
+	SELECT yearweek(intime),
 	sum(hours_worked) as hours_worked,
   round(sum(hours_worked*pay_rate)) + 194 + 480 + 750 as payroll
 	from hours_worked 
-  where (week(now()) + year(now())*52) - (week(intime)+year(intime)*52) < 3
+  where yearweek(intime) > yearweek(now() - interval '5' week)
   and last_name not in ('Kobrin', 'DiLemme', 'Kanarova')
-  group by year(intime), week(intime)
-	order by year(intime) desc, week(intime) desc''',
+  group by yearweek(intime)
+	order by yearweek(intime) desc''',
     incursor=None,
     label=False
   )
 
   detail = utils.select('''
-	SELECT concat('week ', week(intime),' ',dayname(intime),' ',date),
+	SELECT concat(yearweek(intime),' ',dayname(intime),' ',date),
 	last_name, 
 	time_in, 
 	time_out, 
 	hours_worked 
 	from hours_worked 
-  where (week(now()) + year(now())*52) - (week(intime)+year(intime)*52) < 3
-	order by week(intime) desc, last_name, date(intime)''',
+  where yearweek(intime) > yearweek(now() - interval '5' week)
+	order by yearweek(intime) desc, last_name, date(intime)''',
     incursor=None,
     label=False
   )
@@ -57,13 +57,13 @@ def index(req):
     ''' + 
     utils.tohtml(
       'Hours worked per week by person',
-      ('week', 'year', 'last name',  'hours_worked', 'rate', 'tax', 'weekly_pay'), 
+      ('yearweek', 'last name',  'hours_worked', 'rate', 'tax', 'weekly_pay'), 
       weekly,
       breakonfirst = True
     ) +
     utils.tohtml(
       'Payroll',
-      ('week', 'year', 'hours_worked', 'payroll'), 
+      ('yearweek', 'hours_worked', 'payroll'), 
       payroll,
       breakonfirst = True
     ) +
