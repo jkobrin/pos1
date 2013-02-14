@@ -4134,7 +4134,7 @@
       frontprice: TODO
 
     - name: "Sorachi Ace"
-      byline "Bayou Teche Brewing Co. - New Orleans"
+      byline: "Bayou Teche Brewing Co. - New Orleans"
       listprice: 7
       bin: Crayfish Saison
       frontprice: TODO
