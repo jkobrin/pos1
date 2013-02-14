@@ -2121,7 +2121,6 @@
       frontprice: 7
       bin:
 
-
     - name: "Corbieres"
       listprice: 21
       qtprice: 7
@@ -2216,7 +2215,7 @@
 
     - name: "Rare Red 4 Grape Blend"
       byline: "Rare Wines - Lodi, California"
-      notes: "Bright, luscious fruit flavors. Big fun."
+      notes: "Bright, luscious fruit flavors and soft sweet finish. This red blend is big fun."
       listprice: 21
       qtprice: 7
       qt: yes
@@ -2279,10 +2278,6 @@
       notes: "Good California Cab with lots of lively and jammy fruit and smooth tannins."
       mynotes: "Very Good cabernet. Smoke and vanilla. Good jammy fruit. A"
       bin: 203
-      instock: 24
-      ordered: 
-        - date: '3/30/11'
-          qty: 24
 
     - name: "Alexander Valley Vineyards Cabernet 2008"
       listprice: 36
@@ -2295,6 +2290,18 @@
       notes: "Manly but gentle, with hints of leather and tobacco as well as some sweet cherry and vanilla. Mellow, dry finish."
       mynotes: "Grilled green pepper, good wet fruit, good cherry vanilla, nice finesse. Some leather and light tobacco. ROM tanins."
       bin: 2021
+
+    - name: "14 Hands Cabernet"
+      listprice: 24
+      qtprice: 8
+      qt: yes
+      byline: "14 Hands Vinetards - Columbia Valley, Washington"
+      grape: "Cabernet Sauvignon"
+      catalog: " "
+      frontprice: 7.33
+      notes: "Deep, plummy fruit with a touch of oak and sweet berry finish."
+      mynotes: ""
+      bin: 601
 
     - name: "Hahn Meritage 2009"
       listprice: 25
@@ -2383,13 +2390,9 @@
       grape: "Old Vine Zinfandel"
       frontprice: 15 #3=14.25, 5=13.5
       catalog: "east coast specialty"
-      notes: "Fruity, rustic nose. Heavy in the mouth with dark berries and rasins. Savory mid-palate and good length. Rich, but easy drinking."
+      notes: "Fruity, rustic nose. Medium-bodied with dark berries and rasins. Savory mid-palate and good length. Rich, but easy drinking."
       mynotes: "Fruit/Barnyard. Good rasiny/berry fruit, good balance. Easy drinking."
       bin: 205
-      instock: 12
-      ordered: 
-        - date: '3/30/11'
-          qty: 12
 
     - name: "Sauvignon Blanc 2010"
       listprice: 
@@ -2472,6 +2475,16 @@
       notes: "Rich, Burgundy-style Pinot from fruit sourced in Napa and Sonoma. Earthy with musky fruit and supple tanins."
       mynotes: "Good earthyness, musky fruit, some dusty nice tanins."
       frontprice: 12
+
+    - name: "Stafford Hill Pinot Noir 2010"
+      listprice: 30
+      qtprice: 11
+      byline: "by Holloran Vineyards - Willamette Valley, Oregon"
+      grape: "Pinot Noir"
+      notes: "Full aroma of moist cedar and herbs. Palate is rich and bright with soft tannins."
+      catalog: "opici"
+      frontprice: 15.34 #3 10
+      bin: 210
 
     - name: "Primarius Pinot Noir 2010"
       listprice: 30
@@ -2911,6 +2924,7 @@
       notes: "Light, savory, and herbaceous with a tart, but earthy finish."
       frontprice: 5
       bin: 116
+
     - name: "DXG Meritage 2007"
       listprice: 20
       qtprice:  7
@@ -3569,11 +3583,6 @@
       catalog: "tempranillo page: 90, "
       frontprice: 9.33
       mynotes: "lychee, durian, interesting)"
-      bin: 208
-      instock: 
-      ordered: 
-        - date: '4/2/11'
-          qty: 12
 
     - name: "Torrontes 2012"
       listprice: 26
@@ -4125,8 +4134,9 @@
       frontprice: TODO
 
     - name: "Sorachi Ace"
+      byline "Bayou Teche Brewing Co. - New Orleans"
       listprice: 7
-      bin: pint
+      bin: Crayfish Saison
       frontprice: TODO
 
     - name: "Founders Porter"
@@ -4166,7 +4176,7 @@
       byline: "by Castle Brewery - Van Honsebrouck, Belgium"
       listprice: 6
       frontprice: 1.98
-      bin: 999
+      bin:
 
     - name: "St Louis Kriek Premium Lambic Belgian Ale with Cherries"
       byline: "by Castle Brewery - Van Honsebrouck, Belgium"
@@ -4203,20 +4213,12 @@
       frontprice: 1.43
       listprice: 6
       bin: 999
-      instock:  
-      ordered: 
-        - date: '3/30/11'
-          qty: 24
 
     - name: "Holy Grail Light Ale"
       byline: "Black Sheep Brewery - Yorkshire, England"
       listprice: 5
       frontprice: 1.09
       bin: 999
-      instock:
-      ordered:
-        - date: '3/30/11'
-          qty: 24
 
 
     - name: "Birra Roma"
@@ -4241,16 +4243,12 @@
       byline: "Napa Smith Brewery - CA, USA"
       listprice: 6
       frontprice: 1.66 
-      bin: 999
+      bin:
 
     - name: "Jai Alai"
       byline: "Cigar City Brewing, Florida, USA"
       listprice: 7
       frontprice: 1.09
-      instock:
-      ordered:
-        - date: '6/30/11'
-          qty: 24
 
     - name: "Red Wagon IPA"
       listprice:
