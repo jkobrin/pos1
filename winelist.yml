@@ -2320,6 +2320,18 @@
       ordered: yes
       bin: 201
 
+    - name: "Cryptic 2010 Red Blend"
+      listprice: 30
+      qtprice: 10
+      qt: yes
+      byline: "Cryptic Wines - Sierra Foothills / Lodi / Paso Robles, California"
+      grape: "Zinfandel, Petit Syrah, Cabernet Sauvignon"
+      catalog: "opici "
+      frontprice: 10.67
+      notes: "According to the label, it's 'dark...mysterious...deep black cherry...intense red raspberry...velvety...alluring.' We think it's tasty."
+      mynotes: "nice velvety full body. good fruit."
+      bin: 207
+
     - name: "The Prisoner 2010"
       listprice: 55
       qtprice: 16
@@ -2342,14 +2354,14 @@
       frontprice: 11.33 #no deals
       bin: 3031
 
-    - name: "E 2011"
+    - name: "F 2011"
       listprice: 30
       qtprice: 10
       byline: "by Orin-Swift"
       grape: "Grenache, Tempranillo and Carrigan from Rioja, Priorat and Ribera Del Duero, Spain."
       frontprice: 13.33
       catalog: "Polaner"
-      notes: "Orin Swift's 'The Prisoner' California red blend, made him a cult hero. Now he takes his show on the road with 'E' for España. The grapes are from Spain, but the wine definitely speaks with an American accent. The nose of warm spice and oak leads into a palate of concentrated fruit and spice like blueberry pie and then a finsih of soft, ripe tanins. Fun to drink."
+      notes: "Orin Swift's 'The Prisoner' California red blend, made him a cult hero. Now he takes his show on the road with 'F' for France. Grapes harvested from France's most celebrated locations are blended to create an  warmly spiced wine full of concentrated fruit with a finsih of soft, ripe tanins."
       mynotes: ""
       bin: 708
 
@@ -2449,7 +2461,7 @@
       notes: "Subtle, well-balanced Pinot from Carneros (which spans parts of both Napa and Sonoma). Fresh red cherry with hints of spice, butter and game."
       mynotes: "subtle light. good fruit. nice buttery nose."
       frontprice: 12.8 #152, 3=144, 5=136
-      bin: 207
+      bin: 204
 
     - name: "Wyatt Pinot Noir"
       listprice: 28
@@ -3083,6 +3095,27 @@
       frontprice: 10.66  #128, 3=120, 5=104
       bin: 307
 
+    - name: "Vranec"
+      listprice: 23
+      qtprice: 9
+      notes: ""
+      byline: ""
+      grape: ""
+      catalog: ""
+      frontprice: 10.66  #128, 3=120, 5=104
+      bin: 888
+
+    - name: "Bobal"
+      listprice: 27
+      qtprice: 11 
+      notes: ""
+      byline: ""
+      grape: ""
+      catalog: ""
+      frontprice: 10.66  #128, 3=120, 5=104
+      bin: 999
+
+
    # - name: "Douro"
    #   listprice: 22
    #   qtprice: 7
@@ -3480,7 +3513,7 @@
       frontprice: 10.00     #8 on 3
       mynotes: "Liked it at la bottega"
       notes: "Very ripe peaches, and pineapple in the nose, with mouth-filling body and fruit."
-      bin: 204
+      bin: 710
 
     - name: "Chateau Julien"
       byline: "Monterry, California"
@@ -4251,6 +4284,21 @@
       mynotes: "5.4 % skunk cabbage, budweiser, creamy body. laid back."
       frontprice:  1.40 
 
+    - name: "Haut Medoc 2009"
+      byline: "Les Hauts De Trintaudon - Bordeaux"
+      catalog: "Touton"
+      frontprice: 12.5 #10 on 3
+      grape: "Cab Franc Merlot"
+      mynotes: "funk, slight chew, red cherry, low acid, ebit earthy, some wet cedar."
+      bin:
+
+    - name: "Big Mouth"
+      byline: "Calaveras"
+      catalog: "Touton"
+      frontprice: 12.5 #10 on 3
+      grape: "Cab Franc Merlot"
+      mynotes: "funk, slight chew, red cherry, low acid, ebit earthy, some wet cedar."
+      bin:
 
 #monsier touton
 
@@ -4401,3 +4449,4 @@
 ##  # Gingery Old Fashioned - Bourbon, gingerale, lemon, honey -- cherry?
 ##  # Raspberry, chocolate, vodka - martini. 
 ##  # 
+

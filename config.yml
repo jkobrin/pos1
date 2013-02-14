@@ -44,14 +44,19 @@ menu:
         - name: staff
           items: 
             - name: JWK
-            - name: DL
             - name: LQK
             - name: JL
             - name: DS
             - name: JA
-            - name: MN
             - name: DW
-            - name: DP
+            - name: JY 
+            - name: RN
+            - name: AM
+            - name: AC
+            - name: GD
+            - name: AA 
+            - name: AI
+            - name: CH
             - name: RP
     - name: food
       subcategories:
@@ -65,7 +70,7 @@ menu:
             #- {name: corn, price: 5}
             #- {name: summer harvest, price: 8}
             - {name: ceasar, price: 8}
-            - {name: cauli, price: 7}
+            - {name: sprouts, price: 7}
             #- {name: mussels, price: 7}
             #- {name: cod, price: 12}
             - {name: pate, price: 7}
@@ -82,7 +87,7 @@ menu:
             - {name: bocadillo, price: 8}
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
-            - {name: oxtail, price: 9}
+            - {name: oxtail, price: 10}
             #- {name: chicken, price: 18}
             - {name: short rib, price: 21}
             - {name: bread, price: 3}
@@ -98,7 +103,7 @@ menu:
               price: 27
             - name: spanish board
               price: 27
-            - name: french board
+            - name: mixed cheese board
               price: 27
             - {name: manchego , price: 0}
             - {name: cana de cabra, price: 0}
@@ -208,6 +213,8 @@ menu:
             - {name: special28, price: 28}
             - {name: special29, price: 29}
             - {name: special30, price: 30}
+            - {name: special31, price: 31}
+            - {name: special32, price: 32}
         - name: lunch
           items: 
             - {name: salmon_san, price: 8}

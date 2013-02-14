@@ -17,7 +17,7 @@ def index(req, lag_days=1):
   from order_item oi, order_group og 
   where oi.order_group_id = og.id 
   and oi.is_cancelled = false
-  and date(og.created) = date(now()) - interval '%(lag_days)s' day 
+  and date(og.created) = date(now()) - interval '%(lag_days)s' day
   group by og.table_id, og.updated order by closed_time;
 	'''%locals(),
     incursor=None,
