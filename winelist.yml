@@ -2864,7 +2864,7 @@
       listprice: 22
       byline: "A Steve Miles Selection - Carin~ena, Spain"
       grape: "Garnacha (Grenache)"
-      catalog: "opici B"
+      catalog: "opici"
       frontprice: 8
 
 
@@ -3060,7 +3060,7 @@
       grape: "Malbec"
       catalog: "opici"
       notes: "Aromas of dark fruit, and spice, esp. cloves and white pepper. Big, fruity palate with tobacco, wood and soft, sweet tanins."
-      frontprice: 14 # got it for 12
+      frontprice: 14 # 12 on 3
       bin: 295
 
     - name: "Urban Uco Malbec 2009"
