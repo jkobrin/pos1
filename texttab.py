@@ -5,7 +5,8 @@ from gift_cert import GiftCert
 TAXRATE = .08625
 TEXTWIDTH = 18
 NUMWIDTH = 7 
-add_grat = False
+GRATUITY18 = 'gratuity18'
+GRATUITYRATE = .18
 
 def index(req, table):
   tab_text, gift_certs = get_tab_text(table)
@@ -36,7 +37,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
     where og.id = oi.order_group_id
     and (og.is_open = TRUE or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
     and oi.is_cancelled = FALSE
-    group by oi.item_name, oi.is_comped, IF(item_name like 'gift%%', oi.id, 1)
+    group by oi.item_name, oi.is_comped, oi.price, IF(item_name like 'gift%%', oi.id, 1)
     order by oi.id
   ''' % locals()
 
@@ -55,10 +56,12 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   if not items: 
     return "no tab opened for table %s" %table, []
 
+  add_grat = GRATUITY18 in (item['name'] for item in items)
+  #items =  (item for item in items if item['name'] != GRATUITY18)
   foodtotal = sum(item['price'] for item in items if not item['is_comped'])
   notaxtotal = sum(item['price'] for item in items if is_gift(item))
   tax = round((foodtotal - notaxtotal) * TAXRATE, 2)
-  gratuity = round((foodtotal - notaxtotal) * .18, 2)
+  gratuity = round((foodtotal - notaxtotal) * GRATUITYRATE, 2)
   total = foodtotal + tax 
   if add_grat:
     total = total + gratuity

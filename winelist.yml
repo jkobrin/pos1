@@ -2132,6 +2132,17 @@
       frontprice: 7.33 #3=10
       bin: 409
 
+    - name: "Beaune Montee Rouge 2010"
+      listprice: 40
+      qtprice: 13
+      byline: "by Roux Pere & Fils - Burgundy, France"
+      grape: "Pinot Noir"
+      catalog: "Opici"
+      notes: "Red wines from Burgundy made Pinot Noir famous. This one is aromatic of rasberries, red currant, and flower petals with a lively mid-palate and dry, earthy finish."
+      mynotes: ""
+      frontprice: 20
+      bin: 720
+
     - name: "Savigny-Les-Beaune Premier Cru 2007"
       listprice: 52
       qtprice: 16
@@ -2454,6 +2465,17 @@
       ordered: 
         - date:
           qty:
+
+    - name: "Burgundy Pinot Noir 2010"
+      listprice: 30
+      qtprice: 10
+      byline: "by Roux Pere & Fils - Burgundy, France"
+      grape: "Pinot Noir"
+      catalog: "opici"
+      notes: "Light, fresh pinot noir from Burgundy with notes of flowers and red cherry."
+      mynotes: "tart, fresh"
+      frontprice: 12
+      bin: 204
 
     - name: "Fleur Pinot Noir 2010"
       listprice: 30
@@ -2885,6 +2907,17 @@
       mynotes: "smooth smokey vanilla, good fruit A"
       bin: 103
 
+    - name: "Mano a Mano 2010"
+      listprice: 21 
+      qtprice: 7
+      byline: "Domino Mano a Mano - Tierra de Castilla"
+      grape: "Tempranillo"
+      catalog: "aviva"
+      notes: "Full bodied with heavy dark fruit, hints of mint and grilled meat, good acidity and fine, dusty tanins."
+      mynotes: "full bodied - dark fruit, heavy but nce acid, some medium length tannins"
+      frontprice: 7
+      bin: 720
+
     - name: "Beso de Vino Old Vine Garnacha"
       listprice: 22
       byline: "A Steve Miles Selection - Carin~ena, Spain"
@@ -2903,6 +2936,17 @@
       mynotes: "Nice balance. Smokey, fruity, soft tanins."
       frontprice: 16.66 
       bin: 1071
+
+    - name: "Juan Gil Silver 2010"
+      listprice: 33
+      qtprice:  11
+      qt: yes
+      byline: "by Juan Gil - Jumilla, Spain"
+      grape: "Monastrell (a.k.a Mouvedre)"
+      notes: "Oaky, jammy, Intense and dark with a rich dry finish."
+      catalog: "tempranillo"
+      frontprice: 11.50
+      bin: 102
 
     - name: "Tarima 2010"
       listprice: 21
@@ -3812,7 +3856,7 @@
       notes: "Unlike any other wine - pale straw color and bone dry with aroma & flavor of walnuts, sea salt, and wood. Great with nuts, olives or cured meats."
       grape: "Pedro Ximenez"
       listprice: 23
-      qtprice: 6
+      qtprice: 4
       qt: yes
       frontprice: 8.66
       catalog: 'tempranillo'
@@ -3968,6 +4012,17 @@
         - date: '3/05/11'
           qty: 4
     
+    - name: "Sweet Smaak"
+      byline: "by "
+      notes: "Think reunite on ice is nice? Try this. Light, sweet and pink with bubbles, the nose has hints of melon and honey, but the palate is basically 7-UP. Good fun."
+      mynotes: "sweet low alc, frizzante similar to Bartenura, good desert"
+      grape: 'Muscat de Alexandrie'
+      listprice: 18
+      qtprice: 6
+      frontprice: 5.33
+      catalog: "aviva"
+      bin: 603
+          
     - name: "Moscato D'Asti"
       byline: "villa rosa"
       notes: "Lightly sweet & bubbly, with a crisp, refreshing finish. A desert wine, yes, but light enough to drink before a meal, or even during."
@@ -4153,13 +4208,6 @@
 - name: "Bottled Beer"
   items:
 
-    - name: "Quimera 25oz"
-      byline: "Casa Cervecera Quinta Normal - Chile"
-      listprice: 25
-      qtprice: 8
-      frontprice: 10
-      bin: 999
-
     - name: "Magic Hat #9" 
       byline: "Magic Hat Brewing Co.- Burlington, VT." 
       listprice: 5
@@ -4173,8 +4221,14 @@
       frontprice: 1.45
 
 
+    - name: "Dogfish Head IPA"
+      byline: ""
+      listprice: 6
+      frontprice: 1.66
+      bin: 999
+
     - name: "Dogfish Head Chicory Stout"
-      byline: "by Castle Brewery - Van Honsebrouck, Belgium"
+      byline:
       listprice: 6
       frontprice: 1.98
       bin:

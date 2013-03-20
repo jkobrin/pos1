@@ -69,8 +69,10 @@ menu:
             #- {name: peppers, price: 7}
             #- {name: corn, price: 5}
             #- {name: summer harvest, price: 8}
+            - {name: asparagus, price: 9}
+            - {name: peppers, price: 5}
             - {name: ceasar, price: 8}
-            - {name: sprouts, price: 7}
+            - {name: roots, price: 7}
             #- {name: mussels, price: 7}
             #- {name: cod, price: 12}
             - {name: pate, price: 7}
@@ -129,7 +131,7 @@ menu:
             - {name: american ham, price: 0}
         - name: dessert_etc
           items: 
-            - {name: panacotta, price: 5}
+            - {name: panacotta, price: 7}
             - {name: chocolate, price: 5}
             - {name: gift5, price: 5}
             - {name: gift10, price: 10}
@@ -185,6 +187,8 @@ menu:
           items: 
             - {name: discount, price: -1}
             - {name: extras, price: 1}
+            - {name: gratuity18, price: 0}
+            - {name: special price, price: 0}
             - {name: special3, price: 3}
             - {name: special4, price: 4}
             - {name: special5, price: 5}
@@ -252,7 +256,7 @@ menu:
             - {name: tea, price: 3}
             - {name: liquor flight, price: 16}
             - {name: red flight, price: 16}
-            - {name: white flight, price: 12}
+            - {name: white flight, price: 9}
             - {name: seltzer, price: 2}
             - {name: coke, price: 3}
             - {name: dcoke, price: 3}
