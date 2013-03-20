@@ -540,6 +540,11 @@
         }
 
         if(is_staff(g_currentTable)) {add_item.price = 0;}
+        if(add_item.name == 'special price')
+        {
+          add_item.price = prompt('Enter price:', 0);
+        }
+
         params += "&price="+add_item.price;
         params += "&additem="+add_item.name;
       }
