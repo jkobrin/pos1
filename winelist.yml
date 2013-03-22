@@ -2138,7 +2138,7 @@
       byline: "by Roux Pere & Fils - Burgundy, France"
       grape: "Pinot Noir"
       catalog: "Opici"
-      notes: "Red wines from Burgundy made Pinot Noir famous. This one is aromatic of rasberries, red currant, and flower petals with a lively mid-palate and dry, earthy finish."
+      notes: "Red wines from Burgundy made Pinot Noir famous. This one is aromatic of rasberries, red currant, and flower petals with a lively mid-palate and earthy finish."
       mynotes: ""
       frontprice: 20
       bin: 720
@@ -4349,8 +4349,8 @@
       byline: "Calaveras"
       catalog: "Touton"
       frontprice: 12.5 #10 on 3
-      grape: "Cab Franc Merlot"
-      mynotes: "funk, slight chew, red cherry, low acid, ebit earthy, some wet cedar."
+      grape: "GSM"
+      mynotes: "big jammy viscous tanins - crowd pleaser"
       bin:
 
 #monsier touton
