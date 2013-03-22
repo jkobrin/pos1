@@ -2336,7 +2336,7 @@
       mynotes: "decent fruit, mellow tanins, LOTS of Vanilla"
       notes: "Good fruit & mellow tanins with lots of vanilla."
       ordered: yes
-      bin: 201
+      bin:
 
     - name: "Cryptic 2010 Red Blend"
       listprice: 30
@@ -2368,9 +2368,9 @@
       grape: "38% Cab Franc, 36% Merlot, 28% Cabernet Sauvignon"
       catalog: "verity"
       notes: "This classic red blend has a lovely, spicy nose with hints of clove and black cherry, medium body with dark fruit and smoke, and a long, soft finsih."
-      mynotes: ""
+      mynotes: "light, ok"
       frontprice: 11.33 #no deals
-      bin: 3031
+      bin:
 
     - name: "F 2011"
       listprice: 30
@@ -2516,14 +2516,14 @@
       notes: "Aromatic with subtle strawberry and rhubarb flavors. Soft tannins and tartness carry the lingering fruit."
       catalog: "opici"
       frontprice: 15.34 #3 10
-      bin: 210
+      bin:
 
     - name: "Pinot Evil"
       listprice: 18
       qtprice: 8
       byline: "made for Underdog Wine Merchants in Corsica, France"
       grape: "Pinot Noir"
-      notes: "Straigtforward red cherry flavors on nose and palate. Drinks like a rosé until the slighlty chewy, earthy finish."
+      notes: "Straigtforward tart red cherry flavors on nose and palate. Drinks like a rosé until the slighlty chewy, earthy finish."
       catalog: "Southern"
       frontprice: 5.50
       bin: 290
@@ -2706,7 +2706,7 @@
       grape: "Sangiovese"
       catalog: "boening"
       frontprice: 36.50
-      bin: 702
+      bin: #702
 
     - name: "Liano 2009"
       byline: "by Umberto Cesare - Tuscany"
@@ -2721,7 +2721,7 @@
 
     - name: "Monteregio Toscana 2009"
       listprice: 30
-      notes: "Well-priced Super-Tuscan with plush cherry and blackberry flavors, balanced oak, and earthiness."
+      notes: "Well-priced Super-Tuscan with light cherry and blackberry flavors, balanced oak, and earthiness."
       qtprice: 10
       qt: yes
       byline: "by Morris Farms - Massa Marittima, Tuscany"
@@ -2957,7 +2957,7 @@
       notes: "Red and dark berry aromas with white flowers. Juicy blackberry and cherry flavors and good tanins. Finish is sweet and deep."
       catalog: "tempranillo"
       frontprice: 7.50
-      bin: 102
+      bin: #102
 
     - name: "Altano Douro"
       listprice: 20
@@ -3258,6 +3258,18 @@
       notes: "Light peach and yeasty notes on the nose, touch of sweetness, and fresh round fruit flavors."
       bin: 118
 
+    - name: "Gewurztraminer Reserve 2011"
+      byline: "Willm - Alsace, France"
+      grape: "Gewurztraminer"
+      catalog: "Touton"
+      listprice: 28 
+      qtprice: 10
+      frontprice: 12 
+      story: ""
+      mynotes: ""
+      notes: "Full bouquet of lychee, passion fruit and cinnamon with a bright, lightly sweet palate. Pairs beautifully with exotic or spicy foods and soft cheeses, esp. bleu."
+      bin: 118
+
     - name: "Baiting Hollow Reisling 2009"
       byline: "Baiting Hollow Farm Vineyard - Long Island"
       grape: "Reisling"
@@ -3324,7 +3336,7 @@
       notes: "Classic Macon Chardonnay. Unoaked, simple but well-built with lots of fresh, juicy apple and pear flavors, and a crisp, flinty finish."
       mynotes: "bright pineapple, very pleasant"
       frontprice: 11.34 #3=10
-      bin: 404
+      bin: #404
 
     - name: "Macon Villages 'Chameroy' 2010"
       listprice: 24
@@ -3508,6 +3520,28 @@
       frontprice: 10 #8.67 # on 3
       bin:
 
+    - name: "Patz and Hall 2010"
+      listprice: 36
+      qtprice: 12
+      byline: "Patz and Hall - Sonoma Coast, California"
+      grape: "Chardonnay"
+      catalog: "verity"
+      mynotes: "Bit of funk and golden apple, med oak, complex, light, and well balanced"
+      notes: "Rich golden apple with hints of pear and hazelnut, good minerality as well as toasty oak and butter. Complex and well-balanced."
+      frontprice: 17.5
+      bin: 2061
+
+    - name: "Franciscan Chardonnay 2011"
+      listprice: 28
+      qtprice: 9
+      byline: "Franciscan Estate - Napa, Valley"
+      grape: "Chardonnay"
+      catalog: "southern"
+      mynotes: "Funky slightly oaky nose. Palate is sweet and creamy with well-integrated but pronounced oak. Grilled pineapple. Yummy."
+      notes: "Ripe, oaky nose. Palate is buttery with bright tropical fruit and hints of toasted oak. Like grilled pineapple brushed with butter. Yum."
+      frontprice: 11.33 #10.67 on 3, 10 on 5
+      bin: 310
+
     - name: "Barco Viejo Chardonnay 2011"
       byline: "BV Wines - Cotchagua Valley, Chile"
       notes: "Toasted oak and musky notes on the nose. Full-bodied with bright fruit and a hint of butter."
@@ -3519,28 +3553,6 @@
       frontprice: 5.33 #4.66 on 4
       bin: 206
 
-    - name: "Franciscan Chardonnay 2011"
-      listprice: 28
-      qtprice: 9
-      byline: "Franciscan Estate - Napa, Valley"
-      grape: "Chardonnay"
-      catalog: "southern"
-      mynotes: "Funky slightly oaky nose. Palate is sweet and creamy with well-integrated but pronounced oak. Grilled pineapple. Yummy."
-      notes: "Ripe, woody nose. Palate is buttery with bright tropical fruit and hints of toasted oak. Like grilled pineapple brushed with butter. Yum."
-      frontprice: 11.33 #10.67 on 3, 10 on 5
-      bin: 310
-
-
-    - name: "Patz and Hall 2010"
-      listprice: 36
-      qtprice: 12
-      byline: "Patz and Hall - Sonoma Coast, California"
-      grape: "Chardonnay"
-      catalog: "verity"
-      mynotes: "Bit of funk and golden apple, med oak, complex, light, and well balanced"
-      notes: "Rich golden apple with hints of pear and hazelnut, good minerality as well as toasty oak and butter. Complex and well-balanced."
-      frontprice: 17.5
-      bin: 2061
 
     - name: "Angeline Sauvignon Blanc -Russian River"
       mynotes: "Light tropical fruit, touch of cat pee, light body, mild acid. Touch of bitterness. B+"
@@ -3605,18 +3617,23 @@
       catalog: "winebow"
       #bin: get
 
-    - name: "Clifford Bay 2011 Sauvignon Blanc - Marlborough, New Zealand"
-      catalog: "opici"
+    - name: "Clifford Bay 2012 Sauvignon Blanc - Marlborough, New Zealand"
+      catalog: "southern"
       listprice: 26
       qtprice: 9
       frontprice: 9 #2 8.33 #5 6.67
       notes: "Great racy nose with lime, mango, and fresh-cut grass. Grapefruit and pineapple in the mouth."
       mynotes: "great racy nose with lime, mango, grass, cat pee. Grapefruit and pineapple mouth. A-"
       bin: 211
-      instock: 11
-      ordered:  
-        - date: "3/30/11"
-          qty: 12
+
+    - name: "Astrolabe 2011 Sauvignon Blanc - Marlborough, New Zealand"
+      catalog: "opici"
+      listprice: 28
+      qtprice: 10
+      frontprice: 12
+      notes: "Lychee!, some nice tropical fruit. good."
+      mynotes: "Intense heady nose of lychee, melon and pear. Vibrant palate full of bright fruit. Nice long finish."
+      bin: 211
 
     - name: "Centauri Sauvignon Blanc 2008"
       listprice: 26
@@ -3895,7 +3912,7 @@
       listprice: 36
       qtprice: 14
       frontprice: 15.50
-      bin: 698
+      bin:
 
     - name: "Prosecco"
       byline: "by Dom Bertiol - Veneto, Italy"
@@ -3910,9 +3927,9 @@
       bin: 790
 
     - name: "Lambrusco"
-      byline: "by San Giuseppe - Veneto, Italy"
+      byline: "by Cantina Barbolini - Modena, Italy"
       mynotes: ""
-      notes: "Purple-red, lightly sweet and bubbly. A fun, party wine that's also nice with cheese and cured meat."
+      notes: "A dark purple-red wine that's bubbly, cold and quite dry. Sounds crazy, no? But in and around Italy's food Meccas of Parma, Bologna and Modena, Lambrusco is revered as the perfect match for cured meats, cheeses, and many other foods. Aromas of plum and blackberry rise from rich purple foam. Palate is full of dried fruit with a cleansing raisiny bitterness."
       grape: ""
       listprice: 22
       qtprice: 8
@@ -4220,6 +4237,12 @@
       bin: 999
       frontprice: 1.45
 
+    - name: "Passione"
+      byline: "Bayou Teche Brewing Co. - New Orleans"
+      byline: ""
+      listprice: 6
+      frontprice: "TODO"
+      bin: 999
 
     - name: "Dogfish Head IPA"
       byline: ""
