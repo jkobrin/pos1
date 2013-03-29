@@ -53,3 +53,4 @@ CREATE TABLE hours (
   INDEX person_idx (person_id),
   FOREIGN KEY (person_id) REFERENCES person(id) ON DELETE CASCADE
 );
+
