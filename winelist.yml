@@ -4209,7 +4209,7 @@
     - name: "Crayfish Saison"
       byline: "Bayou Teche Brewing Co. - New Orleans"
       listprice: 7
-      bin: 
+      bin: pint
       frontprice: TODO
 
     - name: "Founders Porter"
@@ -4526,3 +4526,14 @@
 ##  # Raspberry, chocolate, vodka - martini. 
 ##  # 
 
+#Tuton Tommasi Viticoltori Pinot Grigio  11/1
+# Good acidity, savory herbal notes
+
+#Tuton Chassagne-Montrachet Gaston Andre Pere and Fils 299/12 25/1
+#very bright, lemony, mellow soapy finish, a little bit of funk, that musky chard smell.
+
+#Tuton Crozes Hermitage E.Guigal 2009 16.66/1
+#Very earthy, some black pepper, spice notes, round red cherry, hint of barnyard, little cherry lipstick.
+
+#Tuton pape  E.Guigal 2007 34/1
+#very sweet berry, a little maple syrup, a little oaky, concentrated fruit, hints of pepper and barnyard

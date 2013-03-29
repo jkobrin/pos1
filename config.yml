@@ -69,7 +69,7 @@ menu:
             #- {name: peppers, price: 7}
             #- {name: corn, price: 5}
             #- {name: summer harvest, price: 8}
-            - {name: asparagus, price: 9}
+            - {name: spring salad, price: 9}
             - {name: peppers, price: 5}
             - {name: ceasar, price: 8}
             - {name: roots, price: 7}
@@ -122,7 +122,7 @@ menu:
             - {name: chorizo, price: 0}
             - {name: prosciutto, price: 0}
             - {name: hot capicolla, price: 0}
-            - {name: salametto, price: 0}
+            - {name: felino, price: 0}
             - {name: jambon, price: 0}
             - {name: rosette de lyon, price: 0}
             - {name: gruyere, price: 0}
@@ -256,7 +256,7 @@ menu:
             - {name: tea, price: 3}
             - {name: liquor flight, price: 16}
             - {name: red flight, price: 16}
-            - {name: white flight, price: 9}
+            - {name: white flight, price: 14}
             - {name: seltzer, price: 2}
             - {name: coke, price: 3}
             - {name: dcoke, price: 3}
