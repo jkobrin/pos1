@@ -25,7 +25,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: "Chardonnay"
+#      grapes: "Chardonnay"
 #      catalog: "verity"
 #      mynotes: "Nose of light tropical fruit and wax. Palate sweetish and little bitter. hint of oak maybe. med acid."
 #      frontprice: 11.33 #2=10.67, #3=10
@@ -34,7 +34,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "Nobilo - Regional Collection. Marlborough, New Zealand"
-#      grape: "Sauvignon Blanc"
+#      grapes: "Sauvignon Blanc"
 #      catalog: "southern"
 #      mynotes: ""
 #      frontprice: 11 #8.67 on 3
@@ -43,7 +43,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Diseño - Mendoza, Argentina"
-#      grape: "Malbec"
+#      grapes: "Malbec"
 #      catalog: "southern"
 #      mynotes: ""
 #      frontprice: 8 #6.67 on 3
@@ -52,7 +52,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "Mosel, Germany"
-#      grape: "Reisling
+#      grapes: "Reisling
 #      catalog: "southern"
 #      mynotes: "not alot of nose, sweet no character"
 #      frontprice: 7.33 #6.67
@@ -61,7 +61,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "Mosel, Germany"
-#      grape: "Reisling
+#      grapes: "Reisling
 #      catalog: "southern"
 #      mynotes: ""
 #      frontprice: 6.67 #on 1 #6 on 3
@@ -70,7 +70,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "Franciscan Estate - Napa, Valley"
-#      grape: "Gewurz, Viognier, Reisling, Colombard"
+#      grapes: "Gewurz, Viognier, Reisling, Colombard"
 #      catalog: "southern"
 #      mynotes: "light gewurz nose, candied heavy body, hint of sweet. fruity"
 #      frontprice: 6.67 #on 1 #6 on 3
@@ -79,7 +79,7 @@
 #      listprice: 21
 #      qtprice: 7
 #      byline: "Diseño - Salta, Argentina"
-#      grape: "Torrentes"
+#      grapes: "Torrentes"
 #      catalog: "southern"
 #      mynotes: "light acidic, SB like grapefruityness. so-so"
 #      frontprice: 8 #6.67 on 3
@@ -88,7 +88,7 @@
 #      listprice: 
 #      qtprice:
 #      byline: "Dreaming Tree - North Coast, California"
-#      grape: "Cabernet Sauvignon"
+#      grapes: "Cabernet Sauvignon"
 #      catalog: "southern"
 #      mynotes: "Steve Reeder and Dave Mathews - good fruit, nice concentration. decent"
 #      frontprice: 11.33 #10.67 on 2
@@ -97,7 +97,7 @@
 #      listprice: 
 #      qtprice:
 #      byline: "Dreaming Tree - North Coast, California"
-#      grape: "66% Merlot, 34% Zinfandel"
+#      grapes: "66% Merlot, 34% Zinfandel"
 #      catalog: "southern"
 #      mynotes: "Steve Reeder and Dave Mathews - nice musky nose, baking spice, vanilla, good concentration. little oak. med finish. good."
 #      frontprice: 11.33 #10.67 on 2
@@ -106,7 +106,7 @@
 #      listprice: 
 #      qtprice:
 #      byline: "Hogue winery - Columbia Valley"
-#      grape: "Cab sauvignon, merlot, Shiraz"
+#      grapes: "Cab sauvignon, merlot, Shiraz"
 #      catalog: "southern"
 #      mynotes: "very midlle of the road. nothing speicla. cool climate cab type"
 #      frontprice:
@@ -115,7 +115,7 @@
 #      listprice: 34
 #      qtprice: 12
 #      byline: "by Jackson-Triggs - Niagara Peninsula, Canada"
-#      grape: "Vidal"
+#      grapes: "Vidal"
 #      catalog: "southern"
 #      mynotes: "nice sweetness, not cloying good complexity. Sauterne-like."
 #      frontprice: 16 #on a case of 187mils
@@ -124,7 +124,7 @@
 #      listprice: 21
 #      qtprice: 7
 #      byline: "Australia"
-#      grape: "Shiraz"
+#      grapes: "Shiraz"
 #      catalog: "southern"
 #      mynotes: "Lots of med dark fruit, med acid, Some fresh fruit. Hint of coffee."
 #      frontprice: 7
@@ -133,7 +133,7 @@
 #      listprice: 21
 #      qtprice: 7
 #      byline: "Australia"
-#      grape: "Shiraz"
+#      grapes: "Shiraz"
 #      catalog: "southern"
 #      mynotes: "Lots of med dark fruit, med acid, Some fresh fruit. Hint of coffee."
 #      frontprice: 7
@@ -142,7 +142,7 @@
 #      listprice: 21
 #      qtprice: 7
 #      byline: "Australia"
-#      grape: "Shiraz"
+#      grapes: "Shiraz"
 #      catalog: "southern"
 #      mynotes: "Lots of med dark fruit, med acid, Some fresh fruit. Hint of coffee."
 #      frontprice: 7
@@ -151,7 +151,7 @@
 #      listprice: 21
 #      qtprice: 7
 #      byline: "Australia"
-#      grape: "Shiraz"
+#      grapes: "Shiraz"
 #      catalog: "southern"
 #      mynotes: "Lots of med dark fruit, med acid, Some fresh fruit. Hint of coffee."
 #      frontprice: 7
@@ -160,7 +160,7 @@
 #      listprice: 21
 #      qtprice: 7
 #      byline: "Australia"
-#      grape: "Shiraz"
+#      grapes: "Shiraz"
 #      catalog: "southern"
 #      mynotes: "Lots of med dark fruit, med acid, Some fresh fruit. Hint of coffee."
 #      frontprice: 7
@@ -169,7 +169,7 @@
 #      listprice: 21
 #      qtprice: 7
 #      byline: "Australia"
-#      grape: "Shiraz"
+#      grapes: "Shiraz"
 #      catalog: "southern"
 #      mynotes: "Lots of med dark fruit, med acid, Some fresh fruit. Hint of coffee."
 #      frontprice: 7
@@ -178,7 +178,7 @@
 #      listprice: 36
 #      qtprice: 
 #      byline: "Patz and Hall - Sonoma Coast, California"
-#      grape: "Chardonnay"
+#      grapes: "Chardonnay"
 #      catalog: "verity"
 #      mynotes: "Bit of funk and golden apple, med oak, complex but light, well balanced"
 #      frontprice: 17.5
@@ -187,7 +187,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by martin pasler"
-#      grape: "Pinot Blanc"
+#      grapes: "Pinot Blanc"
 #      catalog: "verity"
 #      mynotes: "good nose fruity, big round fruity body hint of sweetness, slightly bitter finsih. like it"
 #      frontprice: 10.66 #10 on 2
@@ -197,7 +197,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Birgit Braunstein - Burgenland, Austria"
-#      grape: "Zweigelt"
+#      grapes: "Zweigelt"
 #      catalog: "verity"
 #      mynotes: "nice mellow fruit, bit of earthy wood dusty mustiness on the nose, nice acidity level, mellow red fruit, light dusty tanins at finish, pleasant."
 #      frontprice: 10.66 #10 on 2
@@ -207,7 +207,7 @@
 #      listprice: 21 
 #      qtprice: 8
 #      byline: "cwMarc Aurel - NiederÖsterreich, Austria"
-#      grape: "Carmenere"
+#      grapes: "Carmenere"
 #      catalog: "winebow"
 #      mynotes: "lime and pineapple, soft rounded, hint of sweetness, peppery finish. "
 #      frontprice: 7.33
@@ -216,7 +216,7 @@
 #      listprice: 21 
 #      qtprice: 8
 #      byline: "Leyda - Rapel Valley, Chile"
-#      grape: "Carmenére"
+#      grapes: "Carmenére"
 #      catalog: "winebow"
 #      mynotes: "Nice nose, salty vanilla, white pepper, thyme, raspberry? raisiny, pork fat? aged in french oak 10 months"
 #      frontprice: 7
@@ -225,7 +225,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: ""
+#      grapes: ""
 #      catalog: "verity"
 #      mynotes: ""
 #      frontprice:
@@ -235,7 +235,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: "chardonnay with peach extract"
+#      grapes: "chardonnay with peach extract"
 #      catalog: "vineyard 48"
 #      mynotes: "plain white with peachy nose. nothing great"
 #      frontprice: 7.58 #normailly #9.66
@@ -245,7 +245,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: "reisling"
+#      grapes: "reisling"
 #      catalog: "vineyard 48"
 #      mynotes: "slightly waxy reisling nose - crisp, lightly fruited,  tiny bit spritzy, honey finish, B+"
 #      frontprice: 11.33
@@ -254,7 +254,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: "51% reisling, 26% sauvgnon blanc, 23% chardonnay"
+#      grapes: "51% reisling, 26% sauvgnon blanc, 23% chardonnay"
 #      catalog: "vineyard 48"
 #      mynotes: ""
 #      frontprice: 6.83
@@ -264,7 +264,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: "Sauvngon Blanc"
+#      grapes: "Sauvngon Blanc"
 #      catalog: "vineyard 48"
 #      mynotes: "pineapple and musky nose - nice acidity, decent"
 #      frontprice:  #ret 21.99 #11.55
@@ -274,7 +274,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: "55% cabernet sauv, 25% cab franc, 20% meerlot"
+#      grapes: "55% cabernet sauv, 25% cab franc, 20% meerlot"
 #      catalog: "vineyard 48"
 #      mynotes: "meaty nose, lighlty peppery, hint of fresh herbs, little oak, very french"
 #      frontprice: 6.83
@@ -285,7 +285,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: "cabernet sauv"
+#      grapes: "cabernet sauv"
 #      catalog: "vineyard 48"
 #      mynotes: "sweet, fruity, light finish"
 #      frontprice: 10.28
@@ -296,7 +296,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: "merlot "
+#      grapes: "merlot "
 #      catalog: "vineyard 48"
 #      mynotes: "sweet, fruity, light finish, nicre balance"
 #      frontprice: 22
@@ -305,7 +305,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: "cab sauv"
+#      grapes: "cab sauv"
 #      catalog: "vineyard 48"
 #      mynotes: "nice, but nor unusual"
 #      frontprice: 21
@@ -334,7 +334,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Artesa - Carneros"
-#      grape: ""
+#      grapes: ""
 #      catalog: "southern"
 #      mynotes: "funky, peachy fruity, creamy, light oak. Not bad."
 #      frontprice: 14.67 #2=14 #3=12.67
@@ -343,7 +343,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: " franciscan estate, oakville - Napa"
-#      grape: ""
+#      grapes: ""
 #      catalog: "southern"
 #      mynotes: "creamy hint of vanilla and butter, nice low fruit"
 #      frontprice:  11.33
@@ -352,7 +352,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: ""
+#      grapes: ""
 #      catalog: "southern"
 #      mynotes: "Jammy, bubble gum, sweet, little tanininy finish"
 #      frontprice: 7.33
@@ -361,7 +361,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: ""
+#      grapes: ""
 #      catalog: "southern"
 #      mynotes: "Med body bit of spice , not too much oak, "
 #      frontprice: 7.68 #2=7.35 #5=6.72 #10=5.93
@@ -370,7 +370,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "south of france"
-#      grape: ""
+#      grapes: ""
 #      catalog: "southern"
 #      mynotes: "Black cherry lipstic, violets, strong gummy tanins, acid"
 #      frontprice: 8 #36.67
@@ -379,7 +379,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "costention - Healdsburg, Ca"
-#      grape: "Cab Franc"
+#      grapes: "Cab Franc"
 #      catalog: "southern"
 #      mynotes: "Hint of mint on the nose, oaky, lightish, but sweet concentration""
 #      frontprice:  10 #3=9.33
@@ -388,7 +388,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "S.A. Prum - Mosel, Germany"
-#      grape: ""
+#      grapes: ""
 #      catalog: "southern"
 #      mynotes: ""
 #      frontprice: 13.33 #3 = 12.66
@@ -397,7 +397,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: ""
+#      grapes: ""
 #      catalog: "southern"
 #      mynotes: ""
 #      frontprice: 7.33
@@ -406,7 +406,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: ""
+#      grapes: ""
 #      catalog: "southern"
 #      mynotes: ""
 #      frontprice: 
@@ -415,7 +415,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: ""
+#      grapes: ""
 #      catalog: "southern"
 #      mynotes: ""
 #      frontprice: 
@@ -424,7 +424,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: ""
+#      grapes: ""
 #      catalog: "southern"
 #      mynotes: ""
 #      frontprice: 
@@ -434,7 +434,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: ""
+#      grapes: ""
 #      catalog: "southern"
 #      mynotes: "Good deep grapey nose, some sweet concentration, licorice, black berry. good."
 #      frontprice: 8.67 #2=8 5=.7.33, 7=6, 15=5.67
@@ -443,7 +443,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Bodega N - Mendoza, Argentina"
-#      grape: ""
+#      grapes: ""
 #      catalog: "east coast"
 #      mynotes: "Musky nose, red fruit, sweet ropey tanins. Not bad."
 #      frontprice: 8 
@@ -452,7 +452,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Bodega N - Mendoza, Argentina"
-#      grape: ""
+#      grapes: ""
 #      catalog: "east coast"
 #      mynotes: ""
 #      frontprice: 7
@@ -461,7 +461,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "mwitu"
-#      grape: "Pinotage (Pinot Noir / Cinsault cross)
+#      grapes: "Pinotage (Pinot Noir / Cinsault cross)
 #      catalog: "east coast"
 #      mynotes: "nose hint of musky, rubber barnyard, mouth is fruity, grapey, red fruit, some acidity, some light tanins, decent length "
 #      frontprice: 8
@@ -470,7 +470,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Rioja"
-#      grape: "Tempanillo, Mazuelo, Garnacha"
+#      grapes: "Tempanillo, Mazuelo, Garnacha"
 #      catalog: "east coast"
 #      mynotes: "light body, little fruit, some harshish tanins."
 #      frontprice: 6.5
@@ -479,7 +479,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Rioja"
-#      grape: "Tempanillo, Mazuelo, Garnacha"
+#      grapes: "Tempanillo, Mazuelo, Garnacha"
 #      catalog: "east coast"
 #      mynotes: "light body, little fruit, some harshish tanins."
 #      frontprice: 6.5
@@ -498,7 +498,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Franz Haas -Alto Adige"
-#      grape: ""
+#      grapes: ""
 #      catalog: "winebow"
 #      mynotes: ""
 #      frontprice:
@@ -507,7 +507,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "kris"
-#      grape: ""
+#      grapes: ""
 #      catalog: "winebow"
 #      mynotes: "Nice acidity. Also buttery. Muted fruit. Tart fruits. Prrtty subtle."
 #      frontprice: 10 #3 = 8.66
@@ -516,7 +516,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Franz Haas -Alto Adige"
-#      grape: ""
+#      grapes: ""
 #      catalog: "winebow"
 #      mynotes: "92 parker Herby nose of sage and pepper. Bit earthy on the palate. Some length. Not much tanins. Quite nice"
 #      frontprice: 33.33
@@ -525,7 +525,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Franz Haas -Alto Adige"
-#      grape: "Lagrein"
+#      grapes: "Lagrein"
 #      catalog: "winebow"
 #      mynotes: "Soft ripe cherries, little butteriness, little tanin, bit of lipstic"
 #      frontprice: 24
@@ -534,7 +534,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "kris"
-#      grape: ""
+#      grapes: ""
 #      catalog: "winebow"
 #      mynotes: "Mild and buttrty"
 #      frontprice: 10
@@ -543,7 +543,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Franz Haas - alto adige"
-#      grape: ""
+#      grapes: ""
 #      catalog: "winebow"
 #      mynotes: "Nice fruit, hint of band-aids, mellow tanins"
 #      frontprice:  13.33
@@ -552,7 +552,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Protos - Rueda"
-#      grape: ""
+#      grapes: ""
 #      catalog: "winebow"
 #      mynotes: "Aged on lees for three months. Good acid, tiny bitterness. some waxy apple, pears?. Heavy body. Glycerol sweetness."
 #      frontprice: 10.66 #2=10 3=9.33
@@ -561,7 +561,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Protos - Ribera Del Duero"
-#      grape: ""
+#      grapes: ""
 #      catalog: "winebow"
 #      mynotes: "Buttery, touch of menthol, good concentration, dark cherry. 60 40 oak. medium toast. Nice mild vanilla toast. B+"
 #      frontprice: 12 #2=11
@@ -570,7 +570,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Protos - Ribera Del Duero"
-#      grape: ""
+#      grapes: ""
 #      catalog: "winebow"
 #      mynotes: "Good meaty nose, deep grapey flavor, little mint, mild dusty small tanins. Touch of oak. B"
 #      frontprice: 21
@@ -579,7 +579,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Protos - Ribera Del Duero"
-#      grape: "Meaty, grapey nose. Lots of dark fruit, some concentration. mouth filling grippy but soft dusty tanins"
+#      grapes: "Meaty, grapey nose. Lots of dark fruit, some concentration. mouth filling grippy but soft dusty tanins"
 #      catalog: "winebow"
 #      mynotes: ""
 #      frontprice: 34
@@ -588,7 +588,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Protos - Ribera Del Duero"
-#      grape: ""
+#      grapes: ""
 #      catalog: "winebow"
 #      mynotes: "60 yr vine, 2yrs oak, 3yrs bottle. Hint of menthol. Grape. Good fruit concentration. Soft but mouth filling tanins."
 #      frontprice: 57
@@ -597,7 +597,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Gaujal de Saint Bon -Languedoc"
-#      grape: "pic paul"
+#      grapes: "pic paul"
 #      catalog: "Domaine de Pajot"
 #      mynotes: "Full body, med acid, bitter overtone. Briny, albarino-like. not bad."
 #      frontprice:  8.66
@@ -606,7 +606,7 @@
 #      listprice: 22
 #      qtprice: 
 #      byline: "Domain de Pajot"
-#      grape: "Ugni Blanc, Colombard, Gros Manseng, Sauv. B."
+#      grapes: "Ugni Blanc, Colombard, Gros Manseng, Sauv. B."
 #      catalog: "polaner"
 #      mynotes: "Soft, good SB type nose, med acid. not bad."
 #      frontprice: 7.50 #76 on 3 72 on 5
@@ -615,7 +615,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Berlo Raboso - Veneto, Italy"
-#      grape: ""
+#      grapes: ""
 #      catalog: "Polaner"
 #      mynotes: "Hint of sweetness. nice strawberry fruit. no bitterness"
 #      frontprice: 8.88 #104 #96 on 3, 88 on 5
@@ -624,7 +624,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Berlo Raboso - Veneto, Italy"
-#      grape: ""
+#      grapes: ""
 #      catalog: "Polaner"
 #      mynotes: "Hint of sweetness. nice strawberry fruit. no bitterness"
 #      frontprice: 8.88 #104 #96 on 3, 88 on 5
@@ -633,7 +633,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Bohigas - Catalunya, Spain"
-#      grape: "trepat?"
+#      grapes: "trepat?"
 #      catalog: "Polaner"
 #      mynotes: "Sagne (sp?)method - nice concentration, good acidity, strong raspberry and strawberry, full bodied."
 #      frontprice: 12 #136 on 3 120 on 5
@@ -642,7 +642,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Reginato - Mendoza, Argentina"
-#      grape: ""
+#      grapes: ""
 #      catalog: "Polaner"
 #      mynotes: "Champenoise method - full red apple, nice concentration hint of sweetness, hint of baking spices and caramel - elevation 3500 - in san carlos - non- filtered"
 #      frontprice:
@@ -651,7 +651,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Bohigas- Catalunya, Spain"
-#      grape: ""
+#      grapes: ""
 #      catalog: "Polaner"
 #      mynotes: "Nice acidity. buttery, apply, hint of caramel, good sourness. NIce white."
 #      frontprice: 8
@@ -660,7 +660,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Francoise Chidaine"
-#      grape: "Gamay"
+#      grapes: "Gamay"
 #      catalog: "Polaner"
 #      mynotes: ""
 #      frontprice: 13.33 
@@ -669,7 +669,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Niepoort - Portugal"
-#      grape: ""
+#      grapes: ""
 #      catalog: "Polaner"
 #      mynotes: "Good fresh fruit to it, not too sweet, light tanins. More tanins would be nice. The Tawny is a bit too simple and sweet."
 #      frontprice: 10
@@ -678,7 +678,7 @@
 #      listprice: 34
 #      qtprice: 11
 #      byline: "Jose Ferrer - Mallorca, Spain"
-#      grape: "53% Manto Negro, 22% Cabernet Sauvignon, 19% Tempanillo, 3% Callet, 2% Syrah"
+#      grapes: "53% Manto Negro, 22% Cabernet Sauvignon, 19% Tempanillo, 3% Callet, 2% Syrah"
 #      catalog: "Polaner"
 #      mynotes: "Nose is oaky with musty fruit, palate has some jammyness, nutty and well-balanced. Very nice."
 #      frontprice: 16 #2=14.66
@@ -687,7 +687,7 @@
 #      listprice: 25
 #      qtprice: 9
 #      byline: "Stafford Hill - Eola-Amity Hills, Oregon"
-#      grape: "Pinot Noir"
+#      grapes: "Pinot Noir"
 #      catalog: "Polaner"
 #      mynotes: "Wonderfully earthy, medium body, medium acid with raspberry and spice. Dijon clones."
 #      frontprice: 10 #3=8.66, #5=8, #10=7.66
@@ -696,7 +696,7 @@
 #      listprice: 25
 #      qtprice: 9
 #      byline: "Wyatt - California"
-#      grape: "Cabernet Sauvignon
+#      grapes: "Cabernet Sauvignon
 #      catalog: "Polaner"
 #      mynotes: "Subtle, medium body, few tanins. nice."
 #      frontprice: 10 #3=8.66, #5=8, #10=7.66
@@ -705,7 +705,7 @@
 #      listprice: 22
 #      qtprice: 8
 #      byline: "Rey Santo - Rueda, Spain"
-#      grape: "Verdejo, Viura"
+#      grapes: "Verdejo, Viura"
 #      catalog: "Polaner"
 #      bin: 699
 
@@ -717,7 +717,7 @@
 #      listprice: 28
 #      qtprice: 10
 #      byline: "Getariako"
-#      grape: "Txakoli"
+#      grapes: "Txakoli"
 #      catalog: "Polaner"
 #      mynotes: "Lemony and bright - very nice."
 #      frontprice: 11.33 #3=10
@@ -727,7 +727,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Domaine Entrefaux"
-#      grape: "Sirah"
+#      grapes: "Sirah"
 #      catalog: "Polaner"
 #      mynotes: "peppery dark mellow fruit, bit of barnyard, nice subtlety."
 #      frontprice: 15.33
@@ -740,7 +740,7 @@
 #      listprice: 45
 #      qtprice: 
 #      byline: "by Sean Minor - Napa Valley"
-#      grape: "70% Merlot, 30% Cab franc"
+#      grapes: "70% Merlot, 30% Cab franc"
 #      catalog: "Polaner"
 #      mynotes: "juicy, little dry dusty tanins, decent fruit"
 #      frontprice: 15.33
@@ -750,7 +750,7 @@
 #      listprice: 45
 #      qtprice: 
 #      byline: "by Sean Minor - Napa Valley"
-#      grape: "70% Merlot, 30% Cab franc"
+#      grapes: "70% Merlot, 30% Cab franc"
 #      catalog: "Polaner"
 #      mynotes: "juicy, little dry dusty tanins, decent fruit"
 #      frontprice: 15.33
@@ -761,7 +761,7 @@
 #      listprice: 
 #      qtprice: 
 #      byline: "by Chateau Beau Site Haut Vignoble"
-#      grape: "Cab Sauv, Merlot, Petit Verdot"
+#      grapes: "Cab Sauv, Merlot, Petit Verdot"
 #      catalog: "Wine symphony"
 #      mynotes: "Good oaky nose, herbal character smooth, nice persimonny tanins, very little fruit."
 #      frontprice: 29 #
@@ -771,7 +771,7 @@
 #      listprice: 
 #      qtprice: 
 #      byline: "by Laird - Napa, California"
-#      grape: "
+#      grapes: "
 #      catalog: "Wine symphony"
 #      mynotes: "Sweet vanilla tanins, deep fruit, smokey, good grip on the gums, nice complexity, not unlike crusher."
 #      frontprice: 30
@@ -781,7 +781,7 @@
 #      listprice: 
 #      qtprice: 
 #      byline: "by Santa Barbara County"
-#      grape: "
+#      grapes: "
 #      catalog: "verity"
 #      mynotes: "From various lots within Parker vineyards Fess was actor - estate bottled - touch of french oak - pineapply, buttery"
 #      frontprice: 12 - #10.67 on 3
@@ -790,7 +790,7 @@
 #      listprice: 
 #      qtprice: 
 #      byline: "by Paul Prieur et Fils"
-#      grape: "
+#      grapes: "
 #      catalog: "verity"
 #      mynotes: "Light flowers, peaches on the nose, fruity acidity on palate. hint of sweetness and peaches. Little bitterness."
 #      frontprice: 14.76  #176 #14 on 2 #13.33 on 3
@@ -799,7 +799,7 @@
 #      listprice: 
 #      qtprice: 
 #      byline: "by Mendoza Argentine"
-#      grape: "
+#      grapes: "
 #      catalog: "verity"
 #      mynotes: "Paul Hobbes from california - 2010 - skunky - heavy creamy body, medium oak, good fruit - smooth"
 #      frontprice: 13? 10.67? 
@@ -808,7 +808,7 @@
 #      listprice: 
 #      qtprice: 
 #      byline: "by Lemelson Vineyard - Willamette Valley, Oregon"
-#      grape: "
+#      grapes: "
 #      catalog: "verity"
 #      mynotes: "certified organic and biodynamic - waxy, deisly nose. some stone fruit. nice"
 #      frontprice: 13.33 #12 on 2 - 11.33 on 3
@@ -818,7 +818,7 @@
 #      listprice: 
 #      qtprice: 
 #      byline: "by casaas del bosque"
-#      grape: "
+#      grapes: "
 #      catalog: "Wine symphony"
 #      mynotes: "Light fresh pineapply. little hot."
 #      frontprice: 13 #5
@@ -828,7 +828,7 @@
 #      listprice: 
 #      qtprice: 
 #      byline: "by domaine de lamondine"
-#      grape: "Viognier, rousanne, claret"
+#      grapes: "Viognier, rousanne, claret"
 #      catalog: "Wine symphony"
 #      mynotes: "Light fresh nose of apple and cinamon. bit watery on the palate."
 #      frontprice: 12
@@ -839,7 +839,7 @@
 #      listprice: 45
 #      qtprice: 
 #      byline: "by Chateau de Tournefuille"
-#      grape: "70% Merlot, 30% Cab franc"
+#      grapes: "70% Merlot, 30% Cab franc"
 #      catalog: "Polaner"
 #      mynotes: "Coffee nose, nice dry tanins, some dark cherry. B"
 #      frontprice: 21.33
@@ -854,7 +854,7 @@
 #      listprice: 55
 #      qtprice: 
 #      byline: "Chateau Le Boscq - St. Estephe, Bordeaux, France"
-#      grape: "%60 cab franc, 40% merlot"
+#      grapes: "%60 cab franc, 40% merlot"
 #      catalog: "Verity"
 #      mynotes: "Minty, oaky nose, very muted dark fruit, persimmony tanins."
 #      frontprice: 30
@@ -863,7 +863,7 @@
 #      listprice: 35
 #      qtprice: 12
 #      byline: "Chateau Bellevue - Haut-Medoc, Bordeaux, France"
-#      grape: "%60 cab franc, 40% merlot"
+#      grapes: "%60 cab franc, 40% merlot"
 #      catalog: "Verity"
 #      frontprice: 16.67
 #
@@ -871,7 +871,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Chateau Blouin 2009"
-#      grape: "80% merlot, %20 cab franc"
+#      grapes: "80% merlot, %20 cab franc"
 #      catalog: "Verity"
 #      mynotes: "Merlot nose, black cherry, dusty tanins, some decent grip"
 #      frontprice: 8 #2 = 7.33, 3=6.67
@@ -880,7 +880,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Zemmer - alto-adige"
-#      grape: "pinot grigio"
+#      grapes: "pinot grigio"
 #      catalog: "Verity"
 #      mynotes: "fullish body - refined fruit, bitter, nutty finish, not bad, touch of sweetness, some flowers"
 #      frontprice: 11.33
@@ -889,7 +889,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by La Fiera -Veneto"
-#      grape: "70% Merlot, 30% Cab franc"
+#      grapes: "70% Merlot, 30% Cab franc"
 #      catalog: "Verity"
 #      mynotes: "nice nose, apply, bitter finish"
 #      frontprice: 6.67 #5 5.33
@@ -930,7 +930,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Bodegas Valvino"
-#      grape: "albarino"
+#      grapes: "albarino"
 #      catalog: "Lauber - Southern Maria Stevens"
 #      mynotes: "Nice acidity, lemony fruit, "
 #      frontprice:  10.75
@@ -940,7 +940,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Symington Family Vintners - Douro Valley, Portugal"
-#      grape: "Tauriga Nacional"
+#      grapes: "Tauriga Nacional"
 #      catalog: "verity"
 #      notes: "Light, savory, and herbaceous."
 #      frontprice: 5
@@ -949,7 +949,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "JM Fonseca - Douro"
-#      grape: "Port grapes
+#      grapes: "Port grapes
 #      catalog: "Lauber - Southern Maria Stevens"
 #      mynotes: "Minty tempranillo type. B.
 #      frontprice: 5
@@ -958,7 +958,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "JM Fonseca"
-#      grape: "castellao, trincadeira, "
+#      grapes: "castellao, trincadeira, "
 #      catalog: "Lauber - Southern Maria Stevens"
 #      mynotes: "funky musky fruit, some decent bdry tanins, ok acidity, b+"
 #      frontprice: 6 or 7
@@ -967,7 +967,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "JM Fonseca"
-#      grape: "alvarinho"
+#      grapes: "alvarinho"
 #      catalog: "Lauber - Southern Maria Stevens"
 #      mynotes: ""
 #      frontprice: 5
@@ -976,7 +976,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: "Viura"
+#      grapes: "Viura"
 #      catalog: "Lauber - Southern Maria Stevens"
 #      mynotes: "Band-aids and golden apple. heavy slippery body.     B-"
 #      frontprice: 
@@ -985,7 +985,7 @@
 #      listprice: 
 #      qtprice: 
 #      byline: "by la Fiole du Pape"
-#      grape: "GSM"
+#      grapes: "GSM"
 #      catalog: "opici"
 #      mynotes: "not great"
 #      frontprice: 26.67
@@ -995,7 +995,7 @@
 #      listprice: 
 #      qtprice: 
 #      byline: "by Clos de L'oratoire du Pape"
-#      grape: "GSM"
+#      grapes: "GSM"
 #      catalog: "opici"
 #      mynotes: "light grenachy fruit. hint of vanilla. butter. pleasant. some complexity."
 #      frontprice: 26
@@ -1004,7 +1004,7 @@
 #      listprice: 50
 #      qtprice: 
 #      byline: "by Benessere"
-#      grape: "Old Vine Zin"
+#      grapes: "Old Vine Zin"
 #      catalog: "wine syphony"
 #      mynotes: "Subtle fruit? acidy nose. Dry light raisiny
 #      fruit, sandalwood, cooked cherry pie "
@@ -1014,7 +1014,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Benessere"
-#      grape: "Old Vine Zin"
+#      grapes: "Old Vine Zin"
 #      catalog: "wine syphony"
 #      mynotes: "nice deep round fruit nose. smooth.i strange "
 #      frontprice: 26
@@ -1023,7 +1023,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Carneros"
-#      grape: "Pinot Noir"
+#      grapes: "Pinot Noir"
 #      catalog: "polaner"
 #      mynotes: "subtle light. good fruit. nice buttery nose."
 #      frontprice: 12.8
@@ -1032,7 +1032,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Walter Hansel - Russian River"
-#      grape: "Pinot Noir"
+#      grapes: "Pinot Noir"
 #      catalog: "polaner"
 #      mynotes: "Good fruit. Black cherry white flowers. Nice acidity. Not enough dust."
 #      structure.
@@ -1042,7 +1042,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Vandemmia - just south of bulgary, Tuscany"
-#      grape: "Sangiovese / cab 5 / sirah 5"
+#      grapes: "Sangiovese / cab 5 / sirah 5"
 #      catalog: "polaner"
 #      mynotes: "nice nose. light, but dusty, bit hot. mellow ta. raisny."
 #      frontprice: 12
@@ -1051,7 +1051,7 @@
 #      listprice: 35
 #      qtprice: 12
 #      byline: "by Bussola- Valpollicella, Veneto, Italy"
-#      grape: "Sangiovese / cab 5 / sirah 5"
+#      grapes: "Sangiovese / cab 5 / sirah 5"
 #      catalog: "polaner"
 #      mynotes: "good raisiny fruit. nice structure and balance. good dusty leathery nose. bright and dark fruit"
 #      frontprice: 16.33
@@ -1060,7 +1060,7 @@
 #      listprice: 35
 #      qtprice: 12
 #      byline: "by Jimena Lopez - Lujan de Cuyo, Mendoza, Argentina"
-#      grape: "Malbec"
+#      grapes: "Malbec"
 #      catalog: "polaner"
 #      mynotes: "low acid , very buttery. vlevety. some red and dark fruit"
 #      frontprice: 14.66
@@ -1070,7 +1070,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "by Doug Polaner - Columbia Valley, Washington"
-#      grape: "Sangiovese / cab 5 / sirah 5"
+#      grapes: "Sangiovese / cab 5 / sirah 5"
 #      catalog: "polaner"
 #      mynotes: "good lummy fruit, dusty tanins, little polish, sweet cherry, subtle."
 #      frontprice: 12
@@ -1079,7 +1079,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Chateau Cantelaudette - Graves de Vayres"
-#      grape: "70% Merlot, 20% Cab Sauv, 10% Cab Franc"
+#      grapes: "70% Merlot, 20% Cab Sauv, 10% Cab Franc"
 #      catalog: "polaner"
 #      mynotes: "Musky veg and fruit. Some nice tanins. Good mouth"
 #      frontprice: 12
@@ -1088,7 +1088,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by St. Nicolas"
-#      grape: "Cab Franc"
+#      grapes: "Cab Franc"
 #      catalog: "polaner"
 #      mynotes: "High acid, nice light grape flavor, little taninny brightness. Pinot noir-ish."
 #      frontprice: 8.66
@@ -1098,7 +1098,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by cantina valpolicella"
-#      grape: "cab sauv / carmeniere"
+#      grapes: "cab sauv / carmeniere"
 #      catalog: "east coast"
 #      mynotes: "second pressing from amarone - good deep raininy flavor. lots of dry tanins at finsih."
 #      frontprice: 15  #10.83 classico
@@ -1109,7 +1109,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by casa de vinos - chile"
-#      grape: "cab sauv / carmeniere"
+#      grapes: "cab sauv / carmeniere"
 #      catalog: "east coast"
 #      mynotes: "coffee on the nose and palate with some dark fruit, some cooked. B+"
 #      frontprice: 14.16
@@ -1120,7 +1120,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by bargetto california"
-#      grape: ""
+#      grapes: ""
 #      catalog: "east coast"
 #      mynotes: "nice veggy barnyard nose. some shoe polish. Hot, but juicy fruity in the mouth."
 #      frontprice:
@@ -1131,7 +1131,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by IGT somewhere in italy"
-#      grape: "aglianico"
+#      grapes: "aglianico"
 #      catalog: "east coast"
 #      mynotes: "no tanin. not much nose. Good grapey dark fruit. purplish. Pleasant."
 #      frontprice: 9.16
@@ -1142,7 +1142,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by some vinos de madrid"
-#      grape: "tempranillo, granacha"
+#      grapes: "tempranillo, granacha"
 #      catalog: "east coast"
 #      mynotes: "Straight up cheap euro wine. fruity watery. Nice dried apricot raisin finish. quaffable"
 #      frontprice: 4.75
@@ -1153,7 +1153,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Walnut City Wineworks - Wallamette Valley, Oregon"
-#      grape: ""
+#      grapes: ""
 #      catalog: "wine symphony"
 #      notes: ""
 #      mynotes: "peppery nose, nice sweet peppery oaky tanins, med fruit"
@@ -1165,7 +1165,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Casas del Bosque -  Rapel Valley, Chile
-#      grape: "Syrah / Grenache"
+#      grapes: "Syrah / Grenache"
 #      catalog: "wine symphony"
 #      mynotes: "Great coffee and bitter flower nose. Rasiny and coffee palate short finish."
 #      frontprice: 13 #10 cs $7
@@ -1177,7 +1177,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by "
-#      grape: "60%"
+#      grapes: "60%"
 #      catalog: "Touton"
 #      mynotes: ""
 #      frontprice: 11.33 # 120 on 3 104 on 5
@@ -1186,7 +1186,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Tomasi"
-#      grape: "60%"
+#      grapes: "60%"
 #      catalog: "Touton"
 #      mynotes: ""
 #      frontprice: 11.33 # 120 on 3 104 on 5
@@ -1195,7 +1195,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Tomasi"
-#      grape: "60%"
+#      grapes: "60%"
 #      catalog: "Touton"
 #      mynotes: "Fruity, some raisin"
 #      frontprice: 11.33 # 120 on 3 104 on 5
@@ -1204,7 +1204,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Bordeaux"
-#      grape: ""
+#      grapes: ""
 #      catalog: "Touton"
 #      mynotes: "Brambly wooody, peppery. Salty savory"
 #      frontprice: 11.33 # 112 on 3 104 on 5
@@ -1213,7 +1213,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Guigal - Cote Du Rhone""
-#      grape: "Viognier"
+#      grapes: "Viognier"
 #      catalog: "Touton"
 #      mynotes: "Mellow, little waxy, candied finsih. "
 #      frontprice: 11.33 #128 on 2 118 non 3
@@ -1225,7 +1225,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Domaine de l'Amandine -  Rhone Valley, France.
-#      grape: "Syrah / Grenache"
+#      grapes: "Syrah / Grenache"
 #      catalog: "wine symphony"
 #      mynotes: "Nose is heady manure and black and white pepper. Palate is same with some dark fruit, and dry but thin tanins."
 #      frontprice: 10.33
@@ -1237,7 +1237,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Laird - Carnerros, Sonoma, California"
-#      grape: "pinot girigio"
+#      grapes: "pinot girigio"
 #      catalog: "wine symphony"
 #      mynotes: "nice floral nose, some good fruit. Heavy body,
 #      med acid, bit lack in flavor, good bitter finish with orange pith and grapefruit"
@@ -1249,7 +1249,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by napa valley"
-#      grape: "Cab S 79%, cab franc, merlot"
+#      grapes: "Cab S 79%, cab franc, merlot"
 #      catalog: "wine symphony"
 #      mynotes: "2x4 oak. Nice dark fruit, strong tanin, no vanilla. B+"
 #      frontprice: 16
@@ -1260,7 +1260,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by domaine de l'amandine - cdr, france"
-#      grape: "syrah 60%, grenache"
+#      grapes: "syrah 60%, grenache"
 #      catalog: "wine symphony"
 #      mynotes: "spicy, veggy nose - blackberry, licorice, very tanic - not complex, but bold"
 #      frontprice: 10.33 #9.82 on 3cs
@@ -1271,7 +1271,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by france"
-#      grape: "sb"
+#      grapes: "sb"
 #      catalog: "wine symphony"
 #      mynotes: "some decent fruit, greenish tanins, bit hot"
 #      frontprice: 9
@@ -1282,7 +1282,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by valdrinal - ribera del duero"
-#      grape: "tempranillo"
+#      grapes: "tempranillo"
 #      catalog: "wine symphony"
 #      mynotes: "nice heavy musky nose, not much fruit, good oak."
 #      frontprice: 16
@@ -1293,7 +1293,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by bodegas lagarde pintos - rias biaxas"
-#      grape: "sb"
+#      grapes: "sb"
 #      catalog: "wine symphony"
 #      mynotes: "fruity mellow - nice golden apple, med body, some bitter acidity - not bad."
 #      frontprice: 20
@@ -1305,7 +1305,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: ""
+#      grapes: ""
 #      catalog: "verity"
 #      mynotes: "tropical fruit nose, med acid, green pepper notes"
 #      frontprice: 10 #9.33 on 2
@@ -1315,7 +1315,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: ""
-#      grape: ""
+#      grapes: ""
 #      catalog: "verity"
 #      mynotes: "no nose. nice sweet-sour heavy moutn feel. pleasant"
 #      frontprice: 8.66 #8 on 2 #3 7.33
@@ -1325,7 +1325,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Marques de Caceres - Rias Baixas"
-#      grape: "Albariño"
+#      grapes: "Albariño"
 #      catalog: "verity"
 #      mynotes: "Full mouth, bitter golden apple, little nose."
 #      frontprice: 13.66 #12 on 2 #3=9.33
@@ -1334,7 +1334,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Perrine Vineyard - Rhone Valley"
-#      grape: "50% 30% carrignan, 10% cinsault, 10% sirah"
+#      grapes: "50% 30% carrignan, 10% cinsault, 10% sirah"
 #      catalog: "verity"
 #      mynotes: "Nice balance of fruit and butter. Good medium length tanins"
 #      frontprice: 7.33 #3 6 #5 5.33
@@ -1343,7 +1343,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Perrine Vineyard - Cote Du Rhone"
-#      grape: "60% Grenahce, 20 sirah , 20% mouv"
+#      grapes: "60% Grenahce, 20 sirah , 20% mouv"
 #      catalog: "verity"
 #      mynotes: "red cherry light lipstic"
 #      frontprice: 8
@@ -1353,7 +1353,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Spice Route Winery -  Swartland, South Africa"
-#      grape: "Syrah, Mouvedre, Carignan, Petite Sirah,  Grenache"
+#      grapes: "Syrah, Mouvedre, Carignan, Petite Sirah,  Grenache"
 #      catalog: "verity"
 #      mynotes: "Middle of the road , some dark fruit. "
 #      frontprice: 15 
@@ -1363,7 +1363,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "Cantina Zapata - Uco Valley"
-#      grape: "Malbec "
+#      grapes: "Malbec "
 #      catalog: "verity"
 #      mynotes: "Mellow sweet baking spice."
 #      frontprice: 8.66 #2=8, 5=6.66 
@@ -1400,7 +1400,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by alain geneau"
-#      grape: "sb"
+#      grapes: "sb"
 #      catalog: "wine symphony"
 #      mynotes: "fruity full body, lowish acid. not very sancerre-like"
 #      frontprice: 20
@@ -1409,7 +1409,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by alain geneau"
-#      grape: "sb"
+#      grapes: "sb"
 #      catalog: "wine symphony"
 #      mynotes: "fruity full body, lowish acid. not very sancerre-like"
 #      frontprice: 20
@@ -1418,7 +1418,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by some german thing"
-#      grape: "pinot noir"
+#      grapes: "pinot noir"
 #      catalog: "wine symphony"
 #      mynotes: " good. nice mellow fruit nose. some sweet heaviness of body"
 #      frontprice: 21
@@ -1429,7 +1429,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by - carnerros, napa"
-#      grape: "pinot noir"
+#      grapes: "pinot noir"
 #      catalog: "wine symphony"
 #      mynotes: "aged 12 months fr oak. Buttery, earthy, bit oaky. a-"
 #      frontprice: 17
@@ -1440,7 +1440,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by - martellotto"
-#      grape: "cab sauvi reserv -paso robles"
+#      grapes: "cab sauvi reserv -paso robles"
 #      catalog: "wine symphony"
 #      mynotes: " cabby, pettit syr nose, raisiny shoe polish, heavy, sweetish mouth. High alc. some harsh acid, petit syrah, B"
 #      frontprice: 20 #3cs 17 #10 13
@@ -1451,7 +1451,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Alain Gueneau"
-#      grape: "Pinot Noir"
+#      grapes: "Pinot Noir"
 #      catalog: "wine symphony"
 #      mynotes: "25-35% nerw oak 12-14 months. Restrained fruit. buttery. loose palate. lots of oak. not bad. Tanins."
 #      frontprice: 21
@@ -1460,7 +1460,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Alain Gueneau"
-#      grape: "Pinot Noir"
+#      grapes: "Pinot Noir"
 #      catalog: "wine symphony"
 #      mynotes: "Partial oak barrel. Theirs: light aromatic. Cherry lipstick. Light, nice lively fruit, bit loose in structuire. Gummy tanins. Strawberry finish."
 #      frontprice: 21
@@ -1469,7 +1469,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Chris Russi (geyser peak)- Russian River, Sonoma"
-#      grape: "chardonnay"
+#      grapes: "chardonnay"
 #      catalog: "wine symphony"
 #      mynotes: "Single vineyard, Saphire Hill Vineyard.  Tiny bit of oak. Not too funky. Fairly elegant"
 #      mynotes2: " little bitter, some unintegrated oak. Not too creamy. Funk."
@@ -1479,7 +1479,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by tool box - oak knoll, napa"
-#      grape: "chardonnay"
+#      grapes: "chardonnay"
 #      catalog: "wine symphony"
 #      mynotes: " a bit hot, little bitter, some unintegrated oak. Not creamy."
 #      mynotes2: " little bitter, some unintegrated oak. Not too creamy. Funk."
@@ -1489,7 +1489,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Laird - Napa"
-#      grape: "sauv blanc
+#      grapes: "sauv blanc
 #      catalog: "wine symphony"
 #      mynotes: "Pleasant nose - bit too light and alky. Nice grapefruit mouth. Bit of loose acidity."
 #      frontprice: 13
@@ -1498,7 +1498,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Augusti Torello Mata- Penedes"
-#      grape: "Xarel-lo, etc."
+#      grapes: "Xarel-lo, etc."
 #      catalog: "wine symphony"
 #      mynotes: "Golden apple nose. Bandaids. Medium bubbles. Good foam. Rich, apply flavor. Band-aids. Unpleasant bitter finish ."
 #      frontprice: 20 #15
@@ -1507,7 +1507,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Frederic Lornet - Jura, France"
-#      grape: "savignnin"
+#      grapes: "savignnin"
 #      catalog: "wine symphony"
 #      notes: "curry and walnuts"
 #      mynotes: ""
@@ -1518,7 +1518,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Chateau Bellingard = Monbazillac, Southwest France.
-#      grape: "Semillon, 
+#      grapes: "Semillon, 
 #      catalog: "wine symphony"
 #      mynotes: "Light red wine. Very Pinot Noir. Good acid. Nice bright cherry fruit. Hint of dusty earth. Touch of game."
 #      notes: "thinnest skinned grape in the world"
@@ -1529,7 +1529,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Frederic Lornet - Jura"
-#      grape: "Trousseau"
+#      grapes: "Trousseau"
 #      catalog: "wine symphony"
 #      mynotes: "Light red wine. Very Pinot Noir. Good acid. Nice bright cherry fruit. Hint of dusty earth. Touch of game."
 #      notes: "thinnest skinned grape in the world"
@@ -1540,7 +1540,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by CDB - Chile"
-#      grape: "chardonnay"
+#      grapes: "chardonnay"
 #      catalog: "wine symphony"
 #      mynotes: "heavy sweetish body. Touch of oak on the nose."
 #      frontprice: 13
@@ -1549,7 +1549,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by CDB - Chile"
-#      grape: "chardonnay"
+#      grapes: "chardonnay"
 #      catalog: "wine symphony"
 #      mynotes: "band-aids, butter, ballsy burgundy smell with lots of oak"
 #      frontprice: 19
@@ -1558,7 +1558,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Leopard Frog - Stelllenbosch"
-#      grape: "cab franc"
+#      grapes: "cab franc"
 #      catalog: "wine symphony"
 #      mynotes: "Nice oaky smell, band-aids, spice. Full and mellow. Decent tanninis, dry spicy finish. Long."
 #      frontprice: 48
@@ -1567,7 +1567,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Dourthe - Beaurdaux, Ste emillion, entre Dexu Mers"
-#      grape: "Sauv B.
+#      grapes: "Sauv B.
 #      catalog: "Verity"
 #      mynotes: "light SB nose. nice sweet body. Decent fruit. Mellow. Pleasant.""
 #      frontprice: 9 
@@ -1577,7 +1577,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Cheatu Le Boscq Cru Bourgeous - St. Estephe 2006"
-#      grape: "Merlot / Cab s / petit Verdot"
+#      grapes: "Merlot / Cab s / petit Verdot"
 #      catalog: "Verity"
 #      mynotes: "good old wordly nose. band-aidy. Decent acid round fruit. Some decent tanins. Little smooth spicy well balanced.""
 #      frontprice: 30
@@ -1587,7 +1587,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Cheatu Reysson - Haut Medoc reserve"
-#      grape: "Merlot 90% / Cab s 
+#      grapes: "Merlot 90% / Cab s 
 #      catalog: "Verity"
 #      mynotes: "mild old world nose. soft, but spicy palate... Mellow pleasant."
 #      frontprice: 16.67
@@ -1597,7 +1597,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by Chateau La Garde - Bordeaux, pL, France"
-#      grape: "Cabernet Sauv 58% / Merlot 32% / Cab Franc 6 / Petit Verd 4
+#      grapes: "Cabernet Sauv 58% / Merlot 32% / Cab Franc 6 / Petit Verd 4
 #      catalog: "Verity"
 #      mynotes: "Good full cabby fruit. Nice tanins. Bit of spice. Could be. B+"
 #      frontprice: 28
@@ -1606,7 +1606,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by - DiamAndes"
-#      grape: "Malbec 70%/ Cab sauve 30%"
+#      grapes: "Malbec 70%/ Cab sauve 30%"
 #      catalog: "Verity"
 #      mynotes: "nice cabby nose. good fruit. Some smoke and tanin. b+"
 #      frontprice: 25.33 #comes in 6
@@ -1615,7 +1615,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by - argentina"
-#      grape: "Malbec / Merlot 23%"
+#      grapes: "Malbec / Merlot 23%"
 #      catalog: "Verity"
 #      mynotes: "fruity, delicious, easy and nice."
 #      frontprice: 14
@@ -1625,7 +1625,7 @@
 #      listprice:
 #      qtprice: 
 #      byline: "by - James Oatley - SE, Australia"
-#      grape: "Pinot Grigio"
+#      grapes: "Pinot Grigio"
 #      catalog: "Opici"
 #      mynotes: "smooth, some light fruit, not too bitter, med acid"
 #      frontprice: 8.66
@@ -1634,7 +1634,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "by Chateau Le Pavillon de Boyrein"
-#      grape: "Cabernet / Merlot blend"
+#      grapes: "Cabernet / Merlot blend"
 #      catalog: "winebow"
 #      mynotes: "Good raisiny, woody nose. Little watery on the palate. Lack of fruit."
 #      frontprice: 10.66
@@ -1643,7 +1643,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "by Chateau vivecourt"
-#      grape: "Merlot  / Cab Franc"
+#      grapes: "Merlot  / Cab Franc"
 #      catalog: "winebow"
 #      mynotes: "fruity.  nothing much"
 #      frontprice: 10.66
@@ -1655,7 +1655,7 @@
 #      listprice: 35
 #      qtprice: 12
 #      byline: "by Chateau Tour Prignac - Bordeaux, France"
-#      grape: "Merlot / Cabernet blend"
+#      grapes: "Merlot / Cabernet blend"
 #      catalog: "opici"
 #      mynotes: "horrible mildewy nose. hollow taste, acid, no fruit, rough watery tanins"
 #      frontprice: 13.33
@@ -1665,7 +1665,7 @@
 #    - name: "St Emillion Grand Cru 2003"
 #      listprice: 40
 #      byline: "by Chateau Roylland - Bordeaux, France"
-#      grape: "Merlot / Cabernet blend"
+#      grapes: "Merlot / Cabernet blend"
 #      catalog: "verity wp 624a "
 #      mynotes: "Pleasant. Not aggressive. B-"
 #      frontprice: 19.33
@@ -1714,7 +1714,7 @@
 #      mynotes:
 #      qtprice:
 #      frontprice: 11.33
-#      grape: "85% Grenache, 15% Syrah"
+#      grapes: "85% Grenache, 15% Syrah"
 #      catalog: "verity"
 #
 #    - name: "Chateauneuf du Pape 2007"
@@ -1725,7 +1725,7 @@
 #      mynotes:
 #      qtprice:
 #      frontprice: 31.67
-#      grape: "Grenache, Syrah"
+#      grapes: "Grenache, Syrah"
 #      catalog: "verity"
 #
 #    - name: "'La Granacha' Cotes du Rhone Villages 2009"
@@ -1735,14 +1735,14 @@
 #      mynotes:
 #      qtprice:
 #      frontprice:
-#      grape: "Grenache, Syrah"
+#      grapes: "Grenache, Syrah"
 #      catalog: "verity"
 #
 #    - name: "Cotes du Rhone 2007"
 #      listprice: 28
 #      qtprice: 10
 #      byline: "by Chateau Mont-Thabor - Rhone Valley, France"
-#      grape: "Grenache, Syrah"
+#      grapes: "Grenache, Syrah"
 #      catalog: "Wineberry"
 #      frontprice: 10.50
 #      notes: "Notes of wet hay and earth blow off as wine breathes to reveal bold, dark red fruit, pepper and smoke."
@@ -1756,7 +1756,7 @@
 #      listprice: 54
 #      qtprice: 15
 #      byline: "by Chateau Mont-Thabor - Rhone Valley, France"
-#      grape: "Grenache, Syrah, Mouvedre, smattering of others"
+#      grapes: "Grenache, Syrah, Mouvedre, smattering of others"
 #      catalog: "Wineberry"
 #      frontprice: 28.00
 #      notes: "Cotes du Rhone's educated brother. Berries, pepper and smoke, but firmer structure & balance with hints of leather and tar."
@@ -1771,7 +1771,7 @@
 #      listprice: 24
 #      qtprice: 8
 #      byline: "by Domain Boisson - Rhone Valley, France"
-#      grape: "Grenache, Syrah, Carignan, Cinsault, Mourvedre"
+#      grapes: "Grenache, Syrah, Carignan, Cinsault, Mourvedre"
 #      catalog: "verity 625a, "
 #      frontprice: 9.33
 #      bin:
@@ -1782,7 +1782,7 @@
 #      listprice: 48
 #      qtprice: 13
 #      byline: "by Cuvee du Vatican - Rhone Valley, France"
-#      grape: "Grenache, Syrah, Mourvedre, smattering of others"
+#      grapes: "Grenache, Syrah, Mourvedre, smattering of others"
 #      catalog: "verity"
 #      frontprice: 25.00
 #      bin:
@@ -1796,7 +1796,7 @@
 #      notes: "Orgainc & Sustainable"
 #      mynotes: "stemmy full petit sirah flavor, raisiny, but a bit watery, needs more acid."
 #      lillynotes: "decent acidity, med tanins, smokey-ish"
-#      grape: "Petite Sirah"
+#      grapes: "Petite Sirah"
 #      catalog: "opici"
 #      frontprice: 16.67 #(13.34 for 2)
 #      bin: 
@@ -1810,7 +1810,7 @@
 #      qtprice:
 #      byline: "by Mettler Familly Vineyards - Lodi, California"
 #      mynotes: "nice vanilla, med acid, some fruit, mild tanins, a little hot"
-#      grape: "Cabernet Sauvignon"
+#      grapes: "Cabernet Sauvignon"
 #      catalog: "opici"
 #      frontprice: 16.67 #(13.34 for 3)
 #      bin: 
@@ -1825,7 +1825,7 @@
 #      byline: "by Mettler Familly Vineyards - Lodi, California"
 #      notes: ""
 #      mynotes: "nice, fruitty zin, med tanins, mild fruit"
-#      grape: "Old Vine Zinfandel"
+#      grapes: "Old Vine Zinfandel"
 #      catalog: "opici"
 #      frontprice: 13.34
 #      bin: 
@@ -1839,7 +1839,7 @@
 #      qtprice: 
 #      byline: "by Elyse Winery - Napa Valley, California"
 #      mynotes: "Intense, tanins, some spice"
-#      grape: "petite sirah"
+#      grapes: "petite sirah"
 #      catalog: "verity"
 #      frontprice: 
 #
@@ -1848,7 +1848,7 @@
 #      qtprice: 
 #      byline: "by Elyse Winery - (heart of the rutherford bench) Napa Valley, California"
 #      mynotes: "Intense, bit hot, a little vanilla, stiff tanins, some spice"
-#      grape: "Cab Sauv / petite sirah"
+#      grapes: "Cab Sauv / petite sirah"
 #      catalog: "verity"
 #      frontprice: 33.33
 #
@@ -1857,7 +1857,7 @@
 #      qtprice: 
 #      byline: "by Mt. Beautiful - "
 #      mynotes: "Good balance. Decent fruit. Nice mild tanins."
-#      grape: "sb"
+#      grapes: "sb"
 #      catalog: "winebow"
 #      frontprice: 20
 #
@@ -1866,7 +1866,7 @@
 #      qtprice: 
 #      byline: "by root 1 - Chile"
 #      mynotes: "unusual chard. Hint of tropical fruit. Faint nose. Fresh, light melon nose. "
-#      grape: "sb"
+#      grapes: "sb"
 #      catalog: "winebow"
 #      frontprice: 7.33
 #
@@ -1876,7 +1876,7 @@
 #      byline: "by Healdsburg Ranches - Sonoma, California"
 #      mynotes: "Cabernet Sauvignon"
 #      notes: "Smokey, a little tanic, well balanced, not too acidic, smooth."
-#      grape: "cs"
+#      grapes: "cs"
 #      catalog: "winebow"
 #      frontprice: 9.33
 #
@@ -1886,7 +1886,7 @@
 #      byline: "by prunotto - piedmonte, Italy"
 #      mynotes: "good bright fruit, tangy acid, cherries, mild tanins B+, not too heavy"
 #      notes: ""
-#      grape: "nebbiolo"
+#      grapes: "nebbiolo"
 #      catalog: "winebow"
 #      frontprice: 
 #
@@ -1895,7 +1895,7 @@
 #      qtprice: 
 #      byline: "by Caste Rock - Mendocino County"
 #      mynotes: "Sweet, buttery nose. Sweet fruit, some berries, nice acid."
-#      grape: "Pinot Noir"
+#      grapes: "Pinot Noir"
 #      catalog: "winebow"
 #      frontprice: 9.33
 #
@@ -1905,7 +1905,7 @@
 #      qtprice: 
 #      byline: "by J"
 #      mynotes: "dry woody nose. little butter. Not sure."
-#      grape: "chard"
+#      grapes: "chard"
 #      catalog: "winebow"
 #      frontprice: #6 pakc for 96 now
 #
@@ -1915,7 +1915,7 @@
 #      qtprice: 
 #      byline: "by Elyse Winery - Napa Valley, California"
 #      mynotes: "Good balance. Decent fruit. Nice mild tanins."
-#      grape: "petite sirah"
+#      grapes: "petite sirah"
 #      catalog: "verity"
 #      frontprice: 20
 #
@@ -1924,7 +1924,7 @@
 #      qtprice: 
 #      byline: "by Elyse Winery from Hayne Vineyard - Napa Valley, California"
 #      notes: "Layered Smokey, vanilla, decent acid, good wine. B+"
-#      grape: "Zinfandel, Mouvedre"
+#      grapes: "Zinfandel, Mouvedre"
 #      catalog: "verity"
 #      frontprice: 22.33
 #
@@ -1933,7 +1933,7 @@
 #      qtprice: 
 #      byline: "by Elyse Winery from Hayne Vineyard - Napa Valley, California"
 #      notes: "Dark red, raisiny, full, touch of barnyard, nice acid, tiny touch of spice and vanilla"
-#      grape: "Zinfandel, Petit Sirah"
+#      grapes: "Zinfandel, Petit Sirah"
 #      derek: "Not too Jammy"
 #      catalog: "verity"
 #      frontprice: 18.67 #14
@@ -1943,7 +1943,7 @@
 #      qtprice: 
 #      byline: "by Nagiar Vineyards - Sierra Foothills, California"
 #      notes: "Little Smokey. Good dark fruit, little stemmy, touch of french oak."
-#      grape: "Petit Sirah"
+#      grapes: "Petit Sirah"
 #      derek: "Like it"
 #      catalog: "verity"
 #      frontprice: 16
@@ -1952,7 +1952,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "by Neyers Vineyards"
-#      grape: "Callet, Manto Negra, Fogoneu"
+#      grapes: "Callet, Manto Negra, Fogoneu"
 #      catalog: "winebow"
 #      mynotes: "Nice inky cab. little hot, good mouth-coating tanins. Dry farm organic sustainable"
 #      frontprice: 50
@@ -1961,7 +1961,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "by long board"
-#      grape: "Pinot Noir"
+#      grapes: "Pinot Noir"
 #      catalog: "winebow"
 #      mynotes: "Surfing winemaking. "
 #      frontprice: 20.66
@@ -1970,7 +1970,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "by blue rock vineyards"
-#      grape: "cab, cab franc, sirah, malbec/merlot"
+#      grapes: "cab, cab franc, sirah, malbec/merlot"
 #      catalog: "winebow"
 #      mynotes: "Nice balance. Smokey, fruity, soft tanins."
 #      frontprice: 16.66 
@@ -1979,7 +1979,7 @@
 #      listprice:
 #      qtprice:
 #      byline: ""
-#      grape: "apple"
+#      grapes: "apple"
 #      catalog: "polaner"
 #      mynotes: "bit watery. very low alc. 4%. nice complexity"
 #      frontprice: 11.33
@@ -1988,7 +1988,7 @@
 #      listprice:
 #      qtprice:
 #      byline: ""
-#      grape: "pear"
+#      grapes: "pear"
 #      catalog: "polaner"
 #      mynotes: "nice bitter pear skin finish. bit light"
 #      frontprice: 11.33
@@ -1997,7 +1997,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "Roux Pere et Fils - Burgundy, France"
-#      grape: "chardonnay"
+#      grapes: "chardonnay"
 #      catalog: "opici"
 #      mynotes: "very delicate, but funky hints of oak and butter. caramel finish."
 #      frontprice: 18.00
@@ -2006,7 +2006,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "Roux Pere et Fils - Burgundy, France"
-#      grape: "chardonnay"
+#      grapes: "chardonnay"
 #      catalog: "opici"
 #      mynotes: "light but rich with oak butter and nuts."
 #      frontprice: 36.67 #btl
@@ -2016,7 +2016,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "Roux Pere et Fils - Burgundy, France"
-#      grape: "chardonnay"
+#      grapes: "chardonnay"
 #      catalog: "opici"
 #      mynotes: "hint of oak and butter"
 #      frontprice: 18.64
@@ -2029,7 +2029,7 @@
       listprice: 22
       qtprice: 7
       byline: "by Chateau D'Haurets"
-      grape: "Merlot"
+      grapes: "Merlot"
       catalog: "opici"
       frontprice: 4
       mynotes: "six case closeout deal"
@@ -2040,7 +2040,7 @@
       listprice: 35
       qtprice: 11
       byline: "Chateau Haut Bellevue - Haut-Medoc, Bordeaux, France"
-      grape: "60% Cab Franc, 40% Merlot"
+      grapes: "60% Cab Franc, 40% Merlot"
       catalog: "Verity"
       mynotes: "Black cherry, light body, good structure, herby, great oak"
       notes: "Light-bodied with herby, oaky nose followed by currant, cassis and licorice on the palate. Long dry finish."
@@ -2051,7 +2051,7 @@
       listprice: 45
       qtprice: 15
       byline: "by Chateau de Tournefuille - Lalande-de-Pomerol, Bordeaux, France"
-      grape: "70% Merlot, 30% Cab franc"
+      grapes: "70% Merlot, 30% Cab franc"
       catalog: "Polaner"
       notes: "Classic right-bank Bordeaux. Nose has coffee and spice and the palate of black cherry and smoke is supported by good dry tanins."
       frontprice: 21.33
@@ -2061,7 +2061,7 @@
       listprice: 24
       qtprice: 8
       byline: "Chateau Blouin 2009"
-      grape: "80% merlot, %20 cab franc"
+      grapes: "80% merlot, %20 cab franc"
       catalog: "Verity"
       notes: "Easy-drinking with earth and musky fruit nose. Mouth is soft black cherry with dusty tanins and a bit of grip."
       frontprice: 8 #2 = 7.33, 3=6.66
@@ -2072,7 +2072,7 @@
       listprice: 48
       qtprice:  14
       byline: "by Dommain De Saint. Paul - Rhone Valley, France"
-      grape: "Grenache, Syrah"
+      grapes: "Grenache, Syrah"
       catalog: "opici"
       notes: "A big wine with concentrated cherry and blackberry fruit and firm, abundant tanins. Spicey, smokey and smooth. "
       frontprice: 25
@@ -2084,7 +2084,7 @@
       listprice: 29
       qtprice: 10
       frontprice: 12
-      grape: "Grenache, Syrah, Mouvedre, Carignan"
+      grapes: "Grenache, Syrah, Mouvedre, Carignan"
       catalog: "opici"
       bin: 402
 
@@ -2095,7 +2095,7 @@
       qt: yes
       qtprice: 10
       frontprice: 12
-      grape: "Grenache, Syrah, Mouvedre"
+      grapes: "Grenache, Syrah, Mouvedre"
       catalog: "Weygandt"
       bin:
 
@@ -2106,7 +2106,7 @@
       qt: yes
       qtprice: 10
       frontprice: 12
-      grape: "Grenache, Syrah, Mouvedre"
+      grapes: "Grenache, Syrah, Mouvedre"
       catalog: "Weygandt"
       bin:
 
@@ -2114,7 +2114,7 @@
       listprice: 22
       qtprice: 8
       byline: "by Domaine de l'Amandine - Princip. d'Orange, Rhone Valley, France."
-      grape: "Grenache 30%, Merlot 30%, Sirah 10%, Cinsault, Carignan, Marselan, Caladoc"
+      grapes: "Grenache 30%, Merlot 30%, Sirah 10%, Cinsault, Carignan, Marselan, Caladoc"
       catalog: "wine symphony"
       notes: "Bold country wine with spicy scents of black and green pepper. Palate of dark fruit with leathery tanins. Big, brawny, and rustic."
       mynotes: "lovely heavy spice, veg, pepper nose. Heavy pepper leather and dark fruit on the palate, good tanins. tiny bit rough."
@@ -2125,7 +2125,7 @@
       listprice: 21
       qtprice: 7
       byline: "Chateau Pech-Latt - Provencal, France"
-      grape: "Carignan 60%, Syrah 15%, Grenache 15%, Mourvedre 10%"
+      grapes: "Carignan 60%, Syrah 15%, Grenache 15%, Mourvedre 10%"
       catalog: "Verity"
       notes: "Rich, but elegant wine from the South of France. Hints of red and dark berries with sweet and meaty spices and nice balance."
       mynotes: ""
@@ -2136,7 +2136,7 @@
       listprice: 40
       qtprice: 13
       byline: "by Roux Pere & Fils - Burgundy, France"
-      grape: "Pinot Noir"
+      grapes: "Pinot Noir"
       catalog: "Opici"
       notes: "Red wines from Burgundy made Pinot Noir famous. This one is aromatic of rasberries, red currant, and flower petals with a lively mid-palate and earthy finish."
       mynotes: ""
@@ -2147,7 +2147,7 @@
       listprice: 52
       qtprice: 16
       byline: "by Domaine Camus-Bruchon et Fils - Cote d'Or, Burgundy, France"
-      grape: "Pinot Noir"
+      grapes: "Pinot Noir"
       catalog: "Polaner"
       notes: "Red Burgundy wine made Pinot Noir famous. This one is aromatic of rasberries, red currant, and flower petals with a lively mid-palate and dry, earthy finish."
       mynotes: "Flowers, perfume, little lipstic/bandaids. Tiny hint of barnyard. Lively fruit. fairly american. good. touch of buttery gaminess."
@@ -2156,7 +2156,7 @@
 
     - name: "Cote de Beaune Village 2009 'Les Combottes' "
       byline: "by Domain d'Ardhuy  - Burgundy, France"
-      grape: "Pinot Noir"
+      grapes: "Pinot Noir"
       catalog: "Wineberry page"
       notes: "Red Burgundy wine made Pinot Noir famous. This one is gamey and buttery with muted red cherry flavors and an earthy finish."
       listprice: 40
@@ -2167,7 +2167,7 @@
       listprice: 26
       qtprice: 9
       byline: "by Michel Guignier - Burgundy, France"
-      grape: "Gamay"
+      grapes: "Gamay"
       catalog: "Polaner"
       mynotes: "Nice acidity. little concentration, cherry bubble gum. Good sour cherry fruity"
       notes: "This Beaujolais is not the unaged Nouveau that comes out each November. There are bright cherry flavors, hints of candy and tropical fruit, but also depth and concentration, with dark raspberry and currant flavors and good length."
@@ -2176,7 +2176,7 @@
 
     - name: "Beaujolais Villages 2010"
       byline: "by Chateau du Chatelard - Beaujolais, France"
-      grape: "Old Vine Gamay"
+      grapes: "Old Vine Gamay"
       catalog: "Wineberry page 16"
       listprice: 27
       frontprice: 10
@@ -2186,7 +2186,7 @@
     - name: "Cahors 2005"
       listprice: 24
       byline: "by Chateau GauToul - Cahors, France"
-      grape: "Malbec"
+      grapes: "Malbec"
       catalog: "verity 625A "
       frontprice:  10.00
       bin:
@@ -2200,7 +2200,7 @@
       qtprice: 9
       qt: yes
       byline: "Rutherford Vintners - Napa Valley, California"
-      grape: "Merlot"
+      grapes: "Merlot"
       notes: "Lots of sweet berry fruit and light, smooth vanilla oak."
       catalog: "opici"
       frontprice: 10.67 #2 9.33 #3 8.67
@@ -2209,7 +2209,7 @@
     - name: "Merlot Maclise 2007"
       listprice: 45
       byline: "by Coturri - Sonoma, California"
-      grape: "Merlot"
+      grapes: "Merlot"
       frontprice: 23
       catalog: "Jenny & Francois one of the last pages"
 
@@ -2220,7 +2220,7 @@
       qt: yes
       byline: "by Handcraft"
       notes: ""
-      grape: "Petit Sirah"
+      grapes: "Petit Sirah"
       catalog: ""
       frontprice: 12
 
@@ -2230,7 +2230,7 @@
       listprice: 21
       qtprice: 7
       qt: yes
-      grape: "Sangiovese, Merlot, Zinfindel, Primitivo"
+      grapes: "Sangiovese, Merlot, Zinfindel, Primitivo"
       catalog: "Touton"
       frontprice: 5
       bin: 299
@@ -2241,7 +2241,7 @@
       listprice: 21
       qtprice: 7
       qt: yes
-      grape: "Petit Sirah"
+      grapes: "Petit Sirah"
       catalog: "opici"
       frontprice: 6.66
       bin: 114
@@ -2252,7 +2252,7 @@
       qt: yes
       byline: "by Fortress Vineyards - Lake County, California"
       notes: "Well balanced, dark & intense with tons of black cherries and smooth, powerful tanins."
-      grape: "Petit Sirah"
+      grapes: "Petit Sirah"
       catalog: "verity 620A "
       frontprice: 21.33
       bin: 120
@@ -2262,7 +2262,7 @@
       byline: "by Domaine Napa - Napa Valley"
       catalog: "opici page 395 "
       frontprice: 14
-      grape: "Cabernet Sauvignon"
+      grapes: "Cabernet Sauvignon"
       mynotes: "note: A- good round fruit, mellow oak"
       ordered: no
 
@@ -2271,7 +2271,7 @@
       qtprice: 12
       qt: yes
       byline: "Napa Valley, California"
-      grape: "Cabernet Sauvignon"
+      grapes: "Cabernet Sauvignon"
       catalog: "opici "
       frontprice: 13.33
       notes: ""
@@ -2283,7 +2283,7 @@
       qtprice: 12
       qt: yes
       byline: "Napa Valley, California"
-      grape: "Cabernet Sauvignon"
+      grapes: "Cabernet Sauvignon"
       catalog: "opici "
       frontprice: 14.66 #12.67 #13.33
       notes: "Good California Cab with lots of lively and jammy fruit and smooth tannins."
@@ -2295,7 +2295,7 @@
       qtprice: 12
       qt: yes
       byline: "Alexander Valley, California"
-      grape: "Cabernet Sauvignon"
+      grapes: "Cabernet Sauvignon"
       catalog: " "
       frontprice: 14.66 #13.33 on 2
       notes: "Manly but gentle, with hints of leather and tobacco as well as some sweet cherry and vanilla. Mellow, dry finish."
@@ -2307,7 +2307,7 @@
       qtprice: 8
       qt: yes
       byline: "14 Hands Vinetards - Columbia Valley, Washington"
-      grape: "Cabernet Sauvignon"
+      grapes: "Cabernet Sauvignon"
       catalog: " "
       frontprice: 7.33
       notes: "Deep, plummy fruit with a touch of oak and sweet berry finish."
@@ -2319,7 +2319,7 @@
       qt: yes
       qtprice: 9
       byline: "by Hahn Winery - Santa Lucia Highlands, California"
-      grape: "Cabernet Sauvignon / Cabernet Franc / Merlot"
+      grapes: "Cabernet Sauvignon / Cabernet Franc / Merlot"
       catalog: "opici"
       frontprice: 10.00
       mynotes: ""
@@ -2330,7 +2330,7 @@
       qt: yes
       qtprice: 9
       byline: "by Wilson Vineyard - Clarksburg, California"
-      grape: "Cabernet Sauvignon"
+      grapes: "Cabernet Sauvignon"
       catalog: "opici 400 "
       frontprice: 10.00
       mynotes: "decent fruit, mellow tanins, LOTS of Vanilla"
@@ -2343,7 +2343,7 @@
       qtprice: 10
       qt: yes
       byline: "Cryptic Wines - Sierra Foothills / Lodi / Paso Robles, California"
-      grape: "Zinfandel, Petit Syrah, Cabernet Sauvignon"
+      grapes: "Zinfandel, Petit Syrah, Cabernet Sauvignon"
       catalog: "opici "
       frontprice: 10.67
       notes: "According to the label, it's 'dark...mysterious...deep black cherry...intense red raspberry...velvety...alluring.' We think it's tasty."
@@ -2354,7 +2354,7 @@
       listprice: 55
       qtprice: 16
       byline: "by Orin-Swift - Napa Valley, California"
-      grape: "44% Zinfandel, 26% Cabernet Sauvignon, 18% Syrah, others."
+      grapes: "44% Zinfandel, 26% Cabernet Sauvignon, 18% Syrah, others."
       frontprice: 30
       catalog: "southern"
       notes: "California winemakers have discovered blends and the public seems to approve. Intense but well-balanced and complex wines like this one are probably why. Cherry and dried flowers on the nose, then deep plum-and-raisin fruit with soft, sweet tanins."
@@ -2365,7 +2365,7 @@
       listprice: 28
       qtprice:  9
       byline: "Revelry Vintners - Columbia Valley, Washington"
-      grape: "38% Cab Franc, 36% Merlot, 28% Cabernet Sauvignon"
+      grapes: "38% Cab Franc, 36% Merlot, 28% Cabernet Sauvignon"
       catalog: "verity"
       notes: "This classic red blend has a lovely, spicy nose with hints of clove and black cherry, medium body with dark fruit and smoke, and a long, soft finsih."
       mynotes: "light, ok"
@@ -2376,7 +2376,7 @@
       listprice: 30
       qtprice: 10
       byline: "by Orin-Swift"
-      grape: "Grenache, Tempranillo and Carrigan from Rioja, Priorat and Ribera Del Duero, Spain."
+      grapes: "Grenache, Tempranillo and Carrigan from Rioja, Priorat and Ribera Del Duero, Spain."
       frontprice: 13.33
       catalog: "Polaner"
       notes: "Orin Swift's 'The Prisoner' California red blend, made him a cult hero. Now he takes his show on the road with 'F' for France. Grapes harvested from France's most celebrated locations are blended to create an  warmly spiced wine full of concentrated fruit with a finsih of soft, ripe tanins."
@@ -2388,7 +2388,7 @@
       listprice: 34
       qtprice: 11
       byline: "by Tuck Beckstoffer - St. Helena, California"
-      grape: "Cabernet Sauvignon, Merlot, Cabernet Franc"
+      grapes: "Cabernet Sauvignon, Merlot, Cabernet Franc"
       frontprice: 15
       catalog: "southern"
       notes: "Another California red blend, but this is straight Bordeaux grapes. The wine is aromatic, fruity and deep with notes of pepper and old oak and soft dusty tanins on the finish."
@@ -2398,7 +2398,7 @@
       listprice: 34
       qtprice: 12
       byline: "by Bargetto - Lodi, California"
-      grape: "Old Vine Zinfandel"
+      grapes: "Old Vine Zinfandel"
       frontprice: 15 #3=14.25, 5=13.5
       catalog: "east coast specialty"
       notes: "Fruity, rustic nose. Medium-bodied with dark berries and rasins. Savory mid-palate and good length. Rich, but easy drinking."
@@ -2470,7 +2470,7 @@
       listprice: 30
       qtprice: 10
       byline: "by Roux Pere & Fils - Burgundy, France"
-      grape: "Pinot Noir"
+      grapes: "Pinot Noir"
       catalog: "opici"
       notes: "Light, fresh pinot noir from Burgundy with notes of flowers and red cherry."
       mynotes: "tart, fresh"
@@ -2481,7 +2481,7 @@
       listprice: 30
       qtprice: 10
       byline: "by Fleur de California - Carneros"
-      grape: "Pinot Noir"
+      grapes: "Pinot Noir"
       catalog: "polaner"
       notes: "Subtle, well-balanced Pinot from Carneros (which spans parts of both Napa and Sonoma). Fresh red cherry with hints of spice, butter and game."
       mynotes: "subtle light. good fruit. nice buttery nose."
@@ -2492,7 +2492,7 @@
       listprice: 28
       qtprice: 9
       byline: "by Wyatt - California"
-      grape: "Pinot Noir"
+      grapes: "Pinot Noir"
       catalog: "polaner"
       notes: "Rich, Burgundy-style Pinot from fruit sourced in Napa and Sonoma. Earthy with musky fruit and supple tanins."
       mynotes: "Good earthyness, musky fruit, some dusty nice tanins."
@@ -2502,7 +2502,7 @@
       listprice: 30
       qtprice: 11
       byline: "by Holloran Vineyards - Willamette Valley, Oregon"
-      grape: "Pinot Noir"
+      grapes: "Pinot Noir"
       notes: "Light oak spice and smoke over savory cherry and moist cedar. Soft mouth feel with balanced tartness."
       catalog: "TODO ?"
       frontprice: 15.34 #3 10
@@ -2512,7 +2512,7 @@
       listprice: 30
       qtprice: 11
       byline: "by Primarius Vineyards - Oregon"
-      grape: "Pinot Noir"
+      grapes: "Pinot Noir"
       notes: "Aromatic with subtle strawberry and rhubarb flavors. Soft tannins and tartness carry the lingering fruit."
       catalog: "opici"
       frontprice: 15.34 #3 10
@@ -2522,7 +2522,7 @@
       listprice: 18
       qtprice: 8
       byline: "made for Underdog Wine Merchants in Corsica, France"
-      grape: "Pinot Noir"
+      grapes: "Pinot Noir"
       notes: "Straigtforward tart red cherry flavors on nose and palate. Drinks like a rosé until the slighlty chewy, earthy finish."
       catalog: "Southern"
       frontprice: 5.50
@@ -2532,7 +2532,7 @@
       listprice: 30
       qtprice: 11
       byline: "by Lauca - Maule Valley, Chile"
-      grape: "Pinot Noir"
+      grapes: "Pinot Noir"
       notes: "Bold red cherry flavors on nose and palate, with a bit of earthiness."
       catalog: "Boening Bros."
       frontprice: 8.50
@@ -2547,7 +2547,7 @@
       listprice: 30
       qtprice: 
       byline: "by Darcie Kent - Monterrey"
-      grape: "Pinot Noir"
+      grapes: "Pinot Noir"
       notes: "Earthy. Good manure-y scent. Pleasant. Not fruity."
       catalog: "southern?"
       frontprice: 9.66 #
@@ -2572,7 +2572,7 @@
       qtprice:
       frontprice: 10
       mynotes: "Jalapeno, some tar, little fruit, kinda hollow"
-      grape: "Merlot, Cabernet Franc, Cabernet Sauvignon"
+      grapes: "Merlot, Cabernet Franc, Cabernet Sauvignon"
       bin:
 
     - name: "Wolfer Cab Franc 2010"
@@ -2581,7 +2581,7 @@
       listprice: 34
       qtprice: 13
       frontprice: 15
-      grape: "Cabernet Franc, Cabernet Sauvignon, Merlot"
+      grapes: "Cabernet Franc, Cabernet Sauvignon, Merlot"
       notes: "Bordeaux blend in the Bordeaux style. Earthy, blackberry nose with hints of cedar. Palate has sweet berries and firm structure, with a long, dry finish. Shows how good Long Island reds can be."
       mynotes: "Bordeaux blend in the Bordeaux style. Earthy, blackberry nose with hints of cedar. Palate has sweet berries and firm structure, with a long, dry finish. Shows how good Long Island reds can be."
       bin: 1161
@@ -2592,7 +2592,7 @@
       qt: yes
       byline: "by Vineyard 48 - Cotchogue, Long Island"
       notes: "Vineyard 48 is known mostly for its drunken revelry in the DJ-dance-party tent, but -- go know -- the wine is actually good. This Bordeaux blend falls somewhere between California and France with medium body, spicy green notes, and a bit of fruity concentration. Bacchus would be pleased."
-      grape: "55% Cabernet Sauvignon, 25% Cabernet Franc, 20% Merlot"
+      grapes: "55% Cabernet Sauvignon, 25% Cabernet Franc, 20% Merlot"
       catalog: ""
       frontprice: 7
       bin:
@@ -2602,7 +2602,7 @@
       listprice: 26
       qtprice: 9
       byline: "by Frisky ZebraS - Western Cape, South Africa"
-      grape: "Merlot"
+      grapes: "Merlot"
       catalog: "wine symphony"
       notes: "Grown naturally with earth friendly practices, this African Merlot has exotic, biting aromas of chocolate, coffee and warm forest floor. The palate is full of red cherries, wood and tobacco."
       mynotes: "Earth Friendly practice. Biting nose of chocolate, coffee, tobacco, wood, and grassy manure. Full palate of same with red fruit and tobacco bite."
@@ -2660,7 +2660,7 @@
       qtprice: 9
       qt: yes
       byline: "by Fattoria di Basciano - Tuscany"
-      grape: "Sangiovese"
+      grapes: "Sangiovese"
       catalog: "verity"
       frontprice: 10.00
       bin: 302
@@ -2670,7 +2670,7 @@
       qtprice: 12
       notes: "Dry and woodsy with dried cherry aroma and a citrusy tang. Needs to breathe for best flavor."
       byline: "by Castello Di Bocce - Tuscany"
-      grape: "Sangiovese"
+      grapes: "Sangiovese"
       catalog: "winebow"
       frontprice: 14.36 
       bin: 112
@@ -2683,7 +2683,7 @@
       frontprice: 22.67
       notes: "Produced since medieval times, it's the older brother of Chianti and Brunello. Dry, full-bodied, and lively with notes of dark cherry, dried porcini mushrooms, raisins and roasted herbs."
       mynotes: "stemmy, good mild tanins, raisiny fruit, A-"
-      grape: "Sangiovese Grosso"
+      grapes: "Sangiovese Grosso"
       bin: 703
 
     - name: "Brunello di Montalcino 2004"
@@ -2692,7 +2692,7 @@
       byline: "by San Polo - Tuscany, Italy"
       mynotes: "good fruit, nice balance, light mouth-coating tanins"
       notes: "This tiny 52 acre winery recieves consistent high marks for its Brunellos. Ruby red with aromas of violets and red berries, followed by spicy, nutty nuances. Deeply-woven, robust texture with long finish and round tannins."
-      grape: "Sangiovese"
+      grapes: "Sangiovese"
       catalog: "winebow"
       frontprice: 61
       bin: 701
@@ -2703,7 +2703,7 @@
       byline: "by Il Marronetto - Tuscany, Italy"
       mynotes: "good red cherry fruit, mellow, nice tanins"
       notes: "A mellow old Brunello with soft red cherry flavors and smooth tanins."
-      grape: "Sangiovese"
+      grapes: "Sangiovese"
       catalog: "boening"
       frontprice: 36.50
       bin: #702
@@ -2716,7 +2716,7 @@
       frontprice: 24
       notes: "This Super-Tuscan livens up the native Chianti grapes with a bit of Cabernet. There are berry flavors, jammy fruit and soft tanins."
       mynotes: "Berry (sweet?) jammy, mild, mild tanins. B+?"
-      grape: "80% Sangiovese, 20% Cabernet Sauvignon"
+      grapes: "80% Sangiovese, 20% Cabernet Sauvignon"
       bin: 706
 
     - name: "Monteregio Toscana 2009"
@@ -2725,7 +2725,7 @@
       qtprice: 10
       qt: yes
       byline: "by Morris Farms - Massa Marittima, Tuscany"
-      grape: "90% Sangiovese, 10% Cabernet Sauvignon"
+      grapes: "90% Sangiovese, 10% Cabernet Sauvignon"
       catalog: "polaner"
       frontprice: 13.33
       bin: 305
@@ -2735,14 +2735,14 @@
       catalog: "opici"
       frontprice: 18.67
       mynotes: "Med tanins, med fruit, med body. B?"
-      grape: "33% cab, 33% merlot, 33% colorino tuscano"
+      grapes: "33% cab, 33% merlot, 33% colorino tuscano"
 
     - name: "Amarone 2008"
       listprice: 68
       qtprice: 20
       notes: "Produced by drying fresh grapes on straw mats to concentrate the flavor. Taste of warm cherry preserves and moist raisins lingers on the palate."
       byline: "by Cesari - Valpolicella, Veneto, Italy"
-      grape: "Corvino, Rondinello, Molinari"
+      grapes: "Corvino, Rondinello, Molinari"
       catalog: "opici"
       frontprice: 35
       bin: 705
@@ -2752,7 +2752,7 @@
       listprice: 30
       qtprice: 10
       notes: "Blend of Amarone grapes and Merlot produces a 'Super-Venetian' full of fresh and cooked dark fruit flavor with firm tanins and a long, sweet-dry finish."
-      grape: "Merlot, Corvino, Rondinello, Molinari"
+      grapes: "Merlot, Corvino, Rondinello, Molinari"
       catalog: "opici"
       frontprice: 13.5
       bin: 3011
@@ -2760,7 +2760,7 @@
     - name: "Barolo 2006"
       listprice: 50
       byline: "by Ascheri - Piedmonte, Italy"
-      grape: "Nebbiolo"
+      grapes: "Nebbiolo"
       catalog: "verity 627a "
       frontprice: 25
 
@@ -2768,7 +2768,7 @@
       listprice: 26
       frontprice: 10.67
       byline: "by Mondianese - Piedmonte, Italy"
-      grape: "Nebbiolo"
+      grapes: "Nebbiolo"
       catalog: "verity 627a"
 
     - name: "Brunello di Montalcino 2005"
@@ -2776,14 +2776,14 @@
       byline: "by Aler Amici - Tuscany"
       catalog: "verity 627a "
       frontprice: 33.17
-      grape: "Sangiovese"
+      grapes: "Sangiovese"
 
     - name: "Etna Rosso 2009"
       byline: "Phiale - Sicily"
       listprice: 36
       qtprice: 12
       notes: "Complex and delicate wine of indigenous Sicilian grapes. Nose has spiced cherries and palate is soft, red fruit, with a musky, woody undertone.  Reminiscent of a good, full-bodied Pinot Noir."
-      grape: "Nerello Mascelese 80%"
+      grapes: "Nerello Mascelese 80%"
       catalog: "verity"
       frontprice: 14.66
       bin: 708
@@ -2793,7 +2793,7 @@
       qtprice: 9
       notes: "Full dark fruit, with a meaty, spicy undertone. Good food wine."
       byline: "by Fatascia - Sicily"
-      grape: "Nero D'Avola"
+      grapes: "Nero D'Avola"
       catalog: "verity 627a"
       frontprice: 10.00
       bin: 301
@@ -2802,7 +2802,7 @@
       listprice: 29
       qtprice: 11
       byline: "by Castiadas - Sardinia"
-      grape: "Cannonau"
+      grapes: "Cannonau"
       catalog: "verity 627a"
       notes: "This is the hearty red wine of Sardinia. Ripe forest fruit, oak and pepper flavors fit the remote mediterranean island."
       frontprice: 12.67
@@ -2813,7 +2813,7 @@
       qtprice: 8
       qt: yes
       byline: "by Sierra Cantabria - Rioja, Spain"
-      grape: "Tempranillo"
+      grapes: "Tempranillo"
       notes: "Good example of Spain's iconic red wine. Hints of mocha and blackberry. Well balanced and crisp."
       catalog: "Tempranillo"
       frontprice: 9
@@ -2824,7 +2824,7 @@
       listprice: 25
       qtprice: 8
       byline: "JM Fonseca"
-      grape: "Tempranillo, Mazuelo"
+      grapes: "Tempranillo, Mazuelo"
       catalog: "Lauber - Southern Maria Stevens"
       notes: "Nose shows menthol and cedar. Light red fruit on the palate with a bit of baking spice. Finish is light and fresh."
       mynotes: "Nice tempranillo tipical minty nose, reserva is not really better than standard"
@@ -2835,7 +2835,7 @@
       listprice: 44
       qtprice: 13
       byline: "by Bodegas Muga - Rioja, Spain"
-      grape: "Tempanillo, Garnacha, Mazuelo, Graciano"
+      grapes: "Tempanillo, Garnacha, Mazuelo, Graciano"
       catalog: "tempranillo page 59"
       notes: "Aromas of cherry and earth. Smooth vanilla and cherry palate with mellow, mouth-coating tannins."
       frontprice: 22
@@ -2845,7 +2845,7 @@
       listprice: 28
       qtprice: 11
       byline: "by Bodegas Nekeas - Navarra, Spain"
-      grape: "Old Vine Garnacha (aka Grenache)"
+      grapes: "Old Vine Garnacha (aka Grenache)"
       notes: "More kick than many Garnachas. Tons of black pepper and smokey sage followed by red cherries."
       catalog: "tempranillo page "
       frontprice: 12
@@ -2860,7 +2860,7 @@
       qtprice: 9
       qt: yes
       byline: "by Bodegas Nekeas - Navarra, Spain"
-      grape: "Cabernet Sauvignon"
+      grapes: "Cabernet Sauvignon"
       notes: "A different expression of Cabernet with notes of chocolate, cherry & jalapeno. Fresh, spicy finish."
       catalog: " tempranillo page 35"
       frontprice: 10.00
@@ -2874,7 +2874,7 @@
       listprice: 40
       qtprice: 13
       byline: "by Emilio Moro - Ribera Del Duero, Spain"
-      grape: "Tempranillo (aka Tinto Fino)"
+      grapes: "Tempranillo (aka Tinto Fino)"
       notes: "Smoke & roasted herbs over tons of firm ripe cherry and vanilla spice."
       catalog: "tempranillo page 44"
       frontprice: 19.33
@@ -2888,7 +2888,7 @@
       listprice: 28
       qtprice: 9
       byline: "by Bodega Lezcano-Lacalle - Ciglaes, Spain"
-      grape: "Tempranillo"
+      grapes: "Tempranillo"
       catalog: "polaner"
       notes: "True tempranillo character from this small producer. Resonant flavors of black cherry, smoke, tobacco leaf and mint, with an irony minerality."
       mynotes: "Musky veg and fruit. Minty. Some nice tanins"
@@ -2900,7 +2900,7 @@
       qtprice: 8
       qt: yes
       byline: "by Bodegas Pinord - Penedes, Spain"
-      grape: "Tempranillo"
+      grapes: "Tempranillo"
       catalog: "east coast specialty wines"
       frontprice: 8  #3=7.6, 5=7.2, 10 = 6.8
       notes: "Pure red fruit, light body, and fragrant oak."
@@ -2911,7 +2911,7 @@
       listprice: 21 
       qtprice: 7
       byline: "Domino Mano a Mano - Tierra de Castilla"
-      grape: "Tempranillo"
+      grapes: "Tempranillo"
       catalog: "aviva"
       notes: "Full bodied with heavy dark fruit, hints of mint and grilled meat, good acidity and fine, dusty tanins."
       mynotes: "full bodied - dark fruit, heavy but nce acid, some medium length tannins"
@@ -2921,7 +2921,7 @@
     - name: "Beso de Vino Old Vine Garnacha"
       listprice: 22
       byline: "A Steve Miles Selection - Carin~ena, Spain"
-      grape: "Garnacha (Grenache)"
+      grapes: "Garnacha (Grenache)"
       catalog: "opici"
       frontprice: 8
 
@@ -2930,7 +2930,7 @@
       listprice: 36
       qtprice: 12
       byline: "by Anima Negra - Mallorca, Spain"
-      grape: "Callet, Manto Negra, Fogoneu"
+      grapes: "Callet, Manto Negra, Fogoneu"
       catalog: "winebow"
       notes: "From the Mediterranean resort island of Mallorca, a medium-bodied wine of indigenous grape varieties with great balance, smokey spice, and soft tanins."
       mynotes: "Nice balance. Smokey, fruity, soft tanins."
@@ -2942,7 +2942,7 @@
       qtprice:  11
       qt: yes
       byline: "by Juan Gil - Jumilla, Spain"
-      grape: "Monastrell (a.k.a Mouvedre)"
+      grapes: "Monastrell (a.k.a Mouvedre)"
       notes: "Oaky, jammy, Intense and dark with a rich dry finish."
       catalog: "tempranillo"
       frontprice: 11.50
@@ -2953,7 +2953,7 @@
       qtprice:  7
       qt: yes
       byline: "by Bodegas Tarima - Jumilla, Spain"
-      grape: "Monastrell (a.k.a Mouvedre)"
+      grapes: "Monastrell (a.k.a Mouvedre)"
       notes: "Red and dark berry aromas with white flowers. Juicy blackberry and cherry flavors and good tanins. Finish is sweet and deep."
       catalog: "tempranillo"
       frontprice: 7.50
@@ -2963,7 +2963,7 @@
       listprice: 20
       qtprice: 7
       byline: "Symington Family Vintners - Douro Valley, Portugal"
-      grape: "Tauriga Nacional"
+      grapes: "Tauriga Nacional"
       catalog: "verity"
       notes: "Light, savory, and herbaceous with a tart, but earthy finish."
       frontprice: 5
@@ -2974,7 +2974,7 @@
       qtprice:  7
       qt: yes
       byline: "by Daryl Groom - Yorkville Highlands, Sonoma, CA"
-      grape: "Monastrell (a.k.a Mouvedre)"
+      grapes: "Monastrell (a.k.a Mouvedre)"
       notes: "Dark berry aromas with baking spices. Juicy straightforward blackberry and cherry flavors. Finish is sweet and deep."
       catalog: "boening bros." #call Juliet for extra 2 bottles at 516-776-2035
       frontprice: 24.85 #on 6pk  #
@@ -2989,7 +2989,7 @@
       qtprice:  7
       qt: yes
       byline: "by Bodegas Hijos de Juan Gil - Jumilla, Spain"
-      grape: "Monastrell (a.k.a Mouvedre)"
+      grapes: "Monastrell (a.k.a Mouvedre)"
       notes: "Dark berry aromas with baking spices. Juicy straightforward blackberry and cherry flavors. Finish is sweet and deep."
       catalog: "tempranillo page 19"
       frontprice: 7.16
@@ -3002,7 +3002,7 @@
     - name: "Juan Gil 2008"
       listprice: 30
       byline: "by Bodegas Hijos de Juan Gil - Jumilla, Spain"
-      grape: "Monastrell (a.k.a Mouvedre)"
+      grapes: "Monastrell (a.k.a Mouvedre)"
       catalog: "opici"
       frontprice: 13
       mynotes: "similiar to Wrongo Dongo?"
@@ -3011,7 +3011,7 @@
       listprice: 30
       qtprice: 10
       byline: "by Borsao - Aragon, Spain"
-      grape: "Old Vine Garnacha (aka Grenache)"
+      grapes: "Old Vine Garnacha (aka Grenache)"
       notes: "Hints of coffee and spice. Firm structure and good fruit."
       catalog: "tempanillo page 12 "
       frontprice: 13.33
@@ -3028,7 +3028,7 @@
       qtprice: 11
       qt: no
       byline: "by Atalaya - Almansa, Valencia, Spain"
-      grape: "Garnacha (aka Grenache), Monastrell (aka Mouvedre)"
+      grapes: "Garnacha (aka Grenache), Monastrell (aka Mouvedre)"
       notes: "Aromas of cedar, spice, violets and blackberry with a hint of licorice. Palate has layers of concentrated fruit, spice and long finish."
       catalog: "tempranillo"
       frontprice: 13.33
@@ -3039,7 +3039,7 @@
       qtprice: 7
       qt: yes
       byline: "by Ateca - Aragon, Spain"
-      grape: "Old vine Garnacha (aka Grenache) grown at 3000 ft"
+      grapes: "Old vine Garnacha (aka Grenache) grown at 3000 ft"
       notes: "Smokey cherries and chocolate on the nose. Mouth has lots of sweet dark fruit. Good focus and finish."
       catalog: "tempranillo page 7"
       frontprice: 6.66
@@ -3050,7 +3050,7 @@
       listprice: 21
       qtprice: 7
       byline: "by Bodegas Borsao - Aragon, Spain"
-      grape: "Garnacha / Tempanillo"
+      grapes: "Garnacha / Tempanillo"
       catalog: "tempranillo page 11, "
       frontprice: 6.75
       notes: "Well made, with nice balance, and juicy fruit."
@@ -3060,7 +3060,7 @@
       listprice: 34
       qtprice: 9
       byline: "by Alvaro Palacios - Priorat, Spain"
-      grape: "60% Carignan, 30% Grenache, 5% Cab Sauv, 5% P. Sirah"
+      grapes: "60% Carignan, 30% Grenache, 5% Cab Sauv, 5% P. Sirah"
       catalog: "polaner"
       notes: "Widely grown, but poorly regarded in France, Carignan is originally a Spanish variety. The rugged terrior of its native Priorat brings out the grape's true character - full, dark fruit; stoney notes; and soft but chewy tanins."
       mynotes: "big dark fruit, nice chewy tanins"
@@ -3072,7 +3072,7 @@
       qtprice: 11 
       notes: "Spain's uncelebrated, rustic Bobal grape is vinified traditionally here with whole-cluster fermentation to create a savory, pine and menthol scented wine with rustic full body full of blackberry and dried fruits."
       byline: "Vega Tolosa - Manchuela, Spain"
-      grape: "Bobal"
+      grapes: "Bobal"
       catalog: "verity"
       frontprice: 11 #9.66 on 3
       bin: 699
@@ -3081,7 +3081,7 @@
     - name: "Malbec Cristobal 1492"
       listprice: 25
       byline: "by Cristobal - Mendoza, Argentina"
-      grape: "Malbec"
+      grapes: "Malbec"
       catalog: "east coast Page 8, "
       frontprice: 9.17
       mynotes: "buttery, rustic. nothing offensive or great either"
@@ -3090,7 +3090,7 @@
       listprice: 21 
       qtprice: 7
       byline: "Leyda - Rapel Valley, Chile"
-      grape: "Carmenére"
+      grapes: "Carmenére"
       catalog: "winebow"
       notes: "Nose of vanilla, cedar, white and black pepper and thyme. Palate shows raspberry, as well, with great balance and structure."
       mynotes: "Nice nose, salty vanilla, white pepper, thyme, raspberry? raisiny, pork fat? aged in french oak 10 months"
@@ -3102,7 +3102,7 @@
       listprice: 20
       qtprice: 7
       qt: yes
-      grape: "Malbec blend"
+      grapes: "Malbec blend"
       catalog: "east coast spec. wines "
       frontprice: 7.42 #3=7.05, 5=6.68, 10=6.3
       notes: "Fruity with mild tanins, and a hint of earth. Easy-going enjoyment."
@@ -3114,7 +3114,7 @@
       listprice: 21
       qtprice: 7
       qt: yes
-      grape: "Malbec"
+      grapes: "Malbec"
       catalog: "verity"
       frontprice: #5.66 on 5
       notes: "Dark red cherry with mild tanins, and hints of mocha and sweet spices. Easy-going and rich."
@@ -3126,7 +3126,7 @@
       listprice: 24
       qtprice: 7
       qt: yes
-      grape: "Malbec"
+      grapes: "Malbec"
       catalog: "verity"
       frontprice: #5.66 on 5
       notes: "Dark red cherry with mild tanins, and hints of mocha and sweet spices. Easy-going and rich."
@@ -3138,7 +3138,7 @@
       qtprice: 10
       notes: ""
       byline: "by Bodegas Goulart - Argentina"
-      grape: "Malbec"
+      grapes: "Malbec"
       catalog: "opici"
       notes: "Aromas of dark fruit, and spice, esp. cloves and white pepper. Big, fruity palate with tobacco, wood and soft, sweet tanins."
       frontprice: 14 # 12 on 3
@@ -3149,7 +3149,7 @@
       qtprice: 9
       notes: "Lots of pure ripe fruit. Mellow and buttery but fresh with just a hint of oak."
       byline: "by Urban Uco - Valle de Uco, Mendoza, Argentina"
-      grape: "Malbec grown above 3000 ft."
+      grapes: "Malbec grown above 3000 ft."
       catalog: "tempranillo Page 92, "
       frontprice: 9.50
       bin:
@@ -3159,7 +3159,7 @@
       qtprice: 9
       notes: "Vibrant plum and blackberry flavors with hints of smoke and cedar. Firm tanin structure."
       byline: "Susana Balbo - Mendoza, Argentina"
-      grape: "Malbec"
+      grapes: "Malbec"
       catalog: "polaner"
       frontprice: 10.66  #128, 3=120, 5=104
       bin: 307
@@ -3169,7 +3169,7 @@
       qtprice: 9
       notes: ""
       byline: ""
-      grape: ""
+      grapes: ""
       catalog: "verity"
       frontprice: 8.67  #3=6.00
       bin: 888
@@ -3180,7 +3180,7 @@
    #   qtprice: 7
    #   notes: "."
    #   byline: "."
-   #   grape: ""
+   #   grapes: ""
    #   catalog: ""
    #   frontprice: 10.66  #128, 3=120, 5=104
    #   bin: 116 
@@ -3210,7 +3210,7 @@
       listprice: 
       qtprice: 
       byline: "by Licia - Rias Biaxas"
-      grape: "Albarino"
+      grapes: "Albarino"
       catalog: "winebow"
       mynotes: "very mild all around. Heavy body."
       frontprice: 10.66 #10 2-cases
@@ -3219,7 +3219,7 @@
       listprice: 28
       qtprice: 
       byline: "by Weingut Stadt Krems"
-      grape: "Gruner Veltliner"
+      grapes: "Gruner Veltliner"
       catalog: "winebow"
       mynotes: "Subtle nose. Smooth and a bit creamy and sweet. Full body. Glycerol. Good acidity. Zesty finish. Goes with anything."
       frontprice: 10.66 #10 2-cases
@@ -3238,7 +3238,7 @@
       notes: "Exotic oily aromas of wild yeast and ripe fruit with sweet apricot palate. Drinks like good Mosel Kabinett."
       mynotes: ""
       byline: "by Ayler Kupp - Mosel, Germany"
-      grape: "Reisling"
+      grapes: "Reisling"
       listprice: 32
       qtprice: 8
       frontprice: 10.03
@@ -3247,7 +3247,7 @@
       
     - name: "Reisling 2010"
       byline: "Mercer - Yakima Valley, Washington"
-      grape: "Reisling"
+      grapes: "Reisling"
       catalog: "winebow"
       listprice: 25 
       qtprice: 9
@@ -3260,7 +3260,7 @@
 
     - name: "Gewurztraminer Reserve 2011"
       byline: "Willm - Alsace, France"
-      grape: "Gewurztraminer"
+      grapes: "Gewurztraminer"
       catalog: "Touton"
       listprice: 28 
       qtprice: 10
@@ -3272,7 +3272,7 @@
 
     - name: "Baiting Hollow Reisling 2009"
       byline: "Baiting Hollow Farm Vineyard - Long Island"
-      grape: "Reisling"
+      grapes: "Reisling"
       catalog: "boening bros."
       listprice: 32
       qtprice: 11
@@ -3284,7 +3284,7 @@
       qtprice: 12
       byline: "by Domain de la Chapelle - Burgundy, France"
       notes: "A lively, lemony and clean expression of Chardonnay. Elegant, lean white Burgundy."
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       catalog: "weygandt"
       frontprice: 16.66
 
@@ -3293,7 +3293,7 @@
       qtprice: 20
       byline: "by Jobard-Chabloz - Cote-d'Or, Burgundy, France"
       notes: "Rich, luxurious Chardonnay from the heart of Burgundy. Hazelnut and golden apple nose with cream and honey flavors over bracing minerality."
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       catalog: "weygandt"
       frontprice: 30
 
@@ -3301,7 +3301,7 @@
       listprice: 38
       qtprice: 12
       byline: "by Frederic Lornet - Jura"
-      grape: "chardonnay"
+      grapes: "chardonnay"
       catalog: "wine symphony"
       notes: "Tucked between Burgundy and the Alps, Jura is an enclave of traditional wine-making. Ageing on the lees gives this golden-apple-scented, full-bodied Chardonnay a deep golden color and chewy, nutty character ."
       mynotes: "Dark golden color. Funky golden apple nose. Full body, apply flavor. Band-aids. Little chewy somehow. Quite interesting."
@@ -3312,7 +3312,7 @@
       qtprice: 9
       notes: "Nice minerality with crisp apple and pear flavors."
       byline: "by Jean Marc Brocard - Burgundy, France"
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       catalog: "verity"
       frontprice: 10.67
 
@@ -3320,7 +3320,7 @@
       listprice: 37
       qtprice: 12
       byline: "Roux Pere et Fils - Burgundy, France"
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       catalog: "opici"
       notes: "Delicate Burgundian Chardonnay from the Cotes d'Or, just south of Mersault. Light and almost briny, but  with hints of oak and butter and a long caramely finish."
       mynotes: "very delicate, but funky hints of oak and butter. caramel finish."
@@ -3331,7 +3331,7 @@
       listprice: 27
       qtprice: 9
       byline: "Roux Pere et Fils - Burgundy, France"
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       catalog: "opici"
       notes: "Classic Macon Chardonnay. Unoaked, simple but well-built with lots of fresh, juicy apple and pear flavors, and a crisp, flinty finish."
       mynotes: "bright pineapple, very pleasant"
@@ -3342,7 +3342,7 @@
       listprice: 24
       qtprice: 8
       byline: "Louis Latour - Burgundy, France"
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       catalog: "Touton"
       notes: "This Macon Chardonnay drinks more like one of the ritzier appelations to the north. Elegant and creamy with notes of oak, hazelnut and honey."
       mynotes: ""
@@ -3354,7 +3354,7 @@
       qtprice: 8
       qt: yes
       byline: "by Château du Chatelard - Burgundy, France"
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       catalog: "wineberry box"
       notes: "An elegant, crisp style with notes of lime, green plum, and herbs. Good length." 
       frontprice: 8
@@ -3364,7 +3364,7 @@
       qtprice: 14
       byline: "by Reverdy - Loire Valley, France"
       notes: "A big, steely wine with chalky, stony notes, but there is melon as well as grapefruit and lemon."
-      grape: "Sauvignon Blanc"
+      grapes: "Sauvignon Blanc"
       catalog: "weygandt"
       frontprice: 16.77
 
@@ -3373,7 +3373,7 @@
       qtprice: 11
       byline: "by Paul Prieur et Fils - Loire Valley, France"
       notes: "A big, steely wine with chalky, stony notes, but there is melon as well as grapefruit and lemon."
-      grape: "Sauvignon Blanc"
+      grapes: "Sauvignon Blanc"
       catalog: "verity"
       frontprice: 14 #?
       bin: 4041
@@ -3382,7 +3382,7 @@
       listprice: 26
       qtprice: 9
       byline: "by Francois Chidaine - Loire Valley, France"
-      grape: "Sauvignon Blanc"
+      grapes: "Sauvignon Blanc"
       catalog: "polaner"
       notes: "Biodynamically farmed grapes make this fresh, citrus-scented white. Sancerre lovers will be pleased with it's complexity, minerality, and length."
       mynotes: "Biodynamic"
@@ -3393,14 +3393,14 @@
       catalog: "opici 409a - "
       frontprice: 6.03
       mynotes: "great heavy nose, lightish body - A-"
-      grape: "Sauvignon Blanc"
+      grapes: "Sauvignon Blanc"
 
 
     - name: "Cotes de Gascogne 2011"
       listprice: 20
       qtprice: 7
       byline: "by Domaine De Pajot - Gascony, France"
-      grape: "Ugni Blanc, Colombard"
+      grapes: "Ugni Blanc, Colombard"
       catalog: "polaner"
       notes: "Certified organic, this is a fragant, light and fruity wine made from the same grapes as Cognac. Interesting and easy drinking."
       frontprice: 6.67
@@ -3413,13 +3413,13 @@
       qtprice: 8
       catalog: "weygandt"
       frontprice: 8
-      grape: "Ugni Blanc, Colombard"
+      grapes: "Ugni Blanc, Colombard"
 
     - name: "Viognier 2010"
       listprice: 25
       qtprice: 8
       byline: "by Domain la Bastide - Rhone Valley, France"
-      grape: "Viognier"
+      grapes: "Viognier"
       notes: "Full bodied white wine with complex tropical and stone fruits from the south of France."
       catalog: "weygandt"
       frontprice: 9.33
@@ -3429,7 +3429,7 @@
     - name: "Gewurzaminer"
       listprice: 30
       byline: "by Bargetto - California Central Coast"
-      grape: "Gewurzaminer"
+      grapes: "Gewurzaminer"
       catalog: "east coast page 5"
       frontprice: 13.33
       mynotes: " some tropical fruit, little durian, volatile acid"
@@ -3486,7 +3486,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "Franciscan Estate, Napa, CA.
-#      grape: ""
+#      grapes: ""
 #      catalog: "southern"
 #      mynotes: "Very tanniny, not much fruit, hints of dried tobacco leaf and coffee.
 #      frontprice: 33.68 #26.67
@@ -3495,7 +3495,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "Simi - Alexander Valley, Sonoma, CA.
-#      grape: ""
+#      grapes: ""
 #      catalog: "southern"
     #      mynotes: "Nice fruit. Dark cherry. Bit of spice and coffee. Pleasant. Brown Sugar? "
 #      frontprice: 22.67 on 12 #27 front
@@ -3504,7 +3504,7 @@
 #      listprice:
 #      qtprice:
 #      byline: "Estancia - Paso Robles, California"
-#      grape: "Cab Sauv 51%, Merlot 38%, 11% Petit Verdot"
+#      grapes: "Cab Sauv 51%, Merlot 38%, 11% Petit Verdot"
 #      catalog: "southern"
 #      mynotes: "Lighish body. some smokey spice, hint of sweetness. so-so."
 #      frontprice: 18.67 #15.38
@@ -3524,7 +3524,7 @@
       listprice: 36
       qtprice: 12
       byline: "Patz and Hall - Sonoma Coast, California"
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       catalog: "verity"
       mynotes: "Bit of funk and golden apple, med oak, complex, light, and well balanced"
       notes: "Rich golden apple with hints of pear and hazelnut, good minerality as well as toasty oak and butter. Complex and well-balanced."
@@ -3535,7 +3535,7 @@
       listprice: 28
       qtprice: 9
       byline: "Franciscan Estate - Napa, Valley"
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       catalog: "southern"
       mynotes: "Funky slightly oaky nose. Palate is sweet and creamy with well-integrated but pronounced oak. Grilled pineapple. Yummy."
       notes: "Ripe, oaky nose. Palate is buttery with bright tropical fruit and hints of toasted oak. Like grilled pineapple brushed with butter. Yum."
@@ -3562,7 +3562,7 @@
     - name: "Project Paso Chardonnay 2009"
       listprice: 25
       byline: "Paso Robles, California"
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       catalog: "opici "
       frontprice: 10.00
       mynotes: "Good dry oak on the nose, some some bitter acidity."
@@ -3570,7 +3570,7 @@
     - name: "Educated Guess Chardonnay 2010"
       listprice: 26
       byline: "Napa Valley, California"
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       catalog: "opici "
       frontprice: 10.50
       mynotes: "Full body, some stemmyness."
@@ -3579,7 +3579,7 @@
       listprice: 26
       qtprice: 9
       byline: "by Wilson Vineyard - Clarksburg, California"
-      grape: "Viognier"
+      grapes: "Viognier"
       catalog: "opici 400 "
       frontprice: 10.00     #8 on 3
       mynotes: "Liked it at la bottega"
@@ -3600,7 +3600,7 @@
       qt: yes
       qtprice: 9
       frontprice: 10
-      grape: "Reisling, Gewurztraminer, Chardonnay"
+      grapes: "Reisling, Gewurztraminer, Chardonnay"
       notes: "Exotic tropical fruit bouquet. Light & crisp with clean apply flavor."
       mynotes: "Some good exotic tropical fruit. Kinda light. Decent acid. Med body. B+."
 
@@ -3631,8 +3631,8 @@
       listprice: 28
       qtprice: 10
       frontprice: 12
-      notes: "Intense heady nose of lychee, melon and pear. Vibrant palate full of bright fruit. Nice long finish."
-      mynotes: "Lychee!, some nice tropical fruit. good."
+      notes: "Lychee!, some nice tropical fruit. good."
+      mynotes: "Intense heady nose of lychee, melon and pear. Vibrant palate full of bright fruit. Nice long finish."
       bin: 211
 
     - name: "Centauri Sauvignon Blanc 2008"
@@ -3640,7 +3640,7 @@
       qtprice: 8
       qt: yes
       byline: "by Fournier - Maule Valley, Chile"
-      grape: "Sauvignon Blanc"
+      grapes: "Sauvignon Blanc"
       notes: "Aromas of lime, ripe peaches & lychee. Taste of citrus and quinine with good length."
       catalog: "tempranillo page: 90, "
       frontprice: 9.33
@@ -3651,7 +3651,7 @@
       qtprice: 9
       notes: "Fascinating, heady nose of elderberry and white flowers. Palate is round and rich with topical fruit flavors."
       byline: "Susana Balbo - Mendoza, Argentina"
-      grape: "Torrontes"
+      grapes: "Torrontes"
       catalog: "polaner"
       frontprice: 10.66  #128, 3=120, 5=104
       bin: 697
@@ -3660,7 +3660,7 @@
       listprice: 21
       qtprice: 7
       byline: "by Casa de Vinos - Maule Valley, Chile"
-      grape: "Sauvignon Blanc"
+      grapes: "Sauvignon Blanc"
       notes: "Light citrus & floral notes. Lean and crisp."
       mynotes: "Light citrus, floral notes, light body,good acid.B+"
       catalog: "east coast page 10"
@@ -3675,7 +3675,7 @@
       listprice: 28
       qtprice: 9
       byline: "Cave du Vin Blanc de Morgex et de La Salle- Valle D'Aosta, Italy"
-      grape: "Prie Blanc"
+      grapes: "Prie Blanc"
       catalog: "polaner"
       notes: "At 4000 ft, the vineyards of Morgex and La Salle at the foot of Mont Blanc's Italian side are the highest in Europe. The wine is fresh and crisp with good body and minerality and light floral and citrusy notes."
       mynotes: "good acidity"
@@ -3687,14 +3687,14 @@
       byline: "by Casal Thaulero - Terre Di Chieti, Abruzzo, Italy"
       catalog: "opici 412a - "
       frontprice: 5.03
-      grape: "Pinot Grigio"
+      grapes: "Pinot Grigio"
 
     - name: "Pinot Grigio 2009"
       listprice: 
       byline: "by St Michael-Eppan - Alto-Adige, Italy"
       catalog: "find out"
       frontprice: 
-      grape: "Pinot Grigio"
+      grapes: "Pinot Grigio"
 
     - name: "Pinot Grigio 2009"
       listprice: 26
@@ -3703,7 +3703,7 @@
       byline: "by Ronco Dei Pini - Collio, Friuli, Italy"
       catalog: "verity"
       frontprice: 9.33
-      grape: "Pinot Grigio"
+      grapes: "Pinot Grigio"
       notes: "Aroma of apple, lime and musk melon. Quenching with minerality and citrus on the palate. Long limey finish."
 
     - name: "Frascati"
@@ -3745,7 +3745,7 @@
       qt: yes
       notes: "Wonderfully light and fragrant with a spritziness that makes it the perfect fresh, easy-drinking white."
       byline: "by FelGuerras - Portugal"
-      grape: "Loureiro, Arinto, Trajadura"
+      grapes: "Loureiro, Arinto, Trajadura"
       catalog: "opici product #32506"
       frontprice: 4.46
       bin: 101
@@ -3784,14 +3784,14 @@
       notes: "Deep-flavored dry wine with strawberry and citrus. Pairs with many foods and great in warm weather."
       catalog: "tempranillo page 61, "
       frontprice: 10.86
-      grape:  "Garnacha, Viura, Tempranillo"
+      grapes:  "Garnacha, Viura, Tempranillo"
       bin:
 
     - name: "Txacoli"
       listprice:
       qtprice:
       byline: "by la cana"
-      grape: "Albarino"
+      grapes: "Albarino"
       catalog: "tempranillo"
       frontprice: 16
       notes: "nice and citrusy."
@@ -3801,7 +3801,7 @@
       listprice: 26
       qtprice: 8
       byline: "by Lagar de Pintos - Rias Biaxas"
-      grape: "Albariño"
+      grapes: "Albariño"
       catalog: "wine symphony"
       frontprice: 6
       mynotes: "six case closeout deal"
@@ -3811,7 +3811,7 @@
       listprice: 30
       qtprice: 10
       byline: "by Bodegas La Caña - Rias Baixas, Spain"
-      grape: "Albariño"
+      grapes: "Albariño"
       catalog: "tempranillo"
       frontprice: 13
       mynotes: "light sweet fruit in nose. Percieved sweetness, heavy body. Nice round fruit. Pleasant."
@@ -3822,7 +3822,7 @@
       listprice: 22
       qtprice: 7
       byline: "Rey Santo - Rueda, Spain"
-      grape: "Verdejo, Viura"
+      grapes: "Verdejo, Viura"
       catalog: "Polaner"
       notes: "Alluring nose of tropical fruit. Palate is soft and full with hard candy notes."
       mynotes: "SB tropical fruit, low acid, candied heavy body."
@@ -3833,7 +3833,7 @@
       listprice: 28
       qtprice: 10
       byline: "by Bodegas Shaya - Rueda, Spain"
-      grape: "old vine Verdejo"
+      grapes: "old vine Verdejo"
       catalog: "opici"
       frontprice: 12
       notes: "An elegant, complex Spanish white with aromas and flavors of melon, hazelnuts and spice."
@@ -3842,7 +3842,7 @@
     
     - name: "Verdejo 2009"
       byline: "by Paso a Paso - La Mancha, Spain"
-      grape: "Verdejo"
+      grapes: "Verdejo"
       catalog: "tempranillo pg: 21, "
       frontprice: 9
       mynotes: "very nice nose, full fruity body, creamy, toast B+"
@@ -3855,7 +3855,7 @@
       catalog: "tempranillo page 61, "
       notes: "Heavy, alluring perfume of flowers, honey & tropical fruit. Palate is dry, focused and refreshing with pear and melon flavors."
       frontprice: 12.50
-      grape: "Muscato de Alexandria"
+      grapes: "Muscato de Alexandria"
       bin: 106
     
     - name: "Retsina Nobilis"
@@ -3871,7 +3871,7 @@
     - name: "Fino en Rama (Dry Sherry) 2006"
       byline: "Alvear - Cordoba, Spain"
       notes: "Unlike any other wine - pale straw color and bone dry with aroma & flavor of walnuts, sea salt, and wood. Great with nuts, olives or cured meats."
-      grape: "Pedro Ximenez"
+      grapes: "Pedro Ximenez"
       listprice: 23
       qtprice: 4
       qt: yes
@@ -3885,7 +3885,7 @@
     - name: "Perrier-Juet Brut Champagne NV"
       byline: "by Perrier-Juet - Champagne, France"
       notes: "Fine dense bubbles. Notes of cream and toasty bread, baked apple and spiced orange peel. Crisp finsih."
-      grape: "Chardonnay, Pinot Noir, Pinot Meunier"
+      grapes: "Chardonnay, Pinot Noir, Pinot Meunier"
       catalog: "southern"
       listprice: 95
       qtprice: 95
@@ -3896,7 +3896,7 @@
       listprice: 44
       qtprice: 14
       byline: "by Domaine Huet - Vouvray, Loir Valley, France"
-      grape: "Chenin Blanc"
+      grapes: "Chenin Blanc"
       catalog: "polaner"
       notes: "Lush, but nuanced nose of flowers & honey. Palate is apply, stony and dry, with soft bubbles. Hints of cream and chocolate on the finish."
       mynotes: "nose flowers, honey, apply, stony, dry, nice medium bubbles. hint of chocolate"
@@ -3905,9 +3905,9 @@
 
     - name: "Cremant de Bourgogne (Sparking Burgundy)"
       byline: "by Vissoux Pierre-Marie Chermette - Burgundy, France"
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       notes: "Very like the best champagne, but a bit earthier, with yeasty beer-like notes on top of cream and toast."
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       catalog: "weygandt"
       listprice: 36
       qtprice: 14
@@ -3918,7 +3918,7 @@
       byline: "by Dom Bertiol - Veneto, Italy"
       mynotes: "Light, lots of small bubbles, decent acid."
       notes: "Light, with fine bubbles and peach and pear flavors. Clean, crisp finsih."
-      grape: "Prosecco"
+      grapes: "Prosecco"
       listprice: 25
       qtprice: 7
       qt: yes
@@ -3930,7 +3930,7 @@
       byline: "by Cantina Barbolini - Modena, Italy"
       mynotes: ""
       notes: "A dark purple-red wine that's bubbly, cold and quite dry. Sounds crazy, no? But in and around Italy's food Meccas of Parma, Bologna and Modena, Lambrusco is revered as the perfect match for cured meats, cheeses, and many other foods. Aromas of plum and blackberry rise from rich purple foam. Palate is full of dried fruit with a cleansing raisiny bitterness."
-      grape: ""
+      grapes: ""
       listprice: 22
       qtprice: 8
       frontprice: 8
@@ -3939,7 +3939,7 @@
 
     - name: "Gran Sarao Rosé Cava"
       byline: "by Josep Masachs - Penedes, Spain"
-      grape: "Pinot Noir"
+      grapes: "Pinot Noir"
       notes: "Not sweet, but fruity and full-bodied with mellow bubbles and a tart finish."
       catalog: "opici"
       frontprice: 10
@@ -3949,7 +3949,7 @@
 
     - name: "Rosé of Malbec"
       byline: "by Reginato - Mendoza, Argentina"
-      grape: "Malbec"
+      grapes: "Malbec"
       notes: "Full-bodied frizzante rosé with nose of sweet red apple and raspberry with toasty notes. Mouth rounds out with baking spice, hint of caramel sweetness and nice tanin structure. This unlikely sparkler evokes very traditional Spanish Tintos and good pink Champagne."
       catalog: "polaner"
       frontprice: 12
@@ -3958,7 +3958,7 @@
 
     - name: "Pinot Noir Brut"
       byline: "by Codorniu - Penedes, Spain"
-      grape: "Pinot Noir"
+      grapes: "Pinot Noir"
       notes: "An elegant sparkler - pale cherry-red with fine plentiful fizz. Smell of ripe raspberry and black currants. Fresh, crisp taste with citrus finish."
       catalog: "opici"
       frontprice: 12
@@ -3968,7 +3968,7 @@
 
     - name: "Cava Anna"
       byline: "by Codorniu - Penedes, Spain"
-      grape: "Chardonnay, Xarel-lo"
+      grapes: "Chardonnay, Xarel-lo"
       notes: "Refreshing and creamy with notes of apple, bread and honey."
       catalog: "opici"
       frontprice: 12
@@ -3978,7 +3978,7 @@
 
     - name: "Cava Brut Reserva"
       byline: "by Bohigas - Catalunya, Spain"
-      grape: "Xarel-lo, Macabeo"
+      grapes: "Xarel-lo, Macabeo"
       notes: "Lots of tiny bubbles with crisp apple and pear, and light bready notes."
       catalog: "polaner"
       frontprice: 12
@@ -4021,7 +4021,7 @@
       listprice: 24
       qtprice: 9
       frontprice: 11.05
-      grape: "Sauvignon Blanc, Semillon"
+      grapes: "Sauvignon Blanc, Semillon"
       notes: "Sauternes has great depth, luscious layers of apricot and honey, and also finesse, with flowers, apples and refreshing ripe peach."
       bin: 691
       instock: 4
@@ -4033,7 +4033,7 @@
       byline: "by "
       notes: "Think reunite on ice is nice? Try this. Light, sweet and pink with bubbles, the nose has hints of melon and honey, but the palate is basically 7-UP. Good fun."
       mynotes: "sweet low alc, frizzante similar to Bartenura, good desert"
-      grape: 'Muscat de Alexandrie'
+      grapes: 'Muscat de Alexandrie'
       listprice: 18
       qtprice: 6
       frontprice: 5.33
@@ -4044,7 +4044,7 @@
       byline: "villa rosa"
       notes: "Lightly sweet & bubbly, with a crisp, refreshing finish. A desert wine, yes, but light enough to drink before a meal, or even during."
       mynotes: "sweet low alc, frizzante similar to Bartenura, good desert"
-      grape: 'Moscato'
+      grapes: 'Moscato'
       listprice: 22
       qtprice: 8
       frontprice: 7.34
@@ -4055,7 +4055,7 @@
       listprice:
       qtprice: 9
       byline: ""
-      grape: "Merlot"
+      grapes: "Merlot"
       catalog: "opici "
       frontprice: 8.67
       notes: "We mix fruity Rutherford Vintners Merlot with a shot of sweet, chocolaty creme de cacao to make a delicoius desert wine. Think good dark chocolate over sweet red cherries. We think it really works."
@@ -4066,7 +4066,7 @@
       byline: "Wolfer"
       catalog: "winebow"
       frontprice: 10
-      grape: "Merlot, Cab franc, Cab Sauv, Chardonnay, Pinot Noir"
+      grapes: "Merlot, Cab franc, Cab Sauv, Chardonnay, Pinot Noir"
       mynotes: "Very nice fruity nose. Decent acid. Short finish."
       #bin: 104
       #instock: 6
@@ -4078,7 +4078,7 @@
       byline: "Wolfer"
       catalog: "winebow"
       frontprice: 10
-      grape: "Chardonnay"
+      grapes: "Chardonnay"
       mynotes: "Pleasant fruit, touch of oak. little creamy. B"
       #bin: 104
       #instock: 6
@@ -4091,7 +4091,7 @@
       byline: "Wolfer"
       catalog: "winebow"
       frontprice: 15
-      grape: "Merlot"
+      grapes: "Merlot"
       mynotes: "Little veggy, barny, dark fruit, ok structure. B-"
       #bin: 104
       #instock: 6
@@ -4103,7 +4103,7 @@
       byline: "Wolfer"
       catalog: "winebow"
       frontprice: 7.33
-      grape: "apples"
+      grapes: "apples"
       mynotes: "Light apply nose, light body"
       #bin: 104
       #instock: 6
@@ -4115,7 +4115,7 @@
       byline: "Wolfer"
       catalog: "winebow"
       frontprice: 25
-      grape: "Merlot/Cab Franc/ Cab/ Sauv/Barbera"
+      grapes: "Merlot/Cab Franc/ Cab/ Sauv/Barbera"
       mynotes: "Good cabby nose, good power, decent fruit, B+"
       #bin: 104
       #instock: 6
@@ -4364,7 +4364,7 @@
       byline: "Les Hauts De Trintaudon - Bordeaux"
       catalog: "Touton"
       frontprice: 12.5 #10 on 3
-      grape: "Cab Franc Merlot"
+      grapes: "Cab Franc Merlot"
       mynotes: "funk, slight chew, red cherry, low acid, ebit earthy, some wet cedar."
       bin:
 
@@ -4372,7 +4372,7 @@
       byline: "Calaveras"
       catalog: "Touton"
       frontprice: 12.5 #10 on 3
-      grape: "GSM"
+      grapes: "GSM"
       mynotes: "big jammy viscous tanins - crowd pleaser"
       bin:
 
@@ -4525,18 +4525,6 @@
 ##  # Gingery Old Fashioned - Bourbon, gingerale, lemon, honey -- cherry?
 ##  # Raspberry, chocolate, vodka - martini. 
 ##  # 
-
-# verity
-#Salice Salentino Rosso Reserva 2008 by Taurino - Puglia
-# 90% Negro Amaro, 10% Malvasia Nera
-# 124 on 1, 108 on 3
-# great rustic nose, very plesant pizza wine type italian red.
-# maybe get
-
-# verdicchio, new vintage? Maybe good.
-
-# la porte du Caillou. Sancerre Touton. New zrealandy but not overpowereing. Some
-# good Cat Pee. 15.66? Could be.
 
 #Tuton Tommasi Viticoltori Pinot Grigio  11/1
 # Good acidity, savory herbal notes

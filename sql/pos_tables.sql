@@ -54,3 +54,14 @@ CREATE TABLE hours (
   FOREIGN KEY (person_id) REFERENCES person(id) ON DELETE CASCADE
 );
 
+
+drop table bevinventory;
+
+CREATE TABLE bevinventory (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  item_name  VARCHAR(32) not null,
+  created TIMESTAMP DEFAULT 0,
+  units INT(4) DEFAULT 0,
+  INDEX person_idx (person_id),
+);
+

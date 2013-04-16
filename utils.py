@@ -18,6 +18,9 @@ def now():
 
 def execute(sql, incursor=None):
   
+  logs = open("/var/www/logs", 'a')
+  logs.write(sql)
+
   if not incursor:
     conn = MySQLdb.connect (host = "localhost",
                           user = "pos",

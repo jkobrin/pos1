@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title id='Description'>This example shows how to enable sorting and sort by a column.
+    </title>
+    <link rel="stylesheet" href="js/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="js/scripts/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxdata.js"></script> 
+    <script type="text/javascript" src="js/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.edit.js"></script>  
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.selection.js"></script> 
+    <script type="text/javascript" src="js/jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxcheckbox.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxcalendar.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxnumberinput.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxdatetimeinput.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/globalization/globalize.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.sort.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.filter.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxpanel.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxnumberinput.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.columnsresize.js"></script> 
+    <script type="text/javascript" src="js/scripts/gettheme.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var theme = getDemoTheme();
+
+            var url = "http://localhost/getwine.py/bevinventory_records"
+            
+            lastedit = null;
+            edits = {};
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'category',       type: 'string' },
+                    { name: 'bin',            type: 'string' },
+                    { name: 'listorder',      type: 'number' },
+                    { name: 'byline',         type: 'string' },
+                    { name: 'name',           type: 'string' },
+                    { name: 'qtprice',        type: 'number' },
+                    { name: 'frontprice',     type: 'number' },
+                    { name: 'mynotes',        type: 'string' },
+                    { name: 'grapes',         type: 'string' },
+                    { name: 'supplier',       type: 'string' },
+                    { name: 'notes',          type: 'string' },
+                    { name: 'listprice',      type: 'number' },
+                    { name: 'active',         type: 'boolean' },
+                    { name: 'units_in_stock', type: 'number' },
+                    { name: 'inventory_date', type: 'date' },
+                ],
+                id: 'id',
+                url: url,
+                //editurl: 'http://localhost/getwine.py/',
+                updaterow: function (rowid, rowdata, commit) {
+                    if (lastedit == null) return;
+                    //edit = rowid + " " + rowdata.name + " " + lastedit.datafield+ " " + lastedit.oldvalue + "-->" + lastedit.value;
+                    if (!(rowid in edits)) {edits[rowid] = {};}
+                    edits[rowid][lastedit.datafield] = lastedit.value;
+
+                    commit(true);
+                    if (lastedit.datafield == 'units_in_stock')
+                    {
+                      rowindex = lastedit.rowindex;
+                      lastedit = null;
+                      now = new Date();
+                      $("#jqxgrid").jqxGrid('setcellvalue', rowindex, 'inventory_date', now);
+                      edits[rowid]['inventory_date'] = now;
+                      
+                    }  
+                },
+                deleterow: function (rowid, rowdata, commit) {
+                  alert('del');
+                },
+            };
+            var dataAdapter = new $.jqx.dataAdapter(source);
+
+            // create jqxgrid.
+            $("#jqxgrid").jqxGrid(
+            {
+                columnsresize: true,
+                editable: true,
+                width: 2000,
+                height: 450,
+                source: dataAdapter,
+                theme: theme,
+                selectionmode: 'multiplecellsadvanced',
+                sortable: true,
+                filterable: true,
+                altrows: true,
+                columns: [
+                    { text: 'name',          datafield: 'name',  width:200},
+                    { text: 'bin',           datafield: 'bin',             },
+                    { text: 'supplier',      datafield: 'supplier',       },
+                    { text: 'units_in_stock',datafield: 'units_in_stock', columntype: 'numberinput' },
+                    { text: 'inventory_date',datafield: 'inventory_date', columntype: 'datetimeinput', cellsformat: 'yyyy-MM-dd'},
+                    { text: 'category',      datafield: 'category',        },
+                    { text: 'active',        datafield: 'active',         columntype: 'checkbox'},
+                    { text: 'listprice',     datafield: 'listprice',      columntype: 'numberinput' },
+                    { text: 'qtprice',       datafield: 'qtprice',        columntype: 'numberinput' },
+                    { text: 'frontprice',    datafield: 'frontprice',     columntype: 'numberinput' },
+                    { text: 'byline',        datafield: 'byline',         },
+                    { text: 'grapes',        datafield: 'grapes',         },
+                    { text: 'mynotes',       datafield: 'mynotes',        },
+                    { text: 'notes',         datafield: 'notes',          },
+                    { text: 'listorder',     datafield: 'listorder',      columntype: 'numberinput' },
+                  /*{ text: 'Inv Date', datafield: 'inv_date', width: 100, cellsformat: 'yyyy-MM-dd', editable: false },
+                  { text: 'Quantity', datafield: 'units', width: 70, align: 'right', cellsalign: 'right', columntype: 'numberinput'},
+                  { text: 'bin', datafield: 'bin', width: 70, editable: true},
+                  { text: 'Name', datafield: 'item_name', width: 250, editable: false},
+                  { text: 'supplier', datafield: 'supplier' },
+                  { text: 'listprice', datafield: 'listprice', width: 70, cellsalign: 'right', columntype: 'numberinput'},
+                  { text: 'frontprice', datafield: 'frontprice', width: 70, cellsalign: 'right', columntype: 'numberinput'},
+                  { text: 'byline', datafield: 'byline' },
+                  { text: 'grapes', datafield: 'grapes' },
+                  { text: 'mynotes', datafield: 'mynotes' },
+                  { text: 'notes', datafield: 'notes'},*/
+                ]
+            });
+
+            $("#jqxgrid").on('cellendedit', function (event) {
+                var args = event.args;
+                //$("#events").text("Event Type: cellendedit, Column: " + args.datafield + ", Row: " + (1 + args.rowindex) + ", Value: " + args.value);
+                lastedit = args;
+            });
+
+            $('#revieweditsbutton').jqxButton({ height: 25, theme: theme });
+            $('#revieweditsbutton').click(function () {
+              alert(edits.toSource());
+            });
+            $('#submiteditsbutton').jqxButton({ height: 25, theme: theme });
+            $('#submiteditsbutton').click(function () {
+                doit = confirm(edits.toSource());
+                // synchronize with the server - send update command
+                // call commit with parameter true if the synchronization with the server is successful 
+                // and with parameter false if the synchronization failed.
+                if (doit)
+                {
+                  $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "http://localhost/getwine.py/update_winelist",
+                    data: {'edits' : JSON.stringify(edits)},
+                    cache: false,
+                    success: function (data, status, xhr) {
+                        // update command is executed.
+                        commit(true);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
+                        commit(false);
+                    }
+                  });
+                }
+            });
+            //$('#events').jqxPanel({ width: 300, height: 80, theme: theme });
+            //(rowid + " " + rowdata.name + " " + args.datafield+ " " + args.oldvalue + "-->" + args.value);
+
+            /*
+            $("#jqxgrid").on("sort", function (event) {
+                $("#events").jqxPanel('clearcontent');
+
+                var sortinformation = event.args.sortinformation;
+                var sortdirection = sortinformation.sortdirection.ascending ? "ascending" : "descending";
+                if (!sortinformation.sortdirection.ascending && !sortinformation.sortdirection.descending) {
+                    sortdirection = "null";
+                }
+
+                var eventData = "Triggered 'sort' event <div>Column:" + sortinformation.sortcolumn + ", Direction: " + sortdirection + "</div>";
+                $('#events').jqxPanel('prepend', '<div style="margin-top: 5px;">' + eventData + '</div>');
+            });
+
+            $('#sortbackground').jqxCheckBox({checked: true, height: 25, theme: theme });
+            // clear the sorting.
+            $('#clearsortingbutton').click(function () {
+                $("#jqxgrid").jqxGrid('removesort');
+            });
+            // show/hide sort background
+            $('#sortbackground').on('change', function (event) {
+                $("#jqxgrid").jqxGrid({ showsortcolumnbackground: event.args.checked });
+            }); */
+        });
+    </script>
+</head>
+<body class='default'>
+    <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left;">
+        <center><input value="submit changes" id="submiteditsbutton" type="button" style='margin:20px' /></center>
+        <div id="jqxgrid">
+        </div>
+    </div>
+</body>
+</html>

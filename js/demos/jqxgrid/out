@@ -1,0 +1,10 @@
+customsorting.htm:123:        <div id="eventslog" style="display: none; margin-top: 30px;">
+filterconditions.htm:167:        <div id="eventslog" style="margin-top: 30px;">
+filtering.htm:120:        <div id="eventslog" style="margin-top: 30px;">
+initialpage.htm:75:                $("#eventslog").css('display', 'block');
+initialpage.htm:90:                $("#eventslog").css('display', 'block');
+initialpage.htm:108:        <div id="eventslog" style="display: none; margin-top: 30px;">
+paging.htm:73:                $("#eventslog").css('display', 'block');
+paging.htm:88:                $("#eventslog").css('display', 'block');
+paging.htm:106:        <div id="eventslog" style="display: none; margin-top: 30px;">
+sorting.htm:101:        <div id="eventslog" style="margin-top: 30px;">

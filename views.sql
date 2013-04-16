@@ -103,4 +103,7 @@ where fw.dat = ww.dat
 and fw.dat = cb.dat
 ;
 
-
+create view qtinos_sold as (select wl.name, count(*) qsold 
+from winelist wl, order_item oi where wl.active = true 
+and oi.item_name like CONCAT('qt:%', substring(wl.name, 1, 22), '%') 
+group by wl.id;

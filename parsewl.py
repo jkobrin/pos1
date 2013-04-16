@@ -1,4 +1,5 @@
 #! /usr/bin/python
+
 import yaml
 import sys
 import os.path
@@ -13,16 +14,50 @@ wl_out = sys.stdout
 
 print sys.argv[0]
 orderview = (os.path.basename(sys.argv[0]) == 'wineorder')
+tableview = (os.path.basename(sys.argv[0]) == 'tableview')
 
 def prnt(strng = ''):
   strng = strng.encode('utf-8')
   wl_out.write(strng)
   wl_out.write('\n')
 
+if tableview:
+  tablefields = ['category', 'bin', 'byline', 'name', 'qtprice', 'frontprice', 'mynotes', 'grapes', 'supplier', 'notes', 'listprice']
+  def getvalue(wine, field, category):
+    if field == 'category': 
+      val = category['name']
+    elif field == 'supplier':
+      val = wine.get('catalog')
+    else:
+      val = wine.get(field)
+
+    if val is None or val == '':
+      val = 'null'
+    if type(val) in (int, float):
+      val = str(val)
+    else:
+      val = repr(val)
+      #val = '"'+val+'"'
+    
+    return val
+    
+
 for category in wl:
-  prnt(category['name'])
-  prnt()
+  if not tableview:
+    prnt(category['name'])
+    prnt()
+
   for wine in category['items']:
+    if tableview:
+      fields = '(' + ','.join(tablefields) + ')'
+      values = [getvalue(wine,f, category) for f in tablefields]
+      values = '(' + ','.join(values) + ')'
+      wl_out.write('insert into winelist ')
+      wl_out.write(fields)
+      wl_out.write(" values ")
+      wl_out.write(values)
+      wl_out.write(';\n')
+      continue
     binnum = wine.get('bin')
     if not binnum: continue
     numtabs = 1 #5 - len(name)/8
@@ -39,6 +74,9 @@ for category in wl:
 
     if orderview:
       prnt('%s %s %s %s #%s' %(wine.get('catalog'), wine['name'], byline, wine['frontprice'], binnum))
+      continue
+    if tableview:
+      print wine
       continue
       
     prnt('%s.\t%s      %s'%(binnum, wine['name'], listprice))
