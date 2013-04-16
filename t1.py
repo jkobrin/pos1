@@ -27,10 +27,10 @@ def index(req):
   payroll = utils.select('''
 	SELECT yearweek(intime),
 	sum(hours_worked) as hours_worked,
-  round(sum(hours_worked*pay_rate)) + 194 + 480 + 750 as payroll
+  round(sum(hours_worked*pay_rate)) + 194 + 480 + 550 as payroll
 	from hours_worked 
   where yearweek(intime) > yearweek(now() - interval '5' week)
-  and last_name not in ('Kobrin', 'DiLemme', 'Kanarova')
+  and last_name not in ('Kobrin', 'Labossier', 'Kanarova')
   group by yearweek(intime)
 	order by yearweek(intime) desc''',
     incursor=None,
