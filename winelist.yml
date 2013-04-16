@@ -2025,6 +2025,16 @@
 #
 - name: Red Wine
   items:
+    - name: "Big Mouth"
+      listprice: 29
+      qtprice: 10
+      byline: "Calaveras"
+      catalog: "Touton"
+      frontprice: 12.5 #10 on 3
+      grape: "GSM"
+      mynotes: "big jammy viscous tanins - crowd pleaser"
+      bin: 120
+
     - name: "Bordeaux"
       listprice: 22
       qtprice: 7
@@ -2255,7 +2265,7 @@
       grape: "Petit Sirah"
       catalog: "verity 620A "
       frontprice: 21.33
-      bin: 120
+      bin: 789 
 
     - name: "Cabernet Sauvignon 2009"
       listprice: 32
@@ -2506,7 +2516,7 @@
       notes: "Light oak spice and smoke over savory cherry and moist cedar. Soft mouth feel with balanced tartness."
       catalog: "TODO ?"
       frontprice: 15.34 #3 10
-      bin: 210
+      bin: 2100
 
     - name: "Primarius Pinot Noir 2010"
       listprice: 30
@@ -3377,6 +3387,16 @@
       catalog: "verity"
       frontprice: 14 #?
       bin: 4041
+
+    - name: "Tierruca Sauvignon Blanc"
+      listprice: 18
+      qtprice: 6
+      byline: "Vinedos Marchigue"
+      notes: "grapefruit and green pepper."
+      grape: "Sauvignon Blanc"
+      catalog: "tuton"
+      frontprice: 4.66
+      bin: 1201
 
     - name: "Touraine Sauvignon Blanc 2010"
       listprice: 26
@@ -4369,12 +4389,14 @@
       bin:
 
     - name: "Big Mouth"
+      listprice: 29
+      qtprice: 11
       byline: "Calaveras"
       catalog: "Touton"
       frontprice: 12.5 #10 on 3
       grape: "GSM"
       mynotes: "big jammy viscous tanins - crowd pleaser"
-      bin:
+      bin: 120
 
 #monsier touton
 
