@@ -2025,6 +2025,16 @@
 #
 - name: Red Wine
   items:
+    - name: "Venta Mazzaron"
+      listprice: 29
+      qtprice: 11
+      byline: ""
+      catalog: "Aviva"
+      frontprice: 12.5 #maybe
+      grapes: "tempranillo"
+      mynotes: "pretty heavy, I think?"
+      bin: 720
+
     - name: "Big Mouth"
       listprice: 29
       qtprice: 10
@@ -4388,15 +4398,6 @@
       mynotes: "funk, slight chew, red cherry, low acid, ebit earthy, some wet cedar."
       bin:
 
-    - name: "Big Mouth"
-      listprice: 29
-      qtprice: 11
-      byline: "Calaveras"
-      catalog: "Touton"
-      frontprice: 12.5 #10 on 3
-      grapes: "GSM"
-      mynotes: "big jammy viscous tanins - crowd pleaser"
-      bin: 120
 
 #monsier touton
 

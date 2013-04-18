@@ -40,11 +40,11 @@ def index(req, lag=0):
       <html>
       <body>
     ''' + 
-    utils.tohtml(
-      'Nightly Receipts by Server',
-      ('Server', 'ccid', 'Receipts', 'Taxable', 'Tabs Closed'), 
-      results
-    ) +
+#    utils.tohtml(
+#      'Nightly Receipts by Server',
+#      ('Server', 'ccid', 'Receipts', 'Taxable', 'Tabs Closed'), 
+#      results
+#    ) +
     utils.tohtml(
       "Nightly Total",
       ('Dinner','Lunch'), 

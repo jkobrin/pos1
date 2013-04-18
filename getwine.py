@@ -54,12 +54,21 @@ def update_winelist(req, edits): #, table, additem=None, removeitem=None, price=
   log.write("update_winelist called\n")
   log.write(str(edits) + "\n")
   for rowid, fields_and_vals in edits.items():
-    setlist = ','.join('%s = "%s"'%fv for fv in fields_and_vals.items())
+    setlist = ','.join('%s = %s'%(f, sql_representation(v)) for f, v in fields_and_vals.items())
     sql = "update winelist set " + setlist + " where id = " + rowid + "\n"
     log.write(sql);
     utils.execute(sql, cursor)
   cursor.close ()
   conn.close ()
+
+def sql_representation(val):
+
+  if val is None or val == '':
+    return "null"
+  else:
+    # enclose everything else in double quotes; numbers don't
+    # need it but it doesn't hurt. Strings and dates do need it.
+    return '"%s"' %val
 
 if __name__ == '__main__':
   print bevinventory_records(None)
