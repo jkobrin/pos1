@@ -1,6 +1,7 @@
 
 import yaml, json
 from mylog import my_logger
+import utils
 log = my_logger
 
 CONFIG_FILE_NAME = '/var/www/config.yml'
@@ -32,65 +33,26 @@ def get():
 
 def populate_wine_category(cfg):
 
-  # find the list data structure that is to hold the wines
-  #for category in cfg['menu']:
-  #  if category['name'] = 'wine':
-  #    winelist = category['items']
-  #    break
   bev_category_results = [cat for cat in cfg['menu']['categories'] if cat['name'] == 'bev']
   if len(bev_category_results) != 1: raise Exception('Problem loading bev category')
   bev_category = bev_category_results[0]
 
-  redcat = {'name': 'red wine', 'items': []}
-  whitecat = {'name': 'white wine', 'items': []}
-  othercat = {'name': 'bubbly, beer & other', 'items': []}
+  winecats = utils.select('''select distinct category from winelist''')
+  for cat in winecats:
+    cat = cat['category']
+    items = utils.select('''
+      select id, bin, qtprice as price, CONCAT('qt: ', bin," ", name ) as name
+      from winelist
+      where category = '%(cat)s' and active = true and qtprice is not null and qtprice != 0 and bin is not null
+      union all
+      select id, bin, listprice as price, CONCAT(bin," ", name ) as name
+      from winelist
+      where category = '%(cat)s' and active = true and listprice != 0 and listprice is not null and bin is not null
+      order by bin
+      ''' % locals())
+    bev_subcat = {'name': cat, 'items': items}
+    bev_category['subcategories'].append(bev_subcat)
 
-  for subcat in (redcat, whitecat, othercat):
-    bev_category['subcategories'].append(subcat)
-
-  raw_winelist = yaml.load(open(WINELIST_FILE_NAME))
-
-  for category in raw_winelist:
-    raw_catname = category['name']
-    raw_items = category['items']
-    if 'red' in raw_catname.lower():
-      subcat = redcat
-    elif 'white' in raw_catname.lower():
-      subcat = whitecat
-    else:
-      subcat = othercat
-
-    raw_items.sort(key = lambda i: str(i.get('bin')))
-    for raw_item in raw_items:
-      log.debug('Parsing winelist item: ' + str(raw_item))
-      try:
-        bin_num = raw_item.get('bin')
-        if not bin_num: continue
-        name = '%s %s' % (bin_num, raw_item['name'])
-
-        listprice = raw_item.get('listprice')
-        if listprice :
-          # make regular item
-          item = {
-            'name' : name[:MAX_NAME_LEN],  # truncate it to DB field len
-            'price' : listprice
-          }  
-          subcat['items'].append(item)
-
-        # now make quartino
-        if raw_item.has_key('qtprice'):
-          price = raw_item['qtprice']
-          qtitem = {
-            'name' : ('qt: '+name)[:MAX_NAME_LEN], # truncate it to DB field len
-            'price' : price
-          }  
-          subcat['items'].append(qtitem)
-
-      except KeyError as ke:
-        log.error('Key error:' + ke.message)
-  
-
-  #cfg['menu']['categories'].append(bev_category)
 
 if __name__ == '__main__':
   cfg, items = iget()

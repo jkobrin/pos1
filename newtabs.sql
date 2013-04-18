@@ -11,7 +11,7 @@ CREATE TABLE `bevinventory` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1008 DEFAULT CHARSET=latin1;
 */
 
-DROP TABLE IF EXISTS winelist;
+/*DROP TABLE IF EXISTS winelist;*/
 CREATE TABLE winelist (
   id int NOT NULL AUTO_INCREMENT,
   category varchar(32),
