@@ -4,12 +4,12 @@ import MySQLdb
 import utils
 import datetime
 from time import mktime
+import decimal
 
+def get(req): #, table, additem=None, removeitem=None, price=None):
 
-def bevinventory_records(req): #, table, additem=None, removeitem=None, price=None):
-
-  log = open('/var/www/logs', 'a')
-  log.write("recs called\n")
+  #log = open('/var/www/logs', 'a')
+  #log.write("recs called\n")
   conn = MySQLdb.connect (host = "localhost",
                         user = "pos",
                         passwd = "pos",
@@ -17,28 +17,24 @@ def bevinventory_records(req): #, table, additem=None, removeitem=None, price=No
 
   cursor = conn.cursor()
 
-  bevinventory_records_query = '''   
-    SELECT id, item_name, DATE_FORMAT(created, "%m/%d/%Y") as inv_date, units
-    FROM bevinventory order by substr(item_name, 4)
-    '''
-  #bevinventory_records = utils.select(bevinventory_records_query, cursor)
-  #recs = utils.select('''select id, bin, name as item_name, listprice, frontprice, supplier, byline, grapes, mynotes, notes, DATE_FORMAT(now(), "%m/%d/%Y")  as inv_date, 6 as units from winelist order by bin''', cursor)
-  #recs = utils.select('''select notes from winelist where name="Pinot Evil"''', cursor)
-  recs = utils.select('''select * from winelist''', cursor)
+  recs = utils.select('''select * from winelist_inv''', cursor)
 
   cursor.close ()
   conn.close ()
 
-  #recs = bevinventory_records
   class MyEncoder(json.JSONEncoder):
 
     def default(self, obj):
         if isinstance(obj, datetime.date):
             return obj.isoformat()
+        if isinstance(obj, decimal.Decimal):
+          #Decimal type has no json encoding
+            return str(obj)
 
         return json.JSONEncoder.default(self, obj)
 
   return json.dumps(recs, cls=MyEncoder)
+
 
 def update_winelist(req, edits): #, table, additem=None, removeitem=None, price=None):
   edits = json.loads(edits)

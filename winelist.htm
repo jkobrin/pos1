@@ -30,7 +30,7 @@
         $(document).ready(function () {
             var theme = getDemoTheme();
 
-            var url = "getwine.py/bevinventory_records"
+            var url = "getwine.py/get"
             
             lastedit = null;
             edits = {};
@@ -53,11 +53,13 @@
                     { name: 'active',         type: 'boolean' },
                     { name: 'units_in_stock', type: 'number' },
                     { name: 'inventory_date', type: 'date' },
+                    { name: 'estimated_units_remaining', type: 'number' },
                     { name: 'id', type: 'int' },
                 ],
                 url: url,
                 //editurl: 'http://localhost/getwine.py/',
                 updaterow: function (rowid, rowdata, commit) {
+                    alert('updaterow');
                     if (lastedit == null) return;
                     if (!(rowdata.id in edits)) {edits[rowdata.id] = {};}
                     edits[rowdata.id][lastedit.datafield] = lastedit.value;
@@ -77,8 +79,7 @@
                   alert('del');
                 },
             };
-            var dataAdapter = new $.jqx.dataAdapter(source);
-
+            var dataAdapter = new $.jqx.dataAdapter(source); 
             // create jqxgrid.
             $("#jqxgrid").jqxGrid(
             {
@@ -96,6 +97,7 @@
                     { text: 'name',          datafield: 'name',  width:200},
                     { text: 'bin',           datafield: 'bin',             },
                     { text: 'supplier',      datafield: 'supplier',       },
+                    { text: 'estimated_units_remaining', datafield: 'estimated_units_remaining', editable: false }, 
                     { text: 'units_in_stock',datafield: 'units_in_stock', columntype: 'numberinput' },
                     { text: 'inventory_date',datafield: 'inventory_date', columntype: 'datetimeinput', cellsformat: 'yyyy-MM-dd'},
                     { text: 'category',      datafield: 'category',        },
@@ -123,16 +125,26 @@
             });
 
             $("#jqxgrid").on('cellendedit', function (event) {
+                alert('celledit');
                 var args = event.args;
                 //$("#events").text("Event Type: cellendedit, Column: " + args.datafield + ", Row: " + (1 + args.rowindex) + ", Value: " + args.value);
                 lastedit = args;
             });
+
+            // create new row.
+            $("#addrowbutton").on('click', function () {
+                alert('here');
+                var commit = $("#jqxgrid").jqxGrid('addrow', null, {});
+                alert(commit);
+            });
+
 
             $('#revieweditsbutton').jqxButton({ height: 25, theme: theme });
             $('#revieweditsbutton').click(function () {
               alert(edits.toSource());
             });
             $('#submiteditsbutton').jqxButton({ height: 25, theme: theme });
+            $("#addrowbutton").jqxButton({ theme: theme });
             $('#submiteditsbutton').click(function () {
                 doit = confirm(edits.toSource());
                 // synchronize with the server - send update command
@@ -189,6 +201,7 @@
 <body class='default'>
     <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left;">
         <center><input value="submit changes" id="submiteditsbutton" type="button" style='margin:20px' /></center>
+                <input id="addrowbutton" type="button" value="Add New Row" />
         <div id="jqxgrid">
         </div>
     </div>
