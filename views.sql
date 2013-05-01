@@ -107,3 +107,13 @@ create view qtinos_sold as (select wl.name, count(*) qsold
 from winelist wl, order_item oi where wl.active = true 
 and oi.item_name like CONCAT('qt:%', substring(wl.name, 1, 22), '%') 
 group by wl.id;
+
+create or replace view liquor_sales_by_month
+as
+select sum(price) total, year(created), month(created)
+from revenue_item
+where item_name rlike "([0-9]+ )|(^qt:)|(pint )|flight|cktail|cosmo|vodka"
+group by year(created), month(created)
+;
+
+

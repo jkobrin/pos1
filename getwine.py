@@ -36,8 +36,9 @@ def get(req): #, table, additem=None, removeitem=None, price=None):
   return json.dumps(recs, cls=MyEncoder)
 
 
-def update_winelist(req, edits): #, table, additem=None, removeitem=None, price=None):
+def update_winelist(req, edits, newrows): #, table, additem=None, removeitem=None, price=None):
   edits = json.loads(edits)
+  newrows = json.loads(newrows)
 
   conn = MySQLdb.connect (#host = "localhost",
                         user = "pos",
@@ -54,6 +55,17 @@ def update_winelist(req, edits): #, table, additem=None, removeitem=None, price=
     sql = "update winelist set " + setlist + " where id = " + rowid + "\n"
     log.write(sql);
     utils.execute(sql, cursor)
+  for fields_and_vals in newrows.values():
+    if fields_and_vals.has_key('uid'):
+      fields_and_vals.pop('uid')
+    fields = fields_and_vals.keys()
+    values = fields_and_vals.values()
+    field_list = ','.join(fields)
+    value_list = ','.join(sql_representation(v) for v in values)
+    sql = "insert into winelist ("+field_list+") VALUES ("+value_list+")"
+    log.write(sql)
+    utils.execute(sql, cursor)
+
   cursor.close ()
   conn.close ()
 
@@ -61,10 +73,12 @@ def sql_representation(val):
 
   if val is None or val == '':
     return "null"
-  else:
-    # enclose everything else in double quotes; numbers don't
-    # need it but it doesn't hurt. Strings and dates do need it.
+  elif isinstance(val, basestring):
+    # enclose strings in double quotes
     return '"%s"' %val
+  else:
+    # booleans and numbers
+    return str(val)
 
 if __name__ == '__main__':
   print bevinventory_records(None)

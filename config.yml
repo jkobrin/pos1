@@ -86,7 +86,7 @@ menu:
             - {name: mini panini , price: 7}
             - {name: marrow bones, price: 8}
             #- {name: french onion, price: 7}
-            - {name: cana bake, price: 8}
+            - {name: cabra bake, price: 8}
             - {name: bocadillo, price: 8}
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
