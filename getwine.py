@@ -74,8 +74,9 @@ def sql_representation(val):
   if val is None or val == '':
     return "null"
   elif isinstance(val, basestring):
-    # enclose strings in double quotes
-    return '"%s"' %val
+    # enclose strings in double quotes and escape and double
+    # quotes in the string
+    return '"%s"' %val.replace('"', '\\"')
   else:
     # booleans and numbers
     return str(val)

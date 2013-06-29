@@ -41,6 +41,8 @@ menu:
             - name: O3
             - name: O4
             - name: O5
+            - name: O6
+            - name: O7
         - name: staff
           items: 
             - name: JWK
@@ -60,33 +62,51 @@ menu:
             - name: RP
     - name: food
       subcategories:
+        - name: guests 
+          items: 
+            - {name: 1, price: 0}
+            - {name: 2, price: 0}
+            - {name: 3, price: 0}
+            - {name: 4, price: 0}
+            - {name: 5, price: 0}
+            - {name: 6, price: 0}
+            - {name: 7, price: 0}
+            - {name: 8, price: 0}
+            - {name: 9, price: 0}
+            - {name: 10, price: 0}
+            - {name: gluten, price: 0}
+            - {name: nut, price: 0}
+            - {name: shellfish, price: 0}
+            - {name: egg, price: 0}
         - name: dinner
           items: 
             - {name: warm olives, price: 5}
-            - {name: marcona almonds, price: 6}
+            - {name: marcona almonds, price: 5}
             - {name: walnut pesto, price: 6}
             - {name: anchovy, price: 6}
+            - {name: corn, price: 5}
             #- {name: peppers, price: 7}
-            #- {name: corn, price: 5}
+            - {name: salmon, price: 7}
+            - {name: roe, price: 8}
             #- {name: summer harvest, price: 8}
             - {name: spring salad, price: 9}
-            - {name: peppers, price: 5}
-            - {name: ceasar, price: 8}
-            - {name: roots, price: 7}
+            #- {name: peppers, price: 5}
+            #- {name: ceasar, price: 8}
+            #- {name: roots, price: 7}
             #- {name: mussels, price: 7}
             #- {name: cod, price: 12}
-            - {name: pate, price: 7}
+            #- {name: pate, price: 7}
             #- {name: prawn, price: 10}
-            - {name: octopus, price: 12}
+            #- {name: octopus, price: 12}
             - {name: burrata , price: 14}
             #- {name: patatas bravas, price: 5}
-            - {name: gratin, price: 6}
-            - {name: meatballs, price: 8}
+            - {name: cabra bake, price: 8}
+            - {name: tonnato, price: 12}
+            #- {name: meatballs, price: 8}
             - {name: empanada, price: 7}
             - {name: mini panini , price: 7}
             - {name: marrow bones, price: 8}
             #- {name: french onion, price: 7}
-            - {name: cabra bake, price: 8}
             - {name: bocadillo, price: 8}
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
@@ -117,7 +137,10 @@ menu:
             - {name: daffinois, price: 0}
             - {name: floret, price: 0}
             - {name: blue cheese, price: 0}
-            - {name: capri, price: 0}
+            - {name: gruyere, price: 0}
+            - {name: gouda, price: 0}
+            - {name: cheddar, price: 0}
+            #- {name: capri, price: 0}
             - {name: seranno ham, price: 0}
             - {name: lomo, price: 0}
             - {name: chorizo, price: 0}
@@ -125,11 +148,9 @@ menu:
             - {name: hot capicolla, price: 0}
             - {name: felino, price: 0}
             - {name: jambon, price: 0}
-            - {name: rosette de lyon, price: 0}
-            - {name: gruyere, price: 0}
-            - {name: gouda, price: 0}
-            - {name: cheddar, price: 0}
+            #- {name: rosette de lyon, price: 0}
             - {name: american ham, price: 0}
+            - {name: extra fig, price: 0}
         - name: dessert_etc
           items: 
             - {name: panacotta, price: 7}

@@ -7,30 +7,10 @@ import queries
 
 def index(req, lag=0):
 
-  results = queries.nightly_sales_by_server(lag_days=lag)
-
-  #seven_day_total = utils.select('''
-  #  SELECT sum(total) night, sum(dtotal) lunch  
-  #  FROM nd_tots  
-  #  WHERE dat > now() - INTERVAL '7' DAY''',
-  #  incursor=None,
-  #  label=False
-  #)
-
-  #avg = utils.select('''
-  #  SELECT sum(total)/2 night, sum(dtotal)/2 lunch  
-  #  FROM nd_tots  
-  #  WHERE dat > now() - INTERVAL '14' DAY;''',
-  #  incursor=None,
-  #  label=False
-  #)
-
-  #day_totals = utils.select('''select * from nd_tots order by dat desc''', incursor=None, label=False)
-  
   grand_total = utils.select('''
     SELECT total, dtotal  
     FROM nd_tots  
-    WHERE dat = date(now());''',
+    WHERE dat = date(now() - INTERVAL '%(lag)s' day);''' % locals(),
     incursor=None,
     label=False
   )

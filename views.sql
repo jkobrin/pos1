@@ -1,4 +1,3 @@
-
 CREATE or REPLACE view hours_worked as
 select 
   p.last_name, p.first_name, p.pay_rate, p.weekly_tax,
@@ -103,7 +102,7 @@ where fw.dat = ww.dat
 and fw.dat = cb.dat
 ;
 
-create view qtinos_sold as (select wl.name, count(*) qsold 
+create or replace view qtinos_sold as select wl.name, count(*) qsold 
 from winelist wl, order_item oi where wl.active = true 
 and oi.item_name like CONCAT('qt:%', substring(wl.name, 1, 22), '%') 
 group by wl.id;
@@ -116,4 +115,13 @@ where item_name rlike "([0-9]+ )|(^qt:)|(pint )|flight|cktail|cosmo|vodka"
 group by year(created), month(created)
 ;
 
+
+create or replace view winelist_inv as 
+select wl.*, units_in_stock - sum(IF(oi.menu_item_id is null, 0, IF(oi.item_name like 'qt:%', .25, 1))) as estimated_units_remaining
+from winelist wl left outer join order_item oi on
+wl.inventory_date <= oi.created
+and oi.menu_item_id = wl.id 
+and (oi.is_cancelled is null or oi.is_cancelled = false)
+where wl.active = true 
+group by wl.id;
 

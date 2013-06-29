@@ -26,7 +26,7 @@ def index(req, the_tip, lag_days):
     from 
       last_night_items si
       ,hours h
-    where si.created between h.intime and h.outtime
+    where si.created between h.intime and ifnull(h.outtime, now())
     '''%locals()
   )
 

@@ -37,7 +37,7 @@ def populate_wine_category(cfg):
   if len(bev_category_results) != 1: raise Exception('Problem loading bev category')
   bev_category = bev_category_results[0]
 
-  winecats = utils.select('''select distinct category from winelist''')
+  winecats = utils.select('''select distinct category from active_wine''')
   for cat in winecats:
     cat = cat['category']
     items = utils.select('''
