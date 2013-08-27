@@ -320,11 +320,14 @@
    <style:text-properties fo:font-size="3pt" style:font-size-asian="3.25pt" style:font-size-complex="3pt"/>
   </style:style>
   <style:style style:name="P19" style:family="paragraph" style:parent-style-name="Heading_20_1">
+   <style:paragraph-properties fo:text-align="center" style:justify-single-word="false" fo:break-before="page"/>
+  </style:style>
+  <style:style style:name="P20" style:family="paragraph" style:parent-style-name="Heading_20_1">
    <style:paragraph-properties fo:text-align="center" style:justify-single-word="false"/>
   </style:style>
 
   <style:page-layout style:name="pm1">
-   <style:page-layout-properties fo:page-width="4.25in" fo:page-height="11in" style:num-format="1" style:print-orientation="portrait" fo:margin-top="0.5in" fo:margin-bottom="0.5in" fo:margin-left="0.3902in" fo:margin-right="0.3902in" style:writing-mode="lr-tb" style:footnote-max-height="0in">
+   <style:page-layout-properties fo:page-width="4.5in" fo:page-height="12in" style:num-format="1" style:print-orientation="portrait" fo:margin-top="0.5in" fo:margin-bottom="0.5in" fo:margin-left="0.3902in" fo:margin-right="0.3902in" style:writing-mode="lr-tb" style:footnote-max-height="0in">
     <style:footnote-sep style:width="0.0071in" style:distance-before-sep="0.0398in" style:distance-after-sep="0.0398in" style:line-style="none" style:adjustment="left" style:rel-width="25%" style:color="#000000"/>
    </style:page-layout-properties>
    <style:header-style/>
@@ -358,7 +361,3 @@
    <text:p text:style-name="P16">I</text:p>
    <text:p text:style-name="P16">S</text:p>
    <text:p text:style-name="P16">T</text:p>
-   <text:p text:style-name="P16"/>
-   <text:p text:style-name="P15"/>
-   <text:p text:style-name="P15"/>
-   <text:p text:style-name="P15"/><text:soft-page-break/>

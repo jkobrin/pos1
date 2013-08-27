@@ -12,7 +12,7 @@ import utils
 def get_wine_xml():  
 
   winecats = utils.select('''select distinct category from active_wine''')
-  for cat in winecats:
+  for num, cat in enumerate(winecats):
     cat = cat['category']
 
     wine_items = utils.select('''
@@ -22,9 +22,14 @@ def get_wine_xml():
       order by listorder
       ''' % locals())
 
+    if cat in ('Red Wine', 'Bubbly', 'Dessert'):
+      style = 'P19' #this style starts new page
+    else:
+      style = 'P20'
+
     yield '''
-   <text:h text:style-name="P19">%s</text:h>
-   ''' % escape(cat)
+   <text:h text:style-name="%s">%s</text:h>
+   ''' % (style, escape(cat))
 
     for item in wine_items:
       binnum, name, listprice, byline, grapes, notes  = (
