@@ -6,7 +6,7 @@ import datetime
 from time import mktime
 import decimal
 
-def get(req): #, table, additem=None, removeitem=None, price=None):
+def get(req, additem=None, filtered=True):
 
   #log = open('/var/www/logs', 'a')
   #log.write("recs called\n")
@@ -17,7 +17,10 @@ def get(req): #, table, additem=None, removeitem=None, price=None):
 
   cursor = conn.cursor()
 
-  recs = utils.select('''select * from winelist_inv''', cursor)
+  if filtered:
+    recs = utils.select('''select * from winelist_inv where bin > 0''', cursor)
+  else:
+    recs = utils.select('''select * from winelist_inv''', cursor)
 
   cursor.close ()
   conn.close ()

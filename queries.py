@@ -40,3 +40,26 @@ def hours(lag_days):
     incursor=None,
     label=True
   )
+
+def weekly_pay(printmode=0):
+ return utils.select('''
+	select
+	DATE(intime) - interval (DAYOFWEEK(intime) -1) DAY as week_of,
+	last_name, first_name,
+	sum(hours_worked) as hours_worked,
+  pay_rate, 
+  weekly_tax,
+  round(sum(hours_worked)*pay_rate - weekly_tax) as weekly_pay,
+  sum(tip_pay) tips,
+  sum(tip_pay) / sum(hours_worked) + pay_rate as total_hourly_pay
+	from hours_worked 
+  where (yearweek(intime) > yearweek(now() - interval '5' week) and %(printmode)s = 0)
+     or (yearweek(intime) = yearweek(now() - interval '1' week) and %(printmode)s = 1)
+     and intime != 0
+  group by yearweek(intime), last_name 
+	order by yearweek(intime) desc, last_name''' % locals(),
+    incursor=None,
+    label=printmode
+  )
+
+

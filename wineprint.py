@@ -3,7 +3,7 @@ import json
 import MySQLdb
 from xml.sax.saxutils import escape
 from datetime import date
-import sys
+import sys, os
 
 import utils
 
@@ -22,7 +22,7 @@ def get_wine_xml():
       order by listorder
       ''' % locals())
 
-    if cat in ('Red Wine', 'Bubbly', 'Dessert'):
+    if cat in ('Red Wine', 'Bubbly', 'Bottled Beer', 'House Cocktails') or os.uname()[1] == 'plansrv' and cat == 'White Wine':
       style = 'P19' #this style starts new page
     else:
       style = 'P20'
@@ -30,6 +30,9 @@ def get_wine_xml():
     yield '''
    <text:h text:style-name="%s">%s</text:h>
    ''' % (style, escape(cat))
+
+    if cat in ('House Cocktails', 'Bottled Beer'):	
+      yield '''<text:p/>'''
 
     for item in wine_items:
       binnum, name, listprice, byline, grapes, notes  = (
@@ -47,6 +50,9 @@ def get_wine_xml():
         yield '''<text:line-break/>%s''' % notes
       yield '</text:p>'
       yield '''<text:p text:style-name="P18"/>'''
+      
+      if cat in ('House Cocktails', 'Bottled Beer'):	
+      	yield '''<text:p/>'''
 
 
 def index(req):

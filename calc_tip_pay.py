@@ -14,8 +14,8 @@ def index(req, the_tip, lag_days):
     from 
       served_item si
     where DATE(si.created- INTERVAL '4' HOUR) =  DATE(NOW()) - INTERVAL '%(lag_days)s' DAY 
-      and (time(si.created) > '16:00:00' or time(si.created) < '04:00:00')
     '''%locals()
+    #and (time(si.created) > '17:00:00' or time(si.created) < '04:00:00')
   )
 
   utils.execute(

@@ -9,24 +9,24 @@ import texttab
 import subprocess
 
 
-SPRINT_OPTIONS = {
- 'page-border':'double', 'page-left':'48', 'page-top':'36',
-}
+#SPRINT_OPTIONS = {
+# 'page-border':'double', 'page-left':'48', 'page-top':'36',
+#}
 
-PRINT_OPTIONS = {
- 'page-border':'single', 
- 'page-left':'12',
-  'media':'Custom.3.125x%(page_length)sin',
- 'lpi': '4',
+#PRINT_OPTIONS = {
+# 'page-border':'single', 
+# 'page-left':'12',
+#  'media':'Custom.3.125x%(page_length)sin',
+# 'lpi': '4',
   #'penwidth': '3000', #no effect
-}
+#}
 
-PRINTER_NAME = 'CITIZEN-CT-S310'
+#PRINTER_NAME = 'CITIZEN-CT-S310'
 
-LINES_PER_INCH = 4
-CHARACTERS_PER_INCH = 10 # CUPS default
-PAGE_WIDTH_IN_INCHES = 3.125
-PAGE_WIDTH_IN_CHARS = PAGE_WIDTH_IN_INCHES * CHARACTERS_PER_INCH - 5
+#LINES_PER_INCH = 4
+#CHARACTERS_PER_INCH = 10 # CUPS default
+#PAGE_WIDTH_IN_INCHES = 3.125
+#PAGE_WIDTH_IN_CHARS = PAGE_WIDTH_IN_INCHES * CHARACTERS_PER_INCH - 5
 
 def index(req, table, shouldPrint, serverpin, close=True):
 

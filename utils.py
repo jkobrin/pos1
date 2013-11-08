@@ -1,5 +1,6 @@
 import MySQLdb
 import datetime
+import os
 
 def object_from_dict(the_dict):
   class an_object:
@@ -95,6 +96,12 @@ def tohtml(title, headings, rows, breakonfirst=False):
     '''</table> '''
     )
   
+def is_salumi():
+  return not is_plancha()
+
+def is_plancha():
+  return os.uname()[1] == 'plansrv'
+
 
 if __name__ == '__main__':
   print tohtml('goo', [{3: 'ewew', 5: 'hud'},{3: 'ewjd', 5: 'gf'}, {3: 'ewew', 5: 'hioud'},]) 
