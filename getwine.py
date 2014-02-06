@@ -6,7 +6,10 @@ import datetime
 from time import mktime
 import decimal
 
-def get(req, additem=None, filtered=True):
+import wineprint
+
+
+def get(req, filtered=True):
 
   #log = open('/var/www/logs', 'a')
   #log.write("recs called\n")
@@ -17,8 +20,8 @@ def get(req, additem=None, filtered=True):
 
   cursor = conn.cursor()
 
-  if filtered:
-    recs = utils.select('''select * from winelist_inv where bin > 0''', cursor)
+  if filtered is True:
+    recs = utils.select("select * from winelist_inv where bin != '0'", cursor)
   else:
     recs = utils.select('''select * from winelist_inv''', cursor)
 
@@ -39,7 +42,7 @@ def get(req, additem=None, filtered=True):
   return json.dumps(recs, cls=MyEncoder)
 
 
-def update_winelist(req, edits, newrows): #, table, additem=None, removeitem=None, price=None):
+def update_winelist(req, edits, newrows):
   edits = json.loads(edits)
   newrows = json.loads(newrows)
 
@@ -72,6 +75,9 @@ def update_winelist(req, edits, newrows): #, table, additem=None, removeitem=Non
   cursor.close ()
   conn.close ()
 
+  wineprint.gen_fodt_and_pdf()
+
+
 def sql_representation(val):
 
   if val is None or val == '':
@@ -85,4 +91,4 @@ def sql_representation(val):
     return str(val)
 
 if __name__ == '__main__':
-  print bevinventory_records(None)
+  print get(None)

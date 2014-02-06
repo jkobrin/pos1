@@ -51,6 +51,7 @@ def weekly_pay(printmode=0):
   weekly_tax,
   round(sum(hours_worked)*pay_rate - weekly_tax) as weekly_pay,
   sum(tip_pay) tips,
+  round(sum(hours_worked)*pay_rate - weekly_tax) + sum(tip_pay) as total_weekly,
   sum(tip_pay) / sum(hours_worked) + pay_rate as total_hourly_pay
 	from hours_worked 
   where (yearweek(intime) > yearweek(now() - interval '5' week) and %(printmode)s = 0)

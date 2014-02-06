@@ -1,9 +1,11 @@
+#import sys
+#sys.path.append("/var/www")
 
 import json
 import MySQLdb
 from xml.sax.saxutils import escape
 from datetime import date
-import sys, os
+import os, subprocess
 
 import utils
 
@@ -19,6 +21,7 @@ def get_wine_xml():
       select * from active_wine
       where category = '%(cat)s'
       and listorder > 0
+      and bin != '0'
       order by listorder
       ''' % locals())
 
@@ -55,12 +58,36 @@ def get_wine_xml():
       	yield '''<text:p/>'''
 
 
-def index(req):
-  req.content_type = 'application/text'
+def fodt_text():
   doc = open('/var/www/winelist_head.xml.frag').read()
   for frag in get_wine_xml():
     doc += frag
   doc += open('/var/www/winelist_tail.xml.frag').read()
+
+  return doc
+
+def index(req):
+  return  fodt(req)
+
+
+def gen_fodt_and_pdf(req = None):
+  
+  doc = fodt_text()
+  winelists_dir = "/var/www/winelists/"
+  fodtname = winelists_dir + str(date.today())+".fodt"
+  new_fodt = open(fodtname, 'w')
+  new_fodt.write(doc)
+  new_fodt.close()
+
+  #subprocess.call(['soffice', '--headless', '--convert-to pdf', '--outdir /var/www/winelists/', fodtname])
+  os.system('export HOME=/tmp ; soffice --headless --convert-to pdf --outdir ' + winelists_dir + ' ' + fodtname)
+  return 'done'
+
+
+def fodt(req):
+  if req:
+    req.content_type = 'application/text'
+  doc = fodt_text()
 
   return doc
 
@@ -89,5 +116,5 @@ def index2():
 
 
 if __name__ == '__main__':
-  print index()
+  print gen_fodt_and_pdf()
 

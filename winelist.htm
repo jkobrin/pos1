@@ -55,7 +55,7 @@
                     { name: 'active',         type: 'boolean' },
                     { name: 'units_in_stock', type: 'number' },
                     { name: 'inventory_date', type: 'date' },
-                    { name: 'estimated_units_remaining', type: 'number' },
+                    { name: 'estimated_units_remaining', type: 'string' },
                     { name: 'id', type: 'int' },
                 ],
                 url: url,
@@ -173,7 +173,9 @@
                         newrows={};
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        alert(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
+                        // alert(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
+			errWindow = window.open("","MsgWindow","width=200,height=100");
+                        errWindow.document.write("<p>"+textStatus + ":::" + errorThrown + "</p>" + jqXHR.responseText);
                         commit(false);
                     }
                   });
