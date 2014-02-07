@@ -1,0 +1,328 @@
+
+menu:
+  categories:
+    - name: tables
+      subcategories:
+        - name: all
+          items: 
+            - name: 1
+            - name: 2
+            - name: 3
+            - name: 4
+            - name: 5
+            - name: 6
+            - name: 7
+            - name: 8
+            - name: 9
+            - name: B1
+            - name: B2
+            - name: B3
+            - name: B4
+            - name: B5
+            - name: B6
+            - name: B7
+            - name: B8
+            - name: B9
+            - name: B10
+            - name: B11
+            - name: B12
+            - name: B13
+            - name: B14
+            - name: B15
+            - name: B16
+            - name: B17
+            - name: F1
+            - name: F2
+            - name: F3
+            - name: F4
+            - name: F5
+            - name: O1
+            - name: O2
+            - name: O3
+            - name: O4
+            - name: O5
+            - name: O6
+            - name: O7
+        - name: staff
+          items: 
+            - name: JWK
+            - name: LQK
+            - name: JL
+            - name: DS
+            - name: JA
+            - name: DW
+            - name: JY 
+            - name: RN
+            - name: AM
+            - name: AC
+            - name: GD
+            - name: AA 
+            - name: AI
+            - name: CH
+            - name: RP
+    - name: food
+      subcategories:
+        - name: guests 
+          items: 
+            - {name: 1, price: 0}
+            - {name: 2, price: 0}
+            - {name: 3, price: 0}
+            - {name: 4, price: 0}
+            - {name: 5, price: 0}
+            - {name: 6, price: 0}
+            - {name: 7, price: 0}
+            - {name: 8, price: 0}
+            - {name: 9, price: 0}
+            - {name: 10, price: 0}
+            - {name: gluten, price: 0}
+            - {name: nut, price: 0}
+            - {name: shellfish, price: 0}
+            - {name: egg, price: 0}
+        - name: dinner
+          items: 
+            - {name: warm olives, price: 5}
+            - {name: marcona almonds, price: 5}
+            - {name: walnut pesto, price: 6}
+            - {name: anchovy, price: 6}
+            #- {name: corn, price: 5}
+            #- {name: peppers, price: 7}
+            - {name: salmon, price: 7}
+            - {name: pate, price: 7}
+            #- {name: summer harvest, price: 8}
+            #- {name: fall salad, price: 9}
+            - {name: cobb, price: 11}
+            #- {name: peppers, price: 5}
+            #- {name: ceasar, price: 8}
+            #- {name: roots, price: 7}
+            #- {name: mussels, price: 7}
+            #- {name: cod, price: 12}
+            #- {name: pate, price: 7}
+            #- {name: prawn, price: 10}
+            #- {name: octopus, price: 12}
+            - {name: sprouts, price: 8}
+            - {name: burrata, price: 14}
+            #- {name: patatas bravas, price: 5}
+            - {name: cabra bake, price: 8}
+            - {name: roots, price: 8}
+            - {name: octopus, price: 12}
+            #- {name: tonnato, price: 12}
+            #- {name: meatballs, price: 8}
+            - {name: empanada, price: 7}
+            - {name: mini panini , price: 7}
+            - {name: marrow bones, price: 8}
+            #- {name: french onion, price: 7}
+            - {name: bocadillo, price: 8}
+            - {name: polenta tapa, price: 7}
+            - {name: polenta plate, price: 12}
+            - {name: oxtail, price: 10}
+            #- {name: chicken, price: 18}
+            - {name: beef, price: 21}
+            - {name: bread, price: 3}
+        - name: boards
+          items: 
+            - name: 1-board
+              price: 7
+            - name: 3-board
+              price: 16
+            - name: 5-board
+              price: 23
+            - name: italian board
+              price: 27
+            - name: spanish board
+              price: 27
+            - name: mixed cheese board
+              price: 27
+            - {name: manchego , price: 0}
+            - {name: cana de cabra, price: 0}
+            - {name: campo de montalban, price: 0}
+            - {name: tallegio, price: 0}
+            - {name: piave, price: 0}
+            - {name: pecorino tartufo, price: 0}
+            - {name: daffinois, price: 0}
+            - {name: floret, price: 0}
+            - {name: blue cheese, price: 0}
+            - {name: gouda, price: 0}
+            - {name: cheddar, price: 0}
+            - {name: bufala, price: 0}
+            #- {name: capri, price: 0}
+            - {name: pata negra, price: 15}
+            - {name: seranno ham, price: 0}
+            - {name: lomo, price: 0}
+            - {name: chorizo, price: 0}
+            - {name: prosciutto, price: 0}
+            - {name: hot capicolla, price: 0}
+            - {name: felino, price: 0}
+            #- {name: jambon, price: 0}
+            #- {name: rosette de lyon, price: 0}
+            #- {name: american ham, price: 0}
+            - {name: extra fig, price: 0}
+        - name: dessert_etc
+          items: 
+            - {name: panacotta, price: 7}
+            - {name: chocolate, price: 5}
+            - {name: gift5, price: 5}
+            - {name: gift10, price: 10}
+            - {name: gift15, price: 15}
+            - {name: gift20, price: 20}
+            - {name: gift25, price: 25}
+            - {name: gift30, price: 30}
+            - {name: gift35, price: 35}
+            - {name: gift40, price: 40}
+            - {name: gift45, price: 45}
+            - {name: gift50, price: 50}
+            - {name: gift55, price: 55}
+            - {name: gift60, price: 60}
+            - {name: gift65, price: 65}
+            - {name: gift70, price: 70}
+            - {name: gift75, price: 75}
+            - {name: gift80, price: 80}
+            - {name: gift85, price: 85}
+            - {name: gift90, price: 90}
+            - {name: gift95, price: 95}
+            - {name: gift100, price: 100}
+            - {name: gift105, price: 105}
+            - {name: gift110, price: 110}
+            - {name: gift115, price: 115}
+            - {name: gift120, price: 120}
+            - {name: gift125, price: 125}
+            - {name: gift130, price: 130}
+            - {name: gift135, price: 135}
+            - {name: gift140, price: 140}
+            - {name: gift145, price: 145}
+            - {name: gift150, price: 150}
+            - {name: gift155, price: 155}
+            - {name: gift160, price: 160}
+            - {name: gift165, price: 165}
+            - {name: gift170, price: 170}
+            - {name: gift175, price: 175}
+            - {name: gift180, price: 180}
+            - {name: gift185, price: 185}
+            - {name: gift190, price: 190}
+            - {name: gift195, price: 195}
+            - {name: gift200, price: 200}
+            - {name: gift205, price: 205}
+            - {name: gift210, price: 210}
+            - {name: gift215, price: 215}
+            - {name: gift220, price: 220}
+            - {name: gift225, price: 225}
+            - {name: gift230, price: 230}
+            - {name: gift235, price: 235}
+            - {name: gift240, price: 240}
+            - {name: gift245, price: 245}
+            - {name: gift250, price: 250}
+        - name: specials
+          items: 
+            - {name: discount, price: -1}
+            - {name: extras, price: 1}
+            - {name: gratuity18, price: 0}
+            - {name: special price, price: 0}
+            - {name: special3, price: 3}
+            - {name: special4, price: 4}
+            - {name: special5, price: 5}
+            - {name: special6, price: 6}
+            - {name: special7, price: 7}
+            - {name: special8, price: 8}
+            - {name: special9, price: 9}
+            - {name: special10, price: 10}
+            - {name: special11, price: 11}
+            - {name: special12, price: 12}
+            - {name: special13, price: 13}
+            - {name: special14, price: 14}
+            - {name: special15, price: 15}
+            - {name: special16, price: 16}
+            - {name: special17, price: 17}
+            - {name: special18, price: 18}
+            - {name: special19, price: 19}
+            - {name: special20, price: 20}
+            - {name: special21, price: 21}
+            - {name: special22, price: 22}
+            - {name: special23, price: 23}
+            - {name: special24, price: 24}
+            - {name: special25, price: 25}
+            - {name: special26, price: 26}
+            - {name: special27, price: 27}
+            - {name: special28, price: 28}
+            - {name: special29, price: 29}
+            - {name: special30, price: 30}
+            - {name: special31, price: 31}
+            - {name: special32, price: 32}
+        - name: lunch
+          items: 
+            - {name: burrata sandwich, price: 10}
+            - {name: prosciutto sandwich, price: 10}
+            - {name: spanish ham cheese,  price: 9}
+            - {name: panini, price: 7}
+            - {name: goat mushroom sandwich, price: 8}
+            #- {name: ceasar_lun, price: 8}
+            - {name: beet salad, price: 6}
+            - {name: soup, price: 7}
+        - name: brunch
+          items: 
+            - {name: bloomfield, price: 12}
+            - {name: duck in a hole, price: 9}
+            - {name: frittata, price: 10}
+            - {name: oatmeal, price: 4}
+            - {name: sweet hash, price: 5}
+            - {name: bacon, price: 4}
+            - {name: bread pudding, price: 10}
+            - {name: tostada, price: 5}
+            - {name: mascarpone, price: 0}
+            - {name: honeybutter, price: 0}
+            - {name: fig jam, price: 0}
+            - {name: manchego, price: 0}
+            - {name: serrano, price: 0}
+            - {name: extra, price: 3}
+            - {name: mini panini, price: 7}
+            - {name: cabra panini, price: 8}
+            - {name: burrata sandwich, price: 10}
+            - {name: beet salad, price: 9}
+    - name: bev
+      subcategories:
+        - name: bar
+          items: 
+            - {name: glass red sangria, price: 8}
+            - {name: glass white sangria, price: 8}
+            - {name: jar red sangria, price: 18}
+            - {name: jar white sangria, price: 18}
+            - {name: pelligrino sm, price: 3}
+            - {name: pelligrino lg, price: 6}
+            - {name: coffee, price: 3}
+            - {name: tea, price: 3}
+            - {name: OJ, price: 3}
+            - {name: pineapple, price: 3}
+            - {name: liquor flight, price: 16}
+            - {name: red flight, price: 16}
+            - {name: white flight, price: 14}
+            - {name: seltzer, price: 2}
+            - {name: coke, price: 3}
+            - {name: dcoke, price: 3}
+            - {name: lemon, price: 3}
+            - {name: ginger, price: 3}
+            - {name: tonic, price: 3}
+            - {name: cran, price: 3}
+            - {name: cktail5, price: 5}
+            - {name: cktail7, price: 7}
+            - {name: cktail10, price: 10}
+            - {name: cktail12, price: 12}
+            - {name: vodka tonic, price: 7}
+            - {name: vodka cran, price: 7}
+            - {name: vodka sprite, price: 7}
+            - {name: vodka soda, price: 7}
+            - {name: rum coke, price: 7}
+            - {name: dark n stormy, price: 7}
+            - {name: wine spritz, price: 10}
+            - {name: old-fashioned, price: 10}
+            - {name: manhattan, price: 10}
+            - {name: martini, price: 10}
+            - {name: drty mart, price: 10}
+            - {name: cosmo, price: 10}
+            - {name: margarita, price: 10}
+            - {name: caipirnha, price: 10}
+            - {name: citrus smash (virgin), price: 5}
+            - {name: ciirus smash rum, price: 10}
+            - {name: jack-coke, price: 10}
+            - {name: patron shot, price: 10}
+            - {name: pueblo shot, price: 10}
+            - {name: vodka shot, price: 7}
+            - {name: sambucca shot, price: 7}
+            - {name: frangelico shot, price: 7}

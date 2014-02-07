@@ -1,6 +1,12 @@
 import MySQLdb
 import datetime
 import os
+import socket
+
+
+def hostname():
+  return socket.gethostname()
+
 
 def object_from_dict(the_dict):
   class an_object:
