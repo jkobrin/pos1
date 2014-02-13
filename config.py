@@ -4,8 +4,7 @@ from mylog import my_logger
 import utils
 log = my_logger
 
-CONFIG_FILE_NAME = '/var/www/config.yml'
-WINELIST_FILE_NAME = '/var/www/winelist.yml'
+CONFIG_FILE_NAME = '/var/www/' + utils.hostname() + '_config.yml'
 
 MAX_NAME_LEN = 32
 

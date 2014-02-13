@@ -1,6 +1,3 @@
-#import sys
-#sys.path.append("/var/www")
-
 import json
 import MySQLdb
 from xml.sax.saxutils import escape
@@ -25,7 +22,7 @@ def get_wine_xml():
       order by listorder
       ''' % locals())
 
-    if cat in ('Red Wine', 'Bubbly', 'Bottled Beer', 'House Cocktails') or os.uname()[1] == 'plansrv' and cat == 'White Wine':
+    if cat in ('Red Wine', 'Bubbly', 'Bottled Beer', 'House Cocktails') or utils.hostname() == 'plansrv' and cat == 'White Wine':
       style = 'P19' #this style starts new page
     else:
       style = 'P20'
