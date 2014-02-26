@@ -119,13 +119,14 @@
     function load_sales_by_server()
     {
       g_sales_by_server = http_request("GET", "sales_by_server.py/get", "lag_days="+g_lag_days);
+
       for (idx in g_sales_by_server)
       {
         sales_by_server = g_sales_by_server[idx];
-        sales_by_server.cc1 = "";
-        sales_by_server.cc2 = Number(0);
-        sales_by_server.cash1 = "";
-        sales_by_server.cash2 = Number(-80);
+        if (sales_by_server.cc1 == null) {sales_by_server.cc1 = ""};
+        if (sales_by_server.cc2 == null) {sales_by_server.cc2 = Number(0)};
+        if (sales_by_server.cash1 == null) {sales_by_server.cash1 = ""};
+        if (sales_by_server.cash2 == null) {sales_by_server.cash2 = Number(-80)};
         sales_by_server.tip_amt= "";
         sales_by_server.tip_pct = "";
       }
@@ -163,7 +164,7 @@
       for (idx in g_sales_by_server)
       {
         ss = g_sales_by_server[idx];
-        ss.tip_amt =  ss.cc1 + ss.cc2 + ss.cash1 + ss.cash2 - ss.receipts;
+        ss.tip_amt =  Number(ss.cc1) + Number(ss.cc2) + Number(ss.cash1) + Number(ss.cash2) - Number(ss.receipts);
         tip_amt_element = document.getElementById("tip_amt_"+ss.server);
         tip_amt_element.innerHTML = Math.round(ss.tip_amt);
 
@@ -192,11 +193,29 @@
         if (ss.server == server) 
         {
           ss[field] = value;
+          if (ss.receipts_id == null)
+          {
+            ss.receipts_id = new_receipts_rec(ss.person_id, ss.dat);
+          }
+          update_receipts(value, field, ss.receipts_id);
           break;
         }
       } 
       calculate();
     }
+
+    function new_receipts_rec(person_id, dat)
+    {
+      params = "person_id="+person_id+"&dat="+dat;
+      resp = http_request("POST", "update_receipts.py/new_record", params);
+      return resp;
+    }
+
+    function update_receipts(value, field, receipts_id)
+    {
+      params = "receipts_id="+receipts_id+"&field_name="+field+"&new_value="+value;
+      http_request("POST", "update_receipts.py", params);
+    }  
 
     function update_hours(value, field, hours_id)
     {
