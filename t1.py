@@ -33,6 +33,7 @@ def index(req, doprint=0):
   detail = utils.select('''
 	SELECT concat(yearweek(intime),' ',dayname(intime),' ',date),
 	last_name, 
+	first_name,
 	time_in, 
 	time_out, 
 	hours_worked 
@@ -65,7 +66,7 @@ def index(req, doprint=0):
     ) +
     utils.tohtml(
       "detail hours",
-      ('date', 'last_name', 'time_in', 'time_out', 'hours_worked'), 
+      ('date', 'last_name', 'first_name', 'time_in', 'time_out', 'hours_worked'), 
       detail
     ) +
     '''</body></html>'''

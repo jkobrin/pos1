@@ -6,7 +6,7 @@ import utils
 
 def index(req, the_tip, lag_days):
 
-  utils.execute(
+  last_night_items_query = (
     '''
     create or replace view last_night_items
     as
@@ -14,8 +14,13 @@ def index(req, the_tip, lag_days):
     from 
       served_item si
     where DATE(si.created- INTERVAL '4' HOUR) =  DATE(NOW()) - INTERVAL '%(lag_days)s' DAY 
-    '''%locals()
-    #and (time(si.created) > '17:00:00' or time(si.created) < '04:00:00')
+    '''
+  )
+  if utils.hostname() == 'salsrv': 
+    last_night_items_query += '''and (time(si.created) > '17:00:00' or time(si.created) < '04:00:00') '''
+
+  utils.execute(
+    last_night_items_query %locals()
   )
 
   utils.execute(

@@ -30,8 +30,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var theme = getDemoTheme();
-
-            var url = "getwine.py/get"
+            var url = "getwine.py/get";
+            // pass on any request parameters from the url to the request for data
+            url += window.location.search; //().match(/\?.*$/g);
             
             lastedit = null;
             edits = {};

@@ -7,7 +7,7 @@ def nightly_sales_by_server(label=False, lag_days=1):
 
   return utils.select('''
     SELECT 
-      p.last_name server, 
+      concat(p.last_name, ', ', substr(p.first_name,1,1), '.') server,
       p.ccid,
       sum(oi.price) sales, 
       sum(ri.price) taxable_sales,
@@ -19,7 +19,7 @@ def nightly_sales_by_server(label=False, lag_days=1):
     AND oi.is_comped = False
     AND og.closedby = p.id 
     AND date(oi.created - interval '6' HOUR) = date(now() - INTERVAL '%(lag_days)s' DAY)
-    GROUP BY p.id, p.last_name;''' % locals(),
+    GROUP BY p.id;''' % locals(),
     incursor=None,
     label=label
   )
@@ -27,7 +27,7 @@ def nightly_sales_by_server(label=False, lag_days=1):
 def hours(lag_days):
 
   return utils.select('''
-	SELECT p.last_name,
+	SELECT concat(p.last_name, ', ', substr(p.first_name,1,1), '.') server,
 	h.id, 
   convert(intime, CHAR(48)) intime,
   convert(outtime, CHAR(48)) outtime,
@@ -57,8 +57,8 @@ def weekly_pay(printmode=0):
   where (yearweek(intime) > yearweek(now() - interval '5' week) and %(printmode)s = 0)
      or (yearweek(intime) = yearweek(now() - interval '1' week) and %(printmode)s = 1)
      and intime != 0
-  group by yearweek(intime), last_name 
-	order by yearweek(intime) desc, last_name''' % locals(),
+  group by yearweek(intime), last_name, first_name 
+	order by yearweek(intime) desc, last_name, first_name''' % locals(),
     incursor=None,
     label=printmode
   )

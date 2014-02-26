@@ -2,7 +2,6 @@
 import json
 import MySQLdb
 import utils
-import queries
 
 
 def index(req, lag=0):

@@ -90,9 +90,9 @@ menu:
             - {name: pate, price: 7}
             #- {name: summer harvest, price: 8}
             #- {name: fall salad, price: 9}
-            - {name: cobb, price: 11}
+            #- {name: cobb, price: 11}
             #- {name: peppers, price: 5}
-            #- {name: ceasar, price: 8}
+            - {name: ceasar, price: 8}
             #- {name: roots, price: 7}
             #- {name: mussels, price: 7}
             #- {name: cod, price: 12}
