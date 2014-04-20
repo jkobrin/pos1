@@ -61,14 +61,14 @@ menu:
             - {name: warm olives, price: 5}
             - {name: marcona almonds, price: 5}
             - {name: anchovy, price: 6}
-            - {name: sprouts, price: 8}
+            - {name: artichoke, price: 8}
             - {name: cobb salad, price: 12}
             - {name: burrata , price: 14}
             #- {name: tonnato, price: 12}
             - {name: croquettas, price: 7}
             - {name: patatas bravas, price: 6}
             #- {name: sardine, price: 6}
-            - {name: prawns, price: 14}
+            - {name: scallops, price: 14}
             #- {name: soup, price: 6}
             - {name: foie gras, price: 16}
             - {name: cabra bake, price: 9}
@@ -242,7 +242,7 @@ menu:
           items: 
             - {name: white sangrea, price: 8}
             - {name: red sangrea, price: 8}
-            - {name: wine flight, price: 16}
+            - {name: wine flight, price: 18}
             - {name: pelligrino, price: 3}
             - {name: coffee, price: 4}
             - {name: tea, price: 4}
