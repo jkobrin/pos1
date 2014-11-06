@@ -59,8 +59,12 @@ def select(query, incursor=None, label=True):
 
   cursor.execute(query)
   rows = cursor.fetchall()
+  colnames = [coldesc[0] for coldesc in cursor.description]
+
+  if label == 'separate':
+    return colnames, rows
+
   if label:
-    colnames = [coldesc[0] for coldesc in cursor.description]
     results = label_query_rows(colnames, rows)
   else:
     results = rows

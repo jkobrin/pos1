@@ -61,25 +61,29 @@ menu:
             - {name: warm olives, price: 5}
             - {name: marcona almonds, price: 5}
             - {name: anchovy, price: 6}
-            - {name: artichoke, price: 8}
-            - {name: cobb salad, price: 12}
+            #- {name: artichoke, price: 8}
+            - {name: caesar salad, price: 9}
+            - {name: summer salad, price: 9}
             - {name: burrata , price: 14}
             #- {name: tonnato, price: 12}
             - {name: croquettas, price: 7}
             - {name: patatas bravas, price: 6}
             #- {name: sardine, price: 6}
+            - {name: cauliflower, price: 8}
+            - {name: shishito peppers, price: 7}
+            - {name: sprouts, price: 9}
             - {name: scallops, price: 14}
             #- {name: soup, price: 6}
             - {name: foie gras, price: 16}
-            - {name: cabra bake, price: 9}
-            - {name: panini , price: 7}
+            #- {name: cabra bake, price: 9}
+            - {name: panini , price: 8}
             - {name: marrow bones, price: 8}
             #- {name: sausage, price: 7}
             - {name: pulpo, price: 14}
-            - {name: bocadillo, price: 8}
+            - {name: bocadillo, price: 9}
             - {name: sebada, price: 7}
             - {name: duck, price: 16}
-            - {name: bistec, price: 18}
+            - {name: lamb, price: 18}
             - {name: bread, price: 3}
         - name: boards
           items: 
@@ -211,24 +215,25 @@ menu:
             - {name: special32, price: 32}
         - name: lunch
           items: 
-            - {name: endive_san, price: 8}
-            - {name: burrata_san, price: 9}
-            - {name: prosciutto_san, price: 10}
-            - {name: spanish_san, price: 9}
-            - {name: soppresatta_san, price: 7}
-            - {name: cuban_san, price: 11}
-            - {name: goat_mush_san, price: 8}
-            - {name: spanish_cobb, price: 12}
-            - {name: beet_endive_salad, price: 9}
-            - {name: soup, price: 6_salad}
+            - {name: avocado san, price: 8}
+            - {name: burrata san, price: 9}
+            - {name: prosciutto san, price: 10}
+            - {name: spanish ham and cheese, price: 9}
+            - {name: soppresatta san, price: 7}
+            - {name: copa cubano, price: 11}
+            - {name: goat mush san, price: 8}
+            - {name: summer harvest, price: 9}
+            - {name: house salumi, price: 9}
+            - {name: soup, price: 6}
         - name: brunch 
           items: 
+            - {name: french toast, price: 8}
             - {name: bloomfield, price: 12}
-            - {name: duck egg, price: 10}
             - {name: scramble, price: 8}
             - {name: add bacon, price: 5}
-            - {name: spanish cobb, price: 12}
-            - {name: beet endive, price: 8}
+            - {name: home fries, price: 6}
+            - {name: summer harest salad, price: 9}
+            - {name: house salad, price: 8}
             - {name: ham cheese toast, price: 6}
             - {name: smoked anchovies, price: 6}
             - {name: calabrian panini, price: 7}

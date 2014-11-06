@@ -67,7 +67,7 @@ def weekly_pay(printmode=0):
   where (yearweek(intime) > yearweek(now() - interval '5' week) and %(printmode)s = 0)
      or (yearweek(intime) = yearweek(now() - interval '1' week) and %(printmode)s = 1)
      and intime != 0
-  group by yearweek(intime), last_name 
+  group by yearweek(intime), last_name, first_name
 	order by yearweek(intime) desc, last_name''' % locals(),
     incursor=None,
     label=printmode
