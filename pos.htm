@@ -514,7 +514,7 @@
     function is_staff(table_id)
     {
       tab = get_config_item(table_id);
-      return (tab && tab.subcat == 'staff')
+      return (tab && (tab.subcat == 'staff' || tab.subcat=='staff_tabs'))
     }
 
     function refresh_order(add_item, remove_item)
@@ -539,7 +539,24 @@
           return;
         }
 
-        if(is_staff(g_currentTable)) {add_item.price = 0;}
+        if(is_staff(g_currentTable)) 
+        {
+          add_item.price = add_item.price/3;
+          if ( add_item.cat == 'bev' && add_item.id != null)
+          {
+            info = http_request("POST", "get_wine_info.py", "menu_item_id="+add_item.id);
+            price = info.frontprice;
+            if (price != null && price > 0 )
+            {
+              if (add_item.name.slice(0,3) == 'qt:')
+              {
+                price = price/4;
+              }
+              add_item.price = price; 
+            }
+          }
+        }
+
         if(add_item.name == 'special price')
         {
           add_item.price = prompt('Enter price:', 0);
@@ -602,8 +619,6 @@
         if (item.is_delivered) {continue}
 
         
-        if (is_staff(item.table_id)) {continue}
-
         classes = "order_item";
         config_item = get_config_item(item.item_name);
         if (config_item && config_item.cat == 'bev') {classes += ' bev_item'}
