@@ -14,6 +14,10 @@ menu:
             - name: 7
             - name: 8
             - name: 9
+            - name: 10
+            - name: 11
+            - name: 12
+            - name: 13
             - name: B1
             - name: B2
             - name: B3
@@ -27,15 +31,6 @@ menu:
             - name: B11
             - name: B12
             - name: B13
-            - name: B14
-            - name: B15
-            - name: B16
-            - name: B17
-            - name: F1
-            - name: F2
-            - name: F3
-            - name: F4
-            - name: F5
             - name: O1
             - name: O2
             - name: O3
@@ -43,23 +38,6 @@ menu:
             - name: O5
             - name: O6
             - name: O7
-        - name: staff
-          items: 
-            - name: JWK
-            - name: LQK
-            - name: JL
-            - name: DS
-            - name: JA
-            - name: DW
-            - name: JY 
-            - name: RN
-            - name: AM
-            - name: AC
-            - name: GD
-            - name: AA 
-            - name: AI
-            - name: CH
-            - name: RP
     - name: food
       subcategories:
         - name: guests 
@@ -82,37 +60,30 @@ menu:
           items: 
             - {name: warm olives, price: 5}
             - {name: marcona almonds, price: 5}
-            - {name: walnut pesto, price: 6}
             - {name: anchovy, price: 6}
-            - {name: corn, price: 5}
-            #- {name: peppers, price: 7}
-            - {name: salmon, price: 7}
-            - {name: roe, price: 8}
-            #- {name: summer harvest, price: 8}
-            - {name: spring salad, price: 9}
-            #- {name: peppers, price: 5}
-            #- {name: ceasar, price: 8}
-            #- {name: roots, price: 7}
-            #- {name: mussels, price: 7}
-            #- {name: cod, price: 12}
-            #- {name: pate, price: 7}
-            #- {name: prawn, price: 10}
-            #- {name: octopus, price: 12}
+            #- {name: artichoke, price: 8}
+            - {name: caesar salad, price: 9}
+            - {name: summer salad, price: 9}
             - {name: burrata , price: 14}
-            #- {name: patatas bravas, price: 5}
-            - {name: cabra bake, price: 8}
-            - {name: tonnato, price: 12}
-            #- {name: meatballs, price: 8}
-            - {name: empanada, price: 7}
-            - {name: mini panini , price: 7}
+            #- {name: tonnato, price: 12}
+            - {name: croquettas, price: 7}
+            - {name: patatas bravas, price: 6}
+            #- {name: sardine, price: 6}
+            - {name: cauliflower, price: 8}
+            - {name: shishito peppers, price: 7}
+            - {name: sprouts, price: 9}
+            - {name: scallops, price: 14}
+            #- {name: soup, price: 6}
+            - {name: foie gras, price: 16}
+            #- {name: cabra bake, price: 9}
+            - {name: panini , price: 8}
             - {name: marrow bones, price: 8}
-            #- {name: french onion, price: 7}
-            - {name: bocadillo, price: 8}
-            - {name: polenta tapa, price: 7}
-            - {name: polenta plate, price: 12}
-            - {name: oxtail, price: 10}
-            #- {name: chicken, price: 18}
-            - {name: short rib, price: 21}
+            #- {name: sausage, price: 7}
+            - {name: pulpo, price: 14}
+            - {name: bocadillo, price: 9}
+            - {name: sebada, price: 7}
+            - {name: duck, price: 16}
+            - {name: lamb, price: 18}
             - {name: bread, price: 3}
         - name: boards
           items: 
@@ -138,8 +109,9 @@ menu:
             - {name: floret, price: 0}
             - {name: blue cheese, price: 0}
             - {name: gruyere, price: 0}
-            - {name: gouda, price: 0}
             - {name: cheddar, price: 0}
+            - {name: gouda, price: 0}
+            - {name: bufala, price: 0}
             #- {name: capri, price: 0}
             - {name: seranno ham, price: 0}
             - {name: lomo, price: 0}
@@ -147,9 +119,8 @@ menu:
             - {name: prosciutto, price: 0}
             - {name: hot capicolla, price: 0}
             - {name: felino, price: 0}
-            - {name: jambon, price: 0}
+            - {name: pata negra, price: 15}
             #- {name: rosette de lyon, price: 0}
-            - {name: american ham, price: 0}
             - {name: extra fig, price: 0}
         - name: dessert_etc
           items: 
@@ -211,6 +182,7 @@ menu:
             - {name: extras, price: 1}
             - {name: gratuity18, price: 0}
             - {name: special price, price: 0}
+            - {name: corkage, price: 10}
             - {name: special3, price: 3}
             - {name: special4, price: 4}
             - {name: special5, price: 5}
@@ -243,53 +215,58 @@ menu:
             - {name: special32, price: 32}
         - name: lunch
           items: 
-            - {name: salmon_san, price: 8}
-            - {name: burrata_san, price: 9}
-            - {name: prosciutto_san, price: 10}
-            - {name: spanish_san, price: 9}
-            - {name: soppresatta_san, price: 7}
-            - {name: cuban_san, price: 9}
-            - {name: goat_mush_san, price: 8}
-            - {name: pork_san, price: 9}
-            - {name: beef_san, price: 10}
-            - {name: ceasar_lun, price: 8}
-            - {name: beet_ora_lun, price: 6}
-            - {name: copa_goat_lun, price: 9}
+            - {name: avocado san, price: 8}
+            - {name: burrata san, price: 9}
+            - {name: prosciutto san, price: 10}
+            - {name: spanish ham and cheese, price: 9}
+            - {name: soppresatta san, price: 7}
+            - {name: copa cubano, price: 11}
+            - {name: goat mush san, price: 8}
+            - {name: summer harvest, price: 9}
+            - {name: house salumi, price: 9}
             - {name: soup, price: 6}
-        #- name: breakfast
-        #  items: 
-        #    - {name: bacon egg, price: 6}
-        #    - {name: yogurt, price: 4}
-        #    - {name: masc fig, price: 3}
-        #    - {name: pb strawberry, price: 3}
-        #    - {name: nuttella zest, price: 3}
-        #    - {name: jamon cheese, price: 5}
-        #    - {name: prosciut cheese, price: 5}
-        #    - {name: breakfast tea, price: 3}
-        #    - {name: coffee, price: 3}
-        #    - {name: hot choco, price: 3}
+        - name: brunch 
+          items: 
+            - {name: french toast, price: 8}
+            - {name: bloomfield, price: 12}
+            - {name: scramble, price: 8}
+            - {name: add bacon, price: 5}
+            - {name: home fries, price: 6}
+            - {name: summer harest salad, price: 9}
+            - {name: house salad, price: 8}
+            - {name: ham cheese toast, price: 6}
+            - {name: smoked anchovies, price: 6}
+            - {name: calabrian panini, price: 7}
+            - {name: cabra panini, price: 8}
+            - {name: copa cubano, price: 11}
+            - {name: coffee, price: 4}
+            - {name: tea, price: 4}
     - name: bev
       subcategories:
         - name: bar
           items: 
-            - {name: pelligrino sm, price: 3}
-            - {name: pelligrino lg, price: 6}
-            - {name: coffee, price: 3}
-            - {name: tea, price: 3}
-            - {name: liquor flight, price: 16}
-            - {name: red flight, price: 16}
-            - {name: white flight, price: 14}
+            - {name: white sangrea, price: 8}
+            - {name: red sangrea, price: 8}
+            - {name: wine flight, price: 18}
+            - {name: pelligrino, price: 3}
+            - {name: coffee, price: 4}
+            - {name: tea, price: 4}
             - {name: seltzer, price: 2}
             - {name: coke, price: 3}
             - {name: dcoke, price: 3}
-            - {name: lemon, price: 3}
-            - {name: ginger, price: 3}
-            - {name: tonic, price: 3}
+            - {name: lemon, price: 4}
+            - {name: ginger, price: 4}
+            - {name: blood orange, price: 4}
+            - {name: tonic, price: 4}
             - {name: cran, price: 3}
-            - {name: cktail5, price: 5}
+            - {name: rickey, price: 5}
+            - {name: lemonade, price: 5}
+            - {name: citrus smash (virgin), price: 5}
+            - {name: cktail of the day, price: 12}
             - {name: cktail7, price: 7}
             - {name: cktail10, price: 10}
             - {name: cktail12, price: 12}
+            - {name: cktail14, price: 14}
             - {name: vodka tonic, price: 7}
             - {name: vodka cran, price: 7}
             - {name: vodka sprite, price: 7}
@@ -297,16 +274,15 @@ menu:
             - {name: rum coke, price: 7}
             - {name: dark n stormy, price: 7}
             - {name: wine spritz, price: 10}
-            - {name: old-fashioned, price: 10}
-            - {name: manhattan, price: 10}
+            - {name: old-fashioned, price: 12}
+            - {name: manhattan, price: 12}
             - {name: martini, price: 10}
             - {name: drty mart, price: 10}
             - {name: cosmo, price: 10}
             - {name: margarita, price: 10}
             - {name: caipirnha, price: 10}
-            - {name: citrus smash (virgin), price: 5}
             - {name: ciirus smash rum, price: 10}
-            - {name: jack-coke, price: 10}
+            - {name: burbon coke, price: 10}
             - {name: patron shot, price: 10}
             - {name: pueblo shot, price: 10}
             - {name: vodka shot, price: 7}

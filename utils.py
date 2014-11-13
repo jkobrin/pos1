@@ -1,5 +1,12 @@
 import MySQLdb
 import datetime
+import os
+import socket
+
+
+def hostname():
+  return socket.gethostname()
+
 
 def object_from_dict(the_dict):
   class an_object:
@@ -52,8 +59,12 @@ def select(query, incursor=None, label=True):
 
   cursor.execute(query)
   rows = cursor.fetchall()
+  colnames = [coldesc[0] for coldesc in cursor.description]
+
+  if label == 'separate':
+    return colnames, rows
+
   if label:
-    colnames = [coldesc[0] for coldesc in cursor.description]
     results = label_query_rows(colnames, rows)
   else:
     results = rows
@@ -95,6 +106,12 @@ def tohtml(title, headings, rows, breakonfirst=False):
     '''</table> '''
     )
   
+def is_salumi():
+  return not is_plancha()
+
+def is_plancha():
+  return os.uname()[1] == 'plansrv'
+
 
 if __name__ == '__main__':
   print tohtml('goo', [{3: 'ewew', 5: 'hud'},{3: 'ewjd', 5: 'gf'}, {3: 'ewew', 5: 'hioud'},]) 

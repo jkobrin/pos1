@@ -3,34 +3,27 @@ import sys
 
 import json
 import MySQLdb
-import utils
+import utils, queries, print_pay_slips
 
 
 
-def index(req):
+def index(req, doprint=0):
 
-  weekly = utils.select('''
-	SELECT yearweek(intime),
-	last_name,
-	sum(hours_worked) as hours_worked,
-  pay_rate, 
-  weekly_tax,
-  round(sum(hours_worked)*pay_rate - weekly_tax) as weekly_pay
-	from hours_worked 
-  where yearweek(intime) > yearweek(now() - interval '5' week)
-  group by yearweek(intime), last_name 
-	order by yearweek(intime) desc, last_name''',
-    incursor=None,
-    label=False
-  )
+  if doprint:
+    print_pay()
+    print_message="<p> PRINTED.<br>"
+  else:
+    print_message = ""
+
+  weekly = queries.weekly_pay()
 
   payroll = utils.select('''
 	SELECT yearweek(intime),
 	sum(hours_worked) as hours_worked,
-  round(sum(hours_worked*pay_rate)) + 194 + 480 + 550 as payroll
+  round(sum(hours_worked*pay_rate)) + 700 as payroll
 	from hours_worked 
   where yearweek(intime) > yearweek(now() - interval '5' week)
-  and last_name not in ('Kobrin', 'Labossier', 'Kanarova')
+  and last_name not in ('Kobrin', 'Labossier', 'Kanarova', 'Rodrigues')
   group by yearweek(intime)
 	order by yearweek(intime) desc''',
     incursor=None,
@@ -54,10 +47,13 @@ def index(req):
     '''  
       <html>
       <body>
-    ''' + 
+	<form action="t1.py?doprint=1" method="POST">
+  	<input type="submit" value="print pay slips">
+	</form>
+    ''' + print_message +
     utils.tohtml(
       'Hours worked per week by person',
-      ('yearweek', 'last name',  'hours_worked', 'rate', 'tax', 'weekly_pay'), 
+      ('week of', 'last name',  'first_name', 'hours_worked', 'rate', 'tax', 'weekly pay', 'tips', 'total pay', 'total hourly'), 
       weekly,
       breakonfirst = True
     ) +
@@ -76,6 +72,10 @@ def index(req):
   )
 
   return html
+
+def print_pay():
+    print_pay_slips.go()
+
 
 if __name__ == '__main__':
   print 'hi'

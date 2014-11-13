@@ -6,7 +6,10 @@ import datetime
 from time import mktime
 import decimal
 
-def get(req): #, table, additem=None, removeitem=None, price=None):
+import wineprint
+
+
+def get(req, filtered=True):
 
   #log = open('/var/www/logs', 'a')
   #log.write("recs called\n")
@@ -17,7 +20,10 @@ def get(req): #, table, additem=None, removeitem=None, price=None):
 
   cursor = conn.cursor()
 
-  recs = utils.select('''select * from winelist_inv''', cursor)
+  if filtered is True:
+    recs = utils.select("select * from winelist_inv where bin != '0'", cursor)
+  else:
+    recs = utils.select('''select * from winelist_inv''', cursor)
 
   cursor.close ()
   conn.close ()
@@ -36,7 +42,7 @@ def get(req): #, table, additem=None, removeitem=None, price=None):
   return json.dumps(recs, cls=MyEncoder)
 
 
-def update_winelist(req, edits, newrows): #, table, additem=None, removeitem=None, price=None):
+def update_winelist(req, edits, newrows):
   edits = json.loads(edits)
   newrows = json.loads(newrows)
 
@@ -56,8 +62,9 @@ def update_winelist(req, edits, newrows): #, table, additem=None, removeitem=Non
     log.write(sql);
     utils.execute(sql, cursor)
   for fields_and_vals in newrows.values():
-    if fields_and_vals.has_key('uid'):
-      fields_and_vals.pop('uid')
+    for bad_field in ('uid', 'estimated_units_remaining'):
+      if fields_and_vals.has_key(bad_field): fields_and_vals.pop(bad_field)
+
     fields = fields_and_vals.keys()
     values = fields_and_vals.values()
     field_list = ','.join(fields)
@@ -68,6 +75,9 @@ def update_winelist(req, edits, newrows): #, table, additem=None, removeitem=Non
 
   cursor.close ()
   conn.close ()
+
+  wineprint.gen_fodt_and_pdf()
+
 
 def sql_representation(val):
 
@@ -82,4 +92,4 @@ def sql_representation(val):
     return str(val)
 
 if __name__ == '__main__':
-  print bevinventory_records(None)
+  print get(None)

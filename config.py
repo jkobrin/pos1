@@ -4,8 +4,7 @@ from mylog import my_logger
 import utils
 log = my_logger
 
-CONFIG_FILE_NAME = '/var/www/config.yml'
-WINELIST_FILE_NAME = '/var/www/winelist.yml'
+CONFIG_FILE_NAME = '/var/www/' + utils.hostname() + '_config.yml'
 
 MAX_NAME_LEN = 32
 
@@ -13,6 +12,7 @@ def iget():
   items = {}
   cfg = yaml.load(open(CONFIG_FILE_NAME))
   populate_wine_category(cfg)  
+  populate_staff_tabs(cfg)
 
   for category in cfg['menu']['categories']:
     catname = category['name']
@@ -29,6 +29,19 @@ def iget():
 def get():  
   cfg, items = iget()
   return json.dumps(cfg)
+
+def populate_staff_tabs(cfg):
+
+    items = utils.select('''
+      select concat(first_name, ' ', last_name) as name
+      from person
+      ''')
+    table_cat_results = [cat for cat in cfg['menu']['categories'] if cat['name'] == 'tables']
+    if len(table_cat_results) != 1: raise Exception('Problem finding tables category')
+    table_category = table_cat_results[0]
+    staff_subcat = {'name': 'staff_tabs', 'items': items}
+    table_category['subcategories'].append(staff_subcat)
+
 
 
 def populate_wine_category(cfg):
