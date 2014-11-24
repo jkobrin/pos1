@@ -26,6 +26,15 @@ group by year(created), week(created)
 ;
 
 
+create or replace view sales_by_month
+as
+select sum(price) total, year(created) year, month(created) month
+from
+revenue_item
+group by year(created), month(created)
+;
+
+
 
 create or replace view night_tots
 as

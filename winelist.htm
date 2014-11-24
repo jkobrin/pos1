@@ -112,8 +112,8 @@
                 columns: [
                     { text: 'name',          datafield: 'name',  width:200},
                     { text: 'bin',           datafield: 'bin',             },
-                    { text: 'supplier',      datafield: 'supplier',       },
-                    { text: 'estimated_units_remaining', datafield: 'estimated_units_remaining', editable: false }, 
+                    { text: 'supplier',      datafield: 'supplier'},
+                    { text: 'estimated_units_remaining', datafield: 'estimated_units_remaining', editable: false}, 
                     { text: 'units_in_stock',datafield: 'units_in_stock', columntype: 'numberinput' },
                     { text: 'inventory_date',datafield: 'inventory_date', columntype: 'datetimeinput', cellsformat: 'yyyy-MM-dd'},
                     { text: 'category',      datafield: 'category',        },
@@ -174,7 +174,7 @@
                         newrows={};
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        // alert(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
+                        alert(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
 			errWindow = window.open("","MsgWindow","width=200,height=100");
                         errWindow.document.write("<p>"+textStatus + ":::" + errorThrown + "</p>" + jqXHR.responseText);
                         commit(false);

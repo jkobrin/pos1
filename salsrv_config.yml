@@ -84,28 +84,28 @@ menu:
             - {name: marcona almonds, price: 5}
             - {name: walnut pesto, price: 6}
             - {name: anchovy, price: 6}
-            #- {name: corn, price: 5}
-            #- {name: peppers, price: 7}
-            - {name: salmon, price: 7}
-            - {name: pate, price: 7}
+            - {name: salmon crudo, price: 7}
+            - {name: burrata, price: 14}
+            - {name: medi salad, price: 12}
+            #- {name: mussels, price: 7}
+            - {name: meatballs, price: 5}
+            - {name: brussel sprouts, price: 7}
             #- {name: summer harvest, price: 8}
             #- {name: fall salad, price: 9}
             #- {name: cobb, price: 11}
             #- {name: peppers, price: 5}
-            - {name: ceasar, price: 8}
-            #- {name: roots, price: 7}
+            #- {name: waldorf salad, price: 9}
             #- {name: mussels, price: 7}
             #- {name: cod, price: 12}
             #- {name: pate, price: 7}
             #- {name: prawn, price: 10}
             #- {name: octopus, price: 12}
-            - {name: sprouts, price: 8}
-            - {name: burrata, price: 14}
+            - {name: cauliflower, price: 8}
             #- {name: patatas bravas, price: 5}
-            - {name: cabra bake, price: 8}
-            - {name: roots, price: 8}
+            - {name: artichokes, price: 8}
             - {name: octopus, price: 12}
-            #- {name: tonnato, price: 12}
+            - {name: taleggio bake, price: 7}
+            #- {name: radish, price: 8}
             #- {name: meatballs, price: 8}
             - {name: empanada, price: 7}
             - {name: mini panini , price: 7}
@@ -114,10 +114,27 @@ menu:
             - {name: bocadillo, price: 8}
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
-            - {name: oxtail, price: 10}
+            - {name: oxtail, price: 14}
+            - {name: lamb, price: 22}
             #- {name: chicken, price: 18}
-            - {name: beef, price: 21}
             - {name: bread, price: 3}
+            - {name: panacotta, price: 7}
+            - {name: chocolate, price: 5}
+            - {name: pound cake, price: 7}
+            - {name: special5, price: 7}
+            - {name: special6, price: 7}
+            - {name: special7, price: 7}
+            - {name: special8, price: 8}
+            - {name: special9, price: 9}
+            - {name: special10, price: 10}
+            - {name: special12, price: 12}
+            - {name: special14, price: 14}
+            - {name: plates, price: 0}
+            - {name: knives, price: 0}
+            - {name: forks, price: 0}
+            - {name: spoons, price: 0}
+            - {name: wine glasses, price: 0}
+            - {name: water glasses, price: 0}
         - name: boards
           items: 
             - name: 1-board
@@ -132,6 +149,7 @@ menu:
               price: 27
             - name: mixed cheese board
               price: 27
+            - {name: dessert board, price: 14}
             - {name: manchego , price: 0}
             - {name: cana de cabra, price: 0}
             - {name: campo de montalban, price: 0}
@@ -139,11 +157,11 @@ menu:
             - {name: piave, price: 0}
             - {name: pecorino tartufo, price: 0}
             - {name: daffinois, price: 0}
-            - {name: floret, price: 0}
+            - {name: garrotxa, price: 0}
             - {name: blue cheese, price: 0}
             - {name: gouda, price: 0}
             - {name: cheddar, price: 0}
-            - {name: bufala, price: 0}
+            #- {name: bufala, price: 0}
             #- {name: capri, price: 0}
             - {name: pata negra, price: 15}
             - {name: seranno ham, price: 0}
@@ -156,10 +174,8 @@ menu:
             #- {name: rosette de lyon, price: 0}
             #- {name: american ham, price: 0}
             - {name: extra fig, price: 0}
-        - name: dessert_etc
+        - name: gift_certificates
           items: 
-            - {name: panacotta, price: 7}
-            - {name: chocolate, price: 5}
             - {name: gift5, price: 5}
             - {name: gift10, price: 10}
             - {name: gift15, price: 15}
@@ -254,40 +270,49 @@ menu:
             - {name: panini, price: 7}
             - {name: goat mushroom sandwich, price: 8}
             #- {name: ceasar_lun, price: 8}
-            - {name: beet salad, price: 6}
-            - {name: soup, price: 7}
+            - {name: house salad, price: 7}
+            #- {name: soup, price: 7}
         - name: brunch
           items: 
             - {name: bloomfield, price: 12}
-            - {name: duck in a hole, price: 9}
-            - {name: frittata, price: 10}
-            - {name: oatmeal, price: 4}
-            - {name: sweet hash, price: 5}
-            - {name: bacon, price: 4}
+            - {name: egg in a hole, price: 7}
+            - {name: scramble, price: 8}
             - {name: bread pudding, price: 10}
-            - {name: tostada, price: 5}
-            - {name: mascarpone, price: 0}
-            - {name: honeybutter, price: 0}
-            - {name: fig jam, price: 0}
-            - {name: manchego, price: 0}
-            - {name: serrano, price: 0}
-            - {name: extra, price: 3}
+            - {name: ham and cheese, price: 6}
+            - {name: johnny cakes, price: 11}
+            - {name: potato hash, price: 5}
+            - {name: bacon, price: 4}
+            - {name: anchovy, price: 6}
+            - {name: walnut pesto, price: 6}
+            - {name: meatballs, price: 5}
+            - {name: empanada, price: 7}
             - {name: mini panini, price: 7}
             - {name: cabra panini, price: 8}
             - {name: burrata sandwich, price: 10}
-            - {name: beet salad, price: 9}
+            - {name: bocadillo, price: 8}
+            - {name: house salad, price: 7}
+            - {name: green goddess, price: 8}
+            - {name: bread, price: 3}
     - name: bev
       subcategories:
         - name: bar
           items: 
             - {name: glass red sangria, price: 8}
             - {name: glass white sangria, price: 8}
-            - {name: jar red sangria, price: 18}
-            - {name: jar white sangria, price: 18}
+            - {name: glass rose sangria, price: 8}
+            - {name: jar red sangria, price: 22}
+            - {name: jar white sangria, price: 22}
+            - {name: jar rose sangria, price: 22}
             - {name: pelligrino sm, price: 3}
             - {name: pelligrino lg, price: 6}
-            - {name: coffee, price: 3}
+            - {name: coffee, price: 4}
             - {name: tea, price: 3}
+            - {name: ceylon, price: 4}
+            - {name: jasmin, price: 4}
+            - {name: paris, price: 4}
+            - {name: shangri la, price: 5}
+            - {name: thai latte, price: 5}
+            - {name: cold coffee, price: 5}
             - {name: OJ, price: 3}
             - {name: pineapple, price: 3}
             - {name: liquor flight, price: 16}
@@ -304,6 +329,7 @@ menu:
             - {name: cktail7, price: 7}
             - {name: cktail10, price: 10}
             - {name: cktail12, price: 12}
+            - {name: gin tonic, price: 7}
             - {name: vodka tonic, price: 7}
             - {name: vodka cran, price: 7}
             - {name: vodka sprite, price: 7}
@@ -326,3 +352,16 @@ menu:
             - {name: vodka shot, price: 7}
             - {name: sambucca shot, price: 7}
             - {name: frangelico shot, price: 7}
+            - {name: mimosa, price: 7}
+            - {name: mimosa jar, price: 24}
+            - {name: bellini, price: 7}
+            - {name: bellini jar, price: 24}
+            - {name: broody maria, price: 7}
+            - {name: bloody maria jar, price: 24}
+            - {name: bicicletta, price: 7}
+            - {name: cafe amaretto, price: 7}
+            - {name: michelada, price: 7}
+            - {name: citrus smash, price: 10}
+            - {name: positive vines, price: 10}
+            - {name: cold toddy, price: 9}
+            - {name: spanish daisy, price: 9}

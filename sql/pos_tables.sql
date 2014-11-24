@@ -61,7 +61,21 @@ CREATE TABLE bevinventory (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   item_name  VARCHAR(32) not null,
   created TIMESTAMP DEFAULT 0,
-  units INT(4) DEFAULT 0,
-  INDEX person_idx (person_id),
+  units INT(4) DEFAULT 0
+);
+
+drop table receipts_by_server;
+
+CREATE TABLE receipts_by_server (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  person_id INT not null,
+  dat date not null,
+  cc1 float default null,
+  cc2 float default 0,
+  cash1 float default null,
+  cash2 float default -80,
+  created TIMESTAMP DEFAULT 0,
+  INDEX person_idx_receipts (person_id),
+  FOREIGN KEY (person_id) REFERENCES person(id) ON DELETE CASCADE
 );
 

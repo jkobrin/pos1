@@ -44,6 +44,28 @@ def execute(sql, incursor=None):
     cursor.close()
     conn.close()
 
+def select_as_html(query, incursor=None):
+  if not incursor:
+    conn = MySQLdb.connect (host = "localhost",
+                          user = "pos",
+                          passwd = "pos",
+                          db = "pos")
+
+    cursor = conn.cursor()
+  else:
+    cursor = incursor
+
+  cursor.execute(query)
+  rows = cursor.fetchall()
+  colnames = [coldesc[0] for coldesc in cursor.description]
+
+  if not incursor:
+    cursor.close()
+    conn.close()
+
+  return rows
+
+
 
 def select(query, incursor=None, label=True):
   
@@ -59,8 +81,12 @@ def select(query, incursor=None, label=True):
 
   cursor.execute(query)
   rows = cursor.fetchall()
+  colnames = [coldesc[0] for coldesc in cursor.description]
+
+  if label == 'separate':
+    return colnames, rows
+
   if label:
-    colnames = [coldesc[0] for coldesc in cursor.description]
     results = label_query_rows(colnames, rows)
   else:
     results = rows

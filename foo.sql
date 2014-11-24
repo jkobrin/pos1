@@ -1,12 +1,16 @@
-alter table order_item add column menu_item_id int;
-create index oi_mii_idx on order_item(menu_item_id);
+drop table if exists receipts_by_server;
 
-create or replace view winelist_inv as 
-select wl.*, units_in_stock - sum(IF(oi.menu_item_id is null, 0, IF(oi.item_name like 'qt:%', .25, 1))) as estimated_units_remaining
-from winelist wl left join order_item oi on
-wl.inventory_date <= oi.created
-and oi.menu_item_id = wl.id 
-where wl.active = true 
-and (oi.is_cancelled is null or oi.is_cancelled = false)
-group by wl.id;
+CREATE TABLE receipts_by_server (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  person_id INT not null,
+  dat date not null,
+  cc1 float,
+  cc2 float,
+  cash1 float,
+  cash2 float,
+  INDEX rbs_person_id (person_id),
+  INDEX rbs_dat (dat),
+  FOREIGN KEY (person_id) REFERENCES person(id) ON DELETE CASCADE
+)
+ENGINE= MyISAM;
 

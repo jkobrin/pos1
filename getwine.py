@@ -57,13 +57,14 @@ def update_winelist(req, edits, newrows):
   log.write("update_winelist called\n")
   log.write(str(edits) + "\n")
   for rowid, fields_and_vals in edits.items():
-    setlist = ','.join('%s = %s'%(f, sql_representation(v)) for f, v in fields_and_vals.items())
+    setlist = ','.join('%s = %s'%(f, sql_representation(v)) for f, v in fields_and_vals.items() if f != 'estimated_units_remaining')
     sql = "update winelist set " + setlist + " where id = " + rowid + "\n"
     log.write(sql);
     utils.execute(sql, cursor)
   for fields_and_vals in newrows.values():
-    if fields_and_vals.has_key('uid'):
-      fields_and_vals.pop('uid')
+    for bad_field in ('uid', 'estimated_units_remaining'):
+      if fields_and_vals.has_key(bad_field): fields_and_vals.pop(bad_field)
+
     fields = fields_and_vals.keys()
     values = fields_and_vals.values()
     field_list = ','.join(fields)
