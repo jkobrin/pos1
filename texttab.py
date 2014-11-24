@@ -1,4 +1,4 @@
-import json, utils
+import json, re, utils
 import MySQLdb
 from gift_cert import GiftCert
 
@@ -18,6 +18,9 @@ def format_item(name, cnt):
     ret += ' @'+str(cnt)
   return ret
 
+def is_staff(table_id):
+  return re.match('[A-Z][a-z]+ [A-Z][a-z]+', table_id)
+
 def is_gift(item):
   return item['name'].startswith('gift')
 
@@ -32,7 +35,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
     cursor = conn.cursor()
     
   items_query = '''
-    SELECT count(*) cnt, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped
+    SELECT count(*) cnt, og.table_id, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
     and (og.is_open = TRUE or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
@@ -59,10 +62,10 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   add_grat = GRATUITY18 in (item['name'] for item in items)
   #items =  (item for item in items if item['name'] != GRATUITY18)
   foodtotal = sum(item['price'] for item in items if not item['is_comped'])
-  notaxtotal = sum(item['price'] for item in items if is_gift(item))
+  notaxtotal = sum(item['price'] for item in items if item['is_comped'] ==0 and (is_gift(item) or is_staff(items[0]['table_id'])))
   tax = round((foodtotal - notaxtotal) * TAXRATE, 2)
   gratuity = round((foodtotal - notaxtotal) * GRATUITYRATE, 2)
-  total = foodtotal + tax 
+  total = foodtotal + tax
   if add_grat:
     total = total + gratuity
 
