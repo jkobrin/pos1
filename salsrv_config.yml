@@ -60,6 +60,7 @@ menu:
             - name: AI
             - name: CH
             - name: RP
+
     - name: food
       subcategories:
         - name: guests 
@@ -102,8 +103,8 @@ menu:
             #- {name: octopus, price: 12}
             - {name: cauliflower, price: 8}
             #- {name: patatas bravas, price: 5}
-            - {name: artichokes, price: 8}
-            - {name: octopus, price: 12}
+            #- {name: artichokes, price: 8}
+            #- {name: octopus, price: 12}
             - {name: taleggio bake, price: 7}
             #- {name: radish, price: 8}
             #- {name: meatballs, price: 8}
@@ -119,14 +120,15 @@ menu:
             #- {name: chicken, price: 18}
             - {name: bread, price: 3}
             - {name: panacotta, price: 7}
-            - {name: chocolate, price: 5}
+            - {name: chocolate, price: 7}
             - {name: pound cake, price: 7}
-            - {name: special5, price: 7}
-            - {name: special6, price: 7}
+            - {name: special5, price: 5}
+            - {name: special6, price: 6}
             - {name: special7, price: 7}
             - {name: special8, price: 8}
             - {name: special9, price: 9}
             - {name: special10, price: 10}
+            - {name: special11, price: 11}
             - {name: special12, price: 12}
             - {name: special14, price: 14}
             - {name: plates, price: 0}
@@ -149,7 +151,7 @@ menu:
               price: 27
             - name: mixed cheese board
               price: 27
-            - {name: dessert board, price: 14}
+            #- {name: dessert board, price: 14}
             - {name: manchego , price: 0}
             - {name: cana de cabra, price: 0}
             - {name: campo de montalban, price: 0}
@@ -316,8 +318,8 @@ menu:
             - {name: OJ, price: 3}
             - {name: pineapple, price: 3}
             - {name: liquor flight, price: 16}
-            - {name: red flight, price: 16}
-            - {name: white flight, price: 14}
+            - {name: red flight, price: 18}
+            - {name: white flight, price: 16}
             - {name: seltzer, price: 2}
             - {name: coke, price: 3}
             - {name: dcoke, price: 3}
@@ -345,7 +347,7 @@ menu:
             - {name: margarita, price: 10}
             - {name: caipirnha, price: 10}
             - {name: citrus smash (virgin), price: 5}
-            - {name: ciirus smash rum, price: 10}
+            - {name: citrus smash rum, price: 10}
             - {name: jack-coke, price: 10}
             - {name: patron shot, price: 10}
             - {name: pueblo shot, price: 10}
@@ -356,12 +358,11 @@ menu:
             - {name: mimosa jar, price: 24}
             - {name: bellini, price: 7}
             - {name: bellini jar, price: 24}
-            - {name: broody maria, price: 7}
+            - {name: bloody maria, price: 7}
             - {name: bloody maria jar, price: 24}
             - {name: bicicletta, price: 7}
             - {name: cafe amaretto, price: 7}
             - {name: michelada, price: 7}
-            - {name: citrus smash, price: 10}
             - {name: positive vines, price: 10}
             - {name: cold toddy, price: 9}
             - {name: spanish daisy, price: 9}

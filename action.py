@@ -9,7 +9,7 @@ def order(req, table, additem=None, removeitem=None, price=None, menu_item_id = 
 
   if table == 'null': return json.dumps(None)
 
-  assert len(table) <= 3, "table ID must be 3 or fewer chars"
+  assert len(table) <= 64, "table ID must be 64 or fewer chars"
 
   conn = MySQLdb.connect (host = "localhost",
                         user = "pos",
