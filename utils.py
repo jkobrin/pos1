@@ -2,7 +2,7 @@ import MySQLdb
 import datetime
 import os
 import socket
-
+from mylog import my_logger
 
 def hostname():
   return socket.gethostname()
@@ -25,8 +25,7 @@ def now():
 
 def execute(sql, incursor=None):
   
-  logs = open("/var/www/logs", 'a')
-  logs.write(sql)
+  #my_logger.debug(sql)
 
   if not incursor:
     conn = MySQLdb.connect (host = "localhost",
@@ -69,6 +68,8 @@ def select_as_html(query, incursor=None):
 
 def select(query, incursor=None, label=True):
   
+  #my_logger.debug(query)
+
   if not incursor:
     conn = MySQLdb.connect (host = "localhost",
                           user = "pos",

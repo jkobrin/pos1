@@ -15,7 +15,13 @@ from
 
 create or replace view served_item as select * from order_item where is_cancelled = false and item_name not like 'gift%';
 
-create or replace view revenue_item as select * from order_item where is_comped = false and is_cancelled = false and item_name not like 'gift%';
+create or replace view revenue_item as select oi.* from order_item oi, order_group og 
+where oi.order_group_id = og.id
+and is_comped = false 
+and is_cancelled = false 
+and item_name not like 'gift%' 
+and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+;'
+;
 
 create or replace view sales_by_week
 as

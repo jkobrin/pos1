@@ -23,7 +23,7 @@ def nightly_sales_by_server(label=False, lag_days=1):
     AND oi.is_cancelled = False
     AND oi.is_comped = False
     AND og.closedby = p.id 
-    AND date(oi.created - interval '6' HOUR) = date(now() - INTERVAL '%(lag_days)s' DAY)
+    AND date(og.updated - interval '6' HOUR) = date(now() - INTERVAL '%(lag_days)s' DAY)
     GROUP BY p.id) sales
     left outer join
     (select *

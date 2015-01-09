@@ -122,6 +122,7 @@ menu:
           items: 
             - {name: panacotta, price: 7}
             - {name: chocolate, price: 5}
+            - {name: cannoli, price: 7}
             - {name: gift5, price: 5}
             - {name: gift10, price: 10}
             - {name: gift15, price: 15}

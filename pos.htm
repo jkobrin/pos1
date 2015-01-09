@@ -47,7 +47,6 @@
     .diaframe
     {
      opacity:0.9;
-     filter:alpha(opacity=40);
      position:absolute;
      width: 75%;
      font-family:arial;
@@ -349,7 +348,6 @@
 
     function drawCurrentCategory()
     {
-      //alert("items " + g_config.menu.categories[0].subcategories[0].items);
       document.getElementById("category").innerHTML 
         = getSuperCategory() + " : " + getSubCategory();
       populateMenuItems(getSubCategory());
@@ -414,7 +412,6 @@
     // of the table of items.
     {
 
-      //alert(items.length);
       s="";
 
       s = s + "<table border=0 cellpadding=0 cellspacing=15 >";
@@ -514,7 +511,7 @@
     function is_staff(table_id)
     {
       tab = get_config_item(table_id);
-      return (tab && tab.subcat == 'staff')
+      return (tab && (tab.subcat == 'staff' || tab.subcat=='staff_tabs'))
     }
 
     function refresh_order(add_item, remove_item)
@@ -539,13 +536,31 @@
           return;
         }
 
-        if(is_staff(g_currentTable)) {add_item.price = 0;}
-        if(add_item.name == 'special price')
+        price = add_item.price; //usual case
+        //now that price is set to the default, let's see if we need to modify it
+        if(is_staff(g_currentTable)) 
         {
-          add_item.price = prompt('Enter price:', 0);
+          price = add_item.price/3;
+          if ( add_item.cat == 'bev' && add_item.id != null)
+          {
+            info = http_request("POST", "get_wine_info.py", "menu_item_id="+add_item.id);
+            price = info.frontprice;
+            if (price != null && price > 0 )
+            {
+              if (add_item.name.slice(0,3) == 'qt:')
+              {
+                price = price/4;
+              }
+            }
+          }
         }
 
-        params += "&price="+add_item.price;
+        if(add_item.name == 'special price')
+        {
+          price = prompt('Enter price:', 0);
+        }
+
+        params += "&price="+price;
         params += "&menu_item_id="+add_item.id;
         params += "&additem="+add_item.name;
       }
@@ -602,8 +617,6 @@
         if (item.is_delivered) {continue}
 
         
-        if (is_staff(item.table_id)) {continue}
-
         classes = "order_item";
         config_item = get_config_item(item.item_name);
         if (config_item && config_item.cat == 'bev') {classes += ' bev_item'}
