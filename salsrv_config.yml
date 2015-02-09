@@ -43,6 +43,8 @@ menu:
             - name: O5
             - name: O6
             - name: O7
+            - name: O8
+            - name: O9
         - name: staff
           items: 
             - name: JWK
@@ -85,12 +87,13 @@ menu:
             - {name: marcona almonds, price: 5}
             - {name: walnut pesto, price: 6}
             - {name: anchovy, price: 6}
-            - {name: salmon crudo, price: 7}
+            - {name: pate, price: 7}
+            - {name: persimon salad, price: 10}
             - {name: burrata, price: 14}
-            - {name: medi salad, price: 12}
             #- {name: mussels, price: 7}
             - {name: meatballs, price: 5}
             - {name: brussel sprouts, price: 7}
+            - {name: winter crudites, price: 8}
             #- {name: summer harvest, price: 8}
             #- {name: fall salad, price: 9}
             #- {name: cobb, price: 11}
@@ -105,14 +108,14 @@ menu:
             #- {name: patatas bravas, price: 5}
             #- {name: artichokes, price: 8}
             #- {name: octopus, price: 12}
-            - {name: taleggio bake, price: 7}
+            - {name: cabra bake, price: 7}
             #- {name: radish, price: 8}
             #- {name: meatballs, price: 8}
-            - {name: empanada, price: 7}
-            - {name: mini panini , price: 7}
+            - {name: empanada, price: 8}
+            - {name: mini panini , price: 8}
             - {name: marrow bones, price: 8}
             #- {name: french onion, price: 7}
-            - {name: bocadillo, price: 8}
+            - {name: bocadillo, price: 9}
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
             - {name: oxtail, price: 14}
@@ -345,6 +348,7 @@ menu:
             - {name: drty mart, price: 10}
             - {name: cosmo, price: 10}
             - {name: margarita, price: 10}
+            - {name: mojito, price: 10}
             - {name: caipirnha, price: 10}
             - {name: citrus smash (virgin), price: 5}
             - {name: citrus smash rum, price: 10}
@@ -362,7 +366,8 @@ menu:
             - {name: bloody maria jar, price: 24}
             - {name: bicicletta, price: 7}
             - {name: cafe amaretto, price: 7}
-            - {name: michelada, price: 7}
+            - {name: black velvet, price: 7}
             - {name: positive vines, price: 10}
-            - {name: cold toddy, price: 9}
+            - {name: hot toddy, price: 9}
             - {name: spanish daisy, price: 9}
+            - {name: castaway, price: 7}

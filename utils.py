@@ -99,7 +99,19 @@ def select(query, incursor=None, label=True):
   return results
 
 
+
+def convert_list_of_dict_2_list_of_list(base_list):
+
+  for item in base_list:
+    if type(item) is dict:
+      item = item.values()
+    
+    yield item
+
+
 def tohtml(title, headings, rows, breakonfirst=False):  
+
+  rows = convert_list_of_dict_2_list_of_list(rows)
 
   if breakonfirst:
     ret = "<h1> %(title)s </h1>"%locals()
