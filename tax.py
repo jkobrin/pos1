@@ -435,3 +435,7 @@ if __name__ == '__main__':
   Code says:
   '''
   print get_amount_to_withhold(federal = False, married = True, number_of_allowances = 4, total_income = 400)
+
+  print get_amount_to_withhold(federal = False, married = True, number_of_allowances = 4, total_income = 700)
+  print get_amount_to_withhold(federal = True, married = True, number_of_allowances = 4, total_income = 700)
+

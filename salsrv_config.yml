@@ -45,6 +45,8 @@ menu:
             - name: O7
             - name: O8
             - name: O9
+            - name: T1 
+            - name: T2
         - name: staff
           items: 
             - name: JWK
@@ -311,6 +313,7 @@ menu:
             - {name: pelligrino sm, price: 3}
             - {name: pelligrino lg, price: 6}
             - {name: coffee, price: 4}
+            - {name: decaf, price: 4}
             - {name: tea, price: 3}
             - {name: ceylon, price: 4}
             - {name: jasmin, price: 4}

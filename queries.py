@@ -82,7 +82,7 @@ def weekly_pay(printmode=0):
 	hours_worked,
   pay_rate, 
   fed_withholding + nys_withholding + medicare_tax + social_security_tax as weekly_tax,
-  weekly_pay -fed_withholding -nys_withholding -medicare_tax -social_security_tax as net_wage,
+  round(weekly_pay -fed_withholding -nys_withholding -medicare_tax -social_security_tax) as net_wage,
   tips,
   total_hourly_pay
 	from PAY_STUB 
