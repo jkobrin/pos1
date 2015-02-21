@@ -10,7 +10,11 @@ import utils
 
 def get_wine_xml():  
 
-  winecats = utils.select('''select distinct category from active_wine''')
+  winecats = utils.select('''
+    select category from active_wine 
+    where active = true and listorder > 0 and bin is not null 
+    group by category order by min(listorder)''')
+
   for num, cat in enumerate(winecats):
     cat = cat['category']
 

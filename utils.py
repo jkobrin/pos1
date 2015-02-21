@@ -43,6 +43,28 @@ def execute(sql, incursor=None):
     cursor.close()
     conn.close()
 
+def select_as_html(query, incursor=None):
+  if not incursor:
+    conn = MySQLdb.connect (host = "localhost",
+                          user = "pos",
+                          passwd = "pos",
+                          db = "pos")
+
+    cursor = conn.cursor()
+  else:
+    cursor = incursor
+
+  cursor.execute(query)
+  rows = cursor.fetchall()
+  colnames = [coldesc[0] for coldesc in cursor.description]
+
+  if not incursor:
+    cursor.close()
+    conn.close()
+
+  return rows
+
+
 
 def select(query, incursor=None, label=True):
   
@@ -77,7 +99,19 @@ def select(query, incursor=None, label=True):
   return results
 
 
+
+def convert_list_of_dict_2_list_of_list(base_list):
+
+  for item in base_list:
+    if type(item) is dict:
+      item = item.values()
+    
+    yield item
+
+
 def tohtml(title, headings, rows, breakonfirst=False):  
+
+  rows = convert_list_of_dict_2_list_of_list(rows)
 
   if breakonfirst:
     ret = "<h1> %(title)s </h1>"%locals()

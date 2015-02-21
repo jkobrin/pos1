@@ -1,4 +1,4 @@
-drop table receipts_by_server;
+drop table if exists receipts_by_server;
 
 CREATE TABLE receipts_by_server (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

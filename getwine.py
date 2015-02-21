@@ -9,7 +9,7 @@ import decimal
 import wineprint
 
 
-def get(req, filtered=True):
+def get(req, filtered='yes'):
 
   #log = open('/var/www/logs', 'a')
   #log.write("recs called\n")
@@ -20,7 +20,7 @@ def get(req, filtered=True):
 
   cursor = conn.cursor()
 
-  if filtered is True:
+  if filtered == 'yes':
     recs = utils.select("select * from winelist_inv where bin != '0'", cursor)
   else:
     recs = utils.select('''select * from winelist_inv''', cursor)

@@ -1,6 +1,7 @@
 CREATE or REPLACE view hours_worked as
 select 
   p.last_name, p.first_name, p.pay_rate, p.weekly_tax,
+  p.id as person_id,
   intime,
   date_format(intime,"%m/%d") as date,
   date_format(intime, "%H:%i") time_in, 
@@ -29,6 +30,15 @@ select sum(price) total, year(created) year, week(created) week
 from
 revenue_item
 group by year(created), week(created)
+;
+
+
+create or replace view sales_by_month
+as
+select sum(price) total, year(created) year, month(created) month
+from
+revenue_item
+group by year(created), month(created)
 ;
 
 

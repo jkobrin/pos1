@@ -20,7 +20,7 @@ def index(req, doprint=0):
   payroll = utils.select('''
 	SELECT yearweek(intime),
 	sum(hours_worked) as hours_worked,
-  round(sum(hours_worked*pay_rate)) + 700 as payroll
+  round(sum(hours_worked*pay_rate)) as payroll
 	from hours_worked 
   where yearweek(intime) > yearweek(now() - interval '5' week)
   and last_name not in ('Kobrin', 'Labossier', 'Kanarova', 'Rodrigues')
@@ -33,6 +33,7 @@ def index(req, doprint=0):
   detail = utils.select('''
 	SELECT concat(yearweek(intime),' ',dayname(intime),' ',date),
 	last_name, 
+	first_name,
 	time_in, 
 	time_out, 
 	hours_worked 
@@ -53,7 +54,7 @@ def index(req, doprint=0):
     ''' + print_message +
     utils.tohtml(
       'Hours worked per week by person',
-      ('week of', 'last name',  'first_name', 'hours_worked', 'rate', 'tax', 'weekly pay', 'tips', 'total pay', 'total hourly'), 
+      ('week of', 'last name',  'first_name', 'hours_worked', 'rate', 'tax', 'net weekly wage', 'tips', 'total hourly'), 
       weekly,
       breakonfirst = True
     ) +
@@ -65,7 +66,7 @@ def index(req, doprint=0):
     ) +
     utils.tohtml(
       "detail hours",
-      ('date', 'last_name', 'time_in', 'time_out', 'hours_worked'), 
+      ('date', 'last_name', 'first_name', 'time_in', 'time_out', 'hours_worked'), 
       detail
     ) +
     '''</body></html>'''

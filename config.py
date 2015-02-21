@@ -21,6 +21,8 @@ def iget():
       for item in subcat['items']:
         item['catname'] = catname
         item['subcatname'] = subcatname
+        if not item.has_key('name'):
+           raise Exception('no name for item: ' + str(item))
         if type(item['name']) == str:
           item['name'] = (item['name'])[:MAX_NAME_LEN]
         items[item['name']] = item
