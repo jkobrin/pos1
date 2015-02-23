@@ -218,16 +218,35 @@ menu:
             - {name: special32, price: 32}
         - name: lunch
           items: 
-            - {name: avocado san, price: 8}
-            - {name: burrata san, price: 9}
+            - {name: lunch special, price: 9}
+            - {name: special tomato soup, price: 0}
+            - {name: special mexican soup, price: 0}
+
+            - {name: half prosciutto san, price: 0}
+            - {name: half spanish ham and cheese, price: 0}
+            - {name: half bean and kraut, price: 0}
+            - {name: half bcadillo, price: 0}
+
+            - {name: half taleggio panini, price: 0}
+            - {name: half soppresatta panini, price: 0}
+            - {name: half copa cubano, price: 0}
+            - {name: half goat mush san, price: 0}
+
             - {name: prosciutto san, price: 10}
             - {name: spanish ham and cheese, price: 9}
-            - {name: soppresatta san, price: 7}
+            - {name: bean and kraut, price: 7}
+            - {name: bcadillo, price: 8}
+
+            - {name: taleggio panini, price: 10}
+            - {name: soppresatta panini, price: 7}
             - {name: copa cubano, price: 11}
             - {name: goat mush san, price: 8}
-            - {name: summer harvest, price: 9}
-            - {name: house salumi, price: 9}
-            - {name: soup, price: 6}
+            - {name: fork-mix cesar, price: 9}
+            - {name: burrata, price: 14}
+            - {name: house salad, price: 8}
+            - {name: tomato soup and cheesy toast, price: 6}
+            - {name: special tomato soup, price: 0}
+            - {name: special mexican soup, price: 0}
         - name: brunch 
           items: 
             - {name: bloomfield, price: 12}
@@ -244,22 +263,32 @@ menu:
             - {name: house salad, price: 8}
             - {name: smoked anchovies, price: 6}
             - {name: patatas bravas, price: 6}
-            - {name: ham cheese toast, price: 6}
+            - {name: ham cheese toast, price: 8}
             - {name: cebada, price: 7}
             - {name: bocadillo, price: 8}
             - {name: bread, price: 3}
             - {name: coffee, price: 4}
-            - {name: tea, price: 4}
+            - {name: decaf, price: 4}
+            - {name: english breakfast, price: 4}
+            - {name: jasmin tea, price: 4}
+            - {name: paris tea, price: 4}
+            - {name: chamomile tea, price: 4}
     - name: bev
       subcategories:
         - name: bar
           items: 
             - {name: white sangrea, price: 8}
+            - {name: white sangrea jar, price: 32}
             - {name: red sangrea, price: 8}
+            - {name: red sangrea jar, price: 32}
             - {name: wine flight, price: 18}
             - {name: pelligrino, price: 3}
             - {name: coffee, price: 4}
-            - {name: tea, price: 4}
+            - {name: decaf, price: 4}
+            - {name: english breakfast, price: 4}
+            - {name: jasmin tea, price: 4}
+            - {name: paris tea, price: 4}
+            - {name: chamomile tea, price: 4}
             - {name: seltzer, price: 2}
             - {name: coke, price: 3}
             - {name: dcoke, price: 3}

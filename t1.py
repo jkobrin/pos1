@@ -54,7 +54,11 @@ def index(req, doprint=0):
     ''' + print_message +
     utils.tohtml(
       'Hours worked per week by person',
+<<<<<<< HEAD
       ('week of', 'last name',  'first_name', 'hours_worked', 'rate', 'tax', 'net weekly wage', 'tips', 'total hourly'), 
+=======
+      ('week of', 'last name',  'first_name', 'hours_worked', 'rate', 'tax', 'net weekly wage', 'tips', 'total hourly'),
+>>>>>>> 43a8dfa66db37a2caef1c20922c47dddb4b0de93
       weekly,
       breakonfirst = True
     ) +
