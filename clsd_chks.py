@@ -16,9 +16,10 @@ def index(req, lag_days=1, output_html = True):
   from order_item oi, order_group og 
   where oi.order_group_id = og.id 
   and oi.is_cancelled = false
+  and og.is_open = false
   '''
   if lag_days is not None:
-    query_txt += '''and date(og.created) = date(now()) - interval '%(lag_days)s' day
+    query_txt += '''and date(og.updated - interval '6' hour) = date(now()) - interval '%(lag_days)s' day
     '''%locals()
 
   query_txt += '''  group by og.table_id, og.updated order by closed_time;'''
