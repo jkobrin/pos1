@@ -94,6 +94,7 @@ menu:
             - {name: burrata, price: 14}
             #- {name: mussels, price: 7}
             - {name: meatballs, price: 5}
+            - {name: octopus, price: 12}
             - {name: brussel sprouts, price: 7}
             - {name: winter crudites, price: 8}
             #- {name: summer harvest, price: 8}
@@ -121,6 +122,7 @@ menu:
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
             - {name: oxtail, price: 14}
+            - {name: laksa, price: 18}
             - {name: lamb, price: 22}
             #- {name: chicken, price: 18}
             - {name: bread, price: 3}
