@@ -74,3 +74,21 @@ def weekly_pay(printmode=0):
   )
 
 
+def weekly_pay(printmode=0):
+ return utils.select('''
+	select
+	week_of,
+	last_name, first_name,
+	hours_worked,
+  pay_rate,
+  fed_withholding + nys_withholding + medicare_tax + social_security_tax as weekly_tax,
+  round(weekly_pay -fed_withholding -nys_withholding -medicare_tax -social_security_tax) as net_wage,
+  tips,
+  total_hourly_pay
+	from PAY_STUB
+  where (yearweek(week_of) > yearweek(now() - interval '5' week) and %(printmode)s = 0)
+     or (yearweek(week_of) = yearweek(now() - interval '1' week) and %(printmode)s = 1)
+	order by week_of desc, last_name, first_name''' % locals(),
+    incursor=None,
+    label=printmode
+  )

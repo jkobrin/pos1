@@ -1,6 +1,7 @@
 CREATE or REPLACE view hours_worked as
 select 
   p.last_name, p.first_name, p.pay_rate, p.weekly_tax,
+  p.id as person_id,
   intime,
   date_format(intime,"%m/%d") as date,
   date_format(intime, "%H:%i") time_in, 

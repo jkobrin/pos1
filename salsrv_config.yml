@@ -43,6 +43,8 @@ menu:
             - name: O5
             - name: O6
             - name: O7
+            - name: O8
+            - name: O9
         - name: staff
           items: 
             - name: JWK
