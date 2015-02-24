@@ -48,13 +48,11 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   items = utils.select(items_query, cursor)
 
   if serverpin:
-    servername = \
-      utils.select(
-        "select first_name from person where id = %(serverpin)s" % locals(),
-        cursor
-        )[0]['first_name']
+    servername = utils.select(
+      "select coalesce(nickname, first_name) name from person where id = %(serverpin)s"
+      % locals(), cursor)[0]['name']
   else:
-    servername = 'Salumi'
+    servername = 'staff'
  
   if not items: 
     return "no tab opened for table %s" %table, []
@@ -124,4 +122,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
 
 
 if __name__ == '__main__':
-  print get_tab_text('1')
+  tabtext, gift_certs = get_tab_text('1', 9175)
+
+  print tabtext
+  print gift_certs
