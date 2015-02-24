@@ -14,8 +14,6 @@ def index(serverpin, in_):
   wantsin = (in_ == 'true')
   wantsout = not wantsin
 
-  sqlin = 'INSERT INTO hours VALUES(null, %(serverpin)s, NOW(), 0, 1.0, null)' % locals()
-  sqlout = 'UPDATE hours SET outtime = NOW() WHERE person_id = %(serverpin)s AND outtime = 0' % locals()
 
   conn = MySQLdb.connect (host = "localhost",
                         user = "pos",
@@ -29,9 +27,12 @@ def index(serverpin, in_):
   if wantsin and isin:
     resp = 'already clocked in'
   elif wantsin and isout:
+    tip_share = server_tip_share(serverpin)
+    sqlin = 'INSERT INTO hours VALUES(null, %(serverpin)s, NOW(), 0, %(tip_share)s, null)' % locals()
     utils.execute(sqlin, cursor)
     resp = 'Clocked in at ' + utils.now()
   elif wantsout and isin:
+    sqlout = 'UPDATE hours SET outtime = NOW() WHERE person_id = %(serverpin)s AND outtime = 0' % locals()
     res = utils.execute(sqlout, cursor)
     resp = 'Clocked out at ' + utils.now()
   elif wantsout and isout:
@@ -50,6 +51,16 @@ def server_is_in(serverpin):
 
 def _server_is_in(serverpin):
   return bool(utils.select('SELECT * FROM hours WHERE person_id = %(serverpin)s AND outtime=0' % locals()) )
+
+def server_tip_share(serverpin):
+  ret = utils.select('SELECT tip_share FROM hours WHERE person_id = %(serverpin)s and tip_share is not null order by id desc LIMIT 1' % locals())
+  if ret:
+    ts = ret[0]['tip_share'];
+  else: 
+   ts = 'null'
+
+  return ts
+
 
 if __name__ == '__main__':
   print index(4008, 'false')

@@ -17,7 +17,7 @@ def index(req, the_tip, lag_days):
     '''
   )
   if utils.hostname() == 'salsrv': 
-    last_night_items_query += '''and (time(si.created) > '16:00:00' or time(si.created) < '04:00:00') '''
+    last_night_items_query += '''and (time(si.created) > '17:00:00' or time(si.created) < '04:00:00') '''
 
   utils.execute(
     last_night_items_query %locals()

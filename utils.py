@@ -105,7 +105,6 @@ def convert_list_of_dict_2_list_of_list(base_list):
   for item in base_list:
     if type(item) is dict:
       item = item.values()
-    
     yield item
 
 
