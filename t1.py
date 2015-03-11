@@ -3,7 +3,7 @@ import sys
 
 import json
 import MySQLdb
-import utils, queries, print_pay_slips
+import utils, queries, print_pay_slips, populate_pay_stub
 
 
 
@@ -15,6 +15,7 @@ def index(req, doprint=0):
   else:
     print_message = ""
 
+  populate_pay_stub.populate_pay_stub()
   weekly = queries.weekly_pay()
 
   payroll = utils.select('''
