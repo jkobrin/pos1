@@ -5,7 +5,8 @@ from mylog import my_logger
 def populate_pay_stub():
 
   days_of_tips_calculated = utils.select(
-    '''select count(*) from hours where yearweek(intime) = yearweek(now() - interval '1' week) and tip_pay != null''',
+    '''select count(distinct date(intime)) from hours 
+    where yearweek(intime) = yearweek(now() - interval '1' week) and tip_pay is not null''',
     label = False
     )[0][0]
   if days_of_tips_calculated != 7:
