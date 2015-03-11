@@ -4,6 +4,13 @@ from mylog import my_logger
 
 def populate_pay_stub():
 
+  days_of_tips_calculated = utils.select(
+    '''select count(*) from hours where yearweek(intime) = yearweek(now() - interval '1' week) and tip_pay != null''',
+    label = False
+    )[0][0]
+  if days_of_tips_calculated != 7:
+    return 'Tips have been calculated for only %s days last week. When all days tips are calculated, refresh this page to see and print weekly pay for last week.'%days_of_tips_calculated
+
   results = utils.select('''
   select
   DATE(intime) - interval (DAYOFWEEK(intime) -1) DAY as week_of,
@@ -11,11 +18,11 @@ def populate_pay_stub():
   last_name, first_name,
   sum(hours_worked) as hours_worked,
   pay_rate, 
-  IFNULL(allowances, 0) allowances,
-  IFNULL(nominal_scale, 0) nominal_scale,
-  IFNULL(married, 0) married,
-  round(sum(hours_worked)*pay_rate) as weekly_pay,
-  round(sum(hours_worked)*pay_rate*IFNULL(nominal_scale,0)) as gross_wages,
+  COALESCE(allowances, 0) allowances,
+  COALESCE(nominal_scale, 0) nominal_scale,
+  COALESCE(married, 0) married,
+  COALESCE(salary, round(sum(hours_worked)*pay_rate)) as weekly_pay,
+  COALESCE(salary, round(sum(hours_worked)*pay_rate)) * COALESCE(nominal_scale,0) as gross_wages,
   sum(tip_pay) tips,
   sum(tip_pay) / sum(hours_worked) + pay_rate as total_hourly_pay
   from hours_worked LEFT OUTER JOIN employee_tax_info ON hours_worked.person_id = employee_tax_info.person_id
@@ -28,6 +35,8 @@ def populate_pay_stub():
   )
 
   for row in results:
+    if utils.select('select 1 from PAY_STUB where week_of = "%(week_of)s" and person_id = %(person_id)s'%row):
+      continue
     tax.add_witholding_fields(row)
     columns = ', '.join(row.keys())
     values = ', '.join(("'%s'" % value for value in row.values()))

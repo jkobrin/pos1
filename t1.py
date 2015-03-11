@@ -3,7 +3,7 @@ import sys
 
 import json
 import MySQLdb
-import utils, queries, print_pay_slips
+import utils, queries, print_pay_slips, populate_pay_stub
 
 
 
@@ -15,6 +15,7 @@ def index(req, doprint=0):
   else:
     print_message = ""
 
+  populate_response = populate_pay_stub.populate_pay_stub()
   weekly = queries.weekly_pay()
 
   payroll = utils.select('''
@@ -48,10 +49,16 @@ def index(req, doprint=0):
     '''  
       <html>
       <body>
+  ''' )
+  if populate_response:
+    html += '<h1>' + populate_response + '</h1>'
+  else:  
+    html +='''
 	<form action="t1.py?doprint=1" method="POST">
   	<input type="submit" value="print pay slips">
 	</form>
-    ''' + print_message +
+    ''' + print_message
+  html += (
     utils.tohtml(
       'Hours worked per week by person',
       ('week of', 'last name',  'first_name', 'hours_worked', 'rate', 'tax', 'net weekly wage', 'tips', 'total hourly'),
