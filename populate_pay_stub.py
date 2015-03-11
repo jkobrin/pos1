@@ -4,6 +4,13 @@ from mylog import my_logger
 
 def populate_pay_stub():
 
+  days_of_tips_calculated = utils.select(
+    '''select count(*) from hours where yearweek(intime) = yearweek(now() - interval '1' week) and tip_pay != null''',
+    label = False
+    )[0][0]
+  if days_of_tips_calculated != 7:
+    return 'Tips have been calculated for only %s days last week. When all days tips are calculated, refresh this page to see and print weekly pay for last week.'%days_of_tips_calculated
+
   results = utils.select('''
   select
   DATE(intime) - interval (DAYOFWEEK(intime) -1) DAY as week_of,

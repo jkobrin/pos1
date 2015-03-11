@@ -15,7 +15,7 @@ def index(req, doprint=0):
   else:
     print_message = ""
 
-  populate_pay_stub.populate_pay_stub()
+  populate_response = populate_pay_stub.populate_pay_stub()
   weekly = queries.weekly_pay()
 
   payroll = utils.select('''
@@ -49,10 +49,16 @@ def index(req, doprint=0):
     '''  
       <html>
       <body>
+  ''' )
+  if populate_response:
+    html += '<h1>' + populate_response + '</h1>'
+  else:  
+    html +='''
 	<form action="t1.py?doprint=1" method="POST">
   	<input type="submit" value="print pay slips">
 	</form>
-    ''' + print_message +
+    ''' + print_message
+  html += (
     utils.tohtml(
       'Hours worked per week by person',
       ('week of', 'last name',  'first_name', 'hours_worked', 'rate', 'tax', 'net weekly wage', 'tips', 'total hourly'),
