@@ -9,7 +9,7 @@
 
 alter table person add column salary decimal(6,2);
 
-update person set salary = 1530, pay_rate = 0 where last_name = 'DiLemme';
+update person set salary = 0, pay_rate = 0 where last_name = 'DiLemme';
 
 insert into employee_tax_info values(
       null, 
