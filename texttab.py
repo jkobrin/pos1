@@ -122,7 +122,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
 
 
 if __name__ == '__main__':
-  tabtext, gift_certs = get_tab_text('1', 9175)
+  tabtext, gift_certs = get_tab_text('Joseph Young', 923)
 
   print tabtext
   print gift_certs

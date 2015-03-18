@@ -93,9 +93,9 @@ menu:
             - {name: persimon salad, price: 10}
             - {name: burrata, price: 14}
             #- {name: mussels, price: 7}
-            - {name: meatballs, price: 5}
+            #- {name: meatballs, price: 5}
             - {name: octopus, price: 12}
-            - {name: brussel sprouts, price: 7}
+            - {name: shrimp, price: 12}
             - {name: winter crudites, price: 8}
             #- {name: summer harvest, price: 8}
             #- {name: fall salad, price: 9}
@@ -107,7 +107,7 @@ menu:
             #- {name: pate, price: 7}
             #- {name: prawn, price: 10}
             #- {name: octopus, price: 12}
-            - {name: cauliflower, price: 8}
+            #- {name: cauliflower, price: 8}
             #- {name: patatas bravas, price: 5}
             #- {name: artichokes, price: 8}
             #- {name: octopus, price: 12}
@@ -122,7 +122,7 @@ menu:
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
             - {name: oxtail, price: 14}
-            - {name: laksa, price: 18}
+            - {name: laksa, price: 21}
             - {name: lamb, price: 22}
             #- {name: chicken, price: 18}
             - {name: bread, price: 3}
@@ -283,24 +283,28 @@ menu:
             #- {name: soup, price: 7}
         - name: brunch
           items: 
+            - {name: frittata, price: 8}
             - {name: bloomfield, price: 12}
             - {name: egg in a hole, price: 7}
-            - {name: scramble, price: 8}
+            - {name: ham and cheese, price: 8}
             - {name: bread pudding, price: 10}
-            - {name: ham and cheese, price: 6}
-            - {name: johnny cakes, price: 11}
+            - {name: johnny cakes, price: 8}
             - {name: potato hash, price: 5}
             - {name: bacon, price: 4}
-            - {name: anchovy, price: 6}
-            - {name: walnut pesto, price: 6}
-            - {name: meatballs, price: 5}
-            - {name: empanada, price: 7}
-            - {name: mini panini, price: 7}
-            - {name: cabra panini, price: 8}
+            - {name: mini panini, price: 8}
             - {name: burrata sandwich, price: 10}
-            - {name: bocadillo, price: 8}
+            - {name: goat cheese panini, price: 8}
+            - {name: anchovy, price: 6}
+            - {name: burrata salad, price: 14}
             - {name: house salad, price: 7}
-            - {name: green goddess, price: 8}
+            - {name: walnut pesto, price: 6}
+            - {name: persimmon salad, price: 10}
+            - {name: chicken liver pate, price: 7}
+            - {name: cabra bake, price: 7}
+            - {name: winter crudites, price: 8}
+            - {name: empanada, price: 8}
+            - {name: bocadillo, price: 8}
+            - {name: bread basket, price: 3}
             - {name: bread, price: 3}
     - name: bev
       subcategories:
