@@ -7,18 +7,18 @@
 
 #-----------------------------------------------------------
 
-#alter table person add column salary decimal(6,2);
+alter table person add column salary decimal(6,2);
 
-update person set salary = 1530, pay_rate = 0 where last_name = 'DiLemme';
+update person set salary = 0, pay_rate = 0 where last_name = 'DiLemme';
 
-#insert into employee_tax_info values(
-#      null, 
-#      (select id from person where first_name = 'John' and last_name = 'DiLemme'),
-#      True,
-#      4,
-#      .392,
-#      null,
-#      null);
+insert into employee_tax_info values(
+      null, 
+      (select id from person where first_name = 'John' and last_name = 'DiLemme'),
+      True,
+      4,
+      .392,
+      null,
+      null);
 
 
 CREATE or REPLACE view hours_worked as
