@@ -72,7 +72,7 @@ menu:
             #- {name: sardine, price: 6}
             - {name: mexi soup, price: 8}
             - {name: squash, price: 8}
-            #- {name: shishito peppers, price: 7}
+            - {name: beef chorizo, price: 9}
             - {name: sprouts, price: 9}
             - {name: scallops, price: 14}
             #- {name: soup, price: 6}
@@ -245,8 +245,14 @@ menu:
             - {name: burrata, price: 14}
             - {name: house salad, price: 8}
             - {name: tomato soup and cheesy toast, price: 6}
-            - {name: special tomato soup, price: 0}
-            - {name: special mexican soup, price: 0}
+            - {name: mexican soup, price: 8}
+
+            - {name: anchovy, price: 6}
+            - {name: patatas, price: 6}
+            - {name: scallops, price: 14}
+            - {name: cebada, price: 7}
+            - {name: bread, price: 3}
+
         - name: brunch 
           items: 
             - {name: bloomfield, price: 12}
