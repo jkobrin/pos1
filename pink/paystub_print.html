@@ -1,0 +1,54 @@
+
+<html>
+
+<head>
+
+  <style>
+
+
+    body,h1,h2,h3,h4,h5,h6 {font-family:Arial;}
+
+    body {background-color:pink; color:black; font-size:18}
+
+    h1 {font-size:28pt; font-weight:bold; margin:0px;}
+
+    h2 {font-size:16pt; margin:0px; font-weight:bold;}
+
+    h3 {font-size:8pt; margin:0px; font-weight:bold;}
+
+    .select_container {
+      float: left;
+      padding: 25px;
+    }
+
+  </style>
+  <script type="text/javascript" src="../jsutils/http_request"></script>
+
+  <script> 
+    function init()
+    {
+      // populate drop down box
+      stub_choices= http_request("GET", "/paystub_print/get_stub_choices", null);
+      for(idx in stub_choices)
+      {
+        stub = stub_choices[idx]
+        option = document.createElement('option')
+        option.setAttribute('value', stub.person_id +',' + stub.week_of)
+        option.appendChild(document.createTextNode(stub.first_name+' '+stub.last_name+' '+stub.week_of))
+        document.getElementById("stub_select").appendChild(option);
+      }  
+    }  
+  </script>
+
+  <body onLoad="init()">
+    
+    Generate paystub pdf
+    <form action="/paystub_print" enctype="multipart/form-data" method="post">
+    <div class=select_container>select paystub:
+    <select id="stub_select" name="stub_select">
+    </select>
+    </div>
+    <div class=select_container><input type="submit" value="Get PDF"></div>
+    </form>
+
+  </body>
