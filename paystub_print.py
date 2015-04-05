@@ -11,7 +11,7 @@ def get_stub_choices(req):
   
   stub_choices = utils.select('''
     select ps.last_name,  ps.first_name, date_format(week_of, '%Y-%m-%d') as week_of, ps.person_id 
-    from PAY_STUB ps, person  order by first_name, last_name, week_of
+    from PAY_STUB ps order by first_name, last_name, week_of
   '''
   )
 
@@ -25,7 +25,7 @@ def get_stub_data(person_id, week_of):
     select 
     last_name as LAST_NAME,
     first_name as FIRST_NAME,
-    1234 as SOCIAL,
+    "000-00-0000" as SOCIAL,
     week_of + interval '1' week as PERIOD_END,
     concat(week_of, ' - ', week_of + interval '6' day) as PERIOD_SPAN,
     fed_withholding as FED,
@@ -60,6 +60,11 @@ def get_stub_data(person_id, week_of):
   # make one dictionary of the two result sets
   result = stub_data[0] # start with stub_data
   result.update(stub_ytd_data[0]) #add the YTD stuff to it
+
+  if utils.hostname() == 'salsrv':
+    result["BUSS_INFO_LINE"] = "SALUMI dba Ultraviolet Enterprises 5600 Merrick RD, Massapequa, NY 11758 516-620-0057"
+  else:  
+    result["BUSS_INFO_LINE"] = "PLANCHA dba Infrared Enterprises 931 Franklin AVE, GardenCity, NY 516-246-9459"
   return result
 
 
