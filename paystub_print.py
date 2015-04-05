@@ -64,7 +64,7 @@ def get_stub_data(person_id, week_of):
 
 
 def fodt_text(stub_data):
-  doc = open('/var/www/paystub_template2.fodt').read()
+  doc = open('/var/www/paystub_template.fodt').read()
 
   for key, value in stub_data.items():
     doc = re.sub(r'\$'+key+r'\b', str(value), doc)
