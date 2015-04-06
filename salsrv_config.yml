@@ -90,13 +90,13 @@ menu:
             - {name: walnut pesto, price: 6}
             - {name: anchovy, price: 6}
             - {name: pate, price: 7}
-            - {name: persimon salad, price: 10}
+            - {name: spring salad, price: 12}
             - {name: burrata, price: 14}
             #- {name: mussels, price: 7}
             #- {name: meatballs, price: 5}
             - {name: octopus, price: 12}
             - {name: shrimp, price: 12}
-            - {name: winter crudites, price: 8}
+            - {name: carrots, price: 12}
             #- {name: summer harvest, price: 8}
             #- {name: fall salad, price: 9}
             #- {name: cobb, price: 11}
@@ -123,7 +123,7 @@ menu:
             - {name: polenta plate, price: 12}
             - {name: oxtail, price: 14}
             - {name: laksa, price: 21}
-            - {name: lamb, price: 22}
+            #- {name: lamb, price: 22}
             #- {name: chicken, price: 18}
             - {name: bread, price: 3}
             - {name: panacotta, price: 7}
@@ -276,7 +276,7 @@ menu:
             - {name: burrata sandwich, price: 10}
             - {name: prosciutto sandwich, price: 10}
             - {name: spanish ham cheese,  price: 9}
-            - {name: panini, price: 7}
+            #- {name: mini panini, price: 7}
             - {name: goat mushroom sandwich, price: 8}
             #- {name: ceasar_lun, price: 8}
             - {name: house salad, price: 7}
@@ -288,7 +288,7 @@ menu:
             - {name: egg in a hole, price: 7}
             - {name: ham and cheese, price: 8}
             - {name: bread pudding, price: 10}
-            - {name: johnny cakes, price: 8}
+            - {name: french toast, price: 8}
             - {name: potato hash, price: 5}
             - {name: bacon, price: 4}
             - {name: mini panini, price: 8}
@@ -298,12 +298,12 @@ menu:
             - {name: burrata salad, price: 14}
             - {name: house salad, price: 7}
             - {name: walnut pesto, price: 6}
-            - {name: persimmon salad, price: 10}
+            - {name: spring salad, price: 12}
             - {name: chicken liver pate, price: 7}
             - {name: cabra bake, price: 7}
-            - {name: winter crudites, price: 8}
+            - {name: carrots, price: 12}
             - {name: empanada, price: 8}
-            - {name: bocadillo, price: 8}
+            - {name: bocadillo, price: 9}
             - {name: bread basket, price: 3}
             - {name: bread, price: 3}
     - name: bev
@@ -331,7 +331,7 @@ menu:
             - {name: pineapple, price: 3}
             - {name: liquor flight, price: 16}
             - {name: red flight, price: 18}
-            - {name: white flight, price: 16}
+            - {name: white flight, price: 14}
             - {name: seltzer, price: 2}
             - {name: coke, price: 3}
             - {name: dcoke, price: 3}

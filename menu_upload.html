@@ -1,0 +1,68 @@
+
+<html>
+
+<head>
+
+  <style>
+
+
+    body,h1,h2,h3,h4,h5,h6 {font-family:Arial;}
+
+    body {background-color:pink; color:black; font-size:18}
+
+    h1 {font-size:28pt; font-weight:bold; margin:0px;}
+
+    h2 {font-size:16pt; margin:0px; font-weight:bold;}
+
+    h3 {font-size:8pt; margin:0px; font-weight:bold;}
+
+    .form_container {
+      border: double black 6pt; 
+      padding: 25px;
+    }
+
+  </style>
+
+  <body>
+
+    <div class='form_container'>
+    <form action="upload_handler.py/menu" enctype="multipart/form-data" method="post">
+    <p>
+    SALUMI MENUS
+    <p>
+    Dinner/Tapas menu for upload:
+    <input type="file" name="salumi_tapas" size="40">
+    <p>
+    Lunch menu for upload:
+    <input type="file" name="salumi_lunch" size="40">
+    <p>
+    Brunch menu for upload:
+    <input type="file" name="salumi_brunch" size="40">
+    </p>
+    <div>
+    <input type="submit" value="upload">
+    </div>
+    </form>
+    </div>
+
+    <div class='form_container'>
+    <form action="upload_handler.py/menu" enctype="multipart/form-data" method="post">
+    <p>
+    PLANCHA MENUS
+    <p>
+    Dinner/Tapas menu for upload:
+    <input type="file" name="plancha_tapas" size="40">
+    <p>
+    Lunch menu for upload:
+    <input type="file" name="plancha_lunch" size="40">
+    <p>
+    Brunch menu for upload:
+    <input type="file" name="plancha_brunch" size="40">
+    </p>
+    <div>
+    <input type="submit" value="upload">
+    </div>
+    </form>
+    </div>
+
+  </body>
