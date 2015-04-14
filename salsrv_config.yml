@@ -123,7 +123,7 @@ menu:
             - {name: polenta plate, price: 12}
             - {name: oxtail, price: 14}
             - {name: laksa, price: 21}
-            #- {name: lamb, price: 22}
+            - {name: lamb, price: 22}
             #- {name: chicken, price: 18}
             - {name: bread, price: 3}
             - {name: panacotta, price: 7}
@@ -182,7 +182,7 @@ menu:
             #- {name: jambon, price: 0}
             #- {name: rosette de lyon, price: 0}
             #- {name: american ham, price: 0}
-            - {name: extra fig, price: 0}
+            - {name: extra fig, price: .50}
         - name: gift_certificates
           items: 
             - {name: gift5, price: 5}
@@ -276,7 +276,7 @@ menu:
             - {name: burrata sandwich, price: 10}
             - {name: prosciutto sandwich, price: 10}
             - {name: spanish ham cheese,  price: 9}
-            #- {name: mini panini, price: 7}
+            - {name: panini, price: 7}
             - {name: goat mushroom sandwich, price: 8}
             #- {name: ceasar_lun, price: 8}
             - {name: house salad, price: 7}
@@ -288,7 +288,7 @@ menu:
             - {name: egg in a hole, price: 7}
             - {name: ham and cheese, price: 8}
             - {name: bread pudding, price: 10}
-            - {name: french toast, price: 8}
+            - {name: johnny cakes, price: 8}
             - {name: potato hash, price: 5}
             - {name: bacon, price: 4}
             - {name: mini panini, price: 8}
@@ -298,12 +298,12 @@ menu:
             - {name: burrata salad, price: 14}
             - {name: house salad, price: 7}
             - {name: walnut pesto, price: 6}
-            - {name: spring salad, price: 12}
+            - {name: persimmon salad, price: 10}
             - {name: chicken liver pate, price: 7}
             - {name: cabra bake, price: 7}
-            - {name: carrots, price: 12}
+            - {name: winter crudites, price: 8}
             - {name: empanada, price: 8}
-            - {name: bocadillo, price: 9}
+            - {name: bocadillo, price: 8}
             - {name: bread basket, price: 3}
             - {name: bread, price: 3}
     - name: bev
@@ -331,7 +331,7 @@ menu:
             - {name: pineapple, price: 3}
             - {name: liquor flight, price: 16}
             - {name: red flight, price: 18}
-            - {name: white flight, price: 14}
+            - {name: white flight, price: 16}
             - {name: seltzer, price: 2}
             - {name: coke, price: 3}
             - {name: dcoke, price: 3}
