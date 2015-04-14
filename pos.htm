@@ -577,6 +577,20 @@
       colorTables();
     }
 
+    function cookscreen_click(item_id)
+    {
+      item = get_order_pane_item(item_id);
+
+      if (item.is_held)
+      {
+        toggle_held(item.id);
+      }
+      else
+      {
+        mark_delivered(item.id);
+      }  
+    }
+
     function mark_delivered(item_id)
     {
       params = "item_id="+item_id;
@@ -584,9 +598,9 @@
       main_refresh();
     }
 
-    function toggle_held()
+    function toggle_held(item_id)
     {
-      params = "item_id="+popup.item_id;
+      params = "item_id="+item_id;
       http_request("POST", "set_item_status.py/toggle_held", params);
       main_refresh();
     }
@@ -632,7 +646,7 @@
         '<td>' + 
           ' <input class="'+ classes + '" ' + 
           ' type=Button' +
-          ' onclick="mark_delivered(' + item.id + ')"' +
+          ' onclick="cookscreen_click(' + item.id + ')"' +
           ' value="' + item.item_name +'"></input>'+
         '</td>';
         time_display = (
@@ -1132,7 +1146,7 @@
         <input type="button" value="do nothing"> 
       </div>
       <div style="float: left; width: 50%">
-        <input id="holdgo" type="button" value="hold" onclick="toggle_held()"> 
+        <input id="holdgo" type="button" value="hold" onclick="toggle_held(popup.item_id)"> 
         <input type="button" value="comped" onclick="mark_comped()"> 
         <input type="button" value="cancel" onclick="cancel_item()"> 
       </div>
