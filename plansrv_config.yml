@@ -38,6 +38,9 @@ menu:
             - name: O5
             - name: O6
             - name: O7
+            - name: T1 
+            - name: T2
+            - name: T3
     - name: food
       subcategories:
         - name: guests 
