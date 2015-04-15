@@ -15,7 +15,7 @@
     }
 
     .nondelivered_item { color: red; }
-    .delivered_item { opacity: 0.3; text-align: right}
+    .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
 
     .comped_item {font-style:italic; border: 6px solid #a0ffa0;}
     .held_item {border: 3px solid yellow;}
@@ -647,7 +647,7 @@
         item = order_items[idx];
         classes = "order_item";
 
-        if (item.is_delivered && item.minutes_since_mod > 0) {continue}
+        if (item.is_delivered && item.seconds_since_mod > 15) {continue}
 
         if (item.is_delivered) {classes += ' delivered_item'}
         config_item = get_config_item(item.item_name);

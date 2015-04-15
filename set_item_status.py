@@ -31,7 +31,7 @@ def comped(req, item_id):
 
     utils.execute('''
       UPDATE order_item oi
-      set oi.is_comped = NOT oi.is_comped, oi.updated = NOW()
+      set oi.is_comped = NOT oi.is_comped
       where oi.id = %(item_id)s
     ''' % locals())
     
