@@ -75,7 +75,7 @@ def order(req, table, additem=None, removeitem=None, price=None, menu_item_id = 
     and oi.is_cancelled = FALSE
     '''
   if table != 'ALL': order_item_query += 'and og.table_id = "%s"\n' % table
-  order_item_query += "order by oi.is_held, oi.created"
+  order_item_query += "order by oi.is_held, oi.created, oi.id"
 
   order_items = utils.select(order_item_query, cursor)
 
