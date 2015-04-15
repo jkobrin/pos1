@@ -13,7 +13,7 @@
       border: none;
       font-size : 24pt;
     }
-    
+
     .nondelivered_item { color: red; }
     .delivered_item { opacity: 0.5; text-align: right}
 
@@ -165,7 +165,8 @@
     #cook_table td
     {
       border-width: 1px;
-      padding: 1px;
+      padding-right: 10px;
+      padding-left: 10px;
       border-style: inset;
       -moz-border-radius: 0px 0px 0px 0px;
     }
@@ -577,6 +578,21 @@
       colorTables();
     }
 
+    function cookscreen_table_click(table_id)
+    {
+      set_current_table(table_id);
+      leave_cook_screen();
+    }
+
+    function cookscreen_timeclick(item_id)
+    {
+      item = get_order_pane_item(item_id);
+      if (!item.is_delivered)
+      {
+        toggle_held(item.id);
+      }
+    }
+
     function cookscreen_click(item_id)
     {
       item = get_order_pane_item(item_id);
@@ -641,20 +657,20 @@
         if (item.is_held) {classes += ' held_item'}
 
         order_items_html += '<tr class="'+ classes + '">'
-        order_items_html += '<td>'+item.table_id+'</td>'
         order_items_html += 
-        '<td>' + 
-          ' <input class="'+ classes + '" ' + 
-          ' type=Button' +
-          ' onclick="cookscreen_click(' + item.id + ')"' +
-          ' value="' + item.item_name +'"></input>'+
+        '<td onclick="cookscreen_table_click(' + item.table_id + ')">' +
+          item.table_id +
+        '</td>';
+        order_items_html += 
+        '<td onclick="cookscreen_click(' + item.id + ')">' +
+          item.item_name +
         '</td>';
         time_display = (
           item.minutes_since_mod == null?
             item.minutes_old : 
             item.minutes_old + '/' + item.minutes_since_mod
         )    
-        order_items_html += '<td>'+time_display+'</td>'
+        order_items_html += '<td onclick="cookscreen_timeclick(' + item.id + ')">'+time_display+'</td>'
         order_items_html += '</tr>'
 
       }  
