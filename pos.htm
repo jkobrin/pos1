@@ -15,7 +15,7 @@
     }
 
     .nondelivered_item { color: red; }
-    .delivered_item { opacity: 0.5; text-align: right}
+    .delivered_item { opacity: 0.3; text-align: right}
 
     .comped_item {font-style:italic; border: 6px solid #a0ffa0;}
     .held_item {border: 3px solid yellow;}
@@ -658,7 +658,7 @@
 
         order_items_html += '<tr class="'+ classes + '">'
         order_items_html += 
-        '<td onclick="cookscreen_table_click(' + item.table_id + ')">' +
+        '<td onclick="cookscreen_table_click(\'' + item.table_id + '\')">' +
           item.table_id +
         '</td>';
         order_items_html += 
