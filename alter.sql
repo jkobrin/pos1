@@ -7,19 +7,19 @@
 
 #-----------------------------------------------------------
 
-alter table person add column salary decimal(6,2);
+#alter table person add column salary decimal(6,2);
 
-update person set salary = 0, pay_rate = 0 where last_name = 'DiLemme';
+#update person set salary = 0, pay_rate = 0 where last_name = 'DiLemme';
 
-insert into employee_tax_info values(
-      null, 
-      (select id from person where first_name = 'John' and last_name = 'DiLemme'),
-      True,
-      4,
-      .392,
-      null,
-      null);
-
+#insert into employee_tax_info values(
+#      null, 
+#      (select id from person where first_name = 'John' and last_name = 'DiLemme'),
+#      True,
+#      4,
+#      .392,
+#      null,
+#      null);
+#
 
 CREATE or REPLACE view hours_worked as
 select 
@@ -44,7 +44,9 @@ select week_of + interval '6' DAY as week_ending, PAY_STUB.* from PAY_STUB
 
 create or replace view monthly_withholding
 as
-select concat(min(week_of), ' - ', max(week_of)) weeks_of, 
+select 
+concat(monthname(week_ending), ' ', year(week_ending)) as month,
+concat(min(week_of), ' - ', max(week_of)) weeks_of, 
 first_name, 
 last_name, 
 sum(gross_wages) gross_wages,
@@ -56,4 +58,8 @@ from pstub_with_week_ending
 where nominal_scale != 0
 group by person_id, 
 year(week_ending), 
-month(week_ending);
+month(week_ending)
+order by
+year(week_ending), 
+month(week_ending)
+;
