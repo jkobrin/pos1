@@ -1,6 +1,6 @@
 CREATE or REPLACE view hours_worked as
 select 
-  p.last_name, p.first_name, p.pay_rate, p.weekly_tax, p.salary
+  p.last_name, p.first_name, p.pay_rate, p.weekly_tax, p.salary,
   p.id as person_id,
   intime,
   date_format(intime,"%m/%d") as date,
@@ -23,6 +23,8 @@ and is_cancelled = false
 and item_name not like 'gift%' 
 and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+;'
 ;
+
+create or replace view taxable_item as select * from revenue_item where item_name not like 'market%';
 
 create or replace view sales_by_week
 as

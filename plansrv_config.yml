@@ -256,6 +256,14 @@ menu:
             - {name: cebada, price: 7}
             - {name: bread, price: 3}
 
+        - name: market 
+          items: 
+            - {name: market fig, price: 6}
+            - {name: market coffe, price: 14}
+            - {name: market balsamic, price: 20}
+            - {name: market hazelnuts, price: 10}
+            - {name: market caperberries, price: 6}
+            - {name: market anchovy, price: 3}
         - name: brunch 
           items: 
             - {name: bloomfield, price: 12}
