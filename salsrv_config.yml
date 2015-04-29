@@ -145,7 +145,9 @@ menu:
             - {name: wine glasses, price: 0}
             - {name: water glasses, price: 0}
         - name: boards
-          items: 
+          items:
+
+            - {name: fish board, price: 16}
             - name: 1-board
               price: 7
             - name: 3-board
@@ -182,7 +184,7 @@ menu:
             #- {name: jambon, price: 0}
             #- {name: rosette de lyon, price: 0}
             #- {name: american ham, price: 0}
-            - {name: extra fig, price: .50}
+            - {name: extra fig, price: 2}
         - name: gift_certificates
           items: 
             - {name: gift5, price: 5}
@@ -241,6 +243,7 @@ menu:
             - {name: extras, price: 1}
             - {name: gratuity18, price: 0}
             - {name: special price, price: 0}
+            - {name: corkage fee, price: 10}
             - {name: special3, price: 3}
             - {name: special4, price: 4}
             - {name: special5, price: 5}
@@ -288,7 +291,7 @@ menu:
             - {name: egg in a hole, price: 7}
             - {name: ham and cheese, price: 8}
             - {name: bread pudding, price: 10}
-            - {name: johnny cakes, price: 8}
+            - {name: french toast, price: 8}
             - {name: potato hash, price: 5}
             - {name: bacon, price: 4}
             - {name: mini panini, price: 8}
@@ -298,10 +301,10 @@ menu:
             - {name: burrata salad, price: 14}
             - {name: house salad, price: 7}
             - {name: walnut pesto, price: 6}
-            - {name: persimmon salad, price: 10}
+            - {name: spring salad, price: 12}
             - {name: chicken liver pate, price: 7}
-            - {name: cabra bake, price: 7}
-            - {name: winter crudites, price: 8}
+            - {name: octopus, price: 12}
+            - {name: carrots, price: 12}
             - {name: empanada, price: 8}
             - {name: bocadillo, price: 8}
             - {name: bread basket, price: 3}
@@ -343,6 +346,11 @@ menu:
             - {name: cktail7, price: 7}
             - {name: cktail10, price: 10}
             - {name: cktail12, price: 12}
+            - {name: classic martini, price: 12}
+            - {name: margarita primavera, price: 12}
+            - {name: old-mansion, price: 12}
+            - {name: caipirinha, price: 10}
+            - {name: kalimotxo, price: 7}
             - {name: gin tonic, price: 7}
             - {name: vodka tonic, price: 7}
             - {name: vodka cran, price: 7}
@@ -358,7 +366,6 @@ menu:
             - {name: cosmo, price: 10}
             - {name: margarita, price: 10}
             - {name: mojito, price: 10}
-            - {name: caipirnha, price: 10}
             - {name: citrus smash (virgin), price: 5}
             - {name: citrus smash rum, price: 10}
             - {name: jack-coke, price: 10}
