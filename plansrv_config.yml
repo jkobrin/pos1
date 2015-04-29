@@ -64,31 +64,22 @@ menu:
             - {name: warm olives, price: 5}
             - {name: marcona almonds, price: 5}
             - {name: anchovy, price: 6}
-            #- {name: artichoke, price: 8}
             - {name: caesar salad, price: 9}
-            - {name: summer salad, price: 9}
             - {name: burrata , price: 14}
-            #- {name: tonnato, price: 12}
-            - {name: croquettas, price: 7}
-            - {name: taleggio bake, price: 7}
             - {name: patatas bravas, price: 6}
-            #- {name: sardine, price: 6}
-            - {name: mexi soup, price: 8}
             - {name: squash, price: 8}
-            - {name: beef chorizo, price: 9}
-            - {name: sprouts, price: 9}
+            - {name: peppers, price: 9}
             - {name: scallops, price: 14}
-            #- {name: soup, price: 6}
             - {name: foie gras, price: 16}
-            #- {name: cabra bake, price: 9}
             - {name: panini , price: 9}
             - {name: marrow bones, price: 8}
-            #- {name: sausage, price: 7}
             - {name: pulpo, price: 14}
             - {name: bocadillo, price: 8}
             - {name: sebada, price: 7}
+            - {name: tomatillo soup, price: 8}
             - {name: duck, price: 16}
-            - {name: lamb, price: 18}
+            - {name: beef chorizo, price: 10}
+            - {name: chicken, price: 12}
             - {name: bread, price: 3}
         - name: boards
           items: 
@@ -126,12 +117,12 @@ menu:
             - {name: felino, price: 0}
             - {name: pata negra, price: 15}
             #- {name: rosette de lyon, price: 0}
-            - {name: extra fig, price: 0}
+            - {name: extra fig, price: 2}
         - name: dessert_etc
           items: 
             - {name: panacotta, price: 7}
             - {name: chocolate, price: 5}
-            - {name: cannoli, price: 7}
+            - {name: apple crisp, price: 7}
             - {name: gift5, price: 5}
             - {name: gift10, price: 10}
             - {name: gift15, price: 15}
@@ -188,6 +179,7 @@ menu:
             - {name: extras, price: 1}
             - {name: gratuity18, price: 0}
             - {name: special price, price: 0}
+            - {name: corkage fee, price: 10}
             - {name: corkage, price: 10}
             - {name: special3, price: 3}
             - {name: special4, price: 4}
