@@ -14,11 +14,11 @@ def nightly_sales_by_server(label=False, lag_days=1):
       p.id as person_id,
       p.ccid,
       sum(oi.price) sales, 
-      sum(ri.price) taxable_sales,
-      sum(oi.price) + COALESCE(round(sum(ri.price) * %(tax_rate)s, 2),0) receipts,
+      sum(ti.price) taxable_sales,
+      sum(oi.price) + COALESCE(round(sum(ti.price) * %(tax_rate)s, 2),0) receipts,
       count(distinct og.id) tabs_closed,
       convert(date(now() - INTERVAL '%(lag_days)s' DAY), CHAR(10)) as dat
-    FROM (order_item oi left outer join revenue_item ri on ri.id = oi.id), order_group og, person p 
+    FROM (order_item oi left outer join taxable_item ti on ti.id = oi.id), order_group og, person p 
     WHERE oi.order_group_id = og.id 
     AND oi.is_cancelled = False
     AND oi.is_comped = False
