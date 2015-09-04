@@ -1,30 +1,17 @@
-drop table if exists receipts_by_server;
 
-CREATE TABLE receipts_by_server (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  person_id INT not null,
-  dat date not null,
-  cc1 float,
-  cc2 float,
-  cash1 float,
-  cash2 float,
-  INDEX rbs_person_id (person_id),
-  INDEX rbs_dat (dat),
-  FOREIGN KEY (person_id) REFERENCES person(id) ON DELETE CASCADE
-)
-
-CREATE or REPLACE view hours_worked as
-select 
-  p.last_name, p.first_name, p.pay_rate, p.weekly_tax,
-  p.id as person_id,
-  intime,
-  date_format(intime,"%m/%d") as date,
-  date_format(intime, "%H:%i") time_in, 
-  date_format(outtime, "%H:%i") time_out, 
-  hour(timediff(outtime, intime)) + minute(timediff(outtime, intime))/60 hours_worked,
-  h.tip_pay 
-from 
-  hours h, 
-  person p 
-  where h.person_id = p.id;
-
+SELECT 
+      concat(p.last_name, ', ', substr(p.first_name,1,1), '.') server,
+      p.id as person_id,
+      p.ccid,
+      sum(oi.price) sales, 
+      sum(ti.price) taxable_sales,
+      sum(oi.price) + COALESCE(round(sum(ti.price) * .08625, 2),0) receipts,
+      count(distinct og.id) tabs_closed,
+      convert(date(now() - INTERVAL '0' DAY), CHAR(10)) as dat
+    FROM (order_item oi left outer join taxable_item ti on ti.id = oi.id), order_group og, person p 
+    WHERE oi.order_group_id = og.id 
+    AND oi.is_cancelled = False
+    AND oi.is_comped = False
+    AND og.closedby = p.id 
+    AND date(og.updated - interval '6' HOUR) = date(now() - INTERVAL '0' DAY)
+    GROUP BY p.id
