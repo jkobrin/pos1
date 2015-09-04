@@ -1,11 +1,10 @@
 import json
 import MySQLdb
 import utils
-
-#log = open('/tmp/logq', 'a')
-
+from mylog import my_logger
 
 def delivered(req, item_id):
+    my_logger.info(req.get_remote_host() + ': delivered on ' + str(item_id))
 
     utils.execute('''
       UPDATE order_item oi
@@ -17,6 +16,7 @@ def delivered(req, item_id):
     
 
 def toggle_held(req, item_id):
+    my_logger.info(req.get_remote_host() + ': toggle_held on ' + str(item_id))
 
     utils.execute('''
       UPDATE order_item oi
@@ -28,6 +28,7 @@ def toggle_held(req, item_id):
     
 
 def comped(req, item_id):
+    my_logger.info(req.get_remote_host() + ': comped on ' + str(item_id))
 
     utils.execute('''
       UPDATE order_item oi
@@ -36,6 +37,8 @@ def comped(req, item_id):
     ''' % locals())
     
     return json.dumps(None);
+
+
 
 if __name__ == '__main__':
   pass

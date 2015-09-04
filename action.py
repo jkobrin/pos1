@@ -1,11 +1,16 @@
 import json
 import MySQLdb
 import utils
-
-#log = open('/tmp/logq', 'a')
+from mylog import my_logger
 
 
 def order(req, table, additem=None, removeitem=None, price=None, menu_item_id = None):
+
+  if removeitem or additem:
+    my_logger.info(req.get_remote_host() + 
+      ': action/order on table:%(table)s add_item: %(additem)s removeitem: %(removeitem)s  price: %(price)s'
+      %locals()
+    )
 
   if table == 'null': return json.dumps(None)
 

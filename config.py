@@ -23,8 +23,7 @@ def iget():
         item['subcatname'] = subcatname
         if not item.has_key('name'):
            raise Exception('no name for item: ' + str(item))
-        if type(item['name']) == str:
-          item['name'] = (item['name'])[:MAX_NAME_LEN]
+        item['name'] = str(item['name'])[:MAX_NAME_LEN]
         items[item['name']] = item
   return cfg, items
 
