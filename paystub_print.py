@@ -97,6 +97,7 @@ def index(req, stub_select): #person_id, week_of):
   gen_fodt_and_pdf(stub_data)
 
   if req: req.content_type = 'application/pdf'
+  if req: req.content_disposition = 'attachment; filename=foobark'
 
   pdf = open('/tmp/paystub.pdf').read()
   return pdf

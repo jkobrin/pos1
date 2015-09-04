@@ -7,11 +7,11 @@ LOG_FILENAME = '/var/www/pos.log'
 
 # Set up a specific logger with our desired output level
 my_logger = logging.getLogger('MyLogger')
-my_logger.setLevel(logging.DEBUG)
+my_logger.setLevel(logging.INFO)
 
 # Create log message handler
 handler = logging.handlers.RotatingFileHandler(
-              LOG_FILENAME, maxBytes=200000, backupCount=5)
+              LOG_FILENAME, maxBytes=200000000, backupCount=5)
 
 # create formatter
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
