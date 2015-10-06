@@ -23,6 +23,7 @@ def is_market(item):
   return item['name'].startswith('market')
 
 def is_staff(table_id):
+  # this is not currently used for anything
   return re.match('[A-Z][a-z]+ [A-Z][a-z]+', table_id)
 
 def is_gift(item):
@@ -65,8 +66,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
     return "no tab opened for table %s" %table, []
 
   foodtotal = sum(item['price'] for item in items if not item['is_comped'] and not is_gratuity(item))
-  notaxtotal = sum(item['price'] for item in items 
-    if item['is_comped'] ==0 and (is_tax_free(item) or is_staff(items[0]['table_id'])))
+  notaxtotal = sum(item['price'] for item in items if not item['is_comped'] and is_tax_free(item))
   tax = round((foodtotal - notaxtotal) * TAXRATE, 2)
   total = foodtotal + tax
 
