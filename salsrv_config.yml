@@ -91,12 +91,15 @@ menu:
             - {name: anchovy, price: 6}
             - {name: pate, price: 7}
             - {name: summer salad, price: 9}
+            - {name: waldorf, price: 10}
             - {name: burrata, price: 14}
             #- {name: mussels, price: 7}
             #- {name: meatballs, price: 5}
             - {name: octopus, price: 12}
             - {name: shrimp, price: 12}
             - {name: peppers, price: 8}
+            - {name: taleggio bake, price: 9}
+            - {name: cauliflower, price: 8}
             - {name: artichokes, price: 10}
             - {name: carney corn, price: 7}
             #- {name: summer harvest, price: 8}
@@ -245,7 +248,8 @@ menu:
           items: 
             - {name: discount, price: -1}
             - {name: extras, price: 1}
-            - {name: gratuity18, price: 0}
+            - {name: gratuity18, price: 18}
+            - {name: gratuity20, price: 20}
             - {name: special price, price: 0}
             - {name: corkage fee, price: 10}
             - {name: special3, price: 3}
@@ -288,12 +292,15 @@ menu:
             - {name: octopus, price: 12}
             - {name: shrimp, price: 12}
             - {name: peppers, price: 8}
+            - {name: taleggio bake, price: 9}
+            - {name: cauliflower, price: 8}
             - {name: artichokes, price: 10}
             - {name: carney corn, price: 7}
             - {name: empanada, price: 8}
             - {name: oxtail, price: 14}
             - {name: bread, price: 3}
             - {name: summer salad, price: 9}
+            - {name: waldorf, price: 10}
             - {name: burrata, price: 14}
             - {name: house salad, price: 7}
             - {name: panini, price: 8}
@@ -331,15 +338,16 @@ menu:
       subcategories:
         - name: bar
           items: 
+            - {name: bar, price: 4}
             - {name: glass red sangria, price: 8}
             - {name: glass white sangria, price: 8}
             - {name: glass rose sangria, price: 8}
             - {name: jar red sangria, price: 22}
             - {name: jar white sangria, price: 22}
             - {name: jar rose sangria, price: 22}
-            - {name: liquor flight, price: 16}
+            - {name: liquor flight, price: 20}
             - {name: red flight, price: 16}
-            - {name: white flight, price: 14}
+            - {name: white flight, price: 16}
             - {name: bellini jar, price: 24}
             - {name: bellini, price: 7}
             - {name: bicicletta, price: 7}
