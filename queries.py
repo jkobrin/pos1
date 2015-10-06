@@ -97,7 +97,7 @@ def weekly_pay(printmode=0, incursor = None):
           pst.total_hourly_pay, concat(pst.total_hourly_pay, ' / ', ps.total_hourly_pay)) total_hourly_pay
         from   
         v_PAY_STUB_TEMP pst LEFT OUTER JOIN v_PAY_STUB ps on pst.week_of = ps.week_of
-        where pst.first_name = ps.first_name and pst.last_name = ps.last_name
+        and pst.first_name = ps.first_name and pst.last_name = ps.last_name
         order by last_name, first_name
     ''', 
     incursor = incursor,
