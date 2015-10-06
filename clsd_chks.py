@@ -5,19 +5,31 @@ import json
 import MySQLdb
 import utils
 
-from texttab import get_tab_text
-
+import texttab
 
 
 def index(req, lag_days=1, output_html = True):
+
+  TAXRATE = texttab.TAXRATE 
+
   query_txt = '''
   # see checks
-  select  og.table_id, closedby, sum(price) subtot, sum(price)*1.08625 tot, og.created, og.updated closed_time 
-  from order_item oi, order_group og 
-  where oi.order_group_id = og.id 
-  and oi.is_cancelled = false
-  and og.is_open = false
-  '''
+    SELECT 
+      og.table_id, og.created, og.updated closed_time, og.closedby,
+      concat(p.last_name, ', ', substr(p.first_name,1,1), '.') server,
+      sum(oi.price) sales, 
+      sum(ti.price) taxable_sales,
+      sum(oi.price) + COALESCE(round(sum(ti.price) * %(TAXRATE)s, 2),0) receipts
+    FROM order_group og 
+        left outer join order_item oi on og.id = oi.order_group_id 
+        left outer join taxable_item ti on ti.id = oi.id,
+        person p 
+    WHERE oi.is_cancelled = False
+    AND oi.is_comped = False
+    AND og.closedby = p.id 
+    AND date(og.updated - interval '6' HOUR) = date(now() - INTERVAL '%(lag_days)s' DAY)
+  '''%locals()
+
   if lag_days is not None:
     query_txt += '''and date(og.updated - interval '6' hour) = date(now()) - interval '%(lag_days)s' day
     '''%locals()
@@ -31,8 +43,8 @@ def index(req, lag_days=1, output_html = True):
 
   body = ''
   for row in checks:
-    if output_html: body += '<div style="float:left;">time: %(created)s to %(closed_time)s by: %(closedby)s <h1> %(table_id)s $%(tot).2f</h1>' % row
-    tab_text, certs = get_tab_text(
+    if output_html: body += '<div style="float:left;"> %(created)s to <br> %(closed_time)s <br> by: %(server)s <h1> %(table_id)s $%(receipts).2f</h1>' % row
+    tab_text, certs = texttab.get_tab_text(
       table=row['table_id'], 
       serverpin = row['closedby'], 
       cursor = None, 

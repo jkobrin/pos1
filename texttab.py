@@ -46,7 +46,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
     SELECT count(*) cnt, og.table_id, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
-    and (og.is_open = TRUE or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
+    and (og.is_open = TRUE and "%(closed_time)s" = 'None' or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
     and oi.is_cancelled = FALSE
     group by oi.item_name, oi.is_comped, oi.price, IF(item_name like 'gift%%', oi.id, 1)
     order by oi.id
