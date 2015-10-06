@@ -53,6 +53,9 @@ def hours(lag_days):
 
 def weekly_pay(printmode=0, incursor = None):
 
+  if incursor is None:
+    incursor = utils.get_cursor()
+
   for table_name in ('PAY_STUB', 'PAY_STUB_TEMP'):
     utils.execute('''
       create temporary table v_%(table_name)s
