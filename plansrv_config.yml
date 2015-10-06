@@ -67,7 +67,7 @@ menu:
             - {name: beet and blue , price: 13}
             - {name: burrata , price: 14}
             - {name: patatas bravas, price: 6}
-            - {name: carney corn, price: 7}
+            - {name: sprouts, price: 8}
             - {name: peppers, price: 9}
             - {name: scallops, price: 14}
             - {name: foie gras, price: 16}
@@ -75,8 +75,8 @@ menu:
             - {name: marrow bones, price: 8}
             - {name: pulpo, price: 14}
             - {name: bocadillo, price: 8}
-            - {name: farro, price: 9}
-            - {name: tomatillo soup, price: 8}
+            - {name: cebada, price: 10}
+            - {name: celery root soup, price: 8}
             - {name: duck, price: 16}
             - {name: beef chorizo, price: 10}
             - {name: lamb, price: 21}
@@ -294,6 +294,7 @@ menu:
       subcategories:
         - name: bar
           items: 
+            - {name: amaro, price: 4}
             - {name: red sangrea jar, price: 32}
             - {name: red sangrea, price: 8}
             - {name: white sangrea jar, price: 32}
@@ -330,6 +331,7 @@ menu:
             - {name: jasmin tea, price: 4}
             - {name: lemonade, price: 5}
             - {name: lemon, price: 4}
+            - {name: liquor flight, price: 20}
             - {name: manhattan, price: 12}
             - {name: margarita, price: 10}
             - {name: martini, price: 10}
@@ -360,5 +362,5 @@ menu:
             - {name: vodka tonic, price: 7}
             - {name: white sangrea jar, price: 32}
             - {name: white sangrea, price: 8}
-            - {name: wine flight, price: 18}
+            - {name: wine flight, price: 16}
             - {name: wine spritz, price: 10}
