@@ -15,8 +15,10 @@ def index(req, doprint=0):
   else:
     print_message = ""
 
-  populate_response = populate_pay_stub.populate_pay_stub()
-  weekly = queries.weekly_pay()
+  cursor = utils.get_cursor()
+  populate_response = populate_pay_stub.populate_pay_stub(temp = True, incursor = cursor)
+  weekly = queries.weekly_pay(incursor=cursor)
+  
 
   payroll = utils.select('''
 	SELECT yearweek(intime),
@@ -82,6 +84,7 @@ def index(req, doprint=0):
   return html
 
 def print_pay():
+    populate_response = populate_pay_stub.populate_pay_stub(temp = False)
     print_pay_slips.go()
 
 

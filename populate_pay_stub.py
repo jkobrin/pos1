@@ -2,15 +2,15 @@ import utils
 import tax
 from mylog import my_logger
 
-def populate_pay_stub():
+def populate_pay_stub(temp = True, incursor=None):
 
-  days_of_tips_calculated = utils.select(
-    '''select count(distinct date(intime)) from hours 
-    where yearweek(intime) = yearweek(now() - interval '1' week) and tip_pay is not null''',
-    label = False
-    )[0][0]
-  if days_of_tips_calculated != 7:
-    return 'Tips have been calculated for only %s days last week. When all days tips are calculated, refresh this page to see and print weekly pay for last week.'%days_of_tips_calculated
+  #days_of_tips_calculated = utils.select(
+  #  '''select count(distinct date(intime)) from hours 
+  #  where yearweek(intime) = yearweek(now() - interval '1' week) and tip_pay is not null''',
+  #  label = False
+  #  )[0][0]
+  #if days_of_tips_calculated != 7:
+  #  return 'Tips have been calculated for only %s days last week. When all days tips are calculated, refresh this page to see and print weekly pay for last week.'%days_of_tips_calculated
 
   results = utils.select('''
   select
@@ -31,19 +31,30 @@ def populate_pay_stub():
   and intime != 0
   group by hours_worked.person_id
   ''',
-  incursor = None,
+  incursor = incursor,
   label = True
   )
 
+  if temp:
+    utils.execute('''
+    create temporary table PAY_STUB_TEMP like PAY_STUB;
+    ''', incursor=incursor);
+    table_name = 'PAY_STUB_TEMP'
+  else:
+    table_name = 'PAY_STUB'
+
   for row in results:
-    if utils.select('select 1 from PAY_STUB where week_of = "%(week_of)s" and person_id = %(person_id)s'%row):
+    if not temp and utils.select(
+      'select 1 from PAY_STUB where week_of = "%(week_of)s" and person_id = %(person_id)s'%row,
+      incursor = incursor
+      ):
       continue
     tax.add_witholding_fields(row)
     columns = ', '.join(row.keys())
     values = ', '.join(("'%s'" % value for value in row.values()))
-    sqltext = 'INSERT into PAY_STUB (%s) VALUES (%s);'%(columns, values)
+    sqltext = 'INSERT into %s (%s) VALUES (%s);'%(table_name, columns, values)
     my_logger.debug('pay stub: ' + sqltext)
-    utils.execute(sqltext)
+    utils.execute(sqltext, incursor=incursor)
     
 
 if __name__ == '__main__':

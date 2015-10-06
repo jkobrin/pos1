@@ -54,6 +54,16 @@ def label_query_rows(labels, rows):
 def now():
   return datetime.datetime.now().strftime("%H:%M %m/%d")
 
+
+def get_cursor():
+    conn = MySQLdb.connect (host = "localhost",
+                          user = "pos",
+                          passwd = "pos",
+                          db = "pos")
+
+    return conn.cursor()
+
+
 def execute(sql, incursor=None):
   
   #my_logger.debug(sql)

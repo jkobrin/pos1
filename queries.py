@@ -51,64 +51,61 @@ def hours(lag_days):
     label=True
   )
 
-def weekly_pay(printmode=0):
- return utils.select('''
-	select
-	DATE(intime) - interval (DAYOFWEEK(intime) -1) DAY as week_of,
-	last_name, first_name,
-	sum(hours_worked) as hours_worked,
-  pay_rate, 
-  weekly_tax,
-  round(sum(hours_worked)*pay_rate - weekly_tax) as weekly_pay,
-  sum(tip_pay) tips,
-  round(sum(hours_worked)*pay_rate - weekly_tax) + sum(tip_pay) as total_weekly,
-  sum(tip_pay) / sum(hours_worked) + pay_rate as total_hourly_pay
-	from hours_worked 
-  where (yearweek(intime) > yearweek(now() - interval '5' week) and %(printmode)s = 0)
-     or (yearweek(intime) = yearweek(now() - interval '1' week) and %(printmode)s = 1)
-     and intime != 0
-  group by yearweek(intime), last_name, first_name 
-	order by yearweek(intime) desc, last_name, first_name''' % locals(),
-    incursor=None,
-    label=printmode
-  )
+def weekly_pay(printmode=0, incursor = None):
+
+  for table_name in ('PAY_STUB', 'PAY_STUB_TEMP'):
+    utils.execute('''
+      create temporary table v_%(table_name)s
+      as
+      select
+      week_of,
+      last_name, first_name,
+      hours_worked,
+      pay_rate,
+      fed_withholding + nys_withholding + medicare_tax + social_security_tax as weekly_tax,
+      round(weekly_pay -fed_withholding -nys_withholding -medicare_tax -social_security_tax) as net_wage,
+      tips,
+      total_hourly_pay
+      from %(table_name)s
+      where yearweek(week_of) = yearweek(now() - interval '1' week)
+      order by last_name, first_name''' % locals(),
+      incursor=incursor,
+      )
+
+    if printmode == 1:
+      break
+
+  if printmode == 1:
+    return utils.select('''select * from v_PAY_STUB''', incursor=incursor)
+  else: 
+    return utils.select('''
+      select 
+        pst.week_of,
+        pst.last_name,
+        pst.first_name,
+        IF(pst.hours_worked = ps.hours_worked or ps.hours_worked is null,
+          pst.hours_worked, concat(pst.hours_worked, ' / ', ps.hours_worked)) hours_worked,
+        IF(pst.pay_rate = ps.pay_rate or pst.pay_rate is null, 
+          pst.pay_rate, concat(pst.pay_rate, ' / ', ps.pay_rate)) pay_rate,
+        IF(pst.weekly_tax = ps.weekly_tax or ps.weekly_tax is null, 
+          pst.weekly_tax, concat(pst.weekly_tax, ' / ', ps.weekly_tax)) weekly_tax,
+        IF(pst.net_wage = ps.net_wage or ps.net_wage is null, 
+          pst.net_wage, concat(pst.net_wage, ' / ', ps.net_wage)) net_wage,
+        IF(pst.tips = ps.tips or ps.tips is null, 
+          pst.tips, concat(pst.tips, ' / ', ps.tips)) tips,
+        IF(pst.total_hourly_pay = ps.total_hourly_pay or ps.total_hourly_pay is null, 
+          pst.total_hourly_pay, concat(pst.total_hourly_pay, ' / ', ps.total_hourly_pay)) total_hourly_pay
+        from   
+        v_PAY_STUB_TEMP pst LEFT OUTER JOIN v_PAY_STUB ps on pst.week_of = ps.week_of
+        where pst.first_name = ps.first_name and pst.last_name = ps.last_name
+        order by last_name, first_name
+    ''', 
+    incursor = incursor,
+    label= False
+    )    
+
+  
+  
 
 
-def weekly_pay(printmode=0):
- return utils.select('''
-	select
-	week_of,
-	last_name, first_name,
-	hours_worked,
-  pay_rate, 
-  fed_withholding + nys_withholding + medicare_tax + social_security_tax as weekly_tax,
-  round(weekly_pay -fed_withholding -nys_withholding -medicare_tax -social_security_tax) as net_wage,
-  tips,
-  total_hourly_pay
-	from PAY_STUB 
-  where (yearweek(week_of) > yearweek(now() - interval '5' week) and %(printmode)s = 0)
-     or (yearweek(week_of) = yearweek(now() - interval '1' week) and %(printmode)s = 1)
-	order by week_of desc, last_name, first_name''' % locals(),
-    incursor=None,
-    label=printmode
-  )
-
-
-def weekly_pay(printmode=0):
- return utils.select('''
-	select
-	week_of,
-	last_name, first_name,
-	hours_worked,
-  pay_rate,
-  fed_withholding + nys_withholding + medicare_tax + social_security_tax as weekly_tax,
-  round(weekly_pay -fed_withholding -nys_withholding -medicare_tax -social_security_tax) as net_wage,
-  tips,
-  total_hourly_pay
-	from PAY_STUB
-  where (yearweek(week_of) > yearweek(now() - interval '5' week) and %(printmode)s = 0)
-     or (yearweek(week_of) = yearweek(now() - interval '1' week) and %(printmode)s = 1)
-	order by week_of desc, last_name, first_name''' % locals(),
-    incursor=None,
-    label=printmode
-  )
+  
