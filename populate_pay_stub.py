@@ -35,6 +35,8 @@ def populate_pay_stub():
   label = True
   )
 
+  my_logger.info("pay stub data: %s"%results)
+
   for row in results:
     if utils.select('select 1 from PAY_STUB where week_of = "%(week_of)s" and person_id = %(person_id)s'%row):
       continue

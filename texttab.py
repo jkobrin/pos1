@@ -5,8 +5,6 @@ from gift_cert import GiftCert
 TAXRATE = .08625
 TEXTWIDTH = 18
 NUMWIDTH = 7 
-GRATUITY18 = 'gratuity18'
-GRATUITYRATE = .18
 
 def index(req, table):
   tab_text, gift_certs = get_tab_text(table)
@@ -29,6 +27,9 @@ def is_staff(table_id):
 
 def is_gift(item):
   return item['name'].startswith('gift')
+
+def is_gratuity(item):
+  return item['name'].startswith('gratuity')
 
 def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_time = None):
 
@@ -63,20 +64,12 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   if not items: 
     return "no tab opened for table %s" %table, []
 
-  add_grat = GRATUITY18 in (item['name'] for item in items)
-  #items =  (item for item in items if item['name'] != GRATUITY18)
-  foodtotal = sum(item['price'] for item in items if not item['is_comped'])
+  foodtotal = sum(item['price'] for item in items if not item['is_comped'] and not is_gratuity(item))
   notaxtotal = sum(item['price'] for item in items 
     if item['is_comped'] ==0 and (is_tax_free(item) or is_staff(items[0]['table_id'])))
   tax = round((foodtotal - notaxtotal) * TAXRATE, 2)
-  gratuity = round((foodtotal - notaxtotal) * GRATUITYRATE, 2)
   total = foodtotal + tax
-  if add_grat:
-    total = total + gratuity
 
-  foodtotal, tax, gratuity, total = (
-    ('%.2f'%x).rjust(NUMWIDTH) for x in (foodtotal, tax, gratuity, total)
-  )
   divider = '-'*(NUMWIDTH + TEXTWIDTH) + "\n"
 
   if utils.is_salumi():
@@ -94,8 +87,15 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   tabtext += divider
 
   gift_certs = []
+  gratuity = 0
+  gratuity_rate = 0
 
   for item in items:
+    if is_gratuity(item):
+      gratuity_rate = item['price']
+      gratuity = round((foodtotal - notaxtotal) * gratuity_rate/100.0, 2)
+      total = total + gratuity
+      continue
     if is_gift(item):
       gift_certs.append(GiftCert(item['id'], item['price']))
     if item['price'] == 0:
@@ -107,11 +107,15 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
 
     tabtext += format_item(item['name'], item['cnt']).ljust(TEXTWIDTH) + price.rjust(NUMWIDTH) + "\n"
 
+  foodtotal, tax, gratuity, total = (
+    ('%.2f'%x).rjust(NUMWIDTH) for x in (foodtotal, tax, gratuity, total)
+  )
+
   tabtext += '\n' + \
     'SUBTOTAL'.ljust(TEXTWIDTH) + foodtotal + '\n'
   tabtext += 'TAX'.ljust(TEXTWIDTH) + tax + '\n'
-  if add_grat:
-    tabtext += 'GRATIUITY 18%'.ljust(TEXTWIDTH) + gratuity + '\n'
+  if gratuity_rate != 0:
+    tabtext += ('GRATIUITY %s%%'%gratuity_rate).ljust(TEXTWIDTH) + gratuity + '\n'
   tabtext += divider
   tabtext += 'TOTAL'.ljust(TEXTWIDTH) + total + '\n'
   tabtext += '''

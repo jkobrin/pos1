@@ -90,13 +90,18 @@ menu:
             - {name: walnut pesto, price: 6}
             - {name: anchovy, price: 6}
             - {name: pate, price: 7}
-            - {name: spring salad, price: 12}
+            - {name: summer salad, price: 9}
+            - {name: waldorf, price: 10}
             - {name: burrata, price: 14}
             #- {name: mussels, price: 7}
             #- {name: meatballs, price: 5}
             - {name: octopus, price: 12}
             - {name: shrimp, price: 12}
-            - {name: carrots, price: 12}
+            - {name: peppers, price: 8}
+            - {name: taleggio bake, price: 9}
+            - {name: cauliflower, price: 8}
+            - {name: artichokes, price: 10}
+            - {name: carney corn, price: 7}
             #- {name: summer harvest, price: 8}
             #- {name: fall salad, price: 9}
             #- {name: cobb, price: 11}
@@ -111,11 +116,10 @@ menu:
             #- {name: patatas bravas, price: 5}
             #- {name: artichokes, price: 8}
             #- {name: octopus, price: 12}
-            - {name: cabra bake, price: 7}
             #- {name: radish, price: 8}
             #- {name: meatballs, price: 8}
             - {name: empanada, price: 8}
-            - {name: mini panini , price: 8}
+            - {name: chicken paprikash , price: 8}
             - {name: marrow bones, price: 8}
             #- {name: french onion, price: 7}
             - {name: bocadillo, price: 9}
@@ -147,20 +151,34 @@ menu:
         - name: boards
           items:
 
-            - {name: fish board, price: 16}
             - name: 1-board
               price: 7
             - name: 3-board
               price: 16
             - name: 5-board
               price: 23
+            - name: 6-board
+              price: 27
             - name: italian board
               price: 27
             - name: spanish board
               price: 27
             - name: mixed cheese board
               price: 27
+            - name: add-on
+              price: 5
+            - {name: extra fig, price: 2}
             #- {name: dessert board, price: 14}
+            - {name: pata negra, price: 15}
+            - {name: seranno ham, price: 0}
+            - {name: lomo, price: 0}
+            - {name: chorizo, price: 0}
+            - {name: prosciutto, price: 0}
+            - {name: hot capicolla, price: 0}
+            - {name: felino, price: 0}
+            #- {name: jambon, price: 0}
+            #- {name: rosette de lyon, price: 0}
+            #- {name: american ham, price: 0}
             - {name: manchego , price: 0}
             - {name: cana de cabra, price: 0}
             - {name: campo de montalban, price: 0}
@@ -174,17 +192,6 @@ menu:
             - {name: cheddar, price: 0}
             #- {name: bufala, price: 0}
             #- {name: capri, price: 0}
-            - {name: pata negra, price: 15}
-            - {name: seranno ham, price: 0}
-            - {name: lomo, price: 0}
-            - {name: chorizo, price: 0}
-            - {name: prosciutto, price: 0}
-            - {name: hot capicolla, price: 0}
-            - {name: felino, price: 0}
-            #- {name: jambon, price: 0}
-            #- {name: rosette de lyon, price: 0}
-            #- {name: american ham, price: 0}
-            - {name: extra fig, price: 2}
         - name: gift_certificates
           items: 
             - {name: gift5, price: 5}
@@ -241,7 +248,8 @@ menu:
           items: 
             - {name: discount, price: -1}
             - {name: extras, price: 1}
-            - {name: gratuity18, price: 0}
+            - {name: gratuity18, price: 18}
+            - {name: gratuity20, price: 20}
             - {name: special price, price: 0}
             - {name: corkage fee, price: 10}
             - {name: special3, price: 3}
@@ -276,14 +284,31 @@ menu:
             - {name: special32, price: 32}
         - name: lunch
           items: 
+            - {name: warm olives, price: 5}
+            - {name: marcona almonds, price: 5}
+            - {name: walnut pesto, price: 6}
+            - {name: pate, price: 7}
+            - {name: anchovy, price: 6}
+            - {name: octopus, price: 12}
+            - {name: shrimp, price: 12}
+            - {name: peppers, price: 8}
+            - {name: taleggio bake, price: 9}
+            - {name: cauliflower, price: 8}
+            - {name: artichokes, price: 10}
+            - {name: carney corn, price: 7}
+            - {name: empanada, price: 8}
+            - {name: oxtail, price: 14}
+            - {name: bread, price: 3}
+            - {name: summer salad, price: 9}
+            - {name: waldorf, price: 10}
+            - {name: burrata, price: 14}
+            - {name: house salad, price: 7}
+            - {name: panini, price: 8}
             - {name: burrata sandwich, price: 10}
             - {name: prosciutto sandwich, price: 10}
             - {name: spanish ham cheese,  price: 9}
-            - {name: panini, price: 7}
             - {name: goat mushroom sandwich, price: 8}
-            #- {name: ceasar_lun, price: 8}
-            - {name: house salad, price: 7}
-            #- {name: soup, price: 7}
+            - {name: bocadillo, price: 9}
         - name: brunch
           items: 
             - {name: frittata, price: 8}
@@ -313,77 +338,83 @@ menu:
       subcategories:
         - name: bar
           items: 
+            - {name: bar, price: 4}
             - {name: glass red sangria, price: 8}
             - {name: glass white sangria, price: 8}
             - {name: glass rose sangria, price: 8}
             - {name: jar red sangria, price: 22}
             - {name: jar white sangria, price: 22}
             - {name: jar rose sangria, price: 22}
-            - {name: pelligrino sm, price: 3}
-            - {name: pelligrino lg, price: 6}
-            - {name: coffee, price: 4}
-            - {name: decaf, price: 4}
-            - {name: tea, price: 3}
-            - {name: ceylon, price: 4}
-            - {name: jasmin, price: 4}
-            - {name: paris, price: 4}
-            - {name: shangri la, price: 5}
-            - {name: thai latte, price: 5}
-            - {name: cold coffee, price: 5}
-            - {name: OJ, price: 3}
-            - {name: pineapple, price: 3}
-            - {name: liquor flight, price: 16}
-            - {name: red flight, price: 18}
+            - {name: liquor flight, price: 20}
+            - {name: red flight, price: 16}
             - {name: white flight, price: 16}
-            - {name: seltzer, price: 2}
-            - {name: coke, price: 3}
-            - {name: dcoke, price: 3}
-            - {name: lemon, price: 3}
-            - {name: ginger, price: 3}
-            - {name: tonic, price: 3}
-            - {name: cran, price: 3}
-            - {name: cktail5, price: 5}
-            - {name: cktail7, price: 7}
+            - {name: bellini jar, price: 24}
+            - {name: bellini, price: 7}
+            - {name: bicicletta, price: 7}
+            - {name: black velvet, price: 7}
+            - {name: bloody maria jar, price: 24}
+            - {name: bloody maria, price: 7}
+            - {name: cafe amaretto, price: 7}
+            - {name: caipirinha, price: 10}
+            - {name: castaway, price: 7}
+            - {name: cascara sweet tea, price: 10}
+            - {name: citrus smash rum, price: 10}
+            - {name: citrus smash (virgin), price: 5}
             - {name: cktail10, price: 10}
             - {name: cktail12, price: 12}
-            - {name: classic martini, price: 12}
-            - {name: margarita primavera, price: 12}
-            - {name: old-mansion, price: 12}
-            - {name: caipirinha, price: 10}
-            - {name: kalimotxo, price: 7}
-            - {name: gin tonic, price: 7}
-            - {name: vodka tonic, price: 7}
-            - {name: vodka cran, price: 7}
-            - {name: vodka sprite, price: 7}
-            - {name: vodka soda, price: 7}
-            - {name: rum coke, price: 7}
-            - {name: dark n stormy, price: 7}
-            - {name: wine spritz, price: 10}
-            - {name: old-fashioned, price: 10}
-            - {name: manhattan, price: 10}
-            - {name: martini, price: 10}
-            - {name: drty mart, price: 10}
+            - {name: cktail14, price: 14}
+            - {name: cktail5, price: 5}
+            - {name: cktail7, price: 7}
+            - {name: coffee cold, price: 5}
+            - {name: coffee, price: 4}
+            - {name: coke, price: 3}
             - {name: cosmo, price: 10}
-            - {name: margarita, price: 10}
-            - {name: mojito, price: 10}
-            - {name: citrus smash (virgin), price: 5}
-            - {name: citrus smash rum, price: 10}
-            - {name: jack-coke, price: 10}
-            - {name: patron shot, price: 10}
-            - {name: pueblo shot, price: 10}
-            - {name: vodka shot, price: 7}
-            - {name: sambucca shot, price: 7}
+            - {name: cran, price: 3}
+            - {name: dark n stormy, price: 7}
+            - {name: dcoke, price: 3}
+            - {name: decaf, price: 4}
             - {name: frangelico shot, price: 7}
-            - {name: mimosa, price: 7}
-            - {name: mimosa jar, price: 24}
-            - {name: bellini, price: 7}
-            - {name: bellini jar, price: 24}
-            - {name: bloody maria, price: 7}
-            - {name: bloody maria jar, price: 24}
-            - {name: bicicletta, price: 7}
-            - {name: cafe amaretto, price: 7}
-            - {name: black velvet, price: 7}
-            - {name: positive vines, price: 10}
+            - {name: ginger, price: 3}
+            - {name: gin tonic, price: 7}
             - {name: hot toddy, price: 9}
+            - {name: jack-coke, price: 10}
+            - {name: kalimotxo, price: 7}
+            - {name: lemon, price: 3}
+            - {name: manhattan, price: 10}
+            - {name: margarita, price: 10}
+            - {name: margarita verano, price: 12}
+            - {name: martini, price: 10}
+            - {name: martini dirty, price: 10}
+            - {name: martini classic, price: 12}
+            - {name: mimosa jar, price: 24}
+            - {name: mimosa, price: 7}
+            - {name: mojito, price: 10}
+            - {name: negroni, price: 10}
+            - {name: negroni bianco, price: 10}
+            - {name: OJ, price: 3}
+            - {name: old-fashioned, price: 10}
+            - {name: old-mansion, price: 12}
+            - {name: patron shot, price: 10}
+            - {name: pelligrino lg, price: 6}
+            - {name: pelligrino sm, price: 3}
+            - {name: pineapple, price: 3}
+            - {name: positive vines, price: 10}
+            - {name: pueblo shot, price: 10}
+            - {name: rum coke, price: 7}
+            - {name: sambucca shot, price: 7}
+            - {name: seltzer, price: 2}
             - {name: spanish daisy, price: 9}
-            - {name: castaway, price: 7}
+            - {name: tea ceylon, price: 4}
+            - {name: tea jasmin, price: 4}
+            - {name: tea paris, price: 4}
+            - {name: tea sweet, price: 3}
+            - {name: tea unsweet, price: 3}
+            - {name: thai latte, price: 5}
+            - {name: tonic, price: 3}
+            - {name: vodka cran, price: 7}
+            - {name: vodka shot, price: 7}
+            - {name: vodka soda, price: 7}
+            - {name: vodka sprite, price: 7}
+            - {name: vodka tonic, price: 7}
+            - {name: watermelon mojito, price: 12}
+            - {name: wine spritz, price: 10}
