@@ -66,7 +66,7 @@ def get_cursor():
 
 def execute(sql, incursor=None):
   
-  #my_logger.debug(sql)
+  my_logger.debug(sql)
 
   if not incursor:
     conn = MySQLdb.connect (host = "localhost",
@@ -109,7 +109,7 @@ def select_as_html(query, incursor=None):
 
 def select(query, incursor=None, label=True):
   
-  #my_logger.debug(query)
+  my_logger.debug(query)
 
   if not incursor:
     conn = MySQLdb.connect (host = "localhost",
