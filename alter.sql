@@ -21,45 +21,58 @@
 #      null);
 #
 
-CREATE or REPLACE view hours_worked as
-select 
-  p.last_name, p.first_name, p.pay_rate, p.weekly_tax, p.salary,
-  p.id as person_id,
-  intime,
-  date_format(intime,"%m/%d") as date,
-  date_format(intime, "%H:%i") time_in, 
-  date_format(outtime, "%H:%i") time_out, 
-  hour(timediff(outtime, intime)) + minute(timediff(outtime, intime))/60 hours_worked,
-  h.tip_pay 
-from 
-  hours h, 
-  person p 
-  where h.person_id = p.id;
+#CREATE or REPLACE view hours_worked as
+#select 
+#  p.last_name, p.first_name, p.pay_rate, p.weekly_tax, p.salary,
+#  p.id as person_id,
+#  intime,
+#  date_format(intime,"%m/%d") as date,
+#  date_format(intime, "%H:%i") time_in, 
+#  date_format(outtime, "%H:%i") time_out, 
+#  hour(timediff(outtime, intime)) + minute(timediff(outtime, intime))/60 hours_worked,
+#  h.tip_pay 
+#from 
+#  hours h, 
+#  person p 
+#  where h.person_id = p.id;
+#
+#
+#create or replace view pstub_with_week_ending
+#as
+#select week_of + interval '6' DAY as week_ending, PAY_STUB.* from PAY_STUB
+#;
+#
+#create or replace view monthly_withholding
+#as
+#select 
+#concat(monthname(week_ending), ' ', year(week_ending)) as month,
+#concat(min(week_of), ' - ', max(week_of)) weeks_of, 
+#first_name, 
+#last_name, 
+#sum(gross_wages) gross_wages,
+#sum(fed_withholding) fed_withholding,
+#sum(nys_withholding) nys_withholding,
+#sum(medicare_tax) medicare_tax,
+#sum(social_security_tax) social_security_tax
+#from pstub_with_week_ending
+#where nominal_scale != 0
+#group by person_id, 
+#year(week_ending), 
+#month(week_ending)
+#order by
+#year(week_ending), 
+#month(week_ending)
+#;
 
 
-create or replace view pstub_with_week_ending
-as
-select week_of + interval '6' DAY as week_ending, PAY_STUB.* from PAY_STUB
-;
+#alter table winelist add column subcategory varchar(32);
 
-create or replace view monthly_withholding
-as
-select 
-concat(monthname(week_ending), ' ', year(week_ending)) as month,
-concat(min(week_of), ' - ', max(week_of)) weeks_of, 
-first_name, 
-last_name, 
-sum(gross_wages) gross_wages,
-sum(fed_withholding) fed_withholding,
-sum(nys_withholding) nys_withholding,
-sum(medicare_tax) medicare_tax,
-sum(social_security_tax) social_security_tax
-from pstub_with_week_ending
-where nominal_scale != 0
-group by person_id, 
-year(week_ending), 
-month(week_ending)
-order by
-year(week_ending), 
-month(week_ending)
-;
+create or replace view winelist_inv as 
+select wl.*, units_in_stock - sum(IF(oi.menu_item_id is null, 0, IF(oi.item_name like 'qt:%', .25, 1))) as estimated_units_remaining, (select count(*) from revenue_item ri where ri.menu_item_id = oi.menu_item_id and ri.created > now() - interval '1' week) as weeksold
+from winelist wl left outer join order_item oi on
+wl.inventory_date <= oi.created
+and oi.menu_item_id = wl.id 
+and (oi.is_cancelled is null or oi.is_cancelled = false)
+where wl.active = true 
+group by wl.id;
+

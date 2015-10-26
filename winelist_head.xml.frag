@@ -325,6 +325,12 @@
   <style:style style:name="P20" style:family="paragraph" style:parent-style-name="Heading_20_1">
    <style:paragraph-properties fo:text-align="center" style:justify-single-word="false"/>
   </style:style>
+  <style:style style:name="Psubcat" style:family="paragraph" style:parent-style-name="Heading_20_1">
+   <style:paragraph-properties fo:text-align="left" style:justify-single-word="false"/>
+  </style:style>
+  <style:style style:name="T1" style:family="text">
+   <style:text-properties fo:font-size="13pt" fo:font-style="italic" style:text-underline-style="none" fo:font-weight="bold" style:font-size-asian="14pt" style:font-style-asian="italic" style:font-weight-asian="bold" style:font-size-complex="14pt" style:font-style-complex="italic" style:font-weight-complex="bold"/>
+  </style:style>
 
   <style:page-layout style:name="pm1">
    <style:page-layout-properties fo:page-width="4.5in" fo:page-height="12in" style:num-format="1" style:print-orientation="portrait" fo:margin-top="0.5in" fo:margin-bottom="0.5in" fo:margin-left="0.3902in" fo:margin-right="0.3902in" style:writing-mode="lr-tb" style:footnote-max-height="0in">
