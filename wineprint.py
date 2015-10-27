@@ -7,6 +7,13 @@ import os, subprocess
 import utils
 
 
+def clean(data_str):
+  NULLITIES = ('None', 'null', 'NULL', 'Null', '')
+
+  data_str = data_str.strip() 
+  if data_str in NULLITIES: return None
+  else: return data_str
+
 
 def get_wine_xml():  
 
@@ -38,19 +45,26 @@ def get_wine_xml():
     if cat in ('House Cocktails', 'Bottled Beer'):	
       yield '''<text:p/>'''
 
+
+    current_subcategory = None
+
     for item in wine_items:
-      binnum, name, listprice, byline, grapes, notes  = (
-        escape(str(item[key])) for key in ['bin', 'name', 'listprice', 'byline', 'grapes', 'notes']
+      binnum, name, listprice, byline, grapes, notes, subcategory  = (
+        clean(escape(str(item[key]))) for key in ['bin', 'name', 'listprice', 'byline', 'grapes', 'notes', 'subcategory']
       )
+
+      # do location heading if location changed
+      if current_subcategory != subcategory and subcategory is not None:
+        current_subcategory = subcategory
+        yield '''<text:p text:style-name="Psubcat"><text:span text:style-name="T1">%s</text:span></text:p>'''%subcategory
 
       yield '''<text:p text:style-name="P4">%s.<text:tab/>%s<text:s text:c="5"/>%s'''%(binnum, name, listprice)
 
-      nullities = ('None', 'null', 'NULL', 'Null', '')
-      if byline not in nullities:
+      if byline:
         yield '''<text:line-break/>%s''' % byline
-      if grapes not in nullities:
+      if grapes:
         yield '''<text:line-break/>Grapes: %s''' % grapes
-      if notes not in nullities:
+      if notes:
         yield '''<text:line-break/>%s''' % notes
       yield '</text:p>'
       yield '''<text:p text:style-name="P18"/>'''
