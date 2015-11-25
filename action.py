@@ -4,11 +4,11 @@ import utils
 from mylog import my_logger
 
 
-def order(req, table, additem=None, removeitem=None, price=None, menu_item_id = None):
+def order(req, table, additem=None, removeitem=None, price=None, menu_item_id = None, taxable=True):
 
   if removeitem or additem:
     my_logger.info(req.get_remote_host() + 
-      ': action/order on table:%(table)s add_item: %(additem)s removeitem: %(removeitem)s  price: %(price)s'
+      ': action/order on table:%(table)s add_item: %(additem)s removeitem: %(removeitem)s  price: %(price)s taxable: %(taxable)s'
       %locals()
     )
 
@@ -42,8 +42,8 @@ def order(req, table, additem=None, removeitem=None, price=None, menu_item_id = 
 
     open_order_group = open_order_group[0];
     cursor.execute('''
-      INSERT INTO order_item (order_group_id, item_name, price, menu_item_id) VALUES
-      (%(open_order_group)d, "%(additem)s", "%(price)s", "%(menu_item_id)s")
+      INSERT INTO order_item (order_group_id, item_name, price, menu_item_id, taxable) VALUES
+      (%(open_order_group)d, "%(additem)s", "%(price)s", "%(menu_item_id)s", %(taxable)s)
       ''' % locals())
 
   if removeitem:

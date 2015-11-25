@@ -16,12 +16,6 @@ def format_item(name, cnt):
     ret += ' @'+str(cnt)
   return ret
 
-def is_tax_free(item):
-  return is_gift(item) or is_market(item)
-  
-def is_market(item):  
-  return item['name'].startswith('market')
-
 def is_staff(table_id):
   # this is not currently used for anything
   return re.match('[A-Z][a-z]+ [A-Z][a-z]+', table_id)
@@ -43,7 +37,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
     cursor = conn.cursor()
     
   items_query = '''
-    SELECT count(*) cnt, og.table_id, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped
+    SELECT count(*) cnt, og.table_id, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped, oi.taxable
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
     and (og.is_open = TRUE and "%(closed_time)s" = 'None' or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
@@ -66,8 +60,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
     return "no tab opened for table %s" %table, []
 
   foodtotal = sum(item['price'] for item in items if not item['is_comped'] and not is_gratuity(item))
-  notaxtotal = sum(item['price'] for item in items if not item['is_comped'] and is_tax_free(item))
-  tax = round((foodtotal - notaxtotal) * TAXRATE, 2)
+  tax = round(sum(item['price'] for item in items if not item['is_comped'] and item['taxable']) *TAXRATE, 2)
   total = foodtotal + tax
 
   divider = '-'*(NUMWIDTH + TEXTWIDTH) + "\n"
