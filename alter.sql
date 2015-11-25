@@ -76,3 +76,8 @@ and (oi.is_cancelled is null or oi.is_cancelled = false)
 where wl.active = true 
 group by wl.id;
 
+create or replace view active_wine
+as
+select * from winelist 
+ where ((`winelist`.`active` = 1) and (`winelist`.`category` is not null) and (`winelist`.`listprice` <> 0) and (`winelist`.`listprice` is not null) and (`winelist`.`bin` is not null));
+

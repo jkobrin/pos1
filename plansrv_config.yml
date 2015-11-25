@@ -106,10 +106,10 @@ menu:
             - {name: daffinois, price: 0}
             - {name: garrotxa, price: 0}
             - {name: blue cheese, price: 0}
-            - {name: gruyere, price: 0}
-            - {name: cheddar, price: 0}
+            #- {name: gruyere, price: 0}
+            - {name: surchoix, price: 0}
             - {name: gouda, price: 0}
-            - {name: bufala, price: 0}
+            $- {name: bufala, price: 0}
             #- {name: capri, price: 0}
             - {name: seranno ham, price: 0}
             - {name: lomo, price: 0}

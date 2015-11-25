@@ -36,17 +36,33 @@ menu:
             - name: F3
             - name: F4
             - name: F5
-            - name: O1
+            - name: M1 
+            - name: M2
+            - name: M3
+            - name: M4
+            - name: M5
+            - name: M6
+            - name: M7
+            - name: M8
+            - name: M9
+            - name: W1
+            - name: W2
+            - name: W3
+            - name: W4
+            - name: W5
+            - name: W6
+            - name: W7
+            - name: W8
+            - name: W9
+            - name: W10
+            - name: W11
+            - name: W12
+            - name: O1 
             - name: O2
             - name: O3
-            - name: O4
-            - name: O5
-            - name: O6
-            - name: O7
-            - name: O8
-            - name: O9
             - name: T1 
-            - name: T2
+            - name: T2 
+            - name: T3 
         - name: staff
           items: 
             - name: JWK
@@ -88,20 +104,25 @@ menu:
             - {name: warm olives, price: 5}
             - {name: marcona almonds, price: 5}
             - {name: walnut pesto, price: 6}
-            - {name: anchovy, price: 6}
             - {name: pate, price: 7}
-            - {name: summer salad, price: 9}
+            - {name: anchovy, price: 6}
+            #- {name: summer salad, price: 9}
             - {name: waldorf, price: 10}
+            - {name: squash, price: 7}
             - {name: burrata, price: 14}
             #- {name: mussels, price: 7}
             #- {name: meatballs, price: 5}
-            - {name: octopus, price: 12}
-            - {name: shrimp, price: 12}
-            - {name: peppers, price: 8}
-            - {name: taleggio bake, price: 9}
+            - {name: sprouts, price: 9}
             - {name: cauliflower, price: 8}
-            - {name: artichokes, price: 10}
-            - {name: carney corn, price: 7}
+            - {name: taleggio bake, price: 9}
+            - {name: raclette, price: 9}
+            - {name: empanada, price: 8}
+            - {name: shrimp, price: 12}
+            - {name: bocadillo, price: 9}
+            - {name: chicken paprikash , price: 8}
+            - {name: octopus, price: 12}
+            #- {name: artichokes, price: 10}
+            #- {name: carney corn, price: 7}
             #- {name: summer harvest, price: 8}
             #- {name: fall salad, price: 9}
             #- {name: cobb, price: 11}
@@ -118,16 +139,13 @@ menu:
             #- {name: octopus, price: 12}
             #- {name: radish, price: 8}
             #- {name: meatballs, price: 8}
-            - {name: empanada, price: 8}
-            - {name: chicken paprikash , price: 8}
             - {name: marrow bones, price: 8}
             #- {name: french onion, price: 7}
-            - {name: bocadillo, price: 9}
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
             - {name: oxtail, price: 14}
-            - {name: laksa, price: 21}
-            - {name: lamb, price: 22}
+            #- {name: laksa, price: 21}
+            #- {name: lamb, price: 22}
             #- {name: chicken, price: 18}
             - {name: bread, price: 3}
             - {name: panacotta, price: 7}
@@ -182,14 +200,14 @@ menu:
             - {name: manchego , price: 0}
             - {name: cana de cabra, price: 0}
             - {name: campo de montalban, price: 0}
-            - {name: tallegio, price: 0}
+            - {name: taleggio, price: 0}
             - {name: piave, price: 0}
             - {name: pecorino tartufo, price: 0}
             - {name: daffinois, price: 0}
             - {name: garrotxa, price: 0}
             - {name: blue cheese, price: 0}
             - {name: gouda, price: 0}
-            - {name: cheddar, price: 0}
+            - {name: surchoix, price: 0}
             #- {name: bufala, price: 0}
             #- {name: capri, price: 0}
         - name: gift_certificates
@@ -250,6 +268,7 @@ menu:
             - {name: extras, price: 1}
             - {name: gratuity18, price: 18}
             - {name: gratuity20, price: 20}
+            - {name: gratuity special price, price: 0}
             - {name: special price, price: 0}
             - {name: corkage fee, price: 10}
             - {name: special3, price: 3}
@@ -291,8 +310,8 @@ menu:
             - {name: anchovy, price: 6}
             - {name: octopus, price: 12}
             - {name: shrimp, price: 12}
-            - {name: peppers, price: 8}
-            - {name: taleggio bake, price: 9}
+            - {name: squash, price: 7}
+            - {name: raclette, price: 9}
             - {name: cauliflower, price: 8}
             - {name: artichokes, price: 10}
             - {name: carney corn, price: 7}
@@ -342,9 +361,9 @@ menu:
             - {name: glass red sangria, price: 8}
             - {name: glass white sangria, price: 8}
             - {name: glass rose sangria, price: 8}
-            - {name: jar red sangria, price: 24}
-            - {name: jar white sangria, price: 24}
-            - {name: jar rose sangria, price: 24}
+            - {name: jar red sangria, price: 28}
+            - {name: jar white sangria, price: 28}
+            - {name: jar rose sangria, price: 28}
             - {name: liquor flight, price: 20}
             - {name: red flight, price: 16}
             - {name: white flight, price: 16}
@@ -368,6 +387,8 @@ menu:
             - {name: cktail7, price: 7}
             - {name: coffee cold, price: 5}
             - {name: coffee, price: 4}
+            - {name: espresso, price: 4}
+            - {name: latte, price: 4}
             - {name: coke, price: 3}
             - {name: cosmo, price: 10}
             - {name: cran, price: 3}
