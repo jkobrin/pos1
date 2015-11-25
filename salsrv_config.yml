@@ -446,61 +446,61 @@ menu:
           - name: Cheese
             items:
             - {name: SPECK, price: 13.5, supplier: GFI, units_in_bulk: '', upc: '269461453125',
-              vendor_code: '515256', wholesale: '7.98'}
+              vendor_code: '515256', wholesale: '7.98', scale_units: lbs.}
             - {name: DEVON CREAM ENGLISH, price: 5.5, supplier: GFI, units_in_bulk: '', upc: '34463000109',
-              vendor_code: '950', wholesale: '3.31'}
+              vendor_code: '950', wholesale: '3.31', scale_units: lbs.}
             - {name: CLOTTED CREAM, price: 6.5, supplier: GFI, units_in_bulk: '', upc: '34463070119',
-              vendor_code: '70119', wholesale: '3.87'}
+              vendor_code: '70119', wholesale: '3.87', scale_units: lbs.}
             - {name: FETA BULGARIA SHEEPS MILK 7 KG IN BRINE, price: 5.5, supplier: GFI, units_in_bulk: '14',
-              upc: '71270355329', vendor_code: '46732', wholesale: '3.29'}
+              upc: '71270355329', vendor_code: '46732', wholesale: '3.29', scale_units: lbs.}
             - {name: MAHON SPANISH, price: 11.5, supplier: GFI, units_in_bulk: '', upc: '820581011505',
-              vendor_code: '1150', wholesale: '6.77'}
+              vendor_code: '1150', wholesale: '6.77', scale_units: lbs.}
             - {name: GOAT LOG CANA DE CABRA 1 KILO, price: 12.0, supplier: GFI, units_in_bulk: '',
-              upc: '820581029432', vendor_code: '2943', wholesale: '7.24'}
+              upc: '820581029432', vendor_code: '2943', wholesale: '7.24', scale_units: lbs.}
             - {name: CHEESE LA TUR COW GOAT AND SHEEP 6CT, price: 17.0, supplier: GFI, units_in_bulk: '',
-              upc: '820581030636', vendor_code: '3063', wholesale: '10.09'}
+              upc: '820581030636', vendor_code: '3063', wholesale: '10.09', scale_units: lbs.}
             - {name: VACHERIN, price: 10.0, supplier: GFI, units_in_bulk: '', upc: '820581127763',
-              vendor_code: '12776', wholesale: '5.93'}
+              vendor_code: '12776', wholesale: '5.93', scale_units: lbs.}
             - {name: HAM SERRANO DELI LOAF 12 MONTHS, price: 20.0, supplier: GFI, units_in_bulk: '',
-              upc: '820581155872', vendor_code: '15587', wholesale: '12.01'}
+              upc: '820581155872', vendor_code: '15587', wholesale: '12.01', scale_units: lbs.}
             - {name: GARROTXA GOAT CHEESE, price: 17.0, supplier: GFI, units_in_bulk: '', upc: '820581190668',
-              vendor_code: '19066', wholesale: '10.29'}
+              vendor_code: '19066', wholesale: '10.29', scale_units: lbs.}
             - {name: BLUE VALDEON COW AND GOAT BLEND, price: 13.0, supplier: GFI, units_in_bulk: '',
               upc: '820581191689', vendor_code: '19168', wholesale: '7.89', scale_units: lbs.}
             - {name: PARMESAN REGGIANO QUARTER, price: 11.0, supplier: GFI, units_in_bulk: '',
-              upc: '820581251604', vendor_code: '25160', wholesale: '6.74'}
+              upc: '820581251604', vendor_code: '25160', wholesale: '6.74', scale_units: lbs.}
             - {name: RACLETTE FRENCH, price: 12.5, supplier: GFI, units_in_bulk: '', upc: '820581500757',
-              vendor_code: '50075', wholesale: '7.38'}
+              vendor_code: '50075', wholesale: '7.38', scale_units: lbs.}
             - {name: CHEESE TETILLA, price: 9.0, supplier: GFI, units_in_bulk: '', upc: '820581650711',
-              vendor_code: '65071', wholesale: '5.29'}
+              vendor_code: '65071', wholesale: '5.29', scale_units: lbs.}
             - {name: SECRET DE SCEY MORBIER STYLE, price: 15.0, supplier: GFI, units_in_bulk: '',
-              upc: '820581710408', vendor_code: '71040', wholesale: '9.13'}
+              upc: '820581710408', vendor_code: '71040', wholesale: '9.13', scale_units: lbs.}
             - {name: BLUE CHEESE WHEEL ORIGINAL, price: 16.0, supplier: GFI, units_in_bulk: '',
-              upc: '827615000047', vendor_code: '16048', wholesale: '9.54'}
+              upc: '827615000047', vendor_code: '16048', wholesale: '9.54', scale_units: lbs.}
             - {name: SALAME TARTUFO, price: 11.0, supplier: GFI, units_in_bulk: '', upc: '853544005457',
-              vendor_code: '8244', wholesale: '6.52'}
+              vendor_code: '8244', wholesale: '6.52', scale_units: lbs.}
             - {name: DANISH CHEESE LARGE RTB, price: 1.5, supplier: GFI, units_in_bulk: '',
-              upc: '87853000069', vendor_code: '93023', wholesale: '0.78'}
+              upc: '87853000069', vendor_code: '93023', wholesale: '0.78', scale_units: lbs.}
             - {name: SALAME BAROLO INDIVIDUALLY WRAPPED, price: 12.0, supplier: GFI, units_in_bulk: '',
-              upc: '896668002858', vendor_code: '8210', wholesale: '7.33'}
+              upc: '896668002858', vendor_code: '8210', wholesale: '7.33', scale_units: lbs.}
             - {name: SALAME TARTUFO INDIVIDUALLY WRAPPED, price: 12.0, supplier: GFI, units_in_bulk: '',
-              upc: '896668002865', vendor_code: '8220', wholesale: '7.35'}
+              upc: '896668002865', vendor_code: '8220', wholesale: '7.35', scale_units: lbs.}
             - {name: SALAME WILD BOAR INDIVIDUALLY WRAPPED, price: 14.0, supplier: GFI, units_in_bulk: '',
-              upc: '896668002872', vendor_code: '8213', wholesale: '8.34'}
+              upc: '896668002872', vendor_code: '8213', wholesale: '8.34', scale_units: lbs.}
             - {name: GUANCIALE, price: 7.0, supplier: GFI, units_in_bulk: '', upc: '90850801003853',
-              vendor_code: '80801', wholesale: '4.19'}
+              vendor_code: '80801', wholesale: '4.19', scale_units: lbs.}
             - {name: Dry Salciccia, price: 5.5, supplier: Nassau, units_in_bulk: '', upc: '765171424054',
-              vendor_code: '998012', wholesale: '3.32'}
+              vendor_code: '998012', wholesale: '3.32', scale_units: lbs.}
             - {name: Salami Herbes-de-provence, price: 5.5, supplier: Nassau, units_in_bulk: '',
-              upc: '765171424092', vendor_code: '998005', wholesale: '3.32'}
+              upc: '765171424092', vendor_code: '998005', wholesale: '3.32', scale_units: lbs.}
             - {name: Imperial Chorizo Blanco, price: 9.0, supplier: Nassau, units_in_bulk: '',
-              upc: '859760001624', vendor_code: '994648', wholesale: '5.25'}
+              upc: '859760001624', vendor_code: '994648', wholesale: '5.25', scale_units: lbs.}
             - {name: Imperial Chorizo, price: 9.0, supplier: Nassau, units_in_bulk: '', upc: '859760001631',
-              vendor_code: '994647', wholesale: '5.25'}
-            - {name: CACIO DI ROMA, price: 0.0, supplier: Sansone, units_in_bulk: '', upc: '',
-              vendor_code: '', wholesale: '#VALUE!'}
+              vendor_code: '994647', wholesale: '5.25', scale_units: lbs.}
+            - {name: CACIO DI ROMA, price: 6.0, supplier: Sansone, units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '#VALUE!', scale_units: lbs.}
             - {name: CHEDDAR IRISH 12 MONTH BLOCKS, price: 7.0, supplier: GFI, units_in_bulk: '',
-              upc: '820581001018', vendor_code: '101', wholesale: '4.28'}
+              upc: '820581001018', vendor_code: '101', wholesale: '4.28', scale_units: lbs.}
           - name: Coffee
             items:
             - {name: TCHO Drinking Chocolate Bag, price: 103.0, supplier: Baldor, units_in_bulk: '',

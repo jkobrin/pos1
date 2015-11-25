@@ -317,9 +317,10 @@
       
     function goVertical()
     {
+      if (category_is_market()) return; //Exit market by clicking on tables link
+
       rotateCategory();
 
-      
       if (category_is_market())
       {
         // Skip market. Go to next category. market is reached by
@@ -556,6 +557,8 @@
             scale = prompt('Quantity in '+add_item.scale_units,1)
             if(!isNaN(scale)) break;
           }
+          if (scale == null) return; //they hit cancel; don't add item
+
           price = add_item.price * scale;
           item_name = ''+scale + add_item.scale_units + ' ' + add_item.name;
         }  
@@ -585,12 +588,17 @@
         taxable = !(add_item.subcat == 'gift_certificates' || add_item.cat == 'market' && 
             add_item.subcat.match(/Household|Supplies|Candy|Soda|gift/)  == null)
 
+        if (add_item.cat == 'market') { params += "&delivered=true";}
+
         params += "&taxable="+taxable;
         params += "&price="+price;
         params += "&menu_item_id="+add_item.id;
         params += "&additem="+item_name;
 
-        add_item_box.innerHTML = add_item.upc + ' ' + add_item.name + ' $' + add_item.price;
+        if (category_is_market())
+        {
+          add_item_box.innerHTML = add_item.upc + ' ' + add_item.name + ' $' + add_item.price;
+        }
       }
 
 
@@ -674,7 +682,7 @@
         item = order_items[idx];
         classes = "order_item";
 
-        if (item.is_delivered && item.seconds_since_mod > 15) {continue}
+        if (item.is_delivered && item.seconds_since_mod > 15 || item.table_id == 'MKT') {continue}
 
         if (item.is_delivered) {classes += ' delivered_item'}
         config_item = get_config_item(item.item_name);
@@ -711,16 +719,7 @@
         rotateCategory();
       } 
       drawCurrentCategory();
-      g_currentTable = 'MKT';
-      update_order_pane([]);
-      window.scroll(0,0);
-    }
-
-    function leave_market()
-    {
-      cook_screen.style.display="none";
-      main_screen.style.display="inline"; 
-      main_refresh();
+      set_current_table('MKT');
     }
 
     function go_to_cook_screen()
@@ -801,6 +800,7 @@
 
     function main_refresh()
     {
+      add_item_box.innerHTML = "";
       if(main_screen.style.display != "none") 
       {
         refresh_order(null, null);
