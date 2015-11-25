@@ -223,6 +223,7 @@
     function init()
     {
       document.body.addEventListener('click', clicked, true)
+      document.body.addEventListener('keydown', keydown, true)
       GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth) / 120
     }  
 
@@ -276,7 +277,7 @@
           for(item_idx in subcat.items)
           {
             citem = subcat.items[item_idx];
-            if (citem.name == item_name)
+            if (citem.name == item_name || citem.upc == item_name)
             {
               citem.cat = cat.name;
               citem.subcat = subcat.name;
@@ -304,6 +305,11 @@
       categories.push(categories.shift());
     }
 
+    function category_is_market()
+    {
+      return getSuperCategory() == 'market';
+    }  
+
     function category_is_table()
     {
       return getSuperCategory() == 'tables';
@@ -313,14 +319,13 @@
     {
       rotateCategory();
 
-      /*
-      if (category_is_table())
+      
+      if (category_is_market())
       {
-        // Skip tables. Go to next category. Tables is reached by
-        // clicking table link.
+        // Skip market. Go to next category. market is reached by
+        // clicking market link.
         rotateCategory();
       } 
-      */
       drawCurrentCategory();
     }
  
@@ -531,6 +536,7 @@
       }
 
       if(add_item)
+          
       {
         // add_item is just a name, get the full object
         add_item = get_config_item(add_item);
@@ -541,7 +547,19 @@
         }
 
         price = add_item.price; //usual case
+        item_name = add_item.name;
         //now that price is set to the default, let's see if we need to modify it
+        if('scale_units' in add_item)
+        {
+          while(true)
+          {
+            scale = prompt('Quantity in '+add_item.scale_units,1)
+            if(!isNaN(scale)) break;
+          }
+          price = add_item.price * scale;
+          item_name = ''+scale + add_item.scale_units + ' ' + add_item.name;
+        }  
+          
         if(is_staff(g_currentTable)) 
         {
           price = add_item.price*STAFF_FOOD_RATE;
@@ -564,10 +582,18 @@
           price = prompt('Enter price:', 0);
         }
 
+        taxable = !(add_item.subcat == 'gift_certificates' || add_item.cat == 'market' && 
+            add_item.subcat.match(/Household|Supplies|Candy|Soda|gift/)  == null)
+
+        params += "&taxable="+taxable;
         params += "&price="+price;
         params += "&menu_item_id="+add_item.id;
-        params += "&additem="+add_item.name;
+        params += "&additem="+item_name;
+
+        add_item_box.innerHTML = add_item.upc + ' ' + add_item.name + ' $' + add_item.price;
       }
+
+
 
       if (remove_item) 
       {
@@ -642,7 +668,6 @@
       params="table=ALL";
       order_items = http_request("POST", "action.py/order", params);
       order_pane_items = order_items;
-
       order_items_html = "";
       for (idx in order_items)
       {
@@ -677,6 +702,25 @@
 
       }  
       cook_table.innerHTML = order_items_html;
+    }
+
+    function go_to_market()
+    {
+      while (!category_is_market())
+      {
+        rotateCategory();
+      } 
+      drawCurrentCategory();
+      g_currentTable = 'MKT';
+      update_order_pane([]);
+      window.scroll(0,0);
+    }
+
+    function leave_market()
+    {
+      cook_screen.style.display="none";
+      main_screen.style.display="inline"; 
+      main_refresh();
     }
 
     function go_to_cook_screen()
@@ -987,19 +1031,39 @@
       hidePopup();
     }
 
-
-    function enter(event)
-    // When the user presses enter on the text editBox colorEdit we want
-    // to interperet this to mean apply so we capture the keypress events
-    // from the edit box and check if the key is the enter key
+    
+    g_keyentry = null;
+    function keydown(event)
     {
-      if (event.keyCode == 13)
+      if(event.which == 13)
       {
-        colorEdit.blur(); 
-        //otherwise you can still see the cursor after the dialog is hidden
-        apply();
+        g_keyentry = g_keyentry.replace(/0$/,''); // remove trailing zero
+        text_entered(g_keyentry);
+        g_keyentry = null;
+      }
+      else
+      {
+        key = String.fromCharCode(event.which);
+        if (g_keyentry == null && key == '0')
+        {
+          g_keyentry = "";
+        }
+        else if(g_keyentry != null && key.match(/[0-9]/))
+        {
+          g_keyentry += key;
+        }  
+        else
+        {
+          g_keyentry = null;
+        }  
       }
     }
+
+    function text_entered(txt)
+    {
+      refresh_order(txt, null);
+    }
+
 
     function clicked()
     {
@@ -1021,6 +1085,8 @@
 </head>
 
 <body onLoad="draw()" id='main'>
+
+  <div id="add_item_box"></div>
 
 
   <div id="main_screen">
@@ -1046,7 +1112,8 @@
         <div><a href="javascript:go_to_cook_screen()"  class="leftLink" id="cooklink">C</a></div>
         <div><a href="javascript:go_to_tables()"  class="leftLink" id="tablelink">T</a></div>
         <div><a href="javascript:go_to_clock_sceen()"  class="leftLink" id="clocklink">P</a></div>
-        <div><a href="http://47.21.5.110:10075/mediawiki" class="leftLink" id="wlink">W</a></div>
+        <div><a href="javascript:go_to_market()" class="leftLink" id="wlink">M</a></div>
+        <!--<div><a href="http://47.21.5.110:10075/mediawiki" class="leftLink" id="wlink">W</a></div>-->
         </div>
         <div id="board"></div>
       </center>
