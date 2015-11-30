@@ -355,6 +355,23 @@ menu:
             - {name: bread, price: 3}
     - name: bev
       subcategories:
+        - name: cofee-tea
+          items: 
+            - {name: colombia, price: 4}
+            - {name: espresso, price: 4}
+            - {name: cold brew, price: 5}
+            - {name: cappuccino, price: 6}
+            - {name: latte, price: 6}
+            - {name: choco latte, price: 6}
+            - {name: affogato, price: 6}
+            - {name: decaf, price: 4}
+            - {name: ceylon tea, price: 4}
+            - {name: paris tea, price: 4}
+            - {name: green jasmin, price: 4}
+            - {name: chomomile, price: 4}
+            - {name: cascara, price: 5}
+            - {name: iced thai tea latte, price: 5}
+            - {name: iced unsweet tea, price: 3}
         - name: bar
           items: 
             - {name: bar, price: 4}
@@ -385,16 +402,11 @@ menu:
             - {name: cktail14, price: 14}
             - {name: cktail5, price: 5}
             - {name: cktail7, price: 7}
-            - {name: coffee cold, price: 5}
-            - {name: coffee, price: 4}
-            - {name: espresso, price: 4}
-            - {name: latte, price: 4}
             - {name: coke, price: 3}
             - {name: cosmo, price: 10}
             - {name: cran, price: 3}
             - {name: dark n stormy, price: 7}
             - {name: dcoke, price: 3}
-            - {name: decaf, price: 4}
             - {name: frangelico shot, price: 7}
             - {name: ginger, price: 3}
             - {name: gin tonic, price: 7}
@@ -427,12 +439,6 @@ menu:
             - {name: sambucca shot, price: 7}
             - {name: seltzer, price: 2}
             - {name: spanish daisy, price: 10}
-            - {name: tea ceylon, price: 4}
-            - {name: tea jasmin, price: 4}
-            - {name: tea paris, price: 4}
-            - {name: tea sweet, price: 3}
-            - {name: tea unsweet, price: 3}
-            - {name: thai latte, price: 5}
             - {name: tonic, price: 3}
             - {name: vodka cran, price: 7}
             - {name: vodka shot, price: 7}
@@ -445,62 +451,102 @@ menu:
       subcategories:
           - name: Cheese
             items:
-            - {name: SPECK, price: 13.5, supplier: GFI, units_in_bulk: '', upc: '269461453125',
-              vendor_code: '515256', wholesale: '7.98', scale_units: lbs.}
-            - {name: DEVON CREAM ENGLISH, price: 5.5, supplier: GFI, units_in_bulk: '', upc: '34463000109',
-              vendor_code: '950', wholesale: '3.31', scale_units: lbs.}
-            - {name: CLOTTED CREAM, price: 6.5, supplier: GFI, units_in_bulk: '', upc: '34463070119',
-              vendor_code: '70119', wholesale: '3.87', scale_units: lbs.}
-            - {name: FETA BULGARIA SHEEPS MILK 7 KG IN BRINE, price: 5.5, supplier: GFI, units_in_bulk: '14',
+            - {name: Devon Cream, price: 5.5, supplier: GFI, units_in_bulk: '', upc: '34463000109',
+              vendor_code: '950', wholesale: '3.31'}
+            - {name: Clotted Cream, price: 6.5, supplier: GFI, units_in_bulk: '', upc: '34463070119',
+              vendor_code: '70119', wholesale: '3.87'}
+            - {name: Feta, price: 5.5, supplier: GFI, units_in_bulk: '14',
               upc: '71270355329', vendor_code: '46732', wholesale: '3.29', scale_units: lbs.}
-            - {name: MAHON SPANISH, price: 11.5, supplier: GFI, units_in_bulk: '', upc: '820581011505',
+            - {name: Mahon, price: 11.5, supplier: GFI, units_in_bulk: '', upc: '820581011505',
               vendor_code: '1150', wholesale: '6.77', scale_units: lbs.}
-            - {name: GOAT LOG CANA DE CABRA 1 KILO, price: 12.0, supplier: GFI, units_in_bulk: '',
+            - {name: Cana De Cabra, price: 12.0, supplier: GFI, units_in_bulk: '',
               upc: '820581029432', vendor_code: '2943', wholesale: '7.24', scale_units: lbs.}
-            - {name: CHEESE LA TUR COW GOAT AND SHEEP 6CT, price: 17.0, supplier: GFI, units_in_bulk: '',
-              upc: '820581030636', vendor_code: '3063', wholesale: '10.09', scale_units: lbs.}
-            - {name: VACHERIN, price: 10.0, supplier: GFI, units_in_bulk: '', upc: '820581127763',
+            - {name: La Tur, price: 17.0, supplier: GFI, units_in_bulk: '',
+              upc: '820581030636', vendor_code: '3063', wholesale: '10.09'}
+            - {name: Vacherin, price: 10.0, supplier: GFI, units_in_bulk: '', upc: '820581127763',
               vendor_code: '12776', wholesale: '5.93', scale_units: lbs.}
-            - {name: HAM SERRANO DELI LOAF 12 MONTHS, price: 20.0, supplier: GFI, units_in_bulk: '',
-              upc: '820581155872', vendor_code: '15587', wholesale: '12.01', scale_units: lbs.}
-            - {name: GARROTXA GOAT CHEESE, price: 17.0, supplier: GFI, units_in_bulk: '', upc: '820581190668',
+            - {name: Garrotxa, price: 17.0, supplier: GFI, units_in_bulk: '', upc: '820581190668',
               vendor_code: '19066', wholesale: '10.29', scale_units: lbs.}
-            - {name: BLUE VALDEON COW AND GOAT BLEND, price: 13.0, supplier: GFI, units_in_bulk: '',
+            - {name: Valdeon Blue, price: 13.0, supplier: GFI, units_in_bulk: '',
               upc: '820581191689', vendor_code: '19168', wholesale: '7.89', scale_units: lbs.}
-            - {name: PARMESAN REGGIANO QUARTER, price: 11.0, supplier: GFI, units_in_bulk: '',
+            - {name: Parm Reggiano, price: 11.0, supplier: GFI, units_in_bulk: '',
               upc: '820581251604', vendor_code: '25160', wholesale: '6.74', scale_units: lbs.}
-            - {name: RACLETTE FRENCH, price: 12.5, supplier: GFI, units_in_bulk: '', upc: '820581500757',
+            - {name: Raclette, price: 12.5, supplier: GFI, units_in_bulk: '', upc: '820581500757',
               vendor_code: '50075', wholesale: '7.38', scale_units: lbs.}
-            - {name: CHEESE TETILLA, price: 9.0, supplier: GFI, units_in_bulk: '', upc: '820581650711',
+            - {name: Tetilla, price: 9.0, supplier: GFI, units_in_bulk: '', upc: '820581650711',
               vendor_code: '65071', wholesale: '5.29', scale_units: lbs.}
-            - {name: SECRET DE SCEY MORBIER STYLE, price: 15.0, supplier: GFI, units_in_bulk: '',
+            - {name: Morbier, price: 15.0, supplier: GFI, units_in_bulk: '',
               upc: '820581710408', vendor_code: '71040', wholesale: '9.13', scale_units: lbs.}
-            - {name: BLUE CHEESE WHEEL ORIGINAL, price: 16.0, supplier: GFI, units_in_bulk: '',
+            - {name: Point Reyes, price: 16.0, supplier: GFI, units_in_bulk: '',
               upc: '827615000047', vendor_code: '16048', wholesale: '9.54', scale_units: lbs.}
-            - {name: SALAME TARTUFO, price: 11.0, supplier: GFI, units_in_bulk: '', upc: '853544005457',
-              vendor_code: '8244', wholesale: '6.52', scale_units: lbs.}
-            - {name: DANISH CHEESE LARGE RTB, price: 1.5, supplier: GFI, units_in_bulk: '',
-              upc: '87853000069', vendor_code: '93023', wholesale: '0.78', scale_units: lbs.}
-            - {name: SALAME BAROLO INDIVIDUALLY WRAPPED, price: 12.0, supplier: GFI, units_in_bulk: '',
-              upc: '896668002858', vendor_code: '8210', wholesale: '7.33', scale_units: lbs.}
-            - {name: SALAME TARTUFO INDIVIDUALLY WRAPPED, price: 12.0, supplier: GFI, units_in_bulk: '',
-              upc: '896668002865', vendor_code: '8220', wholesale: '7.35', scale_units: lbs.}
-            - {name: SALAME WILD BOAR INDIVIDUALLY WRAPPED, price: 14.0, supplier: GFI, units_in_bulk: '',
-              upc: '896668002872', vendor_code: '8213', wholesale: '8.34', scale_units: lbs.}
-            - {name: GUANCIALE, price: 7.0, supplier: GFI, units_in_bulk: '', upc: '90850801003853',
+            - {name: Blue Castello, price: 20.0, supplier: Baldor, units_in_bulk: '',
+              upc: '', vendor_code: '', wholesale: '9.56', scale_units: lbs.}
+            - {name: Gouda Aged, price: 20.0, supplier: Sansone, units_in_bulk: '',
+              upc: '', vendor_code: '', wholesale: '10.0', scale_units: lbs.}
+            - {name: Le Duc, price: 10.0, supplier: GFI, units_in_bulk: '',
+              upc: '820581127763', vendor_code: '12776', wholesale: '5.93'}
+            - {name: Cacio De Roma, price: 6.0, supplier: Sansone, units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '#VALUE!', scale_units: lbs.}
+            - {name: Cheddar, price: 7.0, supplier: GFI, units_in_bulk: '',
+              upc: '820581001018', vendor_code: '101', wholesale: '4.28', scale_units: lbs.}
+            - {name: Cabra Romeo, price: 16.0, supplier: Sansone, units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '9.59', scale_units: lbs.}
+            - {name: Leonara, price: 16.5, supplier: Sansone, units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '9.95', scale_units: lbs.}
+            - {name: Queso Sudado, price: 16.5, supplier: Sansone, units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '9.95', scale_units: lbs.}
+            - {name: Rustico, price: 12.0, supplier: Sansone, units_in_bulk: '',
+              upc: '', vendor_code: '', wholesale: '7.25', scale_units: lbs.}
+            - {name: O'Morro, price: 15.0, supplier: Sansone, units_in_bulk: '',
+              upc: '', vendor_code: '', wholesale: '8.95', scale_units: lbs.}
+            - {name: Pecorino Walnut Leaf, price: 23.5, supplier: Sansone, units_in_bulk: '',
+              upc: '', vendor_code: '', wholesale: '13.95', scale_units: lbs.}
+            - {name: Sao Jorge, price: 16.5, supplier: Sansone, units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '9.99', scale_units: lbs.}
+            - {name: Manchego, price: 17.0, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '8.45', scale_units: lbs.}
+            - {name: Campo, price: 15.5, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '7.80', scale_units: lbs.}
+            - {name: D'affinois, price: 13.5, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '6.81', scale_units: lbs.}
+            - {name: Moliterno Tartufo, price: 30.5, supplier: '', units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '15.25', scale_units: lbs.}
+            - {name: Sapore Del Piave, price: 16.0, supplier: '', units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '8.50', scale_units: lbs.}
+            - {name: Sur Choix, price: 13.00, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '6.69', scale_units: lbs.}
+            - {name: Taleggio, price: 16.00, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '8.00', scale_units: lbs.}
+            - {name: MEATS, price: 0, supplier: '', units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '', scale_units: lbs.}
+            - {name: Prosciutto, price: 18.0, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '8.99', scale_units: lbs.}
+            - {name: Serrano, price: 24.0, supplier: GFI, units_in_bulk: '',
+              upc: '820581155872', vendor_code: '15587', wholesale: '12.01', scale_units: lbs.}
+            - {name: Speck, price: 13.5, supplier: GFI, units_in_bulk: '', upc: '269461453125',
+              vendor_code: '515256', wholesale: '7.98', scale_units: lbs.}
+            - {name: Lomo, price: 23.0, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '11.50', scale_units: lbs.}
+            - {name: Coppa, price: 18.0, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '', scale_units: lbs.}
+            - {name: Coppa Cotto, price: 16.50, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '10', scale_units: lbs.}
+            - {name: Guanciale, price: 7.0, supplier: GFI, units_in_bulk: '', upc: '90850801003853',
               vendor_code: '80801', wholesale: '4.19', scale_units: lbs.}
+            - {name: Felino, price: 18.0, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '8.99', scale_units: lbs.}
+            - {name: Salame Tartufo, price: 11.0, supplier: GFI, units_in_bulk: '', upc: '853544005457',
+              vendor_code: '8244', wholesale: '6.52', scale_units: lbs.}
             - {name: Dry Salciccia, price: 5.5, supplier: Nassau, units_in_bulk: '', upc: '765171424054',
               vendor_code: '998012', wholesale: '3.32', scale_units: lbs.}
             - {name: Salami Herbes-de-provence, price: 5.5, supplier: Nassau, units_in_bulk: '',
               upc: '765171424092', vendor_code: '998005', wholesale: '3.32', scale_units: lbs.}
-            - {name: Imperial Chorizo Blanco, price: 9.0, supplier: Nassau, units_in_bulk: '',
-              upc: '859760001624', vendor_code: '994648', wholesale: '5.25', scale_units: lbs.}
-            - {name: Imperial Chorizo, price: 9.0, supplier: Nassau, units_in_bulk: '', upc: '859760001631',
+            - {name: Chorizo, price: 9.0, supplier: Nassau, units_in_bulk: '', upc: '859760001631',
               vendor_code: '994647', wholesale: '5.25', scale_units: lbs.}
-            - {name: CACIO DI ROMA, price: 6.0, supplier: Sansone, units_in_bulk: '', upc: '',
-              vendor_code: '', wholesale: '#VALUE!', scale_units: lbs.}
-            - {name: CHEDDAR IRISH 12 MONTH BLOCKS, price: 7.0, supplier: GFI, units_in_bulk: '',
-              upc: '820581001018', vendor_code: '101', wholesale: '4.28', scale_units: lbs.}
+            - {name: Chorizo Blanco, price: 9.0, supplier: Nassau, units_in_bulk: '',
+              upc: '859760001624', vendor_code: '994648', wholesale: '5.25', scale_units: lbs.}
+            - {name: Pata Negra, price: 128.5, supplier: '', units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '77.00', scale_units: lbs.}
           - name: Coffee
             items:
             - {name: TCHO Drinking Chocolate Bag, price: 103.0, supplier: Baldor, units_in_bulk: '',
@@ -547,7 +593,7 @@ menu:
               upc: '708978222003', vendor_code: '', wholesale: '45.00'}
           - name: Baking
             items:
-            - {name: FLOUR 00 (DOUBLE ZERO) CHEFS 2.2 LB, price: 4.0, supplier: GFI, units_in_bulk: '',
+            - {name: FLOUR "00" (DOUBLE ZERO) CHEFS 2.2 LB, price: 4.0, supplier: GFI, units_in_bulk: '',
               upc: 079147000891, vendor_code: '7891', wholesale: '2.27'}
             - {name: SEMOLINA FLOUR FINE 1 KILO, price: 4.5, supplier: GFI, units_in_bulk: '',
               upc: '8007290841339', vendor_code: '99870', wholesale: '2.65'}
@@ -559,7 +605,7 @@ menu:
               vendor_code: '', wholesale: '0.88'}
           - name: Grains
             items:
-            - {name: RICE ARBORIO CLOTH BAG ITALIAN, price: 3.0, supplier: GFI, units_in_bulk: '',
+            - {name: RICE ARBORIO CLOTH BAG ITALIAN, price: 4.0, supplier: GFI, units_in_bulk: '',
               upc: '10071270350178', vendor_code: '39420', wholesale: '1.71'}
             - {name: QUINOA RED 10 LB, price: 51.5, supplier: GFI, units_in_bulk: '', upc: '687080260717',
               vendor_code: '29434', wholesale: '31.02'}
@@ -575,6 +621,22 @@ menu:
               upc: '688032076554', vendor_code: '163336', wholesale: '1.20'}
             - {name: Polenta, price: 2.0, supplier: Sansone, units_in_bulk: '', upc: '', vendor_code: '',
               wholesale: '0.50'}
+            - {name: CousCous, price: 2.5, supplier: '', units_in_bulk: '8', upc: '', vendor_code: '',
+              wholesale: '1.07'}
+            - {name: Bomba Rice, price: 8.5, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '6.00'}
+            - {name: Black Rice, price: 8.5, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '5.87'}
+            - {name: Jasmin, price: 2.5, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '1.14'}
+            - {name: Farro, price: 3.5, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '2.08'}
+            - {name: Black Barley, price: 5.0, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '3.20'}
+            - {name: Wild Rice, price: 11.0, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '7.87'}
+            - {name: Brown Rice, price: 3.0, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '1.47'}
           - name: Jams
             items:
             - {name: Murray's Strawberry Jam (10 OZ), price: 11.5, supplier: Baldor, units_in_bulk: '',
@@ -649,13 +711,45 @@ menu:
               vendor_code: '', wholesale: '33'}
             - {name: Salted Caramel Souce, price: 9.0, supplier: Tahana, units_in_bulk: '6',
               upc: '766897592553', vendor_code: '', wholesale: '33'}
+            - {name: BLOOD ORANGE MARMELADE, price: 13.0, supplier: Sansone, units_in_bulk: '',
+              upc: '825325910175', vendor_code: '', wholesale: '7.50'}
+            - {name: AMERENA CHERY COMPOTE, price: 13.5, supplier: Sansone, units_in_bulk: '',
+              upc: '825325910182', vendor_code: '', wholesale: '8.00'}
+            - {name: MELADA DE CARVALHO (OAK HONEY), price: 7.5, supplier: Sansone, units_in_bulk: '',
+              upc: '825325100002', vendor_code: '', wholesale: '4.58'}
+            - {name: ARROPE (GRAPE MUST jam), price: 5.0, supplier: Sansone, units_in_bulk: '',
+              upc: '825325000197', vendor_code: '', wholesale: '3.10'}
+            - {name: MOSTARDA (PEAR), price: 13.5, supplier: Sansone, units_in_bulk: '', upc: '825325910038',
+              vendor_code: '', wholesale: '8.00'}
+            - {name: SABA MITICA, price: 15.5, supplier: Sansone,
+              units_in_bulk: '', upc: '825325163137',
+              vendor_code: '', wholesale: '9.42'}
+            - {name: DULCE DE HIGO CASERO (FIG PASTE), price: 4.0, supplier: Sansone, units_in_bulk: '',
+              upc: '825325000944', vendor_code: '', wholesale: '2.29'}
+            - {name: DULCE DE PLUM (PLUM PASTE), price: 4.0, supplier: Sansone, units_in_bulk: '',
+              upc: '825325000982', vendor_code: '', wholesale: '2.29'}
+            - {name: DULCE DE APPLE (APPLE PASTE), price: 4.0, supplier: Sansone, units_in_bulk: '',
+              upc: '825325000937', vendor_code: '', wholesale: '2.29'}
+            - {name: DULCE DE PEAR (PEAR PASTE), price: 4.0, supplier: Sansone, units_in_bulk: '',
+              upc: '825325000975', vendor_code: '', wholesale: '2.29'}
+            - {name: ACACIA HONEY, price: 6.5, supplier: Sansone, units_in_bulk: '', upc: '825325007042',
+              vendor_code: '', wholesale: '3.75'}
+            - {name: WALNUTS IN LEMON HONEY, price: 7.5, supplier: Sansone, units_in_bulk: '',
+              upc: '825325000296', vendor_code: '', wholesale: '4.40'}
+            - {name: BLOOD ORANGE CONFITURE (MARMALADE), price: 13.0, supplier: Sansone, units_in_bulk: '',
+              upc: '', vendor_code: '', wholesale: '7.67'}
+            - {name: FIG JAM, price: 6.0, supplier: Sansone,
+              units_in_bulk: '', upc: '854858001036',
+              vendor_code: '', wholesale: ''}
           - name: Vinegars
             items:
+            - {name: Crema Di Tondo, price: 9.5, supplier: GFI, units_in_bulk: '',
+              upc: '879720000054', vendor_code: '', wholesale: ''}
             - {name: Rao's Vinegar Balsamic, price: 23.5, supplier: Nassau, units_in_bulk: '',
               upc: '747479000161', vendor_code: '969973', wholesale: '14.00'}
-            - {name: Terra Medi White Wine VInegar 17oz, price: 5.0, supplier: Nassau, units_in_bulk: '',
+            - {name: Terra Medi White Wine Vinegar 17oz, price: 5.0, supplier: Nassau, units_in_bulk: '',
               upc: '812110003020', vendor_code: '973306', wholesale: '2.94'}
-            - {name: Terra Medi Red Wine VInegar 17oz, price: 5.0, supplier: Nassau, units_in_bulk: '',
+            - {name: Terra Medi Red Wine Vinegar 17oz, price: 5.0, supplier: Nassau, units_in_bulk: '',
               upc: '812110003037', vendor_code: '973307', wholesale: '2.94'}
             - {name: Black Vinegar, price: 9.0, supplier: Baldor, units_in_bulk: '', upc: 020717612228,
               vendor_code: ASIA3AA, wholesale: '5.50'}
@@ -687,6 +781,10 @@ menu:
               upc: '871889001101', vendor_code: '164198', wholesale: '7.99'}
             - {name: VINEGAR BALSAMIC 12 YEAR, price: 43.5, supplier: GFI, units_in_bulk: '',
               upc: '879720000016', vendor_code: '400019', wholesale: '25.99'}
+            - {name: CAPRIETE SHERRY VINEGAR 50 YEAR OLD, price: 11.0, supplier: Sansone, units_in_bulk: '',
+              upc: '6191119010234', vendor_code: '', wholesale: '6.50'}
+            - {name: SHERRY VINEGAR PEDRO XIMENEZ, price: 10.0, supplier: Sansone, units_in_bulk: '',
+              upc: '8437001623143', vendor_code: '', wholesale: '6.08'}
           - name: Fish
             items:
             - {name: Squid Fish Sauce, price: 5.0, supplier: Asian Store, units_in_bulk: '1',
@@ -767,26 +865,38 @@ menu:
               upc: '075062004457', vendor_code: SPNU12I, wholesale: '9.50'}
             - {name: Almond Butter, price: 16.5, supplier: Baldor, units_in_bulk: '12', upc: 075062840093,
               vendor_code: SPNU1J, wholesale: '118.50'}
-            - {name: Raw Shelled Almonds, price: 69.0, supplier: Baldor, units_in_bulk: '',
-              upc: '', vendor_code: SPNU1, wholesale: '41.25'}
-            - {name: Raw Pumpkin Shelled Seeds, price: 45.0, supplier: Baldor, units_in_bulk: '',
-              upc: '', vendor_code: SPNU10, wholesale: '26.90'}
-            - {name: Raw Shelled Sunflower Seeds, price: 21.5, supplier: Baldor, units_in_bulk: '',
-              upc: '', vendor_code: SPNU10A, wholesale: '12.95'}
-            - {name: Smoked Almonds, price: 77.5, supplier: Baldor, units_in_bulk: '', upc: '',
-              vendor_code: SPNU1G, wholesale: '46.50'}
-            - {name: Raw Cashews, price: 62.5, supplier: Baldor, units_in_bulk: '', upc: '',
-              vendor_code: SPNU2, wholesale: '37.50'}
-            - {name: Salted Cashews, price: 65.5, supplier: Baldor, units_in_bulk: '', upc: '',
-              vendor_code: SPNU2A, wholesale: '39.25'}
-            - {name: Unsalted Cashews, price: 69.0, supplier: Baldor, units_in_bulk: '', upc: '',
-              vendor_code: SPNU2B, wholesale: '41.50'}
-            - {name: Bazzini Raw Shelled Pistachios, price: 136.0, supplier: Baldor, units_in_bulk: '',
-              upc: '', vendor_code: SPNU8, wholesale: '81.50'}
-            - {name: ALMONDS MARCONA FRIED/SALTED 14/16, price: 17.5, supplier: GFI, units_in_bulk: '',
+            - {name: Raw Shelled Almonds, price: 10.5, supplier: Baldor, units_in_bulk: '',
+              upc: '', vendor_code: SPNU1, wholesale: '10.31'}
+            - {name: Raw Pumpkin Shelled Seeds, price: 7.5, supplier: Baldor, units_in_bulk: '',
+              upc: '', vendor_code: SPNU10, wholesale: '6.75'}
+            - {name: Raw Shelled Sunflower Seeds, price: 4.0, supplier: Baldor, units_in_bulk: '',
+              upc: '', vendor_code: SPNU10A, wholesale: '3.23'}
+            - {name: Smoked Almonds, price: 9.5, supplier: Baldor, units_in_bulk: '', upc: '',
+              vendor_code: SPNU1G, wholesale: '9.30'}
+            - {name: Raw Cashews, price: 10.0, supplier: Baldor, units_in_bulk: '', upc: '',
+              vendor_code: SPNU2, wholesale: '9.38'}
+            - {name: Salted Cashews, price: 10.0, supplier: Baldor, units_in_bulk: '', upc: '',
+              vendor_code: SPNU2A, wholesale: '9.81'}
+            - {name: Unsalted Cashews, price: 10.5, supplier: Baldor, units_in_bulk: '', upc: '',
+              vendor_code: SPNU2B, wholesale: '10.38'}
+            - {name: Bazzini Raw Shelled Pistachios, price: 16.5, supplier: Baldor, units_in_bulk: '',
+              upc: '', vendor_code: SPNU8, wholesale: '9.17'}
+            - {name: ALMONDS MARCONA FRIED/SALTED 14/16, price: 11.0, supplier: GFI, units_in_bulk: '',
               upc: '820581153403', vendor_code: '85451', wholesale: '10.64'}
-            - {name: ALMONDS VALENCIA FRIED SALTED 5 KILO, price: 15.0, supplier: GFI, units_in_bulk: '',
+            - {name: ALMONDS VALENCIA FRIED SALTED 5 KILO, price: 9.5, supplier: GFI, units_in_bulk: '',
               upc: '820581854522', vendor_code: '85452', wholesale: '9.00'}
+            - {name: CARAMELIZED WALNUTS, price: 17.0, supplier: Sansone, units_in_bulk: '',
+              upc: '', vendor_code: '', wholesale: '10.21'}
+            - {name: CARAMELIZED PECANS, price: 19.0, supplier: Sansone, units_in_bulk: '',
+              upc: '', vendor_code: '', wholesale: '11.31'}
+            - {name: RAW MARCONA ALMONDS W/SKIN, price: 17.0, supplier: Sansone, units_in_bulk: '',
+              upc: '', vendor_code: '', wholesale: '10.31'}
+            - {name: Hazelnuts, price: 13.5, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '7.95'}
+            - {name: Turkish Apricots, price: 10.5, supplier: '', units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '10.00'}
+            - {name: Hazelnuts, price: 9.5, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '9.00'}
           - name: Cookies
             items:
             - {name: CRISPS RAINCOAST FIG AND OLIVE, price: 7.0, supplier: GFI, units_in_bulk: '',
@@ -831,14 +941,20 @@ menu:
               vendor_code: '18948', wholesale: '3.84'}
             - {name: CRACKER ROSEMARY SEA SALT, price: 6.5, supplier: GFI, units_in_bulk: '',
               upc: '899055000697', vendor_code: '18949', wholesale: '3.84'}
+            - {name: MULINO BIANCO CUOR di MELA, price: 5.0, supplier: Sansone, units_in_bulk: '',
+              upc: '8076809530286', vendor_code: '', wholesale: '3.00'}
             - {name: MULINO BIANCO SETTEMBRINI, price: 5.0, supplier: Sansone, units_in_bulk: '',
               upc: '8076809529945', vendor_code: '', wholesale: '3.00'}
+            - {name: TORTAS DE ACEITE MITICA (PLAIN TORTAS), price: 4.5, supplier: Sansone,
+              units_in_bulk: '', upc: '825325550012', vendor_code: '', wholesale: '2.65'}
+            - {name: TARALLI, price: 3.0, supplier: Sansone,
+              units_in_bulk: '', upc: '825325560103', vendor_code: '', wholesale: '1.66'}
           - name: Candy
             items:
             - {name: TCHO-Sampler, price: 11.5, supplier: Baldor, units_in_bulk: '', upc: '812603013024',
               vendor_code: SPD4Q, wholesale: '6.75'}
-            - {name: TCHO Organic and Fair Trade Nibs Bag, price: 51.0, supplier: Baldor, units_in_bulk: '',
-              upc: '', vendor_code: SPD4K, wholesale: '30.50'}
+            - {name: TCHO Organic and Fair Trade Nibs Bag, price: 4.0, supplier: Baldor, units_in_bulk: '',
+              upc: '', vendor_code: SPD4K, wholesale: '9.24'}
             - {name: Chocolate Covered Coffee Beans 3.75lb, price: 15.0, supplier: Baldor, units_in_bulk: '9',
               upc: '', vendor_code: SWCH23008, wholesale: '76.50'}
             - {name: ASKINOSIE DAVAO DARK MILK + SE, price: 10.5, supplier: Intelligentsia,
@@ -847,7 +963,7 @@ menu:
               upc: '895156001496', vendor_code: '', wholesale: '6.00'}
             - {name: ASKINOSIE/ INTELLIGENTSIA CHOC, price: 11.5, supplier: Intelligentsia,
               units_in_bulk: '', upc: '895156001571', vendor_code: '', wholesale: '7.00'}
-            - {name: PERUGINA SORRENTO CANDY, price: 3.5, supplier: Sansone, units_in_bulk: '',
+            - {name: PERUGINA SORENTO CANDY, price: 3.5, supplier: Sansone, units_in_bulk: '',
               upc: 020182017528, vendor_code: '', wholesale: '2.08'}
             - {name: PERUGINA CAPRI CANDY, price: 3.5, supplier: Sansone, units_in_bulk: '',
               upc: 020182017542, vendor_code: '', wholesale: '2.08'}
@@ -869,6 +985,18 @@ menu:
               vendor_code: '', wholesale: '26.5'}
             - {name: Variety Pack Caramels, price: 7.0, supplier: Tahana, units_in_bulk: '6',
               upc: '766897592621', vendor_code: '', wholesale: '24.95'}
+            - {name: CARO MILK CHOCO BAR, price: 4.5, supplier: Sansone, units_in_bulk: '',
+              upc: '825325223534', vendor_code: '', wholesale: '2.60'}
+            - {name: CARO ARTISANAL DARK CHOCOLATE, price: 4.5, supplier: Sansone, units_in_bulk: '',
+              upc: '825325223510', vendor_code: '', wholesale: '2.60'}
+            - {name: CANDIED ORANGE DELIGHTS, price: 7.5, supplier: Sansone, units_in_bulk: '',
+              upc: '825325001347', vendor_code: '', wholesale: '4.60'}
+          - name: other
+            items:
+            - {name: Dry Cherries, price: 9.5, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '10.00'}
+            - {name: Sultanas, price: 4.0, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '3.70'}
           - name: Oils
             items:
             - {name: Terra Medi Organic EVOO 17oz, price: 17.5, supplier: Nassau, units_in_bulk: '',
@@ -918,8 +1046,9 @@ menu:
             - {name: SESAME OIL 100%, price: 50.0, supplier: GFI, units_in_bulk: '', upc: '742812710783',
               vendor_code: '31992', wholesale: '29.99'}
             - {name: OIL OLIVE INFUSED WITH WHITE TRUFFLE, price: 20.0, supplier: GFI, units_in_bulk: '',
-              upc: '80006330202', vendor_code: '40662', wholesale: '12.00'}
-            - {name: OIL TRUFFLE BLACK, price: 20.0, supplier: GFI, units_in_bulk: '', upc: '80006330302',
+              upc: '800063302024', vendor_code: '40662', wholesale: '12.00'}
+            - {name: OIL TRUFFLE BLACK, price: 20.0, supplier:
+              GFI, units_in_bulk: '', upc: '800063303021',
               vendor_code: '30302', wholesale: '12.00'}
             - {name: OIL OLIVE INFUSED W/LEMON, price: 15.0, supplier: GFI, units_in_bulk: '',
               upc: '800063305018', vendor_code: '138', wholesale: '8.92'}
@@ -929,6 +1058,12 @@ menu:
               upc: '871889000036', vendor_code: '174502', wholesale: '13.17'}
             - {name: PIETRO CORICELLI GRAPESEED OIL, price: 11.0, supplier: Sansone, units_in_bulk: '',
               upc: '603872002419', vendor_code: '', wholesale: '6.63'}
+            - {name: Corto, price: 12.0, supplier: '', units_in_bulk: '13', upc: '', vendor_code: '',
+              wholesale: '6.53'}
+            - {name: Cali Ranch, price: 10.5, supplier: '', units_in_bulk: '13', upc: '', vendor_code: '',
+              wholesale: '5.63'}
+            - {name: La Padella, price: 6.0, supplier: '', units_in_bulk: '13', upc: '', vendor_code: '',
+              wholesale: '2.89'}
           - name: Pasta
             items:
             - {name: GAROFALO GLUTEN FREE SPAGHETTI, price: 5.0, supplier: Sansone, units_in_bulk: '',
@@ -957,6 +1092,8 @@ menu:
               upc: '8010804070736', vendor_code: '', wholesale: '2.35'}
             - {name: PRIMELUCI ANELLETTI, price: 2.5, supplier: Sansone, units_in_bulk: '',
               upc: '836062000227', vendor_code: '', wholesale: '1.40'}
+            - {name: DELVERDE Egg Garganelli, price: 3.5, supplier: Sansone, units_in_bulk: '',
+              upc: '077908002986', vendor_code: '', wholesale: '2.15'}
           - name: Supplies
             items:
             - {name: CHEESE PAPER WHITE 9X12 BULK, price: 101.0, supplier: GFI, units_in_bulk: '',
@@ -975,12 +1112,17 @@ menu:
               upc: '631723002417', vendor_code: '13919', wholesale: '3.21'}
             - {name: CAPERBERRIES, price: 9.5, supplier: GFI, units_in_bulk: '', upc: '631723204606',
               vendor_code: '20460', wholesale: '5.77'}
+            - {name: CAPERBERRIES, price: 6, supplier: Sansone,
+              units_in_bulk: '', upc: '041224700925',
+              vendor_code: '20460', wholesale: '4.15'}
             - {name: OLIVE MIX MEXICAN, price: 6.5, supplier: GFI, units_in_bulk: '', upc: '713074200015',
               vendor_code: '10500', wholesale: '3.97'}
             - {name: OLIVE MIX BASQUE THREE WITH PITS, price: 9.0, supplier: GFI, units_in_bulk: '',
               upc: '713074200336', vendor_code: '512', wholesale: '5.35'}
-            - {name: ROLAND WILD CAPERBERRIES, price: 6.0, supplier: Sansone, units_in_bulk: '',
+            - {name: ROLAND WILD CAPERBERRIES JARS, price: 6.0, supplier: Sansone, units_in_bulk: '',
               upc: '41224700925', vendor_code: '', wholesale: ''}
+            - {name: CERIGNOLA OLIVES BUCKETS, price: 6.5, supplier: Sansone, units_in_bulk: '',
+              upc: '8010146003584', vendor_code: '', wholesale: '3.94'}
             - {name: CASTELVETRANO OLIVES BUCKETS, price: 6.5, supplier: Sansone, units_in_bulk: '',
               upc: '8010146002228', vendor_code: '', wholesale: '3.94'}
             - {name: GAETA OLIVES BUCKETS, price: 7.0, supplier: Sansone, units_in_bulk: '',
@@ -989,6 +1131,8 @@ menu:
               upc: '8010146003577', vendor_code: '', wholesale: '3.94'}
             - {name: OIL-CURED OLIVES, price: 0.0, supplier: Sansone, units_in_bulk: '', upc: '',
               vendor_code: '', wholesale: '#VALUE!'}
+            - {name: Caperberries Bulk, price: 6.5, supplier: '', units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '3.33'}
           - name: Spices
             items:
             - {name: Star Anise, price: 2.5, supplier: Baldor, units_in_bulk: '10', upc: '123456001725',
@@ -1061,8 +1205,8 @@ menu:
               upc: '8004556000158', vendor_code: '', wholesale: '4.17'}
             - {name: ITALIAN OREGANO, price: 5.5, supplier: Sansone, units_in_bulk: '', upc: '8012464000290',
               vendor_code: '', wholesale: '3.16'}
-            - {name: DRIED CHESTNUTS, price: 0.0, supplier: Sansone, units_in_bulk: '', upc: '',
-              vendor_code: '', wholesale: '#DIV/0!'}
+            - {name: DRIED CHESTNUTS, price: 10.5, supplier: Sansone, units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '10.00'}
           - name: Sauce
             items:
             - {name: MUSTARD WHOLE GRAIN TIN, price: 11.0, supplier: GFI, units_in_bulk: '',
@@ -1179,4 +1323,33 @@ menu:
             - {name: Franmara 1099 Stainless Steel Hard Cheese and Chocolate Knife (2081099),
               price: 6.0, supplier: Webstaurant, units_in_bulk: '', upc: '', vendor_code: '',
               wholesale: '3.29'}
+          - name: Cafe
+            items:
+            - {name: drip, price: 3}
+            - {name: decaf, price: 3}
+            - {name: espresso, price: 3}
+            - {name: lungo, price: 3}
+            - {name: espresso twist, price: 3.5}
+            - {name: americano, price: 3.5}
+            - {name: cold brew, price: 4}
+            - {name: doppio, price: 5}
+            - {name: choco tipico, price: 3}
+            - {name: choco picante, price: 3.5}
+            - {name: choco espresso, price: 5}
+            - {name: choco latte, price: 5}
+            - {name: moka, price: 6}
+            - {name: cappuccino, price: 5}
+            - {name: latte, price: 5}
+            - {name: madrileno, price: 4}
+            - {name: affogato, price: 6}
+            - {name: cookie, price: .5}
+            - {name: 3 cookies, price: 1}
+            - {name: pop tart, price: 3.5}
+            - {name: egg sandwich, price: 3.5}
+            - {name: egg sandwich cheese, price: 4}
+            - {name: egg sandwich ham, price: 4}
+            - {name: egg sandwich ham n cheese, price: 4.5}
+            - {name: baguette, price: 2}
+            - {name: epi baguette, price: 2.5}
+            - {name: round bread, price: 4}
 

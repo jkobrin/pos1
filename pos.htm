@@ -1032,30 +1032,25 @@
     }
 
     
-    g_keyentry = null;
+    g_keyentry = "";
     function keydown(event)
     {
       if(event.which == 13)
       {
-        g_keyentry = g_keyentry.replace(/0$/,''); // remove trailing zero
         text_entered(g_keyentry);
-        g_keyentry = null;
+        g_keyentry = "";
       }
       else
       {
         key = String.fromCharCode(event.which);
-        if (g_keyentry == null && key == '0')
-        {
-          g_keyentry = "";
-        }
-        else if(g_keyentry != null && key.match(/[0-9]/))
+        if(key.match(/[0-9]/))
         {
           g_keyentry += key;
         }  
         else
         {
-          g_keyentry = null;
-        }  
+          g_keyentry = "";
+        }
       }
     }
 
@@ -1246,6 +1241,15 @@
       <input type="button" value="do nothing"> 
     </div>
   </div>
+
+  <div id ="scale_popup" class="diaframe">
+    <div id="scale_popup_caption" class="diacapt">---</div>
+    <div class="diabuttons">
+      <input id="lbs" type="text" value="0"> 
+      <input id="oz" type="text" value="0"> 
+    </div>
+  </div>
+
 
 
 </body>
