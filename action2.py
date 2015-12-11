@@ -78,7 +78,6 @@ def order(req, table, additem=None, removeitem=None, price=None, menu_item_id = 
     '''
   if table != 'ALL': order_item_query += 'and og.table_id = "%s"\n' % table
   if table == 'ALL': order_item_query += 'group by oi.item_name, og.table_id, oi.is_delivered, oi.is_held, oi.is_comped, oi.price\n'
-
   order_item_query += 'order by oi.is_held, oi.created, oi.id'
 
   order_items = utils.select(order_item_query, cursor)

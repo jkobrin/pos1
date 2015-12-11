@@ -2,9 +2,23 @@ import json
 import MySQLdb
 import utils
 from mylog import my_logger
+import queries
+
+from time import sleep
+from random import randint
 
 
-def order(req, table, additem=None, removeitem=None, price=None, menu_item_id = None, taxable=True, delivered=False):
+def order(req, 
+  table, 
+  additem=None, 
+  removeitem=None, 
+  price=None, 
+  menu_item_id = None, 
+  taxable=True, 
+  delivered=False): 
+
+  #sleep(randint(0,10))
+    
 
   if removeitem or additem:
     my_logger.info(req.get_remote_host() + 
@@ -12,8 +26,7 @@ def order(req, table, additem=None, removeitem=None, price=None, menu_item_id = 
       %locals()
     )
 
-  if table == 'null': return json.dumps(None)
-
+  assert table != 'null', "table ID cannot be null in call to function 'action/order'"
   assert len(table) <= 64, "table ID must be 64 or fewer chars"
 
   conn = MySQLdb.connect (host = "localhost",
@@ -67,28 +80,19 @@ def order(req, table, additem=None, removeitem=None, price=None, menu_item_id = 
     ''' % locals())
 
 
-    
-  order_item_query = '''   
-    SELECT 
-      oi.item_name, og.table_id, 
-      oi.id, oi.is_delivered, oi.is_held, oi.is_comped, oi.price,
-      TIMESTAMPDIFF(MINUTE, oi.created, now()) minutes_old,
-      TIMESTAMPDIFF(MINUTE, oi.updated, now()) minutes_since_mod,
-      TIMESTAMPDIFF(SECOND, oi.updated, now()) seconds_since_mod
-    FROM order_group og, order_item oi 
-    where og.id = oi.order_group_id
-    and og.is_open = TRUE
-    and oi.is_cancelled = FALSE
-    '''
-  if table != 'ALL': order_item_query += 'and og.table_id = "%s"\n' % table
-  order_item_query += "order by oi.is_held, oi.created, oi.id"
+  retval = queries.get_active_items(incursor=cursor)
+  cursor.close()
+  conn.close()
+  return json.dumps(retval)
 
-  order_items = utils.select(order_item_query, cursor)
 
-  cursor.close ()
-  conn.close ()
+def get_active_items(req, cook_style=False, incursor=None):
+    #sleep(3)
+    return json.dumps(queries.get_active_items(cook_style=cook_style))
 
-  return json.dumps(order_items)
+
+def get_cook_items(req):
+    return json.dumps(queries.get_active_items(cook_style=True))
 
 
 if __name__ == '__main__':

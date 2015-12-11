@@ -2,6 +2,7 @@ import json
 import MySQLdb
 import utils
 from mylog import my_logger
+import time
 
 def delivered(req, item_id):
     my_logger.info(req.get_remote_host() + ': delivered on ' + str(item_id))
