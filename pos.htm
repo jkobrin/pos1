@@ -16,6 +16,7 @@
 
     .nondelivered_item { color: red; }
     .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
+    .cancelled_item { opacity: 0.3; text-align: right; text-decoration: line-through; color: white; }
 
     .comped_item {font-style:italic; border: 6px solid #a0ffa0;}
     .held_item {border: 3px solid yellow;}
@@ -207,6 +208,7 @@
 
   </style>
 
+  <script type="text/javascript" src="js/scripts/jquery-1.8.3.min.js"></script>
   <script> 
 
     // This is the only script on this page. It does basically
@@ -272,8 +274,6 @@
 
       http.onreadystatechange = function ()
       {
-        //alert(dat.getSeconds() + ' ' + http.readyState + ' ' + http.params);
-        //console.log(http.readyState + ' ' + url);
         if (http.readyState != 4) {return;} //request is not complete
 
         var response = http.responseText;
@@ -287,7 +287,6 @@
           return;
         }
 
-        //console.log(url + ' ' + params +': '+response);
         callback( eval('(' + response + ')') );
       }
 
@@ -308,6 +307,12 @@
         http.setRequestHeader("Connection", "close");
         http.send(params);
       }
+    }  
+
+    g_session_id = null;
+    function get_new_session_id()
+    {
+      g_session_id = http_request("GET", "action.py/get_session_id", null);
     }  
 
     function load_config()
@@ -350,26 +355,113 @@
     function main_refresh()
     {
       add_item_box.innerHTML = "";
-      refresh_items();
+      synchronize();
       if(main_screen.style.display != "none") 
       {
         colorTables();
       }
       if(cook_screen.style.display == "inline") 
       {
-        refresh_cook_screen();
+       //  refresh_cook_screen();
       }
     }
 
-    function handle_fresh_items(items)
+    g_tempid_seq = .1;
+    function tempid()
     {
-      g_order_pane_items = items; 
+      g_tempid_seq += 1;
+      return g_tempid_seq;
+    }
+
+    function is_temp_id(id)
+    {
+      return id % 1 != 0;
+    }  
+
+    function get_crud_commands_from_queue(item_id)
+    {
+      return g_crud_commands.filter(function(command) { return command.item_id == item_id; });
+    }  
+
+    function get_create_command_from_queue(item_id)
+    {
+      return g_crud_commands.find(function(command) { return command.item_id == item_id && command.command == 'add_item'; });
+    }  
+
+    function new_crud_command(command)
+    {
+      g_crud_commands.push(command);
+      apply_crud_command(command);
+    }
+
+    function apply_crud_command(command)
+    {
+      if (command.command == "add_item")
+      {
+        g_order_pane_items.push({
+          item_name: command.item_name,
+          table_id: command.table_id, 
+          id: command.item_id,
+          is_delivered: command.delivered, 
+          is_held: false, 
+          is_comped: false, 
+          price: command.price}
+        )  
+      }
+
+      if (command.command == "cancel_item")
+      {
+        var item = get_order_pane_item(command.item_id);
+        item.is_cancelled = true;
+        if(is_temp_id(item.id)){
+          commands_for_this_temp_item = get_crud_commands_from_queue(command.item_id);
+          for(var idx in commands_for_this_temp_item)
+          {
+            commands_for_this_temp_item[idx].command = 'voided';
+          }
+        }  
+      }  
+
+      if (command.command == "set_status")
+      {
+        var item = get_order_pane_item(command.item_id);
+        item[command.field] = command.value;
+        if(is_temp_id(item.id)){
+            create_command = get_create_command_from_queue(command.item_id);
+            create_command[command.field] = command.value;
+            command.command = 'voided';
+          }  
+      }
+      
       update_order_pane(g_currentTable);
     }
 
-    function refresh_items()
+    g_crud_commands = [];
+    function handle_fresh_items(items)
     {
+      g_order_pane_items = items; 
+      for(var idx in g_crud_commands)
+      {
+        apply_crud_command(g_crud_commands[idx]);
+      }  
+      update_order_pane(g_currentTable);
+    }
+
+    function ajax_error(jqXHR, textStatus, errorThrown) {
+       document.write(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
+    }
+
+    function refresh_items(){
       async_http_request("GET", "action.py/get_active_items", "", handle_fresh_items); 
+    }  
+
+    function synchronize()
+    {
+      console.log(JSON.stringify(g_crud_commands));
+      $.ajax({ url: "action.py/synchronize", type: "POST", dataType: "json", cache: false,
+        data: {'crud_commands' : JSON.stringify(g_crud_commands)},
+        success: handle_fresh_items, error: ajax_error });
+      g_crud_commands = [];
     }
       
     function rotateCategory()
@@ -536,6 +628,7 @@
 
     function grid_button_clicked(button)
     {
+      alert(new Date().getTime());
       if (category_is_table())
       {
         if(g_currentTable == button.id)
@@ -596,93 +689,88 @@
       return (tab && (tab.subcat == 'staff' || tab.subcat=='staff_tabs'))
     }
 
-    function refresh_order(add_item, remove_item)
+    function add_to_order(add_item)
     {
       if (popup && popup.table_id)
       {
-        var params="table="+popup.table_id;
+        var table_id=popup.table_id;
         popup.table_id = null;
       }
       else
       {
-        var params="table="+g_currentTable;
+        var table_id=g_currentTable;
       }
 
-      if(add_item)
-          
+      // add_item is just a name, get the full object
+      var add_item = get_config_item(add_item);
+      if(add_item == null)
       {
-        // add_item is just a name, get the full object
-        var add_item = get_config_item(add_item);
-        if(add_item == null)
+        alert("add item: " + add_item + " not found in config. Try reload.")
+        return;
+      }
+
+      var price = add_item.price; //usual case
+      var item_name = add_item.name;
+      //now that price is set to the default, let's see if we need to modify it
+      if('scale_units' in add_item)
+      {
+        while(true)
         {
-          alert("add item: " + add_item + " not found in config. Try reload.")
-          return;
+          var scale = prompt('Quantity in '+add_item.scale_units,1)
+          if(!isNaN(scale)) break;
         }
+        if (scale == null) return; //they hit cancel; don't add item
 
-        var price = add_item.price; //usual case
-        var item_name = add_item.name;
-        //now that price is set to the default, let's see if we need to modify it
-        if('scale_units' in add_item)
+        price = add_item.price * scale;
+        item_name = ''+scale + add_item.scale_units + ' ' + add_item.name;
+      }  
+        
+      if(is_staff(g_currentTable)) 
+      {
+        price = add_item.price*STAFF_FOOD_RATE;
+        if ( add_item.cat == 'bev' && add_item.id != null)
         {
-          while(true)
+          var info = http_request("POST", "get_wine_info.py", "menu_item_id="+add_item.id);
+          price = info.frontprice;
+          if (price != null && price > 0 )
           {
-            var scale = prompt('Quantity in '+add_item.scale_units,1)
-            if(!isNaN(scale)) break;
-          }
-          if (scale == null) return; //they hit cancel; don't add item
-
-          price = add_item.price * scale;
-          item_name = ''+scale + add_item.scale_units + ' ' + add_item.name;
-        }  
-          
-        if(is_staff(g_currentTable)) 
-        {
-          price = add_item.price*STAFF_FOOD_RATE;
-          if ( add_item.cat == 'bev' && add_item.id != null)
-          {
-            var info = http_request("POST", "get_wine_info.py", "menu_item_id="+add_item.id);
-            price = info.frontprice;
-            if (price != null && price > 0 )
+            if (add_item.name.slice(0,3) == 'qt:')
             {
-              if (add_item.name.slice(0,3) == 'qt:')
-              {
-                price = price/4;
-              }
+              price = price/4;
             }
           }
         }
-
-        if(add_item.name.indexOf('special price') != -1)
-        {
-          price = prompt('Enter price:', 0);
-        }
-
-        var taxable = !(add_item.subcat == 'gift_certificates' || add_item.cat == 'market' && 
-            add_item.subcat.match(/Household|Supplies|Candy|Soda|gift/)  == null)
-
-        if (add_item.cat == 'market') { params += "&delivered=true";}
-
-        params += "&taxable="+taxable;
-        params += "&price="+price;
-        params += "&menu_item_id="+add_item.id;
-        params += "&additem="+item_name;
-
-        if (category_is_market())
-        {
-          add_item_box.innerHTML = add_item.upc + ' ' + add_item.name + ' $' + add_item.price;
-        }
       }
 
-
-
-      if (remove_item) 
+      if(add_item.name.indexOf('special price') != -1)
       {
-        params += "&removeitem="+remove_item;
-        resetTableColor(g_currentTable);
+        price = prompt('Enter price:', 0);
       }
 
-      async_http_request("GET", "action.py/order", params, handle_fresh_items);
-      //colorTables();
+      var taxable = !(add_item.subcat == 'gift_certificates' || add_item.cat == 'market' && 
+          add_item.subcat.match(/Household|Supplies|Candy|Soda|gift/)  == null)
+
+      var delivered = (add_item.cat == 'market');
+
+      new_crud_command ({
+        command: 'add_item',
+        item_id: tempid(),
+        item_name: item_name,
+        table_id: table_id, 
+        is_delivered: delivered, 
+        taxable: taxable, 
+        price: price 
+      });
+
+      if (category_is_market())
+      {
+        add_item_box.innerHTML = add_item.upc + ' ' + add_item.name + ' $' + add_item.price;
+      }
+    } 
+
+    function remove_from_order(remove_item) 
+    {
+      new_crud_command({command: "cancel_item", item_id: remove_item});
     }
 
     function cookscreen_table_click(table_id)
@@ -710,29 +798,26 @@
       }
       else
       {
-        mark_delivered(item.id);
+        toggle_delivered(item.id);
       }  
     }
 
-    function mark_delivered(item_id)
+    function toggle_delivered(item_id)
     {
-      var params = "item_id="+item_id;
-      http_request("POST", "set_item_status.py/delivered", params);
-      main_refresh();
+      var item = get_order_pane_item(item_id);
+      new_crud_command({command: "set_status", item_id: item_id, field: 'is_delivered', value: !item.is_delivered});
     }
 
     function toggle_held(item_id)
     {
-      var params = "item_id="+item_id;
-      http_request("POST", "set_item_status.py/toggle_held", params);
-      main_refresh();
+      var item = get_order_pane_item(item_id);
+      new_crud_command({command: "set_status", item_id: item_id, field: 'is_held', value: !item.is_held});
     }
 
     function mark_comped()
     {
-      var params = "item_id="+popup.item_id;
-      http_request("POST", "set_item_status.py/comped", params);
-      main_refresh();
+      var item = get_order_pane_item(popup.item_id);
+      new_crud_command({command: "set_status", item_id: popup.item_id, field: 'is_comped', value: !item.is_comped});
     }
 
     function pin_is_good(pin)
@@ -869,12 +954,6 @@
       go_to_tables();
     }  
 
-    function remove_from_order(item)
-    {
-      refresh_order(null, item);
-      refresh_cook_screen();
-    }  
-      
     function order_item_click(button)
     {
     }  
@@ -890,6 +969,7 @@
           return item;
         }
       }
+      console.log('get_order_pane_item id not found: '+item_id);
     }
       
     function update_order_pane(table_id)
@@ -908,6 +988,7 @@
         if (item.is_held) {classes += ' held_item'}
         else if (!item.is_delivered) {classes += ' nondelivered_item'}
         if (item.is_comped) { classes += ' comped_item'}
+        if (item.is_cancelled) { classes += ' cancelled_item'}
 
         order_items_html += '<input' +
           ' class="'+ classes + '"' +
@@ -921,21 +1002,11 @@
       order_items.innerHTML = order_items_html;
     }
       
-    function add_to_order(additem)
-    {
-      refresh_order(additem, null);
-      //refresh_cook_screen();
-    } 
-
     function orderitem_mousedown(item_id, event, button)
     {
       button.style.backgroundColor = 'maroon';
     }  
       
-    function toggle_delivered(item)
-    {
-    }
-
     // Order popup stuff
     popup = null;
     function orderitem_popup(item_id, event)
@@ -1293,7 +1364,7 @@
     <div class="diabuttons">
       <div style="float: right; width: 50%">
         <input type="button" value="plus 1" onclick="plus_one()"> 
-        <input type="button" value="delivered" onclick="mark_delivered(popup.item_id)"> 
+        <input type="button" value="delivered" onclick="toggle_delivered(popup.item_id)"> 
         <input type="button" value="do nothing"> 
       </div>
       <div style="float: left; width: 50%">

@@ -7,84 +7,104 @@ import queries
 from time import sleep
 from random import randint
 
+def get_session_id(req):
+    #client will use this to create unique ids for order_item commands it sends to server for DB insertion
+    conn = MySQLdb.connect (host = "localhost",
+                          user = "pos",
+                          passwd = "pos",
+                          db = "pos")
+    cursor = conn.cursor()
 
-def order(req, 
-  table, 
-  additem=None, 
-  removeitem=None, 
-  price=None, 
-  menu_item_id = None, 
-  taxable=True, 
-  delivered=False): 
+    cursor.execute("insert into client_session values ()");
+    session_id = conn.insert_id()
 
-  #sleep(randint(0,10))
+    cursor.close()
+    conn.close()
+
+    return json.dumps(session_id)
+
+  
+
+def add_item(table_id=None, item_name=None, price=None, menu_item_id=None, taxable=True, is_delivered=False, is_comped=False, is_held=False, incursor=None, **unused):
     
+    assert table_id != 'null' and table_id is not None, "table_id cannot be null in call to function 'action/add_item'"
+    assert len(table_id) <= 64, "table_id must be 64 or fewer chars"
+    assert item_name is not None, 'item _name required'
+    assert price is not None, 'price required'
 
-  if removeitem or additem:
-    my_logger.info(req.get_remote_host() + 
-      ': action/order on table:%(table)s add_item: %(additem)s removeitem: %(removeitem)s  price: %(price)s delivered: %(delivered)s taxable: %(taxable)s'
-      %locals()
-    )
+    conn = MySQLdb.connect (host = "localhost",
+                          user = "pos",
+                          passwd = "pos",
+                          db = "pos")
+    cursor = conn.cursor()
 
-  assert table != 'null', "table ID cannot be null in call to function 'action/order'"
-  assert len(table) <= 64, "table ID must be 64 or fewer chars"
-
-  conn = MySQLdb.connect (host = "localhost",
-                        user = "pos",
-                        passwd = "pos",
-                        db = "pos")
-
-  cursor = conn.cursor()
-
-  if additem:
-    
     open_order_group = None
     for time in (1,2):
       cursor.execute('''
         SELECT id FROM order_group 
         WHERE is_open = TRUE
-        AND table_id = "%s"''' % table
+        AND table_id = "%s"''' % table_id
       )
       open_order_group = cursor.fetchone()
       if open_order_group:
         break
       else:
         cursor.execute('''
-          INSERT INTO order_group VALUES (null, "%(table)s", TRUE, null, null, null)
+          INSERT INTO order_group VALUES (null, "%(table_id)s", TRUE, null, null, null)
           '''%locals())
 
     open_order_group = open_order_group[0];
     cursor.execute('''
-      INSERT INTO order_item (order_group_id, item_name, price, menu_item_id, taxable, is_delivered) VALUES
-      (%(open_order_group)d, "%(additem)s", "%(price)s", "%(menu_item_id)s", %(taxable)s, %(delivered)s)
+      INSERT INTO order_item (order_group_id, item_name, price, menu_item_id, taxable, is_delivered, is_comped, is_held) VALUES
+      (%(open_order_group)d, "%(item_name)s", "%(price)s", "%(menu_item_id)s", %(taxable)s, %(is_delivered)s, %(is_comped)s, %(is_held)s)
       ''' % locals())
 
-  if removeitem:
-    cursor.execute('''
-      UPDATE order_item oi
-      set oi.is_cancelled =TRUE, oi.updated = NOW()
-      where oi.id = %(removeitem)s
+    cursor.close()
+    conn.close()
+
+
+def cancel_item(item_id, incursor=None, **unused):
+
+    utils.execute('''
+      UPDATE order_item set is_cancelled =TRUE, updated = NOW() where id = %(item_id)s
     ''' % locals())
 
     # close tables with no un-cancelled items left
     # TODO: make sure this works...Also: is this really
     # necessary? Could just leave it open.
-    cursor.execute('''
+    utils.execute('''
       UPDATE order_group og
       set og.is_open = False, updated = now(), closedby = null
-      where id = (select order_group_id from order_item oi where oi.id = %(removeitem)s)
+      where id = (select order_group_id from order_item oi where oi.id = %(item_id)s)
       and NOT EXISTS (
         select 1 from order_item oi 
         where order_group_id = og.id
         and oi.is_cancelled = False );
     ''' % locals())
 
+def set_status(item_id, field, value, **unused):
 
-  retval = queries.get_active_items(incursor=cursor)
-  cursor.close()
-  conn.close()
-  return json.dumps(retval)
+    utils.execute('''
+      UPDATE order_item set %(field)s = %(value)s where id = %(item_id)s
+    ''' % locals())
 
+
+
+def synchronize(req, crud_commands):
+    my_logger.info(req.get_remote_host()+': '+crud_commands)
+
+    crud_commands = json.loads(crud_commands)
+    for command in crud_commands:
+      if command['command'] == 'add_item':
+        add_item(**command)
+      if command['command'] == 'cancel_item':
+        cancel_item(**command)
+      if command['command'] == 'set_status':
+        set_status(**command)
+
+
+    return json.dumps(queries.get_active_items(cook_style=False))
+    
 
 def get_active_items(req, cook_style=False, incursor=None):
     #sleep(3)

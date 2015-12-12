@@ -95,3 +95,11 @@ and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+;'
 ;
 create or replace view taxable_item as select * from revenue_item where taxable = true;
 
+
+
+CREATE TABLE client_session (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  created TIMESTAMP DEFAULT NOW()
+) ; 
+
+ALTER TABLE client_session AUTO_INCREMENT = 300;
