@@ -15,14 +15,15 @@
     }
 
     .nondelivered_item { color: red; }
-    .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
-    .cancelled_item { opacity: 0.3; text-align: right; text-decoration: line-through; color: white; }
 
     .comped_item {font-style:italic; border: 6px solid #a0ffa0;}
     .held_item {border: 3px solid yellow;}
 
     .bev_item {color: blue;}
     .board_item {color: maroon;}
+
+    .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
+    .cancelled_item { opacity: 0.3; text-align: right; color: white; background-color:  maroon; transform: scale(.8) skewx(45deg) skewy(2deg); }
     
     .menu_button 
     {
@@ -210,29 +211,9 @@
 
   <script type="text/javascript" src="js/scripts/jquery-1.8.3.min.js"></script>
   <script> 
-
-    // This is the only script on this page. It does basically
-    // everything. 
-    
-    MAIN_REFRESH_INTERVAL = 10000; //10 seconds
-    GRIDWIDTH = 6; 
-    // GRIDWIDTH can be anything from one up.
-
-    STAFF_FOOD_RATE = .4;
-
-    g_currentTable = null; 
-    g_cook_style = false;
-
-    function init()
-    {
-      document.body.addEventListener('click', clicked, true)
-      document.body.addEventListener('keydown', keydown, true)
-      GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth) / 120
-    }  
-
+    /********** data transfer utils *************/
     function http_request(method, url, params)
     {
-      //alert('sync: ' + url + params);
       var http = new XMLHttpRequest();
 
       if(method == "GET")
@@ -309,7 +290,36 @@
       }
     }  
 
+
+    // This is the only script on this page. It does basically
+    // everything. 
+    
+    MAIN_REFRESH_INTERVAL = 10000; //10 seconds
+    GRIDWIDTH = 6; 
+    // GRIDWIDTH can be anything from one up.
+
+    STAFF_FOOD_RATE = .4;
+
+    g_currentTable = null; 
+    g_cook_style = false;
+    g_market_style = false;
     g_session_id = null;
+    g_id_seq = 0;
+
+    function init()
+    // This gets called when the document loads.
+    {
+      document.body.addEventListener('click', clicked, true)
+      document.body.addEventListener('keydown', keydown, true)
+      GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth) / 120
+
+      load_config();
+      get_new_session_id();
+      synchronize();
+      drawCurrentCategory();
+    }
+
+    /*** data transfer functions ***/
     function get_new_session_id()
     {
       g_session_id = http_request("GET", "action.py/get_session_id", null);
@@ -320,6 +330,8 @@
       g_config = http_request("GET", "config.py/get", null);
     }  
 
+
+    /******* lookup *************/
     function get_config_item(item_name)
     {
       for(cat_idx in g_config.menu.categories)
@@ -342,52 +354,18 @@
       }
     }
 
-    function draw()
-    // This gets called when the document loads.
+    function get_new_item_id()
     {
-      init();
-      load_config();
-      drawCurrentCategory();
-      main_refresh();
-      setInterval(main_refresh, MAIN_REFRESH_INTERVAL);
-    }
-
-    function main_refresh()
-    {
-      add_item_box.innerHTML = "";
-      synchronize();
-      if(main_screen.style.display != "none") 
+      var id = g_session_id*100 + g_id_seq++;
+      if(g_id_seq > 99)
       {
-        colorTables();
-      }
-      if(cook_screen.style.display == "inline") 
-      {
-       //  refresh_cook_screen();
-      }
+        get_new_session_id();
+        g_id_seq = 0;
+      }  
+      return id;
     }
 
-    g_tempid_seq = .1;
-    function tempid()
-    {
-      g_tempid_seq += 1;
-      return g_tempid_seq;
-    }
-
-    function is_temp_id(id)
-    {
-      return id % 1 != 0;
-    }  
-
-    function get_crud_commands_from_queue(item_id)
-    {
-      return g_crud_commands.filter(function(command) { return command.item_id == item_id; });
-    }  
-
-    function get_create_command_from_queue(item_id)
-    {
-      return g_crud_commands.find(function(command) { return command.item_id == item_id && command.command == 'add_item'; });
-    }  
-
+    g_crud_commands = [];
     function new_crud_command(command)
     {
       g_crud_commands.push(command);
@@ -396,16 +374,18 @@
 
     function apply_crud_command(command)
     {
+      console.log('apply crud ' + JSON.stringify(command));
       if (command.command == "add_item")
       {
         g_order_pane_items.push({
           item_name: command.item_name,
           table_id: command.table_id, 
           id: command.item_id,
-          is_delivered: command.delivered, 
+          is_delivered: command.is_delivered, 
           is_held: false, 
           is_comped: false, 
-          price: command.price}
+          price: command.price, 
+          minutes_old: 0, minutes_since_mod: null, seconds_since_mod: null}
         )  
       }
 
@@ -413,55 +393,52 @@
       {
         var item = get_order_pane_item(command.item_id);
         item.is_cancelled = true;
-        if(is_temp_id(item.id)){
-          commands_for_this_temp_item = get_crud_commands_from_queue(command.item_id);
-          for(var idx in commands_for_this_temp_item)
-          {
-            commands_for_this_temp_item[idx].command = 'voided';
-          }
-        }  
       }  
 
       if (command.command == "set_status")
       {
         var item = get_order_pane_item(command.item_id);
         item[command.field] = command.value;
-        if(is_temp_id(item.id)){
-            create_command = get_create_command_from_queue(command.item_id);
-            create_command[command.field] = command.value;
-            command.command = 'voided';
-          }  
+        item.minutes_since_mod = item.seconds_since_mod = 0;
       }
       
-      update_order_pane(g_currentTable);
+      refresh_screen();
     }
 
-    g_crud_commands = [];
+    g_synchonize_timeout = null;
+    function synchronize_now()
+    {
+      clearTimeout(g_synchonize_timeout);
+      synchronize(async=false);
+    }
+
     function handle_fresh_items(items)
     {
+      console.log('fresh items');
       g_order_pane_items = items; 
       for(var idx in g_crud_commands)
       {
         apply_crud_command(g_crud_commands[idx]);
       }  
-      update_order_pane(g_currentTable);
+      refresh_screen();
+      //clearTimeout(g_synchonize_timeout);
+      g_synchonize_timeout = setTimeout(synchronize, MAIN_REFRESH_INTERVAL);
     }
 
     function ajax_error(jqXHR, textStatus, errorThrown) {
        document.write(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
     }
 
-    function refresh_items(){
-      async_http_request("GET", "action.py/get_active_items", "", handle_fresh_items); 
-    }  
-
-    function synchronize()
+    function synchronize(async)
     {
-      console.log(JSON.stringify(g_crud_commands));
-      $.ajax({ url: "action.py/synchronize", type: "POST", dataType: "json", cache: false,
-        data: {'crud_commands' : JSON.stringify(g_crud_commands)},
-        success: handle_fresh_items, error: ajax_error });
+      if (typeof(async) === 'undefined') {async = true} //substitue for default args which is not supported on chrome browser
+
+      var crud_commands = JSON.stringify(g_crud_commands); 
       g_crud_commands = [];
+      console.log('async: ' + async + ' sending: ' + crud_commands);
+      $.ajax({ url: "action.py/synchronize", type: "POST", dataType: "json", cache: false, async: async,
+        data: {'crud_commands' : crud_commands},
+        success: handle_fresh_items, error: ajax_error });
     }
       
     function rotateCategory()
@@ -482,16 +459,7 @@
       
     function goVertical()
     {
-      if (category_is_market()) return; //Exit market by clicking on tables link
-
       rotateCategory();
-
-      if (category_is_market())
-      {
-        // Skip market. Go to next category. market is reached by
-        // clicking market link.
-        rotateCategory();
-      } 
       drawCurrentCategory();
     }
  
@@ -519,7 +487,47 @@
       return g_config.menu.categories[0].name;
     }  
       
-    coloredItems = null;
+    /******** screen drawing **********/
+    function refresh_screen()
+    {
+      add_item_box.innerHTML = "";
+      update_order_pane(g_currentTable);
+      colorTables();
+      if(cook_screen.style.display == "inline") 
+      {
+        refresh_cook_screen();
+      }
+    }
+
+    function colorTables()
+    {
+      if (!category_is_table()) return;
+
+      var tables = g_config.menu.categories[0].subcategories[0].items;
+
+      for (idx in tables) {
+        var table_id = tables[idx].name;
+        var undelivered = 0; var held = 0; var delivered = 0;
+        for(idx in g_order_pane_items) {
+          var item  = g_order_pane_items[idx];
+
+          //console.log(table_id + '== ' + item.table_id);
+          if(item.table_id == table_id) // && item.is_cancelled == false)
+          {
+            //console.log('yes' + tableElem.id);
+            if (!item.is_delivered && !item.is_held) {undelivered += 1;}
+            if (item.is_held) {held += 1;}
+            if (item.is_delivered) {delivered += 1;}
+          }  
+        }  
+        var backgroundColor = undelivered > 0 ? 'magenta' : held > 0 ? 'yellow' : delivered > 0 ? 'green' : "#a0a0a0";
+        table_button = document.getElementById(table_id);
+        if (table_button != null)
+        {
+          table_button.firstChild.style.backgroundColor = backgroundColor;
+        }
+      }  
+    }
 
     function drawCurrentCategory()
     {
@@ -528,40 +536,11 @@
       populateMenuItems(getSubCategory());
     }  
 
-    function resetTableColor(table_id)
-    {
-      var table_button = document.getElementById(table_id);
-      if (table_button != null)
-      {
-        table_button.firstChild.style.backgroundColor = "#a0a0a0";
-      }
-    }
-
-    function colorTables()
-    {
-      if (category_is_table())
-      {
-        var tables = http_request("GET", "open_tabs.py", null);
-
-        for (idx in tables)
-        {
-          var table_id = tables[idx].table_id;
-          var undelivered = tables[idx].undelivered;
-          var held = tables[idx].held;
-          undelivered -= held;
-          var table_button = document.getElementById(table_id);
-          if (table_button != null)
-          {
-            table_button.firstChild.style.backgroundColor = undelivered > 0 ? 'magenta' : (held > 0 ? 'yellow' : 'green');
-          }
-        }
-      }
-    }
 
     function set_current_table(table_id)
     {
       g_currentTable = table_id;
-      update_order_pane(g_currentTable);
+      refresh_screen();
       window.scroll(0,0); 
     }
 
@@ -576,7 +555,6 @@
     {
       var board=document.getElementById("board");
       board.innerHTML = getTableHTML(items);
-      colorTables();
     }
         
     function getTableHTML(items)
@@ -601,7 +579,7 @@
 
           s += 
             "<td" +
-            " class='square'" +
+            " class='pos_grid_button'" +
             " onclick=grid_button_clicked(this)" +
             " id=\"" + item.name + "\"" +
             ">" +
@@ -622,13 +600,8 @@
       return s;
     }
 
-    function grid_button_dragged(button)
-    {
-    }
-
     function grid_button_clicked(button)
     {
-      alert(new Date().getTime());
       if (category_is_table())
       {
         if(g_currentTable == button.id)
@@ -637,6 +610,7 @@
           if (reopen_id != null && confirm("Re-open table "+button.id+"?"))
           {
             http_request("POST", "reopen", "reopen_id="+reopen_id);
+            synchronize_now();
           }  
         }
         if(g_tab_to_move != null)
@@ -644,6 +618,7 @@
           if(confirm("Move all items from table "+g_tab_to_move+" to " + button.id+"?"))
           {
             http_request("POST", "move_tab", "p_from="+g_tab_to_move+"&p_to="+button.id);
+            synchronize_now();
           }
           g_tab_to_move = null;
         }
@@ -653,11 +628,6 @@
       {
         add_to_order(button.id);
       }
-    }
-
-    function reopen()
-    {
-      alert('open');
     }
 
     g_tab_to_move = null;
@@ -679,7 +649,7 @@
       } 
       drawCurrentCategory();
       g_currentTable = null;
-      update_order_pane();
+      refresh_screen();
       window.scroll(0,0);
     }
 
@@ -754,10 +724,10 @@
 
       new_crud_command ({
         command: 'add_item',
-        item_id: tempid(),
+        item_id: get_new_item_id(),
         item_name: item_name,
         table_id: table_id, 
-        is_delivered: delivered, 
+        is_delivered: delivered,
         taxable: taxable, 
         price: price 
       });
@@ -775,13 +745,14 @@
 
     function cookscreen_table_click(table_id)
     {
-      set_current_table(table_id);
       leave_cook_screen();
+      set_current_table(table_id);
     }
 
     function cookscreen_timeclick(item_id)
     {
       var item = get_order_pane_item(item_id);
+      if (item.is_cancelled) {return;}
       if (!item.is_delivered)
       {
         toggle_held(item.id);
@@ -791,6 +762,7 @@
     function cookscreen_click(item_id)
     {
       var item = get_order_pane_item(item_id);
+      if (item.is_cancelled) {return;}
 
       if (item.is_held)
       {
@@ -826,29 +798,55 @@
       var is_good = http_request("POST", "checkpin.py", params);
       return is_good;
     }
+    
+    function cook_style_order_items()
+    {
+      var uniq_order_items = {};
+      //put all items into a dictionary whose key is all
+      //properties that make us care that the items are different 
+      for(var idx in g_order_pane_items)
+      {
+        var oi = g_order_pane_items[idx];
+        var key = JSON.stringify([oi.table_id, oi.item_name, oi.is_held, oi.is_delivered, oi.price, oi.is_comped, oi.is_cancelled])
+        if (key in uniq_order_items) {uniq_order_items[key].count += 1;}
+        else {oi.count = 1; uniq_order_items[key] = oi;}
+      }
+
+      //now change it back to a list
+      var uniq_order_items_list = [];
+      for(var key in uniq_order_items) { uniq_order_items_list.push(uniq_order_items[key]); }
+
+      //now order the list by held last then created time
+      //descending
+      uniq_order_items_list.sort(
+        function (a,b) {return a.is_held - b.is_held || b.created - a.created;}
+      );
+
+      return uniq_order_items_list;
+    }  
 
     function refresh_cook_screen()
     {
-      if(g_cook_style) {
-        var order_items = http_request("POST", "action.py/get_cook_items", null);
-      } else {  
-        var order_items = g_order_pane_items;
-      }
-
       var order_items_html = "";
-      for (idx in order_items)
+
+      var items = g_cook_style ? cook_style_order_items() : g_order_pane_items;
+      for (var idx in items)
       {
-        var item = order_items[idx];
+        var item = items[idx];
         var classes = "order_item";
 
-        if (item.is_delivered && item.seconds_since_mod > 15 || item.table_id == 'MKT') {continue}
+        //if (item.is_delivered) {console.log(item.item_name + ' ' + item.seconds_since_mod)}
+        if (item.is_delivered && (item.seconds_since_mod == null || item.seconds_since_mod > 15) || 
+            item.table_id == 'MKT' && !g_market_style) 
+            {continue}
 
-        if (item.is_delivered) {classes += ' delivered_item'}
         config_item = get_config_item(item.item_name);
         if (config_item && config_item.cat == 'bev') {classes += ' bev_item'}
         if (config_item && config_item.subcat == 'boards') {classes += ' board_item'}
         if (item.is_comped) {classes += ' comped_item'}
         if (item.is_held) {classes += ' held_item'}
+        if (item.is_delivered) {classes += ' delivered_item'}
+        if (item.is_cancelled) {classes += ' cancelled_item'}
 
         order_items_html += '<tr class="'+ classes + '">'
         order_items_html += 
@@ -857,7 +855,7 @@
         '</td>';
         order_items_html += 
         '<td onclick="cookscreen_click(' + item.id + ')">' +
-          item.item_name +
+         (g_cook_style && item.count > 1 ? item.count + 'X ': '') +  item.item_name +
         '</td>';
         var time_display = (
           item.minutes_since_mod == null?
@@ -888,10 +886,17 @@
       cook_screen.style.display = "inline";
     }
 
+    function toggle_market_style()
+    {
+      g_market_style = !g_market_style;
+      toggle_market_style_button.innerHTML = g_market_style ? 'MKT: hide': 'MKT: show';
+      refresh_cook_screen();
+    }
+
     function toggle_cook_style()
     {
       g_cook_style = !g_cook_style;
-      toggle_style_button.innerHTML = g_cook_style ? 'Serv Style': 'Cook Style';
+      toggle_cook_style_button.innerHTML = g_cook_style ? 'X-Style: hide': 'X-Style: show';
       refresh_cook_screen();
     }
 
@@ -899,16 +904,23 @@
     {
       cook_screen.style.display="none";
       main_screen.style.display="inline"; 
-      main_refresh();
+      refresh_screen();
     }
 
     function go_to_receipt_sceen()
     {
       keypadclear();
+      if(g_crud_commands.length > 0) {synchronize_now()}
       var receipt_text = http_request("POST", "texttab.py", "table="+g_currentTable);
       receipt_table.innerHTML = receipt_table_html(receipt_text);
       main_screen.style.display = "none";
       receipt_screen.style.display = "inline";
+      if (g_currentTable == 'MKT')
+      {
+        print_and_close.disabled=false;
+        just_close.disabled=false;
+        pin = "0001"; //Salumi Guy
+      }  
     }  
 
     function go_to_clock_sceen()
@@ -951,11 +963,8 @@
         "&shouldPrint="+shouldPrint+
         "&serverpin="+pin
       );
+      synchronize_now();
       go_to_tables();
-    }  
-
-    function order_item_click(button)
-    {
     }  
 
     g_order_pane_items = null;
@@ -1014,6 +1023,7 @@
       popup = document.getElementById("orderitem_popup");
       popup.item_id = item_id;
       var item = get_order_pane_item(item_id);
+      if (item.is_cancelled) { return;}
       popup.table_id = item.table_id;
       menu_popup_caption = document.getElementById("orderitem_popup_caption");
       menu_popup_caption.innerHTML = "table: "+item.table_id + " - " + item.item_name;
@@ -1220,7 +1230,7 @@
 
 </head>
 
-<body onLoad="draw()" id='main'>
+<body onLoad="init()" id='main'>
 
   <div id="add_item_box"></div>
 
@@ -1353,8 +1363,8 @@
 
   <div id="cook_screen">
         <button id=cook_screen_go_back onclick='leave_cook_screen()'>Go Back</button>
-        <button id=toggle_style_button onclick='toggle_cook_style()'>Cook Style</button>
-        <button id=cook_screen_refresh onclick='refresh_cook_screen()'>Refresh</button>
+        <button id=toggle_cook_style_button onclick='toggle_cook_style()'>X-Style: show</button>
+        <button id=toggle_market_style_button onclick='toggle_market_style()'>MKT: show</button>
         <table id="cook_table" cellspacing=2 cellpadding=2></table>
   </div>
 

@@ -8,6 +8,7 @@ from time import sleep
 from random import randint
 
 def get_session_id(req):
+    #sleep(5)
     #client will use this to create unique ids for order_item commands it sends to server for DB insertion
     conn = MySQLdb.connect (host = "localhost",
                           user = "pos",
@@ -25,8 +26,18 @@ def get_session_id(req):
 
   
 
-def add_item(table_id=None, item_name=None, price=None, menu_item_id=None, taxable=True, is_delivered=False, is_comped=False, is_held=False, incursor=None, **unused):
+def add_item(item_id=None, 
+            table_id=None, 
+            item_name=None, 
+            price=None, 
+            menu_item_id=None, 
+            taxable=True, 
+            is_delivered=False, 
+            is_comped=False, 
+            is_held=False, 
+            incursor=None, **unused):
     
+    assert item_id != None, 'item id must not be null'
     assert table_id != 'null' and table_id is not None, "table_id cannot be null in call to function 'action/add_item'"
     assert len(table_id) <= 64, "table_id must be 64 or fewer chars"
     assert item_name is not None, 'item _name required'
@@ -55,8 +66,8 @@ def add_item(table_id=None, item_name=None, price=None, menu_item_id=None, taxab
 
     open_order_group = open_order_group[0];
     cursor.execute('''
-      INSERT INTO order_item (order_group_id, item_name, price, menu_item_id, taxable, is_delivered, is_comped, is_held) VALUES
-      (%(open_order_group)d, "%(item_name)s", "%(price)s", "%(menu_item_id)s", %(taxable)s, %(is_delivered)s, %(is_comped)s, %(is_held)s)
+      INSERT INTO order_item (id, order_group_id, item_name, price, menu_item_id, taxable, is_delivered, is_comped, is_held) VALUES
+      ( %(item_id)d, %(open_order_group)d, "%(item_name)s", "%(price)s", "%(menu_item_id)s", %(taxable)s, %(is_delivered)s, %(is_comped)s, %(is_held)s)
       ''' % locals())
 
     cursor.close()
@@ -85,12 +96,13 @@ def cancel_item(item_id, incursor=None, **unused):
 def set_status(item_id, field, value, **unused):
 
     utils.execute('''
-      UPDATE order_item set %(field)s = %(value)s where id = %(item_id)s
+      UPDATE order_item set %(field)s = %(value)s, updated = now() where id = %(item_id)s
     ''' % locals())
 
 
 
 def synchronize(req, crud_commands):
+    sleep(3);
     my_logger.info(req.get_remote_host()+': '+crud_commands)
 
     crud_commands = json.loads(crud_commands)
@@ -102,17 +114,8 @@ def synchronize(req, crud_commands):
       if command['command'] == 'set_status':
         set_status(**command)
 
-
-    return json.dumps(queries.get_active_items(cook_style=False))
+    return json.dumps(queries.get_active_items())
     
-
-def get_active_items(req, cook_style=False, incursor=None):
-    #sleep(3)
-    return json.dumps(queries.get_active_items(cook_style=cook_style))
-
-
-def get_cook_items(req):
-    return json.dumps(queries.get_active_items(cook_style=True))
 
 
 if __name__ == '__main__':

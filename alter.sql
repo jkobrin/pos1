@@ -102,4 +102,4 @@ CREATE TABLE client_session (
   created TIMESTAMP DEFAULT NOW()
 ) ; 
 
-ALTER TABLE client_session AUTO_INCREMENT = 300;
+ALTER TABLE client_session AUTO_INCREMENT = 3000;

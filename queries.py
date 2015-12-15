@@ -110,34 +110,24 @@ def weekly_pay(printmode=0, incursor = None):
     )    
 
   
-def get_active_items(cook_style=False, incursor=None):
+def get_active_items(incursor=None):
 
-  # convert cook_style from string to boolean. Will throw error
-  # if value is anything other than true or false
-  if type(cook_style) is str:
-    cook_style = {'true': True, 'false': False}[cook_style.lower()] 
-
-  if cook_style: 
-    order_item_query = '''SELECT concat(IF(count(*) > 1, concat(count(*),'X '), ''), oi.item_name) as item_name, '''
-  else: 
-    order_item_query = 'SELECT oi.item_name as item_name, '
-  order_item_query += '''   
+  return utils.select(
+  ''' SELECT 
+      oi.item_name as item_name, 
       og.table_id, 
       oi.id, oi.is_delivered, oi.is_held, oi.is_comped, oi.price,
       TIMESTAMPDIFF(MINUTE, oi.created, now()) minutes_old,
       TIMESTAMPDIFF(MINUTE, oi.updated, now()) minutes_since_mod,
-      TIMESTAMPDIFF(SECOND, oi.updated, now()) seconds_since_mod
+      TIMESTAMPDIFF(SECOND, oi.updated, now()) seconds_since_mod,
+      is_cancelled
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
     and og.is_open = TRUE
-    and oi.is_cancelled = FALSE
-    '''
-  if cook_style: 
-    order_item_query += 'group by oi.item_name, og.table_id, oi.is_delivered, oi.is_held, oi.is_comped, oi.price\n'
+    and (oi.is_cancelled = FALSE or TIMESTAMPDIFF(MINUTE, oi.updated, now()) < 1)
+    order by oi.is_held, oi.created, oi.id'''
+    , incursor)
 
-  order_item_query += "order by oi.is_held, oi.created, oi.id"
-  order_items = utils.select(order_item_query, incursor)
-  return order_items
 
   
 
