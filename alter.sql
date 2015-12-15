@@ -79,21 +79,21 @@
 
 
 
-create or replace view active_wine
-as
-select * from winelist 
- where ((`winelist`.`active` = 1) and (`winelist`.`category` is not null) and (`winelist`.`listprice` <> 0) and (`winelist`.`listprice` is not null) and (`winelist`.`bin` is not null));
-
-alter table order_item add column taxable boolean not null;
-
-create or replace view revenue_item as select oi.* from order_item oi, order_group og 
-where oi.order_group_id = og.id
-and is_comped = false 
-and is_cancelled = false 
-and item_name not like 'gift%' 
-and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+;'
-;
-create or replace view taxable_item as select * from revenue_item where taxable = true;
+#create or replace view active_wine
+#as
+#select * from winelist 
+# where ((`winelist`.`active` = 1) and (`winelist`.`category` is not null) and (`winelist`.`listprice` <> 0) and (`winelist`.`listprice` is not null) and (`winelist`.`bin` is not null));
+#
+#alter table order_item add column taxable boolean not null;
+#
+#create or replace view revenue_item as select oi.* from order_item oi, order_group og 
+#where oi.order_group_id = og.id
+#and is_comped = false 
+#and is_cancelled = false 
+#and item_name not like 'gift%' 
+#and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+;'
+#;
+#create or replace view taxable_item as select * from revenue_item where taxable = true;
 
 
 
@@ -102,4 +102,4 @@ CREATE TABLE client_session (
   created TIMESTAMP DEFAULT NOW()
 ) ; 
 
-ALTER TABLE client_session AUTO_INCREMENT = 3000;
+ALTER TABLE client_session AUTO_INCREMENT = 6000;
