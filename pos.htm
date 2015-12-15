@@ -964,7 +964,12 @@
         "&serverpin="+pin
       );
       synchronize_now();
-      go_to_tables();
+
+      if (g_currentTable == 'MKT') {
+        go_to_market();
+      } else{
+        go_to_tables();
+      }
     }  
 
     g_order_pane_items = null;
