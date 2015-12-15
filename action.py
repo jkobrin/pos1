@@ -102,7 +102,6 @@ def set_status(item_id, field, value, **unused):
 
 
 def synchronize(req, crud_commands):
-    sleep(3);
     my_logger.info(req.get_remote_host()+': '+crud_commands)
 
     crud_commands = json.loads(crud_commands)
