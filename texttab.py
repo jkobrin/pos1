@@ -86,7 +86,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   for item in items:
     if is_gratuity(item):
       gratuity_rate = item['price']
-      gratuity = round((foodtotal - notaxtotal) * gratuity_rate/100.0, 2)
+      gratuity = round((foodtotal) * gratuity_rate/100.0, 2)
       total = total + gratuity
       continue
     if is_gift(item):
