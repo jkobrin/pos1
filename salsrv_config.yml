@@ -119,7 +119,7 @@ menu:
             - {name: empanada, price: 8}
             - {name: shrimp, price: 12}
             - {name: bocadillo, price: 9}
-            - {name: chicken paprikash , price: 8}
+            - {name: chicken paprikash , price: 9}
             - {name: octopus, price: 12}
             #- {name: artichokes, price: 10}
             #- {name: carney corn, price: 7}
@@ -151,6 +151,7 @@ menu:
             - {name: panacotta, price: 7}
             - {name: chocolate, price: 7}
             - {name: pound cake, price: 7}
+            - {name: tres leches, price: 3}
             - {name: special5, price: 5}
             - {name: special6, price: 6}
             - {name: special7, price: 7}
@@ -166,6 +167,8 @@ menu:
             - {name: spoons, price: 0}
             - {name: wine glasses, price: 0}
             - {name: water glasses, price: 0}
+            - {name: NYE Party 75, price: 69.045}
+            - {name: NYE Party 50, price: 46.03}
         - name: boards
           items:
 
@@ -181,7 +184,7 @@ menu:
               price: 27
             - name: spanish board
               price: 27
-            - name: mixed cheese board
+            - name: market cheese board
               price: 27
             - name: add-on
               price: 5
@@ -194,18 +197,22 @@ menu:
             - {name: prosciutto, price: 0}
             - {name: hot capicolla, price: 0}
             - {name: felino, price: 0}
-            #- {name: jambon, price: 0}
-            #- {name: rosette de lyon, price: 0}
-            #- {name: american ham, price: 0}
+            - {name: tetilla, price: 0}
+            - {name: rustico, price: 0}
             - {name: manchego , price: 0}
             - {name: cana de cabra, price: 0}
             - {name: campo de montalban, price: 0}
+            - {name: tetilla, price: 0}
+            - {name: rustico, price: 0}
             - {name: taleggio, price: 0}
             - {name: piave, price: 0}
             - {name: pecorino tartufo, price: 0}
             - {name: daffinois, price: 0}
             - {name: garrotxa, price: 0}
             - {name: blue cheese, price: 0}
+            - {name: queso sudado, price: 0}
+            - {name: sao jorge, price: 0}
+            - {name: oveja fresca, price: 0}
             - {name: gouda, price: 0}
             - {name: surchoix, price: 0}
             #- {name: bufala, price: 0}
@@ -363,6 +370,7 @@ menu:
             - {name: cappuccino, price: 6}
             - {name: latte, price: 6}
             - {name: choco latte, price: 6}
+            - {name: mocha latte, price: 7}
             - {name: affogato, price: 6}
             - {name: decaf, price: 4}
             - {name: ceylon tea, price: 4}
@@ -457,6 +465,8 @@ menu:
               vendor_code: '70119', wholesale: '3.87'}
             - {name: Feta, price: 5.5, supplier: GFI, units_in_bulk: '14',
               upc: '71270355329', vendor_code: '46732', wholesale: '3.29', scale_units: lbs.}
+            - {name: Burrata, price: 3.0, supplier: Sansone,
+              upc: '71270355329', vendor_code: '46732', wholesale: '1.58'}
             - {name: Mahon, price: 11.5, supplier: GFI, units_in_bulk: '', upc: '820581011505',
               vendor_code: '1150', wholesale: '6.77', scale_units: lbs.}
             - {name: Cana De Cabra, price: 12.0, supplier: GFI, units_in_bulk: '',
@@ -471,6 +481,8 @@ menu:
               upc: '820581191689', vendor_code: '19168', wholesale: '7.89', scale_units: lbs.}
             - {name: Parm Reggiano, price: 11.0, supplier: GFI, units_in_bulk: '',
               upc: '820581251604', vendor_code: '25160', wholesale: '6.74', scale_units: lbs.}
+            - {name: 1/4 lb Parm Reggiano, price: 3.50, supplier: GFI,
+              upc: '820581251604', vendor_code: '25160', wholesale: '6.74'}
             - {name: Raclette, price: 12.5, supplier: GFI, units_in_bulk: '', upc: '820581500757',
               vendor_code: '50075', wholesale: '7.38', scale_units: lbs.}
             - {name: Tetilla, price: 9.0, supplier: GFI, units_in_bulk: '', upc: '820581650711',
@@ -531,20 +543,23 @@ menu:
               wholesale: '', scale_units: lbs.}
             - {name: Coppa Cotto, price: 16.50, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
               wholesale: '10', scale_units: lbs.}
-            - {name: Guanciale, price: 7.0, supplier: GFI, units_in_bulk: '', upc: '90850801003853',
+            - {name: Guanciale, price: 7.75, supplier: GFI, units_in_bulk: '', upc: '90850801003853',
               vendor_code: '80801', wholesale: '4.19', scale_units: lbs.}
             - {name: Felino, price: 18.0, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
               wholesale: '8.99', scale_units: lbs.}
-            - {name: Salame Tartufo, price: 11.0, supplier: GFI, units_in_bulk: '', upc: '853544005457',
-              vendor_code: '8244', wholesale: '6.52', scale_units: lbs.}
-            - {name: Dry Salciccia, price: 5.5, supplier: Nassau, units_in_bulk: '', upc: '765171424054',
-              vendor_code: '998012', wholesale: '3.32', scale_units: lbs.}
-            - {name: Salami Herbes-de-provence, price: 5.5, supplier: Nassau, units_in_bulk: '',
-              upc: '765171424092', vendor_code: '998005', wholesale: '3.32', scale_units: lbs.}
-            - {name: Chorizo, price: 9.0, supplier: Nassau, units_in_bulk: '', upc: '859760001631',
-              vendor_code: '994647', wholesale: '5.25', scale_units: lbs.}
-            - {name: Chorizo Blanco, price: 9.0, supplier: Nassau, units_in_bulk: '',
-              upc: '859760001624', vendor_code: '994648', wholesale: '5.25', scale_units: lbs.}
+            - {name: Salame Tartufo, price: 11.0, supplier: GFI, upc: '853544005457',
+              vendor_code: '8244', wholesale: '6.52'}
+            - {name: Dry Salciccia, price: 5.5, supplier: Nassau, upc: '765171424054',
+              vendor_code: '998012', wholesale: '3.32'}
+            - {name: Salami Herbes-de-provence, price: 5.5, supplier: Nassau,
+              upc: '765171424092', vendor_code: '998005', wholesale: '3.32'}
+            - {name: Chorizo, price: 9.0, supplier: Nassau, upc: '859760001631',
+              vendor_code: '994647', wholesale: '5.25'}
+            - {name: Chorizo Blanco, price: 9.0, supplier: Nassau,
+              upc: '859760001624', vendor_code: '994648', wholesale: '5.25'}
+            - {name: Toscano Fennel Polen Salame, price: 11.0,
+              supplier: Sansone, 
+              upc: '850801003058', vendor_code: '', wholesale: '6.52'}
             - {name: Pata Negra, price: 128.5, supplier: '', units_in_bulk: '', upc: '',
               vendor_code: '', wholesale: '77.00', scale_units: lbs.}
           - name: Coffee
@@ -734,6 +749,9 @@ menu:
               upc: '825325000975', vendor_code: '', wholesale: '2.29'}
             - {name: ACACIA HONEY, price: 6.5, supplier: Sansone, units_in_bulk: '', upc: '825325007042',
               vendor_code: '', wholesale: '3.75'}
+            - {name: MITICA FIG JAM, price: 6.5, supplier:
+              Sansone, units_in_bulk: '', upc: '825325000357',
+              vendor_code: '', wholesale: '3.75'}
             - {name: WALNUTS IN LEMON HONEY, price: 7.5, supplier: Sansone, units_in_bulk: '',
               upc: '825325000296', vendor_code: '', wholesale: '4.40'}
             - {name: BLOOD ORANGE CONFITURE (MARMALADE), price: 13.0, supplier: Sansone, units_in_bulk: '',
@@ -801,7 +819,7 @@ menu:
               upc: '8004030344938', vendor_code: '', wholesale: '2.50'}
             - {name: RECCA ANCHOVIES IN JAR, price: 3.0, supplier: Sansone, units_in_bulk: '',
               upc: '80410072', vendor_code: '', wholesale: '1.67'}
-          - name: Soda
+          - name: Cookies, Nuts, Soda
             items:
             - {name: SODA BLACKBERRY SPINDRIFT, price: 2.5, supplier: GFI, units_in_bulk: '',
               upc: '856579000015', vendor_code: '9015', wholesale: '1.56'}
@@ -859,10 +877,9 @@ menu:
               vendor_code: '', wholesale: '1.75'}
             - {name: GALEFFI EFFERVESCENTE, price: 6.0, supplier: Sansone, units_in_bulk: '',
               upc: '8002410050332', vendor_code: '', wholesale: '3.63'}
-          - name: Nuts
-            items:
-            - {name: Bazzini Dark Chocolate Almonds, price: 1.5, supplier: Baldor, units_in_bulk: '12',
-              upc: '075062004457', vendor_code: SPNU12I, wholesale: '9.50'}
+            #- {name: Bazzini Dark Chocolate Almonds, price: 1.5, supplier: Baldor, units_in_bulk: '12',
+            #  upc: '075062004457', vendor_code: SPNU12I, wholesale: '9.50'}
+            - {name: NUTS, pricei: 0}
             - {name: Almond Butter, price: 16.5, supplier: Baldor, units_in_bulk: '12', upc: 075062840093,
               vendor_code: SPNU1J, wholesale: '118.50'}
             - {name: Raw Shelled Almonds, price: 10.5, supplier: Baldor, units_in_bulk: '',
@@ -895,10 +912,9 @@ menu:
               wholesale: '7.95'}
             - {name: Turkish Apricots, price: 10.5, supplier: '', units_in_bulk: '', upc: '',
               vendor_code: '', wholesale: '10.00'}
-            - {name: Hazelnuts, price: 9.5, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
-              wholesale: '9.00'}
-          - name: Cookies
-            items:
+            - {name: Cracked Pecans, price: 10, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
+              wholesale: '6.00'}
+            - {name: COOKIES, price: 0i}
             - {name: CRISPS RAINCOAST FIG AND OLIVE, price: 7.0, supplier: GFI, units_in_bulk: '',
               upc: '061243100032', vendor_code: '10249', wholesale: '4.15'}
             - {name: CRACKER WATER PEPPER & POPPY, price: 2.5, supplier: GFI, units_in_bulk: '',
@@ -971,13 +987,17 @@ menu:
               upc: 020182017559, vendor_code: '', wholesale: '2.08'}
             - {name: CEDRINCA ANICE, price: 3.5, supplier: Sansone, units_in_bulk: '', upc: 022306685064,
               vendor_code: '', wholesale: '1.75'}
-            - {name: FERRARA TORRONE, price: 10.0, supplier: Sansone, units_in_bulk: '', upc: '71403000140',
+            - {name: FERRARA TORRONE, price: 10.0, supplier: Sansone, units_in_bulk: '', upc: '071403000140',
               vendor_code: '', wholesale: '6.00'}
             - {name: FERRARA CHOCOLATE COVERED TORRONE, price: 10.5, supplier: Sansone, units_in_bulk: '',
-              upc: '71403000232', vendor_code: '', wholesale: '6.17'}
+              upc: '071403000232', vendor_code: '', wholesale: '6.17'}
+            - {name: FERRARA CHOCOLATE COVERED ALMONDS, price:
+              6.00, supplier: Sansone,
+              upc: '071403000429', vendor_code: '', wholesale: '6.17'}
             - {name: LAFLOR ASST. CAPRICCI CHOCOLATE, price: 18.0, supplier: Sansone, units_in_bulk: '',
-              upc: '71403055102', vendor_code: '', wholesale: '10.86'}
-            - {name: LAFLOR TORRONE, price: 9.5, supplier: Sansone, units_in_bulk: '', upc: '71403055140',
+              upc: '071403055102', vendor_code: '', wholesale: '10.86'}
+            - {name: LAFLOR TORRONE, price: 9.5, supplier:
+              Sansone, units_in_bulk: '', upc: '071403055140',
               vendor_code: '', wholesale: '5.83'}
             - {name: Vanilla Caramels, price: 7.0, supplier: Tahana, units_in_bulk: '6', upc: '766897592584',
               vendor_code: '', wholesale: '24.95'}
@@ -1307,24 +1327,9 @@ menu:
               units_in_bulk: '', upc: '755576014554', vendor_code: '', wholesale: '3.59'}
             - {name: 10 in. High Temperature Silicone Spatula (922RSC10), price: 5.0, supplier: Webstaurant,
               units_in_bulk: '', upc: '755576017074', vendor_code: '', wholesale: '2.19'}
-            - {name: 10 in. High Temperature Silicone Spatula (922RSC10), price: 5.0, supplier: Webstaurant,
-              units_in_bulk: '', upc: '755576017074', vendor_code: '', wholesale: '2.19'}
-            - {name: Franmara 1065 Stainless Steel Soft Cheese Knife (2081065), price: 6.0,
-              supplier: Webstaurant, units_in_bulk: '', upc: '', vendor_code: '', wholesale: '3.29'}
-            - {name: Franmara 1067 Stainless Steel Semi-Hard Cheese Knife (2081067), price: 6.0,
-              supplier: Webstaurant, units_in_bulk: '', upc: '', vendor_code: '', wholesale: '3.39'}
-            - {name: Franmara 1099 Stainless Steel Hard Cheese and Chocolate Knife (2081099),
-              price: 6.0, supplier: Webstaurant, units_in_bulk: '', upc: '', vendor_code: '',
-              wholesale: '3.29'}
-            - {name: Franmara 1065 Stainless Steel Soft Cheese Knife (2081065), price: 6.0,
-              supplier: Webstaurant, units_in_bulk: '', upc: '', vendor_code: '', wholesale: '3.29'}
-            - {name: Franmara 1067 Stainless Steel Semi-Hard Cheese Knife (2081067), price: 6.0,
-              supplier: Webstaurant, units_in_bulk: '', upc: '', vendor_code: '', wholesale: '3.39'}
-            - {name: Franmara 1099 Stainless Steel Hard Cheese and Chocolate Knife (2081099),
-              price: 6.0, supplier: Webstaurant, units_in_bulk: '', upc: '', vendor_code: '',
-              wholesale: '3.29'}
           - name: Cafe
             items:
+            - {name: extra shot, price: 1}
             - {name: drip, price: 3}
             - {name: decaf, price: 3}
             - {name: espresso, price: 3}
@@ -1335,21 +1340,23 @@ menu:
             - {name: doppio, price: 5}
             - {name: choco tipico, price: 3}
             - {name: choco picante, price: 3.5}
-            - {name: choco espresso, price: 5}
+            - {name: choco espresso, price: 4}
             - {name: choco latte, price: 5}
-            - {name: moka, price: 6}
+            - {name: mocha latte, price: 6}
             - {name: cappuccino, price: 5}
             - {name: latte, price: 5}
             - {name: madrileno, price: 4}
             - {name: affogato, price: 6}
             - {name: cookie, price: .5}
             - {name: 3 cookies, price: 1}
-            - {name: pop tart, price: 3.5}
-            - {name: egg sandwich, price: 3.5}
-            - {name: egg sandwich cheese, price: 4}
-            - {name: egg sandwich ham, price: 4}
-            - {name: egg sandwich ham n cheese, price: 4.5}
-            - {name: baguette, price: 2}
+            - {name: pop tart 4.00, price: 4}
+            - {name: pop tart 4.50, price: 4.5}
+            - {name: biscuit plain, price: 3}
+            - {name: roll plain, price: 3.5}
+            - {name: add egg, price: .5}
+            - {name: add ham, price: .5}
+            - {name: add cheese, price: .5}
+            - {name: baguette, price: 2.5}
             - {name: epi baguette, price: 2.5}
             - {name: round bread, price: 4}
 
