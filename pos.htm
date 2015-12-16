@@ -334,6 +334,11 @@
     /******* lookup *************/
     function get_config_item(item_name)
     {
+      console.log('get_config_item ' + item_name);
+      if (item_name == null || item_name == '') 
+      {
+        return null;
+      }
       for(cat_idx in g_config.menu.categories)
       {
         var cat = g_config.menu.categories[cat_idx];
@@ -966,6 +971,7 @@
     g_order_pane_items = null;
     function get_order_pane_item(item_id)
     {
+      console.log('get_order_pane_item: '+item_id);
       for (idx in g_order_pane_items)
       {
         var item = g_order_pane_items[idx];
@@ -1163,7 +1169,8 @@
     function plus_one()
     {
       var item = get_order_pane_item(popup.item_id);
-      add_to_order(item.name, popup.table_id);
+      console.log('plus one ' + popup.item_id + ' ' + item.item_name);
+      add_to_order(item.item_name, popup.table_id);
     }
 
     function cancel_item()
