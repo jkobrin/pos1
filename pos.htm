@@ -602,6 +602,7 @@
 
     function grid_button_clicked(button)
     {
+      console.log('grid_button_clicked '+button.id);
       if (category_is_table())
       {
         if(g_currentTable == button.id)
@@ -626,7 +627,7 @@
       }
       else
       {
-        add_to_order(button.id);
+        add_to_order(button.id, g_currentTable);
       }
     }
 
@@ -659,52 +660,42 @@
       return (tab && (tab.subcat == 'staff' || tab.subcat=='staff_tabs'))
     }
 
-    function add_to_order(add_item)
+    function add_to_order(item_key, table_id)
     {
-      if (popup && popup.table_id)
+      console.log('add_item: '+ item_key);
+      var cfg_item = get_config_item(item_key);
+      if(cfg_item == null)
       {
-        var table_id=popup.table_id;
-        popup.table_id = null;
-      }
-      else
-      {
-        var table_id=g_currentTable;
-      }
-
-      // add_item is just a name, get the full object
-      var add_item = get_config_item(add_item);
-      if(add_item == null)
-      {
-        alert("add item: " + add_item + " not found in config. Try reload.")
+        alert("add item: " + item_key + " not found in config. Try reload.")
         return;
       }
 
-      var price = add_item.price; //usual case
-      var item_name = add_item.name;
+      var price = cfg_item.price; //usual case
+      var item_name = cfg_item.name; //usual case
       //now that price is set to the default, let's see if we need to modify it
-      if('scale_units' in add_item)
+      if('scale_units' in cfg_item)
       {
         while(true)
         {
-          var scale = prompt('Quantity in '+add_item.scale_units,1)
+          var scale = prompt('Quantity in '+cfg_item.scale_units,1)
           if(!isNaN(scale)) break;
         }
         if (scale == null) return; //they hit cancel; don't add item
 
-        price = add_item.price * scale;
-        item_name = ''+scale + add_item.scale_units + ' ' + add_item.name;
+        price = cfg_item.price * scale;
+        item_name = ''+scale + cfg_item.scale_units + ' ' + cfg_item.name;
       }  
         
       if(is_staff(g_currentTable)) 
       {
-        price = add_item.price*STAFF_FOOD_RATE;
-        if ( add_item.cat == 'bev' && add_item.id != null)
+        price = cfg_item.price*STAFF_FOOD_RATE;
+        if ( cfg_item.cat == 'bev' && cfg_item.id != null)
         {
-          var info = http_request("POST", "get_wine_info.py", "menu_item_id="+add_item.id);
+          var info = http_request("POST", "get_wine_info.py", "menu_item_id="+cfg_item.id);
           price = info.frontprice;
           if (price != null && price > 0 )
           {
-            if (add_item.name.slice(0,3) == 'qt:')
+            if (cfg_item.name.slice(0,3) == 'qt:')
             {
               price = price/4;
             }
@@ -712,15 +703,15 @@
         }
       }
 
-      if(add_item.name.indexOf('special price') != -1)
+      if(cfg_item.name.indexOf('special price') != -1)
       {
         price = prompt('Enter price:', 0);
       }
 
-      var taxable = !(add_item.subcat == 'gift_certificates' || add_item.cat == 'market' && 
-          add_item.subcat.match(/Household|Supplies|Candy|Soda|gift/)  == null)
+      var taxable = !(cfg_item.subcat == 'gift_certificates' || cfg_item.cat == 'market' && 
+          cfg_item.subcat.match(/Household|Supplies|Candy|Soda|gift/)  == null)
 
-      var delivered = (add_item.cat == 'market');
+      var delivered = (cfg_item.cat == 'market');
 
       new_crud_command ({
         command: 'add_item',
@@ -734,7 +725,7 @@
 
       if (category_is_market())
       {
-        add_item_box.innerHTML = add_item.upc + ' ' + add_item.name + ' $' + add_item.price;
+        add_item_box.innerHTML = cfg_item.upc + ' ' + cfg_item.name + ' $' + price
       }
     } 
 
@@ -964,7 +955,12 @@
         "&serverpin="+pin
       );
       synchronize_now();
-      go_to_tables();
+
+      if (g_currentTable == 'MKT') {
+        go_to_market();
+      } else{
+        go_to_tables();
+      }
     }  
 
     g_order_pane_items = null;
@@ -1167,8 +1163,8 @@
     function plus_one()
     {
       var item = get_order_pane_item(popup.item_id);
-      add_to_order(item.item_name);
-    }  
+      add_to_order(item.name, popup.table_id);
+    }
 
     function cancel_item()
     {
@@ -1186,8 +1182,9 @@
     g_keyentry = "";
     function keydown(event)
     {
-      if(event.which == 13)
+      if(event.which == 13 && g_keyentry.length > 0)
       {
+        event.preventDefault();
         text_entered(g_keyentry);
         g_keyentry = "";
       }
@@ -1207,7 +1204,8 @@
 
     function text_entered(txt)
     {
-      refresh_order(txt, null);
+      console.log('text_entered: '+ txt);
+      add_to_order(txt, g_currentTable);
     }
 
 
