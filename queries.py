@@ -1,5 +1,7 @@
 import utils, texttab
 
+from time import sleep
+from random import randint
 
 def nightly_sales_by_server(label=False, lag_days=1):
 
@@ -108,6 +110,25 @@ def weekly_pay(printmode=0, incursor = None):
     )    
 
   
+def get_active_items(incursor=None):
+
+  return utils.select(
+  ''' SELECT 
+      oi.item_name as item_name, 
+      og.table_id, 
+      oi.id, oi.is_delivered, oi.is_held, oi.is_comped, oi.price,
+      TIMESTAMPDIFF(MINUTE, oi.created, now()) minutes_old,
+      TIMESTAMPDIFF(MINUTE, oi.updated, now()) minutes_since_mod,
+      TIMESTAMPDIFF(SECOND, oi.updated, now()) seconds_since_mod,
+      is_cancelled
+    FROM order_group og, order_item oi 
+    where og.id = oi.order_group_id
+    and og.is_open = TRUE
+    and (oi.is_cancelled = FALSE or TIMESTAMPDIFF(MINUTE, oi.updated, now()) < 1)
+    order by oi.is_held, oi.created, oi.id'''
+    , incursor)
+
+
   
 
 

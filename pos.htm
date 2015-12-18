@@ -15,13 +15,15 @@
     }
 
     .nondelivered_item { color: red; }
-    .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
 
     .comped_item {font-style:italic; border: 6px solid #a0ffa0;}
     .held_item {border: 3px solid yellow;}
 
     .bev_item {color: blue;}
     .board_item {color: maroon;}
+
+    .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
+    .cancelled_item { opacity: 0.3; text-align: right; color: white; background-color:  maroon; transform: scale(.8) skewx(45deg) skewy(2deg); }
     
     .menu_button 
     {
@@ -137,7 +139,7 @@
 
     #cook_screen button
     {
-      width:50%;
+      width:33%;
       font-size: 30px;
       float: left;
     }
@@ -207,29 +209,13 @@
 
   </style>
 
+  <script type="text/javascript" src="js/scripts/jquery-1.8.3.min.js"></script>
   <script> 
-
-    // This is the only script on this page. It does basically
-    // everything. 
-    
-    MAIN_REFRESH_INTERVAL = 10000; //10 seconds
-    GRIDWIDTH = 6; 
-    // GRIDWIDTH can be anything from one up.
-
-    STAFF_FOOD_RATE = .4;
-
-    g_currentTable = null; 
-
-    function init()
-    {
-      document.body.addEventListener('click', clicked, true)
-      GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth) / 120
-    }  
-
-
+    /********** data transfer utils *************/
     function http_request(method, url, params)
     {
-      http = new XMLHttpRequest();
+      var http = new XMLHttpRequest();
+
       if(method == "GET")
       {
         // append timestamp to url to prevent caching
@@ -248,16 +234,95 @@
         http.send(params);
       }
 
-      response = http.responseText;
+     var response = http.responseText;
 
-      if (http.status != 200)  {
-      // Display error message on page
-        document.write("Error getting config\n\n");
-        document.write(response);
-        return;
+     if (http.status != 200)  {
+        // Display error message on page
+       document.write("Error getting config\n\n");
+       document.write(http.status + '\n');
+       document.write(http.readyState);
+       document.write(response);
+       return;
+     }
+
+     return eval('(' + response + ')');
+    }  
+
+    function async_http_request(method, url, params, callback)
+    {
+
+      var http = new XMLHttpRequest();
+
+      http.onreadystatechange = function ()
+      {
+        if (http.readyState != 4) {return;} //request is not complete
+
+        var response = http.responseText;
+
+        if (http.status != 200)  {
+        // Display error message on page
+          document.write("Error getting config\n\n");
+          document.write(http.status + '\n');
+          document.write(http.readyState);
+          document.write(response);
+          return;
+        }
+
+        callback( eval('(' + response + ')') );
       }
 
-      return eval('(' + response + ')');
+      if(method == "GET")
+      {
+        // append timestamp to url to prevent caching
+        url += "?timestamp=" + new Date().getTime();
+
+        if (params) {url += "&" + params;}
+        http.open(method, url, true);
+        http.send(null);
+      }
+      else
+      {
+        http.open(method, url, true);
+        http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+        http.setRequestHeader("Content-length", params.length);
+        http.setRequestHeader("Connection", "close");
+        http.send(params);
+      }
+    }  
+
+
+    // This is the only script on this page. It does basically
+    // everything. 
+    
+    MAIN_REFRESH_INTERVAL = 10000; //10 seconds
+    GRIDWIDTH = 6; 
+    // GRIDWIDTH can be anything from one up.
+
+    STAFF_FOOD_RATE = .4;
+
+    g_currentTable = null; 
+    g_cook_style = false;
+    g_market_style = false;
+    g_session_id = null;
+    g_id_seq = 0;
+
+    function init()
+    // This gets called when the document loads.
+    {
+      document.body.addEventListener('click', clicked, true)
+      document.body.addEventListener('keydown', keydown, true)
+      GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth) / 120
+
+      load_config();
+      get_new_session_id();
+      synchronize();
+      drawCurrentCategory();
+    }
+
+    /*** data transfer functions ***/
+    function get_new_session_id()
+    {
+      g_session_id = http_request("GET", "action.py/get_session_id", null);
     }  
 
     function load_config()
@@ -265,18 +330,25 @@
       g_config = http_request("GET", "config.py/get", null);
     }  
 
+
+    /******* lookup *************/
     function get_config_item(item_name)
     {
+      console.log('get_config_item ' + item_name);
+      if (item_name == null || item_name == '') 
+      {
+        return null;
+      }
       for(cat_idx in g_config.menu.categories)
       {
-        cat = g_config.menu.categories[cat_idx];
+        var cat = g_config.menu.categories[cat_idx];
         for(subcat_idx in cat.subcategories)
         {
-          subcat = cat.subcategories[subcat_idx];
+          var subcat = cat.subcategories[subcat_idx];
           for(item_idx in subcat.items)
           {
-            citem = subcat.items[item_idx];
-            if (citem.name == item_name)
+            var citem = subcat.items[item_idx];
+            if (citem.name == item_name || citem.upc == item_name)
             {
               citem.cat = cat.name;
               citem.subcat = subcat.name;
@@ -287,22 +359,103 @@
       }
     }
 
-      
-    function draw()
-    // This gets called when the document loads.
+    function get_new_item_id()
     {
-      init();
-      load_config();
-      drawCurrentCategory();
-      refresh_order(null, null);
-      setInterval("main_refresh()", MAIN_REFRESH_INTERVAL);
+      var id = g_session_id*100 + g_id_seq++;
+      if(g_id_seq > 99)
+      {
+        get_new_session_id();
+        g_id_seq = 0;
+      }  
+      return id;
     }
 
+    g_crud_commands = [];
+    function new_crud_command(command)
+    {
+      g_crud_commands.push(command);
+      apply_crud_command(command);
+    }
+
+    function apply_crud_command(command)
+    {
+      console.log('apply crud ' + JSON.stringify(command));
+      if (command.command == "add_item")
+      {
+        g_order_pane_items.push({
+          item_name: command.item_name,
+          table_id: command.table_id, 
+          id: command.item_id,
+          is_delivered: command.is_delivered, 
+          is_held: false, 
+          is_comped: false, 
+          price: command.price, 
+          minutes_old: 0, minutes_since_mod: null, seconds_since_mod: null}
+        )  
+      }
+
+      if (command.command == "cancel_item")
+      {
+        var item = get_order_pane_item(command.item_id);
+        item.is_cancelled = true;
+      }  
+
+      if (command.command == "set_status")
+      {
+        var item = get_order_pane_item(command.item_id);
+        item[command.field] = command.value;
+        item.minutes_since_mod = item.seconds_since_mod = 0;
+      }
+      
+      refresh_screen();
+    }
+
+    g_synchonize_timeout = null;
+    function synchronize_now()
+    {
+      clearTimeout(g_synchonize_timeout);
+      synchronize(async=false);
+    }
+
+    function handle_fresh_items(items)
+    {
+      console.log('fresh items');
+      g_order_pane_items = items; 
+      for(var idx in g_crud_commands)
+      {
+        apply_crud_command(g_crud_commands[idx]);
+      }  
+      refresh_screen();
+      //clearTimeout(g_synchonize_timeout);
+      g_synchonize_timeout = setTimeout(synchronize, MAIN_REFRESH_INTERVAL);
+    }
+
+    function ajax_error(jqXHR, textStatus, errorThrown) {
+       document.write(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
+    }
+
+    function synchronize(async)
+    {
+      if (typeof(async) === 'undefined') {async = true} //substitue for default args which is not supported on chrome browser
+
+      var crud_commands = JSON.stringify(g_crud_commands); 
+      g_crud_commands = [];
+      console.log('async: ' + async + ' sending: ' + crud_commands);
+      $.ajax({ url: "action.py/synchronize", type: "POST", dataType: "json", cache: false, async: async,
+        data: {'crud_commands' : crud_commands},
+        success: handle_fresh_items, error: ajax_error });
+    }
+      
     function rotateCategory()
     {
-      categories = g_config.menu.categories;
+      var categories = g_config.menu.categories;
       categories.push(categories.shift());
     }
+
+    function category_is_market()
+    {
+      return getSuperCategory() == 'market';
+    }  
 
     function category_is_table()
     {
@@ -312,28 +465,19 @@
     function goVertical()
     {
       rotateCategory();
-
-      /*
-      if (category_is_table())
-      {
-        // Skip tables. Go to next category. Tables is reached by
-        // clicking table link.
-        rotateCategory();
-      } 
-      */
       drawCurrentCategory();
     }
  
     function goLeft()
     {
-      subs = g_config.menu.categories[0].subcategories;
+      var subs = g_config.menu.categories[0].subcategories;
       subs.push(subs.shift());
       drawCurrentCategory();
     }
 
     function goRight()
     {
-      subs = g_config.menu.categories[0].subcategories;
+      var subs = g_config.menu.categories[0].subcategories;
       subs.unshift(subs.pop());
       drawCurrentCategory();
     }
@@ -348,65 +492,74 @@
       return g_config.menu.categories[0].name;
     }  
       
-    coloredItems = null;
+    /******** screen drawing **********/
+    function refresh_screen()
+    {
+      add_item_box.innerHTML = "";
+      update_order_pane(g_currentTable);
+      colorTables();
+      if(cook_screen.style.display == "inline") 
+      {
+        refresh_cook_screen();
+      }
+    }
+
+    function colorTables()
+    {
+      if (!category_is_table()) return;
+
+      var tables = g_config.menu.categories[0].subcategories[0].items;
+
+      for (idx in tables) {
+        var table_id = tables[idx].name;
+        var undelivered = 0; var held = 0; var delivered = 0;
+        for(idx in g_order_pane_items) {
+          var item  = g_order_pane_items[idx];
+
+          //console.log(table_id + '== ' + item.table_id);
+          if(item.table_id == table_id) // && item.is_cancelled == false)
+          {
+            //console.log('yes' + tableElem.id);
+            if (!item.is_delivered && !item.is_held) {undelivered += 1;}
+            if (item.is_held) {held += 1;}
+            if (item.is_delivered) {delivered += 1;}
+          }  
+        }  
+        var backgroundColor = undelivered > 0 ? 'magenta' : held > 0 ? 'yellow' : delivered > 0 ? 'green' : "#a0a0a0";
+        table_button = document.getElementById(table_id);
+        if (table_button != null)
+        {
+          table_button.firstChild.style.backgroundColor = backgroundColor;
+        }
+      }  
+    }
 
     function drawCurrentCategory()
     {
       document.getElementById("category").innerHTML 
         = getSuperCategory() + " : " + getSubCategory();
       populateMenuItems(getSubCategory());
-
     }  
 
-    function resetTableColor(table_id)
-    {
-      table_button = document.getElementById(table_id);
-      if (table_button != null)
-      {
-        table_button.firstChild.style.backgroundColor = "#a0a0a0";
-      }
-    }
-
-    function colorTables()
-    {
-      if (category_is_table())
-      {
-        tables = http_request("GET", "open_tabs.py", null);
-
-        for (idx in tables)
-        {
-          table_id = tables[idx].table_id;
-          undelivered = tables[idx].undelivered;
-          held = tables[idx].held;
-          undelivered -= held;
-          table_button = document.getElementById(table_id);
-          if (table_button != null)
-          {
-            table_button.firstChild.style.backgroundColor = undelivered > 0 ? 'magenta' : (held > 0 ? 'yellow' : 'green');
-          }
-        }
-      }
-    }
 
     function set_current_table(table_id)
     {
       g_currentTable = table_id;
-      refresh_order(null, null);
+      refresh_screen();
       window.scroll(0,0); 
     }
 
     function populateMenuItems(category)
     {
-      items = g_config.menu.categories[0].subcategories[0].items;
-      items_copy = items.map(function(i) {return i});
+      var items = g_config.menu.categories[0].subcategories[0].items;
+      var items_copy = items.map(function(i) {return i});
       drawBoard(items_copy);
     }
 
     function drawBoard(items)
     {
-      board=document.getElementById("board");
+      var board=document.getElementById("board");
       board.innerHTML = getTableHTML(items);
-      colorTables();
     }
         
     function getTableHTML(items)
@@ -416,7 +569,7 @@
     // of the table of items.
     {
 
-      s="";
+      var s="";
 
       s = s + "<table border=0 cellpadding=0 cellspacing=15 >";
 
@@ -427,12 +580,12 @@
 
         for (c=1; c <= GRIDWIDTH && items.length; c++)
         {
-          item = items.shift();
+          var item = items.shift();
 
           s += 
             "<td" +
-            " class='square'" +
-            " onclick='grid_button_clicked(this)'" +
+            " class='pos_grid_button'" +
+            " onclick=grid_button_clicked(this)" +
             " id=\"" + item.name + "\"" +
             ">" +
             "<input " + 
@@ -452,20 +605,18 @@
       return s;
     }
 
-    function grid_button_dragged(button)
-    {
-    }
-
     function grid_button_clicked(button)
     {
+      console.log('grid_button_clicked '+button.id);
       if (category_is_table())
       {
         if(g_currentTable == button.id)
         {
-          reopen_id = http_request("GET", "reopen/get_reopen_id", "table="+button.id);
+          var reopen_id = http_request("GET", "reopen/get_reopen_id", "table="+button.id);
           if (reopen_id != null && confirm("Re-open table "+button.id+"?"))
           {
             http_request("POST", "reopen", "reopen_id="+reopen_id);
+            synchronize_now();
           }  
         }
         if(g_tab_to_move != null)
@@ -473,6 +624,7 @@
           if(confirm("Move all items from table "+g_tab_to_move+" to " + button.id+"?"))
           {
             http_request("POST", "move_tab", "p_from="+g_tab_to_move+"&p_to="+button.id);
+            synchronize_now();
           }
           g_tab_to_move = null;
         }
@@ -480,13 +632,8 @@
       }
       else
       {
-        add_to_order(button.id);
+        add_to_order(button.id, g_currentTable);
       }
-    }
-
-    function reopen()
-    {
-      alert('open');
     }
 
     g_tab_to_move = null;
@@ -508,87 +655,100 @@
       } 
       drawCurrentCategory();
       g_currentTable = null;
-      update_order_pane([]);
+      refresh_screen();
       window.scroll(0,0);
     }
 
     function is_staff(table_id)
     {
-      tab = get_config_item(table_id);
+      var tab = get_config_item(table_id);
       return (tab && (tab.subcat == 'staff' || tab.subcat=='staff_tabs'))
     }
 
-    function refresh_order(add_item, remove_item)
+    function add_to_order(item_key, table_id)
     {
-      if (popup && popup.table_id)
+      console.log('add_item: '+ item_key);
+      var cfg_item = get_config_item(item_key);
+      if(cfg_item == null)
       {
-        params="table="+popup.table_id;
-        popup.table_id = null;
-      }
-      else
-      {
-        params="table="+g_currentTable;
+        alert("add item: " + item_key + " not found in config. Try reload.")
+        return;
       }
 
-      if(add_item)
+      var price = cfg_item.price; //usual case
+      var item_name = cfg_item.name; //usual case
+      //now that price is set to the default, let's see if we need to modify it
+      if('scale_units' in cfg_item)
       {
-        // add_item is just a name, get the full object
-        add_item = get_config_item(add_item);
-        if(add_item == null)
+        while(true)
         {
-          alert("add item: " + add_item + " not found in config. Try reload.")
-          return;
+          var scale = prompt('Quantity in '+cfg_item.scale_units,1)
+          if(!isNaN(scale)) break;
         }
+        if (scale == null) return; //they hit cancel; don't add item
 
-        price = add_item.price; //usual case
-        //now that price is set to the default, let's see if we need to modify it
-        if(is_staff(g_currentTable)) 
+        price = cfg_item.price * scale;
+        item_name = ''+scale + cfg_item.scale_units + ' ' + cfg_item.name;
+      }  
+        
+      if(is_staff(g_currentTable)) 
+      {
+        price = cfg_item.price*STAFF_FOOD_RATE;
+        if ( cfg_item.cat == 'bev' && cfg_item.id != null)
         {
-          price = add_item.price*STAFF_FOOD_RATE;
-          if ( add_item.cat == 'bev' && add_item.id != null)
+          var info = http_request("POST", "get_wine_info.py", "menu_item_id="+cfg_item.id);
+          price = info.frontprice;
+          if (price != null && price > 0 )
           {
-            info = http_request("POST", "get_wine_info.py", "menu_item_id="+add_item.id);
-            price = info.frontprice;
-            if (price != null && price > 0 )
+            if (cfg_item.name.slice(0,3) == 'qt:')
             {
-              if (add_item.name.slice(0,3) == 'qt:')
-              {
-                price = price/4;
-              }
+              price = price/4;
             }
           }
         }
-
-        if(add_item.name.indexOf('special price') != -1)
-        {
-          price = prompt('Enter price:', 0);
-        }
-
-        params += "&price="+price;
-        params += "&menu_item_id="+add_item.id;
-        params += "&additem="+add_item.name;
       }
 
-      if (remove_item) 
+      if(cfg_item.name.indexOf('special price') != -1)
       {
-        params += "&removeitem="+remove_item;
-        resetTableColor(g_currentTable);
+        price = prompt('Enter price:', 0);
       }
 
-      order_items = http_request("POST", "action.py/order", params);
-      update_order_pane(order_items);
-      colorTables();
+      var taxable = !(cfg_item.subcat == 'gift_certificates' || cfg_item.cat == 'market' && 
+          cfg_item.subcat.match(/Household|Supplies|Candy|Soda|gift/)  == null)
+
+      var delivered = (cfg_item.cat == 'market');
+
+      new_crud_command ({
+        command: 'add_item',
+        item_id: get_new_item_id(),
+        item_name: item_name,
+        table_id: table_id, 
+        is_delivered: delivered,
+        taxable: taxable, 
+        price: price 
+      });
+
+      if (category_is_market())
+      {
+        add_item_box.innerHTML = cfg_item.upc + ' ' + cfg_item.name + ' $' + price
+      }
+    } 
+
+    function remove_from_order(remove_item) 
+    {
+      new_crud_command({command: "cancel_item", item_id: remove_item});
     }
 
     function cookscreen_table_click(table_id)
     {
-      set_current_table(table_id);
       leave_cook_screen();
+      set_current_table(table_id);
     }
 
     function cookscreen_timeclick(item_id)
     {
-      item = get_order_pane_item(item_id);
+      var item = get_order_pane_item(item_id);
+      if (item.is_cancelled) {return;}
       if (!item.is_delivered)
       {
         toggle_held(item.id);
@@ -597,7 +757,8 @@
 
     function cookscreen_click(item_id)
     {
-      item = get_order_pane_item(item_id);
+      var item = get_order_pane_item(item_id);
+      if (item.is_cancelled) {return;}
 
       if (item.is_held)
       {
@@ -605,58 +766,83 @@
       }
       else
       {
-        mark_delivered(item.id);
+        toggle_delivered(item.id);
       }  
     }
 
-    function mark_delivered(item_id)
+    function toggle_delivered(item_id)
     {
-      params = "item_id="+item_id;
-      http_request("POST", "set_item_status.py/delivered", params);
-      main_refresh();
+      var item = get_order_pane_item(item_id);
+      new_crud_command({command: "set_status", item_id: item_id, field: 'is_delivered', value: !item.is_delivered});
     }
 
     function toggle_held(item_id)
     {
-      params = "item_id="+item_id;
-      http_request("POST", "set_item_status.py/toggle_held", params);
-      main_refresh();
+      var item = get_order_pane_item(item_id);
+      new_crud_command({command: "set_status", item_id: item_id, field: 'is_held', value: !item.is_held});
     }
 
     function mark_comped()
     {
-      params = "item_id="+popup.item_id;
-      http_request("POST", "set_item_status.py/comped", params);
-      main_refresh();
+      var item = get_order_pane_item(popup.item_id);
+      new_crud_command({command: "set_status", item_id: popup.item_id, field: 'is_comped', value: !item.is_comped});
     }
 
     function pin_is_good(pin)
     {
-      params = "pin="+pin;
-      is_good = http_request("POST", "checkpin.py", params);
+      var params = "pin="+pin;
+      var is_good = http_request("POST", "checkpin.py", params);
       return is_good;
     }
+    
+    function cook_style_order_items()
+    {
+      var uniq_order_items = {};
+      //put all items into a dictionary whose key is all
+      //properties that make us care that the items are different 
+      for(var idx in g_order_pane_items)
+      {
+        var oi = g_order_pane_items[idx];
+        var key = JSON.stringify([oi.table_id, oi.item_name, oi.is_held, oi.is_delivered, oi.price, oi.is_comped, oi.is_cancelled])
+        if (key in uniq_order_items) {uniq_order_items[key].count += 1;}
+        else {oi.count = 1; uniq_order_items[key] = oi;}
+      }
+
+      //now change it back to a list
+      var uniq_order_items_list = [];
+      for(var key in uniq_order_items) { uniq_order_items_list.push(uniq_order_items[key]); }
+
+      //now order the list by held last then created time
+      //descending
+      uniq_order_items_list.sort(
+        function (a,b) {return a.is_held - b.is_held || b.created - a.created;}
+      );
+
+      return uniq_order_items_list;
+    }  
 
     function refresh_cook_screen()
     {
-      params="table=ALL";
-      order_items = http_request("POST", "action.py/order", params);
-      order_pane_items = order_items;
+      var order_items_html = "";
 
-      order_items_html = "";
-      for (idx in order_items)
+      var items = g_cook_style ? cook_style_order_items() : g_order_pane_items;
+      for (var idx in items)
       {
-        item = order_items[idx];
-        classes = "order_item";
+        var item = items[idx];
+        var classes = "order_item";
 
-        if (item.is_delivered && item.seconds_since_mod > 15) {continue}
+        //if (item.is_delivered) {console.log(item.item_name + ' ' + item.seconds_since_mod)}
+        if (item.is_delivered && (item.seconds_since_mod == null || item.seconds_since_mod > 15) || 
+            item.table_id == 'MKT' && !g_market_style) 
+            {continue}
 
-        if (item.is_delivered) {classes += ' delivered_item'}
         config_item = get_config_item(item.item_name);
         if (config_item && config_item.cat == 'bev') {classes += ' bev_item'}
         if (config_item && config_item.subcat == 'boards') {classes += ' board_item'}
         if (item.is_comped) {classes += ' comped_item'}
         if (item.is_held) {classes += ' held_item'}
+        if (item.is_delivered) {classes += ' delivered_item'}
+        if (item.is_cancelled) {classes += ' cancelled_item'}
 
         order_items_html += '<tr class="'+ classes + '">'
         order_items_html += 
@@ -665,9 +851,9 @@
         '</td>';
         order_items_html += 
         '<td onclick="cookscreen_click(' + item.id + ')">' +
-          item.item_name +
+         (g_cook_style && item.count > 1 ? item.count + 'X ': '') +  item.item_name +
         '</td>';
-        time_display = (
+        var time_display = (
           item.minutes_since_mod == null?
             item.minutes_old : 
             item.minutes_old + '/' + item.minutes_since_mod
@@ -679,6 +865,16 @@
       cook_table.innerHTML = order_items_html;
     }
 
+    function go_to_market()
+    {
+      while (!category_is_market())
+      {
+        rotateCategory();
+      } 
+      drawCurrentCategory();
+      set_current_table('MKT');
+    }
+
     function go_to_cook_screen()
     {
       refresh_cook_screen();
@@ -686,20 +882,41 @@
       cook_screen.style.display = "inline";
     }
 
+    function toggle_market_style()
+    {
+      g_market_style = !g_market_style;
+      toggle_market_style_button.innerHTML = g_market_style ? 'MKT: hide': 'MKT: show';
+      refresh_cook_screen();
+    }
+
+    function toggle_cook_style()
+    {
+      g_cook_style = !g_cook_style;
+      toggle_cook_style_button.innerHTML = g_cook_style ? 'X-Style: hide': 'X-Style: show';
+      refresh_cook_screen();
+    }
+
     function leave_cook_screen()
     {
       cook_screen.style.display="none";
       main_screen.style.display="inline"; 
-      main_refresh();
+      refresh_screen();
     }
 
     function go_to_receipt_sceen()
     {
       keypadclear();
-      receipt_text = http_request("POST", "texttab.py", "table="+g_currentTable);
+      if(g_crud_commands.length > 0) {synchronize_now()}
+      var receipt_text = http_request("POST", "texttab.py", "table="+g_currentTable);
       receipt_table.innerHTML = receipt_table_html(receipt_text);
       main_screen.style.display = "none";
       receipt_screen.style.display = "inline";
+      if (g_currentTable == 'MKT')
+      {
+        print_and_close.disabled=false;
+        just_close.disabled=false;
+        pin = "0001"; //Salumi Guy
+      }  
     }  
 
     function go_to_clock_sceen()
@@ -719,7 +936,7 @@
 
     function clockin(in_)
     {
-      resp = http_request("POST", "clockin.py", 
+      var resp = http_request("POST", "clockin.py", 
         "in_="+in_+
         "&serverpin="+pin
       );
@@ -736,64 +953,53 @@
 
     function close_check(shouldPrint)
     {
-      table = g_currentTable;
+      var table = g_currentTable;
       http_request("POST", "close_tab.py", 
         "table="+table+
         "&shouldPrint="+shouldPrint+
         "&serverpin="+pin
       );
-      go_to_tables();
+      synchronize_now();
+
+      if (g_currentTable == 'MKT') {
+        go_to_market();
+      } else{
+        go_to_tables();
+      }
     }  
 
-    function remove_from_order(item)
-    {
-      refresh_order(null, item);
-      refresh_cook_screen();
-    }  
-      
-    function order_item_click(button)
-    {
-    }  
-
-    function main_refresh()
-    {
-      if(main_screen.style.display != "none") 
-      {
-        refresh_order(null, null);
-        colorTables();
-      }
-      if(cook_screen.style.display == "inline") 
-      {
-        refresh_cook_screen();
-      }
-    }
-      
-    order_pane_items = null;
+    g_order_pane_items = null;
     function get_order_pane_item(item_id)
     {
-      for (idx in order_pane_items)
+      console.log('get_order_pane_item: '+item_id);
+      for (idx in g_order_pane_items)
       {
-        item = order_pane_items[idx];
+        var item = g_order_pane_items[idx];
         if (item.id == item_id)
         {
           return item;
         }
       }
+      console.log('get_order_pane_item id not found: '+item_id);
     }
       
-    function update_order_pane(items)
+    function update_order_pane(table_id)
     {
-      order_pane_items = order_items
-      document.getElementById("table_id_display").innerHTML = "Table: " + (g_currentTable || '---');
+      document.getElementById("table_id_display").innerHTML = "Table: " + (table_id || '---');
 
-      order_items_html = "";
-      for (idx in items)
+      var order_items_html = "";
+      for (idx in g_order_pane_items)
       {
-        item = items[idx];
-        classes = "order_item";
+        var item = g_order_pane_items[idx];
+        if (item.table_id != table_id) 
+        {
+          continue;
+        }
+        var classes = "order_item";
         if (item.is_held) {classes += ' held_item'}
         else if (!item.is_delivered) {classes += ' nondelivered_item'}
         if (item.is_comped) { classes += ' comped_item'}
+        if (item.is_cancelled) { classes += ' cancelled_item'}
 
         order_items_html += '<input' +
           ' class="'+ classes + '"' +
@@ -803,32 +1009,23 @@
           ' value="'+item.item_name+'"' +
           '></input>';
       }  
-      order_items = document.getElementById("order_items");
+      var order_items = document.getElementById("order_items");
       order_items.innerHTML = order_items_html;
     }
       
-    function add_to_order(additem)
-    {
-      refresh_order(additem, null);
-      refresh_cook_screen();
-    } 
-
     function orderitem_mousedown(item_id, event, button)
     {
       button.style.backgroundColor = 'maroon';
     }  
       
-    function toggle_delivered(item)
-    {
-    }
-
     // Order popup stuff
     popup = null;
     function orderitem_popup(item_id, event)
     {
       popup = document.getElementById("orderitem_popup");
       popup.item_id = item_id;
-      item = get_order_pane_item(item_id);
+      var item = get_order_pane_item(item_id);
+      if (item.is_cancelled) { return;}
       popup.table_id = item.table_id;
       menu_popup_caption = document.getElementById("orderitem_popup_caption");
       menu_popup_caption.innerHTML = "table: "+item.table_id + " - " + item.item_name;
@@ -839,7 +1036,7 @@
 
       popup.style.visibility="visible";
       popup.style.left= document.body.clientWidth /8;
-      y = mouseY(event);
+      var y = mouseY(event);
       popup.style.top= y - popup.clientHeight / 2;
       popup.focus();
     }
@@ -971,9 +1168,10 @@
     
     function plus_one()
     {
-      item = get_order_pane_item(popup.item_id);
-      add_to_order(item.item_name);
-    }  
+      var item = get_order_pane_item(popup.item_id);
+      console.log('plus one ' + popup.item_id + ' ' + item.item_name);
+      add_to_order(item.item_name, popup.table_id);
+    }
 
     function cancel_item()
     {
@@ -987,19 +1185,36 @@
       hidePopup();
     }
 
-
-    function enter(event)
-    // When the user presses enter on the text editBox colorEdit we want
-    // to interperet this to mean apply so we capture the keypress events
-    // from the edit box and check if the key is the enter key
+    
+    g_keyentry = "";
+    function keydown(event)
     {
-      if (event.keyCode == 13)
+      if(event.which == 13 && g_keyentry.length > 0)
       {
-        colorEdit.blur(); 
-        //otherwise you can still see the cursor after the dialog is hidden
-        apply();
+        event.preventDefault();
+        text_entered(g_keyentry);
+        g_keyentry = "";
+      }
+      else
+      {
+        key = String.fromCharCode(event.which);
+        if(key.match(/[0-9]/))
+        {
+          g_keyentry += key;
+        }  
+        else
+        {
+          g_keyentry = "";
+        }
       }
     }
+
+    function text_entered(txt)
+    {
+      console.log('text_entered: '+ txt);
+      add_to_order(txt, g_currentTable);
+    }
+
 
     function clicked()
     {
@@ -1020,7 +1235,9 @@
 
 </head>
 
-<body onLoad="draw()" id='main'>
+<body onLoad="init()" id='main'>
+
+  <div id="add_item_box"></div>
 
 
   <div id="main_screen">
@@ -1046,7 +1263,8 @@
         <div><a href="javascript:go_to_cook_screen()"  class="leftLink" id="cooklink">C</a></div>
         <div><a href="javascript:go_to_tables()"  class="leftLink" id="tablelink">T</a></div>
         <div><a href="javascript:go_to_clock_sceen()"  class="leftLink" id="clocklink">P</a></div>
-        <div><a href="http://47.21.5.110:10075/mediawiki" class="leftLink" id="wlink">W</a></div>
+        <div><a href="javascript:go_to_market()" class="leftLink" id="wlink">M</a></div>
+        <!--<div><a href="http://47.21.5.110:10075/mediawiki" class="leftLink" id="wlink">W</a></div>-->
         </div>
         <div id="board"></div>
       </center>
@@ -1150,7 +1368,8 @@
 
   <div id="cook_screen">
         <button id=cook_screen_go_back onclick='leave_cook_screen()'>Go Back</button>
-        <button id=cook_screen_refresh onclick='refresh_cook_screen()'>Refresh</button>
+        <button id=toggle_cook_style_button onclick='toggle_cook_style()'>X-Style: show</button>
+        <button id=toggle_market_style_button onclick='toggle_market_style()'>MKT: show</button>
         <table id="cook_table" cellspacing=2 cellpadding=2></table>
   </div>
 
@@ -1160,7 +1379,7 @@
     <div class="diabuttons">
       <div style="float: right; width: 50%">
         <input type="button" value="plus 1" onclick="plus_one()"> 
-        <input type="button" value="delivered" onclick="mark_delivered(popup.item_id)"> 
+        <input type="button" value="delivered" onclick="toggle_delivered(popup.item_id)"> 
         <input type="button" value="do nothing"> 
       </div>
       <div style="float: left; width: 50%">
@@ -1179,6 +1398,15 @@
       <input type="button" value="do nothing"> 
     </div>
   </div>
+
+  <div id ="scale_popup" class="diaframe">
+    <div id="scale_popup_caption" class="diacapt">---</div>
+    <div class="diabuttons">
+      <input id="lbs" type="text" value="0"> 
+      <input id="oz" type="text" value="0"> 
+    </div>
+  </div>
+
 
 
 </body>

@@ -13,8 +13,9 @@
       border: none;
       font-size : 24pt;
     }
-    
+
     .nondelivered_item { color: red; }
+    .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
 
     .comped_item {font-style:italic; border: 6px solid #a0ffa0;}
     .held_item {border: 3px solid yellow;}
@@ -164,7 +165,8 @@
     #cook_table td
     {
       border-width: 1px;
-      padding: 1px;
+      padding-right: 10px;
+      padding-left: 10px;
       border-style: inset;
       -moz-border-radius: 0px 0px 0px 0px;
     }
@@ -194,14 +196,9 @@
     .leftLink {float: left; font-size:48}
     #goVerticalLink {float: right; font-size: 56; text-align: right}
 
-    #rightside {
-      position: fixed;
-      right: 10px;
-    }
-
-    #order_pane {width: 220px; border: 4px outset; margin-top:10px; background:rgba(255,255,255,0.7); }
+    #rightside {float: right }
+    #order_pane {width: 220px; border: 4px outset; margin-top:10px; }
     #order_pane :hover {background-color: yellow;}
-    #order_items {height: 300px; overflow: scroll}
     #select_area {width: 70%;}
     
     #table_display {width: 100%; margin: 5px; color: blue;}
@@ -226,7 +223,7 @@
     function init()
     {
       document.body.addEventListener('click', clicked, true)
-      GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth) / 10
+      GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth) / 120
     }  
 
 
@@ -562,7 +559,7 @@
           }
         }
 
-        if(add_item.name == 'special price')
+        if(add_item.name.indexOf('special price') != -1)
         {
           price = prompt('Enter price:', 0);
         }
@@ -578,21 +575,50 @@
         resetTableColor(g_currentTable);
       }
 
-      order_items = http_request("POST", "action.py/order", params);
+      order_items = http_request("POST", "action2.py/order", params);
       update_order_pane(order_items);
       colorTables();
     }
 
-    function mark_delivered()
+    function cookscreen_table_click(table_id)
     {
-      params = "item_id="+popup.item_id;
+      set_current_table(table_id);
+      leave_cook_screen();
+    }
+
+    function cookscreen_timeclick(item_id)
+    {
+      item = get_order_pane_item(item_id);
+      if (!item.is_delivered)
+      {
+        toggle_held(item.id);
+      }
+    }
+
+    function cookscreen_click(item_id)
+    {
+      item = get_order_pane_item(item_id);
+
+      if (item.is_held)
+      {
+        toggle_held(item.id);
+      }
+      else
+      {
+        mark_delivered(item.id);
+      }  
+    }
+
+    function mark_delivered(item_id)
+    {
+      params = "item_id="+item_id;
       http_request("POST", "set_item_status.py/delivered", params);
       main_refresh();
     }
 
-    function toggle_held()
+    function toggle_held(item_id)
     {
-      params = "item_id="+popup.item_id;
+      params = "item_id="+item_id;
       http_request("POST", "set_item_status.py/toggle_held", params);
       main_refresh();
     }
@@ -614,17 +640,18 @@
     function refresh_cook_screen()
     {
       params="table=ALL";
-      order_items = http_request("POST", "action.py/order", params);
+      order_items = http_request("POST", "action2.py/order", params);
       order_pane_items = order_items;
 
       order_items_html = "";
       for (idx in order_items)
       {
         item = order_items[idx];
-        if (item.is_delivered) {continue}
-
-        
         classes = "order_item";
+
+        if (item.is_delivered && item.seconds_since_mod > 15) {continue}
+
+        if (item.is_delivered) {classes += ' delivered_item'}
         config_item = get_config_item(item.item_name);
         if (config_item && config_item.cat == 'bev') {classes += ' bev_item'}
         if (config_item && config_item.subcat == 'boards') {classes += ' board_item'}
@@ -632,20 +659,20 @@
         if (item.is_held) {classes += ' held_item'}
 
         order_items_html += '<tr class="'+ classes + '">'
-        order_items_html += '<td>'+item.table_id+'</td>'
         order_items_html += 
-        '<td>' + 
-          ' <input class="'+ classes + '" ' + 
-          ' type=Button' +
-          ' onclick="orderitem_popup(' + item.id + ', event)"' +
-          ' value="' + item.item_name +'"></input>'+
+        '<td onclick="cookscreen_table_click(\'' + item.table_id + '\')">' +
+          item.table_id +
+        '</td>';
+        order_items_html += 
+        '<td onclick="cookscreen_click(' + item.id + ')">' +
+          item.item_name +
         '</td>';
         time_display = (
           item.minutes_since_mod == null?
             item.minutes_old : 
             item.minutes_old + '/' + item.minutes_since_mod
         )    
-        order_items_html += '<td>'+time_display+'</td>'
+        order_items_html += '<td onclick="cookscreen_timeclick(' + item.id + ')">'+time_display+'</td>'
         order_items_html += '</tr>'
 
       }  
@@ -791,6 +818,9 @@
       button.style.backgroundColor = 'maroon';
     }  
       
+    function toggle_delivered(item)
+    {
+    }
 
     // Order popup stuff
     popup = null;
@@ -1018,9 +1048,9 @@
         <div><a href="javascript:go_to_clock_sceen()"  class="leftLink" id="clocklink">P</a></div>
         <div><a href="http://47.21.5.110:10075/mediawiki" class="leftLink" id="wlink">W</a></div>
         </div>
+        <div id="board"></div>
       </center>
     </div>
-    <div id="board"></div>
   </div>
   <!-- This div is another screen. Initially it set to 
   visibility:hidden and it will take up the whole screen
@@ -1130,11 +1160,11 @@
     <div class="diabuttons">
       <div style="float: right; width: 50%">
         <input type="button" value="plus 1" onclick="plus_one()"> 
-        <input type="button" value="delivered" onclick="mark_delivered()"> 
+        <input type="button" value="delivered" onclick="mark_delivered(popup.item_id)"> 
         <input type="button" value="do nothing"> 
       </div>
       <div style="float: left; width: 50%">
-        <input id="holdgo" type="button" value="hold" onclick="toggle_held()"> 
+        <input id="holdgo" type="button" value="hold" onclick="toggle_held(popup.item_id)"> 
         <input type="button" value="comped" onclick="mark_comped()"> 
         <input type="button" value="cancel" onclick="cancel_item()"> 
       </div>
@@ -1152,4 +1182,4 @@
 
 
 </body>
-7/html>
+</html>

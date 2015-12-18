@@ -109,7 +109,6 @@ menu:
             #- {name: gruyere, price: 0}
             - {name: surchoix, price: 0}
             - {name: gouda, price: 0}
-            #- {name: bufala, price: 0}
             #- {name: capri, price: 0}
             - {name: seranno ham, price: 0}
             - {name: lomo, price: 0}
