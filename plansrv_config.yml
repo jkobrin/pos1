@@ -64,7 +64,7 @@ menu:
             - {name: warm olives, price: 5}
             - {name: marcona almonds, price: 5}
             - {name: anchovy, price: 6}
-            - {name: beet and bleu , price: 13}
+            - {name: caesar , price: 9}
             - {name: burrata , price: 14}
             - {name: patatas bravas, price: 6}
             - {name: sprouts, price: 8}
@@ -179,7 +179,9 @@ menu:
           items: 
             - {name: discount, price: -1}
             - {name: extras, price: 1}
-            - {name: gratuity18, price: 0}
+            - {name: gratuity18, price: 18}
+            - {name: gratuity20, price: 20}
+            - {name: gratuity special price, price: 0}
             - {name: special price, price: 0}
             - {name: corkage fee, price: 10}
             - {name: corkage, price: 10}
@@ -285,6 +287,7 @@ menu:
             - {name: bread, price: 3}
             - {name: coffee, price: 4}
             - {name: decaf, price: 4}
+            - {name: iced tea, price: 3}
             - {name: english breakfast, price: 4}
             - {name: jasmin tea, price: 4}
             - {name: paris tea, price: 4}
@@ -294,11 +297,11 @@ menu:
         - name: bar
           items: 
             - {name: amaro, price: 4}
-            - {name: red sangrea jar, price: 32}
+            - {name: red sangrea jar, price: 28}
             - {name: red sangrea, price: 8}
-            - {name: white sangrea jar, price: 32}
+            - {name: white sangrea jar, price: 28}
             - {name: white sangrea, price: 8}
-            - {name: rose sangrea jar, price: 32}
+            - {name: rose sangrea jar, price: 28}
             - {name: rose sangrea, price: 8}
             - {name: belini jar, price: 23}
             - {name: belini, price: 7}
@@ -307,7 +310,6 @@ menu:
             - {name: bloody maria, price: 7}
             - {name: burbon coke, price: 10}
             - {name: caipirnha, price: 10}
-            - {name: chamomile tea, price: 4}
             - {name: ciirus smash rum, price: 10}
             - {name: citrus smash (virgin), price: 5}
             - {name: cktail10, price: 10}
@@ -327,7 +329,6 @@ menu:
             - {name: frangelico shot, price: 7}
             - {name: ginger, price: 4}
             - {name: hot toddy, price: 7}
-            - {name: jasmin tea, price: 4}
             - {name: lemonade, price: 5}
             - {name: lemon, price: 4}
             - {name: liquor flight, price: 20}
@@ -340,7 +341,6 @@ menu:
             - {name: mimosa, price: 7}
             - {name: oj, price: 3}
             - {name: old-fashioned, price: 12}
-            - {name: paris tea, price: 4}
             - {name: patron shot, price: 10}
             - {name: pelligrino, price: 3}
             - {name: pueblo shot, price: 10}
@@ -351,8 +351,12 @@ menu:
             - {name: sambucca shot, price: 7}
             - {name: seltzer, price: 2}
             - {name: shirly temple, price: 5}
-            - {name: spiked thai tea, price: 7}
             - {name: tonic, price: 4}
+            - {name: spiked thai tea, price: 7}
+            - {name: tea jasmin, price: 4}
+            - {name: tea chamomile, price: 4}
+            - {name: tea paris, price: 4}
+            - {name: tea iced, price: 3}
             - {name: virgin5, price: 5}
             - {name: vodka cran, price: 7}
             - {name: vodka shot, price: 7}
