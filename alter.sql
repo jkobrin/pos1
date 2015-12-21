@@ -96,10 +96,24 @@
 #create or replace view taxable_item as select * from revenue_item where taxable = true;
 
 
+#
+#CREATE TABLE client_session (
+#  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+#  created TIMESTAMP DEFAULT NOW()
+#) ENGINE=MyISAM; 
+#
+#ALTER TABLE client_session AUTO_INCREMENT = 2500;
 
-CREATE TABLE client_session (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  created TIMESTAMP DEFAULT NOW()
-) ; 
+alter table order_item add column taxable boolean not null;
 
-ALTER TABLE client_session AUTO_INCREMENT = 6000;
+create or replace view revenue_item as select oi.* from order_item oi, order_group og 
+where oi.order_group_id = og.id
+and is_comped = false 
+and is_cancelled = false 
+and item_name not like 'gift%' 
+and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+;'
+;
+create or replace view taxable_item as select * from revenue_item where taxable = true;
+
+
+

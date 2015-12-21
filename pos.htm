@@ -713,7 +713,7 @@
         price = prompt('Enter price:', 0);
       }
 
-      var taxable = !(cfg_item.subcat == 'gift_certificates' || cfg_item.cat == 'market' && 
+      var taxable = !(cfg_item.name.startsWith('gift') || cfg_item.cat == 'market' && 
           cfg_item.subcat.match(/Household|Supplies|Candy|Soda|gift/)  == null)
 
       var delivered = (cfg_item.cat == 'market');

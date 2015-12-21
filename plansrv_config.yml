@@ -119,6 +119,10 @@ menu:
             - {name: pata negra, price: 15}
             #- {name: rosette de lyon, price: 0}
             - {name: extra fig, price: 2}
+            - name: add-on
+              price: 5
+            - name: to-go-on-board
+              price: 0
         - name: dessert_etc
           items: 
             - {name: panacotta, price: 7}
