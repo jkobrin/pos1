@@ -323,6 +323,7 @@
     function get_new_session_id()
     {
       g_session_id = http_request("GET", "action.py/get_session_id", null);
+      console.log('got session id: ' + g_session_id);
     }  
 
     function load_config()

@@ -8,16 +8,18 @@ from time import sleep
 from random import randint
 
 def get_session_id(req):
-    #sleep(5)
     #client will use this to create unique ids for order_item commands it sends to server for DB insertion
+
+    my_logger.info(req.get_remote_host()+': get_session_id called')
     conn = MySQLdb.connect (host = "localhost",
                           user = "pos",
                           passwd = "pos",
                           db = "pos")
     cursor = conn.cursor()
 
-    cursor.execute("insert into client_session values ()");
+    cursor.execute("insert into client_session values (null, null);");
     session_id = conn.insert_id()
+    my_logger.info(req.get_remote_host()+': generated session id: %s'%session_id)
 
     cursor.close()
     conn.close()

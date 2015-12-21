@@ -380,6 +380,8 @@ menu:
             - {name: cascara, price: 5}
             - {name: iced thai tea latte, price: 5}
             - {name: iced unsweet tea, price: 3}
+            - {name: unsweet tea, price: 3}
+            - {name: tea, price: 3}
         - name: bar
           items: 
             - {name: bar, price: 4}
@@ -1332,6 +1334,8 @@ menu:
             - {name: extra shot, price: 1}
             - {name: drip, price: 3}
             - {name: decaf, price: 3}
+            - {name: tea, price: 3}
+            - {name: orange juice, price: 3.5}
             - {name: espresso, price: 3}
             - {name: lungo, price: 3}
             - {name: espresso twist, price: 3.5}
@@ -1342,6 +1346,8 @@ menu:
             - {name: choco picante, price: 3.5}
             - {name: choco espresso, price: 4}
             - {name: choco latte, price: 5}
+            - {name: marsh to stay, price: 1}
+            - {name: marsh to go, price: .5}
             - {name: mocha latte, price: 6}
             - {name: cappuccino, price: 5}
             - {name: latte, price: 5}
@@ -1351,6 +1357,7 @@ menu:
             - {name: 3 cookies, price: 1}
             - {name: pop tart 4.00, price: 4}
             - {name: pop tart 4.50, price: 4.5}
+            - {name: fruit cake, price: 4}
             - {name: biscuit plain, price: 3}
             - {name: roll plain, price: 3.5}
             - {name: add egg, price: .5}
@@ -1359,4 +1366,9 @@ menu:
             - {name: baguette, price: 2.5}
             - {name: epi baguette, price: 2.5}
             - {name: round bread, price: 4}
+            - {name: quince paste, price: 4}
+            - {name: gft bag 25, price: 25}
+            - {name: gft bag 35, price: 35}
+            - {name: gft bag 45, price: 45}
+            - {name: gft bag 65, price: 65}
 
