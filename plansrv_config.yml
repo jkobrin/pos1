@@ -64,7 +64,7 @@ menu:
             - {name: warm olives, price: 5}
             - {name: marcona almonds, price: 5}
             - {name: anchovy, price: 6}
-            - {name: beet and blue , price: 13}
+            - {name: caesar , price: 9}
             - {name: burrata , price: 14}
             - {name: patatas bravas, price: 6}
             - {name: sprouts, price: 8}
@@ -109,7 +109,6 @@ menu:
             #- {name: gruyere, price: 0}
             - {name: surchoix, price: 0}
             - {name: gouda, price: 0}
-            $- {name: bufala, price: 0}
             #- {name: capri, price: 0}
             - {name: seranno ham, price: 0}
             - {name: lomo, price: 0}
@@ -120,6 +119,10 @@ menu:
             - {name: pata negra, price: 15}
             #- {name: rosette de lyon, price: 0}
             - {name: extra fig, price: 2}
+            - name: add-on
+              price: 5
+            - name: to-go-on-board
+              price: 0
         - name: dessert_etc
           items: 
             - {name: panacotta, price: 7}
@@ -179,7 +182,9 @@ menu:
           items: 
             - {name: discount, price: -1}
             - {name: extras, price: 1}
-            - {name: gratuity18, price: 0}
+            - {name: gratuity18, price: 18}
+            - {name: gratuity20, price: 20}
+            - {name: gratuity special price, price: 0}
             - {name: special price, price: 0}
             - {name: corkage fee, price: 10}
             - {name: corkage, price: 10}
@@ -220,34 +225,33 @@ menu:
             - {name: american burger, price: 14}
             - {name: spanish burger, price: 13}
             - {name: italian burger, price: 13}
-            - {name: lunch special, price: 9}
-            - {name: special tomato soup, price: 0}
-            - {name: special mexican soup, price: 0}
+            #- {name: lunch special, price: 9}
+            #- {name: special tomato soup, price: 0}
 
-            - {name: half prosciutto san, price: 0}
-            - {name: half spanish ham and cheese, price: 0}
-            - {name: half bean and kraut, price: 0}
-            - {name: half bcadillo, price: 0}
+            #- {name: half prosciutto san, price: 0}
+            #- {name: half spanish ham and cheese, price: 0}
+            #- {name: half eggplant, price: 0}
+            #- {name: half bcadillo, price: 0}
 
-            - {name: half taleggio panini, price: 0}
-            - {name: half soppresatta panini, price: 0}
-            - {name: half copa cubano, price: 0}
-            - {name: half goat mush san, price: 0}
+            #- {name: half taleggio panini, price: 0}
+            #- {name: half soppresatta panini, price: 0}
+            #- {name: half copa cubano, price: 0}
+            #- {name: half goat mush san, price: 0}
 
             - {name: prosciutto san, price: 10}
             - {name: spanish ham and cheese, price: 9}
-            - {name: bean and kraut, price: 7}
-            - {name: bcadillo, price: 8}
+            - {name: eggplant, price: 7}
+            - {name: bocadillo, price: 8}
 
             - {name: taleggio panini, price: 10}
             - {name: soppresatta panini, price: 7}
             - {name: copa cubano, price: 11}
             - {name: goat mush san, price: 8}
-            - {name: fork-mix cesar, price: 9}
+            - {name: beet and bleu, price: 9}
             - {name: burrata, price: 14}
             - {name: house salad, price: 8}
             - {name: tomato soup and cheesy toast, price: 6}
-            - {name: mexican soup, price: 8}
+            - {name: celery root soup, price: 8}
 
             - {name: anchovy, price: 6}
             - {name: patatas, price: 6}
@@ -275,7 +279,7 @@ menu:
             - {name: sopressata panini, price: 9}
             - {name: copa cubano, price: 11}
             - {name: goat cheese panini, price: 8}
-            - {name: fork mix caesar, price: 9}
+            - {name: beet and bleu, price: 9}
             - {name: burrata salad, price: 14}
             - {name: house salad, price: 8}
             - {name: smoked anchovies, price: 6}
@@ -286,6 +290,7 @@ menu:
             - {name: bread, price: 3}
             - {name: coffee, price: 4}
             - {name: decaf, price: 4}
+            - {name: iced tea, price: 3}
             - {name: english breakfast, price: 4}
             - {name: jasmin tea, price: 4}
             - {name: paris tea, price: 4}
@@ -295,11 +300,11 @@ menu:
         - name: bar
           items: 
             - {name: amaro, price: 4}
-            - {name: red sangrea jar, price: 32}
+            - {name: red sangrea jar, price: 28}
             - {name: red sangrea, price: 8}
-            - {name: white sangrea jar, price: 32}
+            - {name: white sangrea jar, price: 28}
             - {name: white sangrea, price: 8}
-            - {name: rose sangrea jar, price: 32}
+            - {name: rose sangrea jar, price: 28}
             - {name: rose sangrea, price: 8}
             - {name: belini jar, price: 23}
             - {name: belini, price: 7}
@@ -308,7 +313,6 @@ menu:
             - {name: bloody maria, price: 7}
             - {name: burbon coke, price: 10}
             - {name: caipirnha, price: 10}
-            - {name: chamomile tea, price: 4}
             - {name: ciirus smash rum, price: 10}
             - {name: citrus smash (virgin), price: 5}
             - {name: cktail10, price: 10}
@@ -328,7 +332,6 @@ menu:
             - {name: frangelico shot, price: 7}
             - {name: ginger, price: 4}
             - {name: hot toddy, price: 7}
-            - {name: jasmin tea, price: 4}
             - {name: lemonade, price: 5}
             - {name: lemon, price: 4}
             - {name: liquor flight, price: 20}
@@ -341,7 +344,6 @@ menu:
             - {name: mimosa, price: 7}
             - {name: oj, price: 3}
             - {name: old-fashioned, price: 12}
-            - {name: paris tea, price: 4}
             - {name: patron shot, price: 10}
             - {name: pelligrino, price: 3}
             - {name: pueblo shot, price: 10}
@@ -352,8 +354,12 @@ menu:
             - {name: sambucca shot, price: 7}
             - {name: seltzer, price: 2}
             - {name: shirly temple, price: 5}
-            - {name: spiked thai tea, price: 7}
             - {name: tonic, price: 4}
+            - {name: spiked thai tea, price: 7}
+            - {name: tea jasmin, price: 4}
+            - {name: tea chamomile, price: 4}
+            - {name: tea paris, price: 4}
+            - {name: tea iced, price: 3}
             - {name: virgin5, price: 5}
             - {name: vodka cran, price: 7}
             - {name: vodka shot, price: 7}

@@ -714,7 +714,7 @@
         price = prompt('Enter price:', 0);
       }
 
-      var taxable = !(cfg_item.subcat == 'gift_certificates' || cfg_item.cat == 'market' && 
+      var taxable = !(cfg_item.name.startsWith('gift') || cfg_item.cat == 'market' && 
           cfg_item.subcat.match(/Household|Supplies|Candy|Soda|gift/)  == null)
 
       var delivered = (cfg_item.cat == 'market');
@@ -726,7 +726,8 @@
         table_id: table_id, 
         is_delivered: delivered,
         taxable: taxable, 
-        price: price 
+        price: price,
+        menu_item_id: cfg_item.id
       });
 
       if (category_is_market())
