@@ -277,6 +277,8 @@ menu:
             - {name: gratuity20, price: 20}
             - {name: gratuity special price, price: 0}
             - {name: special price, price: 0}
+            - {name: special item, price: 0}
+            - {name: tax-free special item, price: 0}
             - {name: corkage fee, price: 10}
             - {name: special3, price: 3}
             - {name: special4, price: 4}

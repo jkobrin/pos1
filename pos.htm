@@ -709,15 +709,22 @@
         }
       }
 
+      var taxable = !(cfg_item.name.indexOf('gift') == 0 || cfg_item.cat == 'market' && 
+          cfg_item.subcat.match(/Household|Supplies|Candy|Soda|gift/)  == null)
+
+      var delivered = (cfg_item.cat == 'market');
+
       if(cfg_item.name.indexOf('special price') != -1)
       {
         price = prompt('Enter price:', 0);
       }
 
-      var taxable = !(cfg_item.name.indexOf('gift') == 0 || cfg_item.cat == 'market' && 
-          cfg_item.subcat.match(/Household|Supplies|Candy|Soda|gift/)  == null)
-
-      var delivered = (cfg_item.cat == 'market');
+      if(cfg_item.name.indexOf('special item') != -1)
+      {
+        price = prompt('Enter price:', 0);
+        item_name = prompt('Enter name:', 0);
+        if(cfg_item.name.indexOf('tax-free') != -1) { taxable = false;}
+      }
 
       new_crud_command ({
         command: 'add_item',
