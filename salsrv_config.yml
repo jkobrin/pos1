@@ -1487,6 +1487,7 @@ menu:
             - {name: epi baguette, price: 2.5}
             - {name: round bread, price: 4}
             - {name: quince paste, price: 4}
+            - {name: olives, price: 6.5}
             - {name: gft bag 25, price: 25}
             - {name: gft bag 35, price: 35}
             - {name: gft bag 45, price: 45}
