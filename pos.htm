@@ -4,9 +4,6 @@
 
   <style>
 
-    #linx {float: left; height: 500px}
-    #linx a {padding-bottom:80px}
-
     .order_item { 
       width: 100%; 
       background-color:transparent;
@@ -20,6 +17,7 @@
     .held_item {border: 3px solid yellow;}
 
     .bev_item {color: blue;}
+    .bev_head {color: #ddddff;}
     .board_item {color: maroon;}
 
     .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
@@ -27,8 +25,10 @@
     
     .menu_button 
     {
+      float: left;
+      margin: 5px;
       font-size:14pt; font-weight:bold; height:100px; width:100px;
-      background-color:#a0a0a0;
+      background-color:#b0b0b0;
       white-space : normal;
     }
 
@@ -185,7 +185,7 @@
 
     body,h1,h2,h3,h4,h5,h6 {font-family:Arial;}
 
-    body {background-color:gray; color:black; font-size:18}
+    body {background-color:gray; color:black; font-size:18;}
 
     h1 {font-size:28pt; font-weight:bold; margin:0px;}
 
@@ -193,17 +193,29 @@
 
     h3 {font-size:8pt; margin:0px; font-weight:bold;}
 
-    #category {font-size:28pt; text-align: center}
+    .cat_div {}
+    .cat_head {clear: both; font-size:24pt; text-align: center; background-color: #8080ff; border: 1px inset white; margin: 6px }
+    .cat_content_div {clear: both; display: none}
+
+    .subcat_head {min-width: 150px; float:left; font-size:24pt; text-align: center; background-color: pink; border: 1px inset white; margin: 6px }
+    .subcat_button_div {float:right; display: none}
+    .subcat_div {}
 
     .leftLink {float: left; font-size:48}
     #goVerticalLink {float: right; font-size: 56; text-align: right}
 
-    #rightside {float: right }
-    #order_pane {width: 220px; border: 4px outset; margin-top:10px; }
+    #linx {float: left; height: 95vh; width: 5vw; position: fixed ; background-color: #ffffb0}
+    #linx a {height: 33%;}
+    #board {padding-left: 6vw; width:70vw; float: left}
+    
+
+
+    #rightside {width: 20vw; position:fixed; right:2%}
+    #order_pane {border: 4px outset; margin-top:10px; background-color: white;}
     #order_pane :hover {background-color: yellow;}
-    #select_area {width: 70%;}
     
     #table_display {width: 100%; margin: 5px; color: blue;}
+    #order_items {height: 60vh; overflow-y: auto; overflow-x: clip }
     #table_id_display {width: 95%;}
     #receipt_text {font-family: monospace; font-size: 14pt;}
 
@@ -311,7 +323,7 @@
     {
       document.body.addEventListener('click', clicked, true)
       document.body.addEventListener('keydown', keydown, true)
-      GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth) / 120
+      GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth - linx.clientWidth) / 120
 
       load_config();
       get_new_session_id();
@@ -319,6 +331,7 @@
       drawCurrentCategory();
     }
 
+      
     /*** data transfer functions ***/
     function get_new_session_id()
     {
@@ -389,7 +402,7 @@
           id: command.item_id,
           is_delivered: command.is_delivered, 
           is_held: false, 
-          is_comped: false, 
+          is_comped: command.is_comped, 
           price: command.price, 
           minutes_old: 0, minutes_since_mod: null, seconds_since_mod: null}
         )  
@@ -460,7 +473,7 @@
 
     function category_is_table()
     {
-      return getSuperCategory() == 'tables';
+      alert('Deprecated!');
     }  
       
     function goVertical()
@@ -493,7 +506,14 @@
       return g_config.menu.categories[0].name;
     }  
       
+    function make_closure(func, arg)
+    {
+      return function() { return func(arg)}
+    }
+
     /******** screen drawing **********/
+
+
     function refresh_screen()
     {
       add_item_box.innerHTML = "";
@@ -507,9 +527,17 @@
 
     function colorTables()
     {
-      if (!category_is_table()) return;
-
-      var tables = g_config.menu.categories[0].subcategories[0].items;
+      var tables = [];
+      for(var cidx in g_config.menu.categories)
+      {
+        if (g_config.menu.categories[cidx].name == 'tables'){
+          for (var scidx in g_config.menu.categories[cidx].subcategories)
+          {
+            tables = tables.concat(g_config.menu.categories[cidx].subcategories[scidx].items);
+          }
+          break;
+        }  
+      }    
 
       for (idx in tables) {
         var table_id = tables[idx].name;
@@ -526,95 +554,112 @@
             if (item.is_delivered) {delivered += 1;}
           }  
         }  
-        var backgroundColor = undelivered > 0 ? 'magenta' : held > 0 ? 'yellow' : delivered > 0 ? 'green' : "#a0a0a0";
+        var backgroundColor = undelivered > 0 ? 'magenta' : held > 0 ? 'yellow' : delivered > 0 ? 'green' : "#b0b0b0";
         table_button = document.getElementById(table_id);
         if (table_button != null)
         {
-          table_button.firstChild.style.backgroundColor = backgroundColor;
+          table_button.style.backgroundColor = backgroundColor;
         }
       }  
     }
-
-    function drawCurrentCategory()
-    {
-      document.getElementById("category").innerHTML 
-        = getSuperCategory() + " : " + getSubCategory();
-      populateMenuItems(getSubCategory());
-    }  
-
 
     function set_current_table(table_id)
     {
       g_currentTable = table_id;
       refresh_screen();
-      window.scroll(0,0); 
+      //window.scroll(0,0); 
     }
 
-    function populateMenuItems(category)
+    function toggle_vis(node)
     {
-      var items = g_config.menu.categories[0].subcategories[0].items;
-      var items_copy = items.map(function(i) {return i});
-      drawBoard(items_copy);
-    }
+      console.log('toggle_vis ' + node.style.display + ' ' + node.id);
+      node.style.display = (node.style.display == 'inline' ? 'none' : 'inline');
+    }  
 
-    function drawBoard(items)
+    function uncollapse(subcat_div)
     {
-      var board=document.getElementById("board");
-      board.innerHTML = getTableHTML(items);
-    }
-        
-    function getTableHTML(items)
+      var head = subcat_div.children[0];
+      var button_div = subcat_div.children[1];
+      toggle_vis(button_div);
+      head.style.backgroundColor = (head.style.backgroundColor == 'white' ? null : 'white');
+    }  
+
+    function drawCurrentCategory()
     // This function is called when the page a new category is
     // selected and the items in the table change. 
-    // By changing GRIDWIDTH, the programmer can alter the look
-    // of the table of items.
     {
+      var board=document.getElementById("board");
+      board.innerHTML = "";
 
-      var s="";
-
-      s = s + "<table border=0 cellpadding=0 cellspacing=15 >";
-
-      while (items.length)
+      for (cidx in g_config.menu.categories)
       {
+        var cat = g_config.menu.categories[cidx];
+        var subcats = cat.subcategories;
 
-        s += "<tr>";    
+        var cat_div = document.createElement('div');
+        cat_div.id = cat.name;
+        cat_div.setAttribute("class", "cat_div");
 
-        for (c=1; c <= GRIDWIDTH && items.length; c++)
+        var cat_head_div = document.createElement('div');
+        cat_head_div.setAttribute("class", "cat_head");
+        cat_head_div.textContent = cat.name;
+        cat_div.appendChild(cat_head_div);
+
+        var cat_content_div = document.createElement('div');
+        cat_content_div.id = 'cat_cd_'+cat.name;
+        cat_content_div.setAttribute("class", "cat_content_div");
+        cat_div.appendChild(cat_content_div);
+
+        cat_head_div.onclick = make_closure(toggle_vis, cat_content_div);
+
+        for (scidx in subcats)
         {
-          var item = items.shift();
+          subcat = subcats[scidx];
+          var subcat_div = document.createElement('div');
+          subcat_div.id = subcat.name;
+          subcat_div.setAttribute("class", "subcat_div");
 
-          s += 
-            "<td" +
-            " class='pos_grid_button'" +
-            " onclick=grid_button_clicked(this)" +
-            " id=\"" + item.name + "\"" +
-            ">" +
-            "<input " + 
-            " class='menu_button'" +
-            " type='button'"  + 
-            " value=\"" + item.name + "\"" + 
-            "/>" +
-            "</td>";
+          var subcat_head_div = document.createElement('div');
+          subcat_head_div.setAttribute("class", "subcat_head");
+          subcat_head_div.textContent = subcat.name; //cat.name + " : " + subcat.name;
+          //if (scidx == 0) { subcat_head_div.style.clear = ''; subcat_head_div.style.float = 'left';} 
+          subcat_div.appendChild(subcat_head_div);
+
+          var subcat_button_div = document.createElement('div');
+          subcat_button_div.id = 'subcat_bd_'+subcat.name;
+          subcat_button_div.setAttribute("class", "subcat_button_div");
+          subcat_div.appendChild(subcat_button_div);
+
+          subcat_head_div.onclick = make_closure(uncollapse, subcat_div);
+
+          for (iidx in subcat.items)
+          {
+            var item = subcat.items[iidx];
+
+            var grid_button = document.createElement('input');
+            grid_button.type = 'button';
+            grid_button.onclick=make_closure(grid_button_clicked, item);
+            grid_button.id = item.name;
+            grid_button.setAttribute('class', 'menu_button');
+            grid_button.value = item.name;
+            subcat_button_div.appendChild(grid_button);
+          }
+          cat_content_div.appendChild(subcat_div);
         }
-
-        s += "</tr>";
-
+        board.appendChild(cat_div);
       }
-
-      s += "</table>";
-
-      return s;
     }
 
-    function grid_button_clicked(button)
+    function grid_button_clicked(cfg_item)
     {
-      console.log('grid_button_clicked '+button.id);
-      if (category_is_table())
+      console.log('grid_button_clicked '+cfg_item.name);
+      if (cfg_item.catname == 'tables')
       {
-        if(g_currentTable == button.id)
+        table_id = cfg_item.name;
+        if(g_currentTable == table_id)
         {
-          var reopen_id = http_request("GET", "reopen/get_reopen_id", "table="+button.id);
-          if (reopen_id != null && confirm("Re-open table "+button.id+"?"))
+          var reopen_id = http_request("GET", "reopen/get_reopen_id", "table="+table_id);
+          if (reopen_id != null && confirm("Re-open table "+table_id+"?"))
           {
             http_request("POST", "reopen", "reopen_id="+reopen_id);
             synchronize_now();
@@ -622,18 +667,18 @@
         }
         if(g_tab_to_move != null)
         {
-          if(confirm("Move all items from table "+g_tab_to_move+" to " + button.id+"?"))
+          if(confirm("Move all items from table "+g_tab_to_move+" to " + table_id+"?"))
           {
-            http_request("POST", "move_tab", "p_from="+g_tab_to_move+"&p_to="+button.id);
+            http_request("POST", "move_tab", "p_from="+g_tab_to_move+"&p_to="+table_id);
             synchronize_now();
           }
           g_tab_to_move = null;
         }
-        set_current_table(button.id);
+        set_current_table(table_id);
       }
       else
       {
-        add_to_order(button.id, g_currentTable);
+        add_to_order(cfg_item.name, g_currentTable);
       }
     }
 
@@ -648,9 +693,9 @@
       drawCurrentCategory();
     }
 
-    function go_to_tables()
+    function go_to_category(category)
     {
-      while (!category_is_table())
+      while (getSuperCategory() != category)
       {
         rotateCategory();
       } 
@@ -668,6 +713,8 @@
 
     function add_to_order(item_key, table_id)
     {
+      if (!(item_key && table_id)) {return}
+
       console.log('add_item: '+ item_key);
       var cfg_item = get_config_item(item_key);
       if(cfg_item == null)
@@ -712,19 +759,23 @@
       var taxable = !(cfg_item.name.indexOf('gift') == 0 || cfg_item.cat == 'market' && 
           cfg_item.subcat.match(/Household|Supplies|Cafe|Candy|Soda/)  == null)
 
-      var delivered = (cfg_item.cat == 'market');
+      var delivered = (cfg_item.cat == 'market' || cfg_item.subcat == 'misc');
 
-      if(cfg_item.name.indexOf('special price') != -1)
+      if(cfg_item.name.indexOf('special') != -1)
       {
-        price = prompt('Enter price:', 0);
-      }
-
-      if(cfg_item.name.indexOf('special item') != -1)
-      {
-        price = prompt('Enter price:', 0);
-        item_name = prompt('Enter name:', 0);
+        price = prompt('Enter price:', price);
+        item_name = prompt('Enter name:', item_name + price);
         if(cfg_item.name.indexOf('tax-free') != -1) { taxable = false;}
       }
+
+      if(cfg_item.name.indexOf('gift') != -1)
+      {
+        price = prompt('Enter price:', price);
+        item_name = 'gift'+price;
+      }  
+
+      var comped = false;
+      if (cfg_item.name.indexOf('gratuity') != -1) {comped = true}
 
       new_crud_command ({
         command: 'add_item',
@@ -733,6 +784,7 @@
         table_id: table_id, 
         is_delivered: delivered,
         taxable: taxable, 
+        is_comped: comped,
         price: price,
         menu_item_id: cfg_item.id
       });
@@ -876,11 +928,6 @@
 
     function go_to_market()
     {
-      while (!category_is_market())
-      {
-        rotateCategory();
-      } 
-      drawCurrentCategory();
       set_current_table('MKT');
     }
 
@@ -914,6 +961,7 @@
 
     function go_to_receipt_sceen()
     {
+      window.scroll(0,0); 
       keypadclear();
       if(g_crud_commands.length > 0) {synchronize_now()}
       var receipt_text = http_request("POST", "texttab.py", "table="+g_currentTable);
@@ -972,8 +1020,6 @@
 
       if (g_currentTable == 'MKT') {
         go_to_market();
-      } else{
-        go_to_tables();
       }
     }  
 
@@ -1237,7 +1283,6 @@
     // this function hides the pop-up when any of various things happen
     {
       if (popup) {popup.style.visibility="hidden"; }
-      
     }
 
   </script>
@@ -1250,11 +1295,20 @@
 
 
   <div id="main_screen">
+    <div id=linx>
+    <!--<div><a href="javascript:goLeft()"  class="leftLink" id="goLeftLink">&lt;</a></div>-->
+    <div><a href="javascript:go_to_cook_screen()"  class="leftLink" id="cooklink">C</a></div>
+    <div><a href="javascript:go_to_clock_sceen()"  class="leftLink" id="clocklink">P</a></div>
+    <!--<div><a href="javascript:go_to_market()" class="leftLink" id="wlink">M</a></div>-->
+    <div><a href="http://salumibarli.com:8888/wiki" class="leftLink" id="wlink">W</a></div>
+    </div>
+    <div id="board"></div>
+
     <div id="rightside">
-      <center><a href="javascript:goVertical()" id="goVerticalLink">^</a>
+      <!--<center><a href="javascript:goVertical()" id="goVerticalLink">^</a>
       <a href="javascript:goRight()" class="leftLink" id="goleftLink">&gt;</a>
-      </center>
-      <div style="clear: both"></div>
+      </center>-->
+      <!--<div style="clear: both"></div>-->
       <div id="order_pane">
         <div id="table_display" onclick='go_to_receipt_sceen()'>
           <button id="table_id_display" class="order_item">---</button>
@@ -1264,20 +1318,6 @@
       </div>
     </div>  
 
-    <div id="select_area">
-      <center>
-        <a id="category">---</a>
-        <div id=linx>
-        <div><a href="javascript:goLeft()"  class="leftLink" id="goLeftLink">&lt;</a></div>
-        <div><a href="javascript:go_to_cook_screen()"  class="leftLink" id="cooklink">C</a></div>
-        <div><a href="javascript:go_to_tables()"  class="leftLink" id="tablelink">T</a></div>
-        <div><a href="javascript:go_to_clock_sceen()"  class="leftLink" id="clocklink">P</a></div>
-        <div><a href="javascript:go_to_market()" class="leftLink" id="wlink">M</a></div>
-        <!--<div><a href="http://47.21.5.110:10075/mediawiki" class="leftLink" id="wlink">W</a></div>-->
-        </div>
-        <div id="board"></div>
-      </center>
-    </div>
   </div>
   <!-- This div is another screen. Initially it set to 
   visibility:hidden and it will take up the whole screen
@@ -1396,15 +1436,6 @@
         <input type="button" value="comped" onclick="mark_comped()"> 
         <input type="button" value="cancel" onclick="cancel_item()"> 
       </div>
-    </div>
-  </div>
-
-  <div id ="table_popup" class="diaframe">
-    <div id="table_popup_caption" class="diacapt">---</div>
-    <div class="diabuttons">
-      <input type="button" value="switch" onclick="go_to_tables()"> 
-      <input type="button" value="close check" onclick="close_check()"> 
-      <input type="button" value="do nothing"> 
     </div>
   </div>
 

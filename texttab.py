@@ -59,8 +59,9 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   if not items: 
     return "no tab opened for table %s" %table, []
 
-  foodtotal = sum(item['price'] for item in items if not item['is_comped'] and not is_gratuity(item))
-  tax = round(sum(item['price'] for item in items if not item['is_comped'] and item['taxable']) *TAXRATE, 2)
+  foodtotal = sum(item['price'] for item in items if not item['is_comped'])
+  taxable_total = sum(item['price'] for item in items if not item['is_comped'] and item['taxable'])
+  tax = round(taxable_total*TAXRATE, 2)
   total = foodtotal + tax
 
   divider = '-'*(NUMWIDTH + TEXTWIDTH) + "\n"
@@ -86,7 +87,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   for item in items:
     if is_gratuity(item):
       gratuity_rate = item['price']
-      gratuity = round((foodtotal) * gratuity_rate/100.0, 2)
+      gratuity = round((taxable_total) * gratuity_rate/100.0, 2)
       total = total + gratuity
       continue
     if is_gift(item):
