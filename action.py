@@ -39,11 +39,13 @@ def add_item(item_id=None,
             is_held=False, 
             incursor=None, **unused):
     
-    assert item_id != None, 'item id must not be null'
-    assert table_id != 'null' and table_id is not None, "table_id cannot be null in call to function 'action/add_item'"
-    assert len(table_id) <= 64, "table_id must be 64 or fewer chars"
-    assert item_name is not None, 'item _name required'
-    assert price is not None, 'price required'
+    assert item_id != None, 'item id must not be null' + ' ' + str(locals())
+    assert table_id != 'null' and table_id is not None, (
+      "table_id cannot be null in call to function 'action/add_item'" + str(locals())
+    )  
+    assert len(table_id) <= 64, "table_id must be 64 or fewer chars" + str(locals())
+    assert item_name is not None, 'item _name required' + str(locals())
+    assert price is not None, 'price required' + str(locals())
 
     conn = MySQLdb.connect (host = "localhost",
                           user = "pos",
