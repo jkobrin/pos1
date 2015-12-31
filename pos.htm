@@ -198,7 +198,7 @@
     .cat_content_div {clear: both; display: none}
 
     .subcat_head {min-width: 150px; float:left; font-size:24pt; text-align: center; background-color: pink; border: 1px inset white; margin: 6px }
-    .subcat_button_div {float:right; display: none}
+    .subcat_button_div {width: 100%; float:right; display: none}
     .subcat_div {}
 
     .leftLink {float: left; font-size:48}
@@ -707,13 +707,16 @@
       if(cfg_item.name.indexOf('special') != -1)
       {
         price = prompt('Enter price:', price);
+        if (price == null) (return}
         item_name = prompt('Enter name:', item_name + price);
+        if (item_name == null) (return}
         if(cfg_item.name.indexOf('tax-free') != -1) { taxable = false;}
       }
 
       if(cfg_item.name.indexOf('gift') != -1)
       {
         price = prompt('Enter price:', price);
+        if (price == null) (return}
         item_name = 'gift'+price;
       }  
 
