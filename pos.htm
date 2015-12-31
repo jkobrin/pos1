@@ -205,7 +205,7 @@
     #goVerticalLink {float: right; font-size: 56; text-align: right}
 
     #linx {float: left; height: 95vh; width: 5vw; position: fixed ; background-color: #ffffb0}
-    #linx a {height: 33%;}
+    #linx a {height: 33%; width: 100%}
     #board {padding-left: 6vw; width:70vw; float: left}
     
 
@@ -465,46 +465,6 @@
       var categories = g_config.menu.categories;
       categories.push(categories.shift());
     }
-
-    function category_is_market()
-    {
-      return getSuperCategory() == 'market';
-    }  
-
-    function category_is_table()
-    {
-      alert('Deprecated!');
-    }  
-      
-    function goVertical()
-    {
-      rotateCategory();
-      drawCurrentCategory();
-    }
- 
-    function goLeft()
-    {
-      var subs = g_config.menu.categories[0].subcategories;
-      subs.push(subs.shift());
-      drawCurrentCategory();
-    }
-
-    function goRight()
-    {
-      var subs = g_config.menu.categories[0].subcategories;
-      subs.unshift(subs.pop());
-      drawCurrentCategory();
-    }
-
-    function getSubCategory()
-    {
-      return g_config.menu.categories[0].subcategories[0].name;
-    }  
-      
-    function getSuperCategory()
-    {
-      return g_config.menu.categories[0].name;
-    }  
       
     function make_closure(func, arg)
     {
@@ -686,23 +646,6 @@
     function move_tab()
     {
       g_tab_to_move = g_currentTable;
-      while (!category_is_table())
-      {
-        rotateCategory();
-      } 
-      drawCurrentCategory();
-    }
-
-    function go_to_category(category)
-    {
-      while (getSuperCategory() != category)
-      {
-        rotateCategory();
-      } 
-      drawCurrentCategory();
-      g_currentTable = null;
-      refresh_screen();
-      window.scroll(0,0);
     }
 
     function is_staff(table_id)
@@ -757,7 +700,7 @@
       }
 
       var taxable = !(cfg_item.name.indexOf('gift') == 0 || cfg_item.cat == 'market' && 
-          cfg_item.subcat.match(/Household|Supplies|Cafe|Candy|Soda/)  == null)
+          cfg_item.subcat.match(/household|drinks|food|candy|soda/)  == null)
 
       var delivered = (cfg_item.cat == 'market' || cfg_item.subcat == 'misc');
 
@@ -1299,7 +1242,6 @@
     <!--<div><a href="javascript:goLeft()"  class="leftLink" id="goLeftLink">&lt;</a></div>-->
     <div><a href="javascript:go_to_cook_screen()"  class="leftLink" id="cooklink">C</a></div>
     <div><a href="javascript:go_to_clock_sceen()"  class="leftLink" id="clocklink">P</a></div>
-    <!--<div><a href="javascript:go_to_market()" class="leftLink" id="wlink">M</a></div>-->
     <div><a href="http://salumibarli.com:8888/wiki" class="leftLink" id="wlink">W</a></div>
     </div>
     <div id="board"></div>
