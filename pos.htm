@@ -707,16 +707,16 @@
       if(cfg_item.name.indexOf('special') != -1)
       {
         price = prompt('Enter price:', price);
-        if (price == null) (return}
+        if (price == null) return;
         item_name = prompt('Enter name:', item_name + price);
-        if (item_name == null) (return}
+        if (item_name == null) return;
         if(cfg_item.name.indexOf('tax-free') != -1) { taxable = false;}
       }
 
       if(cfg_item.name.indexOf('gift') != -1)
       {
         price = prompt('Enter price:', price);
-        if (price == null) (return}
+        if (price == null) return;
         item_name = 'gift'+price;
       }  
 
