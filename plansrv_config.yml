@@ -127,6 +127,7 @@ menu:
             - {name: egg, price: 0}
         - name: misc
           items: 
+            - {name: special event, price: 120}
             - {name: gift, price: 50}
             - {name: gratuity18, price: 18}
             - {name: gratuity20, price: 20}
@@ -135,9 +136,9 @@ menu:
             - {name: corkage fee, price: 10}
         - name: lunch
           items: 
-            - {name: american burger, price: 14}
-            - {name: spanish burger, price: 13}
-            - {name: italian burger, price: 13}
+            - {name: american burger, price: 15}
+            - {name: spanish burger, price: 14}
+            - {name: italian burger, price: 14}
             #- {name: lunch special, price: 9}
             #- {name: special tomato soup, price: 0}
 
