@@ -198,19 +198,19 @@
     .cat_content_div {clear: both; display: none}
 
     .subcat_head {min-width: 150px; float:left; font-size:24pt; text-align: center; background-color: pink; border: 1px inset white; margin: 6px }
-    .subcat_button_div {float:right; display: none}
+    .subcat_button_div {width: 100%; float:right; display: none}
     .subcat_div {}
 
     .leftLink {float: left; font-size:48}
     #goVerticalLink {float: right; font-size: 56; text-align: right}
 
-    #linx {float: left; height: 95vh; width: 5vw; position: fixed ; background-color: #ffffb0}
+    #linx {float: left; height: 95%; width: 5%; position: fixed ; background-color: #ffffb0}
     #linx a {height: 33%; width: 100%}
-    #board {padding-left: 6vw; width:70vw; float: left}
+    #board {padding-left: 6%; width:70%; float: left}
     
 
 
-    #rightside {width: 20vw; position:fixed; right:2%}
+    #rightside {width: 20%; position:fixed; right:2%}
     #order_pane {border: 4px outset; margin-top:10px; background-color: white;}
     #order_pane :hover {background-color: yellow;}
     
@@ -707,13 +707,16 @@
       if(cfg_item.name.indexOf('special') != -1)
       {
         price = prompt('Enter price:', price);
+        if (price == null) return;
         item_name = prompt('Enter name:', item_name + price);
+        if (item_name == null) return;
         if(cfg_item.name.indexOf('tax-free') != -1) { taxable = false;}
       }
 
       if(cfg_item.name.indexOf('gift') != -1)
       {
         price = prompt('Enter price:', price);
+        if (price == null) return;
         item_name = 'gift'+price;
       }  
 
