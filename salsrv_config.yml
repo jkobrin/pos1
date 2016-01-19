@@ -100,10 +100,11 @@ menu:
             - {name: marcona almonds, price: 5}
             - {name: walnut pesto, price: 6}
             - {name: pate, price: 7}
-            - {name: anchovy, price: 6}
+            - {name: avocado toast, price: 14}
+            #- {name: anchovy, price: 6}
             #- {name: summer salad, price: 9}
-            - {name: waldorf, price: 10}
-            - {name: squash, price: 7}
+            - {name: beet and bleu, price: 11}
+            - {name: sweet roots, price: 8}
             - {name: burrata, price: 14}
             #- {name: mussels, price: 7}
             #- {name: meatballs, price: 5}
@@ -151,9 +152,9 @@ menu:
             - {name: nut, price: 0}
             - {name: shellfish, price: 0}
             - {name: egg, price: 0}
-            - {name: foodspecial, price: 0}
-            - {name: NYE Party 75, price: 69.045}
-            - {name: NYE Party 50, price: 46.03}
+            - {name: food special, price: 0}
+            #- {name: NYE Party 75, price: 69.045}
+            #- {name: NYE Party 50, price: 46.03}
         - name: boards
           items:
             - name: 1-board
@@ -231,29 +232,32 @@ menu:
             - {name: bocadillo, price: 9}
         - name: brunch
           items: 
-            - {name: frittata, price: 8}
+            - {name: frittata, price: 10}
+            - {name: cappuccino eggs, price: 6}
             - {name: bloomfield, price: 12}
-            - {name: egg in a hole, price: 7}
-            - {name: ham and cheese, price: 8}
-            - {name: bread pudding, price: 10}
-            - {name: french toast, price: 8}
-            - {name: potato hash, price: 5}
+            - {name: toads in a hole, price: 7}
+            - {name: waffle, price: 10}
+            - {name: french toast, price: 9}
+            - {name: ice cream, price: 4}
+            - {name: potato, price: 5}
             - {name: bacon, price: 4}
-            - {name: mini panini, price: 8}
+            - {name: italian ham, price: 5}
+            - {name: spanish sausage, price: 10}
+            - {name: panini, price: 8}
             - {name: burrata sandwich, price: 10}
             - {name: goat cheese panini, price: 8}
+            - {name: empanada, price: 8}
+            - {name: bocadillo, price: 9}
             - {name: anchovy, price: 6}
+            - {name: beet and blue, price: 11}
             - {name: burrata salad, price: 14}
             - {name: house salad, price: 7}
-            - {name: walnut pesto, price: 6}
-            - {name: spring salad, price: 12}
-            - {name: chicken liver pate, price: 7}
-            - {name: octopus, price: 12}
-            - {name: carrots, price: 12}
-            - {name: empanada, price: 8}
-            - {name: bocadillo, price: 8}
+            - {name: oveja fresca toast, price: 6}
+            - {name: walnut pesto, price: 7}
+            - {name: pros and daff, price: 8}
+            - {name: avocado and crab, price: 14}
+            - {name: smoked anchovies, price: 7}
             - {name: bread basket, price: 3}
-            - {name: bread, price: 3}
         - name: misc
           items: 
             - {name: special, price: 0}
@@ -293,9 +297,9 @@ menu:
             - {name: glass red sangria, price: 8}
             - {name: glass white sangria, price: 8}
             - {name: glass rose sangria, price: 8}
-            - {name: jar red sangria, price: 28}
-            - {name: jar white sangria, price: 28}
-            - {name: jar rose sangria, price: 28}
+            - {name: jar red sangria, price: 24}
+            - {name: jar white sangria, price: 24}
+            - {name: jar rose sangria, price: 24}
             - {name: liquor flight, price: 20}
             - {name: red flight, price: 16}
             - {name: white flight, price: 16}
@@ -394,39 +398,39 @@ menu:
             items:
             - {name: pop tart 4.00, price: 4}
             - {name: pop tart 4.50, price: 4.5}
-            - {name: croissant plain, price: 3}
-            - {name: biscuit plain, price: 3}
-            - {name: roll, price: 3}
-            - {name: add jam, price: .5}
-            - {name: add egg, price: .5}
-            - {name: add ham, price: .5}
-            - {name: add cheese, price: .5}
-            - {name: add cream, price: .5}
-            - {name: add bacon, price: .5}
-            - {name: cookie, price: .5}
-            - {name: 3 cookies, price: 1}
-            - {name: fruit cake, price: 4}
-            - {name: quiche, price: 5}
-            - {name: avocado toast, price: 5}
-            - {name: anchovy toast, price: 5}
-            - {name: yogurt, price: 5}
-            - {name: pastry basket, price: 12}
-            - {name: cappuccino eggs, price: 5}
-            - {name: french toast, price: 8}
-            - {name: waffle, price: 9}
-            - {name: caramel sauce, price: 0}
-            - {name: chocolate sauce, price: 0}
-            - {name: eggs up, price: 5}
-            - {name: eggs over, price: 5}
-            - {name: fritata, price: 6}
-            - {name: scramble, price: 6}
-            - {name: mushrooms, price: .75}
-            - {name: onion, price: .75}
-            - {name: arugula, price: .75}
-            - {name: ham, price: .75}
-            - {name: brussels, price: .75}
-            - {name: cauliflower, price: .75}
-            - {name: bacon, price: 3}
+            - {name: croissant plain-, price: 3}
+            - {name: biscuit plain-, price: 3}
+            - {name: roll-, price: 3}
+            - {name: add jam-, price: .5}
+            - {name: add egg-, price: .5}
+            - {name: add ham-, price: .5}
+            - {name: add cheese-, price: .5}
+            - {name: add cream-, price: .5}
+            - {name: add bacon-, price: .5}
+            - {name: cookie-, price: .5}
+            - {name: 3 cookies-, price: 1}
+            - {name: fruit cake-, price: 4}
+            - {name: quiche-, price: 5}
+            - {name: avocado toast-, price: 5}
+            - {name: anchovy toast-, price: 5}
+            - {name: yogurt-, price: 5}
+            - {name: pastry basket-, price: 12}
+            - {name: cappuccino eggs-, price: 5}
+            - {name: french toast-, price: 8}
+            - {name: waffle-, price: 9}
+            - {name: caramel sauce-, price: 0}
+            - {name: chocolate sauce-, price: 0}
+            - {name: eggs up-, price: 5}
+            - {name: eggs over-, price: 5}
+            - {name: fritata-, price: 9}
+            - {name: scramble-, price: 6}
+            - {name: mushrooms-, price: .75}
+            - {name: onion-, price: .75}
+            - {name: arugula-, price: .75}
+            - {name: ham-, price: .75}
+            - {name: brussels-, price: .75}
+            - {name: cauliflower-, price: .75}
+            - {name: bacon-, price: 3}
             - {name: truffle ham side, price: 4}
             - {name: morcilla, price: 5}
             - {name: crispy prosciutto, price: 4}
@@ -645,33 +649,35 @@ menu:
               upc: '', vendor_code: MC4268, wholesale: '5.99'}
             - {name: Catskill Provisions Raw Honey Jug, price: 58.5, supplier: Baldor, units_in_bulk: '',
               upc: '', vendor_code: HONEY1, wholesale: '35.00'}
-            - {name: SPREAD CHOCOLATE HAZELNUT NUTELLA, price: 10.0, supplier: GFI, units_in_bulk: '',
+            - {name: Nutella, price: 10.0, supplier: GFI, units_in_bulk: '',
               upc: 009800895250, vendor_code: '42201', wholesale: '5.89'}
-            - {name: HONEY TRUFFLE, price: 19.0, supplier: GFI, units_in_bulk: '', upc: '800063406531',
+            - {name: Truffle Honey, price: 19.0, supplier: GFI, units_in_bulk: '', upc: '800063406531',
               vendor_code: '40653', wholesale: '11.42'}
-            - {name: HONEY WILD LAVENDER, price: 5.5, supplier: GFI, units_in_bulk: '', upc: '825325156443',
+            - {name: Wild Lavender Honey, price: 5.5, supplier: GFI, units_in_bulk: '', upc: '825325156443',
               vendor_code: '15644', wholesale: '3.32'}
-            - {name: HONEY ORANGE BLOSSOM, price: 5.5, supplier: GFI, units_in_bulk: '', upc: '825325166442',
+            - {name: Orange Blossom Honey, price: 5.5, supplier: GFI, units_in_bulk: '', upc: '825325166442',
               vendor_code: '16644', wholesale: '3.21'}
-            - {name: HONEY TUPELO JAR, price: 4.5, supplier: GFI, units_in_bulk: '', upc: '858901000359',
+            - {name: Forest Honey, price: 7.00, supplier: Sansone, units_in_bulk: '', upc: '825325007547',
+              vendor_code: '85890', wholesale: '3.75'}
+            - {name: Tupelo Honey, price: 4.5, supplier: GFI, units_in_bulk: '', upc: '858901000359',
               vendor_code: '85890', wholesale: '2.79'}
-            - {name: FRUIT PASTE APRICOT, price: 5.0, supplier: GFI, units_in_bulk: '', upc: '872016001049',
+            - {name: Apricot Paste, price: 5.0, supplier: GFI, units_in_bulk: '', upc: '872016001049',
               vendor_code: '10495', wholesale: '3.00'}
-            - {name: FRUIT PASTE CHERRY, price: 5.0, supplier: GFI, units_in_bulk: '', upc: '872016002213',
+            - {name: Cherry Paste, price: 5.0, supplier: GFI, units_in_bulk: '', upc: '872016002213',
               vendor_code: '1253', wholesale: '3.00'}
-            - {name: JAM SPICED APRICOT ROSEMARY, price: 6.5, supplier: GFI, units_in_bulk: '',
+            - {name: Apricot Rosemary Jam, price: 6.5, supplier: GFI, units_in_bulk: '',
               upc: '895516001005', vendor_code: '600100', wholesale: '3.99'}
-            - {name: JAM SPICED PLUM TARRAGON, price: 6.5, supplier: GFI, units_in_bulk: '',
+            - {name: Plum Tarragon Jam, price: 6.5, supplier: GFI, units_in_bulk: '',
               upc: '895516001012', vendor_code: '600101', wholesale: '3.99'}
-            - {name: JAM SPICED CHERRY FENNEL, price: 6.5, supplier: GFI, units_in_bulk: '',
+            - {name: Cherry Fennel Jam, price: 6.5, supplier: GFI, units_in_bulk: '',
               upc: '895516001029', vendor_code: '600102', wholesale: '3.99'}
-            - {name: JAM SPICED BLUEBERRY LAVENDER, price: 6.5, supplier: GFI, units_in_bulk: '',
+            - {name: Bluberry Lavender Jam, price: 6.5, supplier: GFI, units_in_bulk: '',
               upc: '895516001036', vendor_code: '600103', wholesale: '3.99'}
-            - {name: JAM SPICED STRAWBERRY BASIL, price: 6.5, supplier: GFI, units_in_bulk: '',
+            - {name: Strawberry Basil Jam, price: 6.5, supplier: GFI, units_in_bulk: '',
               upc: '895516001043', vendor_code: '600104', wholesale: '3.99'}
-            - {name: JAM SPICED PEACH CORIANDER, price: 6.5, supplier: GFI, units_in_bulk: '',
+            - {name: Peach Coriander Jam, price: 6.5, supplier: GFI, units_in_bulk: '',
               upc: '895516001050', vendor_code: '600105', wholesale: '3.99'}
-            - {name: FRUIT PASTE POMEGRANATE, price: 5.0, supplier: GFI, units_in_bulk: '',
+            - {name: Pomegranate Paste, price: 5.0, supplier: GFI, units_in_bulk: '',
               upc: '9421000600051', vendor_code: '600058', wholesale: '3.00'}
             - {name: Biscoff Spread, price: 6.5, supplier:
               Nassau, units_in_bulk: '', upc: '021788506959',
@@ -684,7 +690,7 @@ menu:
               upc: '713109160123', vendor_code: '965017', wholesale: '5.29'}
             - {name: Nutella Bucket, price: 43.5, supplier: Sansone, units_in_bulk: '', upc: '8000500131329',
               vendor_code: '', wholesale: '26.00'}
-            - {name: FIG CHOCOLATE SQUARES, price: 9.0, supplier: Sansone, units_in_bulk: '',
+            - {name: Fig Chocolate Squares, price: 9.0, supplier: Sansone, units_in_bulk: '',
               upc: '8437001607594', vendor_code: '', wholesale: '5.33'}
             - {name: Vanilla Caramel, price: 9.0, supplier: Tahana, units_in_bulk: '6', upc: '766897592546',
               vendor_code: '', wholesale: '33'}
