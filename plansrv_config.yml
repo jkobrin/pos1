@@ -3,7 +3,7 @@ menu:
   categories:
     - name: tables
       subcategories:
-        - name: all
+        - name: floor
           items: 
             - name: 1
             - name: 2
@@ -18,6 +18,8 @@ menu:
             - name: 11
             - name: 12
             - name: 13
+        - name: bar
+          items: 
             - name: B1
             - name: B2
             - name: B3
@@ -31,6 +33,8 @@ menu:
             - name: B11
             - name: B12
             - name: B13
+        - name: other
+          items: 
             - name: O1
             - name: O2
             - name: O3
@@ -38,27 +42,15 @@ menu:
             - name: O5
             - name: O6
             - name: O7
+        - name: takeout
+          items: 
             - name: T1 
             - name: T2
             - name: T3
+            - name: T4
+            - name: T5
     - name: food
       subcategories:
-        - name: guests 
-          items: 
-            - {name: 1, price: 0}
-            - {name: 2, price: 0}
-            - {name: 3, price: 0}
-            - {name: 4, price: 0}
-            - {name: 5, price: 0}
-            - {name: 6, price: 0}
-            - {name: 7, price: 0}
-            - {name: 8, price: 0}
-            - {name: 9, price: 0}
-            - {name: 10, price: 0}
-            - {name: gluten, price: 0}
-            - {name: nut, price: 0}
-            - {name: shellfish, price: 0}
-            - {name: egg, price: 0}
         - name: dinner
           items: 
             - {name: warm olives, price: 5}
@@ -80,6 +72,10 @@ menu:
             - {name: duck, price: 16}
             - {name: beef chorizo, price: 10}
             - {name: lamb, price: 21}
+            - {name: panacotta, price: 7}
+            - {name: chocolate, price: 5}
+            - {name: apple crisp, price: 7}
+            - {name: special, price: 0}
             - {name: bread, price: 3}
         - name: boards
           items: 
@@ -123,108 +119,26 @@ menu:
               price: 5
             - name: to-go-on-board
               price: 0
-        - name: dessert_etc
+        - name: allergy
           items: 
-            - {name: panacotta, price: 7}
-            - {name: chocolate, price: 5}
-            - {name: apple crisp, price: 7}
-            - {name: gift5, price: 5}
-            - {name: gift10, price: 10}
-            - {name: gift15, price: 15}
-            - {name: gift20, price: 20}
-            - {name: gift25, price: 25}
-            - {name: gift30, price: 30}
-            - {name: gift35, price: 35}
-            - {name: gift40, price: 40}
-            - {name: gift45, price: 45}
-            - {name: gift50, price: 50}
-            - {name: gift55, price: 55}
-            - {name: gift60, price: 60}
-            - {name: gift65, price: 65}
-            - {name: gift70, price: 70}
-            - {name: gift75, price: 75}
-            - {name: gift80, price: 80}
-            - {name: gift85, price: 85}
-            - {name: gift90, price: 90}
-            - {name: gift95, price: 95}
-            - {name: gift100, price: 100}
-            - {name: gift105, price: 105}
-            - {name: gift110, price: 110}
-            - {name: gift115, price: 115}
-            - {name: gift120, price: 120}
-            - {name: gift125, price: 125}
-            - {name: gift130, price: 130}
-            - {name: gift135, price: 135}
-            - {name: gift140, price: 140}
-            - {name: gift145, price: 145}
-            - {name: gift150, price: 150}
-            - {name: gift155, price: 155}
-            - {name: gift160, price: 160}
-            - {name: gift165, price: 165}
-            - {name: gift170, price: 170}
-            - {name: gift175, price: 175}
-            - {name: gift180, price: 180}
-            - {name: gift185, price: 185}
-            - {name: gift190, price: 190}
-            - {name: gift195, price: 195}
-            - {name: gift200, price: 200}
-            - {name: gift205, price: 205}
-            - {name: gift210, price: 210}
-            - {name: gift215, price: 215}
-            - {name: gift220, price: 220}
-            - {name: gift225, price: 225}
-            - {name: gift230, price: 230}
-            - {name: gift235, price: 235}
-            - {name: gift240, price: 240}
-            - {name: gift245, price: 245}
-            - {name: gift250, price: 250}
-        - name: specials
+            - {name: gluten, price: 0}
+            - {name: nut, price: 0}
+            - {name: shellfish, price: 0}
+            - {name: egg, price: 0}
+        - name: misc
           items: 
-            - {name: discount, price: -1}
-            - {name: extras, price: 1}
+            - {name: special event, price: 120}
+            - {name: gift, price: 50}
             - {name: gratuity18, price: 18}
             - {name: gratuity20, price: 20}
-            - {name: gratuity special price, price: 0}
-            - {name: special price, price: 0}
+            - {name: gratuity special, price: 0}
+            - {name: tax-free special, price: 0}
             - {name: corkage fee, price: 10}
-            - {name: corkage, price: 10}
-            - {name: special3, price: 3}
-            - {name: special4, price: 4}
-            - {name: special5, price: 5}
-            - {name: special6, price: 6}
-            - {name: special7, price: 7}
-            - {name: special8, price: 8}
-            - {name: special9, price: 9}
-            - {name: special10, price: 10}
-            - {name: special11, price: 11}
-            - {name: special12, price: 12}
-            - {name: special13, price: 13}
-            - {name: special14, price: 14}
-            - {name: special15, price: 15}
-            - {name: special16, price: 16}
-            - {name: special17, price: 17}
-            - {name: special18, price: 18}
-            - {name: special19, price: 19}
-            - {name: special20, price: 20}
-            - {name: special21, price: 21}
-            - {name: special22, price: 22}
-            - {name: special23, price: 23}
-            - {name: special24, price: 24}
-            - {name: special25, price: 25}
-            - {name: special26, price: 26}
-            - {name: special27, price: 27}
-            - {name: special28, price: 28}
-            - {name: special29, price: 29}
-            - {name: special30, price: 30}
-            - {name: special31, price: 31}
-            - {name: special32, price: 32}
-            - {name: special50, price: 50}
-            - {name: special55, price: 55}
         - name: lunch
           items: 
-            - {name: american burger, price: 14}
-            - {name: spanish burger, price: 13}
-            - {name: italian burger, price: 13}
+            - {name: american burger, price: 15}
+            - {name: spanish burger, price: 14}
+            - {name: italian burger, price: 14}
             #- {name: lunch special, price: 9}
             #- {name: special tomato soup, price: 0}
 
@@ -258,16 +172,6 @@ menu:
             - {name: scallops, price: 14}
             - {name: cebada, price: 7}
             - {name: bread, price: 3}
-
-        - name: market 
-          items: 
-            - {name: market fig, price: 6}
-            - {name: market coffe, price: 14}
-            - {name: market balsamic, price: 20}
-            - {name: market hazelnuts, price: 10}
-            - {name: market caperberries, price: 6}
-            - {name: market anchovy, price: 3}
-            - {name: market special price, price: 0}
         - name: brunch 
           items: 
             - {name: bloomfield, price: 12}
@@ -370,3 +274,14 @@ menu:
             - {name: white sangrea, price: 8}
             - {name: wine flight, price: 16}
             - {name: wine spritz, price: 10}
+    - name: market
+      subcategories:
+        - name: market 
+          items: 
+            - {name: market fig, price: 6}
+            - {name: market coffe, price: 14}
+            - {name: market balsamic, price: 20}
+            - {name: market hazelnuts, price: 10}
+            - {name: market caperberries, price: 6}
+            - {name: market anchovy, price: 3}
+            - {name: market special price, price: 0}
