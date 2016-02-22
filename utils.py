@@ -7,7 +7,8 @@ import socket
 from mylog import my_logger
 
 def hostname():
-  if passed_options().has_key('VHOST'):
+  po = passed_options()
+  if po and po.has_key('VHOST'):
     return passed_options()['VHOST']
   else:  
     return socket.gethostname()
