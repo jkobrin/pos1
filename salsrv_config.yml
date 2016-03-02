@@ -80,20 +80,6 @@ menu:
             - name: B17
     - name: food
       subcategories:
-        - name: new year
-          items: 
-            - {name: crab toast-, price: 14}
-            - {name: salmon ceviche- , price: 12}
-            - {name: burrata-, price: 14}
-            - {name: beets- , price: 10}
-            - {name: pate- , price: 12}
-            - {name: shrimp- , price: 13}
-            - {name: panisse- , price: 8}
-            - {name: parsnip soup- , price: 8}
-            - {name: meatballs- , price: 9}
-            - {name: empanada- , price: 12}
-            - {name: gnocchi- , price: 12}
-            - {name: pork cheeks- , price: 12}
         - name: dinner
           items: 
             - {name: warm olives, price: 5}
@@ -106,7 +92,7 @@ menu:
             - {name: beet and bleu, price: 11}
             - {name: sweet roots, price: 8}
             - {name: burrata, price: 14}
-            #- {name: mussels, price: 7}
+            - {name: caesar, price: 9}
             #- {name: meatballs, price: 5}
             - {name: sprouts, price: 9}
             - {name: cauliflower, price: 8}
@@ -115,7 +101,8 @@ menu:
             - {name: empanada, price: 8}
             - {name: shrimp, price: 12}
             - {name: bocadillo, price: 9}
-            - {name: chicken paprikash , price: 9}
+            - {name: chicken paprikash, price: 9}
+            - {name: morcilla, price: 12}
             - {name: octopus, price: 12}
             #- {name: artichokes, price: 10}
             #- {name: carney corn, price: 7}
@@ -392,6 +379,9 @@ menu:
             - {name: latte-, price: 5}
             - {name: madrileno, price: 4}
             - {name: affogato-, price: 6}
+            - {name: cup 4, price: 4}
+            - {name: cup 5, price: 5}
+            - {name: cup 6, price: 6}
             - {name: orange juice sm, price: 3.5}
             - {name: orange juice lg, price: 6.0}
           - name: food
@@ -437,24 +427,39 @@ menu:
             - {name: smashed potato, price: 4}
             - {name: brussels, price: 4}
             - {name: ice cream, price: 2.5}
-            - {name: ' ', price: }
-            - {name: ' ', price: }
-            - {name: ' ', price: }
-            - {name: ' ', price: }
-            - {name: ' ', price: }
-            - {name: ' ', price: }
-            - {name: BREAD, ETC, price: 0}
             - {name: baguette, price: 2.5}
             - {name: epi baguette, price: 2.5}
             - {name: round bread, price: 4}
             - {name: quince paste, price: 4}
-            - {name: olives, price: 6.5}
+            - {name: olives mixed, price: 6.5}
+            - {name: olives castel, price: 4}
             - {name: gft bag 25, price: 25}
             - {name: gft bag 35, price: 35}
             - {name: gft bag 45, price: 45}
             - {name: gft bag 65, price: 65}
             - {name: $, price: 1, supplier: , units_in_bulk: '',
               upc: '', vendor_code: '', wholesale: '1', scale_units: ' '}
+          - name: lunch 
+            items:
+            - {name: napoli, price: 8}
+            - {name: murcia, price: 8}
+            - {name: gruere, price: 7}
+            - {name: zagreb, price: 10}
+            - {name: burgos, price: 12}
+            - {name: gangnam, price: 10}
+            - {name: amalfi, price: 11}
+            - {name: barcelona, price: 10}
+            - {name: bologna, price: 7}
+            - {name: roma, price: 9}
+            - {name: tyrol, price: 10}
+            - {name: madrid, price: 9}
+            - {name: milano, price: 10}
+            - {name: paris, price: 9}
+            - {name: san francisco, price: 9}
+            - {name: cobb, price: 13}
+            - {name: antipasto, price: 14}
+            - {name: house, price: 11}
+            - {name: grain salad, price: 12}
           - name: cheese
             items:
             - {name: 1/4 lb Gouda, price: 5.50, supplier: GFI,
@@ -933,6 +938,10 @@ menu:
               units_in_bulk: '', upc: '755576014554', vendor_code: '', wholesale: '3.59'}
             - {name: 10 in. High Temperature Silicone Spatula (922RSC10), price: 5.0, supplier: Webstaurant,
               units_in_bulk: '', upc: '755576017074', vendor_code: '', wholesale: '2.19'}
+            - {name: Coarse Grater, price: 20, supplier: Microplane, units_in_bulk: '', upc: '098399450117', vendor_code: '', wholesale: ''}
+            - {name: Zester, price: 13, supplier: Microplane, units_in_bulk: '', upc: '098399461205', vendor_code: '', wholesale: ''}
+            - {name: Rotary Grater, price: 18, supplier:
+              Microplane, units_in_bulk: '', upc: '098399393049', vendor_code: '', wholesale: ''}
           - name: oil
             items:
             - {name: Terra Medi Organic EVOO 17oz, price: 17.5, supplier: Nassau, units_in_bulk: '',
@@ -1323,3 +1332,13 @@ menu:
               wholesale: '10.00'}
             - {name: Sultanas, price: 4.0, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
               wholesale: '3.70'}
+          - name: L.A.M.E. 
+            items:
+            - {name: Grilled Chesse, price: 5}
+            - {name: Pizza Panini, price: 7}
+            - {name: PB&J, price: 5}
+            - {name: Ham and Cheese Toast-, price: 5}
+            - {name: Smores toast, price: 8}
+            - {name: fondue, price: 7}
+            - {name: galettas, price: 5}
+            - {name: pound cake, price: 6}
