@@ -13,11 +13,9 @@ def index(req, the_tip, lag_days):
     select si.*
     from 
       served_item si
-    where DATE(si.created- INTERVAL '4' HOUR) =  DATE(NOW()) - INTERVAL '%(lag_days)s' DAY 
+    where table_id != 'MKT' and DATE(si.created- INTERVAL '4' HOUR) =  DATE(NOW()) - INTERVAL '%(lag_days)s' DAY 
     '''
   )
-  if utils.hostname() == 'salsrv': 
-    last_night_items_query += '''and (time(si.created) > '16:00:00' or time(si.created) < '04:00:00') '''
 
   utils.execute(
     last_night_items_query %locals()
