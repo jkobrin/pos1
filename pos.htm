@@ -476,7 +476,7 @@
 
     function refresh_screen()
     {
-      add_item_box.innerHTML = "";
+      add_item_box.innerHTML = g_keyentry;
       update_order_pane(g_currentTable);
       colorTables();
       if(cook_screen.style.display == "inline") 
@@ -735,10 +735,7 @@
         menu_item_id: cfg_item.id
       });
 
-      if (category_is_market())
-      {
-        add_item_box.innerHTML = cfg_item.upc + ' ' + cfg_item.name + ' $' + price
-      }
+      add_item_box.innerHTML += " : " + cfg_item.name + ' $' + price
     } 
 
     function remove_from_order(remove_item) 
@@ -1202,10 +1199,12 @@
         if(key.match(/[0-9]/))
         {
           g_keyentry += key;
+          add_item_box.innerHTML = g_keyentry;
         }  
         else
         {
           g_keyentry = "";
+          add_item_box.innerHTML = "";
         }
       }
     }
@@ -1237,7 +1236,7 @@
 
 <body onLoad="init()" id='main'>
 
-  <div id="add_item_box"></div>
+  <div id="add_item_box" ></div>
 
 
   <div id="main_screen">

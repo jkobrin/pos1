@@ -1317,3 +1317,5 @@ menu:
               wholesale: '10.00'}
             - {name: Sultanas, price: 4.0, supplier: '', units_in_bulk: '', upc: '', vendor_code: '',
               wholesale: '3.70'}
+            - {name: Keyboard, price: 4.0, supplier: '', units_in_bulk: '', upc: 718103184984, vendor_code: '',
+              wholesale: '3.70'}
