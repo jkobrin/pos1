@@ -59,19 +59,19 @@ menu:
             - {name: caesar , price: 9}
             - {name: burrata , price: 14}
             - {name: patatas bravas, price: 6}
-            - {name: sprouts, price: 8}
+            - {name: sprouts, price: 10}
             - {name: peppers, price: 9}
             - {name: scallops, price: 14}
             - {name: foie gras, price: 16}
             - {name: panini , price: 9}
             - {name: marrow bones, price: 8}
             - {name: pulpo, price: 14}
-            - {name: bocadillo, price: 8}
+            - {name: bocadillo, price: 9}
             - {name: cebada, price: 10}
             - {name: celery root soup, price: 8}
             - {name: duck, price: 16}
             - {name: beef chorizo, price: 10}
-            - {name: lamb, price: 21}
+            - {name: steak, price: 21}
             - {name: panacotta, price: 7}
             - {name: chocolate, price: 5}
             - {name: apple crisp, price: 7}
@@ -79,31 +79,32 @@ menu:
             - {name: bread, price: 3}
         - name: boards
           items: 
+            - {name: taste of spain, price: 12}
             - name: 1-board
               price: 7
             - name: 3-board
-              price: 16
+              price: 18
             - name: 5-board
-              price: 23
+              price: 28
             - name: 6-board
-              price: 27
+              price: 32
             - name: italian board
-              price: 27
+              price: 32
             - name: spanish board
-              price: 27
+              price: 32
             - name: mixed cheese board
-              price: 27
+              price: 32
             - {name: manchego , price: 0}
             - {name: cana de cabra, price: 0}
             - {name: campo de montalban, price: 0}
-            - {name: tallegio, price: 0}
+            - {name: rustico, price: 0}
             - {name: piave, price: 0}
             - {name: pecorino tartufo, price: 0}
             - {name: daffinois, price: 0}
-            - {name: garrotxa, price: 0}
+            - {name: sao jorge, price: 0}
             - {name: blue cheese, price: 0}
             #- {name: gruyere, price: 0}
-            - {name: surchoix, price: 0}
+            - {name: queso sudado, price: 0}
             - {name: gouda, price: 0}
             #- {name: capri, price: 0}
             - {name: seranno ham, price: 0}
@@ -121,10 +122,11 @@ menu:
               price: 0
         - name: allergy
           items: 
-            - {name: gluten, price: 0}
-            - {name: nut, price: 0}
-            - {name: shellfish, price: 0}
-            - {name: egg, price: 0}
+            - {name: gluten allergy, price: 0}
+            - {name: nut allergy, price: 0}
+            - {name: shellfish allergy, price: 0}
+            - {name: egg allergy, price: 0}
+            - {name: special allergy, price: 0}
         - name: misc
           items: 
             - {name: special event, price: 120}
@@ -153,12 +155,13 @@ menu:
             #- {name: half goat mush san, price: 0}
 
             - {name: prosciutto san, price: 10}
+            - {name: chorizo san, price: 12}
             - {name: spanish ham and cheese, price: 9}
             - {name: eggplant, price: 7}
-            - {name: bocadillo, price: 8}
+            - {name: bocadillo, price: 9}
 
-            - {name: taleggio panini, price: 10}
-            - {name: soppresatta panini, price: 7}
+            - {name: daffinois panini, price: 10}
+            - {name: soppresatta panini, price: 9}
             - {name: copa cubano, price: 11}
             - {name: goat mush san, price: 8}
             - {name: beet and bleu, price: 9}
@@ -179,7 +182,7 @@ menu:
             - {name: frittata verde, price: 9}
             - {name: french toast, price: 8}
             - {name: bacon, price: 5}
-            - {name: taleggio panini, price: 10}
+            - {name: daffinois panini, price: 10}
             - {name: sopressata panini, price: 9}
             - {name: copa cubano, price: 11}
             - {name: goat cheese panini, price: 8}
@@ -190,7 +193,7 @@ menu:
             - {name: patatas bravas, price: 6}
             - {name: ham cheese toast, price: 8}
             - {name: cebada, price: 7}
-            - {name: bocadillo, price: 8}
+            - {name: bocadillo, price: 9}
             - {name: bread, price: 3}
             - {name: coffee, price: 4}
             - {name: decaf, price: 4}
