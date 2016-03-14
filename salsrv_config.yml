@@ -85,14 +85,14 @@ menu:
             - {name: warm olives, price: 5}
             - {name: marcona almonds, price: 5}
             - {name: walnut pesto, price: 6}
-            - {name: pate, price: 7}
+            #- {name: pate, price: 7}
+            - {name: caesar, price: 9}
+            - {name: beet and bleu, price: 11}
             - {name: avocado toast, price: 14}
             #- {name: anchovy, price: 6}
             #- {name: summer salad, price: 9}
-            - {name: beet and bleu, price: 11}
             - {name: sweet roots, price: 8}
             - {name: burrata, price: 14}
-            - {name: caesar, price: 9}
             #- {name: meatballs, price: 5}
             - {name: sprouts, price: 9}
             - {name: cauliflower, price: 8}
@@ -134,30 +134,32 @@ menu:
             - {name: panacotta, price: 7}
             - {name: chocolate, price: 7}
             - {name: pound cake, price: 7}
-            - {name: tres leches, price: 3}
-            - {name: gluten, price: 0}
-            - {name: nut, price: 0}
-            - {name: shellfish, price: 0}
-            - {name: egg, price: 0}
+            - {name: tres leches, price: 5}
+            - {name: affogato, price: 7}
+            - {name: gluten allergy, price: 0}
+            - {name: nut allergy, price: 0}
+            - {name: shellfish allergy, price: 0}
+            - {name: egg allergy, price: 0}
             - {name: food special, price: 0}
             #- {name: NYE Party 75, price: 69.045}
             #- {name: NYE Party 50, price: 46.03}
         - name: boards
           items:
+            - {name: taste of spain, price: 12}
             - name: 1-board
               price: 7
             - name: 3-board
-              price: 16
+              price: 18
             - name: 5-board
-              price: 23
+              price: 28
             - name: 6-board
-              price: 27
+              price: 32 
             - name: italian board
-              price: 27
+              price: 32
             - name: spanish board
-              price: 27
+              price: 32
             - name: market cheese board
-              price: 27
+              price: 32 
             - name: add-on
               price: 5
             - {name: extra fig, price: 2}
