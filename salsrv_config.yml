@@ -89,11 +89,13 @@ menu:
             - {name: caesar, price: 9}
             - {name: beet and bleu, price: 11}
             - {name: avocado toast, price: 14}
+            - {name: watermelon radish, price: 8}
             #- {name: anchovy, price: 6}
             #- {name: summer salad, price: 9}
             - {name: sweet roots, price: 8}
             - {name: burrata, price: 14}
             #- {name: meatballs, price: 5}
+            - {name: sunchokes, price: 9}
             - {name: sprouts, price: 9}
             - {name: cauliflower, price: 8}
             - {name: taleggio bake, price: 9}
@@ -101,6 +103,7 @@ menu:
             - {name: empanada, price: 8}
             - {name: shrimp, price: 12}
             - {name: bocadillo, price: 9}
+            - {name: tomatillo chicken, price: 9}
             - {name: chicken paprikash, price: 9}
             - {name: morcilla, price: 12}
             - {name: octopus, price: 12}
@@ -126,6 +129,7 @@ menu:
             #- {name: french onion, price: 7}
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
+            - {name: lamb shank, price: 28}
             - {name: oxtail, price: 14}
             #- {name: laksa, price: 21}
             #- {name: lamb, price: 22}
