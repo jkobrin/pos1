@@ -19,6 +19,7 @@
     .bev_item {color: blue;}
     .bev_head {color: #ddddff;}
     .board_item {color: maroon;}
+    .allergy_item {color: red; text-decoration: underline}
 
     .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
     .cancelled_item { opacity: 0.3; text-align: right; color: white; background-color:  maroon; transform: scale(.8) skewx(45deg) skewy(2deg); }
@@ -917,6 +918,7 @@
         config_item = get_config_item(item.item_name);
         if (config_item && config_item.cat == 'bev') {classes += ' bev_item'}
         if (config_item && config_item.subcat == 'boards') {classes += ' board_item'}
+        if (config_item && config_item.subcat == 'allergy') {classes += ' allergy_item'}
         if (item.is_comped) {classes += ' comped_item'}
         if (item.is_held) {classes += ' held_item'}
         if (item.is_delivered) {classes += ' delivered_item'}

@@ -184,6 +184,23 @@
                   });
                 }
             });
+            $('#printinventorybutton').click(function () {
+                  $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "print_wine_inventory.py",
+                    data: {},
+                    cache: false,
+                    success: function (data, status, xhr) {
+                        // update command is executed.
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
+			                  errWindow = window.open("","MsgWindow","width=200,height=100");
+                        errWindow.document.write("<p>"+textStatus + ":::" + errorThrown + "</p>" + jqXHR.responseText);
+                    }
+                  });
+            });
             //$('#events').jqxPanel({ width: 300, height: 80, theme: theme });
             //(rowid + " " + rowdata.name + " " + args.datafield+ " " + args.oldvalue + "-->" + args.value);
 
@@ -220,7 +237,8 @@
 </head>
 <body class='default'>
     <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left;">
-        <center><input value="submit changes" id="submiteditsbutton" type="button" style='margin:20px' /></center>
+        <center><input value="submit changes" id="submiteditsbutton" type="button" style='margin:20px' />
+        <input value="print inventory" id="printinventorybutton" type="button" style='margin:20px' /></center>
         <div id="jqxgrid">
         </div>
     </div>
