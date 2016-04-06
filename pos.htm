@@ -22,6 +22,7 @@
 
     .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
     .cancelled_item { opacity: 0.3; text-align: right; color: white; background-color:  maroon; transform: scale(.8) skewx(45deg) skewy(2deg); }
+    .child_item {text-align: right; font-size: 20pt;opacity: 0.8}
     
     .menu_button 
     {
@@ -404,6 +405,7 @@
           is_held: false, 
           is_comped: command.is_comped, 
           price: command.price, 
+          parent_item: command.parent_item,
           minutes_old: 0, minutes_since_mod: null, seconds_since_mod: null}
         )  
       }
@@ -527,8 +529,22 @@
     {
       g_currentTable = table_id;
       refresh_screen();
-      //window.scroll(0,0); 
+      set_current_parent();
     }
+
+    g_current_parent = null;
+    function set_current_parent()
+    {
+      for(var idx = g_order_pane_items.length - 1; idx >= 0; --idx)
+      {
+        var item = g_order_pane_items[idx];
+        if(item.is_cancelled == false && item.table_id == g_currentTable && item.parent_item == null){ 
+          g_current_parent = item.id;
+          return;
+        }
+      }
+    }  
+
 
     function toggle_vis(node)
     {
@@ -654,6 +670,7 @@
       return (tab && (tab.subcat == 'staff' || tab.subcat=='staff_tabs'))
     }
 
+    var last_item_added = null;
     function add_to_order(item_key, table_id)
     {
       if (!(item_key && table_id)) {return}
@@ -706,10 +723,20 @@
 
       if(cfg_item.name.indexOf('special') != -1)
       {
-        price = prompt('Enter price:', price);
-        if (price == null) return;
-        item_name = prompt('Enter name:', item_name + price);
-        if (item_name == null) return;
+        if(cfg_item.add_on_price != null)
+        {
+          var special_add_price = prompt('Enter price:', cfg_item.add_on_price);
+          if (special_add_price == null) return;
+          cfg_item.add_on_price = special_add_price;
+          item_name = prompt('Enter note:');
+          if (item_name == null) return;
+        }  
+        else {
+          price = prompt('Enter price:', price);
+          if (price == null) return;
+          item_name = prompt('Enter name:', item_name + price);
+          if (item_name == null) return;
+        }
         if(cfg_item.name.indexOf('tax-free') != -1) { taxable = false;}
       }
 
@@ -723,24 +750,38 @@
       var comped = false;
       if (cfg_item.name.indexOf('gratuity') != -1) {comped = true}
 
+      var new_item_id = get_new_item_id();
+      if (cfg_item.add_on_price != null) {
+        var parent_item = g_current_parent;
+        price = cfg_item.add_on_price;
+      }else{
+        var parent_item = null;
+        g_current_parent = new_item_id;
+      }
+
       new_crud_command ({
         command: 'add_item',
-        item_id: get_new_item_id(),
+        item_id: new_item_id,
         item_name: item_name,
         table_id: table_id, 
         is_delivered: delivered,
         taxable: taxable, 
         is_comped: comped,
         price: price,
+        parent_item: parent_item,
         menu_item_id: cfg_item.id
       });
 
       add_item_box.innerHTML += " : " + cfg_item.name + ' $' + price
     } 
 
-    function remove_from_order(remove_item) 
+    function remove_from_order(item_id) 
     {
-      new_crud_command({command: "cancel_item", item_id: remove_item});
+      get_item_and_child_items(item_id).forEach(function(item)
+      {
+        new_crud_command({command: "cancel_item", item_id: item.id});
+      })
+      if(item_id == g_current_parent) {set_current_parent()}
     }
 
     function cookscreen_table_click(table_id)
@@ -755,7 +796,7 @@
       if (item.is_cancelled) {return;}
       if (!item.is_delivered)
       {
-        toggle_held(item.id);
+        toggle_status(item.id, 'is_held');
       }
     }
 
@@ -766,30 +807,21 @@
 
       if (item.is_held)
       {
-        toggle_held(item.id);
+        toggle_status(item.id, 'is_held');
       }
       else
       {
-        toggle_delivered(item.id);
+        toggle_status(item.id, 'is_delivered');
       }  
     }
 
-    function toggle_delivered(item_id)
+    function toggle_status(item_id, status_field)
     {
-      var item = get_order_pane_item(item_id);
-      new_crud_command({command: "set_status", item_id: item_id, field: 'is_delivered', value: !item.is_delivered});
-    }
-
-    function toggle_held(item_id)
-    {
-      var item = get_order_pane_item(item_id);
-      new_crud_command({command: "set_status", item_id: item_id, field: 'is_held', value: !item.is_held});
-    }
-
-    function mark_comped()
-    {
-      var item = get_order_pane_item(popup.item_id);
-      new_crud_command({command: "set_status", item_id: popup.item_id, field: 'is_comped', value: !item.is_comped});
+      var new_status = !get_order_pane_item(item_id)[status_field];
+      get_item_and_child_items(item_id).forEach(function(item)
+      {
+        new_crud_command({command: "set_status", item_id: item.id, field: status_field, value: new_status});
+      })
     }
 
     function pin_is_good(pin)
@@ -825,6 +857,46 @@
       return uniq_order_items_list;
     }  
 
+    function get_child_items(item_id)
+    {
+      child_items = [];
+      for (var idx in g_order_pane_items)
+      {
+        var item = g_order_pane_items[idx];
+        if (item.parent_item == item_id)
+        {
+          child_items.push(item);
+        }
+      }  
+      return child_items;
+    }  
+
+    function get_item_and_child_items(item_id)
+    {
+      items = [];
+      for (var idx in g_order_pane_items)
+      {
+        var item = g_order_pane_items[idx];
+        if (item.id == item_id || item.parent_item == item_id)
+        {
+          items.push(item);
+        }
+      }  
+      return items;
+    }  
+
+    function get_add_on_string_for(item_id)
+    {
+      add_on_string = "";
+      child_items = get_child_items(item_id);
+      for (var idx in child_items)
+      {
+        var style_class = child_items[idx].is_cancelled ? 'cancelled_item' : null;
+        add_on_string += "<a class="+style_class+">, " + child_items[idx].item_name + "</a>";
+      }  
+      return add_on_string;
+    }
+
     function refresh_cook_screen()
     {
       var order_items_html = "";
@@ -835,10 +907,12 @@
         var item = items[idx];
         var classes = "order_item";
 
-        //if (item.is_delivered) {console.log(item.item_name + ' ' + item.seconds_since_mod)}
         if (item.is_delivered && (item.seconds_since_mod == null || item.seconds_since_mod > 15) || 
-            item.table_id == 'MKT' && !g_market_style) 
-            {continue}
+            item.table_id == 'MKT' && !g_market_style ||
+            item.parent_item != null) 
+        {
+          continue;
+        }
 
         config_item = get_config_item(item.item_name);
         if (config_item && config_item.cat == 'bev') {classes += ' bev_item'}
@@ -855,7 +929,8 @@
         '</td>';
         order_items_html += 
         '<td onclick="cookscreen_click(' + item.id + ')">' +
-         (g_cook_style && item.count > 1 ? item.count + 'X ': '') +  item.item_name +
+         (g_cook_style && item.count > 1 ? item.count + 'X ': '') +  
+         item.item_name + get_add_on_string_for(item.id) +
         '</td>';
         var time_display = (
           item.minutes_since_mod == null?
@@ -998,6 +1073,7 @@
         else if (!item.is_delivered) {classes += ' nondelivered_item'}
         if (item.is_comped) { classes += ' comped_item'}
         if (item.is_cancelled) { classes += ' cancelled_item'}
+        if (item.parent_item != null) {classes += ' child_item'}
 
         order_items_html += '<input' +
           ' class="'+ classes + '"' +
@@ -1024,6 +1100,7 @@
       popup.item_id = item_id;
       var item = get_order_pane_item(item_id);
       if (item.is_cancelled) { return;}
+      g_current_parent = item.parent_item || item_id;
       popup.table_id = item.table_id;
       menu_popup_caption = document.getElementById("orderitem_popup_caption");
       menu_popup_caption.innerHTML = "table: "+item.table_id + " - " + item.item_name;
@@ -1372,12 +1449,12 @@
     <div class="diabuttons">
       <div style="float: right; width: 50%">
         <input type="button" value="plus 1" onclick="plus_one()"> 
-        <input type="button" value="delivered" onclick="toggle_delivered(popup.item_id)"> 
+        <input type="button" value="delivered" onclick="toggle_status(popup.item_id, 'is_delivered')"> 
         <input type="button" value="do nothing"> 
       </div>
       <div style="float: left; width: 50%">
-        <input id="holdgo" type="button" value="hold" onclick="toggle_held(popup.item_id)"> 
-        <input type="button" value="comped" onclick="mark_comped()"> 
+        <input id="holdgo" type="button" value="hold" onclick="toggle_status(popup.item_id, 'is_held')"> 
+        <input type="button" value="comped" onclick="toggle_status(popup.item_id, 'is_comped')"> 
         <input type="button" value="cancel" onclick="cancel_item()"> 
       </div>
     </div>

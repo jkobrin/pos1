@@ -104,7 +104,11 @@
 #
 #ALTER TABLE client_session AUTO_INCREMENT = 2500;
 
-alter table order_item add column taxable boolean not null;
+#alter table order_item add column taxable boolean not null;
+
+alter table order_item add column category varchar(64);
+alter table order_item add column subcategory varchar(64);
+alter table order_item add column parent_item INT;
 
 create or replace view revenue_item as select oi.* from order_item oi, order_group og 
 where oi.order_group_id = og.id

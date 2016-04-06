@@ -120,12 +120,14 @@ def get_active_items(incursor=None):
       TIMESTAMPDIFF(MINUTE, oi.created, now()) minutes_old,
       TIMESTAMPDIFF(MINUTE, oi.updated, now()) minutes_since_mod,
       TIMESTAMPDIFF(SECOND, oi.updated, now()) seconds_since_mod,
-      is_cancelled
-    FROM order_group og, order_item oi 
-    where og.id = oi.order_group_id
-    and og.is_open = TRUE
+      oi.is_cancelled,
+      oi.parent_item
+    FROM order_group og join order_item oi 
+      on og.id = oi.order_group_id left outer join order_item oip 
+      on oi.parent_item = oip.id
+    where og.is_open = TRUE
     and (oi.is_cancelled = FALSE or TIMESTAMPDIFF(MINUTE, oi.updated, now()) < 1)
-    order by oi.is_held, oi.created, oi.id'''
+    order by oi.is_held, coalesce(oip.created, oi.created), oi.id'''
     , incursor)
 
 

@@ -36,7 +36,8 @@ def add_item(item_id=None,
             taxable=True, 
             is_delivered=False, 
             is_comped=False, 
-            is_held=False, 
+            is_held=False,
+            parent_item=None,
             incursor=None, **unused):
     
     assert item_id != None, 'item id must not be null' + ' ' + str(locals())
@@ -46,6 +47,7 @@ def add_item(item_id=None,
     assert len(table_id) <= 64, "table_id must be 64 or fewer chars" + str(locals())
     assert item_name is not None, 'item _name required' + str(locals())
     assert price is not None, 'price required' + str(locals())
+
 
     conn = MySQLdb.connect (host = "localhost",
                           user = "pos",
@@ -58,21 +60,21 @@ def add_item(item_id=None,
       cursor.execute('''
         SELECT id FROM order_group 
         WHERE is_open = TRUE
-        AND table_id = "%s"''' % table_id
+        AND table_id = %s''', table_id
       )
       open_order_group = cursor.fetchone()
       if open_order_group:
         break
       else:
-        cursor.execute('''
-          INSERT INTO order_group VALUES (null, "%(table_id)s", TRUE, null, null, null)
-          '''%locals())
-
+        cursor.execute('''INSERT INTO order_group VALUES (null, %s, TRUE, null, null, null)''', table_id)
     open_order_group = open_order_group[0];
+
     cursor.execute('''
-      INSERT INTO order_item (id, order_group_id, item_name, price, menu_item_id, taxable, is_delivered, is_comped, is_held) VALUES
-      ( %(item_id)d, %(open_order_group)d, "%(item_name)s", "%(price)s", "%(menu_item_id)s", %(taxable)s, %(is_delivered)s, %(is_comped)s, %(is_held)s)
-      ''' % locals())
+      INSERT INTO order_item (
+        id, order_group_id, item_name, price, menu_item_id, taxable, is_delivered, is_comped, is_held, parent_item
+      ) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
+      (item_id, open_order_group, item_name, price, menu_item_id, taxable, is_delivered, is_comped, is_held, parent_item)
+    )
 
     cursor.close()
     conn.close()
@@ -90,12 +92,12 @@ def cancel_item(item_id, incursor=None, **unused):
     utils.execute('''
       UPDATE order_group og
       set og.is_open = False, updated = now(), closedby = null
-      where id = (select order_group_id from order_item oi where oi.id = %(item_id)s)
+      where id = (select order_group_id from order_item oi where oi.id = %s)
       and NOT EXISTS (
         select 1 from order_item oi 
         where order_group_id = og.id
         and oi.is_cancelled = False );
-    ''' % locals())
+    '''% item_id)
 
 def set_status(item_id, field, value, **unused):
 
