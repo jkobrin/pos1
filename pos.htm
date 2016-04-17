@@ -448,6 +448,8 @@
     }
 
     function ajax_error(jqXHR, textStatus, errorThrown) {
+       if(!errorThrown) {return}
+
        document.write(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
     }
 

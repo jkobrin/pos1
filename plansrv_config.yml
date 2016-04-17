@@ -42,6 +42,8 @@ menu:
             - name: O5
             - name: O6
             - name: O7
+            - name: TEST1
+            - name: TEST2
         - name: takeout
           items: 
             - name: T1 
@@ -59,15 +61,15 @@ menu:
             - {name: caesar , price: 9}
             - {name: burrata , price: 14}
             - {name: patatas bravas, price: 6}
-            - {name: sprouts, price: 10}
+            - {name: farro, price: 10}
             - {name: peppers, price: 9}
+            - {name: sprouts, price: 10}
             - {name: scallops, price: 14}
             - {name: foie gras, price: 16}
             - {name: panini , price: 9}
             - {name: marrow bones, price: 8}
             - {name: pulpo, price: 14}
             - {name: bocadillo, price: 9}
-            - {name: cebada, price: 10}
             - {name: celery root soup, price: 8}
             - {name: duck, price: 16}
             - {name: beef chorizo, price: 10}
@@ -94,32 +96,32 @@ menu:
               price: 32
             - name: mixed cheese board
               price: 32
-            - {name: manchego , price: 0}
-            - {name: cana de cabra, price: 0}
-            - {name: campo de montalban, price: 0}
-            - {name: rustico, price: 0}
-            - {name: piave, price: 0}
-            - {name: pecorino tartufo, price: 0}
-            - {name: daffinois, price: 0}
-            - {name: sao jorge, price: 0}
-            - {name: blue cheese, price: 0}
-            #- {name: gruyere, price: 0}
-            - {name: queso sudado, price: 0}
-            - {name: gouda, price: 0}
-            #- {name: capri, price: 0}
-            - {name: seranno ham, price: 0}
-            - {name: lomo, price: 0}
-            - {name: chorizo, price: 0}
-            - {name: prosciutto, price: 0}
-            - {name: hot capicolla, price: 0}
-            - {name: felino, price: 0}
-            - {name: pata negra, price: 15}
-            #- {name: rosette de lyon, price: 0}
-            - {name: extra fig, price: 2}
+            - {name: manchego , add_on_price: 0}
+            - {name: cana de cabra, add_on_price: 0}
+            - {name: campo de montalban, add_on_price: 0}
+            - {name: rustico, add_on_price: 0}
+            - {name: piave, add_on_price: 0}
+            - {name: pecorino tartufo, add_on_price: 0}
+            - {name: daffinois, add_on_price: 0}
+            - {name: sao jorge, add_on_price: 0}
+            - {name: blue cheese, add_on_price: 0}
+            #- {name: gruyere, add_on_price: 0}
+            - {name: queso sudado, add_on_price: 0}
+            - {name: gouda, add_on_price: 0}
+            #- {name: capri, add_on_price: 0}
+            - {name: seranno ham, add_on_price: 0}
+            - {name: lomo, add_on_price: 0}
+            - {name: chorizo, add_on_price: 0}
+            - {name: prosciutto, add_on_price: 0}
+            - {name: hot capicolla, add_on_price: 0}
+            - {name: felino, add_on_price: 0}
+            - {name: pata negra, add_on_price: 15}
+            #- {name: rosette de lyon, add_on_price: 0}
+            - {name: extra fig, add_on_price: 2}
             - name: add-on
-              price: 5
+              add_on_price: 5
             - name: to-go-on-board
-              price: 0
+              add_on_price: 0
         - name: allergy
           items: 
             - {name: gluten allergy, price: 0}
@@ -166,6 +168,7 @@ menu:
             - {name: goat mush san, price: 8}
             - {name: beet and bleu, price: 9}
             - {name: burrata, price: 14}
+            - {name: caesar, price: 9}
             - {name: house salad, price: 8}
             - {name: tomato soup and cheesy toast, price: 6}
             - {name: celery root soup, price: 8}
@@ -204,79 +207,190 @@ menu:
             - {name: chamomile tea, price: 4}
     - name: bev
       subcategories:
-        - name: bar
+        - name: coffee & tea
           items: 
-            - {name: amaro, price: 4}
-            - {name: red sangrea jar, price: 28}
-            - {name: red sangrea, price: 8}
-            - {name: white sangrea jar, price: 28}
-            - {name: white sangrea, price: 8}
-            - {name: rose sangrea jar, price: 28}
-            - {name: rose sangrea, price: 8}
-            - {name: belini jar, price: 23}
-            - {name: belini, price: 7}
-            - {name: blood orange, price: 4}
-            - {name: bloody maria jar, price: 23}
-            - {name: bloody maria, price: 7}
-            - {name: burbon coke, price: 10}
-            - {name: caipirnha, price: 10}
-            - {name: ciirus smash rum, price: 10}
-            - {name: citrus smash (virgin), price: 5}
-            - {name: cktail10, price: 10}
-            - {name: cktail12, price: 12}
-            - {name: cktail14, price: 14}
-            - {name: cktail7, price: 7}
-            - {name: cktail5, price: 5}
-            - {name: cktail of the day, price: 12}
-            - {name: coffee, price: 4}
-            - {name: coke, price: 3}
-            - {name: cosmo, price: 10}
-            - {name: cran, price: 3}
-            - {name: dark n stormy, price: 7}
-            - {name: dcoke, price: 3}
+            - {name: colombia, price: 4}
             - {name: decaf, price: 4}
-            - {name: english breakfast, price: 4}
-            - {name: frangelico shot, price: 7}
-            - {name: ginger, price: 4}
-            - {name: hot toddy, price: 7}
-            - {name: lemonade, price: 5}
-            - {name: lemon, price: 4}
-            - {name: liquor flight, price: 20}
-            - {name: manhattan, price: 12}
+            - {name: regular tea, price: 3}
+            - {name: green jasmin, price: 4}
+            - {name: ceylon tea, price: 4}
+            - {name: paris tea, price: 4}
+            - {name: chomomile, price: 4}
+            - {name: iced unsweet tea, price: 3}
+            - {name: iced sweet tea, price: 3}
+        - name: cocktails 
+          items: 
+            - {name: special cocktail, price: 12}
+            - {name: glass red sangria, price: 8}
+            - {name: glass white sangria, price: 8}
+            - {name: jar red sangria, price: 28}
+            - {name: jar white sangria, price: 28}
+            - {name: red flight, price: 16}
+            - {name: white flight, price: 16}
+            - {name: bubbly flight, price: 16}
+            - {name: amaro lucano, price: 6}
+            - {name: bellini jar, price: 25}
+            - {name: bellini, price: 7}
+            - {name: bloody maria jar, price: 36}
+            - {name: bloody maria, price: 9}
+            - {name: bloody mary, price: 9}
+            - {name: cafe amaretto, price: 8}
+            - {name: cascara sweet tea, price: 10}
+            - {name: cosmo, price: 10}
+            - {name: dark n stormy, price: 7}
+            - {name: hot toddy, price: 10}
             - {name: margarita, price: 10}
-            - {name: martini, price: 10}
-            - {name: martini classic, price: 10}
-            - {name: martini dirty, price: 10}
-            - {name: mimosa jar, price: 23}
+            - {name: mimosa jar, price: 25}
             - {name: mimosa, price: 7}
-            - {name: oj, price: 3}
+            - {name: mojito, price: 10}
+            - {name: moscow mule, price: 10}
+            - {name: negroni, price: 12}
+            - {name: rum citrus smash, price: 10}
+            - {name: (virgin) citrus smash, price: 5}
             - {name: old-fashioned, price: 12}
-            - {name: patron shot, price: 10}
-            - {name: pelligrino, price: 3}
-            - {name: pueblo shot, price: 10}
-            - {name: red sangrea jar, price: 32}
-            - {name: red sangrea, price: 8}
-            - {name: rickey, price: 5}
-            - {name: rum coke, price: 7}
-            - {name: sambucca shot, price: 7}
+            - {name: pellegrino, price: 4}
+            - {name: rhubarb n rye, price: 12}
+            - {name: spanish daisy, price: 10}
+            - {name: gimlet, price: 10}
+            - {name: french 75, price: 9}
+            - {name: martini french, price: 9}
+        - name: soft drinks
+          items: 
+            - {name: coke, price: 3}
+            - {name: cran, price: 3}
+            - {name: dcoke, price: 3}
+            - {name: housemade ginger, price: 5}
+            - {name: lemonade, price: 5}
+            - {name: OJ, price: 3}
+            - {name: pellegrino, price: 4}
+            - {name: pineapple, price: 3}
             - {name: seltzer, price: 2}
-            - {name: shirly temple, price: 5}
-            - {name: tonic, price: 4}
-            - {name: spiked thai tea, price: 7}
-            - {name: tea jasmin, price: 4}
-            - {name: tea chamomile, price: 4}
-            - {name: tea paris, price: 4}
-            - {name: tea iced, price: 3}
-            - {name: virgin5, price: 5}
-            - {name: vodka cran, price: 7}
-            - {name: vodka shot, price: 7}
-            - {name: vodka soda, price: 7}
-            - {name: vodka sprite, price: 7}
-            - {name: vodka tonic, price: 7}
-            - {name: white sangrea jar, price: 32}
-            - {name: white sangrea, price: 8}
-            - {name: wine flight, price: 16}
-            - {name: wine spritz, price: 10}
+            - {name: sprite, price: 3}
+            - {name: tonic, price: 3}
+        - name: spirits
+          items: 
+            - {name: Amaro Lucano, price: 9}
+            - {name: Aperol, price: 9}
+            - {name: Armagnac, price: 8}
+            - {name: Bunnahaiban 12yr, price: 14}
+            - {name: Campari, price: 10}
+            - {name: Catskill Provisions, price: 11}
+            - {name: Chartreaux, price: 23}
+            - {name: Cognac (Gautier), price: 9}
+            - {name: Cruzan, price: 7}
+            - {name: Dry Curacao, price: 10}
+            - {name: Evan Williams, price: 7}
+            - {name: Fernet-Branca Amaro, price: 10}
+            - {name: Frangelico, price: 10}
+            - {name: Glenlivet, price: 13}
+            - {name: Gosling's, price: 8}
+            - {name: Gozio, price: 8}
+            - {name: Grappa, price: 8}
+            - {name: Greenall's Gin, price: 7}
+            - {name: Greenhook Gin, price: 10}
+            - {name: Holland's Gin, price: 8}
+            - {name: Irish Cream Kerrygold, price: 8}
+            - {name: Jameson, price: 10}
+            - {name: Kahluah, price: 9}
+            - {name: Laphroig 10yr, price: 14}
+            - {name: Laws Bourbon, price: 14}
+            - {name: Maker's Mark, price: 10}
+            - {name: Mathilde Raspberry, price: 9}
+            - {name: Mezcal, price: 12}
+            - {name: Pine Barrens, price: 19}
+            - {name: Pitu, price: 6}
+            - {name: Professore, price: 9}
+            - {name: Pueblo Anejo, price: 9}
+            - {name: Pueblo Blanco, price: 7}
+            - {name: Pueblo Reposado, price: 8}
+            - {name: Sambuca Lucano, price: 8}
+            - {name: Seville Orange, price: 9}
+            - {name: Shipwreck Coconut Rum, price: 9}
+            - {name: Shipwreck Spiced Rum, price: 9}
+            - {name: Sobieski, price: 7}
+            - {name: Supercassis, price: 8}
+            - {name: Suze, price: 8}
+            - {name: Templeton Rye, price: 10}
+            - {name: Tito's, price: 8}
+           # - {name: Triple Sec, price: 5}
+            - {name: Van Gogh Espresso, price: 11}
+            - {name: Wathen's Single Barrel Bourbon, price: 10}
+            - {name: Whistle Pig, price: 17}
+        - name: shots
+          items: 
+            - {name: Amaro shot, snifter: 7}
+            - {name: Aperol shot, price: 7}
+            - {name: Armagnac snifter, price: 6}
+            - {name: Bunnahaiban 12yr shot, price: 10}
+            - {name: Campari shot, price: 7}
+            - {name: Catskill Provisions shot, price: 8}
+            - {name: Chartreaux snifter, price: 15}
+            - {name: Coconut Rum shot, price: 6}
+            - {name: Cognac (Gautier) snifter, price: 7}
+            - {name: Cruzan shot, price: 5}
+            - {name: Dry Curacao shot, price: 7}
+            - {name: Evan Williams shot, price: 5}
+            - {name: Fernet-Branca snifter, price: 7}
+            - {name: Frangelico snifter, price: 7}
+            - {name: Glenlivet shot, price: 9}
+            - {name: Gosling's shot, price: 6}
+            - {name: Gozio snifter, price: 6}
+            - {name: Grappa snifter, price: 6}
+            - {name: Greenall's Gin shot, price: 6}
+            - {name: Greenhook Gin shot, price: 8}
+            - {name: Holland's Gin shot, price: 6}
+            - {name: Irish Cream snifter, price: 6}
+            - {name: Jameson shot, price: 7}
+            - {name: Kahluah snifter, price: 7}
+            - {name: Laphroig 10yr shot, price: 9}
+            - {name: Laws Bourbon shot, price: 10}
+            - {name: Maker's Mark shot, price: 8}
+            - {name: Mathilde Raspberry shot, price: 7}
+            - {name: Mezcal shot, price: 9}
+            - {name: Pine Barrens shot, price: 13}
+            - {name: Pitu shot, price: 5}
+            - {name: Professore shot, price: 7}
+            - {name: Pueblo Anejo shot, price: 7}
+            - {name: Pueblo Blanco shot, price: 6}
+            - {name: Pueblo Reposado shot, price: 7}
+            - {name: Sambuca snifter, price: 6}
+            - {name: Seville Orange shot, price: 6}
+            - {name: Sobieski shot, price: 5}
+            - {name: Spiced Rum shot, price: 6}
+           # - {name: Supercassis shot, price: 6}
+            - {name: Suze snifter, price: 6}
+            - {name: Templeton Rye shot, price: 8}
+            - {name: Tito's shot, price: 6}
+           # - {name: Triple Sec shot, price: 5}
+            - {name: Van Gogh Espresso shot, price: 8}
+            - {name: Wathen's Bourbon shot, price: 10}
+            - {name: Whistle Pig shot, price: 12}
+        - name: mixers
+          items: 
+            - {name: mix tonic, add_on_price: 0}
+            - {name: mix coke, add_on_price: 0}
+            - {name: mix dcoke, add_on_price: 0}
+            - {name: mix ginger, add_on_price: 0}
+            - {name: mix cran, add_on_price: 0}
+            - {name: mix pineapple, add_on_price: 0}
+            - {name: mix seltzer, add_on_price: 0}
+            - {name: mix sprite, add_on_price: 0}
+            - {name: splash, add_on_price: 0}
+            - {name: rocks, add_on_price: 0}
+            - {name: big rock, add_on_price: \0}
+            - {name: neat, add_on_price: 0}
+            - {name: up, add_on_price: 0}
+            - {name: lime garnish, add_on_price: 0}
+            - {name: lemon garnish, add_on_price: 0}
+            - {name: orange garnish, add_on_price: 0}
+            - {name: twist, add_on_price: 0}
+            - {name: olive garnish, add_on_price: 0}
+            - {name: chilled, add_on_price: 0}
+            - {name: in old fashioned, add_on_price: 2}
+            - {name: in dirty martini, add_on_price: 2}
+            - {name: in martini, add_on_price: 2}
+            - {name: in manhattan, add_on_price: 2}
+            - {name: in margarita, add_on_price: 2}
     - name: market
       subcategories:
         - name: market 
