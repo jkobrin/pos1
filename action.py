@@ -119,7 +119,7 @@ def synchronize(req, crud_commands):
       if command['command'] == 'set_status':
         set_status(**command)
 
-    return json.dumps(queries.get_active_items())
+    return json.dumps(queries.get_active_items(), encoding='latin-1')
     
 
 
