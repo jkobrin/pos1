@@ -21,8 +21,11 @@ def index(req = None):
       if catname != rec['category']:
         catname = rec['category']
         outfile.write(catname+':\n')
-
-      outfile.write(str(rec['binnum']).ljust(5) + rec['name'][:10] + ' ' + str(rec['est_count']) + '\n')
+        outfile.write(
+          str(rec['binnum']).ljust(5) + 
+          rec['name'][:10].encode('latin1', 'replace') + ' ' + 
+          str(rec['est_count']) + '\n'
+        )
 
     outfile.close()
     subprocess.call(['enscript', '--font=Courier-Bold@11/16', '-B', '-MEnv10', filename])
