@@ -96,7 +96,7 @@ def gen_fodt_and_pdf(req = None):
   new_fodt.close()
 
   #subprocess.call(['soffice', '--headless', '--convert-to pdf', '--outdir /var/www/winelists/', fodtname])
-  os.system('export HOME=/tmp ; soffice --headless --convert-to pdf --outdir ' + winelists_dir + ' ' + fodtname)
+  os.system('soffice --headless --convert-to pdf --outdir ' + winelists_dir + ' ' + fodtname)
   return 'done'
 
 
