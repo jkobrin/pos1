@@ -45,7 +45,7 @@ def index(req, table, shouldPrint, serverpin, close=True):
 
   if shouldPrint:
     recfile = tempfile.NamedTemporaryFile(delete=False)
-    recfile.write(receipt_text.encode('utf8'))
+    recfile.write(receipt_text.encode('latin1', 'replace'))
     filename = recfile.name
     recfile.close()
 

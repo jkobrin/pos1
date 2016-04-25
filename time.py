@@ -1,6 +1,4 @@
 import sys
-
-
 import json
 import MySQLdb
 import utils, queries, print_pay_slips, populate_pay_stub, paystub_print
@@ -56,7 +54,7 @@ def index(req, doprint=0):
     html += '<h1>' + populate_response + '</h1>'
   else:  
     html +='''
-	<form action="t1.py?doprint=1" method="POST">
+	<form action="time.py?doprint=1" method="POST">
   	<input type="submit" value="print pay slips">
 	</form>
     ''' + print_message

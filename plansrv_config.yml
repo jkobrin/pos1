@@ -75,7 +75,7 @@ menu:
             - {name: beef chorizo, price: 10}
             - {name: steak, price: 21}
             - {name: panacotta, price: 7}
-            - {name: chocolate, price: 5}
+            - {name: chocolate, price: 7}
             - {name: apple crisp, price: 7}
             - {name: special, price: 0}
             - {name: bread, price: 3}
@@ -248,7 +248,7 @@ menu:
             - {name: rum citrus smash, price: 10}
             - {name: (virgin) citrus smash, price: 5}
             - {name: old-fashioned, price: 12}
-            - {name: pellegrino, price: 4}
+            - {name: pellegrino, price: 8}
             - {name: rhubarb n rye, price: 12}
             - {name: spanish daisy, price: 10}
             - {name: gimlet, price: 10}
