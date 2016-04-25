@@ -3,7 +3,7 @@ import sys
 
 import json
 import MySQLdb
-import utils, queries, print_pay_slips, populate_pay_stub
+import utils, queries, print_pay_slips, populate_pay_stub, paystub_print
 
 
 

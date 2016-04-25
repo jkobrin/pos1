@@ -7,19 +7,7 @@ import re
 import utils
 
 
-def get_stub_choices(req):  
-  
-  stub_choices = utils.select('''
-    select ps.last_name,  ps.first_name, date_format(week_of, '%Y-%m-%d') as week_of, ps.person_id 
-    from PAY_STUB ps order by first_name, last_name, week_of
-  '''
-  )
-
-  return json.dumps(stub_choices)
-
-
-def get_stub_data(person_id, week_of):  
-
+def get_stub_data(person_id, week_of, table_name):  
 
   stub_data = utils.select('''
     select 
@@ -34,9 +22,9 @@ def get_stub_data(person_id, week_of):
     nys_withholding as STATE,
     gross_wages as GROSS,
     gross_wages - fed_withholding - social_security_tax - medicare_tax - nys_withholding as NET,
-    round(hours_worked * nominal_scale,2) as HOURS,
+    round(gross_wages / pay_rate,2) as HOURS,
     pay_rate as RATE
-    from PAY_STUB 
+    from {table_name}
     where person_id = {person_id}
     and week_of = "{week_of}"
   '''.format(**locals())
@@ -50,7 +38,7 @@ def get_stub_data(person_id, week_of):
     sum(nys_withholding) as STATEYTD,
     sum(gross_wages) as GYTD,
     sum(gross_wages - fed_withholding - social_security_tax - medicare_tax - nys_withholding) as NETYTD
-    from PAY_STUB 
+    from {table_name}
     where person_id = {person_id}
     and year("{week_of}" + interval '1' week) = year(week_of+interval '1' week) 
     and week_of <= date("{week_of}")
@@ -77,33 +65,42 @@ def fodt_text(stub_data):
   return doc
 
 
-def gen_fodt_and_pdf(stub_data):
+def gen_fodt_and_pdf(stub_data, table_name):
   
   doc = fodt_text(stub_data)
-  fodtname = "/tmp/paystub.fodt"
+  fodtname = "/var/www/paystubs/{LAST_NAME}_{FIRST_NAME}_{PERIOD_END}".format(**stub_data)+"_{table_name}.fodt".format(**locals())
   new_fodt = open(fodtname, 'w')
   new_fodt.write(doc)
   new_fodt.close()
 
-  #subprocess.call(['soffice', '--headless', '--convert-to pdf', '--outdir /var/www/winelists/', fodtname])
-  os.system('export HOME=/tmp ; soffice --headless --convert-to pdf --outdir /tmp/ ' + fodtname)
+  #os.system('export HOME=/tmp ; soffice --headless --convert-to pdf ' + fodtname)
 
 
-def index(req, stub_select): #person_id, week_of):
+def print_stubs(person_id, week_of):
   
-  person_id, week_of = stub_select.split(',')
+  for table_name in ('PAY_STUB', 'WEEKLY_PAY_STUB'):
+    stub_data = get_stub_data(person_id, week_of, table_name)
+    gen_fodt_and_pdf(stub_data, table_name)
 
-  stub_data = get_stub_data(person_id, week_of)
-  gen_fodt_and_pdf(stub_data)
 
-  if req: req.content_type = 'application/pdf'
-  if req: req.content_disposition = 'attachment; filename=foobark'
+def print_all_stubs():
+  stub_keys = utils.select('''
+    select person_id, week_of from PAY_STUB where year(week_of) = 2016
+  ''', label=False
+  )
 
-  pdf = open('/tmp/paystub.pdf').read()
-  return pdf
+  for person_id, week_of in stub_keys:
+    print_stubs(person_id, week_of)
 
+
+def print_one_week_stubs(week_of):
+  stub_keys = utils.select('''select person_id from PAY_STUB where week_of = {week_of}'''.format(**locals()), label=False) 
+
+  for person_id in stub_keys:
+    print_stubs(person_id, week_of)
+  
 
 
 if __name__ == '__main__':
-  print gen_fodt_and_pdf()
+  print print_all_stubs()
 

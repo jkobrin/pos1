@@ -11,18 +11,13 @@ def get_session_id(req):
     #client will use this to create unique ids for order_item commands it sends to server for DB insertion
 
     my_logger.info(req.get_remote_host()+': get_session_id called')
-    conn = MySQLdb.connect (host = "localhost",
-                          user = "pos",
-                          passwd = "pos",
-                          db = "pos")
-    cursor = conn.cursor()
+    cursor = utils.get_cursor()
 
     cursor.execute("insert into client_session values (null, null);");
-    session_id = conn.insert_id()
+    session_id = cursor.connection.insert_id()
     my_logger.info(req.get_remote_host()+': generated session id: %s'%session_id)
 
     cursor.close()
-    conn.close()
 
     return json.dumps(session_id)
 
@@ -49,11 +44,7 @@ def add_item(item_id=None,
     assert price is not None, 'price required' + str(locals())
 
 
-    conn = MySQLdb.connect (host = "localhost",
-                          user = "pos",
-                          passwd = "pos",
-                          db = "pos")
-    cursor = conn.cursor()
+    cursor = utils.get_cursor()
 
     open_order_group = None
     for time in (1,2):
@@ -77,7 +68,6 @@ def add_item(item_id=None,
     )
 
     cursor.close()
-    conn.close()
 
 
 def cancel_item(item_id, incursor=None, **unused):
@@ -119,7 +109,7 @@ def synchronize(req, crud_commands):
       if command['command'] == 'set_status':
         set_status(**command)
 
-    return json.dumps(queries.get_active_items())
+    return json.dumps(queries.get_active_items(), encoding='latin-1')
     
 
 

@@ -176,8 +176,9 @@
                         newrows={};
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
+                        document.write("<p>"+textStatus + ":::" + errorThrown + "</p>" + jqXHR.responseText)
                         alert(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
-			errWindow = window.open("","MsgWindow","width=200,height=100");
+			                  errWindow = window.open("","MsgWindow","width=200,height=100");
                         errWindow.document.write("<p>"+textStatus + ":::" + errorThrown + "</p>" + jqXHR.responseText);
                         commit(false);
                     }
@@ -195,7 +196,8 @@
                         // update command is executed.
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        alert(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
+                        //alert(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
+                        document.write("<p>"+textStatus + ":::" + errorThrown + "</p>" + jqXHR.responseText)
 			                  errWindow = window.open("","MsgWindow","width=200,height=100");
                         errWindow.document.write("<p>"+textStatus + ":::" + errorThrown + "</p>" + jqXHR.responseText);
                     }

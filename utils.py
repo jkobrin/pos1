@@ -60,7 +60,8 @@ def get_cursor():
     conn = MySQLdb.connect (host = "localhost",
                           user = "pos",
                           passwd = "pos",
-                          db = "pos")
+                          db = "pos", 
+                          charset = "utf8")
 
     return conn.cursor()
 
@@ -73,7 +74,8 @@ def execute(sql, incursor=None):
     conn = MySQLdb.connect (host = "localhost",
                           user = "pos",
                           passwd = "pos",
-                          db = "pos")
+                          db = "pos",
+                          charset = "utf8")
 
     cursor = conn.cursor()
   else:
@@ -90,7 +92,8 @@ def select_as_html(query, incursor=None):
     conn = MySQLdb.connect (host = "localhost",
                           user = "pos",
                           passwd = "pos",
-                          db = "pos")
+                          db = "pos",
+                          charset = "utf8")
 
     cursor = conn.cursor()
   else:
@@ -116,7 +119,8 @@ def select(query, incursor=None, label=True):
     conn = MySQLdb.connect (host = "localhost",
                           user = "pos",
                           passwd = "pos",
-                          db = "pos")
+                          db = "pos",
+                          charset = "utf8")
 
     cursor = conn.cursor()
   else:

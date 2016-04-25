@@ -29,12 +29,7 @@ def is_gratuity(item):
 def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_time = None):
 
   if cursor is None:
-    conn = MySQLdb.connect (host = "localhost",
-                          user = "pos",
-                          passwd = "pos",
-                          db = "pos")
-
-    cursor = conn.cursor()
+    cursor = utils.get_cursor()
     
   items_query = '''
     SELECT count(*) cnt, og.table_id, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped, oi.taxable

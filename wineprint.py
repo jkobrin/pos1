@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import MySQLdb
 from xml.sax.saxutils import escape
@@ -50,7 +51,7 @@ def get_wine_xml():
 
     for item in wine_items:
       binnum, name, listprice, byline, grapes, notes, subcategory  = (
-        clean(escape(str(item[key]))) for key in ['bin', 'name', 'listprice', 'byline', 'grapes', 'notes', 'subcategory']
+        clean(escape(unicode(item[key]))) for key in ['bin', 'name', 'listprice', 'byline', 'grapes', 'notes', 'subcategory']
       )
 
       # do location heading if location changed
@@ -91,7 +92,7 @@ def gen_fodt_and_pdf(req = None):
   winelists_dir = "/var/www/winelists/"
   fodtname = winelists_dir + str(date.today())+".fodt"
   new_fodt = open(fodtname, 'w')
-  new_fodt.write(doc)
+  new_fodt.write(doc.encode('utf-8'))
   new_fodt.close()
 
   #subprocess.call(['soffice', '--headless', '--convert-to pdf', '--outdir /var/www/winelists/', fodtname])

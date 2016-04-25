@@ -24,12 +24,14 @@ def populate_pay_stub(temp = True, incursor=None):
   COALESCE(married, 0) married,
   COALESCE(salary, round(sum(hours_worked)*pay_rate)) as weekly_pay,
   COALESCE(salary, round(sum(hours_worked)*pay_rate)) * COALESCE(nominal_scale,0) as gross_wages,
-  sum(tip_pay) tips,
-  sum(tip_pay) / sum(hours_worked) + pay_rate as total_hourly_pay
+  COALESCE(sum(tip_pay),0) tips,
+  COALESCE(sum(tip_pay) / sum(hours_worked) + pay_rate, 0) as total_hourly_pay
   from hours_worked LEFT OUTER JOIN employee_tax_info ON hours_worked.person_id = employee_tax_info.person_id
-  where yearweek(intime) = yearweek(now() - interval '1' week)
-  and intime != 0
-  group by hours_worked.person_id
+  #where yearweek(intime) = yearweek(now() - interval '1' week)
+  #and intime != 0
+  where intime != 0
+  and year(intime) = 2016
+  group by hours_worked.person_id, yearweek(intime)
   ''',
   incursor = incursor,
   label = True
@@ -39,9 +41,9 @@ def populate_pay_stub(temp = True, incursor=None):
     utils.execute('''
     create temporary table PAY_STUB_TEMP like PAY_STUB;
     ''', incursor=incursor);
-    table_name = 'PAY_STUB_TEMP'
+    table_names = ('PAY_STUB_TEMP',)
   else:
-    table_name = 'PAY_STUB'
+    table_names = ('PAY_STUB', 'WEEKLY_PAY_STUB')
 
   for row in results:
     if not temp and utils.select(
@@ -49,15 +51,21 @@ def populate_pay_stub(temp = True, incursor=None):
       incursor = incursor
       ):
       continue
-    tax.add_witholding_fields(row)
-    columns = ', '.join(row.keys())
-    values = ', '.join(("'%s'" % value for value in row.values()))
-    sqltext = 'INSERT into %s (%s) VALUES (%s);'%(table_name, columns, values)
-    my_logger.debug('pay stub: ' + sqltext)
-    utils.execute(sqltext, incursor=incursor)
+
+    for table_name in table_names:
+      if table_name == 'WEEKLY_PAY_STUB':
+        row['gross_wages'] = row['weekly_pay'] + float(row['tips'])
+        row['pay_rate'] = round(row['total_hourly_pay'])
+
+      tax.add_witholding_fields(row)
+      columns = ', '.join(row.keys())
+      values = ', '.join(("'%s'" % value for value in row.values()))
+      sqltext = 'INSERT into %s (%s) VALUES (%s);'%(table_name, columns, values)
+      my_logger.debug('pay stub: ' + sqltext)
+      utils.execute(sqltext, incursor=incursor)
     
 
 if __name__ == '__main__':
 
-  populate_pay_stub()
+  populate_pay_stub(temp=False)
 

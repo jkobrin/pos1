@@ -1,8 +1,5 @@
-fileencoding = "iso-8859-1"
-
-
 import json
-import MySQLdb
+import utils
 import tempfile, os
 import texttab
 
@@ -30,13 +27,7 @@ import subprocess
 
 def index(req, table, shouldPrint, serverpin, close=True):
 
-
-  conn = MySQLdb.connect (host = "localhost",
-                        user = "pos",
-                        passwd = "pos",
-                        db = "pos")
-
-  cursor = conn.cursor()
+  cursor = utils.get_cursor()
 
   shouldPrint = (shouldPrint == 'true')
 
@@ -51,11 +42,10 @@ def index(req, table, shouldPrint, serverpin, close=True):
     ''' % locals())
 
   cursor.close()
-  conn.close()
 
   if shouldPrint:
     recfile = tempfile.NamedTemporaryFile(delete=False)
-    recfile.write(receipt_text)
+    recfile.write(receipt_text.encode('utf8'))
     filename = recfile.name
     recfile.close()
 

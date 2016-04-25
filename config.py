@@ -24,7 +24,7 @@ def iget():
         item['subcatname'] = subcatname
         if not item.has_key('name'):
            raise Exception('no name for item: ' + str(item))
-        item['name'] = str(item['name'])[:MAX_NAME_LEN]
+        item['name'] = unicode(item['name'])[:MAX_NAME_LEN]
         if subcat.get('tax') == 'included' and item.get('price'):
           item['price'] /= (1 + TAXRATE) # remove the tax from price
         items[item['name']] = item

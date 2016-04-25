@@ -1,4 +1,3 @@
-
 import json
 import MySQLdb
 import utils
@@ -7,20 +6,15 @@ from mylog import my_logger
 log = my_logger
 
 import json
-import MySQLdb
+import utils
 
 
 def index(serverpin, in_):
   wantsin = (in_ == 'true')
   wantsout = not wantsin
 
+  cursor = utils.get_cursor()
 
-  conn = MySQLdb.connect (host = "localhost",
-                        user = "pos",
-                        passwd = "pos",
-                        db = "pos")
-
-  cursor = conn.cursor()
   isin = _server_is_in(serverpin)
   isout = not isin
 
@@ -42,7 +36,6 @@ def index(serverpin, in_):
     
 
   cursor.close()
-  conn.close()
 
   return json.dumps(resp)
 
