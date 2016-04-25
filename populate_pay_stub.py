@@ -27,10 +27,8 @@ def populate_pay_stub(temp = True, incursor=None):
   COALESCE(sum(tip_pay),0) tips,
   COALESCE(sum(tip_pay) / sum(hours_worked) + pay_rate, 0) as total_hourly_pay
   from hours_worked LEFT OUTER JOIN employee_tax_info ON hours_worked.person_id = employee_tax_info.person_id
-  #where yearweek(intime) = yearweek(now() - interval '1' week)
-  #and intime != 0
-  where intime != 0
-  and year(intime) = 2016
+  where yearweek(intime) = yearweek(now() - interval '1' week)
+  and intime != 0
   group by hours_worked.person_id, yearweek(intime)
   ''',
   incursor = incursor,

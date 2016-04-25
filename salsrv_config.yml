@@ -87,7 +87,8 @@ menu:
             - {name: walnut pesto, price: 6}
             #- {name: pate, price: 7}
             - {name: caesar, price: 9}
-            - {name: beet and bleu, price: 11}
+            - {name: spring salad, price: 9}
+            - {name: beet and sheep, price: 11}
             - {name: avocado toast, price: 14}
             - {name: watermelon radish, price: 8}
             #- {name: anchovy, price: 6}
@@ -99,7 +100,7 @@ menu:
             - {name: sprouts, price: 9}
             - {name: cauliflower, price: 8}
             - {name: taleggio bake, price: 9}
-            - {name: raclette, price: 9}
+            - {name: raclette, price: 10}
             - {name: empanada, price: 8}
             - {name: shrimp, price: 12}
             - {name: bocadillo, price: 9}
@@ -540,10 +541,10 @@ menu:
             - {name: cauliflower-, price: .75}
             - {name: bacon-, price: 3}
             - {name: truffle ham side, price: 4}
-            - {name: morcilla, price: 5}
+            - {name: morcilla-, price: 5}
             - {name: crispy prosciutto, price: 4}
             - {name: smashed potato, price: 4}
-            - {name: brussels, price: 4}
+            - {name: seasonal veg-, price: 4}
             - {name: ice cream -, price: 2.5}
             - {name: baguette, price: 2.5}
             - {name: epi baguette, price: 2.5}
@@ -1223,8 +1224,6 @@ menu:
               vendor_code: '40746', wholesale: '1.74'}
             - {name: OLIVE GREEK MIX UNPITTED, price: 5.5, supplier: GFI, units_in_bulk: '',
               upc: '631723002417', vendor_code: '13919', wholesale: '3.21'}
-            - {name: CAPERBERRIES, price: 9.5, supplier: GFI, units_in_bulk: '', upc: '631723204606',
-              vendor_code: '20460', wholesale: '5.77'}
             - {name: CAPERBERRIES, price: 6, supplier: Sansone,
               units_in_bulk: '', upc: '041224700925',
               vendor_code: '20460', wholesale: '4.15'}

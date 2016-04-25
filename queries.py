@@ -90,7 +90,7 @@ def weekly_pay(printmode=0, incursor = None):
         pst.first_name,
         IF(pst.hours_worked = ps.hours_worked or ps.hours_worked is null,
           pst.hours_worked, concat(pst.hours_worked, ' / ', ps.hours_worked)) hours_worked,
-        IF(pst.pay_rate = ps.pay_rate or pst.pay_rate is null, 
+        IF(pst.pay_rate = ps.pay_rate or ps.pay_rate is null, 
           pst.pay_rate, concat(pst.pay_rate, ' / ', ps.pay_rate)) pay_rate,
         IF(pst.weekly_tax = ps.weekly_tax or ps.weekly_tax is null, 
           pst.weekly_tax, concat(pst.weekly_tax, ' / ', ps.weekly_tax)) weekly_tax,
