@@ -34,6 +34,8 @@
       white-space : normal;
     }
 
+    #message_box { font-size: 32pt; background-color: red;}
+
     .keypad
     {
       padding-top:25px;
@@ -308,7 +310,7 @@
     // This is the only script on this page. It does basically
     // everything. 
     
-    MAIN_REFRESH_INTERVAL = 10000; //10 seconds
+    MAIN_REFRESH_INTERVAL = 30000; //10 seconds
     GRIDWIDTH = 6; 
     // GRIDWIDTH can be anything from one up.
 
@@ -434,9 +436,14 @@
       synchronize(async=false);
     }
 
+    var g_in_tansit_crud_commands = null;
+    var g_network_err_count = 0;
     function handle_fresh_items(items)
     {
       console.log('fresh items');
+      g_network_err_count = 0;
+      message_box.innerHTML = '';
+      g_in_tansit_crud_commands = null; //release these. they have been handled
       g_order_pane_items = items; 
       for(var idx in g_crud_commands)
       {
@@ -448,7 +455,22 @@
     }
 
     function ajax_error(jqXHR, textStatus, errorThrown) {
-       document.write(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
+      if (g_in_tansit_crud_commands != null) {
+        //put in transit objects back at from of queue, they need to be tried again
+        g_crud_commands = g_in_tansit_crud_commands.concat(g_crud_commands);
+        g_in_tansit_crud_commands = null;
+      }  
+
+      if (errorThrown != ''){
+        alert(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
+        g_synchonize_timeout = setTimeout(synchronize, MAIN_REFRESH_INTERVAL);
+      }
+      else
+      { //probably network error. Silently try again in 1 minute
+        g_synchonize_timeout = setTimeout(synchronize, 60000);
+        g_network_err_count += 1;
+        message_box.innerHTML = '----- ' + g_network_err_count + ' min. since server contact -------';
+      }  
     }
 
     function synchronize(async)
@@ -456,7 +478,9 @@
       if (typeof(async) === 'undefined') {async = true} //substitue for default args which is not supported on chrome browser
 
       var crud_commands = JSON.stringify(g_crud_commands); 
+      g_in_tansit_crud_commands = g_crud_commands;
       g_crud_commands = [];
+
       console.log('async: ' + async + ' sending: ' + crud_commands);
       $.ajax({ url: "action.py/synchronize", type: "POST", dataType: "json", cache: false, async: async,
         data: {'crud_commands' : crud_commands},
@@ -1316,6 +1340,7 @@
 <body onLoad="init()" id='main'>
 
   <div id="add_item_box" ></div>
+  <div id="message_box" ></div>
 
 
   <div id="main_screen">
