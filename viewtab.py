@@ -1,6 +1,4 @@
 
-import json
-import MySQLdb
 import utils
 
 

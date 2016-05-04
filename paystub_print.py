@@ -68,39 +68,43 @@ def fodt_text(stub_data):
 def gen_fodt_and_pdf(stub_data, table_name):
   
   doc = fodt_text(stub_data)
-  fodtname = "/var/www/paystubs/{LAST_NAME}_{FIRST_NAME}_{PERIOD_END}".format(**stub_data)+"_{table_name}.fodt".format(**locals())
+  stubdir = "/var/www/paystubs/"
+  fodtname = stubdir + "{LAST_NAME}_{FIRST_NAME}_{PERIOD_END}".format(**stub_data)+"_{table_name}.fodt".format(**locals())
   new_fodt = open(fodtname, 'w')
   new_fodt.write(doc)
   new_fodt.close()
 
-  #os.system('export HOME=/tmp ; soffice --headless --convert-to pdf ' + fodtname)
+  os.system('soffice --headless --convert-to pdf --outdir ' + stubdir + ' ' + fodtname)
 
 
-def print_stubs(person_id, week_of):
+def print_stubs(person_id, week_of, table_name):
   
-  for table_name in ('PAY_STUB', 'WEEKLY_PAY_STUB'):
     stub_data = get_stub_data(person_id, week_of, table_name)
     gen_fodt_and_pdf(stub_data, table_name)
 
 
-def print_all_stubs():
-  stub_keys = utils.select('''
-    select person_id, week_of from PAY_STUB where year(week_of) = 2016
-  ''', label=False
-  )
+def print_2016_stubs():
 
-  for person_id, week_of in stub_keys:
-    print_stubs(person_id, week_of)
+  for table_name in ('PAY_STUB', 'WEEKLY_PAY_STUB'):
+    stub_keys = utils.select('''
+      select person_id, week_of from %(table_name)s where year(week_of) = 2016
+    '''%locals(), label=False
+    )
+
+    for person_id, week_of in stub_keys:
+      print_stubs(person_id, week_of, table_name)
 
 
 def print_one_week_stubs(week_of):
-  stub_keys = utils.select('''select person_id from PAY_STUB where week_of = {week_of}'''.format(**locals()), label=False) 
 
-  for person_id in stub_keys:
-    print_stubs(person_id, week_of)
+  for table_name in ('PAY_STUB', 'WEEKLY_PAY_STUB'):
+    stub_keys = utils.select('''select person_id from {table_name} where week_of = {week_of}'''.format(**locals()), label=False) 
+
+    for person_id in stub_keys:
+      print_stubs(person_id, week_of, table_name)
   
 
 
 if __name__ == '__main__':
-  print print_all_stubs()
+  print print_2016_stubs()
 

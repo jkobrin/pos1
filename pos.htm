@@ -310,7 +310,7 @@
     // This is the only script on this page. It does basically
     // everything. 
     
-    MAIN_REFRESH_INTERVAL = 30000; //10 seconds
+    MAIN_REFRESH_INTERVAL = 10000; //10 seconds
     GRIDWIDTH = 6; 
     // GRIDWIDTH can be anything from one up.
 
@@ -437,11 +437,11 @@
     }
 
     var g_in_tansit_crud_commands = null;
-    var g_network_err_count = 0;
+    var g_last_server_contact = 0;
     function handle_fresh_items(items)
     {
       console.log('fresh items');
-      g_network_err_count = 0;
+      g_last_server_contact = new Date();
       message_box.innerHTML = '';
       g_in_tansit_crud_commands = null; //release these. they have been handled
       g_order_pane_items = items; 
@@ -467,9 +467,9 @@
       }
       else
       { //probably network error. Silently try again in 1 minute
-        g_synchonize_timeout = setTimeout(synchronize, 60000);
-        g_network_err_count += 1;
-        message_box.innerHTML = '----- ' + g_network_err_count + ' min. since server contact -------';
+        g_synchonize_timeout = setTimeout(synchronize, MAIN_REFRESH_INTERVAL);
+        var min_since_last_contact = (((new Date()).getTime() - g_last_server_contact.getTime()) /60000).toFixed(1);
+        message_box.innerHTML = '----- ' + min_since_last_contact  + ' min. since server contact -------';
       }  
     }
 
