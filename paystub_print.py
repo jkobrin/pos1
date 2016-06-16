@@ -104,7 +104,19 @@ def print_one_week_stubs(week_of):
       print_stubs(person_id, week_of, table_name)
   
 
+def print_this_week_stubs():
+
+  for table_name in ('PAY_STUB', 'WEEKLY_PAY_STUB'):
+    stub_keys = utils.select('''
+      select person_id, week_of from {table_name} where yearweek(week_of) = yearweek(now() - interval '1' week)'''.
+      format(**locals()), label=False) 
+
+    for person_id, week_of in stub_keys:
+      print_stubs(person_id, week_of, table_name)
+  
+
+
 
 if __name__ == '__main__':
-  print print_2016_stubs()
+  print_this_week_stubs()
 

@@ -9,7 +9,7 @@ def index(req):
   create or replace view monthly_sales 
   as
   select  
-  concat(monthname(min(created)), ' - ', monthname(max(created)), ' ', max(year(created))) quarter,
+  concat(monthname(created), ' ', year(created)) month,
   floor(sum(price)) total_taxable_sales
   from order_item 
   where is_cancelled = False 
