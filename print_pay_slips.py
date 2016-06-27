@@ -27,8 +27,9 @@ def go():
       slipfile.write(slip_text)
       filename = slipfile.name
       slipfile.close()
-      testfile = '-p/var/www/slips/%s.ps'%rec['last_name']
-      subprocess.call(['enscript', testfile, '--font=Courier-Bold@11/16', '-B', '-MEnv10', filename])
+      #testfile = '-p/var/www/slips/%s.ps'%rec['last_name']
+      #subprocess.call(['enscript', testfile, '--font=Courier-Bold@11/16', '-B', '-MEnv10', filename])
+      subprocess.call(['enscript', '--font=Courier-Bold@11/16', '-B', '-MEnv10', filename])
       print slip_text
       os.remove(filename)
     
