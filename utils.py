@@ -66,7 +66,7 @@ def get_cursor():
     return conn.cursor()
 
 
-def execute(sql, incursor=None):
+def execute(sql, incursor=None, args= None):
   
   my_logger.debug(sql)
 
@@ -81,7 +81,7 @@ def execute(sql, incursor=None):
   else:
     cursor = incursor
 
-  cursor.execute(sql)
+  cursor.execute(sql, args)
 
   if not incursor:
     cursor.close()
@@ -111,7 +111,7 @@ def select_as_html(query, incursor=None):
 
 
 
-def select(query, incursor=None, label=True):
+def select(query, incursor=None, label=True, args=None):
   
   my_logger.debug(query)
 
@@ -126,7 +126,7 @@ def select(query, incursor=None, label=True):
   else:
     cursor = incursor
 
-  cursor.execute(query)
+  cursor.execute(query, args)
   rows = cursor.fetchall()
   colnames = [coldesc[0] for coldesc in cursor.description]
 

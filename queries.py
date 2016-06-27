@@ -1,7 +1,6 @@
 import utils, texttab
 
 from time import sleep
-from random import randint
 
 def nightly_sales_by_server(label=False, lag_days=1):
 
