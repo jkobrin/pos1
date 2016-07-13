@@ -1,14 +1,17 @@
 import json
 import MySQLdb
 from xml.sax.saxutils import escape
-from datetime import date
 import os, subprocess
 import re
 import utils
+import datetime
+import tax
+from random import randint
 
 
-def get_stub_data(person_id, week_of, table_name):  
+def get_stub_data(person_id, week_of, table_name, incursor):  
 
+  print person_id, week_of
   stub_data = utils.select('''
     select 
     last_name as LAST_NAME,
@@ -27,7 +30,7 @@ def get_stub_data(person_id, week_of, table_name):
     from {table_name}
     where person_id = {person_id}
     and week_of = "{week_of}"
-  '''.format(**locals())
+  '''.format(**locals()), incursor
   )
 
   stub_ytd_data = utils.select('''
@@ -42,7 +45,7 @@ def get_stub_data(person_id, week_of, table_name):
     where person_id = {person_id}
     and year("{week_of}" + interval '1' week) = year(week_of+interval '1' week) 
     and week_of <= date("{week_of}")
-  '''.format(**locals())
+  '''.format(**locals()), incursor
   )
 
   # make one dictionary of the two result sets
@@ -77,9 +80,9 @@ def gen_fodt_and_pdf(stub_data, table_name):
   os.system('soffice --headless --convert-to pdf --outdir ' + stubdir + ' ' + fodtname)
 
 
-def print_stubs(person_id, week_of, table_name):
+def print_stubs(person_id, week_of, table_name, incursor = None):
   
-    stub_data = get_stub_data(person_id, week_of, table_name)
+    stub_data = get_stub_data(person_id, week_of, table_name, incursor)
     gen_fodt_and_pdf(stub_data, table_name)
 
 
@@ -116,7 +119,56 @@ def print_this_week_stubs():
   
 
 
+def last_sundays(num):
+  today = datetime.date.today()
+  sunday = today - datetime.timedelta(days = today.isoweekday())
+
+  for x in xrange(num):
+    sunday -= datetime.timedelta(days = 7)
+    yield sunday.isoformat()
+
+
+def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_variance):
+
+  incursor = utils.get_cursor()
+  table_name = 'E_STUB'
+  utils.execute('''
+    create temporary table E_STUB like PAY_STUB;
+  ''', incursor=incursor);
+
+  for sunday in last_sundays(70):
+
+    hours = basehours + randint(-basehours, basehours)*hour_variance
+    rate = baserate + randint(-baserate, baserate)*rate_variance
+    wages = rate*hours
+
+    row = {
+      'week_of' : sunday,
+      'person_id' : 0,
+      'last_name': last_name, 
+      'first_name': first_name,
+      'hours_worked' : hours,
+      'pay_rate': rate, 
+      'allowances': 1,
+      'nominal_scale': 0,
+      'married': 1,
+      'weekly_pay': 0,
+      'gross_wages': wages,
+      'tips': 0,
+      'total_hourly_pay': rate
+    }
+
+    tax.add_witholding_fields(row)
+    columns = ', '.join(row.keys())
+    values = ', '.join(("'%s'" % value for value in row.values()))
+    sqltext = 'INSERT into %s (%s) VALUES (%s);'%(table_name, columns, values)
+    #my_logger.debug('pay stub: ' + sqltext)
+    utils.execute(sqltext, incursor=incursor)
+    
+  for sunday in last_sundays(6):
+    print_stubs(0, sunday, table_name, incursor=incursor)
 
 if __name__ == '__main__':
-  print_this_week_stubs()
+  make_estub('Seda', 'Seker', 30, .1, 42, .1)
+  #make_estub('Rochel', 'Koenigsburger', 13, 0, 20, .1)
 

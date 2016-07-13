@@ -87,8 +87,8 @@ menu:
             - {name: walnut pesto, price: 6}
             #- {name: pate, price: 7}
             #- {name: caesar, price: 9}
-            - {name: spring salad, price: 9}
-            - {name: beet and sheep, price: 11}
+            - {name: summer salad, price: 9}
+            - {name: garden slaw, price: 11}
             - {name: avocado toast, price: 14}
             #- {name: anchovy, price: 6}
             #- {name: summer salad, price: 9}
@@ -99,12 +99,12 @@ menu:
             #- {name: sprouts, price: 9}
             - {name: artichokes, price: 12}
             #- {name: taleggio bake, price: 9}
-            - {name: raclette, price: 10}
+            - {name: corn, price: 7}
             - {name: empanada, price: 8}
             - {name: shrimp, price: 12}
             - {name: bocadillo, price: 9}
             - {name: tomatillo chicken, price: 9}
-            #- {name: chicken paprikash, price: 9}
+            - {name: octopus, price: 14}
             - {name: morcilla, price: 12}
             #- {name: octopus, price: 12}
             #- {name: artichokes, price: 10}
