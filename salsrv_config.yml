@@ -351,14 +351,15 @@ menu:
             - {name: special note, add_on_price: 0}
         - name: spirits
           items: 
-            - {name: Apricots Smores Sultanas Cashews Pistachios Amaro Lucano, price: 9}
+            - {name: Absinthe, price: 14}
+            - {name: Amaro Lucano, price: 9}
             - {name: Aperol, price: 9}
             - {name: Armagnac, price: 8}
             - {name: Bunnahaiban 12yr, price: 14}
             - {name: Campari, price: 10}
             - {name: Catskill Provisions, price: 11}
             - {name: Chartreaux, price: 23}
-            - {name: Cognac (Gautier), price: 9}
+            - {name: Cognac, price: 9}
             - {name: Cruzan, price: 7}
             - {name: Dry Curacao, price: 10}
             - {name: Evan Williams, price: 7}
@@ -371,7 +372,7 @@ menu:
             - {name: Greenall's Gin, price: 7}
             - {name: Greenhook Gin, price: 10}
             - {name: Holland's Gin, price: 8}
-            - {name: Irish Cream Kerrygold, price: 8}
+            - {name: Irish Cream Kerrygold, price: 10}
             - {name: Jameson, price: 10}
             - {name: Kahluah, price: 9}
             - {name: Laphroig 10yr, price: 14}
@@ -385,7 +386,9 @@ menu:
             - {name: Pueblo Anejo, price: 9}
             - {name: Pueblo Blanco, price: 7}
             - {name: Pueblo Reposado, price: 8}
+            - {name: Rum-White, price: 8}
             - {name: Sambuca Lucano, price: 8}
+            - {name: Scotch Tullibardine, price: 14}
             - {name: Seville Orange, price: 9}
             - {name: Shipwreck Coconut Rum, price: 9}
             - {name: Shipwreck Spiced Rum, price: 9}
@@ -401,7 +404,8 @@ menu:
             - {name: special note, add_on_price: 0}
         - name: shots
           items: 
-            - {name: Amaro shot, snifter: 7}
+            - {name: Absinthe shot, price: 10}
+            - {name: Amaro shot, price: 7}
             - {name: Aperol shot, price: 7}
             - {name: Armagnac snifter, price: 6}
             - {name: Bunnahaiban 12yr shot, price: 10}
@@ -409,7 +413,7 @@ menu:
             - {name: Catskill Provisions shot, price: 8}
             - {name: Chartreaux snifter, price: 15}
             - {name: Coconut Rum shot, price: 6}
-            - {name: Cognac (Gautier) snifter, price: 7}
+            - {name: Cognac snifter, price: 7}
             - {name: Cruzan shot, price: 5}
             - {name: Dry Curacao shot, price: 7}
             - {name: Evan Williams shot, price: 5}
@@ -422,7 +426,7 @@ menu:
             - {name: Greenall's Gin shot, price: 6}
             - {name: Greenhook Gin shot, price: 8}
             - {name: Holland's Gin shot, price: 6}
-            - {name: Irish Cream snifter, price: 6}
+            - {name: Irish Cream snifter, price: 7}
             - {name: Jameson shot, price: 7}
             - {name: Kahluah snifter, price: 7}
             - {name: Laphroig 10yr shot, price: 9}
@@ -436,7 +440,9 @@ menu:
             - {name: Pueblo Anejo shot, price: 7}
             - {name: Pueblo Blanco shot, price: 6}
             - {name: Pueblo Reposado shot, price: 7}
+            - {name: Rum-White shot, price: 6}
             - {name: Sambuca snifter, price: 6}
+            - {name: Scotch Tullibardine shot, price: 10}
             - {name: Seville Orange shot, price: 6}
             - {name: Sobieski shot, price: 5}
             - {name: Spiced Rum shot, price: 6}
@@ -459,7 +465,9 @@ menu:
             - {name: mix pineapple, add_on_price: 0}
             - {name: mix seltzer, add_on_price: 0}
             - {name: mix sprite, add_on_price: 0}
+            - {name: splash, add_on_price: 0}
             - {name: rocks, add_on_price: 0}
+            - {name: big rock, add_on_price: \0}
             - {name: neat, add_on_price: 0}
             - {name: up, add_on_price: 0}
             - {name: lime garnish, add_on_price: 0}
@@ -468,9 +476,17 @@ menu:
             - {name: twist, add_on_price: 0}
             - {name: olive garnish, add_on_price: 0}
             - {name: chilled, add_on_price: 0}
+            - {name: salt rim, add_on_price: 0}
+            - {name: no salt rim, add_on_price: 0}
+            - {name: sugar rim, add_on_price: 0}
+            - {name: chilled, add_on_price: 0}
             - {name: in old fashioned, add_on_price: 2}
+            - {name: in dirty martini, add_on_price: 2}
             - {name: in martini, add_on_price: 2}
             - {name: in manhattan, add_on_price: 2}
+            - {name: in margarita, add_on_price: 2}
+            - {name: in sour, add_on_price: 2}
+            - {name: in spritzer, add_on_price: 1}
             - {name: special note, add_on_price: 0}
     - name: market
       subcategories:
