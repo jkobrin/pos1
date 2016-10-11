@@ -318,11 +318,16 @@ def get_amount_to_withhold(federal, married, number_of_allowances, total_income)
 
 
 def add_witholding_fields(employee_tax_info):
-    eti = employee_tax_info #shorten name
-    eti['fed_withholding'] = get_amount_to_withhold(True, eti['married'], eti['allowances'], eti['gross_wages'])
-    eti['nys_withholding'] = get_amount_to_withhold(False, eti['married'], eti['allowances'], eti['gross_wages'])
-    eti['social_security_tax'] = eti['gross_wages'] * SOCIAL_SECURITY_TAX_RATE
-    eti['medicare_tax'] = eti['gross_wages'] *MEDICARE_TAX_RATE
+    try:
+      eti = employee_tax_info #shorten name
+      eti['fed_withholding'] = get_amount_to_withhold(True, eti['married'], eti['allowances'], eti['gross_wages'])
+      eti['nys_withholding'] = get_amount_to_withhold(False, eti['married'], eti['allowances'], eti['gross_wages'])
+      eti['social_security_tax'] = eti['gross_wages'] * SOCIAL_SECURITY_TAX_RATE
+      eti['medicare_tax'] = eti['gross_wages'] *MEDICARE_TAX_RATE
+    except TypeError as e:
+      #e.message += str(employee_tax_info)
+      raise Exception(str(employee_tax_info))
+
 
 
 def populate_pay_stub():

@@ -151,7 +151,7 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
       'pay_rate': rate, 
       'allowances': 1,
       'nominal_scale': 0,
-      'married': 1,
+      'married': 0,
       'weekly_pay': 0,
       'gross_wages': wages,
       'tips': 0,
@@ -169,6 +169,8 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
     print_stubs(0, sunday, table_name, incursor=incursor)
 
 if __name__ == '__main__':
-  make_estub('Seda', 'Seker', 30, .1, 42, .1)
+  #make_estub('Seda', 'Seker', 30, .1, 42, .1)
+  #make_estub('Brian', 'Seney', 11, .1, 20, .1)
   #make_estub('Rochel', 'Koenigsburger', 13, 0, 20, .1)
+  make_estub('John', 'Cano', 14, 0, 21, 0)
 

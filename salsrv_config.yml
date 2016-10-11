@@ -87,15 +87,15 @@ menu:
             - {name: walnut pesto, price: 6}
             #- {name: pate, price: 7}
             #- {name: caesar, price: 9}
-            - {name: summer salad, price: 9}
+            - {name: fall salad, price: 9}
             - {name: garden slaw, price: 11}
-            - {name: avocado toast, price: 14}
+            - {name: crab salad, price: 14}
             #- {name: anchovy, price: 6}
             #- {name: summer salad, price: 9}
             - {name: burrata, price: 14}
             #- {name: meatballs, price: 5}
             - {name: carrots, price: 10}
-            - {name: pate, price: 12}
+            #- {name: pate, price: 12}
             #- {name: sprouts, price: 9}
             - {name: artichokes, price: 12}
             #- {name: taleggio bake, price: 9}
@@ -103,9 +103,9 @@ menu:
             - {name: empanada, price: 8}
             - {name: shrimp, price: 12}
             - {name: bocadillo, price: 9}
-            - {name: tomatillo chicken, price: 9}
+            - {name: blue-ribon chicken, price: 9}
             - {name: octopus, price: 14}
-            - {name: morcilla, price: 12}
+            - {name: morcilla, price: 8}
             #- {name: octopus, price: 12}
             #- {name: artichokes, price: 10}
             #- {name: carney corn, price: 7}
@@ -129,8 +129,8 @@ menu:
             #- {name: french onion, price: 7}
             - {name: polenta tapa, price: 7}
             - {name: polenta plate, price: 12}
-            - {name: lamb shank, price: 28}
-            #- {name: oxtail, price: 14}
+            #- {name: lamb shank, price: 28}
+            - {name: oxtail, price: 14}
             #- {name: laksa, price: 21}
             #- {name: lamb, price: 22}
             #- {name: chicken, price: 18}
@@ -277,6 +277,7 @@ menu:
             - {name: colombia, price: 4}
             - {name: espresso, price: 4}
             - {name: cold brew, price: 5}
+            - {name: shakerato, price: 7}
             - {name: cappuccino, price: 6}
             - {name: cappuccino decaf, price: 6}
             - {name: latte, price: 6}
@@ -767,6 +768,16 @@ menu:
             items:
             - {name: Murray's Strawberry Jam (10 OZ), price: 11.5, supplier: Baldor, units_in_bulk: '',
               upc: '40232084935', vendor_code: MCB04, wholesale: '6.99'}
+            - {name: Almond mojo picon, price: 6.5, supplier: Sansone, units_in_bulk: '',
+              upc: '825325990108', vendor_code: MCB04, wholesale: '3.62'}
+            - {name: Tiptree Peach (12 OZ), price: 10, supplier: NassauCandy, units_in_bulk: '',
+              upc: '043647350015', vendor_code: MCB04, wholesale: '5.44'}
+            - {name: Tiptree Black Currant (12 OZ), price: 10, supplier: NassauCandy, units_in_bulk: '',
+              upc: '043647010018', vendor_code: MCB04, wholesale: '5.44'}
+            - {name: Tiptree Damson (12 OZ), price: 10, supplier: NassauCandy, units_in_bulk: '',
+              upc: '043647040015', vendor_code: MCB04, wholesale: '5.44'}
+            - {name: Honey Comb, price: 15.50, supplier: Baldor, units_in_bulk: '',
+              upc: '852947006405', vendor_code: MCB04, wholesale: ''}
             - {name: Harvest Song Rose Petal Jam (10.2 OZ), price: 10.0, supplier: Baldor, units_in_bulk: '',
               upc: '4850001111160', vendor_code: MCD31, wholesale: '5.99'}
             - {name: Harvest Song Apricot Jam (10 OZ), price: 10.0, supplier: Baldor, units_in_bulk: '',
@@ -1031,8 +1042,24 @@ menu:
               upc: '825325001347', vendor_code: '', wholesale: '4.60'}
           - name: household
             items:
-            - {name: cough drops, price: 2.5, supplier: CVS, units_in_bulk: '',
-              upc: '5042843806', vendor_code: '', wholesale: '22.00'}
+            - {name: breakfast mug, price: 5, supplier: ND, units_in_bulk: '',
+              upc: '064180215548', vendor_code: '', wholesale: '2.75'}
+            - {name: bicycle mug, price: 9, supplier: ND, units_in_bulk: '',
+              upc: '064180211809', vendor_code: '', wholesale: '4.60'}
+            - {name: camping mug, price: 10, supplier: ND, units_in_bulk: '',
+              upc: '064180231173', vendor_code: '', wholesale: '5.16'}
+            - {name: wine apron, price: 23, supplier: ND, units_in_bulk: '',
+              upc: '064180041772', vendor_code: '', wholesale: '12.52'}
+            - {name: cheese apron, price: 14, supplier: ND, units_in_bulk: '',
+              upc: '064180209554', vendor_code: '', wholesale: '7.57'}
+            - {name: pig towel, price: 10, supplier: ND, units_in_bulk: '',
+              upc: '064180228500', vendor_code: '', wholesale: '5.16'}
+            - {name: bread basket, price: 14, supplier: ND, units_in_bulk: '',
+              upc: '064180222461', vendor_code: '', wholesale: '7.57'}
+            - {name: small black wire basket, price: 16, supplier: ND, units_in_bulk: '',
+              upc: '064180219805', vendor_code: '', wholesale: '8.60'}
+            - {name: red wire basket, price: 21, supplier: ND, units_in_bulk: '',
+              upc: '064180228265', vendor_code: '', wholesale: '11.47'}
             - {name: Hario Cold Brew Lg, price: 25.0, supplier: Georgio's, units_in_bulk: '',
               upc: '4977642163973', vendor_code: '', wholesale: '22.00'}
             - {name: Hario V 60 100 Box Filters, price: 7.0, supplier: Georgio's, units_in_bulk: '',
@@ -1083,6 +1110,8 @@ menu:
               Microplane, units_in_bulk: '', upc: '098399393049', vendor_code: '', wholesale: ''}
           - name: oil
             items:
+            - {name: Pons EVOO 500ml, price: 13, supplier: GFI, units_in_bulk: '',
+              upc: '761040350271', vendor_code: MCB04, wholesale: '7.5'}
             - {name: Terra Medi Organic EVOO 17oz, price: 17.5, supplier: Nassau, units_in_bulk: '',
               upc: '812110000142', vendor_code: '973302', wholesale: '10.62'}
             - {name: California Olive Ranch EVOO 750 25.4oz, price: 15.0, supplier: Nassau,
