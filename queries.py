@@ -11,7 +11,7 @@ def nightly_sales_by_server(label=False, lag_days=1):
     from
     (
     SELECT 
-      concat(p.last_name, ', ', substr(p.first_name,1,1), '.') server,
+      concat(p.last_name, ', ', p.first_name) server,
       p.id as person_id,
       p.ccid,
       sum(oi.price) sales, 
@@ -38,7 +38,7 @@ def nightly_sales_by_server(label=False, lag_days=1):
 def hours(lag_days):
 
   return utils.select('''
-	SELECT concat(p.last_name, ', ', substr(p.first_name,1,1), '.') server,
+	SELECT concat(p.last_name, ', ', p.first_name) server,
 	h.id, 
   convert(intime, CHAR(48)) intime,
   convert(outtime, CHAR(48)) outtime,
