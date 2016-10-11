@@ -169,8 +169,5 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
     print_stubs(0, sunday, table_name, incursor=incursor)
 
 if __name__ == '__main__':
-  #make_estub('Seda', 'Seker', 30, .1, 42, .1)
-  #make_estub('Brian', 'Seney', 11, .1, 20, .1)
-  #make_estub('Rochel', 'Koenigsburger', 13, 0, 20, .1)
   make_estub('John', 'Cano', 14, 0, 21, 0)
 

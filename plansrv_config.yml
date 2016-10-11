@@ -61,12 +61,12 @@ menu:
             - {name: caesar , price: 9}
             - {name: burrata , price: 14}
             - {name: patatas bravas, price: 6}
-            - {name: farro, price: 10}
+            - {name: peppers, price: 9}
             - {name: carney corn, price: 8}
-            - {name: sprouts, price: 10}
+            - {name: sprouts, price: 12}
             - {name: scallops, price: 14}
             - {name: foie gras, price: 16}
-            - {name: panini , price: 9}
+            - {name: sweetbreads , price: 14}
             - {name: marrow bones, price: 8}
             - {name: pulpo, price: 14}
             - {name: bocadillo, price: 9}
@@ -159,25 +159,25 @@ menu:
             #- {name: half goat mush san, price: 0}
 
             - {name: prosciutto san, price: 10}
-            - {name: chorizo san, price: 12}
             - {name: spanish ham and cheese, price: 9}
             - {name: eggplant, price: 7}
             - {name: bocadillo, price: 9}
-
+            - {name: chorizo san, price: 12}
             - {name: daffinois panini, price: 10}
             - {name: soppresatta panini, price: 9}
             - {name: copa cubano, price: 11}
             - {name: goat mush san, price: 8}
             - {name: caesar, price: 9}
             - {name: burrata, price: 14}
-            - {name: caesar, price: 9}
             - {name: house salad, price: 8}
-            - {name: tomato soup and cheesy toast, price: 6}
+            - {name: tomato soup and cheesy toast, price: 7}
             - {name: corn bisque, price: 8}
 
             - {name: anchovy, price: 6}
             - {name: patatas, price: 6}
             - {name: scallops, price: 14}
+            - {name: foie gras, price: 16}
+            - {name: peppers, price: 9}
             - {name: bread, price: 3}
             - {name: special note, add_on_price: 0}
         - name: brunch 
@@ -194,13 +194,13 @@ menu:
             - {name: sopressata panini, price: 9}
             - {name: copa cubano, price: 11}
             - {name: goat cheese panini, price: 8}
-            - {name: beet and bleu, price: 9}
+            - {name: cesar, price: 9}
             - {name: burrata salad, price: 14}
             - {name: house salad, price: 8}
             - {name: smoked anchovies, price: 6}
             - {name: patatas bravas, price: 6}
             - {name: ham cheese toast, price: 8}
-            - {name: cebada, price: 7}
+            - {name: peppers, price: 9}
             - {name: bocadillo, price: 9}
             - {name: bread, price: 3}
             - {name: coffee, price: 4}
@@ -262,6 +262,8 @@ menu:
             - {name: french 75, price: 9}
             - {name: martini french, price: 9}
             - {name: special note, add_on_price: 0}
+            - {name: tinto de verano, price: 8}
+            - {name: bianco spritz, price: 8}
         - name: soft drinks
           items: 
             - {name: coke, price: 3}

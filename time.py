@@ -17,17 +17,29 @@ def index(req, doprint=0):
   populate_response = populate_pay_stub.populate_pay_stub(temp = True, incursor = cursor)
   weekly = queries.weekly_pay(incursor=cursor)
   
+  payroll_sql = '''
+	SELECT week_of,
+	round(sum(hours_worked)) as hours_worked,
+	round(avg(hours_worked)) as avg_hours_worked,
+  count(person_id) as num_employees,
+  round(sum(weekly_pay - nys_withholding - fed_withholding - social_security_tax - medicare_tax)) as payroll
+  from   
+  %(table_name)s
+  where yearweek(week_of) > yearweek(now() - interval '5' week)
+  and last_name not in ('Kobrin', 'Labossier', 'Kanarova')
+  group by yearweek(week_of)
+	order by yearweek(week_of) desc
+  '''
 
-  payroll = utils.select('''
-	SELECT yearweek(intime),
-	sum(hours_worked) as hours_worked,
-  round(sum(hours_worked*pay_rate)) as payroll
-	from hours_worked 
-  where yearweek(intime) > yearweek(now() - interval '5' week)
-  and last_name not in ('Kobrin', 'Labossier', 'Kanarova', 'Rodrigues')
-  group by yearweek(intime)
-	order by yearweek(intime) desc''',
-    incursor=None,
+  new_payroll = utils.select(
+    payroll_sql%{ 'table_name' : 'PAY_STUB_TEMP'},
+    incursor=cursor,
+    label=False
+  )
+
+  past_payroll = utils.select(
+    payroll_sql%{ 'table_name' : 'PAY_STUB'},
+    incursor=cursor,
     label=False
   )
 
@@ -66,9 +78,15 @@ def index(req, doprint=0):
       breakonfirst = True
     ) +
     utils.tohtml(
-      'Payroll',
-      ('yearweek', 'hours_worked', 'payroll'), 
-      payroll,
+      'New Payroll',
+      ('yearweek', 'hours_worked', 'avg_hrs', '# employees', 'payroll'), 
+      new_payroll,
+      breakonfirst = True
+    ) +
+    utils.tohtml(
+      'Past Payroll',
+      ('yearweek', 'hours_worked', 'avg_hrs', '# employees', 'payroll'), 
+      past_payroll,
       breakonfirst = True
     ) +
     utils.tohtml(
