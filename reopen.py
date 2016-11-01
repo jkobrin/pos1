@@ -22,8 +22,21 @@ def get_reopen_id(req, table):
 
   return json.dumps(retval)
 
+def record_reopen(req, reopen_id):
+
+  ip = req.get_remote_host()
+  
+  utils.execute(
+    '''insert into reopened 
+       select null, '%(ip)s', null, closedby, id
+       from order_group
+       where id in %(reopen_id)s''' % locals()
+  )
+
 
 def index(req, reopen_id):
+
+  record_reopen(req, reopen_id)
 
   utils.execute(
     '''update order_group
@@ -35,4 +48,4 @@ def index(req, reopen_id):
 
 
 if __name__ == '__main__':
-  print get_reopen_id(None, 'O5')
+  print get_reopen_id(None, 'T2')

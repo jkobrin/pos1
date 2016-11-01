@@ -43,9 +43,15 @@ def hours(lag_days):
   convert(intime, CHAR(48)) intime,
   convert(outtime, CHAR(48)) outtime,
   convert(tip_share, CHAR(4)) tip_share,
-  convert(tip_pay, CHAR(3)) tip_pay
+  convert(tip_pay, CHAR(3)) tip_pay,
+  IF(intime = 0 or outtime = 0 or 
+    timediff(outtime, intime) > '15:00:00' or 
+    date(intime) != date(outtime) and hour(outtime) > 4
+    or timediff(outtime, intime) < '04:00:00', true, false) as redflag
 	from hours h, person p
-  where date(intime) = date(now() - INTERVAL '%(lag_days)s' DAY)
+  where (date(intime) = date(now() - INTERVAL '%(lag_days)s' DAY)
+          or (date(now() - INTERVAL '%(lag_days)s' DAY) + interval '4' hour) 
+            between date(intime) and outtime)
   and h.person_id = p.id
 	order by intime;'''%locals(),
     incursor=None,

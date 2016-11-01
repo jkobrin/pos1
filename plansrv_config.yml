@@ -62,7 +62,7 @@ menu:
             - {name: burrata , price: 14}
             - {name: patatas bravas, price: 6}
             - {name: peppers, price: 9}
-            - {name: carney corn, price: 8}
+            - {name: squash, price: 8}
             - {name: sprouts, price: 12}
             - {name: scallops, price: 14}
             - {name: foie gras, price: 16}
@@ -70,7 +70,7 @@ menu:
             - {name: marrow bones, price: 8}
             - {name: pulpo, price: 14}
             - {name: bocadillo, price: 9}
-            - {name: corn bisque, price: 8}
+            - {name: squash soup, price: 8}
             - {name: duck, price: 16}
             - {name: beef chorizo, price: 10}
             - {name: steak, price: 21}
@@ -164,14 +164,14 @@ menu:
             - {name: bocadillo, price: 9}
             - {name: chorizo san, price: 12}
             - {name: daffinois panini, price: 10}
-            - {name: soppresatta panini, price: 9}
+            - {name: chorizo panini, price: 9}
             - {name: copa cubano, price: 11}
             - {name: goat mush san, price: 8}
             - {name: caesar, price: 9}
             - {name: burrata, price: 14}
             - {name: house salad, price: 8}
             - {name: tomato soup and cheesy toast, price: 7}
-            - {name: corn bisque, price: 8}
+            - {name: squash soup, price: 8}
 
             - {name: anchovy, price: 6}
             - {name: patatas, price: 6}
@@ -191,7 +191,8 @@ menu:
             - {name: spanish burger, price: 14}
             - {name: italian burger, price: 14}
             - {name: daffinois panini, price: 10}
-            - {name: sopressata panini, price: 9}
+            - {name: chorizo panini, price: 9}
+            - {name: squash soup, price: 8}
             - {name: copa cubano, price: 11}
             - {name: goat cheese panini, price: 8}
             - {name: cesar, price: 9}
