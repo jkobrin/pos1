@@ -26,17 +26,17 @@ def is_gift(item):
 def is_gratuity(item):
   return item['name'].startswith('gratuity')
 
-def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_time = None):
+def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_time = None, admin_view=None):
 
   if cursor is None:
     cursor = utils.get_cursor()
     
   items_query = '''
-    SELECT count(*) cnt, og.table_id, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped, oi.taxable
+    SELECT count(*) cnt, og.table_id, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped, oi.taxable, oi.is_cancelled
     FROM order_group og, order_item oi 
     where og.id = oi.order_group_id
     and (og.is_open = TRUE and "%(closed_time)s" = 'None' or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
-    and oi.is_cancelled = FALSE
+    and (oi.is_cancelled = FALSE or '%(serverpin)s' = 'NULL' or '%(admin_view)s' = 'all')
     group by oi.item_name, oi.is_comped, oi.price, IF(item_name like 'gift%%', oi.id, 1)
     order by oi.id
   ''' % locals()
@@ -44,7 +44,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
 
   items = utils.select(items_query, cursor)
 
-  if serverpin:
+  if serverpin and serverpin != 'NULL':
     servername = utils.select(
       "select coalesce(nickname, first_name) name from person where id = %(serverpin)s"
       % locals(), cursor)[0]['name']
@@ -54,8 +54,8 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   if not items: 
     return "no tab opened for table %s" %table, []
 
-  foodtotal = sum(item['price'] for item in items if not item['is_comped'])
-  taxable_total = sum(item['price'] for item in items if not item['is_comped'] and item['taxable'])
+  foodtotal = sum(item['price'] for item in items if not item['is_cancelled'] and not item['is_comped'])
+  taxable_total = sum(item['price'] for item in items if not item['is_cancelled'] and not item['is_comped'] and item['taxable'])
   tax = round(taxable_total*TAXRATE, 2)
   total = foodtotal + tax
 
@@ -87,9 +87,11 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
       continue
     if is_gift(item):
       gift_certs.append(GiftCert(item['id'], item['price']))
-    if item['price'] == 0:
+    if item['price'] == 0 and admin_view != 'all':
       continue
-    if item['is_comped']:
+    if item['is_cancelled']:
+      price = 'cancelled'
+    elif item['is_comped']:
       price = 'comped'
     else:  
       price = '%.2f'%item['price']

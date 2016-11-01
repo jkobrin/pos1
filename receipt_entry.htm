@@ -317,7 +317,14 @@
       for (idx in g_hours)
       {
         hours = g_hours[idx];
-        s += "<tr>";    
+
+        if (hours['redflag'])
+        {
+          s += "<tr style='color:yellow; background-color:red'>";    
+        }else
+        {
+          s += "<tr >";    
+        }
 
         for (cidx in cols)
         {

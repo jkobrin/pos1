@@ -5,6 +5,7 @@ import texttab
 
 import subprocess
 
+from mylog import my_logger
 
 #SPRINT_OPTIONS = {
 # 'page-border':'double', 'page-left':'48', 'page-top':'36',
@@ -26,6 +27,7 @@ import subprocess
 #PAGE_WIDTH_IN_CHARS = PAGE_WIDTH_IN_INCHES * CHARACTERS_PER_INCH - 5
 
 def index(req, table, shouldPrint, serverpin, close=True):
+  my_logger.info(req.get_remote_host()+': server %s closed tab %s'%(serverpin, table))
 
   cursor = utils.get_cursor()
 
