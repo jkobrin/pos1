@@ -32,12 +32,18 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
     cursor = utils.get_cursor()
     
   items_query = '''
-    SELECT count(*) cnt, og.table_id, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped, oi.taxable, oi.is_cancelled
-    FROM order_group og, order_item oi 
-    where og.id = oi.order_group_id
-    and (og.is_open = TRUE and "%(closed_time)s" = 'None' or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
+    SELECT count(*) cnt, og.table_id, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped, oi.taxable, 
+      oi.is_cancelled,
+      time_format(timediff(oi.created, og.created), '+%h%i') creat_time,
+      time_format(timediff(oi.updated, oi.created), '+%h%i') updat_time,
+      oi.created > ro.created as creat_after,
+      oi.updated > ro.created as updat_after
+    FROM order_group og 
+    JOIN order_item oi ON og.id = oi.order_group_id
+    LEFT OUTER JOIN reopened ro ON ro.order_group_id = og.id
+    WHERE (og.is_open = TRUE and "%(closed_time)s" = 'None' or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
     and (oi.is_cancelled = FALSE or '%(serverpin)s' = 'NULL' or '%(admin_view)s' = 'all')
-    group by oi.item_name, oi.is_comped, oi.price, IF(item_name like 'gift%%', oi.id, 1)
+    group by oi.item_name, oi.is_comped, oi.is_cancelled, oi.price, IF(item_name like 'gift%%', oi.id, 1)
     order by oi.id
   ''' % locals()
 
@@ -97,6 +103,15 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
       price = '%.2f'%item['price']
 
     tabtext += format_item(item['name'], item['cnt']).ljust(TEXTWIDTH) + price.rjust(NUMWIDTH) + "\n"
+    if admin_view:
+      tabtext += '<a style="font-size:12">' 
+      if item['creat_after'] : tabtext += '<a style="color: red">'
+      tabtext += str(item['creat_time']) 
+      if item['creat_after'] : tabtext += '</a>'
+      if item['updat_after'] : tabtext += '<a style="color: red">'
+      tabtext += ' ' + str(item['updat_time'] or '') 
+      if item['updat_after'] : tabtext += '</a>'
+      tabtext += '</a><br/>'
 
   foodtotal, tax, gratuity, total = (
     ('%.2f'%x).rjust(NUMWIDTH) for x in (foodtotal, tax, gratuity, total)

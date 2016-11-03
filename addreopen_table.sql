@@ -1,4 +1,4 @@
-drop table reopened;
+#drop table reopened;
 
 CREATE TABLE reopened (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
