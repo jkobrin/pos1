@@ -26,7 +26,7 @@ def is_gift(item):
 def is_gratuity(item):
   return item['name'].startswith('gratuity')
 
-def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_time = None, admin_view=None):
+def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_time = None, admin_view=False):
 
   if cursor is None:
     cursor = utils.get_cursor()
@@ -34,19 +34,20 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   items_query = '''
     SELECT count(*) cnt, og.table_id, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped, oi.taxable, 
       oi.is_cancelled,
-      time_format(timediff(oi.created, og.created), '+%h%i') creat_time,
-      time_format(timediff(oi.updated, oi.created), '+%h%i') updat_time,
+      time_format(timediff(oi.created, og.created), '+%%H:%%i') creat_time,
+      time_format(timediff(oi.updated, oi.created), '+%%H:%%i') updat_time,
       oi.created > ro.created as creat_after,
       oi.updated > ro.created as updat_after
     FROM order_group og 
     JOIN order_item oi ON og.id = oi.order_group_id
-    LEFT OUTER JOIN reopened ro ON ro.order_group_id = og.id
+    LEFT OUTER JOIN (select order_group_id, min(created) as created from reopened group by order_group_id) ro ON ro.order_group_id = og.id
     WHERE (og.is_open = TRUE and "%(closed_time)s" = 'None' or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
-    and (oi.is_cancelled = FALSE or '%(serverpin)s' = 'NULL' or '%(admin_view)s' = 'all')
+    and (oi.is_cancelled = FALSE or '%(serverpin)s' = 'NULL' or %(admin_view)s)
     group by oi.item_name, oi.is_comped, oi.is_cancelled, oi.price, IF(item_name like 'gift%%', oi.id, 1)
-    order by oi.id
-  ''' % locals()
-
+    '''
+  if admin_view: items_query += ', oi.id\n' # don't group for admin_view
+  items_query  += '''order by oi.created'''
+  items_query = items_query % locals()
 
   items = utils.select(items_query, cursor)
 
@@ -93,7 +94,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
       continue
     if is_gift(item):
       gift_certs.append(GiftCert(item['id'], item['price']))
-    if item['price'] == 0 and admin_view != 'all':
+    if item['price'] == 0 and not admin_view:
       continue
     if item['is_cancelled']:
       price = 'cancelled'
@@ -104,12 +105,12 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
 
     tabtext += format_item(item['name'], item['cnt']).ljust(TEXTWIDTH) + price.rjust(NUMWIDTH) + "\n"
     if admin_view:
-      tabtext += '<a style="font-size:12">' 
+      tabtext += '<a style="font-size:12; color: green">' 
       if item['creat_after'] : tabtext += '<a style="color: red">'
-      tabtext += str(item['creat_time']) 
+      tabtext += str(item['creat_time']).replace('+00:', '+').replace('+0', '+') 
       if item['creat_after'] : tabtext += '</a>'
       if item['updat_after'] : tabtext += '<a style="color: red">'
-      tabtext += ' ' + str(item['updat_time'] or '') 
+      tabtext += ' ' + str(item['updat_time'] or '').replace('+00:', '+').replace('+0', '+')
       if item['updat_after'] : tabtext += '</a>'
       tabtext += '</a><br/>'
 

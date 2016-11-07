@@ -97,6 +97,13 @@ menu:
               price: 32
             - name: mixed cheese board
               price: 32
+            - {name: seranno ham, add_on_price: 0}
+            - {name: lomo, add_on_price: 0}
+            - {name: chorizo, add_on_price: 0}
+            - {name: prosciutto, add_on_price: 0}
+            - {name: hot capicolla, add_on_price: 0}
+            - {name: felino, add_on_price: 0}
+            - {name: pata negra, add_on_price: 15}
             - {name: manchego , add_on_price: 0}
             - {name: cana de cabra, add_on_price: 0}
             - {name: campo de montalban, add_on_price: 0}
@@ -106,17 +113,10 @@ menu:
             - {name: daffinois, add_on_price: 0}
             - {name: sao jorge, add_on_price: 0}
             - {name: blue cheese, add_on_price: 0}
-            #- {name: gruyere, add_on_price: 0}
+            - {name: tetilla, add_on_price: 0}
             - {name: queso sudado, add_on_price: 0}
             - {name: gouda, add_on_price: 0}
             #- {name: capri, add_on_price: 0}
-            - {name: seranno ham, add_on_price: 0}
-            - {name: lomo, add_on_price: 0}
-            - {name: chorizo, add_on_price: 0}
-            - {name: prosciutto, add_on_price: 0}
-            - {name: hot capicolla, add_on_price: 0}
-            - {name: felino, add_on_price: 0}
-            - {name: pata negra, add_on_price: 15}
             #- {name: rosette de lyon, add_on_price: 0}
             - {name: extra fig, add_on_price: 2}
             - name: add-on

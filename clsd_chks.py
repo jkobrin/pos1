@@ -54,7 +54,7 @@ def index(req, lag_days=1):
       serverpin = row['closedby'], 
       cursor = None, 
       closed_time = row['closed_time'],
-      admin_view = 'all')
+      admin_view = True)
 
     hi_tab = tab_text.replace(
         'cancelled', '<a style="color:red"> CANCELLED </a>'
