@@ -55,30 +55,30 @@ menu:
       subcategories:
         - name: dinner
           items: 
-            - {name: warm olives, price: 5}
+            - {name: warm olives, price: 6}
             - {name: marcona almonds, price: 5}
-            - {name: anchovy, price: 6}
-            - {name: caesar , price: 9}
+            - {name: anchovy, price: 8}
+            - {name: caesar , price: 10}
             - {name: burrata , price: 14}
-            - {name: patatas bravas, price: 6}
+            - {name: patatas bravas, price: 7}
             - {name: peppers, price: 9}
             - {name: squash, price: 8}
             - {name: sprouts, price: 12}
-            - {name: scallops, price: 14}
+            - {name: scallops, price: 15}
             - {name: foie gras, price: 16}
             - {name: sweetbreads , price: 14}
-            - {name: marrow bones, price: 8}
+            - {name: marrow bones, price: 9}
             - {name: pulpo, price: 14}
             - {name: bocadillo, price: 9}
             - {name: squash soup, price: 8}
             - {name: duck, price: 16}
-            - {name: beef chorizo, price: 10}
+            - {name: beef chorizo, price: 12}
             - {name: steak, price: 21}
             - {name: panacotta, price: 7}
             - {name: chocolate, price: 7}
             - {name: apple crisp, price: 7}
             - {name: special, price: 0}
-            - {name: bread, price: 3}
+            - {name: bread, price: 4}
             - {name: special note, add_on_price: 0}
         - name: boards
           items: 
