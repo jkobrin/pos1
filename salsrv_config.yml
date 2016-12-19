@@ -82,31 +82,31 @@ menu:
       subcategories:
         - name: dinner
           items: 
-            - {name: warm olives, price: 5}
+            - {name: warm olives, price: 6}
             - {name: marcona almonds, price: 5}
             - {name: walnut pesto, price: 6}
             #- {name: pate, price: 7}
             #- {name: caesar, price: 9}
             - {name: fall salad, price: 9}
-            - {name: garden slaw, price: 11}
-            - {name: crab salad, price: 14}
+            #- {name: garden slaw, price: 11}
+            - {name: crab salad, price: 15}
             #- {name: anchovy, price: 6}
             #- {name: summer salad, price: 9}
             - {name: burrata, price: 14}
             #- {name: meatballs, price: 5}
-            - {name: carrots, price: 10}
+            - {name: carrots, price: 11}
             #- {name: pate, price: 12}
             #- {name: sprouts, price: 9}
             - {name: artichokes, price: 12}
             #- {name: taleggio bake, price: 9}
-            - {name: corn, price: 7}
-            - {name: brussels, price: 10}
-            - {name: empanada, price: 8}
+            #- {name: corn, price: 7}
+            - {name: brussels, price: 11}
+            - {name: empanada, price: 9}
             - {name: shrimp, price: 12}
             - {name: bocadillo, price: 9}
-            - {name: blue-ribon chicken, price: 9}
+            - {name: blue-ribon chicken, price: 12}
             - {name: octopus, price: 14}
-            - {name: morcilla, price: 8}
+            - {name: morcilla, price: 9}
             #- {name: octopus, price: 12}
             #- {name: artichokes, price: 10}
             #- {name: carney corn, price: 7}
@@ -126,16 +126,16 @@ menu:
             #- {name: octopus, price: 12}
             #- {name: radish, price: 8}
             #- {name: meatballs, price: 8}
-            - {name: marrow bones, price: 8}
+            - {name: marrow bones, price: 9}
             #- {name: french onion, price: 7}
-            - {name: polenta tapa, price: 7}
-            - {name: polenta plate, price: 12}
+            - {name: polenta tapa, price: 8}
+            - {name: polenta plate, price: 14}
             #- {name: lamb shank, price: 28}
-            - {name: oxtail, price: 14}
+            - {name: oxtail, price: 16}
             #- {name: laksa, price: 21}
             #- {name: lamb, price: 22}
             #- {name: chicken, price: 18}
-            - {name: bread, price: 3}
+            - {name: bread, price: 4}
             - {name: panacotta, price: 7}
             - {name: affogato, price: 7}
             - {name: chocolate, price: 7}
@@ -266,7 +266,6 @@ menu:
             - {name: discount, price: -1}
             - {name: extras, price: 1}
             - {name: gratuity18, price: 18}
-            - {name: gratuity20, price: 20}
             - {name: gratuity special, price: 0}
             - {name: tax-free special, price: 0}
             - {name: corkage fee, price: 10}

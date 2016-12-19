@@ -165,9 +165,9 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
     #my_logger.debug('pay stub: ' + sqltext)
     utils.execute(sqltext, incursor=incursor)
     
-  for sunday in last_sundays(6):
+  for sunday in last_sundays(12):
     print_stubs(0, sunday, table_name, incursor=incursor)
 
 if __name__ == '__main__':
-  make_estub('John', 'Cano', 14, 0, 21, 0)
+  make_estub('Diego', 'Moran', 12, 0, 25, 0)
 

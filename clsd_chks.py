@@ -35,7 +35,7 @@ def index(req, lag_days=1):
     query_txt += '''and date(og.updated - interval '6' hour) = date(now()) - interval '%(lag_days)s' day
     '''%locals()
 
-  query_txt += '''  group by og.table_id, og.updated order by closed_time;'''
+  query_txt += '''  group by og.table_id, og.updated, ro.id order by ro.created, closed_time;'''
 
   checks = utils.select(query_txt,
     incursor=None,
@@ -54,7 +54,8 @@ def index(req, lag_days=1):
       serverpin = row['closedby'], 
       cursor = None, 
       closed_time = row['closed_time'],
-      admin_view = True)
+      admin_view = True,
+      reopen_time = row['reopen_time'])
 
     hi_tab = tab_text.replace(
         'cancelled', '<a style="color:red"> CANCELLED </a>'

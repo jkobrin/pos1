@@ -6,6 +6,8 @@ TAXRATE = .08625
 TEXTWIDTH = 18
 NUMWIDTH = 7 
 
+MSG = '''.'''
+
 def index(req, table):
   tab_text, gift_certs = get_tab_text(table)
   return json.dumps(tab_text)
@@ -26,7 +28,7 @@ def is_gift(item):
 def is_gratuity(item):
   return item['name'].startswith('gratuity')
 
-def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_time = None, admin_view=False):
+def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_time = None, admin_view=False, reopen_time = None):
 
   if cursor is None:
     cursor = utils.get_cursor()
@@ -36,11 +38,10 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
       oi.is_cancelled,
       time_format(timediff(oi.created, og.created), '+%%H:%%i') creat_time,
       time_format(timediff(oi.updated, oi.created), '+%%H:%%i') updat_time,
-      oi.created > ro.created as creat_after,
-      oi.updated > ro.created as updat_after
+      oi.created > '%(reopen_time)s' as creat_after,
+      oi.updated > '%(reopen_time)s' as updat_after
     FROM order_group og 
     JOIN order_item oi ON og.id = oi.order_group_id
-    LEFT OUTER JOIN (select order_group_id, min(created) as created from reopened group by order_group_id) ro ON ro.order_group_id = og.id
     WHERE (og.is_open = TRUE and "%(closed_time)s" = 'None' or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
     and (oi.is_cancelled = FALSE or '%(serverpin)s' = 'NULL' or %(admin_view)s)
     group by oi.item_name, oi.is_comped, oi.is_cancelled, oi.price, IF(item_name like 'gift%%', oi.id, 1)
@@ -133,8 +134,8 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
 
 
 
-.
-''' % servername
+%s
+''' % (servername, MSG)
 
   return tabtext, gift_certs
 
