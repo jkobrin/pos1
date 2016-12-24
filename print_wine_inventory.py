@@ -33,5 +33,30 @@ def index(req = None):
     os.remove(filename)
     return  json.dumps(None)
 		
+def cellar_list(req = None):
+    cellarlist = utils.select('''
+      select bin as binnum, name, round(estimated_units_remaining) est_count, byline, listprice
+      from winelist_inv where bin !=0 and cellar_listorder != 0 and cellar_listorder is not null
+      order by cellar_listorder;
+    '''
+    , label=True)
+
+    outfile = tempfile.NamedTemporaryFile(delete=False)
+    filename = outfile.name
+    for rec in cellarlist:
+      outfile.write(
+        rec['name'].encode('utf8') + ' ' + 
+        (rec['byline'] or '').encode('utf8') + '\n' +
+        'bin '+str(rec['binnum']) + ', ' +
+        str(int(rec['est_count'])) + ' bottles' + ',  $' + str(rec['listprice']) + '\n\n'
+      )
+
+    outfile.close()
+    #subprocess.call(['enscript', '--font=Courier-Bold@11/16', '-B', '-MEnv10', filename])
+    subprocess.call(['cat', filename])
+    os.remove(filename)
+    return  json.dumps(None)
+		
 if __name__ == '__main__':
-    index()
+    #index()
+    cellar_list()
