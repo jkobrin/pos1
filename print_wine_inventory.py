@@ -10,7 +10,7 @@ TEXTWIDTH = 25
 def index(req = None):
     winelist = utils.select('''
       select category, bin as binnum, name, round(estimated_units_remaining,2) est_count 
-      from winelist_inv_pure where bin !=0 and category != 'House Cocktails' order by category, bin;
+      from winelist_inv where bin !=0 and category != 'House Cocktails' order by category, bin;
     '''
     , label=True)
 
