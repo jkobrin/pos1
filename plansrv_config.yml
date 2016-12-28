@@ -53,10 +53,10 @@ menu:
             - name: T5
     - name: food
       subcategories:
-        - name: dinner
+        - name: tapas
           items: 
             - {name: warm olives, price: 6}
-            - {name: marcona almonds, price: 5}
+            - {name: marcona almonds, price: 6}
             - {name: anchovy, price: 8}
             - {name: caesar , price: 10}
             - {name: burrata , price: 14}
@@ -158,55 +158,53 @@ menu:
             #- {name: half copa cubano, price: 0}
             #- {name: half goat mush san, price: 0}
 
-            - {name: prosciutto san, price: 10}
-            - {name: spanish ham and cheese, price: 9}
-            - {name: eggplant, price: 7}
+            - {name: prosciutto san, price: 11}
+            - {name: spanish ham and cheese, price: 10}
+            - {name: eggplant, price: 8}
             - {name: bocadillo, price: 9}
             - {name: chorizo san, price: 12}
             - {name: daffinois panini, price: 10}
             - {name: chorizo panini, price: 9}
             - {name: copa cubano, price: 11}
             - {name: goat mush san, price: 8}
-            - {name: caesar, price: 9}
+            - {name: caesar, price: 10}
             - {name: burrata, price: 14}
             - {name: house salad, price: 8}
             - {name: tomato soup and cheesy toast, price: 7}
             - {name: squash soup, price: 8}
 
-            - {name: anchovy, price: 6}
-            - {name: patatas, price: 6}
-            - {name: scallops, price: 14}
+            - {name: anchovy, price: 8}
+            - {name: patatas, price: 7}
+            - {name: scallops, price: 15}
             - {name: foie gras, price: 16}
             - {name: peppers, price: 9}
-            - {name: bread, price: 3}
+            - {name: bread, price: 4}
             - {name: special note, add_on_price: 0}
         - name: brunch 
           items: 
             - {name: bloomfield, price: 12}
             - {name: scramble, price: 8}
             - {name: frittata verde, price: 9}
-            - {name: french toast, price: 8}
+            - {name: french toast, price: 10}
             - {name: bacon, price: 5}
             - {name: american burger, price: 15}
             - {name: spanish burger, price: 14}
             - {name: italian burger, price: 14}
             - {name: daffinois panini, price: 10}
             - {name: chorizo panini, price: 9}
-            - {name: squash soup, price: 8}
             - {name: copa cubano, price: 11}
-            - {name: goat cheese panini, price: 8}
-            - {name: cesar, price: 9}
+            - {name: goat cheese panini, price: 9}
             - {name: burrata salad, price: 14}
             - {name: house salad, price: 8}
-            - {name: smoked anchovies, price: 6}
-            - {name: patatas bravas, price: 6}
+            - {name: smoked anchovies, price: 8}
+            - {name: patatas bravas, price: 7}
             - {name: ham cheese toast, price: 8}
             - {name: peppers, price: 9}
             - {name: bocadillo, price: 9}
-            - {name: bread, price: 3}
+            - {name: bread, price: 4}
             - {name: coffee, price: 4}
             - {name: decaf, price: 4}
-            - {name: iced tea, price: 3}
+            - {name: iced tea, price: 4}
             - {name: english breakfast, price: 4}
             - {name: jasmin tea, price: 4}
             - {name: paris tea, price: 4}
@@ -223,8 +221,8 @@ menu:
             - {name: ceylon tea, price: 4}
             - {name: paris tea, price: 4}
             - {name: chomomile, price: 4}
-            - {name: iced unsweet tea, price: 3}
-            - {name: iced sweet tea, price: 3}
+            - {name: iced unsweet tea, price: 4}
+            - {name: iced sweet tea, price: 4}
         - name: cocktails 
           items: 
             - {name: special cocktail, price: 12}

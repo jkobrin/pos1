@@ -46,14 +46,14 @@ def cellar_list(req = None):
     for rec in cellarlist:
       outfile.write(
         rec['name'].encode('utf8') + ' ' + 
-        (rec['byline'] or '').encode('utf8') + '\n' +
+        '\n' + #(rec['byline'] or '').encode('utf8') + '\n' +
         'bin '+str(rec['binnum']) + ', ' +
         str(int(rec['est_count'])) + ' bottles' + ',  $' + str(rec['listprice']) + '\n\n'
       )
 
     outfile.close()
-    #subprocess.call(['enscript', '--font=Courier-Bold@11/16', '-B', '-MEnv10', filename])
-    subprocess.call(['cat', filename])
+    subprocess.call(['enscript', '--font=Courier-Bold@11/16', '-B', '-MReceiptRoll', filename])
+    #subprocess.call(['cat', filename])
     os.remove(filename)
     return  json.dumps(None)
 		
