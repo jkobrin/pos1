@@ -30,7 +30,7 @@
       float: left;
       margin: 5px;
       font-size:14pt; font-weight:bold; height:100px; width:100px;
-      background-color:#b0b0b0;
+      background-color: #b0b0b0;
       white-space : normal;
     }
 
@@ -1076,6 +1076,12 @@
       clock_out.disabled=true;
     }  
 
+    function print_cellar_list()
+    {
+      http_request("POST", "print_wine_inventory.py/cellar_list", ""); 
+      alert('printing cellar list');
+    }  
+
     function server_is_in(serverpin)
     {
       return http_request("POST", "clockin.py/server_is_in", "serverpin="+pin);
@@ -1383,6 +1389,7 @@
     <div><a href="javascript:go_to_cook_screen()"  class="leftLink" id="cooklink">C</a></div>
     <div><a href="javascript:go_to_clock_sceen()"  class="leftLink" id="clocklink">P</a></div>
     <div><a href="http://salumibarli.com:3681/wiki" class="leftLink" id="wlink">W</a></div>
+    <div><a href="javascript:print_cellar_list()" class="leftLink" id="wlink">L</a></div>
     </div>
     <div id="board"></div>
 

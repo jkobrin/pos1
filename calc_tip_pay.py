@@ -14,8 +14,9 @@ def index(req, the_tip, lag_days):
     from 
       served_item si,
       order_group
-    where si.order_group_id = order_group.id and order_group.table_id != 'MKT' and 
-    DATE(si.created- INTERVAL '4' HOUR) =  DATE(NOW()) - INTERVAL '%(lag_days)s' DAY 
+    where si.order_group_id = order_group.id 
+    and (order_group.table_id not rlike '^M|Couch' or time(si.created) > '16:00:00')
+    and DATE(si.created- INTERVAL '4' HOUR) =  DATE(NOW()) - INTERVAL '%(lag_days)s' DAY 
     '''
   )
 

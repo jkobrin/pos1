@@ -68,7 +68,7 @@ def get_cursor():
 
 def execute(sql, incursor=None, args= None):
   
-  my_logger.debug(sql)
+  my_logger.info(sql)
 
   if not incursor:
     conn = MySQLdb.connect (host = "localhost",
@@ -109,7 +109,12 @@ def select_as_html(query, incursor=None):
 
   return rows
 
+def sql_insert(table_name, dct, incursor=None):
 
+      columns = ', '.join(dct.keys())
+      sqltext = 'INSERT into %s (%s) VALUES '%(table_name, columns) + '(' + ','.join(['%s']*len(dct.values())) + ')'
+      execute(sqltext, incursor=incursor, args=dct.values())
+    
 
 def select(query, incursor=None, label=True, args=None):
   
