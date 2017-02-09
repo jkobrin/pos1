@@ -36,21 +36,6 @@
 
     #message_box { font-size: 32pt; background-color: red;}
 
-    .keypad
-    {
-      padding-top:25px;
-    }
-
-    .keypad button
-    {
-      font-size:36pt;
-    }
-
-    .keypad input
-    {
-      font-size:36pt;
-    }
-
     .diaframe
     {
      opacity:0.9;
@@ -134,6 +119,29 @@
     #clock_screen
     {
       display: none;
+    }
+
+    #clock_screen button
+    {
+      width:30%;
+      height:20%;
+      font-size: 72pt;
+      color: red;
+    }
+
+    #receipts_table 
+    {
+      width:100%;
+      height:50%;
+      color: blue;
+      text-align: right;
+    }
+
+    #receipts_table input
+    {
+      height: 100%;
+      color: black;
+      float: left;
     }
 
     #cook_screen
@@ -222,6 +230,23 @@
     #order_items {height: 60vh; overflow-y: auto; overflow-x: clip }
     #table_id_display {width: 95%;}
     #receipt_text {font-family: monospace; font-size: 14pt;}
+    #pinput_screen {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      font-family: monospace; font-size: 28pt; 
+      background-color:gray; 
+      border:none;
+      display: none;
+    }  
+
+    #pinput_screen input {
+      font-family: monospace; font-size: 72pt; 
+      background-color:transparent; 
+    }  
+    #pinput_screen div {
+      font-family: monospace; font-size: 72pt; 
+      background-color:transparent; 
+    }  
+
 
   </style>
 
@@ -858,6 +883,21 @@
       })
     }
 
+    function pin()
+    {
+      return pin_input().value;
+    }
+
+    function pin_input()
+    {
+      return document.getElementById("pinput");
+    }  
+
+    function pinput_screen()
+    {
+      return document.getElementById("pinput_screen");
+    }  
+      
     function pin_is_good(pin)
     {
       var params = "pin="+pin;
@@ -1015,7 +1055,6 @@
     function go_to_receipt_sceen()
     {
       window.scroll(0,0); 
-      keypadclear();
       if(g_crud_commands.length > 0) {synchronize_now()}
       var receipt_text = http_request("POST", "texttab.py", "table="+g_currentTable);
       receipt_table.innerHTML = receipt_table_html(receipt_text);
@@ -1025,55 +1064,99 @@
       {
         print_and_close.disabled=false;
         just_close.disabled=false;
-        pin = "0001"; //Salumi Guy
+        pin_input().value = "0001"; //Salumi Guy
       }  
+      else
+      {
+        //pin_input().focus();
+      }
     }  
 
-    function go_to_clock_sceen()
+    function go_to_clock_screen()
     {
-      keypadclear();
+      if (pin() == '') return set_pin_and_do(go_to_clock_screen);
+
       main_screen.style.display = "none";
       clock_screen.style.display = "inline";
-      clock_screen_msg.innerHTML = "What do you want to do?";
     }  
 
     function leave_clock_screen()
     {
-      keypadclear();
+      pin_input().value = '';
       clock_screen.style.display="none";
       main_screen.style.display="inline"; 
     }
 
+    pin_callback=null;
+    function pin_blur()
+    {
+      if(!pin_is_good(pin())) {
+        var try_again = confirm("PIN not recognized.");
+        if (try_again) {
+          pin_input().focus();
+          return;
+        }  
+      }  
+      else { 
+        if (pin_callback != null) pin_callback();
+      }  
+      
+      pinput_screen().style.display = 'none';
+    }
+
+    function set_pin_and_do(f)
+    {
+      pin_callback = f;
+      //pin_input().value=9999;
+      pinput_screen().style.display = 'table';
+      pin_input().focus();
+    }
+      
     function enter_receipts()
     {
-      var cctips = prompt('credit tips');
-      var cctotal = prompt('credit total');
-      var starting_cash = prompt('cash left in_bank');
-      var cash_in_bank = prompt('cash left in_bank');
-      var cash_drop = prompt('cash to drop');
       var resp = http_request("POST", "server_receipt_entry.py", 
         format_http_params({
-          'serverpin': pin,
-          'cctips': cctips,
+          'serverpin': pin_input().value,
           'cctotal': cctotal,
+          'cctips': cctips,
+          'cash_drop': cash_drop,
           'starting_cash': starting_cash,
-          'cash_in_bank': cash_in_bank,
-          'cash_drop': cash_drop
+          'cash_left_in_bank': cash_left_in_bank,
         })
       );
-      clock_screen_msg.innerHTML = resp;
     }  
       
     function clockin(in_)
     {
-      var resp = http_request("POST", "clockin.py", 
-        "in_="+in_+
-        "&serverpin="+pin
-      );
+      var resp = http_request("POST", "clockin.py", "in_="+in_+ "&serverpin="+pin());
 
-      clock_screen_msg.innerHTML = resp;
-      clock_in.disabled=true;
-      clock_out.disabled=true;
+      if (resp == 'already clocked in')
+      {
+        var yes = confirm('Already clocked in. Would you like to clock out and back in?')
+        if(yes) {
+          var resp = http_request("POST", "clockin.py", "in_=false&serverpin="+pin());
+          resp += '\n' + http_request("POST", "clockin.py", "in_=true&serverpin="+pin());
+        }
+        else
+        {
+          return; //cancel
+        }  
+      }  
+      if (resp == 'already clocked out')
+      {
+        var yes = confirm('Already clocked out. Would you like to clock in and back out?')
+        if(yes) {
+          var resp = http_request("POST", "clockin.py", "in_=true&serverpin="+pin());
+          resp += '\n' + http_request("POST", "clockin.py", "in_=false&serverpin="+pin());
+        }
+        else
+        {
+          return; //cancel
+        }  
+      }  
+
+      alert(resp);
+      leave_clock_screen();
     }  
 
     function print_cellar_list()
@@ -1082,24 +1165,25 @@
       alert('printing cellar list');
     }  
 
-    function server_is_in(serverpin)
-    {
-      return http_request("POST", "clockin.py/server_is_in", "serverpin="+pin);
-    }
-
     function close_check(shouldPrint)
     {
+      if (pin() == '') return set_pin_and_do(function(){close_check(shouldPrint)});
+
       var table = g_currentTable;
       http_request("POST", "close_tab.py", 
         "table="+table+
         "&shouldPrint="+shouldPrint+
-        "&serverpin="+pin
+        "&serverpin="+pin()
       );
       synchronize_now();
 
       if (g_currentTable == 'MKT') {
         go_to_market();
       }
+      else
+      {
+        leave_receipt_screen();
+      }  
     }  
 
     g_order_pane_items = null;
@@ -1194,79 +1278,8 @@
 
     function leave_receipt_screen()
     {
-      keypadclear();
       receipt_screen.style.display="none";
       main_screen.style.display="inline"; 
-    }
-
-    pin = "";
-    function keypadpress(button, event)
-    {
-      event.stopPropagation();
-      if (button.value == "CLR") { return keypadclear(); }
-
-      pin += button.value;
-      set_keypadhead( pin.replace(/./g,"#"));
-      if (pin.length == 4) 
-      { 
-        if (pin_is_good(pin)) 
-        {
-          print_and_close.disabled=false;
-          just_close.disabled=false;
-          if (server_is_in(pin))
-          {
-            clock_out.disabled=false;
-          }
-          else
-          {
-            clock_in.disabled=false;
-          }  
-          disableKeyPad(true);    
-          set_keypadhead( 'PIN recognized');
-        }
-        else
-        {
-          keypadclear();
-          set_keypadhead('Unrecognized PIN');
-        }
-          
-      }
-    }
-
-    function disableKeyPad(should_disable)
-    {
-        keypad1.style.display = should_disable ? "none" : "inline";
-        keypad1_actions.style.display = !should_disable ? "none" : "inline";
-        keypad2.style.display = should_disable ? "none" : "inline";
-        return
-
-        keypadbuttons = keypad1.getElementsByTagName("input");
-        for (idx in keypadbuttons)
-        {
-          keypadbuttons[idx].disabled = should_disable;
-        }
-        keypadbuttons = keypad2.getElementsByTagName("input");
-        for (idx in keypadbuttons)
-        {
-          keypadbuttons[idx].disabled = should_disable;
-        }
-    }
-
-    function set_keypadhead(msg)
-    {
-      keypadhead1.innerHTML = msg;
-      keypadhead2.innerHTML = msg;
-    }
-
-    function keypadclear()
-    {
-      pin = "";
-      set_keypadhead( "Enter 4 digit PIN to close tab.");
-      print_and_close.disabled=true;
-      just_close.disabled=true;
-      clock_out.disabled=true;
-      clock_in.disabled=true;
-      disableKeyPad(false);
     }
 
     // These functions are necessary to get the mouse position in a 
@@ -1379,15 +1392,11 @@
 
 <body onLoad="init()" id='main'>
 
-  <div id="add_item_box" ></div>
-  <div id="message_box" ></div>
-
-
   <div id="main_screen">
     <div id=linx>
     <!--<div><a href="javascript:goLeft()"  class="leftLink" id="goLeftLink">&lt;</a></div>-->
     <div><a href="javascript:go_to_cook_screen()"  class="leftLink" id="cooklink">C</a></div>
-    <div><a href="javascript:go_to_clock_sceen()"  class="leftLink" id="clocklink">P</a></div>
+    <div><a href="javascript:go_to_clock_screen()"  class="leftLink" id="clocklink">P</a></div>
     <div><a href="http://salumibarli.com:3681/wiki" class="leftLink" id="wlink">W</a></div>
     <div><a href="javascript:print_cellar_list()" class="leftLink" id="wlink">L</a></div>
     </div>
@@ -1415,97 +1424,31 @@
   -->
   <div id="clock_screen">
     <center>
-    <button onclick='leave_clock_screen()'/>Go Back</button>
     <div>
-      <div id="keypad1_actions">
-        <h1 id=clock_screen_msg></h1>
-        <button id=clock_in onclick='clockin(true)'/>Clock In</button>
-        <button id=clock_out onclick='clockin(false)'/>Clock Out</button>
-        <button id=enter_rec onclick='enter_receipts()'/>Enter Reciepts</button>
-        <button id=enter_rec_and_clock_out onclick='enter_receipts();clockin(false)'/>Enter Reciepts and Clock Out</button>
-      </div>
-      <h2 id=keypadhead1 colspan="3" align="center"></h2>
-      <div id="keypad1" class="keypad">
-        <table cellpadding="2" cellspacing="2" border="0">
-          <tr>
-            <td><input class="keypadbutt" type="Button" value="1" 
-              onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="2" 
-              onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="3" 
-              onclick="keypadpress(this, event)"></td>
-          </tr>
-          <tr>
-            <td><input class="keypadbutt" type="Button" value="4" 
-              onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="5" 
-              onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="6" 
-              onclick="keypadpress(this, event)"></td>
-          </tr>
-          <tr>
-            <td><input class="keypadbutt" type="Button" value="7" 
-              onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="8" 
-              onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="9" 
-              onclick="keypadpress(this, event)"></td>
-          </tr>
-          <tr>
-            <td><input class="keypadbutt" type="Button" value="0" 
-              onclick="keypadpress(this, event)"></td>
-            <td colspan=2><input class="keypadbutt" type="Button" value="CLR" 
-              onclick="keypadpress(this, event)"></td>
-          </tr>
+        <button id=clock_in onclick='clockin(true)'>Clock In</button>
+        <button id=clock_out onclick='clockin(false)'>Clock Out</button>
+        <button onclick='leave_clock_screen()'>Go Back</button>
+        <table id=receipts_table cellpadding="2" cellspacing="2" border="3">
+          <tr><td>cctotal</td><td><input id='cctotal' class="rec_entry" type="number" value="0"/></td></tr>
+          <tr><td>cctips</td><td><input id='cctips' class="rec_entry" type="number" value="0"/></td></tr>
+          <tr><td>cash_drop</td><td><input id='cash_drop' class="rec_entry" type="number" value="0"/></td></tr>
+          <tr><td>starting_cash</td><td><input id='starting_cash' class="rec_entry" type="number" value="0"/></td></tr>
+          <tr><td>cash_left_in_bank</td><td><input id='cash_left_in_bank' class="rec_entry" type="number" value="0"/></td></tr>
         </table>
-      </div>
-
+        <button>Save</button>
+      <div>
     </center>
   </div>
   <div id="receipt_screen">
     <center>
     <table id="receipt_table"></table>
-    <div onclick='leave_receipt_screen()'>
+
+    <div>
       <button id=print_and_close onclick='close_check(true)'>Print and Close</button>
       <button id=just_close onclick='close_check(false)'>Just Close</button>
       <button onclick='move_tab()'>Move Tab</button>
-      <button>Go Back</button>
-
-      <div id="keypad2" class="keypad">
-        <h2 id=keypadhead2 colspan="3" align="center"></h2>
-        <table cellpadding="2" cellspacing="2" border="0">
-          <tr>
-            <td><input class="keypadbutt" type="Button" value="1" 
-              onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="2" 
-              onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="3" 
-              onclick="keypadpress(this, event)"></td>
-          </tr>
-          <tr>
-            <td><input class="keypadbutt" type="Button" value="4" 
-              onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="5" 
-              onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="6" 
-              onclick="keypadpress(this, event)"></td>
-          </tr>
-          <tr>
-            <td><input class="keypadbutt" type="Button" value="7" 
-              onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="8" 
-              onclick="keypadpress(this, event)"></td>
-            <td><input class="keypadbutt" type="Button" value="9" 
-              onclick="keypadpress(this, event)"></td>
-          </tr>
-          <tr>
-            <td><input class="keypadbutt" type="Button" value="0" 
-              onclick="keypadpress(this, event)"></td>
-            <td colspan=2><input class="keypadbutt" type="Button" value="CLR" 
-              onclick="keypadpress(this, event)"></td>
-          </tr>
-        </table>
-      </div>
+      <button onclick='leave_receipt_screen()'/>Go Back</button>
+    </div>
     </center>
   </div>
 
@@ -1540,6 +1483,16 @@
       <input id="oz" type="text" value="0"> 
     </div>
   </div>
+
+  <div id='pinput_screen'>
+    <center>
+    <input tabindex=1 id='pinput' type=number onblur='pin_blur()'/>
+    <div tabindex=2 id='pintext'>Enter PIN</div>
+    </center>
+  </div>
+  <div id="add_item_box" ></div>
+  <div id="message_box" ></div>
+
 
 
 

@@ -35,6 +35,39 @@ def nightly_sales_by_server(label=False, lag_days=1):
     label=label
   )
 
+def new_sales_by_server(label=False, lag_days=1):
+
+  tax_rate = texttab.TAXRATE
+
+  return utils.select('''
+    select sales.*, sr.cctotal, sr.cctips, sr.cash_drop, sr.starting_cash, sr.cash_left_in_bank, sr.id as receipts_id
+    from
+    (
+    SELECT 
+      concat(p.last_name, ', ', p.first_name) server,
+      p.id as person_id,
+      p.ccid,
+      sum(oi.price) sales, 
+      sum(ti.price) taxable_sales,
+      sum(oi.price) + COALESCE(round(sum(ti.price) * %(tax_rate)s, 2),0) receipts,
+      count(distinct og.id) tabs_closed,
+      convert(date(now() - INTERVAL '%(lag_days)s' DAY), CHAR(10)) as dat
+    FROM (order_item oi left outer join taxable_item ti on ti.id = oi.id), order_group og, person p 
+    WHERE oi.order_group_id = og.id 
+    AND oi.is_cancelled = False
+    AND oi.is_comped = False
+    AND og.closedby = p.id 
+    AND date(og.updated - interval '6' HOUR) = date(now() - INTERVAL '%(lag_days)s' DAY)
+    GROUP BY p.id) sales
+    left outer join
+    (select *
+    from server_receipts 
+    where date(created - interval '6' hour) = date(now() - INTERVAL '%(lag_days)s' DAY)
+    ) sr on sales.person_id = sr.person_id ;''' % locals(),
+    incursor=None,
+    label=label
+  )
+
 def hours(lag_days):
 
   return utils.select('''

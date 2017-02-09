@@ -43,7 +43,7 @@ def server_is_in(serverpin):
   return json.dumps(_server_is_in(serverpin))
 
 def _server_is_in(serverpin):
-  return bool(utils.select('SELECT * FROM hours WHERE person_id = %(serverpin)s AND outtime=0' % locals()) )
+  return bool(utils.select('SELECT * FROM hours WHERE person_id = %s AND outtime=0', args=[serverpin]) )
 
 def server_tip_share(serverpin):
   ret = utils.select('SELECT tip_share FROM hours WHERE person_id = %(serverpin)s and tip_share is not null order by id desc LIMIT 1' % locals())
