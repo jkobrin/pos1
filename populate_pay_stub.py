@@ -56,12 +56,8 @@ def populate_pay_stub(temp = True, incursor=None):
         row['pay_rate'] = round(row['total_hourly_pay'])
 
       tax.add_witholding_fields(row)
-      columns = ', '.join(row.keys())
-      values = ', '.join(("'%s'" % value for value in row.values()))
-      sqltext = 'INSERT into %s (%s) VALUES (%s);'%(table_name, columns, values)
-      my_logger.debug('pay stub: ' + sqltext)
-      utils.execute(sqltext, incursor=incursor)
-    
+      utils.sql_insert(table_name, row, incursor)
+
 
 if __name__ == '__main__':
 

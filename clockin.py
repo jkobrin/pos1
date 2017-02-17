@@ -22,8 +22,8 @@ def index(serverpin, in_):
     resp = 'already clocked in'
   elif wantsin and isout:
     tip_share = server_tip_share(serverpin)
-    sqlin = 'INSERT INTO hours VALUES(null, %(serverpin)s, NOW(), 0, %(tip_share)s, null)' % locals()
-    utils.execute(sqlin, cursor)
+    utils.sql_insert('hours', {'person_id': serverpin, 'tip_share': tip_share}, cursor)
+    #sqlin = 'INSERT INTO hours VALUES(null, %(serverpin)s, NOW(), 0, %(tip_share)s, null)' % locals()
     resp = 'Clocked in at ' + utils.now()
   elif wantsout and isin:
     sqlout = 'UPDATE hours SET outtime = NOW() WHERE person_id = %(serverpin)s AND outtime = 0' % locals()
@@ -43,7 +43,7 @@ def server_is_in(serverpin):
   return json.dumps(_server_is_in(serverpin))
 
 def _server_is_in(serverpin):
-  return bool(utils.select('SELECT * FROM hours WHERE person_id = %(serverpin)s AND outtime=0' % locals()) )
+  return bool(utils.select('SELECT * FROM hours WHERE person_id = %s AND outtime=0', args=[serverpin]) )
 
 def server_tip_share(serverpin):
   ret = utils.select('SELECT tip_share FROM hours WHERE person_id = %(serverpin)s and tip_share is not null order by id desc LIMIT 1' % locals())

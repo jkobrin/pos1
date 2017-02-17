@@ -1,5 +1,4 @@
 import utils
-import tempfile, os
 import queries
 import subprocess
 from texttab import TAXRATE
@@ -23,16 +22,7 @@ def go():
           
         
       slip_text = get_slip_text(rec)
-      slipfile = tempfile.NamedTemporaryFile(delete=False)
-      slipfile.write(slip_text)
-      filename = slipfile.name
-      slipfile.close()
-      #testfile = '-p/var/www/slips/%s.ps'%rec['last_name']
-      #subprocess.call(['enscript', testfile, '--font=Courier-Bold@11/16', '-B', '-MEnv10', filename])
-      subprocess.call(['enscript', '--font=Courier-Bold@11/16', '-B', '-MEnv10', filename])
-      #print slip_text
-      os.remove(filename)
-    
+      utils.print_slip(slip_text) 
 
 def get_slip_text(rec):
     

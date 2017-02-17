@@ -4,6 +4,7 @@ import MySQLdb
 import datetime
 import os
 import socket
+import tempfile, os, subprocess
 from mylog import my_logger
 
 def hostname():
@@ -56,6 +57,22 @@ def now():
   return datetime.datetime.now().strftime("%H:%M %m/%d")
 
 
+def print_slip(text, outfile=None, lang=None):
+    slipfile = tempfile.NamedTemporaryFile(delete=False)
+    slipfile.write(text.encode('latin1', 'replace'))
+    filename = slipfile.name
+    slipfile.close()
+
+    args = ['enscript', '--font=Courier-Bold@11/16', '-B', '-MEnv10']
+    if outfile is not None: args.append('-o' + outfile)
+    if lang is not None: args.append('-w' + lang)
+    args.append(filename)
+
+    subprocess.call(args)
+
+    os.remove(filename)
+
+
 def get_cursor():
     conn = MySQLdb.connect (host = "localhost",
                           user = "pos",
@@ -68,7 +85,7 @@ def get_cursor():
 
 def execute(sql, incursor=None, args= None):
   
-  my_logger.debug(sql)
+  my_logger.info(sql)
 
   if not incursor:
     conn = MySQLdb.connect (host = "localhost",
@@ -109,7 +126,18 @@ def select_as_html(query, incursor=None):
 
   return rows
 
+def sql_update(table_name, dct, where, where_params, incursor=None):
 
+  sqltext = 'UPDATE %s SET %s where %s'%(table_name, ','.join(col +'=%s' for col in dct.keys()), where)
+  execute(sqltext, incursor=incursor, args=dct.values() + where_params)
+    
+
+def sql_insert(table_name, dct, incursor=None):
+
+  columns = ', '.join(dct.keys())
+  sqltext = 'INSERT into %s (%s) VALUES '%(table_name, columns) + '(' + ','.join(['%s']*len(dct.values())) + ')'
+  execute(sqltext, incursor=incursor, args=dct.values())
+    
 
 def select(query, incursor=None, label=True, args=None):
   

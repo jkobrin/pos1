@@ -1,5 +1,5 @@
 style:
-  backgroundColor: "#ffff80"
+  backgroundColor: gray
 
 menu:
   categories:
@@ -80,6 +80,49 @@ menu:
             - name: B15
             - name: B16
             - name: B17
+#    - name: NYE
+#      subcategories:
+#        - name: prix fixe
+#          items:
+#            - {name: prix fixe, price: 85}
+#            - {name: '*', price: 0}
+#            - {name: pf beet sheep, price: 0}
+#            - {name: pf winter salad, price: 0}
+#            - {name: '*', price: 0}
+#            - {name: pf octopus, price: 0}
+#            - {name: pf empanada, price: 0}
+#            - {name: pf shrimp, price: 0}
+#            - {name: '*', price: 0}
+#            - {name: pf artichoke, price: 0}
+#            - {name: pf delicata squash, price: 0}
+#            - {name: pf cauliflower, price: 0}
+#            - {name: '*', price: 0}
+#            - {name: pf pate, price: 0}
+#            - {name: pf marrow bone, price: 0}
+#            - {name: '*', price: 0}
+#            - {name: pf potato dumpling, price: 0}
+#            - {name: pf pork cheeks, price: 0}
+#            - {name: pf lamb rib, price: 0}
+#            - {name: '*', price: 0}
+#            - {name: pf NYE dessert, price: 0}
+#        - name: ala carte
+#          items:
+#            - {name: charcuterie plate, price: 24}
+#            - {name: beet sheep, price: 12}
+#            - {name: winter salad, price: 11}
+#            - {name: octopus, price: 14}
+#            - {name: empanada, price: 12}
+#            - {name: shrimp, price: 13}
+#            - {name: artichoke, price: 12}
+#            - {name: delicata squash, price: 13}
+#            - {name: cauliflower, price: 11}
+#            - {name: pate, price: 14}
+#            - {name: marrow bone, price: 13}
+#            - {name: potato dumpling, price: 14}
+#            - {name: pork cheeks, price: 14}
+#            - {name: lamb rib, price: 15}
+#            - {name: NYE dessert, price: 8}
+
     - name: food
       subcategories:
         - name: dinner
@@ -89,24 +132,24 @@ menu:
             - {name: walnut pesto, price: 6}
             #- {name: pate, price: 7}
             #- {name: caesar, price: 9}
-            - {name: fall salad, price: 9}
+            - {name: winter salad, price: 10}
             #- {name: garden slaw, price: 11}
-            - {name: crab salad, price: 15}
             #- {name: anchovy, price: 6}
             #- {name: summer salad, price: 9}
             - {name: burrata, price: 14}
             #- {name: meatballs, price: 5}
-            - {name: carrots, price: 11}
+            - {name: cauliflower, price: 10}
             #- {name: pate, price: 12}
             #- {name: sprouts, price: 9}
             - {name: artichokes, price: 12}
             #- {name: taleggio bake, price: 9}
             #- {name: corn, price: 7}
             - {name: brussels, price: 11}
+            - {name: crab fondue, price: 15}
             - {name: empanada, price: 9}
             - {name: shrimp, price: 12}
             - {name: bocadillo, price: 9}
-            - {name: blue-ribon chicken, price: 12}
+            - {name: pork cheeks, price: 14}
             - {name: octopus, price: 14}
             - {name: morcilla, price: 9}
             #- {name: octopus, price: 12}
@@ -257,7 +300,7 @@ menu:
             - {name: oveja fresca toast, price: 6}
             - {name: walnut pesto, price: 7}
             - {name: pros and daff, price: 8}
-            - {name: avocado and crab, price: 14}
+            - {name: crab, price: 15}
             - {name: smoked anchovies, price: 7}
             - {name: bread basket, price: 3}
             - {name: special note, add_on_price: 0}
@@ -302,20 +345,20 @@ menu:
             - {name: glass red sangria, price: 8}
             - {name: glass white sangria, price: 8}
             - {name: glass rose sangria, price: 8}
-            - {name: jar red sangria, price: 25}
-            - {name: jar white sangria, price: 25}
-            - {name: jar rose sangria, price: 25}
+            #- {name: jar red sangria, price: 25}
+            #- {name: jar white sangria, price: 25}
+            #- {name: jar rose sangria, price: 25}
             - {name: red flight, price: 16}
             - {name: white flight, price: 16}
             - {name: bubbly flight, price: 16}
             - {name: amaro lucano, price: 6}
-            - {name: bellini jar, price: 25}
+            #- {name: bellini jar, price: 25}
             - {name: bellini, price: 7}
-            - {name: bloody maria jar, price: 36}
-            - {name: bloody maria, price: 9}
+            #- {name: bloody mya jar, price: 36}
             - {name: bloody mary, price: 9}
+            - {name: bloody maria, price: 9}
             - {name: cafe amaretto, price: 8}
-            - {name: cascara sweet tea, price: 10}
+            #- {name: cascara sweet tea, price: 10}
             - {name: cosmo, price: 10}
             - {name: dark n stormy, price: 7}
             - {name: hot toddy, price: 10}
@@ -323,16 +366,16 @@ menu:
             - {name: margarita, price: 10}
             - {name: martini dirty, price: 12}
             - {name: martini, price: 12}
-            - {name: mimosa jar, price: 25}
+            #- {name: mimosa jar, price: 25}
             - {name: mimosa, price: 7}
             - {name: mojito, price: 10}
             - {name: moscow mule, price: 10}
             - {name: negroni, price: 12}
             - {name: rum citrus smash, price: 10}
             - {name: (virgin) citrus smash, price: 5}
-            - {name: old-fashioned, price: 12}
             - {name: pellegrino, price: 4}
             - {name: rhubarb n rye, price: 12}
+            - {name: old-fashioned, price: 12}
             - {name: spanish daisy, price: 10}
             - {name: gimlet, price: 10}
             - {name: french 75, price: 9}
@@ -540,7 +583,7 @@ menu:
             - {name: cookie-, price: .5}
             - {name: 3 cookies-, price: 1}
             - {name: fruit cake-, price: 4}
-            - {name: avocado toast-, price: 5}
+            #- {name: avocado toast-, price: 5}
             - {name: anchovy toast-, price: 5}
             - {name: yogurt-, price: 5}
             - {name: pastry basket-, price: 12}
@@ -554,23 +597,24 @@ menu:
             - {name: eggs whites two, price: 5}
             - {name: fritata-, price: 9}
             - {name: scramble-, price: 6}
-            - {name: mushrooms-, price: .75}
-            - {name: onion-, price: .75}
-            - {name: arugula-, price: .75}
-            - {name: ham-, price: .75}
-            - {name: cauliflower-, price: .75}
-            - {name: bacon-, price: 3}
+            - {name: add mushrooms-, price: .75}
+            - {name: add onion-, price: .75}
+            - {name: add arugula-, price: .75}
+            - {name: add ham-, price: .75}
+            - {name: add seasonal veg-, price: .75}
+            - {name: bacon side, price: 3}
             - {name: truffle ham side, price: 4}
-            - {name: morcilla-, price: 5}
+            - {name: morcilla side, price: 5}
             - {name: crispy prosciutto, price: 4}
+            - {name: crispy polenta and eggs, price: 8}
             - {name: smashed potato, price: 4}
-            - {name: seasonal veg-, price: 4}
-            - {name: avocado half, price: 2}
-            - {name: avocado whole, price: 4}
+            - {name: seasonal veg side, price: 4}
+            #- {name: avocado half, price: 2}
+            #- {name: avocado whole, price: 4}
             - {name: ice cream -, price: 3.5}
             - {name: baguette, price: 2.5}
-            - {name: epi baguette, price: 2.5}
-            - {name: round bread, price: 4}
+            #- {name: epi baguette, price: 2.5}
+            #- {name: round bread, price: 4}
             - {name: toast, price: 1}
             - {name: quince paste, price: 4}
             - {name: olives mixed, price: 6.5}
@@ -597,11 +641,13 @@ menu:
             - {name: madrid, price: 9}
             - {name: milano, price: 10}
             - {name: paris, price: 9}
-            - {name: san francisco, price: 9}
+            #- {name: san francisco, price: 9}
+            - {name: funghi, price: 9}
             - {name: cobb, price: 13}
             - {name: antipasto, price: 14}
             - {name: house, price: 11}
             - {name: grain salad, price: 12}
+            - {name: dirty chips, price: 1.5}
           - name: cheese
             items:
             - {name: 1/4 lb Gouda, price: 5.50, supplier: GFI,
@@ -710,6 +756,10 @@ menu:
               upc: '820581155872', vendor_code: '15587', wholesale: '12.01', scale_units: lbs.}
             - {name: Speck, price: 13.5, supplier: GFI, units_in_bulk: '', upc: '269461453125',
               vendor_code: '515256', wholesale: '7.98', scale_units: lbs.}
+            - {name: Smoked Turkey, price: 13.5, supplier: Baldor, units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '', scale_units: lbs.}
+            - {name: Truffle Ham, price: 13.5, supplier: GFI, units_in_bulk: '', upc: '',
+              vendor_code: '', wholesale: '', scale_units: lbs.}
             - {name: Toscano Fennel Polen Salame, price: 11.0,
               supplier: Sansone, 
               upc: '850801003058', vendor_code: '', wholesale: '6.52'}
@@ -724,7 +774,7 @@ menu:
             - {name: gft bag 35, price: 35}
             - {name: gft bag 45, price: 45}
             - {name: gft bag 65, price: 65}
-          - name: coffees
+          - name: coffee and tea
             items:
             - {name: TCHO Drinking Chocolate Bag, price: 103.0, supplier: Baldor, units_in_bulk: '',
               upc: '812603011662', vendor_code: SPD4L, wholesale: '61.90'}
@@ -742,30 +792,40 @@ menu:
               upc: '', vendor_code: '', wholesale: '7.99'}
             - {name: Colombia Organic Reserva, price: 14.0, supplier: Georgio's, units_in_bulk: '',
               upc: '', vendor_code: '', wholesale: '6.99'}
+            - {name: Ethiopia Yirgacheffe, price: 19.0, supplier: Georgio's, units_in_bulk: '',
+              upc: '', vendor_code: '', wholesale: ''}
+            - {name: Sulawesi Pango Pango, price: 19.0, supplier: Georgio's, units_in_bulk: '',
+              upc: '', vendor_code: '', wholesale: ''}
+
             - {name: Colombia Organic Reserva bulk, price: 13.5, supplier: Georgio's, units_in_bulk: '',
               upc: '', vendor_code: '', wholesale: '7.99'}
             - {name: ANALOG ESPRESSO BLACK CAT, price: 15.0, supplier: Intelligentsia, units_in_bulk: '',
               upc: '800222114352', vendor_code: '', wholesale: '9.10'}
-            - {name: DECAF ORGANIC EL MAGO, price: 18.0, supplier: Intelligentsia, units_in_bulk: '',
-              upc: '800222118718', vendor_code: '', wholesale: '10.75'}
+            #- {name: DECAF ORGANIC EL MAGO, price: 18.0, supplier: Intelligentsia, units_in_bulk: '',
+            #  upc: '800222118718', vendor_code: '', wholesale: '10.75'}
             - {name: EL DIABLO DARK ROAST, price: 15.0, supplier: Intelligentsia, units_in_bulk: '',
               upc: '800222120209', vendor_code: '', wholesale: '9.05'}
             - {name: DECAF LIBRARIAN'S BLEND, price: 17.5, supplier: Intelligentsia, units_in_bulk: '',
               upc: '800222120490', vendor_code: '', wholesale: '10.60'}
             - {name: EL GALLO ORGANIC BREAKFAST BLEND, price: 15.5, supplier: Intelligentsia,
               units_in_bulk: '', upc: '800222120605', vendor_code: '', wholesale: '9.30'}
-            - {name: NGIRITI KENYA LIMITED RELEASE, price: 20.0, supplier: Intelligentsia, units_in_bulk: '',
-              upc: '800222131816', vendor_code: '', wholesale: '11.95'}
-            - {name: KARYENDA BURUNDI, price: 19.0, supplier: Intelligentsia, units_in_bulk: '',
-              upc: '800222137771', vendor_code: '', wholesale: '11.40'}
-            - {name: Karyenda Burundi 5lb bulk, price: 24.0, supplier: Intelligentsia, units_in_bulk: '',
-              upc: '', vendor_code: '', wholesale: '14.50'}
+            #- {name: NGIRITI KENYA LIMITED RELEASE, price: 20.0, supplier: Intelligentsia, units_in_bulk: '',
+            #  upc: '800222131816', vendor_code: '', wholesale: '11.95'}
+            #- {name: KARYENDA BURUNDI, price: 19.0, supplier: Intelligentsia, units_in_bulk: '',
+            #  upc: '800222137771', vendor_code: '', wholesale: '11.40'}
+            #- {name: Karyenda Burundi 5lb bulk, price: 24.0, supplier: Intelligentsia, units_in_bulk: '',
+            #  upc: '', vendor_code: '', wholesale: '14.50'}
+            - {name: Itzmana Guatemala, price: 19.0, supplier: Intelligentsia, units_in_bulk: '',
+              upc: '800222124917', vendor_code: '', wholesale: ''}
+
             - {name: ANALOG ESPRESSO BLACK CAT 5lb BULK, price: 18.5, supplier: Intelligentsia,
               units_in_bulk: '', upc: '', vendor_code: '', wholesale: '10.95'}
             - {name: Sarabeth's Hot Chocolate, price: 11.0, supplier: Nassau, units_in_bulk: '',
               upc: '713109750218', vendor_code: '965064', wholesale: '6.47'}
             - {name: Sugar Brown Cane - Comptoir Du Sud, price: 9.5, supplier: Baldor, units_in_bulk: '8',
               upc: '708978222003', vendor_code: '', wholesale: '45.00'}
+            - {name: Sunflower Jasmine Tea, price: 11, supplier: , units_in_bulk: '',
+              upc: '6901118910325', vendor_code: '', wholesale: ''}
           - name: jams
             items:
             - {name: Murray's Strawberry Jam (10 OZ), price: 11.5, supplier: Baldor, units_in_bulk: '',
@@ -1011,12 +1071,12 @@ menu:
             - {name: ASKINOSIE/ INTELLIGENTSIA CHOC, price: 11.5, supplier: Intelligentsia,
               units_in_bulk: '', upc: '895156001571', vendor_code: '', wholesale: '7.00'}
             - {name: PERUGINA SORENTO CANDY, price: 3.5, supplier: Sansone, units_in_bulk: '',
-              upc: 020182017528, vendor_code: '', wholesale: '2.08'}
+              upc: '020182017528', vendor_code: '', wholesale: '2.08'}
             - {name: PERUGINA CAPRI CANDY, price: 3.5, supplier: Sansone, units_in_bulk: '',
-              upc: 020182017542, vendor_code: '', wholesale: '2.08'}
+              upc: '020182017542', vendor_code: '', wholesale: '2.08'}
             - {name: PERUGINA GLACIA MINTS, price: 3.5, supplier: Sansone, units_in_bulk: '',
-              upc: 020182017559, vendor_code: '', wholesale: '2.08'}
-            - {name: CEDRINCA ANICE, price: 3.5, supplier: Sansone, units_in_bulk: '', upc: 022306685064,
+              upc: '020182017559', vendor_code: '', wholesale: '2.08'}
+            - {name: CEDRINCA ANICE, price: 3.5, supplier: Sansone, units_in_bulk: '', upc: '022306685064',
               vendor_code: '', wholesale: '1.75'}
             - {name: FERRARA TORRONE, price: 10.0, supplier: Sansone, units_in_bulk: '', upc: '071403000140',
               vendor_code: '', wholesale: '6.00'}
@@ -1110,6 +1170,32 @@ menu:
             - {name: Zester, price: 13, supplier: Microplane, units_in_bulk: '', upc: '098399461205', vendor_code: '', wholesale: ''}
             - {name: Rotary Grater, price: 18, supplier:
               Microplane, units_in_bulk: '', upc: '098399393049', vendor_code: '', wholesale: ''}
+            - {name: Olivella Bar Soap, price: 4, supplier: , units_in_bulk: '',
+              upc: '764412250001', vendor_code: '', wholesale: '2.17'}
+            - {name: Rooster Mug, price: 4.5, supplier: , units_in_bulk: '',
+              upc: '064180229088', vendor_code: '', wholesale: ''}
+            - {name: Mug Short Cameo, price: 4.5, supplier: , units_in_bulk: '',
+              upc: '064180211892', vendor_code: '', wholesale: ''}
+            - {name: Coffee Tin, price: 11, supplier: , units_in_bulk: '',
+              upc: '064180201596', vendor_code: '', wholesale: ''}
+            - {name: Tea Tin, price: 11, supplier: , units_in_bulk: '',
+            upc: '064180201626', vendor_code: '', wholesale: ''}
+            - {name: Small Teapot, price: 13.5, supplier: , units_in_bulk: '',
+              upc: '064180174838', vendor_code: '', wholesale: ''}
+            - {name: Large Teapot, price: 29, supplier: , units_in_bulk: '',
+              upc: '064180238004', vendor_code: '', wholesale: ''}
+            - {name: Wine Pairing Cloth, price: 12, supplier: , units_in_bulk: '',
+              upc: '064180205006', vendor_code: '', wholesale: ''}
+            - {name: Rolling Pin, price: 10, supplier: , units_in_bulk: '',
+            upc: '076753238304', vendor_code: '', wholesale: ''}
+            - {name: SS Measuring Cups, price: 10, supplier: , units_in_bulk: '',
+            upc: '789313352012', vendor_code: '', wholesale: ''}
+            - {name: SS Measuring Spoons, price: 6, supplier: , units_in_bulk: '',
+            upc: '755576011126', vendor_code: '', wholesale: ''}
+            - {name: Elite Box Grater, price: 40, supplier: , units_in_bulk: '',
+            upc: '098399340098', vendor_code: '', wholesale: ''}
+            - {name: Bamboo Board, price: 14, supplier: , units_in_bulk: '',
+            upc: '70433995338', vendor_code: '', wholesale: ''}
           - name: oil
             items:
             - {name: Pons EVOO 500ml, price: 13, supplier: GFI, units_in_bulk: '',
@@ -1173,10 +1259,18 @@ menu:
               wholesale: '5.63'}
             - {name: La Padella, price: 6.0, supplier: '', units_in_bulk: '13', upc: '', vendor_code: '',
               wholesale: '2.89'}
+            - {name: Iliada Kalamata PDO, price: 11, supplier: Musco, units_in_bulk: '',
+              upc: '5201043004733', vendor_code: '', wholesale: '6.07'}
+            - {name: Iliada w/ Balsamic, price: 4.5, supplier: Musco, units_in_bulk: '',
+              upc: '5201043113527', vendor_code: '', wholesale: '2.33'}
+            - {name: Iliada w/ Lemon, price: 4.5, supplier: Musco, units_in_bulk: '',
+              upc: '5201043113558', vendor_code: '', wholesale: '2.33'}
+            - {name: Vantia Special Selection, price: 9, supplier: , units_in_bulk: '',
+              upc: '044963270117', vendor_code: '', wholesale: '5'}
           - name: vinegar
             items:
-            - {name: Crema Di Tondo, price: 9.5, supplier: GFI, units_in_bulk: '',
-              upc: '879720000054', vendor_code: '', wholesale: ''}
+            #- {name: Crema Di Tondo, price: 9.5, supplier: GFI, units_in_bulk: '',
+            #  upc: '879720000054', vendor_code: '', wholesale: ''}
             - {name: Rao's Vinegar Balsamic, price: 23.5, supplier: Nassau, units_in_bulk: '',
               upc: '747479000161', vendor_code: '969973', wholesale: '14.00'}
             - {name: Terra Medi White Wine Vinegar 17oz, price: 5.0, supplier: Nassau, units_in_bulk: '',
@@ -1189,6 +1283,8 @@ menu:
               vendor_code: SPVIN9E, wholesale: '15.30'}
             - {name: Moscatel Vinegar, price: 13.5, supplier: Baldor, units_in_bulk: '', upc: '761040360584',
               vendor_code: VIN6B, wholesale: '8.10'}
+            - {name: Castello D'este Modena Dressing, price: 16.5, supplier: Musco, units_in_bulk: '', 
+              upc: '044963630331', vendor_code: , wholesale: '8.99'}
             - {name: Aged Balsamic Vinegar with White Truffle, price: 32.5, supplier: Baldor,
               units_in_bulk: '', upc: '800063308057', vendor_code: TR9V, wholesale: '19.50'}
             - {name: Tondo Balsamic Vinegar, price: 21.0, supplier: Baldor, units_in_bulk: '',
