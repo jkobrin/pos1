@@ -57,7 +57,7 @@ def now():
   return datetime.datetime.now().strftime("%H:%M %m/%d")
 
 
-def print_slip(text, outfile=None):
+def print_slip(text, outfile=None, lang=None):
     slipfile = tempfile.NamedTemporaryFile(delete=False)
     slipfile.write(text.encode('latin1', 'replace'))
     filename = slipfile.name
@@ -65,6 +65,7 @@ def print_slip(text, outfile=None):
 
     args = ['enscript', '--font=Courier-Bold@11/16', '-B', '-MEnv10']
     if outfile is not None: args.append('-o' + outfile)
+    if lang is not None: args.append('-w' + lang)
     args.append(filename)
 
     subprocess.call(args)

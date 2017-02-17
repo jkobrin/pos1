@@ -63,7 +63,7 @@ def index(req, the_tip, lag_days):
   )
 
   utils.execute('''
-  update hours h inner join tip_pay tp on h.id = tp.h_id set h.tip_pay = tp.tip;
+  update hours h inner join tip_pay tp on h.id = tp.h_id set h.tip_pay = tp.tip, h.paid = false;
   '''
   )
 

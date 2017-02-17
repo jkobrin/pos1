@@ -1,17 +1,20 @@
 import utils
+import json
+
 
 def index(req):
 
   tip_slips_query = (
     '''
     select 
-      person.first_name, 
       person.last_name,
+      person.first_name, 
       sum(tip_pay) as total_tips,
       group_concat(concat_ws(' - $', date_format(intime, '%a %b %D'), tip_pay) SEPARATOR '|') as detail
     from 
-    hours join person on hours.person_id = person.id
-    where date(hours.intime) >= (select date(max(created)) from tip_slips_printed)
+    hours join person 
+    on hours.person_id = person.id
+    where hours.paid = false
     and hours.tip_pay is not null
     group by person.id
     order by person.last_name, person.first_name
@@ -31,10 +34,11 @@ def index(req):
     TOTAL: ${total_tips}
     '''.format(**rec)
 
-    print text
-    #utils.print_slip(text, outfile = '/tmp/'+rec['last_name']+'_tip.ps') 
+    utils.print_slip(text, outfile = '/tmp/slips/'+rec['last_name']+'_tip', lang='html') 
 
+  utils.execute('''update hours set paid = true where paid = false and tip_pay is not null''');
 
+  return json.dumps('printing %s slips' % len(tip_data))
 
 
 if __name__ == '__main__':

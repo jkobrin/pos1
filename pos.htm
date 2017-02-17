@@ -123,10 +123,10 @@
 
     #clock_screen button
     {
-      width:30%;
+      width:48%;
       height:20%;
       font-size: 72pt;
-      color: red;
+      color: black;
     }
 
     #receipts_table 
@@ -135,13 +135,17 @@
       height:50%;
       color: blue;
       text-align: right;
+      font-size: 72pt;
+      display: none;
     }
 
     #receipts_table input
     {
       height: 100%;
+      width: 5em;
       color: black;
       float: left;
+      font-size: 72pt;
     }
 
     #cook_screen
@@ -186,11 +190,6 @@
     }
 
     #receipt_screen button
-    {
-      font-size: 18pt;
-    }  
-
-    #clock_screen button
     {
       font-size: 18pt;
     }  
@@ -1062,14 +1061,8 @@
       receipt_screen.style.display = "inline";
       if (g_currentTable == 'MKT')
       {
-        print_and_close.disabled=false;
-        just_close.disabled=false;
         pin_input().value = "0001"; //Salumi Guy
       }  
-      else
-      {
-        //pin_input().focus();
-      }
     }  
 
     function go_to_clock_screen()
@@ -1083,6 +1076,7 @@
     function leave_clock_screen()
     {
       pin_input().value = '';
+      hide_receipts();
       clock_screen.style.display="none";
       main_screen.style.display="inline"; 
     }
@@ -1112,20 +1106,45 @@
       pin_input().focus();
     }
       
-    function enter_receipts()
+    function save_receipts()
     {
       var resp = http_request("POST", "server_receipt_entry.py", 
         format_http_params({
           'serverpin': pin_input().value,
-          'cctotal': cctotal,
-          'cctips': cctips,
-          'cash_drop': cash_drop,
-          'starting_cash': starting_cash,
-          'cash_left_in_bank': cash_left_in_bank,
+          'cctotal': cctotal.value,
+          'cctips': cctips.value,
+          'cash_drop': cash_drop.value,
+          'starting_cash': starting_cash.value,
+          'cash_left_in_bank': cash_left_in_bank.value,
         })
       );
+      alert('Receipts Saved.');
     }  
       
+    function show_receipts()
+    {
+      var todays_receipts = http_request("GET", "server_receipt_entry.py/get", 
+        format_http_params({'serverpin': pin_input().value}));
+
+      for(var propt in todays_receipts){
+        //fields in data have same names as input box IDs
+        document.getElementById(propt).value = todays_receipts[propt]
+      }
+
+      document.getElementById("receipts_table").style.display = 'inline';
+      document.getElementById("save_receipts_button").style.display='inline';
+      document.getElementById("show_receipts_button").style.display='none';
+      cctotal.focus();
+      cctotal.select();
+    }  
+
+    function hide_receipts()
+    {
+      document.getElementById("receipts_table").style.display = 'none';
+      document.getElementById("save_receipts_button").style.display='none';
+      document.getElementById("show_receipts_button").style.display='inline';
+    }
+
     function clockin(in_)
     {
       var resp = http_request("POST", "clockin.py", "in_="+in_+ "&serverpin="+pin());
@@ -1177,13 +1196,8 @@
       );
       synchronize_now();
 
-      if (g_currentTable == 'MKT') {
-        go_to_market();
-      }
-      else
-      {
-        leave_receipt_screen();
-      }  
+      leave_receipt_screen();
+      pin_input().value = '';
     }  
 
     g_order_pane_items = null;
@@ -1427,15 +1441,16 @@
     <div>
         <button id=clock_in onclick='clockin(true)'>Clock In</button>
         <button id=clock_out onclick='clockin(false)'>Clock Out</button>
-        <button onclick='leave_clock_screen()'>Go Back</button>
+        <button id=show_receipts_button onclick='show_receipts()'>Receipts</button>
         <table id=receipts_table cellpadding="2" cellspacing="2" border="3">
-          <tr><td>cctotal</td><td><input id='cctotal' class="rec_entry" type="number" value="0"/></td></tr>
-          <tr><td>cctips</td><td><input id='cctips' class="rec_entry" type="number" value="0"/></td></tr>
-          <tr><td>cash_drop</td><td><input id='cash_drop' class="rec_entry" type="number" value="0"/></td></tr>
-          <tr><td>starting_cash</td><td><input id='starting_cash' class="rec_entry" type="number" value="0"/></td></tr>
-          <tr><td>cash_left_in_bank</td><td><input id='cash_left_in_bank' class="rec_entry" type="number" value="0"/></td></tr>
+          <tr><td>CCTotal</td><td><input id='cctotal' class="rec_entry" type="number"/></td></tr>
+          <tr><td>CCTips</td><td><input id='cctips' class="rec_entry" type="number"/></tr>
+          <tr><td>Cash Drop</td><td><input id='cash_drop' class="rec_entry" type="number"/></td></tr>
+          <tr><td>Start Bank</td><td><input id='starting_cash' class="rec_entry" type="number"/></td></tr>
+          <tr><td>End Bank</td><td><input id='cash_left_in_bank' class="rec_entry" type="number"/></td></tr>
         </table>
-        <button>Save</button>
+        <button id=save_receipts_button onclick='save_receipts()'>Save</button>
+        <button onclick='leave_clock_screen()'>Go Back</button>
       <div>
     </center>
   </div>

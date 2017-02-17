@@ -38,35 +38,71 @@ def nightly_sales_by_server(label=False, lag_days=1):
 def new_sales_by_server(label=False, lag_days=1):
 
   tax_rate = texttab.TAXRATE
+  cursor = utils.get_cursor()
 
-  return utils.select('''
-    select sales.*, sr.cctotal, sr.cctips, sr.cash_drop, sr.starting_cash, sr.cash_left_in_bank, sr.id as receipts_id
-    from
-    (
+
+  cursor.execute('''
+    create temporary table day_sales
+    as
     SELECT 
-      concat(p.last_name, ', ', p.first_name) server,
-      p.id as person_id,
-      p.ccid,
       sum(oi.price) sales, 
       sum(ti.price) taxable_sales,
       sum(oi.price) + COALESCE(round(sum(ti.price) * %(tax_rate)s, 2),0) receipts,
       count(distinct og.id) tabs_closed,
-      convert(date(now() - INTERVAL '%(lag_days)s' DAY), CHAR(10)) as dat
+      convert(date(now() - INTERVAL '%(lag_days)s' DAY), CHAR(10)) as dat,
+      og.closedby as person_id
     FROM (order_item oi left outer join taxable_item ti on ti.id = oi.id), order_group og, person p 
     WHERE oi.order_group_id = og.id 
     AND oi.is_cancelled = False
     AND oi.is_comped = False
     AND og.closedby = p.id 
     AND date(og.updated - interval '6' HOUR) = date(now() - INTERVAL '%(lag_days)s' DAY)
-    GROUP BY p.id) sales
-    left outer join
-    (select *
+    GROUP BY p.id''' %locals()
+  )
+
+  cursor.execute('''
+    create temporary table day_receipts
+    as
+    SELECT *
     from server_receipts 
     where date(created - interval '6' hour) = date(now() - INTERVAL '%(lag_days)s' DAY)
-    ) sr on sales.person_id = sr.person_id ;''' % locals(),
-    incursor=None,
+    ''' % locals()
+  )
+
+  cursor.execute('''
+    create temporary table all_sales
+    as
+    select 
+      sales.*, 
+      concat(p.last_name, ', ', p.first_name) server, p.ccid,
+      receipts.cctotal, receipts.cctips, receipts.cash_drop, 
+      receipts.starting_cash, receipts.cash_left_in_bank, receipts.id as receipts_id
+    from day_sales sales 
+    join person p on sales.person_id = p.id
+    left outer join day_receipts receipts on sales.person_id = receipts.person_id
+  ''')
+
+  cursor.execute('''
+    create temporary table all_receipts
+    as
+    select sales.*, 
+    concat(p.last_name, ', ', p.first_name) server, p.ccid,
+    receipts.cctotal, receipts.cctips, receipts.cash_drop, 
+    receipts.starting_cash, receipts.cash_left_in_bank, receipts.id as receipts_id
+    from day_receipts receipts
+    join person p on receipts.person_id = p.id
+    left outer join day_sales sales on sales.person_id = receipts.person_id
+  ''')
+
+  return utils.select('''
+    select * from all_sales
+    union /* full outer join simulator */
+    select * from all_receipts
+    ''',
+    incursor=cursor,
     label=label
   )
+
 
 def hours(lag_days):
 
@@ -77,6 +113,7 @@ def hours(lag_days):
   convert(outtime, CHAR(48)) outtime,
   convert(tip_share, CHAR(4)) tip_share,
   convert(tip_pay, CHAR(3)) tip_pay,
+  paid,
   IF(intime = 0 or outtime = 0 or 
     timediff(outtime, intime) > '15:00:00' or 
     date(intime) != date(outtime) and hour(outtime) > 4
@@ -170,6 +207,8 @@ def get_active_items(incursor=None):
 
 
   
-
+if __name__ == '__main__':
+  #print new_sales_by_server(True, 0)
+  print hours(lag_days = 1)
 
   

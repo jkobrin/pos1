@@ -2,6 +2,7 @@ drop table if exists server_receipts;
 
 CREATE TABLE server_receipts(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  dat date not null,
   person_id INT not null,
   cctotal float default null,
   cctips float default null,
