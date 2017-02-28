@@ -13,10 +13,13 @@ menu:
             - name: M1 
             - name: M2.1
             - name: M2.2
+            - name: M2.3
             - name: M3.1
             - name: M3.2
+            - name: M3.3
             - name: M4.1
             - name: M4.2
+            - name: M4.3
             - name: M5
             - name: M6
             - name: M7
@@ -612,10 +615,12 @@ menu:
             #- {name: avocado half, price: 2}
             #- {name: avocado whole, price: 4}
             - {name: ice cream -, price: 3.5}
-            - {name: baguette, price: 2.5}
+            #- {name: baguette, price: 2.5}
+            #- {name: rustic bread, price: 10}
             #- {name: epi baguette, price: 2.5}
             #- {name: round bread, price: 4}
             - {name: toast, price: 1}
+            - {name: sub pastry upcharge, price: 2}
             - {name: quince paste, price: 4}
             - {name: olives mixed, price: 6.5}
             - {name: olives castel, price: 4}
@@ -766,25 +771,25 @@ menu:
           - name: bread 
             items:
             - {name: baguette, price: 2.5}
-            - {name: epi baguette, price: 2.5}
+            - {name: rustic bread, price: 10}
             - {name: round bread, price: 4}
-            - {name: quince paste, price: 4}
+            #- {name: quince paste, price: 4}
             - {name: olives, price: 6.5}
-            - {name: gft bag 25, price: 25}
-            - {name: gft bag 35, price: 35}
-            - {name: gft bag 45, price: 45}
-            - {name: gft bag 65, price: 65}
+            #- {name: gft bag 25, price: 25}
+            #- {name: gft bag 35, price: 35}
+            #- {name: gft bag 45, price: 45}
+            #- {name: gft bag 65, price: 65}
           - name: coffee and tea
             items:
             - {name: TCHO Drinking Chocolate Bag, price: 103.0, supplier: Baldor, units_in_bulk: '',
               upc: '812603011662', vendor_code: SPD4L, wholesale: '61.90'}
             - {name: Sumatra FTO, price: 11.5, supplier: Georgio's, units_in_bulk: '', upc: '',
               vendor_code: '', wholesale: '6.99'}
-            - {name: Brazil SC 18, price: 12.5, supplier: Georgio's, units_in_bulk: '', upc: '',
+            - {name: Brazil SC 18, price: 13.5, supplier: Georgio's, units_in_bulk: '', upc: '',
               vendor_code: '', wholesale: '7.35'}
             - {name: Colmbia Decaf Water, price: 11.5, supplier: Georgio's, units_in_bulk: '',
               upc: '', vendor_code: '', wholesale: '6.99'}
-            - {name: Papua New Guinea PB, price: 13.5, supplier: Georgio's, units_in_bulk: '',
+            - {name: Papua New Guinea PB, price: 14.5, supplier: Georgio's, units_in_bulk: '',
               upc: '', vendor_code: '', wholesale: '7.99'}
             - {name: Ethiopia Ardi, price: 15.0, supplier: Georgio's, units_in_bulk: '', upc: '',
               vendor_code: '', wholesale: '8.99'}
@@ -817,7 +822,6 @@ menu:
             #  upc: '', vendor_code: '', wholesale: '14.50'}
             - {name: Itzmana Guatemala, price: 19.0, supplier: Intelligentsia, units_in_bulk: '',
               upc: '800222124917', vendor_code: '', wholesale: ''}
-
             - {name: ANALOG ESPRESSO BLACK CAT 5lb BULK, price: 18.5, supplier: Intelligentsia,
               units_in_bulk: '', upc: '', vendor_code: '', wholesale: '10.95'}
             - {name: Sarabeth's Hot Chocolate, price: 11.0, supplier: Nassau, units_in_bulk: '',
@@ -828,6 +832,7 @@ menu:
               upc: '6901118910325', vendor_code: '', wholesale: ''}
           - name: jams
             items:
+            - {name: quince paste, price: 4}
             - {name: Murray's Strawberry Jam (10 OZ), price: 11.5, supplier: Baldor, units_in_bulk: '',
               upc: '40232084935', vendor_code: MCB04, wholesale: '6.99'}
             - {name: Almond mojo picon, price: 6.5, supplier: Sansone, units_in_bulk: '',
