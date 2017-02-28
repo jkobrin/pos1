@@ -165,7 +165,7 @@
       {
         ss = g_sales_by_server[idx];
         ss.tip_amt = (
-          Number(ss.cctotal) + Number(ss.cctips)*.97
+          Number(ss.cctotal) - Number(ss.cctips)*.03
           + Number(ss.cash_drop) + Number(ss.cash_left_in_bank) - Number(ss.starting_cash) 
           - Number(ss.receipts)
         );

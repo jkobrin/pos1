@@ -34,7 +34,7 @@ def index(req):
     TOTAL: ${total_tips}
     '''.format(**rec)
 
-    utils.print_slip(text, outfile = '/tmp/slips/'+rec['last_name']+'_tip', lang='html') 
+    utils.print_slip(text) #, outfile = '/tmp/slips/'+rec['last_name']+'_tip', lang='html') 
 
   utils.execute('''update hours set paid = true where paid = false and tip_pay is not null''');
 

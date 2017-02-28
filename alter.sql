@@ -120,4 +120,5 @@
 
 #alter table hours add column paid boolean default false;
 #update hours set paid = true where tip_pay is not null;
-alter table hours modify column intime timestamp default now();
+#alter table hours modify column intime timestamp default now();
+alter table hours modify column tip_pay DECIMAL(3,0) default null;
