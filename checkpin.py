@@ -7,7 +7,7 @@ def index(req, pin):
 
   results = utils.select(
     '''select count(*) as cnt from person 
-        where id = %s''' % pin
+        where id = %s''', args=[pin]
   )
 
   is_good = results[0]['cnt'] != 0

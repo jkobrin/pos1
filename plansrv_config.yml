@@ -1,3 +1,5 @@
+style:
+  backgroundColor: "#f0c040"
 
 menu:
   categories:
@@ -51,6 +53,23 @@ menu:
             - name: T3
             - name: T4
             - name: T5
+   # - name: NYE
+   #   subcategories:
+   #     - name: ala carte
+   #       items: 
+   #         - {name: charcuterie plate, price: 24}
+   #         - {name: oyster mushrooms, price: 13}
+   #         - {name: winter salad, price: 12}
+   #         - {name: crudo, price: 15}
+   #         - {name: prawns, price: 16}
+   #         - {name: sunchoke, price: 12}
+   #         - {name: cauliflower, price: 11}
+   #         - {name: pate, price: 13}
+   #         - {name: foie gras, price: 15}
+   #         - {name: escargot, price: 14}
+   #         - {name: iberico, price: 22}
+   #         - {name: short rib, price: 21}
+   #         - {name: panatone, price: 8}
     - name: food
       subcategories:
         - name: tapas
@@ -58,25 +77,31 @@ menu:
             - {name: warm olives, price: 6}
             - {name: marcona almonds, price: 6}
             - {name: anchovy, price: 8}
-            - {name: caesar , price: 10}
-            - {name: burrata , price: 14}
+            - {name: winter salad, price: 11}
+            - {name: oyster mushrooms, price: 12}
             - {name: patatas bravas, price: 7}
             - {name: peppers, price: 9}
-            - {name: squash, price: 8}
-            - {name: sprouts, price: 12}
+            - {name: soup, price: 8}
+            - {name: cauliflower, price: 11}
+            - {name: sausage, price: 9}
             - {name: scallops, price: 15}
+            - {name: prawns, price: 16}
             - {name: foie gras, price: 16}
-            - {name: sweetbreads , price: 14}
             - {name: marrow bones, price: 9}
-            - {name: pulpo, price: 14}
-            - {name: bocadillo, price: 9}
-            - {name: squash soup, price: 8}
-            - {name: duck, price: 16}
-            - {name: beef chorizo, price: 12}
-            - {name: steak, price: 21}
+            - {name: escargot, price: 12}
+            - {name: sweetbreads, price: 14}
+            - {name: lamb tapa, price: 18}
+            - {name: pork tapa, price: 15}
+            - {name: big pork, price: 48}
+            - {name: big lamb, price: 36}
+            - {name: big steak, price: 65}
+
             - {name: panacotta, price: 7}
             - {name: chocolate, price: 7}
             - {name: apple crisp, price: 7}
+            - {name: rum panatonne, price: 8}
+            - {name: a la mode, add_on_price: 3}
+            - {name: ice cream, price: 7}
             - {name: special, price: 0}
             - {name: bread, price: 4}
             - {name: special note, add_on_price: 0}
@@ -96,7 +121,7 @@ menu:
             - name: spanish board
               price: 32
             - name: mixed cheese board
-              price: 32
+              price: 30
             - {name: seranno ham, add_on_price: 0}
             - {name: lomo, add_on_price: 0}
             - {name: chorizo, add_on_price: 0}
@@ -104,9 +129,8 @@ menu:
             - {name: hot capicolla, add_on_price: 0}
             - {name: felino, add_on_price: 0}
             - {name: pata negra, add_on_price: 15}
-            - {name: manchego , add_on_price: 0}
             - {name: cana de cabra, add_on_price: 0}
-            - {name: campo de montalban, add_on_price: 0}
+            - {name: campo manchego, add_on_price: 0}
             - {name: rustico, add_on_price: 0}
             - {name: piave, add_on_price: 0}
             - {name: pecorino tartufo, add_on_price: 0}
@@ -116,6 +140,7 @@ menu:
             - {name: tetilla, add_on_price: 0}
             - {name: queso sudado, add_on_price: 0}
             - {name: gouda, add_on_price: 0}
+            - {name: cheddar , add_on_price: 0}
             #- {name: capri, add_on_price: 0}
             #- {name: rosette de lyon, add_on_price: 0}
             - {name: extra fig, add_on_price: 2}
@@ -142,74 +167,44 @@ menu:
             - {name: corkage fee, price: 10}
         - name: lunch
           items: 
-            - {name: american burger, price: 15}
-            - {name: spanish burger, price: 14}
-            - {name: italian burger, price: 14}
-            #- {name: lunch special, price: 9}
-            #- {name: special tomato soup, price: 0}
-
-            #- {name: half prosciutto san, price: 0}
-            #- {name: half spanish ham and cheese, price: 0}
-            #- {name: half eggplant, price: 0}
-            #- {name: half bcadillo, price: 0}
-
-            #- {name: half taleggio panini, price: 0}
-            #- {name: half soppresatta panini, price: 0}
-            #- {name: half copa cubano, price: 0}
-            #- {name: half goat mush san, price: 0}
-
             - {name: prosciutto san, price: 11}
-            - {name: spanish ham and cheese, price: 10}
-            - {name: eggplant, price: 8}
-            - {name: bocadillo, price: 9}
+            - {name: ham and cheese sandwich, price: 10}
+            - {name: pate melt, price: 12}
             - {name: chorizo san, price: 12}
             - {name: daffinois panini, price: 10}
             - {name: chorizo panini, price: 9}
             - {name: copa cubano, price: 11}
             - {name: goat mush san, price: 8}
-            - {name: caesar, price: 10}
-            - {name: burrata, price: 14}
+            - {name: american burger, price: 15}
+            - {name: spanish burger, price: 14}
+            - {name: italian burger, price: 16}
+            - {name: buddha burger, price: 13}
+            - {name: winter salad, price: 11}
+            - {name: oyster mushrooms, price: 12}
             - {name: house salad, price: 8}
             - {name: tomato soup and cheesy toast, price: 7}
-            - {name: squash soup, price: 8}
-
-            - {name: anchovy, price: 8}
-            - {name: patatas, price: 7}
-            - {name: scallops, price: 15}
-            - {name: foie gras, price: 16}
-            - {name: peppers, price: 9}
-            - {name: bread, price: 4}
+            - {name: potato soup, price: 8}
             - {name: special note, add_on_price: 0}
         - name: brunch 
           items: 
             - {name: bloomfield, price: 12}
             - {name: scramble, price: 8}
-            - {name: frittata verde, price: 9}
+            - {name: ham and cheese toast, price: 8}
             - {name: french toast, price: 10}
             - {name: bacon, price: 5}
-            - {name: american burger, price: 15}
-            - {name: spanish burger, price: 14}
-            - {name: italian burger, price: 14}
-            - {name: daffinois panini, price: 10}
-            - {name: chorizo panini, price: 9}
-            - {name: copa cubano, price: 11}
-            - {name: goat cheese panini, price: 9}
-            - {name: burrata salad, price: 14}
-            - {name: house salad, price: 8}
-            - {name: smoked anchovies, price: 8}
-            - {name: patatas bravas, price: 7}
-            - {name: ham cheese toast, price: 8}
-            - {name: peppers, price: 9}
-            - {name: bocadillo, price: 9}
-            - {name: bread, price: 4}
-            - {name: coffee, price: 4}
-            - {name: decaf, price: 4}
-            - {name: iced tea, price: 4}
-            - {name: english breakfast, price: 4}
-            - {name: jasmin tea, price: 4}
-            - {name: paris tea, price: 4}
-            - {name: chamomile tea, price: 4}
             - {name: special note, add_on_price: 0}
+        - name: happy hour 
+          items: 
+            - {name: olives hh, price: 5}
+            - {name: almonds hh, price: 5}
+            - {name: chicharon, price: 5}
+            - {name: peppers hh, price: 5}
+            - {name: patatas hh, price: 5}
+            - {name: house red, price: 5}
+            - {name: house white, price: 5}
+            - {name: red sangria hh, price: 5}
+            - {name: white sangria hh, price: 5}
+            - {name: house beer, price: 5}
     - name: bev
       subcategories:
         - name: coffee & tea
@@ -226,7 +221,6 @@ menu:
         - name: cocktails 
           items: 
             - {name: special cocktail, price: 12}
-            - {name: happy_hour5, price: 5}
             - {name: glass red sangria, price: 8}
             - {name: glass white sangria, price: 8}
             - {name: jar red sangria, price: 28}
@@ -235,6 +229,8 @@ menu:
             - {name: white flight, price: 16}
             - {name: bubbly flight, price: 16}
             - {name: amaro lucano, price: 6}
+            - {name: aperol spritz, price: 8}
+            - {name: bianco spritz, price: 8}
             - {name: bellini jar, price: 25}
             - {name: bellini, price: 7}
             - {name: bloody maria jar, price: 36}
@@ -254,7 +250,7 @@ menu:
             - {name: rum citrus smash, price: 10}
             - {name: (virgin) citrus smash, price: 5}
             - {name: old-fashioned, price: 12}
-            - {name: pellegrino, price: 8}
+            - {name: pellegrino, price: 4}
             - {name: rhubarb n rye, price: 12}
             - {name: spanish daisy, price: 10}
             - {name: gimlet, price: 10}
@@ -262,7 +258,6 @@ menu:
             - {name: martini french, price: 9}
             - {name: special note, add_on_price: 0}
             - {name: tinto de verano, price: 8}
-            - {name: bianco spritz, price: 8}
         - name: soft drinks
           items: 
             - {name: coke, price: 3}

@@ -1,0 +1,435 @@
+<html>
+
+<head>
+
+  <style>
+
+    body,h1,h2,h3,h4,h5,h6 {font-family:Arial;}
+
+    body {background-color:pink; color:black; font-size:18}
+
+    h1 {font-size:28pt; font-weight:bold; margin:0px;}
+
+    h2 {font-size:16pt; margin:0px; font-weight:bold;}
+
+    h3 {font-size:8pt; margin:0px; font-weight:bold;}
+
+    .rec_entry {width: 99%}
+    .hour_entry {width: 99%}
+    #order_pane :hover {background-color: yellow;}
+    #select_area {width: 70%;}
+    
+    #table_display {width: 100%; margin: 5px; color: blue;}
+    #table_id_display {width: 95%;}
+    #receipt_text {font-family: monospace; font-size: 14pt;}
+
+  </style>
+
+  <script> 
+
+    // This is the only script on this page. It does basically
+    // everything. 
+    
+    function http_request(method, url, params)
+    {
+      http = new XMLHttpRequest();
+      if(method == "GET")
+      {
+        // append timestamp to url to prevent caching
+        url += "?timestamp=" + new Date().getTime();
+
+        if (params) {url += "&" + params;}
+        http.open(method, url, false);
+        http.send(null);
+      }
+      else
+      {
+        http.open(method, url, false);
+        http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+        http.setRequestHeader("Content-length", params.length);
+        http.setRequestHeader("Connection", "close");
+        http.send(params);
+      }
+
+      response = http.responseText;
+
+      if (http.status != 200)  {
+      // Display error message on page
+        document.write("Error getting config\n\n");
+        document.write(response);
+        return;
+      }
+
+      return eval('(' + response + ')');
+    }  
+
+    function draw()
+    // This gets called when the document loads.
+    {
+      init();
+      document.getElementById('top_heading').innerHTML = "Receipt entry for " + g_lag_days + "day(s) ago";
+      load_sales_by_server();
+      drawSales();
+
+      load_hours();
+      drawHours();
+    }
+
+    function getQueryParams() 
+    {
+      qs = document.location.search;
+      qs = qs.split("+").join(" ");
+      params = {};
+      tokens = null;
+      re = /[?&]?([^=]+)=([^&]*)/g;
+
+      while (tokens = re.exec(qs)) 
+      {
+        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+      }
+
+      return params;
+    }
+
+    g_params = null;
+    g_lag_days = null;
+    function init()
+    {
+      document.body.addEventListener('click', clicked, true)
+      g_params = getQueryParams();
+      if (g_params['lag_days'] == undefined)
+      {
+        g_lag_days = 1;
+      }
+      else
+      {
+        g_lag_days = g_params['lag_days'];
+      }
+    }  
+
+    g_sales_by_server = null;
+    function load_sales_by_server()
+    {
+      g_sales_by_server = http_request("GET", "sales_by_server.py/get_new", "lag_days="+g_lag_days);
+
+      for (idx in g_sales_by_server)
+      {
+        sales_by_server = g_sales_by_server[idx];
+        if (sales_by_server.cctotal == null) {sales_by_server.cctotal = ""};
+        if (sales_by_server.cctips == null) {sales_by_server.cctips = ""};
+        if (sales_by_server.cash_drop == null) {sales_by_server.cash_drop = ""};
+        if (sales_by_server.starting_cash == null) {sales_by_server.starting_cash = ""};
+        if (sales_by_server.cash_left_in_bank == null) {sales_by_server.cash_left_in_bank = ""};
+        sales_by_server.tip_amt= "";
+        sales_by_server.tip_pct = "";
+      }
+    }  
+
+    g_hours = null;
+    function load_hours()
+    {
+      g_hours = http_request("GET", "get_hours.py", "lag_days="+g_lag_days);
+    }  
+
+    function drawSales()
+    {
+      board=document.getElementById("sales_table");
+      board.innerHTML = getTableHTML();
+      calculate();
+
+    }
+
+    function drawHours()
+    {
+      hours_tab=document.getElementById("hours_table");
+      hours_tab.innerHTML = getHoursHTML();
+    }
+
+    g_tip_total = 0;
+    g_receipts_total = 0;
+    g_tip_pct = 0;
+    g_taxable_total = 0;
+    function calculate()
+    {
+      g_tip_total = 0;
+      g_receipts_total = 0;
+      g_taxable_total = 0;
+
+      var cctotal_total = 0
+      var cctips_total = 0
+      var cash_drop_total = 0
+      var cash_left_in_bank_total = 0
+      var starting_cash_total = 0
+
+      for (idx in g_sales_by_server)
+      {
+        ss = g_sales_by_server[idx];
+        ss.tip_amt = (
+          Number(ss.cctotal) - Number(ss.cctips)*.03
+          + Number(ss.cash_drop) + Number(ss.cash_left_in_bank) - Number(ss.starting_cash) 
+          - Number(ss.receipts)
+        );
+        tip_amt_element = document.getElementById("tip_amt_"+ss.person_id);
+        tip_amt_element.innerHTML = Math.round(ss.tip_amt);
+
+        ss.tip_pct =  Math.round(ss.tip_amt *100 / ss.taxable_sales);
+        tip_pct_element = document.getElementById("tip_pct_"+ss.person_id);
+        tip_pct_element.innerHTML = ss.tip_pct;
+
+        g_tip_total += ss.tip_amt;
+        g_receipts_total += ss.receipts;
+        g_taxable_total += ss.taxable_sales;
+
+        cctotal_total += ss.cctotal;
+        cctips_total += ss.cctips;
+        cash_drop_total += ss.cash_drop;
+        cash_left_in_bank_total += ss.cash_left_in_bank;
+        starting_cash_total += ss.starting_cash;
+      }  
+
+      document.getElementById("tip_amt_total").innerHTML = Math.round(g_tip_total);
+      document.getElementById("receipts_total").innerHTML = g_receipts_total.toFixed(2);
+
+      document.getElementById("cctotal_total").innerHTML = cctotal_total;
+      document.getElementById("cctips_total").innerHTML = cctips_total;
+      document.getElementById("cash_drop_total").innerHTML = cash_drop_total;
+      document.getElementById("cash_left_in_bank_total").innerHTML = cash_left_in_bank_total;
+      document.getElementById("starting_cash_total").innerHTML = starting_cash_total;
+
+      g_tip_pct =  Math.round(g_tip_total *100 / g_taxable_total);
+      document.getElementById("tip_pct_total").innerHTML = g_tip_pct;
+
+    }  
+
+    function send_data(value, field, person_id)
+    {
+      for (idx in g_sales_by_server)
+      {
+        ss = g_sales_by_server[idx];
+        if (ss.person_id == person_id) 
+        {
+          ss[field] = value;
+          if (ss.receipts_id == null)
+          {
+            ss.receipts_id = new_receipts_rec(ss.person_id, ss.dat);
+          }
+          update_receipts(value, field, ss.receipts_id);
+          break;
+        }
+      } 
+      calculate();
+    }
+
+    function new_receipts_rec(person_id, dat)
+    {
+      params = "serverpin="+person_id+"&dat="+dat;
+      resp = http_request("POST", "server_receipt_entry.py/admin_new_record", params);
+      return resp;
+    }
+
+    function update_receipts(value, field, receipts_id)
+    {
+      params = "receipts_id="+receipts_id+"&field_name="+field+"&new_value="+value;
+      http_request("POST", "server_receipt_entry.py/admin_update", params);
+    }  
+
+    function update_hours(value, field, hours_id)
+    {
+      params = "hours_id="+hours_id+"&field_name="+field+"&new_value="+value;
+      resp = http_request("POST", "update_hours.py", params);
+    }  
+
+    function calc_tip_pay()
+    {
+      document.body.style.cursor = 'wait';
+      params = "lag_days="+g_lag_days;
+      params += "&the_tip="+g_tip_total;
+      http_request("POST", "calc_tip_pay.py", params);
+      
+      load_hours();
+      drawHours();
+      document.body.style.cursor = 'default';
+    }  
+      
+    function print_tip_slips()
+    {
+      response = http_request("GET", "print_tip_slips.py");
+      alert(response);
+    }  
+      
+        
+    function getTableHTML()
+    {
+      s="";
+
+      s = s + "<table border=1 cellpadding=6 cellspacing=5 >";
+
+      cols = ["server", "ccid", /*"sales", "taxable_sales",*/ "receipts", /*"tabs_closed",*/ 
+        "cctotal", "cctips", "cash_drop", "starting_cash", "cash_left_in_bank", "tip_amt", "tip_pct"]
+      for (cidx in cols)
+      {
+        s += 
+          "<th" +
+          " onclick='grid_button_clicked(this)'" +
+          " id=\"" + cidx + "_header\"" +
+          ">" +
+          cols[cidx] +
+          "</th>";
+      }
+
+      for (idx in g_sales_by_server)
+      {
+        server_sales = g_sales_by_server[idx];
+        s += "<tr>";    
+
+        for (cidx in cols)
+        {
+          field = cols[cidx];
+          if (field == "cctotal" || field == 'cctips' || field == 'cash_drop'  || field == 'starting_cash' || field == 'cash_left_in_bank')
+          {
+            td_guts = "<input class=rec_entry type='number' value='"+server_sales[field] + 
+              "' onblur = 'send_data(eval(this.value), \""+field+"\", \""+server_sales.person_id+"\")'/>"
+          }
+          else
+          {
+            td_guts = server_sales[field];
+          }
+          s += 
+            "<td" +
+            " class=''" +
+            " onclick='grid_button_clicked(this)'" +
+            " id='" + cols[cidx] + "_" + server_sales.person_id+"'" +
+            ">" +
+            td_guts +
+            "</td>";
+        }
+
+        s += "</tr>";
+      }
+      s+="<tr>";
+      for (cidx in cols)
+      {
+        if(cidx == 1) { s+= "<th>Totals</th>"; continue;}
+        field = cols[cidx];
+        s += "<td id=" + field + "_total />";
+      }
+
+      s += "</table>";
+
+      return s;
+    }
+
+    function getHoursHTML()
+    {
+      console.log('getHoursHTML');
+      s="";
+
+      s = s + "<table border=1 cellpadding=6 cellspacing=5 >";
+
+      cols = ["server", "intime", "outtime", "tip_share", "tip_pay", "paid"]
+      for (cidx in cols)
+      {
+        console.log('header ' + cols[cidx]);
+        s += 
+          "<th" +
+          " onclick='grid_button_clicked(this)'" +
+          " id=\"" + cidx + "_header\"" +
+          ">" +
+          cols[cidx] +
+          "</th>";
+      }
+
+      for (idx in g_hours)
+      {
+        console.log('hour record ' + g_hours[idx]['server']);
+        hours = g_hours[idx];
+
+        if (hours['redflag'])
+        {
+          s += "<tr style='color:yellow; background-color:red'>";    
+        }else
+        {
+          s += "<tr >";    
+        }
+
+        for (cidx in cols)
+        {
+          field = cols[cidx];
+          if (field == "intime" || field == "outtime" || field == "tip_share" || field == "tip_pay" || field == "paid")
+          {
+            td_guts = "<input class= hour_entry type='edit' value='"+hours[field] + 
+              "' onblur = 'update_hours(this.value, \""+field+"\", \""+hours.id+"\")'/>"
+          }
+          else
+          {
+            td_guts = hours[field];
+          }
+          s += 
+            "<td" +
+            " class=''" +
+            " onclick='grid_button_clicked(this)'" +
+            " id='" + cols[cidx] + "_" + hours.id+"'" +
+            ">" +
+            td_guts +
+            "</td>";
+        }
+
+        s += "</tr>";
+      }
+
+      s += "</table>";
+
+      return s;
+    }
+
+    function grid_button_dragged(button)
+    {
+    }
+
+    function grid_button_clicked(button)
+    {
+      //alert(button.id);
+    }
+
+    function enter(event)
+    // When the user presses enter on the text editBox colorEdit we want
+    // to interperet this to mean apply so we capture the keypress events
+    // from the edit box and check if the key is the enter key
+    {
+      if (event.keyCode == 13)
+      {
+        colorEdit.blur(); 
+        //otherwise you can still see the cursor after the dialog is hidden
+        apply();
+      }
+    }
+
+    function clicked()
+    {
+    }
+
+  </script>
+
+</head>
+
+<body onLoad="draw()" id='main'>
+
+
+  <div id="main_screen">
+    <h1 id ="top_heading" style="{margin: 24pt;}"/>
+    <h2>Enter receipts by server</h2>
+    <div id="sales_table">
+    </div>  
+
+    <br>
+    <br>
+    <h2>Adjust hours and tip share if needed and calculate tips</h2>
+    <div id="hours_table">
+    </div>  
+    <button onclick="calc_tip_pay()">calculate tip pay</button>
+    <button onclick="print_tip_slips()">print tip slips</button>
+
+  </div>
+
+</body>
+</html>

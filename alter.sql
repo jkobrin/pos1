@@ -106,18 +106,19 @@
 
 #alter table order_item add column taxable boolean not null;
 
-alter table order_item add column category varchar(64);
-alter table order_item add column subcategory varchar(64);
-alter table order_item add column parent_item INT;
+#alter table order_item add column category varchar(64);
+#alter table order_item add column subcategory varchar(64);
+#alter table order_item add column parent_item INT;
 
-create or replace view revenue_item as select oi.* from order_item oi, order_group og 
-where oi.order_group_id = og.id
-and is_comped = false 
-and is_cancelled = false 
-and item_name not like 'gift%' 
-and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+;'
-;
-create or replace view taxable_item as select * from revenue_item where taxable = true;
+#create or replace view revenue_item as select oi.* from order_item oi, order_group og 
+#where oi.order_group_id = og.id
+#and is_comped = false 
+#and is_cancelled = false 
+#and item_name not like 'gift%' 
+#and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+;'
+#create or replace view taxable_item as select * from revenue_item where taxable = true;
 
-
-
+#alter table hours add column paid boolean default false;
+#update hours set paid = true where tip_pay is not null;
+#alter table hours modify column intime timestamp default now();
+alter table hours modify column tip_pay DECIMAL(3,0) default null;
