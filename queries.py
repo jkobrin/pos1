@@ -65,7 +65,7 @@ def new_sales_by_server(label=False, lag_days=1):
     as
     SELECT *
     from server_receipts 
-    where date(created - interval '6' hour) = date(now() - INTERVAL '%(lag_days)s' DAY)
+    where dat = date(now() - INTERVAL '%(lag_days)s' DAY)
     ''' % locals()
   )
 

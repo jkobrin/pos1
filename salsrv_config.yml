@@ -131,28 +131,27 @@ menu:
         - name: dinner
           items: 
             - {name: warm olives, price: 6}
-            - {name: marcona almonds, price: 5}
-            - {name: walnut pesto, price: 6}
+            - {name: marcona almonds, price: 6}
             #- {name: pate, price: 7}
             #- {name: caesar, price: 9}
-            - {name: winter salad, price: 10}
+            - {name: summer salad, price: 10}
             #- {name: garden slaw, price: 11}
             #- {name: anchovy, price: 6}
             #- {name: summer salad, price: 9}
             - {name: burrata, price: 14}
+            - {name: peppers, price: 9}
             #- {name: meatballs, price: 5}
-            - {name: cauliflower, price: 10}
+            - {name: asparagus, price: 10}
             #- {name: pate, price: 12}
             #- {name: sprouts, price: 9}
-            - {name: artichokes, price: 12}
+            - {name: maduros, price: 10}
             #- {name: taleggio bake, price: 9}
             #- {name: corn, price: 7}
-            - {name: brussels, price: 11}
-            - {name: crab fondue, price: 15}
+            - {name: carrots, price: 11}
             - {name: empanada, price: 9}
             - {name: shrimp, price: 12}
             - {name: bocadillo, price: 9}
-            - {name: pork cheeks, price: 14}
+            - {name: pork cheeks, price: 15}
             - {name: octopus, price: 14}
             - {name: morcilla, price: 9}
             #- {name: octopus, price: 12}
@@ -174,12 +173,12 @@ menu:
             #- {name: octopus, price: 12}
             #- {name: radish, price: 8}
             #- {name: meatballs, price: 8}
+            - {name: lamb neck, price: 14}
             - {name: marrow bones, price: 9}
             #- {name: french onion, price: 7}
             - {name: polenta tapa, price: 8}
             - {name: polenta plate, price: 14}
             #- {name: lamb shank, price: 28}
-            - {name: oxtail, price: 16}
             #- {name: laksa, price: 21}
             #- {name: lamb, price: 22}
             #- {name: chicken, price: 18}
@@ -187,7 +186,7 @@ menu:
             - {name: panacotta, price: 7}
             - {name: affogato, price: 7}
             - {name: chocolate, price: 7}
-            - {name: tres leches, price: 5}
+            - {name: tres leches, price: 7}
             - {name: pound cake, price: 7}
             - {name: ice cream cup, price: 4}
             - {name: ice cream bowl, price: 11}
@@ -220,92 +219,59 @@ menu:
             - {name: dessert board, price: 14}
             - {name: add-on, add_on_price: 5}
             - {name: extra fig, add_on_price: 2}
-            - {name: pata negra, add_on_price: 15}
+            - {name: pata negra add-on, add_on_price: 15}
+            - {name: pata negra plate, price: 20}
             - {name: seranno ham, add_on_price: 0}
             - {name: lomo, add_on_price: 0}
             - {name: chorizo, add_on_price: 0}
             - {name: prosciutto, add_on_price: 0}
             - {name: hot capicolla, add_on_price: 0}
             - {name: felino, add_on_price: 0}
+            - {name: campo manchego, add_on_price: 0}
             - {name: tetilla, add_on_price: 0}
-            - {name: rustico, add_on_price: 0}
-            - {name: manchego , add_on_price: 0}
             - {name: cana de cabra, add_on_price: 0}
-            - {name: campo de montalban, add_on_price: 0}
-            - {name: tetilla, add_on_price: 0}
             - {name: rustico, add_on_price: 0}
-            - {name: taleggio, add_on_price: 0}
             - {name: piave, add_on_price: 0}
             - {name: pecorino tartufo, add_on_price: 0}
-            - {name: daffinois, add_on_price: 0}
-            - {name: garrotxa, add_on_price: 0}
-            - {name: blue cheese, add_on_price: 0}
-            - {name: queso sudado, add_on_price: 0}
-            - {name: sao jorge, add_on_price: 0}
-            - {name: cheddar, add_on_price: 0}
             - {name: oveja fresca, add_on_price: 0}
+            - {name: blue cheese, add_on_price: 0}
+            - {name: daffinois, add_on_price: 0}
             - {name: gouda, add_on_price: 0}
-            - {name: surchoix, add_on_price: 0}
+            - {name: taleggio, add_on_price: 0}
+            - {name: cheddar, add_on_price: 0}
             - {name: special note, add_on_price: 0}
             #- {name: bufala, price: 0}
             #- {name: capri, price: 0}
-        - name: lunch
-          items: 
-            - {name: warm olives, price: 5}
-            - {name: marcona almonds, price: 5}
-            - {name: walnut pesto, price: 6}
-            - {name: pate, price: 7}
-            - {name: anchovy, price: 6}
-            - {name: octopus, price: 12}
-            - {name: shrimp, price: 12}
-            - {name: squash, price: 7}
-            - {name: raclette, price: 9}
-            - {name: cauliflower, price: 8}
-            - {name: artichokes, price: 10}
-            - {name: carney corn, price: 7}
-            - {name: empanada, price: 8}
-            - {name: oxtail, price: 14}
-            - {name: bread, price: 3}
-            - {name: summer salad, price: 9}
-            - {name: waldorf, price: 10}
-            - {name: burrata, price: 14}
-            - {name: house salad, price: 7}
-            - {name: panini, price: 8}
-            - {name: burrata sandwich, price: 10}
-            - {name: prosciutto sandwich, price: 10}
-            - {name: spanish ham cheese,  price: 9}
-            - {name: goat mushroom sandwich, price: 8}
-            - {name: bocadillo, price: 9}
-            - {name: special note, add_on_price: 0}
         - name: brunch
           items: 
+            - {name: anchovy toast, price: 7}
+            - {name: pros-daff toast, price: 8}
+            - {name: oveja fresca toast, price: 6}
+            - {name: salmon toast, price: 15}
+            - {name: walnut pesto toast, price: 7}
             - {name: frittata, price: 10}
             - {name: cappuccino eggs, price: 6}
             - {name: bloomfield, price: 12}
             - {name: toads in a hole, price: 7}
+            - {name: piq sunrise, price: 12}
             - {name: waffle, price: 10}
             - {name: french toast, price: 9}
-            - {name: ice cream cup, price: 4}
-            - {name: ice cream bowl, price: 11}
-            - {name: potato, price: 5}
-            - {name: bacon, price: 4}
-            - {name: italian ham, price: 5}
-            - {name: spanish sausage, price: 10}
-            - {name: panini, price: 8}
+            - {name: cal panini, price: 8}
             - {name: burrata sandwich, price: 10}
             - {name: goat cheese panini, price: 8}
-            - {name: empanada, price: 8}
             - {name: bocadillo, price: 9}
-            - {name: anchovy, price: 6}
-            - {name: beet and blue, price: 11}
+            - {name: empanada, price: 8}
             - {name: burrata salad, price: 14}
+            - {name: carrots, price: 11}
             - {name: house salad, price: 7}
-            - {name: oveja fresca toast, price: 6}
-            - {name: walnut pesto, price: 7}
-            - {name: pros and daff, price: 8}
-            - {name: crab, price: 15}
-            - {name: smoked anchovies, price: 7}
-            - {name: bread basket, price: 3}
+            - {name: potato, price: 5}
+            - {name: bacon, price: 5}
+            - {name: spanish sausage, price: 8}
+            - {name: italian ham, price: 5}
+            - {name: pastry, price: 4}
+            - {name: bread basket, price: 4}
+            - {name: ice cream cup, price: 4}
+            - {name: ice cream bowl, price: 11}
             - {name: special note, add_on_price: 0}
         - name: misc
           items: 
@@ -335,19 +301,15 @@ menu:
             - {name: decaf, price: 4}
             - {name: ceylon tea, price: 4}
             - {name: paris tea, price: 4}
-            - {name: green jasmin, price: 4}
-            - {name: chomomile, price: 4}
-            - {name: cascara, price: 5}
-            - {name: iced thai tea latte, price: 5}
+            - {name: green jasmine, price: 4}
+            - {name: chamomile, price: 4}
+            - {name: lychee, price: 4}
             - {name: iced unsweet tea, price: 3}
             - {name: iced sweet tea, price: 3}
             - {name: regular tea, price: 3}
         - name: cocktails 
           items: 
             - {name: special cocktail, price: 12}
-            - {name: glass red sangria, price: 8}
-            - {name: glass white sangria, price: 8}
-            - {name: glass rose sangria, price: 8}
             #- {name: jar red sangria, price: 25}
             #- {name: jar white sangria, price: 25}
             #- {name: jar rose sangria, price: 25}
@@ -398,112 +360,6 @@ menu:
             - {name: sprite, price: 3}
             - {name: tonic, price: 3}
             - {name: special note, add_on_price: 0}
-        - name: spirits
-          items: 
-            - {name: Absinthe, price: 14}
-            - {name: Amaro Lucano, price: 9}
-            - {name: Aperol, price: 9}
-            - {name: Armagnac, price: 8}
-            - {name: Bunnahaiban 12yr, price: 14}
-            - {name: Campari, price: 10}
-            - {name: Catskill Provisions, price: 11}
-            - {name: Chartreaux, price: 23}
-            - {name: Cognac, price: 9}
-            - {name: Cruzan, price: 7}
-            - {name: Dry Curacao, price: 10}
-            - {name: Evan Williams, price: 7}
-            - {name: Fernet-Branca Amaro, price: 10}
-            - {name: Frangelico, price: 10}
-            - {name: Glenlivet, price: 13}
-            - {name: Gosling's, price: 8}
-            - {name: Gozio, price: 8}
-            - {name: Grappa, price: 8}
-            - {name: Greenall's Gin, price: 7}
-            - {name: Greenhook Gin, price: 10}
-            - {name: Holland's Gin, price: 8}
-            - {name: Irish Cream Kerrygold, price: 10}
-            - {name: Jameson, price: 10}
-            - {name: Kahluah, price: 9}
-            - {name: Laphroig 10yr, price: 14}
-            - {name: Laws Bourbon, price: 14}
-            - {name: Maker's Mark, price: 10}
-            - {name: Mathilde Raspberry, price: 9}
-            - {name: Mezcal, price: 12}
-            - {name: Pine Barrens, price: 19}
-            - {name: Pitu, price: 6}
-            - {name: Professore, price: 9}
-            - {name: Pueblo Anejo, price: 9}
-            - {name: Pueblo Blanco, price: 7}
-            - {name: Pueblo Reposado, price: 8}
-            - {name: Rum-White, price: 8}
-            - {name: Sambuca Lucano, price: 8}
-            - {name: Scotch Tullibardine, price: 14}
-            - {name: Seville Orange, price: 9}
-            - {name: Shipwreck Coconut Rum, price: 9}
-            - {name: Shipwreck Spiced Rum, price: 9}
-            - {name: Sobieski, price: 7}
-            - {name: Supercassis, price: 8}
-            - {name: Suze, price: 8}
-            - {name: Templeton Rye, price: 10}
-            - {name: Tito's, price: 8}
-           # - {name: Triple Sec, price: 5}
-            - {name: Van Gogh Espresso, price: 11}
-            - {name: Wathen's Single Barrel Bourbon, price: 10}
-            - {name: Whistle Pig, price: 17}
-            - {name: special note, add_on_price: 0}
-        - name: shots
-          items: 
-            - {name: Absinthe shot, price: 10}
-            - {name: Amaro shot, price: 7}
-            - {name: Aperol shot, price: 7}
-            - {name: Armagnac snifter, price: 6}
-            - {name: Bunnahaiban 12yr shot, price: 10}
-            - {name: Campari shot, price: 7}
-            - {name: Catskill Provisions shot, price: 8}
-            - {name: Chartreaux snifter, price: 15}
-            - {name: Coconut Rum shot, price: 6}
-            - {name: Cognac snifter, price: 7}
-            - {name: Cruzan shot, price: 5}
-            - {name: Dry Curacao shot, price: 7}
-            - {name: Evan Williams shot, price: 5}
-            - {name: Fernet-Branca snifter, price: 7}
-            - {name: Frangelico snifter, price: 7}
-            - {name: Glenlivet shot, price: 9}
-            - {name: Gosling's shot, price: 6}
-            - {name: Gozio snifter, price: 6}
-            - {name: Grappa snifter, price: 6}
-            - {name: Greenall's Gin shot, price: 6}
-            - {name: Greenhook Gin shot, price: 8}
-            - {name: Holland's Gin shot, price: 6}
-            - {name: Irish Cream snifter, price: 7}
-            - {name: Jameson shot, price: 7}
-            - {name: Kahluah snifter, price: 7}
-            - {name: Laphroig 10yr shot, price: 9}
-            - {name: Laws Bourbon shot, price: 10}
-            - {name: Maker's Mark shot, price: 8}
-            - {name: Mathilde Raspberry shot, price: 7}
-            - {name: Mezcal shot, price: 9}
-            - {name: Pine Barrens shot, price: 13}
-            - {name: Pitu shot, price: 5}
-            - {name: Professore shot, price: 7}
-            - {name: Pueblo Anejo shot, price: 7}
-            - {name: Pueblo Blanco shot, price: 6}
-            - {name: Pueblo Reposado shot, price: 7}
-            - {name: Rum-White shot, price: 6}
-            - {name: Sambuca snifter, price: 6}
-            - {name: Scotch Tullibardine shot, price: 10}
-            - {name: Seville Orange shot, price: 6}
-            - {name: Sobieski shot, price: 5}
-            - {name: Spiced Rum shot, price: 6}
-           # - {name: Supercassis shot, price: 6}
-            - {name: Suze snifter, price: 6}
-            - {name: Templeton Rye shot, price: 8}
-            - {name: Tito's shot, price: 6}
-           # - {name: Triple Sec shot, price: 5}
-            - {name: Van Gogh Espresso shot, price: 8}
-            - {name: Wathen's Bourbon shot, price: 10}
-            - {name: Whistle Pig shot, price: 12}
-            - {name: special note, add_on_price: 0}
         - name: mixers
           items: 
             - {name: mix tonic, add_on_price: 0}
@@ -539,120 +395,6 @@ menu:
             - {name: special note, add_on_price: 0}
     - name: market
       subcategories:
-          - name: drinks
-            tax: included
-            items:
-            - {name: extra shot, price: 1}
-            - {name: drip, price: 3}
-            - {name: decaf-, price: 3}
-            - {name: tea, price: 3}
-            - {name: espresso-, price: 3}
-            - {name: lungo, price: 3}
-            - {name: espresso twist, price: 3.5}
-            - {name: americano, price: 3.5}
-            - {name: coldbrew, price: 4}
-            - {name: doppio, price: 5}
-            - {name: choco tipico, price: 3}
-            - {name: choco-picante, price: 3.5}
-            - {name: choco-espresso, price: 4}
-            - {name: choco-latte, price: 5}
-            - {name: marsh to stay, price: 1}
-            - {name: marsh to go, price: .5}
-            - {name: mocha-latte, price: 6}
-            - {name: cappuccino-, price: 5}
-            - {name: latte-, price: 5}
-            - {name: madrileno, price: 4}
-            - {name: affogato-, price: 6}
-            - {name: milk-, price: 2}
-            - {name: choco milk-, price: 3}
-            - {name: cup 4, price: 4}
-            - {name: cup 5, price: 5}
-            - {name: cup 6, price: 6}
-            - {name: orange juice sm, price: 3.5}
-            - {name: orange juice lg, price: 6.0}
-          - name: food
-            items:
-            - {name: pop tart 4.00, price: 4}
-            - {name: pop tart 4.50, price: 4.5}
-            - {name: croissant plain-, price: 3}
-            - {name: biscuit plain-, price: 3}
-            - {name: roll-, price: 3}
-            - {name: add jam-, price: .5}
-            - {name: add egg-, price: .5}
-            - {name: add ham-, price: .5}
-            - {name: add cheese-, price: .5}
-            - {name: add cream-, price: .5}
-            - {name: add bacon-, price: .5}
-            - {name: cookie-, price: .5}
-            - {name: 3 cookies-, price: 1}
-            - {name: fruit cake-, price: 4}
-            #- {name: avocado toast-, price: 5}
-            - {name: anchovy toast-, price: 5}
-            - {name: yogurt-, price: 5}
-            - {name: pastry basket-, price: 12}
-            - {name: cappuccino eggs-, price: 5}
-            - {name: french toast-, price: 8}
-            - {name: waffle-, price: 9}
-            - {name: caramel sauce-, price: 0}
-            - {name: chocolate sauce-, price: 0}
-            - {name: eggs up-, price: 5}
-            - {name: eggs over-, price: 5}
-            - {name: eggs whites two, price: 5}
-            - {name: fritata-, price: 9}
-            - {name: scramble-, price: 6}
-            - {name: add mushrooms-, price: .75}
-            - {name: add onion-, price: .75}
-            - {name: add arugula-, price: .75}
-            - {name: add ham-, price: .75}
-            - {name: add seasonal veg-, price: .75}
-            - {name: bacon side, price: 3}
-            - {name: truffle ham side, price: 4}
-            - {name: morcilla side, price: 5}
-            - {name: crispy prosciutto, price: 4}
-            - {name: crispy polenta and eggs, price: 8}
-            - {name: smashed potato, price: 4}
-            - {name: seasonal veg side, price: 4}
-            #- {name: avocado half, price: 2}
-            #- {name: avocado whole, price: 4}
-            - {name: ice cream -, price: 3.5}
-            #- {name: baguette, price: 2.5}
-            #- {name: rustic bread, price: 10}
-            #- {name: epi baguette, price: 2.5}
-            #- {name: round bread, price: 4}
-            - {name: toast, price: 1}
-            - {name: sub pastry upcharge, price: 2}
-            - {name: quince paste, price: 4}
-            - {name: olives mixed, price: 6.5}
-            - {name: olives castel, price: 4}
-            - {name: gft bag 25, price: 25}
-            - {name: gft bag 35, price: 35}
-            - {name: gft bag 45, price: 45}
-            - {name: gft bag 65, price: 65}
-            - {name: $, price: 1, supplier: , units_in_bulk: '',
-              upc: '', vendor_code: '', wholesale: '1', scale_units: ' '}
-          - name: lunch 
-            items:
-            - {name: napoli, price: 8}
-            - {name: murcia, price: 8}
-            - {name: gruere, price: 7}
-            - {name: zagreb, price: 10}
-            - {name: burgos, price: 12}
-            - {name: gangnam, price: 10}
-            - {name: amalfi, price: 11}
-            - {name: barcelona, price: 10}
-            - {name: bologna, price: 7}
-            - {name: roma, price: 9}
-            - {name: tyrol, price: 10}
-            - {name: madrid, price: 9}
-            - {name: milano, price: 10}
-            - {name: paris, price: 9}
-            #- {name: san francisco, price: 9}
-            - {name: funghi, price: 9}
-            - {name: cobb, price: 13}
-            - {name: antipasto, price: 14}
-            - {name: house, price: 11}
-            - {name: grain salad, price: 12}
-            - {name: dirty chips, price: 1.5}
           - name: cheese
             items:
             - {name: 1/4 lb Gouda, price: 5.50, supplier: GFI,
@@ -768,18 +510,7 @@ menu:
             - {name: Toscano Fennel Polen Salame, price: 11.0,
               supplier: Sansone, 
               upc: '850801003058', vendor_code: '', wholesale: '6.52'}
-          - name: bread 
-            items:
-            - {name: baguette, price: 2.5}
-            - {name: rustic bread, price: 10}
-            - {name: round bread, price: 4}
-            #- {name: quince paste, price: 4}
-            - {name: olives, price: 6.5}
-            #- {name: gft bag 25, price: 25}
-            #- {name: gft bag 35, price: 35}
-            #- {name: gft bag 45, price: 45}
-            #- {name: gft bag 65, price: 65}
-          - name: coffee and tea
+          - name: coffee tea
             items:
             - {name: TCHO Drinking Chocolate Bag, price: 103.0, supplier: Baldor, units_in_bulk: '',
               upc: '812603011662', vendor_code: SPD4L, wholesale: '61.90'}
@@ -1611,3 +1342,168 @@ menu:
             - {name: fondue, price: 7}
             - {name: galettas, price: 5}
             - {name: pound cake, price: 6}
+    - name: cafe 
+      subcategories:
+          - name: drinks 
+            tax: included
+            items:
+            - {name: house drip, price: 3}
+            - {name: special drip 4, price: 4}
+            - {name: special drip 5, price: 5}
+            - {name: decaf french pr, price: 3}
+            - {name: fp 3, price: 6}
+            - {name: fp 4, price: 6}
+            - {name: fp 5, price: 6}
+            - {name: fp 6, price: 6}
+            - {name: fp 7, price: 6}
+            - {name: cold brew-, price: 4}
+            - {name: espresso-, price: 3}
+            - {name: americano-, price: 3.5}
+            - {name: cappuccino-, price: 5}
+            - {name: latte-, price: 5}
+            - {name: iced latte-, price: 5}
+            - {name: caramel latte-, price: 5.5}
+            - {name: cortado-, price: 4}
+            - {name: choco tipico-, price: 3}
+            - {name: choco picante-, price: 3.5}
+            - {name: hot chocolate-, price: 5}
+            - {name: mocha latte-, price: 5.5}
+            - {name: tea sm pot-, price: 3}
+            - {name: tea lg pot-, price: 5}
+            - {name: fresh oj 8oz, price: 3.5}
+            - {name: fresh oj 16oz, price: 6}
+            - {name: oj 8oz, price: 2.5}
+            - {name: oj 16oz, price: 4}
+            - {name: pineapple 8oz, price: 2.5}
+            - {name: pineapple 16oz, price: 4}
+            - {name: orange 8oz, price: 2.5}
+            - {name: orange 16oz, price: 4}
+            - {name: tomato 8oz, price: 2.5}
+            - {name: tomato 16oz, price: 4}
+            - {name: cranberry 8oz, price: 2.5}
+            - {name: cranberry 16oz, price: 4}
+            - {name: iced tea 8oz, price: 2.5}
+            - {name: iced tea 16oz, price: 4}
+            - {name: special, price: 0}
+            - {name: tax-free special, price: 0}
+            - {name: PAID, price: 0}
+          - name: pastry
+            items:
+            - {name: croissant, price: 3}
+            - {name: biscuit, price: 3}
+            - {name: english muffin, price: 3}
+            - {name: bb roll, price: 3}
+            - {name: pop tart nutella, price: 4}
+            - {name: pop tart pdf, price: 5}
+            - {name: scone, price: 3}
+            - {name: pound cake-, price: 3}
+            - {name: 1 cookie, price: .5}
+            - {name: 3 cookies, price: 1}
+            - {name: baguette, price: 2.5}
+            - {name: XL loaf, price: 10}
+            - {name: special, price: 0}
+            - {name: tax-free special, price: 0}
+            - {name: PAID, price: 0}
+          - name: add-ons
+            items:
+            - {name: egg scrambled, add_on_price: 1}
+            - {name: egg up, add_on_price: 1}
+            - {name: egg easy, add_on_price: 1}
+            - {name: egg med, add_on_price: 1}
+            - {name: egg hard, add_on_price: 1}
+            - {name: cheese, add_on_price: 1}
+            - {name: bacon-, add_on_price: 1}
+            - {name: truffle ham-, add_on_price: 1}
+            - {name: turkey breast, add_on_price: 1}
+            - {name: smoked salmon, add_on_price: 2}
+            - {name: mushrooms, add_on_price: 1}
+            - {name: seasonal veg, add_on_price: 1}
+            - {name: arugula, add_on_price: 1}
+            - {name: onions, add_on_price: .5}
+            - {name: capers, add_on_price: .5}
+            - {name: nutella, add_on_price: 1}
+            - {name: fig jam, add_on_price: 1}
+            - {name: other jam, add_on_price: 1}
+            - {name: caramel, add_on_price: 1}
+            - {name: honey, add_on_price: 1}
+            - {name: maple syrup, add_on_price: 1}
+            - {name: butter, add_on_price: 1}
+            - {name: brown butter, add_on_price: 1}
+            - {name: mascarpone, add_on_price: 1}
+            - {name: pecorino tartufo, add_on_price: 2}
+            - {name: toast, add_on_price: 2}
+            - {name: special, price: 0}
+            - {name: tax-free special, price: 0}
+            - {name: PAID, price: 0}
+          - name: plates
+            items:
+            - {name: scramblette, price: 6}
+            - {name: cappu eggs-, price: 5}
+            - {name: waffle-, price: 9}
+            - {name: french toast-, price: 8}
+            - {name: pecorino frittata-, price: 9}
+            - {name: piquillo sunrise-, price: 10}
+            - {name: eggs bloomfield-, price: 11}
+            - {name: toads in a hole-, price: 7}
+            - {name: 2eggs up, price: 6}
+            - {name: 2eggs easy, price: 6}
+            - {name: 2eggs med, price: 6}
+            - {name: 2eggs hard, price: 6}
+            - {name: smoked anchovies-, price: 7}
+            - {name: oveja fresca-, price: 6}
+            - {name: pros daff toast-, price: 8}
+            - {name: grilled cheese, price: 7}
+            - {name: chicken tenders, price: 8}
+            - {name: special, price: 0}
+            - {name: tax-free special, price: 0}
+            - {name: MODIFIED, add_on_price: 0}
+            - {name: PAID, price: 0}
+          - name: sides
+            items:
+            - {name: bacon, price: 4}
+            - {name: truffle ham, price: 4}
+            - {name: sausage, price: 5}
+            - {name: salmon, price: 8}
+            - {name: crispy prosciutto, price: 4}
+            - {name: potatoes, price: 4}
+            - {name: seasonal veg, price: 4}
+            - {name: ice cretam, price: 3}
+            - {name: banana, price: 1}
+            - {name: special, price: 0}
+            - {name: tax-free special, price: 0}
+            - {name: PAID, price: 0}
+          - name: lunch sand 
+            items:
+            - {name: amalfi, price: 11}
+            - {name: barcelona, price: 10}
+            - {name: roma, price: 9}
+            - {name: tyrol, price: 10}
+            - {name: madrid, price: 9}
+            - {name: milano, price: 10}
+            - {name: paris, price: 9}
+            - {name: new york, price: 14}
+            - {name: napoli, price: 9}
+            - {name: mucia, price: 8}
+            - {name: lyon, price: 7}
+            - {name: zagreb, price: 10}
+            - {name: istanbul, price: 12}
+            - {name: gangnam, price: 12}
+            - {name: peidmont, price: 9}
+            - {name: croque monsieur, price: 10}
+            - {name: croque madame, price: 12}
+            - {name: monte cristo, price: 13}
+            - {name: special, price: 0}
+            - {name: tax-free special, price: 0}
+            - {name: MODIFIED, add_on_price: 0}
+            - {name: PAID, price: 0}
+          - name: salads
+            items:
+            - {name: cobb, price: 13}
+            - {name: antipasto, price: 14}
+            - {name: healthy grain, price: 13}
+            - {name: cavatelli, price: 13}
+            - {name: house, price: 11}
+            - {name: special, price: 0}
+            - {name: tax-free special, price: 0}
+            - {name: MODIFIED, add_on_price: 0}
+            - {name: PAID, price: 0}
