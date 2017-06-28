@@ -1,40 +1,45 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title id='Description'>Winelist
+    <style>
+    body { width: 98%; text-align: center; background-color: blue;}
+    </style>
+
+    <title id='Description'>Inventory
     </title>
-    <link rel="stylesheet" href="js/jqwidgets/styles/jqx.base.css" type="text/css" />
-    <script type="text/javascript" src="js/scripts/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxdata.js"></script> 
-    <script type="text/javascript" src="js/jqwidgets/jqxbuttons.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxscrollbar.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxmenu.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxgrid.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxgrid.edit.js"></script>  
-    <script type="text/javascript" src="js/jqwidgets/jqxgrid.selection.js"></script> 
-    <script type="text/javascript" src="js/jqwidgets/jqxgrid.grouping.js"></script> 
-    <script type="text/javascript" src="js/jqwidgets/jqxlistbox.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxdropdownlist.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxcheckbox.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxcalendar.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxnumberinput.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxdatetimeinput.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/globalization/globalize.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxgrid.sort.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxgrid.filter.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxpanel.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxnumberinput.js"></script>
-    <script type="text/javascript" src="js/jqwidgets/jqxgrid.columnsresize.js"></script> 
-    <script type="text/javascript" src="js/jqwidgets/jqxgrid.columnsreorder.js"></script> 
-    <script type="text/javascript" src="js/scripts/gettheme.js"></script>
+    <link rel="stylesheet" href="jq453/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="jq453/jqwidgets/styles/jqx.darkblue.css" type="text/css" />
+
+    <script type="text/javascript" src="jq453/scripts/jquery-1.11.2.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxdata.js"></script> 
+    <script type="text/javascript" src="jq453/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxgrid.edit.js"></script>  
+    <script type="text/javascript" src="jq453/jqwidgets/jqxgrid.selection.js"></script> 
+    <script type="text/javascript" src="jq453/jqwidgets/jqxgrid.grouping.js"></script> 
+    <script type="text/javascript" src="jq453/jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxcheckbox.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxcalendar.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxnumberinput.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxdatetimeinput.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/globalization/globalize.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxgrid.sort.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxgrid.filter.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxpanel.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxnumberinput.js"></script>
+    <script type="text/javascript" src="jq453/jqwidgets/jqxgrid.columnsresize.js"></script> 
+    <script type="text/javascript" src="jq453/jqwidgets/jqxgrid.columnsreorder.js"></script> 
     <script type="text/javascript">
         $(document).ready(function () {
-            var theme = getDemoTheme();
-            var url = "getwine.py/get";
-            // pass on any request parameters from the url to the request for data
-            url += window.location.search; //().match(/\?.*$/g);
+            // supercategory should be the request parameters from the url
+            var supercategory = window.location.search.match(/[^\?].*$/g);
             
+            var theme = 'darkblue';
+
             lastedit = null;
             edits = {};
             newrows = {};
@@ -42,27 +47,28 @@
             {
                 datatype: "json",
                 datafields: [
+                    { name: 'name',           type: 'string' },
+                    { name: 'supercategory',       type: 'string' },
                     { name: 'category',       type: 'string' },
                     { name: 'subcategory',       type: 'string' },
+                    { name: 'retail_price',     type: 'float' },
+                    { name: 'qtprice',        type: 'number' },
+                    { name: 'scalable',        type: 'number' },
+                    { name: 'tax',            type: 'string' },
+                    { name: 'wholesale_price',      type: 'number' },
+                    { name: 'supplier',       type: 'string' },
                     { name: 'bin',            type: 'string' },
                     { name: 'listorder',      type: 'number' },
-                    { name: 'cellar_listorder',      type: 'number' },
-                    { name: 'byline',         type: 'string' },
-                    { name: 'name',           type: 'string' },
-                    { name: 'qtprice',        type: 'number' },
-                    { name: 'frontprice',     type: 'float' },
-                    { name: 'mynotes',        type: 'string' },
-                    { name: 'grapes',         type: 'string' },
-                    { name: 'supplier',       type: 'string' },
-                    { name: 'notes',          type: 'string' },
-                    { name: 'listprice',      type: 'number' },
+                    { name: 'upc',         type: 'string' },
+                    { name: 'description',         type: 'string' },
                     { name: 'active',         type: 'boolean' },
                     { name: 'units_in_stock', type: 'float' },
                     { name: 'inventory_date', type: 'date' },
                     { name: 'estimated_units_remaining', type: 'string' },
+                    { name: 'mynotes',        type: 'string' },
                     { name: 'id', type: 'int' },
                 ],
-                url: url,
+                url: "inventory.py/get_" + supercategory,
                 //editurl: 'http://localhost/getwine.py/',
                 updaterow: function (rowid, rowdata, commit) {
                     if (lastedit == null) return;
@@ -99,13 +105,12 @@
             };
             var dataAdapter = new $.jqx.dataAdapter(source); 
             // create jqxgrid.
-            // 2016-12-13, RS, adjusted height, column widths and order
             $("#jqxgrid").jqxGrid(
             {
                 columnsresize: true,
                 columnsreorder: true,
                 editable: true,
-                width: 2000,
+                width: '100%',
                 height: 550,
                 source: dataAdapter,
                 theme: theme,
@@ -114,54 +119,63 @@
                 filterable: true,
                 groupable: true,
                 altrows: true,
+                ready: function () {
+                    $('#jqxgrid').jqxGrid('autoresizecolumns');
+                    },
                 columns: [
+                    { text: 'category',    datafield: 'category', width:90  },
                     { text: 'name',       datafield: 'name',  width:210},
                     { text: 'bin',        datafield: 'bin', width:60  },
                     { text: 'listorder',  datafield: 'listorder',  columntype: 'numberinput' , width:60 },
-                    { text: 'frontprice', datafield: 'frontprice', columntype: 'floatinput' , width: 60 },
-                    { text: 'listprice',  datafield: 'listprice',  columntype: 'numberinput' , width:60 },
+                    { text: 'wholesale', datafield: 'wholesale_price', columntype: 'floatinput' , width: 60 },
+                    { text: 'retail price',  datafield: 'retail_price',  columntype: 'numberinput' , width:60 },
                     { text: 'qtprice',    datafield: 'qtprice',    columntype: 'numberinput' , width: 60 },
+                    { text: 'scalable',    datafield: 'scalable', columntype: 'checkbox', width: 30},
+                    { text: 'tax',  datafield: 'tax', width:90 },
                     { text: 'supplier',   datafield: 'supplier', width:90 },
+                    { text: 'upc',   datafield: 'upc'},
                     { text: 'estimated_units_remaining', datafield: 'estimated_units_remaining', editable: false , width:90 }, 
                     { text: 'units_in_stock',datafield: 'units_in_stock', columntype: 'floatinput' , width:90 },
                     { text: 'inventory_date',datafield: 'inventory_date', columntype: 'datetimeinput', cellsformat: 'yyyy-MM-dd', width:90},
-                    { text: 'category',    datafield: 'category', width:90  },
                     { text: 'subcategory', datafield: 'subcategory', width:60  },
-                    { text: 'active', datafield: 'active', columntype: 'checkbox', width:60 },
-                    { text: 'cellar_listorder', datafield: 'cellar_listorder', columntype: 'numberinput', width:60 },
-                    { text: 'byline', datafield: 'byline', width:150  },
-                    { text: 'grapes', datafield: 'grapes', width:150   },
+                    { text: 'description',  datafield: 'description',   },
                     { text: 'mynotes', datafield: 'mynotes', width:150  },
-                    { text: 'notes',  datafield: 'notes',   },
-                  /*{ text: 'Inv Date', datafield: 'inv_date', width: 100, cellsformat: 'yyyy-MM-dd', editable: false },
-                  { text: 'Quantity', datafield: 'units', width: 70, align: 'right', cellsalign: 'right', columntype: 'numberinput'},
-                  { text: 'bin', datafield: 'bin', width: 70, editable: true},
-                  { text: 'Name', datafield: 'item_name', width: 250, editable: false},
-                  { text: 'supplier', datafield: 'supplier' },
-                  { text: 'listprice', datafield: 'listprice', width: 70, cellsalign: 'right', columntype: 'numberinput'},
-                  { text: 'frontprice', datafield: 'frontprice', width: 70, cellsalign: 'right', columntype: 'numberinput'},
-                  { text: 'byline', datafield: 'byline' },
-                  { text: 'grapes', datafield: 'grapes' },
-                  { text: 'mynotes', datafield: 'mynotes' },
-                  { text: 'notes', datafield: 'notes'},*/
                 ]
             });
 
             $("#jqxgrid").on('cellendedit', function (event) {
                 lastedit = event.args;
+                //alert(lastedit);
             });
+
+            $("#jqxgrid").bind('cellselect', function (event) {
+              var row = event.args.rowindex;
+              //alert(row);
+              //$('#jqxgrid').jqxGrid('ensurerowvisible', row);
+
+              //$('#' + row).jqxGrid('focus');
+              //var col = event.args.datafield;
+              //alert(row + ' ' + col);
+              //var datarow = $("#jqxgrid").jqxGrid('getrowdata', row);
+            });
+
 
             // create new row.
             function newrow() {
-                commit = $("#jqxgrid").jqxGrid('addrow', null, {});
+
+                //new rows will have the supercategory of row 0,
+                //since we assume you can only edit one
+                //supercategory at a time and the query will have
+                //returned only things within one supercategory
+                //and that this is the supercategory of thing you
+                //now want to create as a new item
+               
+                var supercat = $("#jqxgrid").jqxGrid('getcellvalue', 0, 'supercategory');
+                commit = $("#jqxgrid").jqxGrid('addrow', null, {supercategory: supercat});
             }
 
 
-            $('#revieweditsbutton').jqxButton({ height: 25, theme: theme });
-            $('#revieweditsbutton').click(function () {
-            });
             $('#submiteditsbutton').jqxButton({ height: 25, theme: theme });
-            $("#addrowbutton").jqxButton({ theme: theme });
             $('#submiteditsbutton').click(function () {
                 doit = confirm(JSON.stringify(edits) + '\nNew rows:\n'+JSON.stringify(newrows));
                 // synchronize with the server - send update command
@@ -172,7 +186,7 @@
                   $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "getwine.py/update_winelist",
+                    url: "inventory.py/update", // + "?supercategory="+supercategory,
                     data: {'edits' : JSON.stringify(edits), 'newrows':JSON.stringify(newrows)},
                     cache: false,
                     success: function (data, status, xhr) {
@@ -212,7 +226,8 @@
             //(rowid + " " + rowdata.name + " " + args.datafield+ " " + args.oldvalue + "-->" + args.value);
 
             $("#jqxgrid").on("bindingcomplete", function (event) {
-            // add one blank row at the end to start for new wines to be entered. 
+            // add one blank row at the end to start for new
+            // items to be entered. 
             // when that one is editted, we'll add another, and son on.
               newrow();
             });
@@ -243,11 +258,11 @@
     </script>
 </head>
 <body class='default'>
-    <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left;">
+    <!--<div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left; width: 98%; height: 100%; background-color: pink">-->
         <center><input value="submit changes" id="submiteditsbutton" type="button" style='margin:20px' />
         <input value="print inventory" id="printinventorybutton" type="button" style='margin:20px' /></center>
         <div id="jqxgrid">
         </div>
-    </div>
+    <!--</div>-->
 </body>
 </html>

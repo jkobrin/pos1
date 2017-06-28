@@ -1,5 +1,5 @@
 import inspect
-
+import json
 import MySQLdb
 import datetime
 import os
@@ -219,6 +219,19 @@ def is_salumi():
 
 def is_plancha():
   return os.uname()[1] == 'plansrv'
+
+class MyJSONEncoder(json.JSONEncoder):
+
+  def default(self, obj):
+      if isinstance(obj, datetime.date):
+          return obj.isoformat()
+      if isinstance(obj, decimal.Decimal):
+        #Decimal type has no json encoding
+          return str(obj)
+
+      return json.JSONEncoder.default(self, obj)
+
+
 
 
 if __name__ == '__main__':

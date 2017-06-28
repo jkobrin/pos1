@@ -196,19 +196,24 @@ def get_active_items(incursor=None):
       TIMESTAMPDIFF(MINUTE, oi.updated, now()) minutes_since_mod,
       TIMESTAMPDIFF(SECOND, oi.updated, now()) seconds_since_mod,
       oi.is_cancelled,
-      oi.parent_item
+      oi.parent_item,
+      oi.menu_item_id,
+      sku.supercategory as category,
+      sku.category as subcategory
     FROM order_group og join order_item oi 
       on og.id = oi.order_group_id left outer join order_item oip 
       on oi.parent_item = oip.id
+      left outer join sku on oi.menu_item_id = sku.id
     where og.is_open = TRUE
     and (oi.is_cancelled = FALSE or TIMESTAMPDIFF(MINUTE, oi.updated, now()) < 1)
-    order by oi.is_held, coalesce(oip.created, oi.created), oi.id'''
+    order by oi.is_held, coalesce(oip.created, oi.created), coalesce(oip.id, oi.id), oi.id'''
     , incursor)
 
 
   
 if __name__ == '__main__':
   #print new_sales_by_server(True, 0)
-  print hours(lag_days = 1)
+  #print hours(lag_days = 1)
+  print get_active_items()
 
   

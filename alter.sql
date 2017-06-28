@@ -121,4 +121,44 @@
 #alter table hours add column paid boolean default false;
 #update hours set paid = true where tip_pay is not null;
 #alter table hours modify column intime timestamp default now();
-alter table hours modify column tip_pay DECIMAL(3,0) default null;
+#alter table hours modify column tip_pay DECIMAL(3,0) default null;
+
+alter table order_item add column fraction float default 1;
+
+#drop table sku;
+
+CREATE TABLE sku (
+  id int NOT NULL AUTO_INCREMENT,
+  name varchar(64),
+  supercategory varchar(32),
+  category varchar(32),
+  subcategory varchar(32),
+  retail_price float,
+  qtprice float,
+  add_on boolean default False,
+  scalable boolean default False,
+  tax varchar(16),
+  wholesale_price float,
+  supplier varchar(64),
+  vendor_code varchar(8),
+  bin varchar(4),
+  listorder int,
+  upc varchar(16),
+  description varchar(1024),
+  active boolean default true,
+  units_in_stock int(4) DEFAULT '0',
+  inventory_date date default 0,
+  mynotes varchar(256),
+  PRIMARY KEY (`id`)
+)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+create or replace view sku_inv as 
+select sku.*, units_in_stock - sum(oi.fraction) as estimated_units_remaining
+from sku left outer join order_item oi on
+sku.inventory_date <= oi.created
+and oi.menu_item_id = sku.id 
+and (oi.is_cancelled is null or oi.is_cancelled = false)
+where sku.active = true 
+group by sku.id;
+

@@ -1,5 +1,5 @@
 
-import yaml, json
+import yaml, json, re
 from mylog import my_logger
 import utils
 from texttab import TAXRATE
@@ -9,30 +9,59 @@ CONFIG_FILE_NAME = '/var/www/' + utils.hostname() + '_config.yml'
 
 MAX_NAME_LEN = 32
 
-def iget():
-  items = {}
+winecats = re.compile('.* Wine|Before \& After|Dessert')
+
+def load_config():
   cfg = yaml.load(open(CONFIG_FILE_NAME))
-  populate_wine_category(cfg)  
+
   populate_staff_tabs(cfg)
+  load_db_config(cfg)  
 
   for category in cfg['menu']['categories']:
     catname = category['name']
     for subcat in category['subcategories']:
       subcatname = subcat['name']
       for item in subcat['items']:
-        item['catname'] = catname
-        item['subcatname'] = subcatname
+        item['category'] = catname
+        item['subcategory'] = subcatname
+        item['price'] = item.get('retail_price')
         if not item.has_key('name'):
            raise Exception('no name for item: ' + str(item))
         item['name'] = unicode(item['name'])[:MAX_NAME_LEN]
-        if subcat.get('tax') == 'included' and item.get('price'):
+        if 'included' in (subcat.get('tax'), item.get('tax'))  and item.get('price'):
           item['price'] /= (1 + TAXRATE) # remove the tax from price
-        items[item['name']] = item
-  return cfg, items
+
+  return cfg
 
 def get():  
-  cfg, items = iget()
-  return json.dumps(cfg)
+  cfg = load_config()
+  return json.dumps(cfg, cls=utils.MyJSONEncoder)
+
+
+def load_db_config(cfg):
+  
+  supercats = utils.select('''select distinct supercategory as name from sku''')
+  for supercat in supercats:
+    cfg['menu']['categories'].append(supercat)
+    supercat['subcategories'] = []
+    for cat in utils.select('''select distinct category as name from sku where supercategory = %s and bin > 0 and active=True''', 
+        args = (supercat['name'])):
+      supercat['subcategories'].append(cat)
+      cat['items'] = []
+      for item in utils.select('''select * from sku where supercategory = %s and category = %s and bin > 0 and active=True order by bin''', 
+          args = (supercat['name'], cat['name'])):
+        cat['items'].append(item)
+        if winecats.match(cat['name']):
+          item['name'] = item['bin'] + ' ' + item['name']
+          my_logger.info('name: modified ' + item['name'])
+          if item['qtprice'] > 0: 
+            my_logger.info('qt: added ' + item['name'])
+            qtitem = item.copy()
+            qtitem['fraction'] = .25
+            qtitem['retail_price'] = item['qtprice']
+            qtitem['name'] = 'qt: '+item['name']
+            cat['items'].append(qtitem)
+
 
 def populate_staff_tabs(cfg):
 
@@ -48,30 +77,5 @@ def populate_staff_tabs(cfg):
 
 
 
-def populate_wine_category(cfg):
-
-  bev_category_results = [cat for cat in cfg['menu']['categories'] if cat['name'] == 'bev']
-  if len(bev_category_results) != 1: raise Exception('Problem loading bev category')
-  bev_category = bev_category_results[0]
-
-  winecats = utils.select('''select distinct category from active_wine''')
-  for cat in winecats:
-    cat = cat['category']
-    items = utils.select('''
-      select id, bin, qtprice as price, CONCAT('qt: ', bin," ", name ) as name
-      from winelist
-      where category = '%(cat)s' and active = true and qtprice is not null and qtprice != 0 and bin is not null
-      union all
-      select id, bin, listprice as price, CONCAT(bin," ", name ) as name
-      from winelist
-      where category = '%(cat)s' and active = true and listprice != 0 and listprice is not null and bin is not null
-      order by bin
-      ''' % locals())
-    bev_subcat = {'name': cat, 'items': items}
-    bev_category['subcategories'].append(bev_subcat)
-
-
 if __name__ == '__main__':
-  cfg, items = iget()
-  for it in items.items():
-    print it
+  print load_db_config()
