@@ -17,7 +17,7 @@
     .held_item {border: 3px solid yellow;}
 
     .bev_item {color: blue;}
-    .bev_head {color: #ddddff;}
+    .market_item {color: green;}
     .board_item {color: maroon;}
     .allergy_item {color: red; text-decoration: underline}
 
@@ -249,7 +249,9 @@
 
   </style>
 
-  <script type="text/javascript" src="js/scripts/jquery-1.8.3.min.js"></script>
+  <!--<script type="text/javascript" src="js/scripts/jquery-1.8.3.min.js"></script>-->
+  <link rel="stylesheet" href="jq453/jqwidgets/styles/jqx.base.css" type="text/css" />
+  <script type="text/javascript" src="jq453/scripts/jquery-1.11.2.js"></script>
   <script> 
     /********** data transfer utils *************/
     function format_http_params(params)
@@ -278,8 +280,6 @@
       {
         http.open(method, url, false);
         http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
-        http.setRequestHeader("Content-length", params.length);
-        http.setRequestHeader("Connection", "close");
         http.send(params);
       }
 
@@ -383,34 +383,6 @@
     }  
 
 
-    /******* lookup *************/
-    function get_config_item(item_name)
-    {
-      console.log('get_config_item ' + item_name);
-      if (item_name == null || item_name == '') 
-      {
-        return null;
-      }
-      for(cat_idx in g_config.menu.categories)
-      {
-        var cat = g_config.menu.categories[cat_idx];
-        for(subcat_idx in cat.subcategories)
-        {
-          var subcat = cat.subcategories[subcat_idx];
-          for(item_idx in subcat.items)
-          {
-            var citem = subcat.items[item_idx];
-            if (citem.name == item_name || citem.upc == item_name)
-            {
-              citem.cat = cat.name;
-              citem.subcat = subcat.name;
-              return citem;
-            }
-          }
-        }
-      }
-    }
-
     function get_new_item_id()
     {
       var id = g_session_id*100 + g_id_seq++;
@@ -496,8 +468,8 @@
       }  
 
       if (errorThrown != ''){
-        alert(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
         g_synchonize_timeout = setTimeout(synchronize, MAIN_REFRESH_INTERVAL);
+        document.write("<p>"+textStatus + ":w:w:" + errorThrown + "</p>" + jqXHR.responseText);
       }
       else
       { //probably network error. Silently try again in 1 minute
@@ -584,9 +556,9 @@
       }  
     }
 
-    function set_current_table(table_id)
+    function set_current_table(table)
     {
-      g_currentTable = table_id;
+      g_currentTable = table;
       refresh_screen();
       set_current_parent();
     }
@@ -687,8 +659,8 @@
 
     function grid_button_clicked(cfg_item)
     {
-      console.log('grid_button_clicked '+cfg_item.name);
-      if (cfg_item.catname == 'tables')
+      console.log('grid_button_clicked '+cfg_item.name+':'+cfg_item.subcategory+':'+cfg_item.category);
+      if (cfg_item.category == 'tables')
       {
         table_id = cfg_item.name;
         if(g_currentTable == table_id)
@@ -713,7 +685,7 @@
       }
       else
       {
-        add_to_order(cfg_item.name, g_currentTable);
+        add_to_order(cfg_item, g_currentTable);
       }
     }
 
@@ -724,30 +696,25 @@
       leave_receipt_screen();
     }
 
-    function is_staff(table_id)
+    function is_staff(tab)
     {
-      var tab = get_config_item(table_id);
-      return (tab && (tab.subcat == 'staff' || tab.subcat=='staff_tabs'))
+      return (tab && tab.subcategory=='staff_tabs')
     }
 
     var last_item_added = null;
-    function add_to_order(item_key, table_id)
+    function add_to_order(cfg_item, table_id)
     {
-      if (!(item_key && table_id)) {return}
+      if (!table_id) {return}
 
-      console.log('add_item: '+ item_key);
-      var cfg_item = get_config_item(item_key);
-      if(cfg_item == null)
-      {
-        alert("add item: " + item_key + " not found in config. Try reload.")
-        return;
-      }
-
+      console.log('add_item: '+ cfg_item.name+':'+cfg_item.subcategory+':'+cfg_item.category);
       var price = cfg_item.price; //usual case
       var item_name = cfg_item.name; //usual case
       //now that price is set to the default, let's see if we need to modify it
-      if('scale_units' in cfg_item)
+      if(cfg_item.scalable)
       {
+        //for now the only units are lbs.
+        cfg_item.scale_units = 'lbs.';
+
         while(true)
         {
           var scale = prompt('Quantity in '+cfg_item.scale_units,1)
@@ -762,7 +729,7 @@
       if(is_staff(g_currentTable)) 
       {
         price = cfg_item.price*STAFF_FOOD_RATE;
-        if ( cfg_item.cat == 'bev' && cfg_item.id != null)
+        if ( cfg_item.category == 'bev' && cfg_item.id != null)
         {
           var info = http_request("POST", "get_wine_info.py", "menu_item_id="+cfg_item.id);
           price = info.frontprice;
@@ -776,28 +743,15 @@
         }
       }
 
-      var taxable = !(cfg_item.name.indexOf('gift') == 0 || cfg_item.cat == 'market' && 
-          cfg_item.subcat.match(/household|drinks|food|candy|soda/)  == null)
-
-      var delivered = (cfg_item.cat == 'market' || cfg_item.subcat == 'misc');
+      var taxable = !(cfg_item.name.match(/^gift|tax-free/) || cfg_item.category == 'market' && 
+          cfg_item.subcategory.match(/household|drinks|food|candy|soda/)  == null)
 
       if(cfg_item.name.indexOf('special') != -1)
       {
-        if(cfg_item.add_on_price != null)
-        {
-          var special_add_price = prompt('Enter price:', cfg_item.add_on_price);
-          if (special_add_price == null) return;
-          cfg_item.add_on_price = special_add_price;
-          item_name = prompt('Enter note:');
-          if (item_name == null) return;
-        }  
-        else {
           price = prompt('Enter price:', price);
           if (price == null) return;
           item_name = prompt('Enter name:', item_name + price);
           if (item_name == null) return;
-        }
-        if(cfg_item.name.indexOf('tax-free') != -1) { taxable = false;}
       }
 
       if(cfg_item.name.indexOf('gift') != -1)
@@ -811,9 +765,8 @@
       if (cfg_item.name.indexOf('gratuity') != -1) {comped = true}
 
       var new_item_id = get_new_item_id();
-      if (cfg_item.add_on_price != null) {
+      if (cfg_item.add_on) {
         var parent_item = g_current_parent;
-        price = cfg_item.add_on_price;
       }else{
         var parent_item = null;
         g_current_parent = new_item_id;
@@ -824,7 +777,7 @@
         item_id: new_item_id,
         item_name: item_name,
         table_id: table_id, 
-        is_delivered: delivered,
+        is_delivered: false,
         taxable: taxable, 
         is_comped: comped,
         price: price,
@@ -989,10 +942,10 @@
           continue;
         }
 
-        config_item = get_config_item(item.item_name);
-        if (config_item && config_item.cat == 'bev') {classes += ' bev_item'}
-        if (config_item && config_item.subcat == 'boards') {classes += ' board_item'}
-        if (config_item && config_item.subcat == 'allergy') {classes += ' allergy_item'}
+        if (item.category == 'bev') {classes += ' bev_item'}
+        if (item.category == 'market') {classes += ' market_item'}
+        if (item.subcategory == 'boards') {classes += ' board_item'}
+        if (item.subcategory == 'allergy') {classes += ' allergy_item'}
         if (item.is_comped) {classes += ' comped_item'}
         if (item.is_held) {classes += ' held_item'}
         if (item.is_delivered) {classes += ' delivered_item'}
@@ -1190,9 +1143,8 @@
     {
       if (pin() == '') return set_pin_and_do(function(){close_check(shouldPrint)});
 
-      var table = g_currentTable;
       http_request("POST", "close_tab.py", 
-        "table="+table+
+        "table="+g_currentTable+
         "&shouldPrint="+shouldPrint+
         "&serverpin="+pin()
       );
@@ -1277,16 +1229,6 @@
       popup.focus();
     }
 
-    function table_popup()
-    {
-      popup = document.getElementById("table_popup");
-      popup_caption = document.getElementById("table_popup_caption");
-      popup_caption.innerHTML = "Table: " + g_currentTable;
-      
-      popup.style.visibility="visible";
-      popup.focus();
-    }
-
     function receipt_table_html(receipt_text)
     {
       return "<pre id='receipt_text'>" + receipt_text + "<\pre>"
@@ -1331,16 +1273,50 @@
       else return null;
     }
 
-    function showPopup()
-    // show the popup in the desried location when user clicks a square
-    {
-    }
-    
     function plus_one()
     {
       var item = get_order_pane_item(popup.item_id);
       console.log('plus one ' + popup.item_id + ' ' + item.item_name);
-      add_to_order(item.item_name, popup.table_id);
+
+      var new_item_id = get_new_item_id();
+
+      new_crud_command ({
+        command: 'add_item',
+        item_id: new_item_id,
+        item_name: item.item_name,
+        table_id: item.table_id, 
+        is_delivered: false,
+        taxable: item.taxable, 
+        is_comped: item.is_comped,
+        price: item.price,
+        parent_item: item.parent_item,
+        menu_item_id: item.menu_item_id
+      });
+      
+      //if the item we just copied and therefore the new item is
+      //not an add on (which we can tell by checking if the
+      //parent_item field is null) then it should become the new
+      //parent for any subsequent add ons
+      if (item.parent_item == null){g_current_parent = new_item_id;}
+
+      //copy children, if any
+      var child_items = get_child_items(item.id);
+      for (var idx in child_items)
+      {
+        var item = child_items[idx];
+        new_crud_command ({
+          command: 'add_item',
+          item_id: get_new_item_id(),
+          item_name: item.item_name,
+          table_id: item.table_id, 
+          is_delivered: false,
+          taxable: item.taxable, 
+          is_comped: item.is_comped,
+          price: item.price,
+          parent_item: new_item_id,
+          menu_item_id: item.menu_item_id
+        });
+      }  
     }
 
     function cancel_item()
@@ -1348,14 +1324,6 @@
       remove_from_order(popup.item_id);
     }  
 
-    function cancel()
-    // When the user hits the cancel or 'X' dialog buttons, the dialog
-    // just needs to go away
-    {
-      hidePopup();
-    }
-
-    
     g_keyentry = "";
     function keydown(event)
     {
