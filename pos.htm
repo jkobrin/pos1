@@ -17,7 +17,7 @@
     .held_item {border: 3px solid yellow;}
 
     .bev_item {color: blue;}
-    .market_item {color: green;}
+    .cafe_item {color: green;}
     .board_item {color: maroon;}
     .allergy_item {color: red; text-decoration: underline}
 
@@ -351,7 +351,7 @@
 
     g_currentTable = null; 
     g_cook_style = false;
-    g_market_style = ["restaurant", "market", "all"];
+    g_cafe_style = false;
     g_session_id = null;
     g_id_seq = 0;
 
@@ -367,7 +367,6 @@
       get_new_session_id();
       synchronize();
       drawCurrentCategory();
-      rotate_market_style_button.innerHTML = g_market_style[0] + ' menu';
     }
 
       
@@ -711,20 +710,29 @@
       var price = cfg_item.price; //usual case
       var item_name = cfg_item.name; //usual case
       //now that price is set to the default, let's see if we need to modify it
-      if(cfg_item.scalable)
+
+      if (cfg_item.name.slice(0,3) == 'qt:')
+      {
+        var fraction = .25;
+      }
+      else if(cfg_item.scalable)
       {
         //for now the only units are lbs.
         cfg_item.scale_units = 'lbs.';
 
         while(true)
         {
-          var scale = prompt('Quantity in '+cfg_item.scale_units,1)
+          var fraction = prompt('Quantity in '+cfg_item.scale_units,1)
           if(!isNaN(scale)) break;
         }
-        if (scale == null) return; //they hit cancel; don't add item
+        if (fraction == null) return; //they hit cancel; don't add item
 
-        price = cfg_item.price * scale;
-        item_name = ''+scale + cfg_item.scale_units + ' ' + cfg_item.name;
+        price = cfg_item.price * fraction;
+        item_name = ''+fraction + cfg_item.scale_units + ' ' + cfg_item.name;
+      }  
+      else
+      {
+        var fraction = 1;
       }  
         
       if(is_staff(g_currentTable)) 
@@ -782,6 +790,7 @@
         taxable: taxable, 
         is_comped: comped,
         price: price,
+        fraction: fraction,
         parent_item: parent_item,
         menu_item_id: cfg_item.id
       });
@@ -936,20 +945,15 @@
         var item = items[idx];
         var classes = "order_item";
 
-        config_item = get_config_item(item.item_name);
-
         if (item.is_delivered && (item.seconds_since_mod == null || item.seconds_since_mod > 15) || 
-            item.parent_item != null ||
-            config_item != null && (
-            config_item.cat == 'market' && g_market_style[0] == 'restaurant' ||
-            config_item.cat != 'market' && g_market_style[0] == 'market' )
-        )    
+            item.table_id == 'MKT' && !g_cafe_style ||
+            item.parent_item != null) 
         {
           continue;
         }
 
         if (item.category == 'bev') {classes += ' bev_item'}
-        if (item.category == 'market') {classes += ' market_item'}
+        if (item.category == 'cafe') {classes += ' cafe_item'}
         if (item.subcategory == 'boards') {classes += ' board_item'}
         if (item.subcategory == 'allergy') {classes += ' allergy_item'}
         if (item.is_comped) {classes += ' comped_item'}
@@ -991,10 +995,10 @@
       cook_screen.style.display = "inline";
     }
 
-    function rotate_market_style()
+    function toggle_cafe_style()
     {
-      g_market_style.push(g_market_style.shift());
-      rotate_market_style_button.innerHTML = g_market_style[0] + ' menu';
+      g_cafe_style = !g_cafe_style;
+      toggle_cafe_style_button.innerHTML = g_cafe_style ? 'MKT: hide': 'MKT: show';
       refresh_cook_screen();
     }
 
@@ -1291,6 +1295,7 @@
         taxable: item.taxable, 
         is_comped: item.is_comped,
         price: item.price,
+        fraction: item.fraction,
         parent_item: item.parent_item,
         menu_item_id: item.menu_item_id
       });
@@ -1315,6 +1320,7 @@
           taxable: item.taxable, 
           is_comped: item.is_comped,
           price: item.price,
+          fraction: item.fraction,
           parent_item: new_item_id,
           menu_item_id: item.menu_item_id
         });
@@ -1442,7 +1448,7 @@
   <div id="cook_screen">
         <button id=cook_screen_go_back onclick='leave_cook_screen()'>Go Back</button>
         <button id=toggle_cook_style_button onclick='toggle_cook_style()'>X-Style: show</button>
-        <button id=rotate_market_style_button onclick='rotate_market_style()'>X</button>
+        <button id=toggle_cafe_style_button onclick='toggle_cafe_style()'>MKT: show</button>
         <table id="cook_table" cellspacing=2 cellpadding=2></table>
   </div>
 

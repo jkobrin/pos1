@@ -8,7 +8,10 @@ import wineprint
 
 
 def get_mkt(req):
-  return get_inventory("select * from sku_inv where supercategory = 'market' and bin != '0'")
+  return get_inventory("select * from sku_inv where supercategory = 'market' and bin != '0' order by id")
+
+def get_cafe(req):
+  return get_inventory("select * from sku_inv where supercategory = 'cafe' and bin != '0' order by id")
 
 def get_food(req):
   return get_inventory("select * from sku_inv where supercategory = 'food' and bin != '0'")
@@ -17,26 +20,16 @@ def get_food(req):
   return get_inventory("select * from sku_inv where supercategory = 'food' and bin != '0'")
 
 def get_bev(req):
-  return get_inventory("select * from sku_inv where supercategory = 'bev' and bin != '0'")
+  return get_inventory("select * from sku_inv where supercategory = 'bev' and bin is not null order by category, bin")
 
 def get_allbev(req):
   return get_inventory("select * from sku_inv where supercategory = 'bev'")
 
 def get_wine(req):
-  return get_inventory("select * from sku_inv where supercategory = 'bev' and category rlike 'Wine|Before & After'")
-
-
-class MyEncoder(json.JSONEncoder):
-
-  def default(self, obj):
-      if isinstance(obj, datetime.date):
-          return obj.isoformat()
-      if isinstance(obj, decimal.Decimal):
-        #Decimal type has no json encoding
-          return str(obj)
-
-      return json.JSONEncoder.default(self, obj)
-
+  return get_inventory('''
+    select * from sku_inv where supercategory = 'bev' 
+    and bin is not null and category rlike 'Wine|Before & After|Dessert|Bubbly'
+    order by category, bin''')
 
 
 def get_inventory(select):
@@ -45,7 +38,6 @@ def get_inventory(select):
 
 
 def update(req, edits, newrows):
-  #raise Exception(supercategory)
   edits = json.loads(edits)
   newrows = json.loads(newrows)
 

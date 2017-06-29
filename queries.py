@@ -198,6 +198,7 @@ def get_active_items(incursor=None):
       oi.is_cancelled,
       oi.parent_item,
       oi.menu_item_id,
+      oi.fraction,
       sku.supercategory as category,
       sku.category as subcategory
     FROM order_group og join order_item oi 

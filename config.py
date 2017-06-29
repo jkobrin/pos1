@@ -9,7 +9,7 @@ CONFIG_FILE_NAME = '/var/www/' + utils.hostname() + '_config.yml'
 
 MAX_NAME_LEN = 32
 
-winecats = re.compile('.* Wine|Before \& After|Dessert')
+winecats = re.compile('.* Wine|Before \& After|Dessert|Bubbly')
 
 def load_config():
   cfg = yaml.load(open(CONFIG_FILE_NAME))
@@ -44,12 +44,14 @@ def load_db_config(cfg):
   for supercat in supercats:
     cfg['menu']['categories'].append(supercat)
     supercat['subcategories'] = []
-    for cat in utils.select('''select distinct category as name from sku where supercategory = %s and bin > 0 and active=True''', 
+    for cat in utils.select('''select distinct category as name from sku where supercategory = %s 
+      and bin is not null and active=True''', 
         args = (supercat['name'])):
       supercat['subcategories'].append(cat)
       cat['items'] = []
-      for item in utils.select('''select * from sku where supercategory = %s and category = %s and bin > 0 and active=True order by bin''', 
-          args = (supercat['name'], cat['name'])):
+      for item in utils.select('''select * from sku where supercategory = %s and category = %s
+      and bin is not null and active=True
+      order by bin''', args = (supercat['name'], cat['name'])):
         cat['items'].append(item)
         if winecats.match(cat['name']):
           item['name'] = item['bin'] + ' ' + item['name']

@@ -27,6 +27,7 @@ def add_item(item_id=None,
             table_id=None, 
             item_name=None, 
             price=None, 
+            fraction=None, 
             menu_item_id=None, 
             taxable=True, 
             is_delivered=False, 
@@ -62,9 +63,9 @@ def add_item(item_id=None,
 
     cursor.execute('''
       INSERT INTO order_item (
-        id, order_group_id, item_name, price, menu_item_id, taxable, is_delivered, is_comped, is_held, parent_item
-      ) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
-      (item_id, open_order_group, item_name, price, menu_item_id, taxable, is_delivered, is_comped, is_held, parent_item)
+        id, order_group_id, item_name, price, fraction, menu_item_id, taxable, is_delivered, is_comped, is_held, parent_item
+      ) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
+      (item_id, open_order_group, item_name, price, fraction, menu_item_id, taxable, is_delivered, is_comped, is_held, parent_item)
     )
 
     cursor.close()
