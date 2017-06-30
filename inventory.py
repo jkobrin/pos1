@@ -48,7 +48,7 @@ def update(req, edits, newrows):
     sql = "update sku set " + setlist + " where id = " + rowid + "\n"
     utils.execute(sql, cursor)
   for fields_and_vals in newrows.values():
-    for bad_field in ('uid', 'estimated_units_remaining'):
+    for bad_field in ('uid', 'estimated_units_remaining', 'boundindex', 'visibleindex', 'uniqueid'):
       if fields_and_vals.has_key(bad_field): fields_and_vals.pop(bad_field)
 
     fields = fields_and_vals.keys()
