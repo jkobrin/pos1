@@ -40,7 +40,7 @@ def get():
 
 def load_db_config(cfg):
   
-  supercats = utils.select('''select distinct supercategory as name from sku''')
+  supercats = utils.select('''select distinct supercategory as name from sku order by id''')
   for supercat in supercats:
     cfg['menu']['categories'].append(supercat)
     supercat['subcategories'] = []
