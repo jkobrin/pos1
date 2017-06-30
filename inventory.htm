@@ -3,6 +3,8 @@
 <head>
     <style>
     body { width: 98%; text-align: center; background-color: blue;}
+    #rustomTextArea {position: fixed; top: 0; left: 0; z-index:100;}
+
     </style>
 
     <title id='Description'>Inventory
@@ -33,6 +35,7 @@
     <script type="text/javascript" src="jq453/jqwidgets/jqxnumberinput.js"></script>
     <script type="text/javascript" src="jq453/jqwidgets/jqxgrid.columnsresize.js"></script> 
     <script type="text/javascript" src="jq453/jqwidgets/jqxgrid.columnsreorder.js"></script> 
+    <script type="text/javascript" src="jq453/jqwidgets/jqxwindow.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             // supercategory should be the request parameters from the url
@@ -138,14 +141,49 @@
                     { text: 'units_in_stock',datafield: 'units_in_stock', columntype: 'floatinput' , width:90 },
                     { text: 'inventory_date',datafield: 'inventory_date', columntype: 'datetimeinput', cellsformat: 'yyyy-MM-dd', width:90},
                     { text: 'subcategory', datafield: 'subcategory', width:60  },
-                    { text: 'description',  datafield: 'description',   },
+                    { text: 'description',  datafield: 'description',
+                        cellbeginedit: function (row) {
+                     // open the popup window when the user clicks a button.
+                         editrow = row;
+                         var offset = $("#jqxgrid").offset();
+                         $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 60, y: parseInt(offset.top) + 60 } });
+                         // get the clicked row's data and initialize the input fields.
+                         var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', editrow);
+                         $("#customTextArea").val(dataRecord.description);
+                         // show the popup window.
+                         $("#popupWindow").jqxWindow('open');
+                         return false;
+                      }
+                    },
                     { text: 'mynotes', datafield: 'mynotes', width:150  },
                 ]
+            });
+            // initialize the popup window and buttons.
+            $("#popupWindow").jqxWindow({
+                width: 450, height: 400, resizable: false,  isModal: true, autoOpen: false, cancelButton: $("#Cancel"), modalOpacity: 0.01           
+            });
+
+            $("#popupWindow").on('open', function () {
+                //$("#customTextArea").jqxInput('selectAll');
+            });
+         
+            $("#Cancel").jqxButton({ theme: theme });
+            $("#Save").jqxButton({ theme: theme });
+
+            // update the edited row when the user clicks the 'Save' button.
+            $("#Save").click(function () {
+                if (editrow >= 0) {
+                    var rowID = $('#jqxgrid').jqxGrid('getrowid', editrow);
+                    var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', editrow);
+                    $('#jqxgrid').jqxGrid('setcellvalue', rowID, 'description', customTextArea.value);
+                    lastedit = {datafield: 'description', value: customTextArea.value, rowindex: rowID};
+                    $('#jqxgrid').jqxGrid('updaterow', rowID, dataRecord);
+                    $("#popupWindow").jqxWindow('hide');
+                }
             });
 
             $("#jqxgrid").on('cellendedit', function (event) {
                 lastedit = event.args;
-                //alert(lastedit);
             });
 
             $("#jqxgrid").bind('cellselect', function (event) {
@@ -260,9 +298,17 @@
 <body class='default'>
     <!--<div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left; width: 98%; height: 100%; background-color: pink">-->
         <center><input value="submit changes" id="submiteditsbutton" type="button" style='margin:20px' />
-        <input value="print inventory" id="printinventorybutton" type="button" style='margin:20px' /></center>
+        <input value="print inventory" id="printinventorybutton" type="button" style='margin:20px' />
+        </center>
         <div id="jqxgrid">
         </div>
     <!--</div>-->
+       <div id="popupWindow">
+            <div>Edit</div>
+            <div style="overflow: hidden;">
+              <textarea rows=20 cols=50 id="customTextArea"></textarea>
+              <input style="margin-right: 5px;" type="button" id="Save" value="Save" /><input id="Cancel" type="button" value="Cancel" />
+            </div>
+       </div>
 </body>
 </html>

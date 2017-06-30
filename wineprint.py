@@ -19,7 +19,7 @@ def clean(data_str):
 def get_wine_xml():  
 
   winecats = utils.select('''
-    select category from active_wine 
+    select category from sku 
     where active = true and listorder > 0 and bin is not null 
     group by category order by min(listorder)''')
 
@@ -27,7 +27,7 @@ def get_wine_xml():
     cat = cat['category']
 
     wine_items = utils.select('''
-      select * from active_wine
+      select * from sku
       where category = '%(cat)s'
       and listorder > 0
       and bin != '0'
@@ -50,8 +50,8 @@ def get_wine_xml():
     current_subcategory = None
 
     for item in wine_items:
-      binnum, name, listprice, byline, grapes, notes, subcategory  = (
-        clean(escape(unicode(item[key]))) for key in ['bin', 'name', 'listprice', 'byline', 'grapes', 'notes', 'subcategory']
+      binnum, name, listprice, description, subcategory  = (
+        clean(escape(unicode(item[key]))) for key in ['bin', 'name', 'retail_price', 'description', 'subcategory']
       )
 
       # do location heading if location changed
@@ -60,13 +60,8 @@ def get_wine_xml():
         yield '''<text:p text:style-name="Psubcat"><text:span text:style-name="T1">%s</text:span></text:p>'''%subcategory
 
       yield '''<text:p text:style-name="P4">%s.<text:tab/>%s<text:s text:c="5"/>%s'''%(binnum, name, listprice)
-
-      if byline:
-        yield '''<text:line-break/>%s''' % byline
-      if grapes:
-        yield '''<text:line-break/>Grapes: %s''' % grapes
-      if notes:
-        yield '''<text:line-break/>%s''' % notes
+      if description:
+        yield '''<text:line-break/>%s''' % description
       yield '</text:p>'
       yield '''<text:p text:style-name="P18"/>'''
       
