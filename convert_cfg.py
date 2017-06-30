@@ -5,7 +5,7 @@ import utils
 from texttab import TAXRATE
 log = my_logger
 
-CONFIG_FILE_NAME = '/var/www/' + utils.hostname() + '_config.yml'
+CONFIG_FILE_NAME = '/var/www/' + utils.hostname() + '_config_old.yml'
 
 MAX_NAME_LEN = 32
 
@@ -50,12 +50,13 @@ def config_insert():
 
 
 def wine_insert():  
-  winelist = utils.select('''select * from winelist''')
+  winelist = utils.select('''select * from winelist order by id''')
 
   for item in winelist:
     if item['grapes']:
       item['grapes'] = 'Grapes: %s'%item['grapes']
     dct = {
+    'id' : item['id'],
     'name' : item['name'],
     'supercategory' : 'bev',
     'category' : item['category'],

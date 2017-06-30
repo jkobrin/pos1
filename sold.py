@@ -32,10 +32,10 @@ def index(req, item_name=None):
   for row in results:
     detail = row[-1] #last field
     detail = dict(d.split(' ') for d in detail.split(','))
-    det_string = ' | '.join(
-      ('%s %s' % (dayname[:3], detail.get(dayname, 0))
+    det_string = '<pre>' + ' | '.join(
+      ('%s %s' % (dayname[:3], detail.get(dayname, '').ljust(3))
       for dayname in ('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')
-    ))
+    )) + '</pre>'
     formatted_results.append(row[:-1] + (det_string,))
 
   html = (
