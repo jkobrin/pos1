@@ -493,6 +493,35 @@
         success: handle_fresh_items, error: ajax_error });
     }
       
+
+     /******* lookup *************/
+    function get_config_item(item_name)
+    {
+      console.log('get_config_item ' + item_name);
+      if (item_name == null || item_name == '')
+      {
+        return null;
+      }
+      for(cat_idx in g_config.menu.categories)
+      {
+        var cat = g_config.menu.categories[cat_idx];
+        for(subcat_idx in cat.subcategories)
+        {
+          var subcat = cat.subcategories[subcat_idx];
+          for(item_idx in subcat.items)
+          {
+            var citem = subcat.items[item_idx];
+            if (citem.name == item_name || citem.upc == item_name)
+            {
+              citem.cat = cat.name;
+              citem.subcat = subcat.name;
+              return citem;
+            }
+          }
+        }
+      }
+    }
+
     function rotateCategory()
     {
       var categories = g_config.menu.categories;
@@ -698,6 +727,7 @@
 
     function is_staff(tab)
     {
+      var tab = get_config_item(tab);
       return (tab && tab.subcategory=='staff_tabs')
     }
 
@@ -723,7 +753,7 @@
         while(true)
         {
           var fraction = prompt('Quantity in '+cfg_item.scale_units,1)
-          if(!isNaN(scale)) break;
+          if(!isNaN(fraction)) break;
         }
         if (fraction == null) return; //they hit cancel; don't add item
 
@@ -1360,7 +1390,8 @@
     function text_entered(txt)
     {
       console.log('text_entered: '+ txt);
-      add_to_order(txt, g_currentTable);
+      item = get_config_item(txt);
+      add_to_order(item, g_currentTable);
     }
 
 
