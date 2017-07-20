@@ -38,8 +38,8 @@
     <script type="text/javascript" src="jq453/jqwidgets/jqxwindow.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            // supercategory should be the request parameters from the url
-            var supercategory = window.location.search.match(/[^\?].*$/g);
+            // queryfunction should be the request parameters from the url
+            var queryfunction = window.location.search.match(/[^\?].*$/g);
             
             var theme = 'darkblue';
 
@@ -72,9 +72,10 @@
                     { name: 'mynotes',        type: 'string' },
                     { name: 'id', type: 'int' },
                 ],
-                url: "inventory.py/get_" + supercategory,
+                url: "inventory.py/get_" + queryfunction,
                 //editurl: 'http://localhost/getwine.py/',
                 updaterow: function (rowid, rowdata, commit) {
+                    console.log('updaterow: ' + rowid + ': ' + JSON.stringify(rowdata));
                     if (lastedit == null) return;
                     
                     isnewrow = (rowdata.id == undefined) 
@@ -84,25 +85,26 @@
                         // used. Add new blank row
                         newrow();
                       }  
+
                       newrows[rowid] = rowdata;
                       row = newrows[rowid];
-                    }  
+                    }
                     else {
                       if (!(rowdata.id in edits)) {edits[rowdata.id] = {};}
                       edits[rowdata.id][lastedit.datafield] = lastedit.value;
                       row = edits[rowdata.id];
-                    }   
+                    }
 
                     commit(true);
 
                     if (lastedit.datafield == 'units_in_stock')
                     {
                       rowindex = lastedit.rowindex;
-                      lastedit = null;
                       now = new Date();
                       $("#jqxgrid").jqxGrid('setcellvalue', rowindex, 'inventory_date', now);
                       row['inventory_date'] = now;
                     }  
+                    lastedit = null;
                 },
                 deleterow: function (rowid, rowdata, commit) {
                 },
@@ -166,7 +168,7 @@
             });
 
             $("#popupWindow").on('open', function () {
-                //$("#customTextArea").jqxInput('selectAll');
+                $('#jqxgrid').jqxGrid('focus');//.jqxInput('selectAll');
             });
          
             $("#Cancel").jqxButton({ theme: theme });
@@ -177,26 +179,17 @@
                 if (editrow >= 0) {
                     var rowID = $('#jqxgrid').jqxGrid('getrowid', editrow);
                     var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', editrow);
-                    $('#jqxgrid').jqxGrid('setcellvalue', rowID, 'description', customTextArea.value);
+                    dataRecord.description = customTextArea.value;
                     lastedit = {datafield: 'description', value: customTextArea.value, rowindex: rowID};
+                    console.log('click ' + JSON.stringify(dataRecord));
                     $('#jqxgrid').jqxGrid('updaterow', rowID, dataRecord);
                     $("#popupWindow").jqxWindow('hide');
+                    customTextArea.value = null;
                 }
             });
 
             $("#jqxgrid").on('cellendedit', function (event) {
                 lastedit = event.args;
-            });
-
-            $("#jqxgrid").bind('cellselect', function (event) {
-              var row = event.args.rowindex;
-              //alert(row);
-              //$('#jqxgrid').jqxGrid('ensurerowvisible', row);
-
-              //$('#' + row).jqxGrid('focus');
-              //var col = event.args.datafield;
-              //alert(row + ' ' + col);
-              //var datarow = $("#jqxgrid").jqxGrid('getrowdata', row);
             });
 
 
@@ -211,7 +204,7 @@
                 //now want to create as a new item
                
                 var supercat = $("#jqxgrid").jqxGrid('getcellvalue', 0, 'supercategory');
-                commit = $("#jqxgrid").jqxGrid('addrow', null, {supercategory: supercat});
+                commit = $("#jqxgrid").jqxGrid('addrow', 0, {supercategory: supercat});
             }
 
 
@@ -226,13 +219,18 @@
                   $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "inventory.py/update", // + "?supercategory="+supercategory,
+                    url: "inventory.py/update",
                     data: {'edits' : JSON.stringify(edits), 'newrows':JSON.stringify(newrows)},
                     cache: false,
-                    success: function (data, status, xhr) {
+                    success: function (newids, status, xhr) {
                         // update command is executed.
                         edits={};
                         newrows={};
+                        for(var idx in newids)
+                        {
+                          var datarow = $("#jqxgrid").jqxGrid('getrowdata', idx);
+                          datarow.id = newids[idx];
+                        }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         document.write("<p>"+textStatus + ":::" + errorThrown + "</p>" + jqXHR.responseText)
@@ -255,45 +253,21 @@
                         alert('print request sent')
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        //alert(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
+                        //console.log(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
                         document.write("<p>"+textStatus + ":::" + errorThrown + "</p>" + jqXHR.responseText)
 			                  errWindow = window.open("","MsgWindow","width=200,height=100");
                         errWindow.document.write("<p>"+textStatus + ":::" + errorThrown + "</p>" + jqXHR.responseText);
                     }
                   });
             });
-            //$('#events').jqxPanel({ width: 300, height: 80, theme: theme });
-            //(rowid + " " + rowdata.name + " " + args.datafield+ " " + args.oldvalue + "-->" + args.value);
 
             $("#jqxgrid").on("bindingcomplete", function (event) {
             // add one blank row at the end to start for new
             // items to be entered. 
-            // when that one is editted, we'll add another, and son on.
+            // when that one is editted, we'll add another, and so on.
               newrow();
             });
 
-            /*
-                $("#events").jqxPanel('clearcontent');
-
-                var sortinformation = event.args.sortinformation;
-                var sortdirection = sortinformation.sortdirection.ascending ? "ascending" : "descending";
-                if (!sortinformation.sortdirection.ascending && !sortinformation.sortdirection.descending) {
-                    sortdirection = "null";
-                }
-
-                var eventData = "Triggered 'sort' event <div>Column:" + sortinformation.sortcolumn + ", Direction: " + sortdirection + "</div>";
-                $('#events').jqxPanel('prepend', '<div style="margin-top: 5px;">' + eventData + '</div>');
-            });
-
-            $('#sortbackground').jqxCheckBox({checked: true, height: 25, theme: theme });
-            // clear the sorting.
-            $('#clearsortingbutton').click(function () {
-                $("#jqxgrid").jqxGrid('removesort');
-            });
-            // show/hide sort background
-            $('#sortbackground').on('change', function (event) {
-                $("#jqxgrid").jqxGrid({ showsortcolumnbackground: event.args.checked });
-            }); */
         });
     </script>
 </head>
