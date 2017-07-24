@@ -40,15 +40,15 @@ def get_inventory(select):
 def update(req, edits, newrows):
   edits = json.loads(edits)
   newrows = json.loads(newrows)
-
+  insert_ids = {}
   cursor = utils.get_cursor()
 
   for rowid, fields_and_vals in edits.items():
     setlist = ','.join('%s = %s'%(f, sql_representation(v)) for f, v in fields_and_vals.items() if f != 'estimated_units_remaining')
     sql = "update sku set " + setlist + " where id = " + rowid + "\n"
     utils.execute(sql, cursor)
-  for fields_and_vals in newrows.values():
-    for bad_field in ('undefined', 'uid', 'estimated_units_remaining', 'boundindex', 'visibleindex', 'uniqueid'):
+  for rowid, fields_and_vals in newrows.items():
+    for bad_field in ('uid', 'undefined', 'estimated_units_remaining', 'boundindex', 'visibleindex', 'uniqueid'):
       if fields_and_vals.has_key(bad_field): fields_and_vals.pop(bad_field)
 
     fields = fields_and_vals.keys()
@@ -57,12 +57,13 @@ def update(req, edits, newrows):
     value_list = ','.join(sql_representation(v) for v in values)
     sql = "insert into sku ("+field_list+") VALUES ("+value_list+")"
     utils.execute(sql, cursor)
+    insert_ids[rowid] = utils.select("select LAST_INSERT_ID()", cursor, False)[0][0]
 
   cursor.close ()
 
   wineprint.gen_fodt_and_pdf()
 
-  return json.dumps(None)
+  return json.dumps(insert_ids)
 
 
 def sql_representation(val):
