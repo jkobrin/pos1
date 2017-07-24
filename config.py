@@ -40,17 +40,19 @@ def get():
 
 def load_db_config(cfg):
   
-  supercats = utils.select('''select distinct supercategory as name from sku order by id''')
+  supercats = utils.select('''select distinct supercategory as name from sku 
+    where bin is not null and bin != '0' and active=True 
+    order by id''')
   for supercat in supercats:
     cfg['menu']['categories'].append(supercat)
     supercat['subcategories'] = []
     for cat in utils.select('''select distinct category as name from sku where supercategory = %s 
-      and bin is not null and active=True''', 
+      and bin is not null and bin != '0' and active = True''', 
         args = (supercat['name'])):
       supercat['subcategories'].append(cat)
       cat['items'] = []
       for item in utils.select('''select * from sku where supercategory = %s and category = %s
-      and bin is not null and active=True
+      and bin is not null and bin != '0' and active=True
       order by bin''', args = (supercat['name'], cat['name'])):
         cat['items'].append(item)
         if winecats.match(cat['name']):

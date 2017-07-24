@@ -767,19 +767,8 @@
         
       if(is_staff(g_currentTable)) 
       {
-        price = cfg_item.price*STAFF_FOOD_RATE;
-        if ( cfg_item.category == 'bev' && cfg_item.id != null)
-        {
-          var info = http_request("POST", "get_wine_info.py", "menu_item_id="+cfg_item.id);
-          price = info.frontprice;
-          if (price != null && price > 0 )
-          {
-            if (cfg_item.name.slice(0,3) == 'qt:')
-            {
-              price = price/4;
-            }
-          }
-        }
+        price = cfg_item.wholesale_price || cfg_item.price*STAFF_FOOD_RATE;
+        price = price*(cfg_item.fraction || 1);
       }
 
       var taxable = !(cfg_item.name.match(/^gift|tax-free/) || cfg_item.category == 'market' && 
@@ -1391,7 +1380,14 @@
     {
       console.log('text_entered: '+ txt);
       item = get_config_item(txt);
-      add_to_order(item, g_currentTable);
+      if (item) 
+      {
+        add_to_order(item, g_currentTable)
+      } 
+      else 
+      { 
+        alert (txt +' - item not found in inventory')
+      };
     }
 
 
