@@ -59,7 +59,7 @@
                     { name: 'scalable',        type: 'boolean' },
                     { name: 'add_on',        type: 'boolean' },
                     { name: 'tax',            type: 'string' },
-                    { name: 'wholesale_price',      type: 'number' },
+                    { name: 'wholesale_price',      type: 'float' },
                     { name: 'supplier',       type: 'string' },
                     { name: 'bin',            type: 'string' },
                     { name: 'listorder',      type: 'number' },
@@ -101,6 +101,7 @@
                     {
                       rowindex = lastedit.rowindex;
                       now = new Date();
+                      lastedit = null;
                       $("#jqxgrid").jqxGrid('setcellvalue', rowindex, 'inventory_date', now);
                       row['inventory_date'] = now;
                     }  
@@ -134,7 +135,7 @@
                     { text: 'bin',        datafield: 'bin', width:60  },
                     { text: 'listorder',  datafield: 'listorder',  columntype: 'numberinput' , width:60 },
                     { text: 'wholesale', datafield: 'wholesale_price', columntype: 'floatinput' , width: 60 },
-                    { text: 'retail price',  datafield: 'retail_price',  columntype: 'numberinput' , width:60 },
+                    { text: 'retail price',  datafield: 'retail_price',  columntype: 'floatinput' , width:60 },
                     { text: 'qtprice',    datafield: 'qtprice',    columntype: 'numberinput' , width: 60 },
                     { text: 'scalable',    datafield: 'scalable', columntype: 'checkbox', width: 30},
                     { text: 'add_on',    datafield: 'add_on', columntype: 'checkbox', width: 30},
