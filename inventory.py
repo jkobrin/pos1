@@ -31,11 +31,30 @@ def get_wine(req):
     and bin is not null and category rlike 'Wine|Before & After|Dessert|Bubbly'
     order by category, bin''')
 
+def get_by_upc(upc):
+  recs = utils.select("select * from sku_inv where upc = %s", args=upc)
+  return json.dumps(recs, cls=utils.MyJSONEncoder)
+
+def get_by_id(id):
+  recs = utils.select("select * from sku_inv where id= %s", args=id)
+  return json.dumps(recs, cls=utils.MyJSONEncoder)
+
+def get_by_name(name):
+  recs = utils.select("select * from sku_inv where name = %s", args=name)
+  return json.dumps(recs, cls=utils.MyJSONEncoder)
 
 def get_inventory(select):
   recs = utils.select(select)
   return json.dumps(recs, cls=utils.MyJSONEncoder)
 
+def field_names():
+  fields = utils.select('desc sku_inv')
+  field_names = [field['Field'] for field in fields]
+  return json.dumps(field_names)
+
+def sku_names():
+  sku_names = utils.select('select concat(supercategory, ":", category, ":", name) as name, id from sku where bin is not null and bin > 0')
+  return json.dumps(sku_names)
 
 def update(req, edits, newrows):
   edits = json.loads(edits)

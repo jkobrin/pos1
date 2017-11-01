@@ -162,3 +162,4 @@ and (oi.is_cancelled is null or oi.is_cancelled = false)
 where sku.active = true 
 group by sku.id;
 
+alter table order_group add column paid_before_close boolean default false;

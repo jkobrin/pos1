@@ -37,9 +37,10 @@
     <script type="text/javascript" src="jq453/jqwidgets/jqxgrid.columnsreorder.js"></script> 
     <script type="text/javascript" src="jq453/jqwidgets/jqxwindow.js"></script>
     <script type="text/javascript">
+
+        var query = window.location.search.match(/[^\?].*$/g);
+
         $(document).ready(function () {
-            // queryfunction should be the request parameters from the url
-            var queryfunction = window.location.search.match(/[^\?].*$/g);
             
             var theme = 'darkblue';
 
@@ -72,7 +73,7 @@
                     { name: 'mynotes',        type: 'string' },
                     { name: 'id', type: 'int' },
                 ],
-                url: "inventory.py/get_" + queryfunction,
+                url: "inventory.py/get_" + query,
                 //editurl: 'http://localhost/getwine.py/',
                 updaterow: function (rowid, rowdata, commit) {
                     console.log('updaterow: ' + rowid + ': ' + JSON.stringify(rowdata));
@@ -244,11 +245,12 @@
                 }
             });
             $('#printinventorybutton').click(function () {
+                  console.log(query); //window.location.search.match(/[^\?].*$/g));
                   $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "print_wine_inventory.py",
-                    data: {},
+                    url: "print_wine_inventory.py/go",
+                    data: {'query': ''+query},
                     cache: false,
                     success: function (data, status, xhr) {
                         alert('print request sent')

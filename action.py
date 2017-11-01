@@ -58,7 +58,7 @@ def add_item(item_id=None,
       if open_order_group:
         break
       else:
-        cursor.execute('''INSERT INTO order_group VALUES (null, %s, TRUE, null, null, null)''', table_id)
+        cursor.execute('''INSERT INTO order_group VALUES (null, %s, TRUE, null, null, null, null)''', table_id)
     open_order_group = open_order_group[0];
 
     cursor.execute('''

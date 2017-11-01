@@ -6,33 +6,42 @@ import queries, utils
 import subprocess
 from mylog import my_logger
 
+import inventory
+
 TEXTWIDTH = 27
 
-def index(req = None):
+def go(query):
     my_logger.info('inventory')
-    winelist = utils.select('''
-      select category, bin as binnum, name, round(estimated_units_remaining,2) est_count 
-      from winelist_inv where bin !=0 and category != 'House Cocktails' order by category, bin;
-    '''
-    , label=True)
+    queryfunction = getattr(inventory, 'get_'+query)
+    winelist = queryfunction(None)
+    winelist = json.loads(winelist) #convert from json format to python native
+    # winelist = utils.select('''
+    #  select category, bin as binnum, name, round(estimated_units_remaining,2) est_count 
+    #  from sku_inv where bin !=0 and category != 'House Cocktails' order by category, bin;
+    #'''
+    #, label=True)
 
-    outfile = tempfile.NamedTemporaryFile(delete=False)
-    filename = outfile.name
+    inventory_text = '';
     catname = None;
     for rec in winelist:
+      # check if we are in a new category
       if catname != rec['category']:
+          # if we just finished a previous category, insert a
+          # page-break
+        if catname is not None:
+          inventory_text += ''
+        # and in any case print the new category name
         catname = rec['category']
-        outfile.write(catname+':\n')
+        inventory_text += catname+':\n'
 
-      outfile.write(
-        str(rec['binnum']).ljust(5) + 
-        rec['name'][:10].encode('latin1', 'replace') + ' ' + 
-        str(rec['est_count']) + '\n'
+
+      inventory_text += (
+        ('%s'%rec['bin']).ljust(5) + 
+        rec['name'][:10] + ' ' + 
+        str(rec['estimated_units_remaining']) + '\n'
       )
 
-    outfile.close()
-    subprocess.call(['enscript', '--font=Courier-Bold@11/16', '-B', '-MEnv10', filename])
-    os.remove(filename)
+    utils.print_slip(inventory_text )#, outfile = '/var/www/paystubs/wi')
     return  json.dumps(None)
 		
 
