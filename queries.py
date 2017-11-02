@@ -190,7 +190,7 @@ def get_active_items(incursor=None):
   return utils.select(
   ''' SELECT 
       oi.item_name as item_name, 
-      og.table_id, 
+      og.table_id, og.paid_before_close, 
       oi.id, oi.is_delivered, oi.is_held, oi.is_comped, oi.price,
       TIMESTAMPDIFF(MINUTE, oi.created, now()) minutes_old,
       TIMESTAMPDIFF(MINUTE, oi.updated, now()) minutes_since_mod,

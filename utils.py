@@ -85,7 +85,7 @@ def get_cursor():
 
 def execute(sql, incursor=None, args= None):
   
-  my_logger.info(sql)
+  my_logger.info(sql + repr(args))
 
   if not incursor:
     conn = MySQLdb.connect (host = "localhost",

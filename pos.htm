@@ -563,7 +563,7 @@
 
       for (idx in tables) {
         var table_id = tables[idx].name;
-        var undelivered = 0; var held = 0; var delivered = 0;
+        var undelivered = 0; var held = 0; var delivered = 0; var paid_before_close = 0;
         for(idx in g_order_pane_items) {
           var item  = g_order_pane_items[idx];
 
@@ -574,9 +574,16 @@
             if (!item.is_delivered && !item.is_held) {undelivered += 1;}
             if (item.is_held) {held += 1;}
             if (item.is_delivered) {delivered += 1;}
+            if (item.paid_before_close) {paid_before_close += 1;}
           }  
         }  
-        var backgroundColor = undelivered > 0 ? 'magenta' : held > 0 ? 'yellow' : delivered > 0 ? 'green' : "#b0b0b0";
+        var backgroundColor = 
+          paid_before_close > 0 ? 'aqua' : 
+          undelivered > 0 ? 'magenta' : 
+          held > 0 ? 'yellow' : 
+          delivered > 0 ? 'green' : 
+          "#b0b0b0";
+
         table_button = document.getElementById(table_id);
         if (table_button != null)
         {
@@ -724,6 +731,26 @@
       g_tab_to_move = g_currentTable;
       leave_receipt_screen();
     }
+
+    function toggle_paid()
+    {
+      console.log('setting table '+ g_currentTable + ' paid to ' + !table_is_paid(g_currentTable));
+      http_request("POST", "close_tab.py/set_paid", "table="+g_currentTable+'&val='+!table_is_paid(g_currentTable));
+      synchronize_now();
+      leave_receipt_screen();
+    }
+
+    function table_is_paid(tab)
+    {
+      for(var idx in g_order_pane_items)
+      {
+        var oi = g_order_pane_items[idx];
+        if (oi.paid_before_close && oi.table_id == tab) {return true;}
+      }  
+
+      return false;
+    }  
+      
 
     function is_staff(tab)
     {
@@ -1043,6 +1070,7 @@
       receipt_table.innerHTML = receipt_table_html(receipt_text);
       main_screen.style.display = "none";
       receipt_screen.style.display = "inline";
+      document.getElementById('paid').innerHTML = table_is_paid(g_currentTable) ? 'Not Paid' : 'Paid';
     }  
 
     function go_to_clock_screen()
@@ -1206,6 +1234,10 @@
         {
           continue;
         }
+        
+        //set order pan color for paid_before_close
+        document.getElementById("order_pane").style.backgroundColor = item.paid_before_close ? 'aqua' : 'white';
+
         var classes = "order_item";
         if (item.is_held) {classes += ' held_item'}
         else if (!item.is_delivered) {classes += ' nondelivered_item'}
@@ -1467,6 +1499,7 @@
       <button id=print_and_close onclick='close_check(true)'>Print and Close</button>
       <button id=just_close onclick='close_check(false)'>Just Close</button>
       <button onclick='move_tab()'>Move Tab</button>
+      <button id=paid onclick='toggle_paid()'/>Paid</button>
       <button onclick='leave_receipt_screen()'/>Go Back</button>
     </div>
     </center>

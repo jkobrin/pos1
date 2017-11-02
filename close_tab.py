@@ -50,5 +50,18 @@ def index(req, table, shouldPrint, serverpin, close=True):
 
   return json.dumps(None)
 
+def set_paid(req, table, val):
+  val = json.loads(val) #convert from string to boolean
+
+  utils.execute('''
+      UPDATE order_group
+      SET paid_before_close = %s, updated = now()
+      WHERE is_open = TRUE
+      AND table_id = %s
+    ''', args=[val, table])
+
+  return json.dumps(None)
+  
+
 if __name__ == '__main__':
   print index(None, 'O1', 'true', 1, close=False)

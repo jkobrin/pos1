@@ -21,7 +21,6 @@ def get_session_id(req):
 
     return json.dumps(session_id)
 
-  
 
 def add_item(item_id=None, 
             table_id=None, 
