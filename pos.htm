@@ -1225,6 +1225,7 @@
     function update_order_pane(table_id)
     {
       document.getElementById("table_id_display").innerHTML = "Table: " + (table_id || '---');
+      document.getElementById("order_pane").style.backgroundColor = table_is_paid(table_id) ? 'aqua' : 'white';
 
       var order_items_html = "";
       for (idx in g_order_pane_items)
@@ -1235,8 +1236,6 @@
           continue;
         }
         
-        //set order pan color for paid_before_close
-        document.getElementById("order_pane").style.backgroundColor = item.paid_before_close ? 'aqua' : 'white';
 
         var classes = "order_item";
         if (item.is_held) {classes += ' held_item'}
