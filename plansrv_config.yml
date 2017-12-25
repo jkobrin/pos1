@@ -76,30 +76,29 @@ menu:
           items: 
             - {name: warm olives, price: 6}
             - {name: marcona almonds, price: 6}
-            - {name: anchovy, price: 8}
-            - {name: winter salad, price: 11}
-            - {name: oyster mushrooms, price: 12}
+            - {name: jamon iberico, price: 24}
+            - {name: duck rillettes, price: 9}
+            - {name: fall salad, price: 12}
+            - {name: oyster mushrooms, price: 13}
             - {name: patatas bravas, price: 7}
-            - {name: peppers, price: 9}
+            - {name: peppers, price: 10}
+            - {name: brussels, price: 12}
             - {name: soup, price: 8}
-            - {name: cauliflower, price: 11}
-            - {name: sausage, price: 9}
-            - {name: scallops, price: 15}
-            - {name: prawns, price: 16}
-            - {name: foie gras, price: 16}
-            - {name: marrow bones, price: 9}
-            - {name: escargot, price: 12}
-            - {name: sweetbreads, price: 14}
-            - {name: lamb tapa, price: 18}
-            - {name: pork tapa, price: 15}
+            - {name: celeriac, price: 8}
+            - {name: scallops, price: 16}
+            - {name: pulpo, price: 16}
+            - {name: marrow bone, price: 11}
+            - {name: chicharron, price: 12}
+            - {name: chicken, price: 17}
+            - {name: pork tenderloin, price: 15}
+            - {name: pork skirt steak, price: 18}
+            - {name: paella, price: 38}
             - {name: big pork, price: 48}
-            - {name: big lamb, price: 36}
             - {name: big steak, price: 65}
 
-            - {name: panacotta, price: 7}
             - {name: chocolate, price: 7}
             - {name: apple crisp, price: 7}
-            - {name: rum panatonne, price: 8}
+            - {name: torta, price: 8}
             - {name: a la mode, add_on_price: 3}
             - {name: ice cream, price: 7}
             - {name: special, price: 0}
@@ -107,7 +106,7 @@ menu:
             - {name: special note, add_on_price: 0}
         - name: boards
           items: 
-            - {name: taste of spain, price: 12}
+            - {name: dessert board, price: 18}
             - name: 1-board
               price: 7
             - name: 3-board
@@ -123,12 +122,13 @@ menu:
             - name: mixed cheese board
               price: 30
             - {name: seranno ham, add_on_price: 0}
+            - {name: pata negra, add_on_price: 10}
             - {name: lomo, add_on_price: 0}
             - {name: chorizo, add_on_price: 0}
             - {name: prosciutto, add_on_price: 0}
+            - {name: speck, add_on_price: 0}
             - {name: hot capicolla, add_on_price: 0}
             - {name: felino, add_on_price: 0}
-            - {name: pata negra, add_on_price: 15}
             - {name: cana de cabra, add_on_price: 0}
             - {name: campo manchego, add_on_price: 0}
             - {name: rustico, add_on_price: 0}
@@ -138,7 +138,7 @@ menu:
             - {name: sao jorge, add_on_price: 0}
             - {name: blue cheese, add_on_price: 0}
             - {name: tetilla, add_on_price: 0}
-            - {name: queso sudado, add_on_price: 0}
+            - {name: oveja fresca, add_on_price: 0}
             - {name: gouda, add_on_price: 0}
             - {name: cheddar , add_on_price: 0}
             #- {name: capri, add_on_price: 0}
@@ -169,20 +169,21 @@ menu:
           items: 
             - {name: prosciutto san, price: 11}
             - {name: ham and cheese sandwich, price: 10}
-            - {name: pate melt, price: 12}
-            - {name: chorizo san, price: 12}
+            - {name: italian tuna,  price: 14}
+            - {name: italian blt, price: 10}
             - {name: daffinois panini, price: 10}
             - {name: chorizo panini, price: 9}
             - {name: copa cubano, price: 11}
             - {name: goat mush san, price: 8}
-            - {name: american burger, price: 15}
-            - {name: spanish burger, price: 14}
-            - {name: italian burger, price: 16}
+            - {name: tartufo burger, price: 16}
+            - {name: cheddar burger, price: 15}
+            - {name: cana burger, price: 14}
             - {name: buddha burger, price: 13}
-            - {name: winter salad, price: 11}
+            - {name: salad, price: 12}
             - {name: oyster mushrooms, price: 12}
             - {name: house salad, price: 8}
             - {name: tomato soup and cheesy toast, price: 7}
+            - {name: tomato soup, price: 6}
             - {name: potato soup, price: 8}
             - {name: special note, add_on_price: 0}
         - name: brunch 
@@ -197,14 +198,14 @@ menu:
           items: 
             - {name: olives hh, price: 5}
             - {name: almonds hh, price: 5}
-            - {name: chicharon, price: 5}
+            - {name: chicharon hh, price: 5}
             - {name: peppers hh, price: 5}
             - {name: patatas hh, price: 5}
             - {name: house red, price: 5}
             - {name: house white, price: 5}
             - {name: red sangria hh, price: 5}
             - {name: white sangria hh, price: 5}
-            - {name: house beer, price: 5}
+            - {name: house beer discount, price: -1}
     - name: bev
       subcategories:
         - name: coffee & tea
@@ -229,20 +230,21 @@ menu:
             - {name: white flight, price: 16}
             - {name: bubbly flight, price: 16}
             - {name: amaro lucano, price: 6}
+            - {name: aperol spritz jar, price: 28}
             - {name: aperol spritz, price: 8}
             - {name: bianco spritz, price: 8}
-            - {name: bellini jar, price: 25}
+            - {name: bellini jar, price: 28}
             - {name: bellini, price: 7}
-            - {name: bloody maria jar, price: 36}
+            - {name: bloody maria jar, price: 28}
             - {name: bloody maria, price: 9}
+            - {name: bloody mary jar, price: 28}
             - {name: bloody mary, price: 9}
             - {name: cafe amaretto, price: 8}
-            - {name: cascara sweet tea, price: 10}
             - {name: cosmo, price: 10}
             - {name: dark n stormy, price: 7}
             - {name: hot toddy, price: 10}
             - {name: margarita, price: 10}
-            - {name: mimosa jar, price: 25}
+            - {name: mimosa jar, price: 28}
             - {name: mimosa, price: 7}
             - {name: mojito, price: 10}
             - {name: moscow mule, price: 10}
@@ -256,8 +258,9 @@ menu:
             - {name: gimlet, price: 10}
             - {name: french 75, price: 9}
             - {name: martini french, price: 9}
-            - {name: special note, add_on_price: 0}
+            - {name: tinto de verano jar, price: 28}
             - {name: tinto de verano, price: 8}
+            - {name: special note, add_on_price: 0}
         - name: soft drinks
           items: 
             - {name: coke, price: 3}
@@ -416,10 +419,8 @@ menu:
       subcategories:
         - name: market 
           items: 
-            - {name: market fig, price: 6}
-            - {name: market coffe, price: 14}
-            - {name: market balsamic, price: 20}
-            - {name: market hazelnuts, price: 10}
+            - {name: market fig jam, price: 6}
+            - {name: market marcona, price: 11}
             - {name: market caperberries, price: 6}
-            - {name: market anchovy, price: 3}
+            - {name: market shirt, price: 20}
             - {name: market special price, price: 0}

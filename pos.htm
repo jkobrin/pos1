@@ -1061,10 +1061,6 @@
       receipt_table.innerHTML = receipt_table_html(receipt_text);
       main_screen.style.display = "none";
       receipt_screen.style.display = "inline";
-      if (g_currentTable == 'MKT')
-      {
-        pin_input().value = "0001"; //Salumi Guy
-      }  
     }  
 
     function go_to_clock_screen()
@@ -1087,11 +1083,12 @@
     function pin_blur()
     {
       if(!pin_is_good(pin())) {
+        pin_input().value = '';
         var try_again = confirm("PIN not recognized.");
         if (try_again) {
-          pin_input().focus();
+          //pin_input().focus();
           return;
-        }  
+        }
       }  
       else { 
         if (pin_callback != null) pin_callback();

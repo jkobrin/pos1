@@ -86,6 +86,18 @@ def print_stubs(person_id, week_of, table_name, incursor = None):
     gen_fodt_and_pdf(stub_data, table_name)
 
 
+def print_r_stubs():
+
+  for table_name in ('PAY_STUB',):
+    stub_keys = utils.select('''
+      select person_id, week_of from %(table_name)s where last_name  = 'Sinitean'
+    '''%locals(), label=False
+    )
+
+    for person_id, week_of in stub_keys:
+      print_stubs(person_id, week_of, table_name)
+
+
 def print_2016_stubs():
 
   for table_name in ('PAY_STUB', 'WEEKLY_PAY_STUB'):
@@ -169,5 +181,6 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
     print_stubs(0, sunday, table_name, incursor=incursor)
 
 if __name__ == '__main__':
-  make_estub('Diego', 'Moran', 12, 0, 25, 0)
+  #make_estub('Diego', 'Moran', 12, 0, 25, 0)
+  print_r_stubs()
 
