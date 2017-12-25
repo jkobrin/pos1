@@ -23,7 +23,7 @@ def populate_pay_stub(temp = True, incursor=None):
   COALESCE(nominal_scale, 0) nominal_scale,
   COALESCE(married, 0) married,
   COALESCE(salary, 0) + COALESCE(round(sum(hours_worked)*pay_rate), 0) as weekly_pay,
-  COALESCE(salary, 0) + COALESCE(round(sum(hours_worked)*pay_rate), 0) * COALESCE(nominal_scale,0) as gross_wages,
+  COALESCE(salary* COALESCE(nominal_scale,0), 0) + COALESCE(round(sum(hours_worked)*pay_rate), 0) * COALESCE(nominal_scale,0) as gross_wages,
   COALESCE(sum(tip_pay),0) tips,
   COALESCE(sum(tip_pay) / sum(hours_worked) + pay_rate, 0) as total_hourly_pay
   from hours_worked LEFT OUTER JOIN employee_tax_info ON hours_worked.person_id = employee_tax_info.person_id

@@ -148,7 +148,7 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
     create temporary table E_STUB like PAY_STUB;
   ''', incursor=incursor);
 
-  for sunday in last_sundays(70):
+  for sunday in last_sundays(7):
 
     hours = basehours + randint(-basehours, basehours)*hour_variance
     rate = baserate + randint(-baserate, baserate)*rate_variance
@@ -181,6 +181,4 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
     print_stubs(0, sunday, table_name, incursor=incursor)
 
 if __name__ == '__main__':
-  #make_estub('Diego', 'Moran', 12, 0, 25, 0)
   print_r_stubs()
-

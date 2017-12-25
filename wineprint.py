@@ -10,16 +10,14 @@ import utils
 
 def clean(data_str):
   NULLITIES = ('None', 'null', 'NULL', 'Null', '')
-
-  data_str = data_str.strip() 
-  if data_str in NULLITIES: return None
+  if data_str.strip() in NULLITIES: return None
   else: return data_str
 
 
 def get_wine_xml():  
 
   winecats = utils.select('''
-    select category from active_wine 
+    select category from sku 
     where active = true and listorder > 0 and bin is not null 
     group by category order by min(listorder)''')
 
@@ -27,9 +25,11 @@ def get_wine_xml():
     cat = cat['category']
 
     wine_items = utils.select('''
-      select * from active_wine
+      select * from sku
       where category = '%(cat)s'
       and listorder > 0
+      and active = true
+      and bin is not null
       and bin != '0'
       order by listorder
       ''' % locals())
@@ -50,23 +50,20 @@ def get_wine_xml():
     current_subcategory = None
 
     for item in wine_items:
-      binnum, name, listprice, byline, grapes, notes, subcategory  = (
-        clean(escape(unicode(item[key]))) for key in ['bin', 'name', 'listprice', 'byline', 'grapes', 'notes', 'subcategory']
+      binnum, name, description, subcategory  = (
+        clean(escape(unicode(item[key]))) for key in ['bin', 'name', 'description', 'subcategory']
       )
+      listprice = item['retail_price']
 
       # do location heading if location changed
       if current_subcategory != subcategory and subcategory is not None:
         current_subcategory = subcategory
         yield '''<text:p text:style-name="Psubcat"><text:span text:style-name="T1">%s</text:span></text:p>'''%subcategory
 
-      yield '''<text:p text:style-name="P4">%s.<text:tab/>%s<text:s text:c="5"/>%s'''%(binnum, name, listprice)
-
-      if byline:
-        yield '''<text:line-break/>%s''' % byline
-      if grapes:
-        yield '''<text:line-break/>Grapes: %s''' % grapes
-      if notes:
-        yield '''<text:line-break/>%s''' % notes
+      yield '''<text:p text:style-name="P4">%s.<text:tab/>%s<text:s text:c="5"/>%d'''%(binnum, name, listprice)
+      if description:
+        for line in description.splitlines():
+          yield '''<text:line-break/>%s''' % line
       yield '</text:p>'
       yield '''<text:p text:style-name="P18"/>'''
       

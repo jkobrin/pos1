@@ -21,12 +21,12 @@ def get_session_id(req):
 
     return json.dumps(session_id)
 
-  
 
 def add_item(item_id=None, 
             table_id=None, 
             item_name=None, 
             price=None, 
+            fraction=None, 
             menu_item_id=None, 
             taxable=True, 
             is_delivered=False, 
@@ -57,14 +57,14 @@ def add_item(item_id=None,
       if open_order_group:
         break
       else:
-        cursor.execute('''INSERT INTO order_group VALUES (null, %s, TRUE, null, null, null)''', table_id)
+        cursor.execute('''INSERT INTO order_group VALUES (null, %s, TRUE, null, null, null, null)''', table_id)
     open_order_group = open_order_group[0];
 
     cursor.execute('''
       INSERT INTO order_item (
-        id, order_group_id, item_name, price, menu_item_id, taxable, is_delivered, is_comped, is_held, parent_item
-      ) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
-      (item_id, open_order_group, item_name, price, menu_item_id, taxable, is_delivered, is_comped, is_held, parent_item)
+        id, order_group_id, item_name, price, fraction, menu_item_id, taxable, is_delivered, is_comped, is_held, parent_item
+      ) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
+      (item_id, open_order_group, item_name, price, fraction, menu_item_id, taxable, is_delivered, is_comped, is_held, parent_item)
     )
 
     cursor.close()
