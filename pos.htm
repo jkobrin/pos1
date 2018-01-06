@@ -19,6 +19,7 @@
     .bev_item {color: blue;}
     .cafe_item {color: green;}
     .board_item {color: maroon;}
+    .desserts_item {color: white;}
     .allergy_item {color: red; text-decoration: underline}
 
     .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
@@ -1008,6 +1009,7 @@
         if (item.category == 'bev') {classes += ' bev_item'}
         if (item.category == 'cafe') {classes += ' cafe_item'}
         if (item.subcategory == 'boards') {classes += ' board_item'}
+        if (item.subcategory == 'desserts-apps') {classes += ' desserts_item'}
         if (item.subcategory == 'allergy') {classes += ' allergy_item'}
         if (item.is_comped) {classes += ' comped_item'}
         if (item.is_held) {classes += ' held_item'}
