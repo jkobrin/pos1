@@ -1,0 +1,300 @@
+<html>
+
+<title id='Description'>INVEN UPC</title>
+<head>
+
+  <style>
+
+    body,h1,h2,h3,h4,h5,h6 {font-family:Arial;}
+
+    body {width: 98%; background-color:pink; color:black; font-size:18}
+
+    h1 {font-size:28pt; font-weight:bold; margin:0px;}
+
+    h2 {font-size:16pt; margin:0px; font-weight:bold;}
+
+    h3 {font-size:8pt; margin:0px; font-weight:bold;}
+
+    #submit_changes {margin-top: 20px;}
+    #name_search_div {margin-top: 20px;}
+
+    input.tab_in{
+    }
+
+    td.val{
+      border: 1px solid black;
+      padding-right: 5px;
+      padding-left: 5px;
+      width: 15em;
+      word-wrap: break-word;
+    }
+
+    td.key{
+      text-align: right;
+      padding-right: 10px;
+    }
+
+    table{
+      margin-top: 24pt;
+      border-collapse: collapse;
+    }
+
+
+    #order_pane :hover {background-color: yellow;}
+    #table_id_display {width: 95%;}
+    #receipt_text {font-family: monospace; font-size: 14pt;}
+
+  </style>
+
+  <script> 
+
+    function http_request(method, url, params)
+    {
+      http = new XMLHttpRequest();
+      if(method == "GET")
+      {
+        // append timestamp to url to prevent caching
+        url += "?timestamp=" + new Date().getTime();
+
+        if (params) {url += "&" + params;}
+        http.open(method, url, false);
+        http.send(null);
+      }
+      else
+      {
+        http.open(method, url, false);
+        http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+        http.send(params);
+      }
+
+      response = http.responseText;
+
+      if (http.status != 200)  {
+      // Display error message on page
+        document.write("Error getting config\n\n");
+        document.write(response);
+        return;
+      }
+
+      return eval('(' + response + ')');
+    }  
+
+
+    function getQueryParams() 
+    {
+      qs = document.location.search;
+      qs = qs.split("+").join(" ");
+      params = {};
+      tokens = null;
+      re = /[?&]?([^=]+)=([^&]*)/g;
+
+      while (tokens = re.exec(qs)) 
+      {
+        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+      }
+
+      return params;
+    }
+
+    g_editted_fields = {};
+    function edit(input, field_name)
+    {
+      if (input.value != '')
+      {
+        input.style.backgroundColor='yellow';
+        g_editted_fields[field_name] = input.value;
+      }  
+      else
+      {
+        input.style.backgroundColor='white';
+        delete g_editted_fields[field_name];
+      }  
+    }  
+
+    function table_populate(sku_data)
+    {
+      for(key in sku_data )
+      {
+        //all fields have a value display
+        document.getElementById(key+'_val').innerHTML = sku_data[key];
+
+        //some have special additional displays
+        if(key == 'estimated_units_remaining')
+        {
+          document.getElementById('big_uis_input').value = sku_data[key];
+        }
+        else if (key == 'inventory_date')
+        {
+          document.getElementById('inventory_date_display').innerHTML = sku_data[key];
+        }
+
+        //not all fields have a standard input box
+        var input_box =  document.getElementById(key+'_input');
+        if (input_box) {input_box.value = '';}
+      }
+    }
+
+
+    function table_clear()
+    {
+      var vals = document.getElementsByClassName('val');
+      for (var idx = 0; idx < vals.length; idx++) 
+      {
+        vals[idx].innerHTML = '';
+      }
+      var ins = document.getElementsByClassName('tab_in');
+      for (var idx = 0; idx < ins.length; idx++) 
+      {
+        ins[idx].value = '';
+        ins[idx].style.backgroundColor='white';
+      }
+    }
+
+
+    function table_format(field_names)
+    {
+      var html = "<table> ";
+      for (idx in field_names)
+      {
+        var field = field_names[idx];
+        if (field == 'units_in_stock' || field == 'inventory_date' || field == 'estimated_units_remaining' || field == 'id')
+        {
+          html += "<tr><td class=key>"+field+"</td><td class=val id="+field+"_val>"+'-'+"</td><td>"
+        }
+        else
+        {
+          html += "<tr><td class=key>"+field+"</td><td class=val id="+field+"_val>"+'-'+"</td><td>"+
+          "<input class=tab_in id="+field+"_input type=input onblur='edit(this, \""+field+"\")'/></td></tr>";
+        }  
+      }
+      html += "</table>";
+
+      return html;
+    }
+    
+
+    function init()
+    {
+      var field_names = http_request("GET", "inventory.py/field_names");
+      document.getElementById("item_data").innerHTML = table_format(field_names);
+
+      var sku_names = http_request("GET", "inventory.py/sku_names");
+      populate_sku_names(sku_names);
+
+      document.getElementById("big_upc_input").select();
+    }  
+
+    function populate_sku_names(sku_names)
+    {
+      var datalist = document.getElementById('sku_list');
+      for (idx in sku_names)
+      {
+        var opt = document.createElement('option');
+        opt.setAttribute('value', sku_names[idx].id);
+        opt.setAttribute('label', sku_names[idx].name);
+        datalist.appendChild(opt);
+      }
+    }        
+      
+
+    function create_upc(upc)
+    {
+      var edits = {};
+      var newrows = {1: {'upc': upc}};
+      var params = "edits="+JSON.stringify(edits) + "&newrows="+JSON.stringify(newrows);
+      var resp = http_request("POST", "inventory.py/update", params);
+      upc_entered(upc);
+      document.getElementById("item_name").innerHTML = 'New Item';
+
+    }  
+
+    function populate_page_with_new_sku(sku_data)
+    {
+        var sku_data = sku_data[0];
+        g_sku_id = sku_data['id'];
+        document.getElementById("item_name").innerHTML = sku_data['name'];
+        table_populate(sku_data);
+        var uis = document.getElementById("big_uis_input")
+        uis.select();
+    }    
+
+    function id_entered(id)
+    {
+      console.log(id);
+      var sku_data = http_request("GET", "inventory.py/get_by_id", "id="+id);
+      //should always be found since it comes from drop down
+      populate_page_with_new_sku(sku_data);
+    }  
+
+    function upc_entered(upc)
+    {
+      var sku_data = http_request("GET", "inventory.py/get_by_upc", "upc="+upc);
+      if (sku_data.length > 0 ) 
+      {
+        populate_page_with_new_sku(sku_data);
+      }
+      else 
+      {
+        document.getElementById("item_name").innerHTML = 
+          upc + ' not found.  <button id=create_button onclick="create_upc(' + upc +')">CREATE</button>';
+        document.getElementById("big_upc_input").select();
+        table_clear();
+      }
+
+    }
+
+    function big_uis_edit(big_uis_input)
+    {
+      edit(big_uis_input, 'units_in_stock');
+      g_editted_fields['inventory_date'] = new Date();
+    }  
+
+    function submit_changes()
+    {
+      var edits = {};
+      edits[g_sku_id] = g_editted_fields;
+      newrows = {}; //for now
+      params = "edits="+JSON.stringify(edits) + "&newrows="+JSON.stringify(newrows);
+      resp = http_request("POST", "inventory.py/update", params);
+      g_sku_id = null;
+      g_editted_fields = {};
+      document.getElementById("big_uis_input").value = "";
+      var bui = document.getElementById("big_upc_input");
+      table_clear();
+      upc_entered(bui.value);
+      document.getElementById("item_name").innerHTML = "scan next item";
+      bui.select();
+      return resp;
+    }
+
+  </script>
+
+</head>
+
+<body onLoad="init()" id='main'>
+
+
+    <h1 id ="item_name" style="{margin: 24pt;}">scan first item</h1>
+    <div>
+      UPC: <input id="big_upc_input" tabindex=1 
+      onkeypress="if(event.which == 13) { upc_entered(this.value)}"
+    /> 
+      UIS: <input id="big_uis_input" tabindex=2 
+      onkeypress="if(event.which == 13) {big_uis_edit(this); submit_changes()}"
+      onblur="big_uis_edit(this)"
+    />
+
+      INVEN_DATE: <a id="inventory_date_display">-</a>
+    
+    </div>
+    <div id='name_search_div'>
+      Search: 
+      <input list='sku_list' id="search" onchange="id_entered(this.value)"></select>
+      <datalist id='sku_list'/>
+    </div>
+
+    <div id="item_data"> </div>
+    <button id="submit_changes" onclick="submit_changes()">submit changes</button>
+
+</body>
+</html>
