@@ -25,6 +25,9 @@ def is_staff(table_id):
 def is_gift(item):
   return item['name'].startswith('gift')
 
+def is_coupon(item):
+  return item['name'].startswith('coupon')
+
 def is_gratuity(item):
   return item['name'].startswith('gratuity')
 
@@ -93,8 +96,8 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
       gratuity = round((taxable_total) * gratuity_rate/100.0, 2)
       total = total + gratuity
       continue
-    if is_gift(item):
-      gift_certs.append(GiftCert(item['id'], item['price']))
+    if is_gift(item) or is_coupon(item):
+      gift_certs.append(GiftCert(item))
     if item['price'] == 0 and not admin_view:
       continue
     if item['is_cancelled']:

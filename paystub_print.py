@@ -97,6 +97,18 @@ def print_r_stubs():
     for person_id, week_of in stub_keys:
       print_stubs(person_id, week_of, table_name)
 
+def print_recent_weekly(person_lastname, numweeks=6, table_name='WEEKLY_PAY_STUB'):
+
+    stub_keys = utils.select('''
+      select person_id, week_of from %(table_name)s 
+      where last_name  = '%(person_lastname)s'
+      and yearweek(week_of) >= yearweek(now() - interval '%(numweeks)s' week)
+    '''%locals(), label=False
+    )
+
+    for person_id, week_of in stub_keys:
+      print_stubs(person_id, week_of, table_name)
+
 
 def print_2016_stubs():
 
@@ -181,4 +193,4 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
     print_stubs(0, sunday, table_name, incursor=incursor)
 
 if __name__ == '__main__':
-  print_r_stubs()
+  print_recent_weekly('Seney')

@@ -13,3 +13,16 @@ def menu(req, **menus):
       response += '%s menu uploaded\n'%name
     
   return response or 'no files uploaded'
+
+def resource(req, **resource_files):
+
+  response = ''
+
+  for name, filedata in resource_files.items():
+    if filedata:
+      resource_file = open('/var/www/resources/%s.pdf'%name, 'w')
+      resource_file.write(filedata.value)
+      resource_file.close()
+      response += '%s resource uploaded\n'%name
+    
+  return response or 'no files uploaded'
