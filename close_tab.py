@@ -46,9 +46,11 @@ def index(req, table, shouldPrint, serverpin, close=True):
     utils.print_slip(receipt_text)
 
   for cert in gift_certs:
-    cert.print_out()
+    if shouldPrint or cert.is_gift():
+      cert.print_out()
 
   return json.dumps(None)
+
 
 def set_paid(req, table, val):
   val = json.loads(val) #convert from string to boolean
