@@ -16,9 +16,6 @@ def get_cafe(req):
 def get_food(req):
   return get_inventory("select * from sku_inv where supercategory = 'food' and bin != '0'")
 
-def get_food(req):
-  return get_inventory("select * from sku_inv where supercategory = 'food' and bin != '0'")
-
 def get_bev(req):
   return get_inventory("select * from sku_inv where supercategory = 'bev' and bin is not null order by category, bin")
 
@@ -28,8 +25,15 @@ def get_allbev(req):
 def get_wine(req):
   return get_inventory('''
     select * from sku_inv where supercategory = 'bev' 
-    and bin is not null and category rlike 'Wine|Before & After|Dessert|Bubbly'
+    and bin is not null and bin != 0 and category rlike 'Wine|Before & After|Dessert|Bubbly'
     order by category, bin''')
+
+def get_winebeer(req):
+  return get_inventory('''
+    select * from sku_inv where supercategory = 'bev' 
+    and bin is not null and bin != 0 and category rlike 'Wine|Before & After|Dessert|Bubbly|Beer'
+    order by bin''')
+
 
 def get_by_upc(upc):
   recs = utils.select("select * from sku_inv where upc = %s", args=upc)
