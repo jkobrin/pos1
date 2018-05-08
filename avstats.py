@@ -13,6 +13,7 @@ def index(req):
   SELECT item_name, count(*), sku.category, group_concat(TIME_FORMAT(order_item.created, '%H:%i'))
   FROM order_item join sku on order_item.menu_item_id = sku.id
   WHERE date(order_item.created - INTERVAL '4' hour) = date(now() - INTERVAL '28' hour)
+  and order_item.is_cancelled = False
   and sku.supercategory = 'bev'
   group by item_name
   order by sku.category, item_name;''',

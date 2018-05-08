@@ -6,9 +6,15 @@ class GiftCert(object):
   def __init__(self, item):
     self.item = item
 
+  def is_gift(self):
+    return self.item['name'].startswith('gift')
+
+  def is_coupon(self):
+    return self.item['name'].startswith('coupon')
+
   def print_out(self):
 
-    if self.item['name'].startswith('gift'):
+    if self.is_gift():
       serial = str(self.item['id'])
       value = str(int(self.item['price']))
       denom = value.ljust(3)
@@ -25,7 +31,7 @@ class GiftCert(object):
       finally:
         os.chdir(olddir)
 
-    elif self.item['name'].startswith('coupon'):
+    elif self.is_coupon():
       args = ['lp', '/var/www/resources/%s.pdf'%self.item['name']]
       subprocess.call(args)
 

@@ -86,7 +86,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   tabtext += 'FOOD & DRINK' + "\n" 
   tabtext += divider
 
-  gift_certs = []
+  gift_certs = [GiftCert({'name':'coupon'})]
   gratuity = 0
   gratuity_rate = 0
 
