@@ -9,9 +9,9 @@ menu:
         - name: market
           items: 
             - name: MKT 
+            - name: M1 
             - name: Couch1 
             - name: Couch2 
-            - name: M1 
             - name: M1.1
             - name: M1.2
             - name: M1.3
