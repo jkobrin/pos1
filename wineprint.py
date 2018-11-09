@@ -75,6 +75,8 @@ def fodt_text():
   doc = open('/var/www/winelist_head.xml.frag').read()
   for frag in get_wine_xml():
     doc += frag
+  if utils.hostname() == 'plansrv':
+    doc += open('/var/www/winefun.xml.frag').read()
   doc += open('/var/www/winelist_tail.xml.frag').read()
 
   return doc

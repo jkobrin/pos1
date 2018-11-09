@@ -1,10 +1,9 @@
 style:
-  backgroundImage: "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwPHZrtGXF_17Z0s2ZM1awibefZqWvc7tNwywlg7tUcid9FRBIQg)"
-  backgroundImage: "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp_9k4KWTlJZamNuCaVqcPZqfPwd1qv1xqGj9XBKqGkCsTK5Q5FA)"
-  backgroundImage: "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSagstoHGAgYzDRJwPuVCSar4OCW7LJbklqRLhMFy5wGWkOHs6nFg)"
-  backgroundImage: "url(http://alpinebakeryandtrattoria.com/wp-content/uploads/2015/12/new-years-eve-alpine.jpg)"
   backgroundColor: "#f0c040"
+  #backgroundImage: "url(http://fullhdwallpapers.ru/image/flags/17421/flag-ssha-granzh.jpg)"
 
+coupon:
+  #filename: /var/www/coupon.pdf
 
 menu:
   categories:

@@ -32,7 +32,7 @@ class GiftCert(object):
         os.chdir(olddir)
 
     elif self.is_coupon():
-      args = ['lp', '/var/www/resources/%s.pdf'%self.item['name']]
+      args = ['lp', '/var/www/resources/%s'%self.item['name']]
       subprocess.call(args)
 
 
