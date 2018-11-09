@@ -193,4 +193,4 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
     print_stubs(0, sunday, table_name, incursor=incursor)
 
 if __name__ == '__main__':
-  print_recent('Graziose', numweeks=6, table_name = 'PAY_STUB')
+  print_recent('Seney', numweeks=44, table_name = 'WEEKLY_PAY_STUB')
