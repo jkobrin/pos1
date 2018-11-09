@@ -117,6 +117,13 @@
       display: none;
     }
 
+    #receipt_table
+    {
+      background-color: white;
+      margin-bottom: 1em;
+      padding: 1em;
+    }
+
     #clock_screen
     {
       display: none;
@@ -369,8 +376,8 @@
       document.body.style.backgroundRepeat = 'no-repeat';
       document.body.style.backgroundPosition = 'center';
       document.body.style.backgroundAttachment = 'fixed';
-      document.body.style.backgroundImage = g_config.style.backgroundImage; //"url(https://pbs.twimg.com/profile_images/540992241603719168/V0bb_XKc_400x400.jpeg)";
       document.body.style.backgroundColor = g_config.style.backgroundColor;
+      document.body.style.backgroundImage = g_config.style.backgroundImage;
 
       get_new_session_id();
       synchronize();
@@ -600,11 +607,42 @@
       }  
     }
 
+    function is_waiting_tab(input_tab)
+    {
+      var tab = get_config_item(input_tab);
+      return (tab && (tab.subcategory=='waiting' || tab.subcategory=='other'));
+    }
+
+    function create_tab_descriptor_item()
+    {
+      var descriptor = prompt('Description:');
+      if (descriptor == null) return;
+
+      new_crud_command ({
+        command: 'add_item',
+        item_id: get_new_item_id(),
+        item_name: descriptor,
+        table_id: g_currentTable, 
+        is_delivered: false,
+        taxable: false, 
+        is_comped: false,
+        is_held: true,
+        price: 0,
+        fraction: 0,
+        parent_item: null,
+        menu_item_id: null 
+      });
+    }
+
     function set_current_table(table)
     {
       g_currentTable = table;
       refresh_screen();
-      set_current_parent();
+      var parent_was_set = set_current_parent();
+      if (!parent_was_set && is_waiting_tab(g_currentTable)) {
+        // for new tabs was_set will be false so create a descriptor item for convenience when tabs are for waiting ppl
+        create_tab_descriptor_item();
+      }  
     }
 
     g_current_parent = null;
@@ -615,9 +653,10 @@
         var item = g_order_pane_items[idx];
         if(item.is_cancelled == false && item.table_id == g_currentTable && item.parent_item == null){ 
           g_current_parent = item.id;
-          return;
+          return true;
         }
       }
+      return false;
     }  
 
 

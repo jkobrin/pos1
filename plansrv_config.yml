@@ -1,6 +1,9 @@
 style:
   backgroundColor: "#f0c040"
+  #backgroundImage: "url(http://fullhdwallpapers.ru/image/flags/17421/flag-ssha-granzh.jpg)"
 
+coupon:
+  #filename: /var/www/coupon.pdf
 
 menu:
   categories:
