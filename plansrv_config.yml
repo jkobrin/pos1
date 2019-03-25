@@ -48,8 +48,16 @@ menu:
             - name: O5
             - name: O6
             - name: O7
+            - name: O8
+            - name: O9
+            - name: O10
+            - name: O11
+            - name: O12
+            - name: O13
+            - name: O14
             - name: TEST1
             - name: TEST2
+            - name: Tran Tobin 
         - name: takeout
           items: 
             - name: T1 

@@ -72,12 +72,13 @@ def gen_fodt_and_pdf(stub_data, table_name):
   
   doc = fodt_text(stub_data)
   stubdir = "/var/www/paystubs/"
-  fodtname = stubdir + "{LAST_NAME}_{FIRST_NAME}_{PERIOD_END}".format(**stub_data)+"_{table_name}.fodt".format(**locals())
+  fodtname = stubdir + "{FIRST_NAME}_{PERIOD_END}".format(**stub_data)+"_{table_name}.fodt".format(**locals())
   new_fodt = open(fodtname, 'w')
   new_fodt.write(doc)
   new_fodt.close()
 
   os.system('soffice --headless --convert-to pdf --outdir ' + stubdir + ' ' + fodtname)
+  #subprocess.call(['soffice', '--headless', '--convert-to pdf', '--outdir ' + stubdir, fodtname])
 
 
 def print_stubs(person_id, week_of, table_name, incursor = None):
@@ -193,4 +194,5 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
     print_stubs(0, sunday, table_name, incursor=incursor)
 
 if __name__ == '__main__':
-  print_recent_weekly('Pascal')
+  print_recent_weekly('St. Aubrey', numweeks=7, table_name='WEEKLY_PAY_STUB')
+  print_recent_weekly('St. Aubrey', numweeks=7, table_name='PAY_STUB')
