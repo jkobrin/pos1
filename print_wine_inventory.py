@@ -36,8 +36,8 @@ def go(query):
 
 
       inventory_text += (
-        ('%s'%rec['bin']).ljust(5) + 
-        rec['name'][:10] + ' ' + 
+        ('%s'%rec.get('bin')).ljust(5) + 
+        rec.get('name')[:10] + ' ' + 
         str(rec['estimated_units_remaining']) + '\n'
       )
 

@@ -615,7 +615,7 @@
 
     function create_tab_descriptor_item()
     {
-      var descriptor = prompt('Description:');
+      var descriptor = prompt('Description for ' + g_currentTable +':');
       if (descriptor == null) return;
 
       new_crud_command ({
@@ -845,7 +845,7 @@
         price = price*(cfg_item.fraction || 1);
       }
 
-      var taxable = !(cfg_item.name.match(/^gift|tax-free/) || cfg_item.category == 'market' && 
+      var taxable = !(cfg_item.name.match(/\bgift\b|tax-free/) || cfg_item.category == 'market' && 
           cfg_item.subcategory.match(/household|drinks|food|candy|soda/)  == null)
 
       if(cfg_item.name.indexOf('special') != -1)

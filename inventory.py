@@ -7,6 +7,9 @@ import decimal
 import wineprint
 
 
+def get_catering(req):
+  return get_inventory("select * from sku_inv where supercategory = 'catering' and bin != '0' order by id")
+
 def get_mkt(req):
   return get_inventory("select * from sku_inv where supercategory = 'market' and bin != '0' order by id")
 
