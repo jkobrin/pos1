@@ -42,7 +42,7 @@ def index(req, lag=0):
     ''' + 
     utils.tohtml(
       'Nightly Receipts by Server',
-      ('Server', 'ccid', 'Receipts', 'Taxable', 'Tabs Closed'), 
+      ('Server', 'posid', 'ccid', 'Receipts', 'Reciepts', 'Taxable', 'Tabs Closed', 'Date'), 
       results
     ) +
     utils.tohtml(

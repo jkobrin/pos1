@@ -21,17 +21,30 @@ def index(req):
   label=False
   )
 
+  eod = utils.select('''
+    SELECT total, dtotal  
+    FROM nd_tots  
+    WHERE dat = date(now() - INTERVAL '1' day);''' % locals(),
+    incursor=None,
+    label=False
+  )
+  
   html = (
     '''  
       <html>
       <body>
-    ''' +
+    ''' + 
+    utils.tohtml(
+    "Totals",
+    ('Dinner','Lunch'), 
+    eod
+    )  +
     utils.tohtml(
       "Yesterday BEV sales",
       ('Name','Count', 'Category', 'Order Times'), 
       bev_sold
     ) +
-    '''</body></html>'''
+    '''</body></html>'''  
   )
 
   return html
