@@ -748,10 +748,10 @@
         table_id = cfg_item.name;
         if(g_currentTable == table_id)
         {
-          var reopen_id = http_request("GET", "reopen/get_reopen_id", "table="+table_id);
+          var reopen_id = http_request("GET", "reopen.py/get_reopen_id", "table="+table_id);
           if (reopen_id != null && confirm("Re-open table "+table_id+"?"))
           {
-            http_request("POST", "reopen", "reopen_id="+reopen_id);
+            http_request("POST", "reopen.py", "reopen_id="+reopen_id);
             synchronize_now();
           }  
         }
@@ -759,7 +759,7 @@
         {
           if(confirm("Move all items from table "+g_tab_to_move+" to " + table_id+"?"))
           {
-            http_request("POST", "move_tab", "p_from="+g_tab_to_move+"&p_to="+table_id);
+            http_request("POST", "move_tab.py", "p_from="+g_tab_to_move+"&p_to="+table_id);
             synchronize_now();
           }
           g_tab_to_move = null;
@@ -1252,9 +1252,14 @@
       );
       synchronize_now();
 
-      leave_receipt_screen();
       pin_input().value = '';
-    }  
+
+      //printwin = window.open();
+      //printwin.document.write(receipt_table.innerHTML);
+      //printwin.print();
+      //w.close();
+      leave_receipt_screen();
+    }
 
     g_order_pane_items = null;
     function get_order_pane_item(item_id)

@@ -22,7 +22,7 @@ def go():
           
         
       slip_text = get_slip_text(rec)
-      utils.print_slip(slip_text) 
+      utils.file_slip(slip_text, outfile = '/var/www/tipslips/'+rec['first_name']+'_'+rec['last_name']+'_pay') 
 
 def get_slip_text(rec):
     

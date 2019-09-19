@@ -56,6 +56,10 @@ def label_query_rows(labels, rows):
 def now():
   return datetime.datetime.now().strftime("%H:%M %m/%d")
 
+def file_slip(text, outfile=None, lang=None):
+    slipfile = open(outfile, 'w')
+    slipfile.write(text)
+    slipfile.close()
 
 def print_slip(text, outfile=None, lang=None):
     slipfile = tempfile.NamedTemporaryFile(delete=False)
@@ -77,7 +81,7 @@ def get_cursor():
     conn = MySQLdb.connect (host = "localhost",
                           user = "pos",
                           passwd = "pos",
-                          db = "pos", 
+                          db = hostname(), 
                           charset = "utf8")
 
     return conn.cursor()
@@ -88,13 +92,7 @@ def execute(sql, incursor=None, args= None):
   my_logger.info(sql + repr(args))
 
   if not incursor:
-    conn = MySQLdb.connect (host = "localhost",
-                          user = "pos",
-                          passwd = "pos",
-                          db = "pos",
-                          charset = "utf8")
-
-    cursor = conn.cursor()
+    cursor = get_cursor()
   else:
     cursor = incursor
 
@@ -102,17 +100,10 @@ def execute(sql, incursor=None, args= None):
 
   if not incursor:
     cursor.close()
-    conn.close()
 
 def select_as_html(query, incursor=None):
   if not incursor:
-    conn = MySQLdb.connect (host = "localhost",
-                          user = "pos",
-                          passwd = "pos",
-                          db = "pos",
-                          charset = "utf8")
-
-    cursor = conn.cursor()
+    cursor = get_cursor()
   else:
     cursor = incursor
 
@@ -122,7 +113,6 @@ def select_as_html(query, incursor=None):
 
   if not incursor:
     cursor.close()
-    conn.close()
 
   return rows
 
@@ -144,13 +134,7 @@ def select(query, incursor=None, label=True, args=None):
   my_logger.debug(query)
 
   if not incursor:
-    conn = MySQLdb.connect (host = "localhost",
-                          user = "pos",
-                          passwd = "pos",
-                          db = "pos",
-                          charset = "utf8")
-
-    cursor = conn.cursor()
+    cursor = get_cursor()
   else:
     cursor = incursor
 
@@ -168,7 +152,6 @@ def select(query, incursor=None, label=True, args=None):
 
   if not incursor:
     cursor.close()
-    conn.close()
 
   return results
 

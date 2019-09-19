@@ -1,8 +1,0 @@
-AuthUserFile /var/www/.htpasswd
-AuthType Basic
-AuthName "protected"
-
-<Files "t1.py">
-Require valid-user
-</Files>
-

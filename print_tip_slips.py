@@ -34,9 +34,12 @@ def index(req):
     TOTAL: ${total_tips}
     '''.format(**rec)
 
-    utils.print_slip(text) #, outfile = '/tmp/slips/'+rec['last_name']+'_'+rec['first_name']+'_tip') #, lang='html') 
+    slipfile = open('/var/www/tipslips/'+rec['last_name']+'_'+rec['first_name']+'_tip', 'w')
+    slipfile.write(text.encode('latin1', 'replace'))
+    slipfile.close()
+    #utils.print_slip(text, outfile = '/tmp/'+rec['last_name']+'_'+rec['first_name']+'_tip') #, lang='html') 
 
-  utils.execute('''update hours set paid = true where paid = false and tip_pay is not null''');
+  #utils.execute('''update hours set paid = true where paid = false and tip_pay is not null''');
 
   return json.dumps('printing %s slips' % len(tip_data))
 
