@@ -258,8 +258,12 @@
   </style>
 
   <!--<script type="text/javascript" src="js/scripts/jquery-1.8.3.min.js"></script>-->
-  <link rel="stylesheet" href="jq453/jqwidgets/styles/jqx.base.css" type="text/css" />
+  <!--<link rel="stylesheet" href="jq453/jqwidgets/styles/jqx.base.css" type="text/css" />-->
   <script type="text/javascript" src="jq453/scripts/jquery-1.11.2.js"></script>
+  <script type="text/javascript" src="js/printing/epos-print-4.1.0.js"></script>
+  <script type="text/javascript" src="js/printing/print.js"></script>
+  
+
   <script> 
     /********** data transfer utils *************/
     function format_http_params(params)
@@ -1245,15 +1249,18 @@
     {
       if (pin() == '') return set_pin_and_do(function(){close_check(shouldPrint)});
 
-      http_request("POST", "close_tab.py", 
+      receipt_text = http_request("POST", "close_tab.py", 
         "table="+g_currentTable+
         "&shouldPrint="+shouldPrint+
         "&serverpin="+pin()
       );
+      pin_input().value = '';
+
+      alert("printer ip: "+ g_config.printer.ipaddr + "devid: "+g_config.printer.devid);
+      print(receipt_text, g_config.printer.ipaddr, g_config.printer.devid, g_config.printer.timeout);
       synchronize_now();
 
       leave_receipt_screen();
-      pin_input().value = '';
     }  
 
     g_order_pane_items = null;
