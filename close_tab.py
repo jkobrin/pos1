@@ -45,11 +45,11 @@ def index(req, table, shouldPrint, serverpin, close=True):
   if shouldPrint:
     utils.print_slip(receipt_text)
 
-  for cert in gift_certs:
-    if shouldPrint or cert.is_gift():
-      cert.print_out()
+  #for cert in gift_certs:
+  #  if shouldPrint or cert.is_gift():
+  #    cert.print_out()
 
-  return json.dumps(None)
+  return json.dumps(receipt_text)
 
 
 def set_paid(req, table, val):
