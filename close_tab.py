@@ -42,9 +42,6 @@ def index(req, table, shouldPrint, serverpin, close=True):
 
   cursor.close()
 
-  if shouldPrint:
-    utils.print_slip(receipt_text)
-
   #for cert in gift_certs:
   #  if shouldPrint or cert.is_gift():
   #    cert.print_out()

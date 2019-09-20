@@ -18,10 +18,11 @@ function print(msg, ipaddr, devid, timeout) {
     builder.addTextLang('en').addTextSmooth(true);
 
     // append message
-    builder.addTextStyle(false, false, true);
+    //builder.addTextStyle(false, false, true);
     builder.addTextFont(builder.FONT_B);
+    //builder.addTextAlign(builder.ALIGN_CENTER);
     builder.addTextSize(2, 2);
-    builder.addTextLineSpace(40);
+    builder.addTextLineSpace(50);
     builder.addText(msg);
     //builder.addTextStyle(false, false, false);
     builder.addFeedUnit(16);

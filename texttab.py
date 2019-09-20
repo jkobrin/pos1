@@ -72,7 +72,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
 
   divider = '-'*(NUMWIDTH + TEXTWIDTH) + "\n"
 
-  if utils.is_salumi():
+  if utils.hostname() == 'salsrv':
     tabtext = "SALUMI".center(NUMWIDTH + TEXTWIDTH) + '\n'
     tabtext += "5600 Merrick Rd Massapequa".center(NUMWIDTH + TEXTWIDTH) + '\n'
     tabtext += "516-620-0057".center(NUMWIDTH + TEXTWIDTH) + '\n\n'

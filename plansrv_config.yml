@@ -2,6 +2,12 @@ style:
   backgroundColor: "#f0c040"
   #backgroundImage: "url(http://fullhdwallpapers.ru/image/flags/17421/flag-ssha-granzh.jpg)"
 
+printer:
+  #ipaddr: 192.168.1.184
+  ipaddr: 192.168.1.151
+  devid: local_printer
+  timeout: 30000
+
 coupon:
   #filename: /var/www/coupon.pdf
 
