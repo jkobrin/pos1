@@ -6,6 +6,7 @@ from datetime import date
 import os, subprocess
 
 import utils
+import config_loader
 
 
 def clean(data_str):
@@ -34,7 +35,8 @@ def get_wine_xml():
       order by listorder
       ''' % locals())
 
-    if cat in ('Red Wine', 'Bubbly', 'Bottled Beer', 'House Cocktails') or utils.hostname() == 'plansrv' and cat == 'White Wine':
+    if (cat in ('Red Wine', 'Bubbly', 'Bottled Beer', 'House Cocktails')
+        or config_loader.config_dict['new_page_for_white_wine'] and cat == 'White Wine'):
       style = 'P19' #this style starts new page
     else:
       style = 'P20'
@@ -75,7 +77,7 @@ def fodt_text():
   doc = open('/var/www/winelist_head.xml.frag').read()
   for frag in get_wine_xml():
     doc += frag
-  if utils.hostname() == 'plansrv':
+  if config_loader.config_dict['use_wine_fun']:
     doc += open('/var/www/winefun.xml.frag').read()
   doc += open('/var/www/winelist_tail.xml.frag').read()
 

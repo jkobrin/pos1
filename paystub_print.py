@@ -7,6 +7,7 @@ import utils
 import datetime
 import tax
 from random import randint
+import config_loader
 
 
 def get_stub_data(person_id, week_of, table_name, incursor):  
@@ -51,11 +52,8 @@ def get_stub_data(person_id, week_of, table_name, incursor):
   # make one dictionary of the two result sets
   result = stub_data[0] # start with stub_data
   result.update(stub_ytd_data[0]) #add the YTD stuff to it
+  result["BUSS_INFO_LINE"] = config_loader.config['paystub_buss_info_line']
 
-  if utils.hostname() == 'salsrv':
-    result["BUSS_INFO_LINE"] = "SALUMI dba Ultraviolet Enterprises 5600 Merrick RD, Massapequa, NY 11758 516-620-0057"
-  else:  
-    result["BUSS_INFO_LINE"] = "PLANCHA dba Infrared Enterprises 931 Franklin AVE, GardenCity, NY 516-246-9459"
   return result
 
 

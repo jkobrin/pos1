@@ -1,18 +1,17 @@
 
-import yaml, json, re
+import json, re, copy
 from mylog import my_logger
 import utils
+import config_loader
 from texttab import TAXRATE
 log = my_logger
-
-CONFIG_FILE_NAME = '/var/www/' + utils.hostname() + '_config.yml'
 
 MAX_NAME_LEN = 32
 
 winecats = re.compile('.* Wine|Before \& After|Dessert|Bubbly')
 
 def load_config():
-  cfg = yaml.load(open(CONFIG_FILE_NAME))
+  cfg = copy.deepcopy(config_loader.config_dict)
 
   populate_staff_tabs(cfg)
   load_db_config(cfg)  
