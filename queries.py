@@ -128,7 +128,7 @@ def hours(lag_days):
     label=True
   )
 
-def weekly_pay(printmode=0, incursor = None):
+def weekly_pay(printmode=0, incursor = None, label=True):
 
   if incursor is None:
     incursor = utils.get_cursor()
@@ -142,13 +142,13 @@ def weekly_pay(printmode=0, incursor = None):
       last_name, first_name,
       round(hours_worked, 1) hours_worked,
       pay_rate,
+      round(weekly_pay) as gross_wage,
       fed_withholding + nys_withholding + medicare_tax + social_security_tax as weekly_tax,
       round(weekly_pay -fed_withholding -nys_withholding -medicare_tax -social_security_tax) as net_wage,
       tips,
-      (select sum(tip_pay) 
-        from hours h where h.person_id = ps.person_id and h.paid = false and h.tip_pay is not null) unpaid_tips,
       (select group_concat(concat_ws(' - $', date_format(intime, '%%a %%b %%D'), tip_pay) SEPARATOR '|') 
-        from hours h where h.person_id = ps.person_id and h.paid = false and h.tip_pay is not null) as tip_detail,
+        from hours h where h.person_id = ps.person_id and yearweek(intime) = yearweek(ps.week_of)) as tip_detail,
+      round(weekly_pay + tips) as total_pay,
       total_hourly_pay
       from %s ps
       where yearweek(week_of) = yearweek(now() - interval '1' week)
@@ -160,7 +160,7 @@ def weekly_pay(printmode=0, incursor = None):
       break
 
   if printmode == 1:
-    return utils.select('''select * from v_PAY_STUB''', incursor=incursor)
+    return utils.select('''select * from v_PAY_STUB''', incursor=incursor, label= label)
   else: 
     return utils.select('''
       select 
@@ -171,21 +171,26 @@ def weekly_pay(printmode=0, incursor = None):
           pst.hours_worked, concat(pst.hours_worked, ' / ', ps.hours_worked)) hours_worked,
         IF(pst.pay_rate = ps.pay_rate or ps.pay_rate is null, 
           pst.pay_rate, concat(pst.pay_rate, ' / ', ps.pay_rate)) pay_rate,
+        IF(pst.gross_wage = ps.gross_wage or ps.gross_wage is null, 
+          pst.gross_wage, concat(pst.gross_wage, ' / ', ps.gross_wage)) gross_wage,
         IF(pst.weekly_tax = ps.weekly_tax or ps.weekly_tax is null, 
           pst.weekly_tax, concat(pst.weekly_tax, ' / ', ps.weekly_tax)) weekly_tax,
         IF(pst.net_wage = ps.net_wage or ps.net_wage is null, 
           pst.net_wage, concat(pst.net_wage, ' / ', ps.net_wage)) net_wage,
         IF(pst.tips = ps.tips or ps.tips is null, 
           pst.tips, concat(pst.tips, ' / ', ps.tips)) tips,
+        IF(pst.total_pay = ps.total_pay or ps.total_pay is null, 
+          pst.total_pay, concat(pst.total_pay, ' / ', ps.total_pay)) total_pay,
         IF(pst.total_hourly_pay = ps.total_hourly_pay or ps.total_hourly_pay is null, 
-          pst.total_hourly_pay, concat(pst.total_hourly_pay, ' / ', ps.total_hourly_pay)) total_hourly_pay
+          pst.total_hourly_pay, concat(pst.total_hourly_pay, ' / ', ps.total_hourly_pay)) total_hourly_pay,
+        pst.tip_detail  
         from   
         v_PAY_STUB_TEMP pst LEFT OUTER JOIN v_PAY_STUB ps on pst.week_of = ps.week_of
         and pst.first_name = ps.first_name and pst.last_name = ps.last_name
         order by last_name, first_name
     ''', 
     incursor = incursor,
-    label= False
+    label= label
     )    
 
   

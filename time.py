@@ -5,11 +5,11 @@ import utils, queries, print_pay_slips, populate_pay_stub, paystub_print
 
 
 
-def index(req, doprint=0):
+def index(req):
 
   cursor = utils.get_cursor()
   populate_response = populate_pay_stub.populate_pay_stub(temp = True, incursor = cursor)
-  weekly = queries.weekly_pay(incursor=cursor)
+  weekly = queries.weekly_pay(incursor=cursor, label=False)
   
   payroll_sql = '''
 	SELECT week_of,
@@ -58,13 +58,17 @@ def index(req, doprint=0):
   ''' )
   if populate_response:
     html += '<h1>' + populate_response + '</h1>'
-
+  else:  
+    html +='''
+	<form action="print_slips.htm" method="POST">
+  	<input type="submit" value="commit paystubs">
+	</form>
+    '''
   html += (
     utils.tohtml(
       'Hours worked per week by person',
-      ('week of', 'last name',  'first_name', 'hours_worked', 'rate', 'tax', 'net weekly wage', 'tips', 'total hourly'),
-      weekly,
-      breakonfirst = True
+       ('week of', 'last name',  'first name', 'hours worked', 'rate', 'gross wage', 'tax', 'net weekly wage', 'tips', 'total pay', 'total hourly', 'tip details'),
+      weekly
     ) +
     utils.tohtml(
       'New Payroll',
@@ -87,10 +91,6 @@ def index(req, doprint=0):
   )
 
   return html
-
-def print_pay():
-    populate_response = populate_pay_stub.populate_pay_stub(temp = False)
-    print_pay_slips.go()
 
 
 if __name__ == '__main__':
