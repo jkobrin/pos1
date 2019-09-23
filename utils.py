@@ -1,4 +1,5 @@
 import json
+from decimal import Decimal
 import MySQLdb
 import datetime
 import os
@@ -173,7 +174,7 @@ class MyJSONEncoder(json.JSONEncoder):
   def default(self, obj):
       if isinstance(obj, datetime.date):
           return obj.isoformat()
-      if isinstance(obj, decimal.Decimal):
+      if isinstance(obj, Decimal):
         #Decimal type has no json encoding
           return str(obj)
 

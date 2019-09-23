@@ -7,12 +7,6 @@ import utils, queries, print_pay_slips, populate_pay_stub, paystub_print
 
 def index(req, doprint=0):
 
-  if doprint:
-    print_pay()
-    print_message="<p> PRINTED.<br>"
-  else:
-    print_message = ""
-
   cursor = utils.get_cursor()
   populate_response = populate_pay_stub.populate_pay_stub(temp = True, incursor = cursor)
   weekly = queries.weekly_pay(incursor=cursor)
@@ -64,12 +58,7 @@ def index(req, doprint=0):
   ''' )
   if populate_response:
     html += '<h1>' + populate_response + '</h1>'
-  else:  
-    html +='''
-	<form action="time.py?doprint=1" method="POST">
-  	<input type="submit" value="print pay slips">
-	</form>
-    ''' + print_message
+
   html += (
     utils.tohtml(
       'Hours worked per week by person',

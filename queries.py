@@ -135,21 +135,25 @@ def weekly_pay(printmode=0, incursor = None):
 
   for table_name in ('PAY_STUB', 'PAY_STUB_TEMP'):
     utils.execute('''
-      create temporary table v_%(table_name)s
+      create temporary table v_%s
       as
       select
       week_of,
       last_name, first_name,
-      hours_worked,
+      round(hours_worked, 1) hours_worked,
       pay_rate,
       fed_withholding + nys_withholding + medicare_tax + social_security_tax as weekly_tax,
       round(weekly_pay -fed_withholding -nys_withholding -medicare_tax -social_security_tax) as net_wage,
       tips,
+      (select sum(tip_pay) 
+        from hours h where h.person_id = ps.person_id and h.paid = false and h.tip_pay is not null) unpaid_tips,
+      (select group_concat(concat_ws(' - $', date_format(intime, '%%a %%b %%D'), tip_pay) SEPARATOR '|') 
+        from hours h where h.person_id = ps.person_id and h.paid = false and h.tip_pay is not null) as tip_detail,
       total_hourly_pay
-      from %(table_name)s
+      from %s ps
       where yearweek(week_of) = yearweek(now() - interval '1' week)
-      order by last_name, first_name''' % locals(),
-      incursor=incursor,
+      order by last_name, first_name'''%(table_name, table_name),
+      incursor=incursor 
       )
 
     if printmode == 1:

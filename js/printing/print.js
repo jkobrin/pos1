@@ -60,12 +60,10 @@ function print(msg, ipaddr, devid, timeout) {
     epos.send(builder.toString());
 }
 
-g_amount = 0;
-function print_gift (amount) {
+//function print_gift (amount) {
     // to be continued
-    g_amount = amount;
-    setTimeout(print_gift1);
-}
+ //   setTimeout(print_gift1, 500, amount);
+//}
 
 
 var g_gift_height = 1200;
@@ -73,8 +71,9 @@ var g_gift_width = 512;
 var fudge1 = 50;
 var fudge2 = 100;
 
-function print_gift1 () {
+function print_gift1 (amount) {
 
+    console.log("print_gift1 called with amount: " + amount);
     //
     // draw print data
     //
@@ -98,12 +97,12 @@ function print_gift1 () {
     context.textAlign = 'right';
     context.textBaseline = 'top';
     context.font = 'normal normal normal 128px "Arial", sans-serif';
-    context.fillText(g_amount, g_gift_height -fudge1 , -g_gift_width+fudge1);
+    context.fillText(amount, g_gift_height -fudge1 , -g_gift_width+fudge1);
 
     context.textAlign = 'left';
     context.textBaseline = 'bottom';
     context.font = 'normal normal normal 128px "Arial", sans-serif';
-    context.fillText(g_amount, 0+fudge1 , 0-fudge1);
+    context.fillText(amount, 0+fudge1 , 0-fudge1);
 
 
     context.textAlign = 'left';
@@ -118,6 +117,8 @@ function print_gift1 () {
     context.fillText("931 Franklin Ave.", g_gift_height * 5/6, -g_gift_width/2 +24*2);
     context.fillText("Garden City, NY", g_gift_height * 5/6, -g_gift_width/2 +24*3);
 
+    //put it back like it was so next time this func is called it will not rotate already rotated context further
+    context.rotate(-Math.PI / 2);
 
     //
     // print
