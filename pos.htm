@@ -1249,14 +1249,21 @@
     {
       if (pin() == '') return set_pin_and_do(function(){close_check(shouldPrint)});
 
-      receipt_text = http_request("POST", "close_tab.py", 
+      response = http_request("POST", "close_tab.py", 
         "table="+g_currentTable+
         "&shouldPrint="+shouldPrint+
         "&serverpin="+pin()
       );
       pin_input().value = '';
 
-      print(receipt_text, g_config.printer.ipaddr, g_config.printer.devid, g_config.printer.timeout);
+      if (shouldPrint) {
+        print(response.receipt_text, g_config.printer.ipaddr, g_config.printer.devid, g_config.printer.timeout);
+      }
+
+      for (gci in response.gift_certs){
+        print_gift1(response.gift_certs[gci]);
+        //alert(response.gift_certs[gci]);
+      }  
 
       synchronize_now();
       leave_receipt_screen();
@@ -1472,7 +1479,7 @@
       } 
       else 
       { 
-        alert (txt +' - item not found in inventory')
+        //add_item_box.innerHTML = txt +' - item not found in inventory')
       };
     }
 

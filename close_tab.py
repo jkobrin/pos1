@@ -46,7 +46,7 @@ def index(req, table, shouldPrint, serverpin, close=True):
   #  if shouldPrint or cert.is_gift():
   #    cert.print_out()
 
-  return json.dumps(receipt_text)
+  return json.dumps({'receipt_text': receipt_text, 'gift_certs': [gc.value for gc in gift_certs if gc.is_gift()]})
 
 
 def set_paid(req, table, val):
