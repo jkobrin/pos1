@@ -9,6 +9,10 @@ log = my_logger
 MAX_NAME_LEN = 32
 
 winecats = re.compile('.* Wine|Before \& After|Dessert|Bubbly')
+beercats = re.compile('.*Beer.*')
+
+CORONA_WINE_DISCOUNT = 6
+CORONA_BEER_DISCOUNT = 3
 
 def load_config():
   cfg = copy.deepcopy(config_loader.config_dict)
@@ -23,7 +27,14 @@ def load_config():
       for item in subcat['items']:
         item['category'] = catname
         item['subcategory'] = subcatname
-        item['price'] = item.get('retail_price')
+        if beercats.match(subcatname):
+          #corona discount
+          item['price'] = item['retail_price'] - CORONA_BEER_DISCOUNT
+        elif winecats.match(subcatname) and not item['name'].startswith('qt:'):
+          item['price'] = item['retail_price'] - CORONA_WINE_DISCOUNT
+        else:
+          item['price'] = item.get('retail_price')
+
         if not item.has_key('name'):
            raise Exception('no name for item: ' + str(item))
         item['name'] = unicode(item['name'])[:MAX_NAME_LEN]
@@ -45,6 +56,13 @@ def load_db_config(cfg):
   for supercat in supercats:
     cfg['menu']['categories'].append(supercat)
     supercat['subcategories'] = []
+    if supercat['name'] == 'bev':
+      recent = utils.select('''select distinct menu_item_id from order_item 
+	where item_name rlike 'qt:' and date(created) > curdate() - interval '72' hour''')
+      recents = [rec["menu_item_id"] for rec in recent]
+      btg = {'name':"by_the_glass", 'items': []}
+       
+      supercat['subcategories'].append(btg)
 
     for cat in utils.select('''select distinct category as name from sku where supercategory = %s 
       and bin is not null and bin != '0' and active = True and category is not null''', 
@@ -65,6 +83,8 @@ def load_db_config(cfg):
             qtitem['retail_price'] = item['qtprice']
             qtitem['name'] = 'qt: '+item['name']
             cat['items'].append(qtitem)
+            if qtitem['id'] in recents:
+              btg['items'].append(qtitem)
 
 
 def populate_staff_tabs(cfg):
