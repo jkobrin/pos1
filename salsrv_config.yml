@@ -1,3 +1,19 @@
+#server side settings
+db:
+  name: salsrv
+
+paystub_buss_info_line: "SALUMI dba Ultraviolet Enterprises 5600 Merrick RD, Massapequa, NY 11758 516-620-0057"
+
+guest_check_header: "SALUMI\n5600 Merrick Rd Massapequa\n516-620-0057"
+#"HALUMI\nRiverndale Run\nThe Massapequas\n516-555-5557"
+
+new_page_for_white_wine: false
+use_wine_fun: false
+
+coupon:
+  #filename: /var/www/coupon.pdf
+
+
 style:
   backgroundColor: gray
   #backgroundImage: "url(http://alpinebakeryandtrattoria.com/wp-content/uploads/2015/12/new-years-eve-alpine.jpg)"

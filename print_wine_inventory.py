@@ -29,7 +29,7 @@ def go(query):
           # if we just finished a previous category, insert a
           # page-break
         if catname is not None:
-          inventory_text += ''
+          inventory_text += '\n'
         # and in any case print the new category name
         catname = rec['category']
         inventory_text += catname+':\n'
@@ -41,8 +41,7 @@ def go(query):
         str(rec['estimated_units_remaining']) + '\n'
       )
 
-    utils.print_slip(inventory_text )#, outfile = '/var/www/paystubs/wi')
-    return  json.dumps(None)
+    return  json.dumps(inventory_text)
 		
 
 def cellar_list(req = None):

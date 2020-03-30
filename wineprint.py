@@ -35,7 +35,7 @@ def get_wine_xml():
       order by listorder
       ''' % locals())
 
-    if (cat in ('Red Wine', 'Bubbly', 'Bottled Beer', 'House Cocktails')
+    if (cat in ('Red Wine', 'Bubbly', 'Bottled Beer', 'Beer', 'Sparkling Wine', 'House Cocktails')
         or config_loader.config_dict['new_page_for_white_wine'] and cat == 'White Wine'):
       style = 'P19' #this style starts new page
     else:
@@ -69,7 +69,7 @@ def get_wine_xml():
       yield '</text:p>'
       yield '''<text:p text:style-name="P18"/>'''
       
-      if cat in ('House Cocktails', 'Bottled Beer'):	
+      if cat in ('House Cocktails', 'Classic Cocktails', 'Beer'):	
       	yield '''<text:p/>'''
 
 
@@ -97,7 +97,7 @@ def gen_fodt_and_pdf(req = None):
   new_fodt.close()
 
   #subprocess.call(['soffice', '--headless', '--convert-to pdf', '--outdir /var/www/winelists/', fodtname])
-  os.system('soffice --headless --convert-to pdf --outdir ' + winelists_dir + ' ' + fodtname)
+  os.system('soffice "-env:UserInstallation=file:///tmp/LibreOffice_Conversion" --headless --convert-to pdf --outdir ' + winelists_dir + ' ' + fodtname)
   return 'done'
 
 

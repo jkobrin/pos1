@@ -433,6 +433,7 @@
           is_held: false, 
           is_comped: command.is_comped, 
           price: command.price, 
+	  taxable: command.taxable,
           parent_item: command.parent_item,
           minutes_old: 0, minutes_since_mod: null, seconds_since_mod: null}
         )  
@@ -1239,12 +1240,6 @@
       leave_clock_screen();
     }  
 
-    function print_cellar_list()
-    {
-      http_request("POST", "print_wine_inventory.py/cellar_list", ""); 
-      alert('printing cellar list');
-    }  
-
     function close_check(shouldPrint)
     {
       if (pin() == '') return set_pin_and_do(function(){close_check(shouldPrint)});
@@ -1509,8 +1504,7 @@
     <!--<div><a href="javascript:goLeft()"  class="leftLink" id="goLeftLink">&lt;</a></div>-->
     <div><a href="javascript:go_to_cook_screen()"  class="leftLink" id="cooklink">C</a></div>
     <div><a href="javascript:go_to_clock_screen()"  class="leftLink" id="clocklink">P</a></div>
-    <div><a href="http://salumibarli.com:3681/wiki" class="leftLink" id="wlink">W</a></div>
-    <div><a href="javascript:print_cellar_list()" class="leftLink" id="wlink">L</a></div>
+    <div><a href="http://sites.google.com/view/plancha/portal" class="leftLink" id="wlink">'I'</a></div>
     </div>
     <div id="board"></div>
 

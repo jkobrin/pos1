@@ -23,7 +23,7 @@ def go():
       rec['open_tab'] = open_tab
       if open_tab is not None:
         if open_tab <= rec['payout']:
-          #close_staff_tab(rec['first_name'], rec['last_name'])
+          close_staff_tab(rec['first_name'], rec['last_name'])
           rec['open_tab'] = str(open_tab) + ' CLOSED'
           rec['payout'] = round(float(rec['payout']) - float(open_tab))
         else:
