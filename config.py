@@ -41,13 +41,13 @@ def load_db_config(cfg):
   
   supercats = utils.select('''select distinct supercategory as name from sku 
     where bin is not null and bin != '0' and active=True and supercategory is not null
-    order by id''')
+    order by supercategory''')
   for supercat in supercats:
     cfg['menu']['categories'].append(supercat)
     supercat['subcategories'] = []
 
     for cat in utils.select('''select distinct category as name from sku where supercategory = %s 
-      and bin is not null and bin != '0' and active = True and category is not null order by bin''', 
+      and bin is not null and bin != '0' and active = True and category is not null''', 
         args = (supercat['name'],)):
       supercat['subcategories'].append(cat)
       cat['items'] = []
