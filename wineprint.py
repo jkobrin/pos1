@@ -45,7 +45,7 @@ def get_wine_xml():
    <text:h text:style-name="%s">%s</text:h>
    ''' % (style, escape(cat))
 
-    if cat in ('House Cocktails', 'Bottled Beer'):	
+    if cat in ('House Cocktails', 'Beer', 'Classic Cocktails'):	
       yield '''<text:p/>'''
 
 
@@ -79,6 +79,8 @@ def fodt_text():
     doc += frag
   if config_loader.config_dict['use_wine_fun']:
     doc += open('/var/www/winefun.xml.frag').read()
+  elif utils.hostname() == 'salsrv':
+    doc += open('/var/www/wineaward.xml.frag').read()
   doc += open('/var/www/winelist_tail.xml.frag').read()
 
   return doc
