@@ -298,7 +298,7 @@
    <style:paragraph-properties fo:margin-left="0.4898in" fo:margin-right="0in" fo:text-align="center" style:justify-single-word="false" fo:text-indent="-0.5in" style:auto-text-indent="false">
     <style:tab-stops/>
    </style:paragraph-properties>
-   <style:text-properties fo:font-size="14pt" style:font-size-asian="14pt" style:font-size-complex="14pt"/>
+   <style:text-properties fo:font-size="18pt" style:font-size-asian="14pt" style:font-size-complex="14pt"/>
   </style:style>
   <style:style style:name="P16" style:family="paragraph" style:parent-style-name="Preformatted_20_Text">
    <style:paragraph-properties fo:margin-left="0.4898in" fo:margin-right="0in" fo:text-align="center" style:justify-single-word="false" fo:text-indent="-0.5in" style:auto-text-indent="false">

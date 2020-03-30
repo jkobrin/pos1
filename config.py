@@ -8,8 +8,10 @@ log = my_logger
 CONFIG_FILE_NAME = '/var/www/' + utils.hostname() + '_config.yml'
 
 MAX_NAME_LEN = 32
-
+CORONA_WINE_DISCOUNT = 6
+CORONA_BEER_DISCOUNT = 3
 winecats = re.compile('.* Wine|Before \& After|Dessert|Bubbly')
+beercats = re.compile('.*Beer.*')
 
 def load_config():
   cfg = yaml.load(open(CONFIG_FILE_NAME))
@@ -24,7 +26,15 @@ def load_config():
       for item in subcat['items']:
         item['category'] = catname
         item['subcategory'] = subcatname
-        item['price'] = item.get('retail_price')
+
+        if beercats.match(subcatname) and item['name'] != 'Growler':
+          #corona discount
+          item['price'] = item['retail_price'] - CORONA_BEER_DISCOUNT
+        elif winecats.match(subcatname) and not item['name'].startswith('qt:'):
+          item['price'] = item['retail_price'] - CORONA_WINE_DISCOUNT
+        else:
+          item['price'] = item.get('retail_price')
+
         if not item.has_key('name'):
            raise Exception('no name for item: ' + str(item))
         item['name'] = unicode(item['name'])[:MAX_NAME_LEN]

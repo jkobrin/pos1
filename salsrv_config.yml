@@ -1,6 +1,7 @@
 style:
-  backgroundColor: gray
+  backgroundColor: "#2020f0"
   #backgroundImage: "url(http://alpinebakeryandtrattoria.com/wp-content/uploads/2015/12/new-years-eve-alpine.jpg)"
+  #backgroundImage: "url(http://salumibarli.com:3681/resources/snowflake.jpg)"
 
 menu:
   categories:
@@ -43,14 +44,37 @@ menu:
             - name: W10
             - name: W11
             - name: W12
-        - name: takeout
+            - name: W13
+            - name: W14
+            - name: W15
+        - name: outside
           items: 
             - name: O1 
             - name: O2
             - name: O3
+            - name: O4
+        - name: takeout
+          items: 
             - name: T1 
             - name: T2 
             - name: T3 
+            - name: T4 
+            - name: T5 
+            - name: T6 
+            - name: T7 
+            - name: T8 
+            - name: T9 
+            - name: T10 
+            - name: T11 
+            - name: T12
+            - name: T13
+            - name: T14
+            - name: T15
+            - name: T16
+            - name: T17
+            - name: T18
+            - name: T19
+            - name: T20
             - name: TEST
         - name: floor
           items: 

@@ -141,7 +141,7 @@
     {
       width:100%;
       height:50%;
-      color: blue;
+      color: black;
       text-align: right;
       font-size: 72pt;
       display: none;
@@ -429,6 +429,7 @@
           is_held: false, 
           is_comped: command.is_comped, 
           price: command.price, 
+          taxable: command.taxable,
           parent_item: command.parent_item,
           minutes_old: 0, minutes_since_mod: null, seconds_since_mod: null}
         )  
@@ -610,7 +611,7 @@
     function is_waiting_tab(input_tab)
     {
       var tab = get_config_item(input_tab);
-      return (tab && (tab.subcategory=='waiting' || tab.subcategory=='other'));
+      return (tab && (tab.subcategory=='waiting' || tab.subcategory=='takeout'|| tab.subcategory=='other'));
     }
 
     function create_tab_descriptor_item()
@@ -626,7 +627,7 @@
         is_delivered: false,
         taxable: false, 
         is_comped: false,
-        is_held: true,
+        is_held: false,
         price: 0,
         fraction: 0,
         parent_item: null,
@@ -1496,7 +1497,7 @@
     <!--<div><a href="javascript:goLeft()"  class="leftLink" id="goLeftLink">&lt;</a></div>-->
     <div><a href="javascript:go_to_cook_screen()"  class="leftLink" id="cooklink">C</a></div>
     <div><a href="javascript:go_to_clock_screen()"  class="leftLink" id="clocklink">P</a></div>
-    <div><a href="http://salumibarli.com:3681/wiki" class="leftLink" id="wlink">W</a></div>
+    <div><a href="https://sites.google.com/view/salumi/p-o-r-t-a-l" class="leftLink" id="wlink">'I'</a></div>
     <div><a href="javascript:print_cellar_list()" class="leftLink" id="wlink">L</a></div>
     </div>
     <div id="board"></div>
