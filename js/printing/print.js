@@ -2,8 +2,20 @@
 // print queue ticket
 //
 
-function print(msg, ipaddr, devid, timeout) {
+function epos_print(msg, ipaddr, devid, timeout) {
 
+    if (ipaddr == "SERVER_INSTALL"){
+      $.ajax({ url: "iprint.py", type: "POST", dataType: "json", cache: false, async: async,
+        data: {'msg' : msg},
+        error: function (jqXHR, textStatus, errorThrown) {
+          alert("AJAX ERROR: \n" + textStatus + "\n" + errorThrown + "\n" + jqXHR.responseText);
+        },
+        success: function () {console.log('print success')}
+      });
+      return;
+    }
+    //else...
+      
     //
     // build print data
     //

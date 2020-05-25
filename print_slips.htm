@@ -78,7 +78,7 @@
     {
       for (idx in g_slips){
         slip_text = g_slips[idx];
-        print(slip_text, g_config.printer.ipaddr, g_config.printer.devid, g_config.printer.timeout);
+        epos_print(slip_text, g_config.printer.ipaddr, g_config.printer.devid, g_config.printer.timeout);
       }
     }  
         

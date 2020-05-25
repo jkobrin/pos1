@@ -1,3 +1,5 @@
+
+from subprocess import Popen, PIPE
 import json
 from decimal import Decimal
 import MySQLdb
@@ -28,19 +30,12 @@ def file_slip(text, outfile=None, lang=None):
     slipfile.close()
 
 def print_slip(text, outfile=None, lang=None):
-    slipfile = tempfile.NamedTemporaryFile(delete=False)
-    slipfile.write(text.encode('latin1', 'replace'))
-    filename = slipfile.name
-    slipfile.close()
 
-    args = ['enscript', '--font=Courier-Bold@11/16', '-B', '-MEnv10']
-    if outfile is not None: args.append('-o' + outfile)
-    if lang is not None: args.append('-w' + lang)
-    args.append(filename)
+    cmd = ['enscript', '--font=Courier-Bold@11/16', '-B', '-MEnv10']
+    if outfile is not None: cmd.append('-o' + outfile)
+    if lang is not None: cmd.append('-w' + lang)
 
-    subprocess.call(args)
-
-    os.remove(filename)
+    Popen(cmd, stdin=PIPE).communicate(input=text)
 
 
 def get_cursor():

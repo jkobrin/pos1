@@ -1,5 +1,6 @@
 import json
 import utils
+import config_loader
 import texttab
 
 from mylog import my_logger
@@ -42,11 +43,14 @@ def index(req, table, shouldPrint, serverpin, close=True):
 
   cursor.close()
 
-  #for cert in gift_certs:
-  #  if shouldPrint or cert.is_gift():
-  #    cert.print_out()
-
-  return json.dumps({'receipt_text': receipt_text, 'gift_certs': [gc.value for gc in gift_certs if gc.is_gift()]})
+  if config_loader.config_dict['printer']['ipaddr'] == 'SERVER_INSTALL':
+    utils.print_slip(receipt_text)
+    for cert in gift_certs:
+      if shouldPrint or cert.is_gift():
+        cert.print_out()
+    return json.dumps({'receipt_text': receipt_text})    
+  else:
+    return json.dumps({'receipt_text': receipt_text, 'gift_certs': [gc.value for gc in gift_certs if gc.is_gift()]})
 
 
 def set_paid(req, table, val):
