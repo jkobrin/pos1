@@ -43,6 +43,39 @@ def index(req):
       "Yesterday BEV sales",
       ('Name','Count', 'Category', 'Order Times'), 
       bev_sold
+    )
+  )
+
+  bev_week_sold = utils.select('''
+  SELECT item_name, count(*), sku.category, group_concat(order_item.created)
+  FROM order_item join sku on order_item.menu_item_id = sku.id
+  WHERE yearweek(order_item.created - INTERVAL '4' hour) = yearweek(now() - INTERVAL '28' hour)
+  and order_item.is_cancelled = False
+  and sku.supercategory = 'bev'
+  group by item_name
+  order by sku.category, item_name;''',
+  incursor=None,
+  label=False
+  )
+
+  week_eod = utils.select('''
+    SELECT sum(total), sum(dtotal)  
+    FROM nd_tots  
+    WHERE dat > date(now() - INTERVAL '1' week);''' % locals(),
+    incursor=None,
+    label=False
+  )
+  
+  html += (
+    utils.tohtml(
+    "Week Totals",
+    ('Dinner','Lunch'), 
+    week_eod
+    )  +
+    utils.tohtml(
+      "Week BEV sales",
+      ('Name','Count', 'Category', 'Order Times'), 
+      bev_week_sold
     ) +
     '''</body></html>'''  
   )
