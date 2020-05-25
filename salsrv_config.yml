@@ -1,3 +1,28 @@
+db:
+  name: pos
+
+#paystub_buss_info_line: "HAL Corp. Riverdale"
+paystub_buss_info_line: "SALUMI dba Ultraviolet Enterprises 5600 Merrick RD, Massapequa, NY 11758 516-620-0057"
+#paystub_buss_info_line: "PLANCHA dba Infrared Enterprises 931 Franklin AVE, GardenCity, NY 516-246-9459"
+
+#guest_check_header: "HALUMI\nRiverndale Run\nThe Massapequas\n516-555-5557"
+guest_check_header: "SALUMI\n5600 Merrick Rd Massapequa\n516-620-0057"
+#guest_check_header: "PLANCHA\n931 Franklin Avenue\nGarden City, NY\n516-246-9459"
+
+new_page_for_white_wine: false #plancha true
+use_wine_fun: false #plancha true
+
+coupon:
+  #filename: /var/www/coupon.pdf
+
+printer:
+  ipaddr: SERVER_INSTALL
+  devid: FILE
+  timeout: 30000
+
+portal_url: "https://sites.google.com/view/salumi/p-o-r-t-a-l"
+#portal_url: "http://sites.google.com/view/plancha/portal"
+
 style:
   backgroundColor: "#2020f0"
   #backgroundImage: "url(http://alpinebakeryandtrattoria.com/wp-content/uploads/2015/12/new-years-eve-alpine.jpg)"
