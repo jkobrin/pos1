@@ -1,6 +1,7 @@
 import json, re, utils
 import MySQLdb
 from gift_cert import GiftCert
+import config_loader
 
 TAXRATE = .08625
 TEXTWIDTH = 18
@@ -70,20 +71,15 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   tax = round(taxable_total*TAXRATE, 2)
   total = foodtotal + tax
 
-  divider = '-'*(NUMWIDTH + TEXTWIDTH) + "\n"
+  tabtext = ''
+  for line in config_loader.config_dict['guest_check_header'].splitlines():
+    tabtext += line.center(NUMWIDTH + TEXTWIDTH) + '\n'
 
-  if utils.is_salumi():
-    tabtext = "SALUMI".center(NUMWIDTH + TEXTWIDTH) + '\n'
-    tabtext += "5600 Merrick Rd Massapequa".center(NUMWIDTH + TEXTWIDTH) + '\n'
-    tabtext += "516-620-0057".center(NUMWIDTH + TEXTWIDTH) + '\n\n'
-  else:
-    tabtext = "PLANCHA".center(NUMWIDTH + TEXTWIDTH) + '\n'
-    tabtext += "931 Franklin Avenue".center(NUMWIDTH + TEXTWIDTH) + '\n'
-    tabtext += "Garden City, NY".center(NUMWIDTH + TEXTWIDTH) + '\n'
-    tabtext += "516-246-9459".center(NUMWIDTH + TEXTWIDTH) + '\n\n'
   now = utils.now()
-  tabtext += '  Table:%s  %s  \n\n' % (table,  closed_time or now)
+  tabtext += '\n  Table:%s  %s  \n\n' % (table,  closed_time or now)
   tabtext += 'FOOD & DRINK' + "\n" 
+
+  divider = '-'*(NUMWIDTH + TEXTWIDTH) + "\n"
   tabtext += divider
 
   gift_certs = [GiftCert({'name':'coupon'})]

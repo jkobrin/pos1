@@ -253,10 +253,12 @@
       
     function print_tip_slips()
     {
-      response = http_request("GET", "print_tip_slips.py");
-      alert(response);
+      response = http_request("GET", "print_pay_slips.py/go");
+      for (idx in response){
+        slip_text = response[idx];
+        alert (slip_text);
+      }
     }  
-      
         
     function getTableHTML()
     {

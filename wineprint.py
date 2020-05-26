@@ -6,6 +6,7 @@ from datetime import date
 import os, subprocess
 
 import utils
+import config_loader
 
 
 def clean(data_str):
@@ -34,7 +35,8 @@ def get_wine_xml():
       order by listorder
       ''' % locals())
 
-    if cat in ('Red Wine', 'Bubbly', 'Bottled Beer', 'House Cocktails') or utils.hostname() == 'plansrv' and cat == 'White Wine':
+    if (cat in ('Red Wine', 'Bubbly', 'Bottled Beer', 'Beer', 'Sparkling Wine', 'House Cocktails')
+        or config_loader.config_dict['new_page_for_white_wine'] and cat == 'White Wine'):
       style = 'P19' #this style starts new page
     else:
       style = 'P20'
@@ -67,7 +69,7 @@ def get_wine_xml():
       yield '</text:p>'
       yield '''<text:p text:style-name="P18"/>'''
       
-      if cat in ('House Cocktails', 'Bottled Beer'):	
+      if cat in ('House Cocktails', 'Classic Cocktails', 'Beer'):	
       	yield '''<text:p/>'''
 
 
@@ -75,7 +77,7 @@ def fodt_text():
   doc = open('/var/www/winelist_head.xml.frag').read()
   for frag in get_wine_xml():
     doc += frag
-  if utils.hostname() == 'plansrv':
+  if config_loader.config_dict['use_wine_fun']:
     doc += open('/var/www/winefun.xml.frag').read()
   elif utils.hostname() == 'salsrv':
     doc += open('/var/www/wineaward.xml.frag').read()
@@ -97,7 +99,7 @@ def gen_fodt_and_pdf(req = None):
   new_fodt.close()
 
   #subprocess.call(['soffice', '--headless', '--convert-to pdf', '--outdir /var/www/winelists/', fodtname])
-  os.system('soffice --headless --convert-to pdf --outdir ' + winelists_dir + ' ' + fodtname)
+  os.system('soffice "-env:UserInstallation=file:///tmp/LibreOffice_Conversion" --headless --convert-to pdf --outdir ' + winelists_dir + ' ' + fodtname)
   return 'done'
 
 

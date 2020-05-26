@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <style>
-    body { width: 98%; text-align: center; background-color: blue;}
+    body { width: 98%; text-align: center; background-color: #f0c040;}
     #rustomTextArea {position: fixed; top: 0; left: 0; z-index:100;}
 
     </style>
@@ -36,13 +36,17 @@
     <script type="text/javascript" src="jq453/jqwidgets/jqxgrid.columnsresize.js"></script> 
     <script type="text/javascript" src="jq453/jqwidgets/jqxgrid.columnsreorder.js"></script> 
     <script type="text/javascript" src="jq453/jqwidgets/jqxwindow.js"></script>
+
+    <script type="text/javascript" src="js/printing/epos-print-4.1.0.js"></script>
+    <script type="text/javascript" src="js/printing/print.js?ver67"></script>
+
     <script type="text/javascript">
 
         var query = window.location.search.match(/[^\?].*$/g);
 
         $(document).ready(function () {
             
-            var theme = 'darkblue';
+            var theme = 'yellowgreen';
 
             lastedit = null;
             edits = {};
@@ -252,15 +256,20 @@
                     url: "print_wine_inventory.py/go",
                     data: {'query': ''+query},
                     cache: false,
-                    success: function (data, status, xhr) {
-                        alert('print request sent')
+                    success: function (pwi_data, pwi_status, pwi_xhr) {
+			$.ajax({
+			    type: "GET",
+			    datatype: "json",
+			    url: "config.py/get",
+			    cache: false,
+			    success: function (cfg_data, cfg_status, cfg_xhr) {
+                              cfg_data = JSON.parse(cfg_data);
+			      print(pwi_data, cfg_data.printer.ipaddr, cfg_data.printer.devid, cfg_data.printer.timeout);
+			    },
+			    error: err_page
+                  	});
                     },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        //console.log(textStatus + ":::" + errorThrown + "\n" + jqXHR.responseText);
-                        document.write("<p>"+textStatus + ":::" + errorThrown + "</p>" + jqXHR.responseText)
-			                  errWindow = window.open("","MsgWindow","width=200,height=100");
-                        errWindow.document.write("<p>"+textStatus + ":::" + errorThrown + "</p>" + jqXHR.responseText);
-                    }
+                    error: err_page
                   });
             });
 
@@ -272,16 +281,21 @@
             });
 
         });
+
+	function err_page(jqxhr, textstatus, errorthrown) {
+	  //console.log(textstatus + ":::" + errorthrown + "\n" + jqxhr.responsetext);
+	  document.write("<p>"+textstatus + ":::" + errorthrown + "</p>" + jqxhr.responsetext)
+			  errwindow = window.open("","msgwindow","width=200,height=100");
+	  errwindow.document.write("<p>"+textstatus + ":::" + errorthrown + "</p>" + jqxhr.responsetext);
+        }
     </script>
 </head>
 <body class='default'>
-    <!--<div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left; width: 98%; height: 100%; background-color: pink">-->
         <center><input value="submit changes" id="submiteditsbutton" type="button" style='margin:20px' />
         <input value="print inventory" id="printinventorybutton" type="button" style='margin:20px' />
         </center>
         <div id="jqxgrid">
         </div>
-    <!--</div>-->
        <div id="popupWindow">
             <div>Edit</div>
             <div style="overflow: hidden;">

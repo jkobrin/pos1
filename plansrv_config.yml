@@ -1,9 +1,31 @@
-style:
-  backgroundColor: "#f0c040"
-  #backgroundImage: "url(http://fullhdwallpapers.ru/image/flags/17421/flag-ssha-granzh.jpg)"
+#server side settings
+db:
+  name: plansrv
+
+paystub_buss_info_line: "PLANCHA dba Infrared Enterprises 931 Franklin AVE, GardenCity, NY 516-246-9459"
+#"HAL Corp. Riverdale"
+#"SALUMI dba Ultraviolet Enterprises 5600 Merrick RD, Massapequa, NY 11758 516-620-0057"
+
+guest_check_header: "PLANCHA\n931 Franklin Avenue\nGarden City, NY\n516-246-9459"
+#"HALUMI\nRiverndale Run\nThe Massapequas\n516-555-5557"
+#"SALUMI\n5600 Merrick Rd Massapequa\n516-620-0057"
+
+new_page_for_white_wine: true
+use_wine_fun: true
 
 coupon:
   #filename: /var/www/coupon.pdf
+
+
+style:
+  backgroundColor: "#f0c040"
+  #backgroundImage: "url(http://fullhdwallpapers.ru/image/flags/17421/flag-ssha-granzh.jpg)"
+  #backgroundImage: "url(http://specsrv.barplancha.com:/resources/redgoldstars.jpg)"
+
+printer:
+  ipaddr: 192.168.1.151
+  devid: local_printer
+  timeout: 30000
 
 menu:
   categories:
@@ -48,8 +70,26 @@ menu:
             - name: O5
             - name: O6
             - name: O7
+            - name: O8
+            - name: O9
+            - name: O10
+            - name: O11
+            - name: O12
+            - name: O13
+            - name: O14
+            - name: O15
+            - name: D1
+            - name: D2
+            - name: D3
+            - name: D4
+            - name: D5
+            - name: D6
+            - name: D7
+            - name: D8
+            - name: D9
             - name: TEST1
             - name: TEST2
+            - name: Tran Tobin 
         - name: takeout
           items: 
             - name: T1 

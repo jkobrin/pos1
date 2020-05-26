@@ -17,7 +17,7 @@ coupon:
 
 printer:
   ipaddr: SERVER_INSTALL
-  devid: FILE
+  devid: local_printer
   timeout: 30000
 
 portal_url: "https://sites.google.com/view/salumi/p-o-r-t-a-l"

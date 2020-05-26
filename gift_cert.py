@@ -5,6 +5,9 @@ class GiftCert(object):
   
   def __init__(self, item):
     self.item = item
+    if self.is_gift():
+      self.serial = str(self.item['id'])
+      self.value = str(int(self.item['price']))
 
   def is_gift(self):
     return self.item['name'].startswith('gift')

@@ -1,43 +1,55 @@
-import utils
+import utils, populate_pay_stub
 import queries
-import subprocess
+import json
 from texttab import TAXRATE
 TEXTWIDTH = 25
 
 def go():
+    populate_response = populate_pay_stub.populate_pay_stub(temp=False)
     weekly_pay = queries.weekly_pay(printmode = 1)
 
+    slip_texts = []
     for rec in weekly_pay:
+      #make tip stuff empty strings if they are None
+      rec['tip_detail'] = rec['tip_detail'] or ''
+      #break 'detail' string into seperate indented lines
+      rec['tip_detail'] = '  '+rec['tip_detail'].replace('|', '\n  ')
+
+      #total payout
+      rec['payout'] = float(rec['net_wage']) + rec['tips']
+
+      #modify total payout if there is an open tab
       open_tab = total_staff_tab(rec['first_name'], rec['last_name'])
       rec['open_tab'] = open_tab
-      rec['payout'] = rec['net_wage']
       if open_tab is not None:
-        if open_tab <= rec['net_wage']:
+        if open_tab <= rec['payout']:
           close_staff_tab(rec['first_name'], rec['last_name'])
           rec['open_tab'] = str(open_tab) + ' CLOSED'
-          rec['payout'] = round(float(rec['net_wage']) - float(open_tab))
+          rec['payout'] = round(float(rec['payout']) - float(open_tab))
         else:
           rec['open_tab'] = str(open_tab) + ' STILL OPEN'
           
-          
-        
-      slip_text = get_slip_text(rec)
-      utils.print_slip(slip_text) 
+      slip_texts.append(get_slip_text(rec))
+
+    #utils.execute('''update hours set paid = true where paid = false and tip_pay is not null''');
+    return json.dumps(slip_texts, cls=utils.MyJSONEncoder)
+
 
 def get_slip_text(rec):
     
     text = '''
-    {first_name} {last_name}
-    {week_of}
-    tips: {tips}
-    total hourly: {total_hourly_pay}
-    {hours_worked} hours
-    {pay_rate} per hr.
-    tax: {weekly_tax}
-    net wage: {net_wage}
-    open tab: {open_tab}
+{first_name} {last_name} 
+week of: {week_of}
+{hours_worked} hours @ {pay_rate} per hr.
+wages: {gross_wage}
+week tips: {tips}
+{tip_detail}
+total hourly: {total_hourly_pay}
+total pay {total_pay}
+tax: {weekly_tax}
+open tab: {open_tab}
 
-    PAYOUT: {payout}
+PAYOUT: {payout}
     '''.format(**rec)
 
     return text

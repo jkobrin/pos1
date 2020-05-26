@@ -1,4 +1,4 @@
-import utils
+import utils, queries
 import json
 
 
@@ -21,24 +21,14 @@ def index(req):
     '''
   )
 
-  tip_data = utils.select(tip_slips_query)
+  tip_records = utils.select(tip_slips_query)
+  for record in tip_records: 
+    #break 'detail' string into a list of seperate string objects
+    record['detail'] = record['detail'].split('|')
 
-  for rec in tip_data:
+  #utils.execute('''update hours set paid = true where paid = false and tip_pay is not null''');
 
-    text = '''
-    {first_name} {last_name}'''.format(**rec)
-    for det in rec['detail'].split('|'):
-      text += '''
-    %s'''%det  
-    text +=''' 
-    TOTAL: ${total_tips}
-    '''.format(**rec)
-
-    utils.print_slip(text) #, outfile = '/tmp/slips/'+rec['last_name']+'_'+rec['first_name']+'_tip') #, lang='html') 
-
-  utils.execute('''update hours set paid = true where paid = false and tip_pay is not null''');
-
-  return json.dumps('printing %s slips' % len(tip_data))
+  return json.dumps(tip_records))
 
 
 if __name__ == '__main__':

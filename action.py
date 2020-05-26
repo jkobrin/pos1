@@ -14,7 +14,7 @@ def get_session_id(req):
     cursor = utils.get_cursor()
 
     cursor.execute("insert into client_session values (null, null);");
-    session_id = cursor.connection.insert_id()
+    session_id = cursor.lastrowid
     my_logger.info(req.get_remote_host()+': generated session id: %s'%session_id)
 
     cursor.close()
@@ -52,13 +52,13 @@ def add_item(item_id=None,
       cursor.execute('''
         SELECT id FROM order_group 
         WHERE is_open = TRUE
-        AND table_id = %s''', table_id
+        AND table_id = %s''', (table_id,)
       )
       open_order_group = cursor.fetchone()
       if open_order_group:
         break
       else:
-        cursor.execute('''INSERT INTO order_group VALUES (null, %s, TRUE, null, null, null, null)''', table_id)
+        cursor.execute('''INSERT INTO order_group VALUES (null, %s, TRUE, null, null, null, null)''', (table_id,))
     open_order_group = open_order_group[0];
 
     cursor.execute('''

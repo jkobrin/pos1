@@ -258,8 +258,11 @@
   </style>
 
   <!--<script type="text/javascript" src="js/scripts/jquery-1.8.3.min.js"></script>-->
-  <link rel="stylesheet" href="jq453/jqwidgets/styles/jqx.base.css" type="text/css" />
+  <!--<link rel="stylesheet" href="jq453/jqwidgets/styles/jqx.base.css" type="text/css" />-->
   <script type="text/javascript" src="jq453/scripts/jquery-1.11.2.js"></script>
+  <script type="text/javascript" src="js/printing/epos-print-4.1.0.js"></script>
+  <script type="text/javascript" src="js/printing/print.js?ver181"></script>
+  
   <script> 
     /********** data transfer utils *************/
     function format_http_params(params)
@@ -378,6 +381,8 @@
       document.body.style.backgroundAttachment = 'fixed';
       document.body.style.backgroundColor = g_config.style.backgroundColor;
       document.body.style.backgroundImage = g_config.style.backgroundImage;
+
+      //document.getElementById("portal_link").setAttribute("href", g_config.portal_url);
 
       get_new_session_id();
       synchronize();
@@ -749,10 +754,10 @@
         table_id = cfg_item.name;
         if(g_currentTable == table_id)
         {
-          var reopen_id = http_request("GET", "reopen/get_reopen_id", "table="+table_id);
+          var reopen_id = http_request("GET", "reopen.py/get_reopen_id", "table="+table_id);
           if (reopen_id != null && confirm("Re-open table "+table_id+"?"))
           {
-            http_request("POST", "reopen", "reopen_id="+reopen_id);
+            http_request("POST", "reopen.py", "reopen_id="+reopen_id);
             synchronize_now();
           }  
         }
@@ -760,7 +765,7 @@
         {
           if(confirm("Move all items from table "+g_tab_to_move+" to " + table_id+"?"))
           {
-            http_request("POST", "move_tab", "p_from="+g_tab_to_move+"&p_to="+table_id);
+            http_request("POST", "move_tab.py", "p_from="+g_tab_to_move+"&p_to="+table_id);
             synchronize_now();
           }
           g_tab_to_move = null;
@@ -1236,25 +1241,29 @@
       leave_clock_screen();
     }  
 
-    function print_cellar_list()
-    {
-      http_request("POST", "print_wine_inventory.py/cellar_list", ""); 
-      alert('printing cellar list');
-    }  
-
     function close_check(shouldPrint)
     {
       if (pin() == '') return set_pin_and_do(function(){close_check(shouldPrint)});
 
-      http_request("POST", "close_tab.py", 
+      response = http_request("POST", "close_tab.py", 
         "table="+g_currentTable+
         "&shouldPrint="+shouldPrint+
         "&serverpin="+pin()
       );
-      synchronize_now();
-
-      leave_receipt_screen();
       pin_input().value = '';
+      if (response != null){
+        if (shouldPrint) {
+          epos_print(response.receipt_text, g_config.printer.ipaddr, g_config.printer.devid, g_config.printer.timeout);
+        }
+
+        for (gci in response.gift_certs){
+          print_gift1(response.gift_certs[gci]);
+          //alert(response.gift_certs[gci]);
+        }  
+      }
+
+      synchronize_now();
+      leave_receipt_screen();
     }  
 
     g_order_pane_items = null;
@@ -1467,7 +1476,7 @@
       } 
       else 
       { 
-        alert (txt +' - item not found in inventory')
+        //add_item_box.innerHTML = txt +' - item not found in inventory')
       };
     }
 
@@ -1498,7 +1507,6 @@
     <div><a href="javascript:go_to_cook_screen()"  class="leftLink" id="cooklink">C</a></div>
     <div><a href="javascript:go_to_clock_screen()"  class="leftLink" id="clocklink">P</a></div>
     <div><a href="https://sites.google.com/view/salumi/p-o-r-t-a-l" class="leftLink" id="wlink">'I'</a></div>
-    <div><a href="javascript:print_cellar_list()" class="leftLink" id="wlink">L</a></div>
     </div>
     <div id="board"></div>
 
@@ -1595,6 +1603,12 @@
   <div id="add_item_box" ></div>
   <div id="message_box" ></div>
 
+    <!-- invisible area for drawing gift certs -->
+  <div style="display:none;">
+      <canvas id="canvas" width="512" height="1200"></canvas>
+      <img id="cert_background" src="img/plancha_cert_back1.png" alt="">
+      <!--<img id="cert_background" src="img/coffee.jpg" alt="">-->
+  </div>
 
 
 

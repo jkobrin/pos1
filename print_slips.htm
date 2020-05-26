@@ -1,0 +1,94 @@
+
+<html>
+<head>
+  <style>  
+    .slip_div
+    {
+     float: left;
+     width: 20em;
+     height: 20em;
+     opacity:0.9;
+     font-family:arial;
+     border:2px outset black;
+     background-color:#A0A0C0;
+    }
+  </style>
+
+  <script type="text/javascript" src="jq453/scripts/jquery-1.11.2.js"></script>
+  <script type="text/javascript" src="js/printing/epos-print-4.1.0.js"></script>
+  <script type="text/javascript" src="js/printing/print.js?ver67"></script>
+  <script> 
+
+    // This is the only script on this page. It does basically
+    // everything. 
+    
+    function http_request(method, url, params)
+    {
+      http = new XMLHttpRequest();
+      if(method == "GET")
+      {
+        // append timestamp to url to prevent caching
+        url += "?timestamp=" + new Date().getTime();
+
+        if (params) {url += "&" + params;}
+        http.open(method, url, false);
+        http.send(null);
+      }
+      else
+      {
+        http.open(method, url, false);
+        http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+        http.setRequestHeader("Content-length", params.length);
+        http.setRequestHeader("Connection", "close");
+        http.send(params);
+      }
+
+      response = http.responseText;
+
+      if (http.status != 200)  {
+      // Display error message on page
+        document.write("Error getting config\n\n");
+        document.write(response);
+        return;
+      }
+
+      return eval('(' + response + ')');
+    }  
+
+    g_config = null;
+    g_slips = null;
+    function init(){
+      g_config = http_request("GET", "config.py/get", null);
+      g_slips = http_request("GET", "print_pay_slips.py/go");
+
+      slip_display = document.getElementById("slip_display");
+      for (idx in g_slips){
+        var slip_text = g_slips[idx];
+        var slip_div = document.createElement('div');
+        slip_div.setAttribute("class", "slip_div");
+        slip_display.appendChild(slip_div);
+        var pre = document.createElement('pre');
+        pre.textContent = slip_text
+        slip_div.appendChild(pre);
+
+      }
+    }  
+
+    function print_slips()
+    {
+      for (idx in g_slips){
+        slip_text = g_slips[idx];
+        epos_print(slip_text, g_config.printer.ipaddr, g_config.printer.devid, g_config.printer.timeout);
+      }
+    }  
+        
+  </script>
+</head>
+
+<body onLoad="init()" id='main'>
+
+  <button onclick="print_slips()">print all slips</button>
+  <div id="slip_display"/>
+
+</body>
+</html>

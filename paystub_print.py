@@ -7,6 +7,7 @@ import utils
 import datetime
 import tax
 from random import randint
+import config_loader
 
 
 def get_stub_data(person_id, week_of, table_name, incursor):  
@@ -51,11 +52,8 @@ def get_stub_data(person_id, week_of, table_name, incursor):
   # make one dictionary of the two result sets
   result = stub_data[0] # start with stub_data
   result.update(stub_ytd_data[0]) #add the YTD stuff to it
+  result["BUSS_INFO_LINE"] = config_loader.config_dict['paystub_buss_info_line']
 
-  if utils.hostname() == 'salsrv':
-    result["BUSS_INFO_LINE"] = "SALUMI dba Ultraviolet Enterprises 5600 Merrick RD, Massapequa, NY 11758 516-620-0057"
-  else:  
-    result["BUSS_INFO_LINE"] = "PLANCHA dba Infrared Enterprises 931 Franklin AVE, GardenCity, NY 516-246-9459"
   return result
 
 
@@ -77,7 +75,8 @@ def gen_fodt_and_pdf(stub_data, table_name):
   new_fodt.write(doc)
   new_fodt.close()
 
-  os.system('soffice --headless --convert-to pdf --outdir ' + stubdir + ' ' + fodtname)
+  #os.system('soffice --headless --convert-to pdf --outdir ' + stubdir + ' ' + fodtname)
+  subprocess.call(['soffice', '-env:HOME=/tmp/libreoffice', '--headless', '--convert-to', 'pdf', '--outdir', stubdir, fodtname])
 
 
 def print_stubs(person_id, week_of, table_name, incursor = None):
@@ -193,6 +192,10 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
     print_stubs(0, sunday, table_name, incursor=incursor)
 
 if __name__ == '__main__':
+<<<<<<< HEAD
+=======
+  pass
+>>>>>>> a7c0ea15f5cb86c1cdd9146088fbebf566c5f60c
   #print_recent('Fostakovska', numweeks=12, table_name = 'WEEKLY_PAY_STUB')
   #print_recent('Seney', numweeks=12, table_name = 'WEEKLY_PAY_STUB')
   #print_recent('Seney', numweeks=12, table_name = 'PAY_STUB')
@@ -200,4 +203,7 @@ if __name__ == '__main__':
   #print_recent('Gamez', numweeks=30, table_name = 'PAY_STUB')
   #print_recent('Boccio', numweeks=6, table_name = 'PAY_STUB')
   #print_recent('Jean-Pierre', numweeks=6, table_name = 'PAY_STUB')
+<<<<<<< HEAD
   print_recent('Isaacson', numweeks=6, table_name = 'PAY_STUB')
+=======
+>>>>>>> a7c0ea15f5cb86c1cdd9146088fbebf566c5f60c

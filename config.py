@@ -1,11 +1,10 @@
 
-import yaml, json, re
+import json, re, copy
 from mylog import my_logger
 import utils
+import config_loader
 from texttab import TAXRATE
 log = my_logger
-
-CONFIG_FILE_NAME = '/var/www/' + utils.hostname() + '_config.yml'
 
 MAX_NAME_LEN = 32
 CORONA_WINE_DISCOUNT = 6
@@ -14,7 +13,7 @@ winecats = re.compile('.* Wine|Before \& After|Dessert|Bubbly')
 beercats = re.compile('.*Beer.*')
 
 def load_config():
-  cfg = yaml.load(open(CONFIG_FILE_NAME))
+  cfg = copy.deepcopy(config_loader.config_dict)
 
   populate_staff_tabs(cfg)
   load_db_config(cfg)  
@@ -26,7 +25,6 @@ def load_config():
       for item in subcat['items']:
         item['category'] = catname
         item['subcategory'] = subcatname
-
         if beercats.match(subcatname) and item['name'] != 'Growler':
           #corona discount
           item['price'] = item['retail_price'] - CORONA_BEER_DISCOUNT
@@ -52,13 +50,21 @@ def load_db_config(cfg):
   
   supercats = utils.select('''select distinct supercategory as name from sku 
     where bin is not null and bin != '0' and active=True and supercategory is not null
-    order by id''')
+    order by supercategory''')
   for supercat in supercats:
     cfg['menu']['categories'].append(supercat)
     supercat['subcategories'] = []
+    if supercat['name'] == 'bev':
+      recent = utils.select('''select distinct menu_item_id from order_item 
+	where item_name rlike 'qt:' and date(created) > curdate() - interval '72' hour''')
+      recents = [rec["menu_item_id"] for rec in recent]
+      btg = {'name':"by_the_glass", 'items': []}
+       
+      supercat['subcategories'].append(btg)
+
     for cat in utils.select('''select distinct category as name from sku where supercategory = %s 
-      and bin is not null and bin != '0' and active = True and category is not null order by bin''', 
-        args = (supercat['name'])):
+      and bin is not null and bin != '0' and active = True and category is not null''', 
+        args = (supercat['name'],)):
       supercat['subcategories'].append(cat)
       cat['items'] = []
       for item in utils.select('''select * from sku where supercategory = %s and category = %s
@@ -75,6 +81,8 @@ def load_db_config(cfg):
             qtitem['retail_price'] = item['qtprice']
             qtitem['name'] = 'qt: '+item['name']
             cat['items'].append(qtitem)
+            if qtitem['id'] in recents:
+              btg['items'].append(qtitem)
 
 
 def populate_staff_tabs(cfg):
