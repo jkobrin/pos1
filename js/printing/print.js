@@ -5,7 +5,7 @@
 function epos_print(msg, ipaddr, devid, timeout) {
 
     if (ipaddr == "SERVER_INSTALL"){
-      $.ajax({ url: "iprint.py", type: "POST", dataType: "json", cache: false, async: async,
+      $.ajax({ url: "iprint.py", type: "POST", dataType: "json", cache: false, async: true,
         data: {'msg' : msg},
         error: function (jqXHR, textStatus, errorThrown) {
           alert("AJAX ERROR: \n" + textStatus + "\n" + errorThrown + "\n" + jqXHR.responseText);

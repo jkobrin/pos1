@@ -198,10 +198,11 @@ def get_active_items(incursor=None):
 
   return utils.select(
   ''' SELECT 
-      oi.item_name as item_name, 
-      og.table_id, og.paid_before_close, 
-      oi.id, oi.is_delivered, oi.is_held, oi.is_comped, oi.price,
-      TIMESTAMPDIFF(MINUTE, oi.created, now()) minutes_old,
+      og.table_id, og.paid_before_close,
+      coalesce(og.pickup_time, oip.created, oi.created) pickup_time,
+      (pickup_time is not null) is_pickup, 
+      oi.item_name as item_name, oi.id, 
+      oi.is_delivered, oi.is_held, oi.is_comped, oi.price,
       TIMESTAMPDIFF(MINUTE, oi.updated, now()) minutes_since_mod,
       TIMESTAMPDIFF(SECOND, oi.updated, now()) seconds_since_mod,
       oi.is_cancelled,
@@ -217,7 +218,9 @@ def get_active_items(incursor=None):
       left outer join sku on oi.menu_item_id = sku.id
     where og.is_open = TRUE
     and (oi.is_cancelled = FALSE or TIMESTAMPDIFF(MINUTE, oi.updated, now()) < 1)
-    order by oi.is_held, coalesce(oip.created, oi.created), coalesce(oip.id, oi.id), oi.id'''
+    order by 
+      coalesce(if(oi.is_held, now()+interval 20 minute, null), og.pickup_time - interval 20 minute, oip.created, oi.created), 
+      coalesce(oip.id, oi.id), oi.id'''
     , incursor)
 
 

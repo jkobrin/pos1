@@ -171,7 +171,8 @@ class MyJSONEncoder(json.JSONEncoder):
 
   def default(self, obj):
       if isinstance(obj, datetime.date):
-          return obj.isoformat()
+          return str(obj)
+          #return obj.isoformat() # javascript interperets isoformat time as UTC, which it isn't, it's local
       if isinstance(obj, Decimal):
         #Decimal type has no json encoding
           return str(obj)

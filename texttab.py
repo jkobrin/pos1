@@ -40,6 +40,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   items_query = '''
     SELECT count(*) cnt, og.table_id, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped, oi.taxable, 
       oi.is_cancelled,
+      og.pickup_time,
       time_format(timediff(oi.created, og.created), '+%%H:%%i') creat_time,
       time_format(timediff(oi.updated, oi.created), '+%%H:%%i') updat_time,
       oi.created > '%(reopen_time)s' as creat_after,
@@ -77,6 +78,9 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
 
   now = utils.now()
   tabtext += '\n  Table:%s  %s  \n\n' % (table,  closed_time or now)
+  if items[0]['pickup_time']:
+    tabtext += '  Pickup Time:\n %s\n\n' % items[0]['pickup_time'] 
+
   tabtext += 'FOOD & DRINK' + "\n" 
 
   divider = '-'*(NUMWIDTH + TEXTWIDTH) + "\n"

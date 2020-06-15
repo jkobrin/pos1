@@ -127,39 +127,42 @@
 
 #drop table sku;
 
-CREATE TABLE sku (
-  id int NOT NULL AUTO_INCREMENT,
-  name varchar(64),
-  supercategory varchar(32),
-  category varchar(32),
-  subcategory varchar(32),
-  retail_price float,
-  qtprice float,
-  add_on boolean default False,
-  scalable boolean default False,
-  tax varchar(16),
-  wholesale_price float,
-  supplier varchar(64),
-  vendor_code varchar(8),
-  bin varchar(4),
-  listorder int,
-  upc varchar(16),
-  description varchar(1024),
-  active boolean default true,
-  units_in_stock int(4) DEFAULT '0',
-  inventory_date date default 0,
-  mynotes varchar(256),
-  PRIMARY KEY (`id`)
-)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+#CREATE TABLE sku (
+#  id int NOT NULL AUTO_INCREMENT,
+#  name varchar(64),
+#  supercategory varchar(32),
+#  category varchar(32),
+#  subcategory varchar(32),
+#  retail_price float,
+#  qtprice float,
+#  add_on boolean default False,
+#  scalable boolean default False,
+#  tax varchar(16),
+#  wholesale_price float,
+#  supplier varchar(64),
+#  vendor_code varchar(8),
+#  bin varchar(4),
+#  listorder int,
+#  upc varchar(16),
+#  description varchar(1024),
+#  active boolean default true,
+#  units_in_stock int(4) DEFAULT '0',
+#  inventory_date date default 0,
+#  mynotes varchar(256),
+#  PRIMARY KEY (`id`)
+#)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+#
+#
+#create or replace view sku_inv as 
+#select sku.*, units_in_stock - coalesce(sum(oi.fraction), 0) as estimated_units_remaining
+#from sku left outer join order_item oi on
+#sku.inventory_date <= oi.created
+#and oi.menu_item_id = sku.id 
+#and (oi.is_cancelled is null or oi.is_cancelled = false)
+#where sku.active = true 
+#group by sku.id;
+#
+#alter table order_group add column paid_before_close boolean default false;
 
+alter table order_group add column pickup_time timestamp null default null;
 
-create or replace view sku_inv as 
-select sku.*, units_in_stock - coalesce(sum(oi.fraction), 0) as estimated_units_remaining
-from sku left outer join order_item oi on
-sku.inventory_date <= oi.created
-and oi.menu_item_id = sku.id 
-and (oi.is_cancelled is null or oi.is_cancelled = false)
-where sku.active = true 
-group by sku.id;
-
-alter table order_group add column paid_before_close boolean default false;

@@ -4,8 +4,10 @@ import utils
 from mylog import my_logger
 import queries
 
+from format_time_diff import format_time_from_now
+import datetime
+ 
 from time import sleep
-from random import randint
 
 def get_session_id(req):
     #client will use this to create unique ids for order_item commands it sends to server for DB insertion
@@ -58,7 +60,7 @@ def add_item(item_id=None,
       if open_order_group:
         break
       else:
-        cursor.execute('''INSERT INTO order_group VALUES (null, %s, TRUE, null, null, null, null)''', (table_id,))
+        cursor.execute('''INSERT INTO order_group VALUES (null, %s, TRUE, null, null, null, null, null)''', (table_id,))
     open_order_group = open_order_group[0];
 
     cursor.execute('''
@@ -97,7 +99,6 @@ def set_status(item_id, field, value, **unused):
     ''' % locals())
 
 
-
 def synchronize(req, crud_commands):
     my_logger.info(req.get_remote_host()+': '+crud_commands)
 
@@ -109,8 +110,14 @@ def synchronize(req, crud_commands):
         cancel_item(**command)
       if command['command'] == 'set_status':
         set_status(**command)
+  
+    active_items = queries.get_active_items()
+    for item in active_items:
+      item['time_display'] = (item['is_pickup'] and 'P' or '') + format_time_from_now(datetime.datetime.now(), item['pickup_time'])
+      if item['minutes_since_mod'] is not None:
+        item['time_display'] += '/%s'%item['minutes_since_mod']
 
-    return json.dumps(queries.get_active_items(), encoding='latin-1')
+    return json.dumps(active_items, encoding='latin-1', cls=utils.MyJSONEncoder)
     
 
 

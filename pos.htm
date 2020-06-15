@@ -168,6 +168,20 @@
       float: left;
     }
 
+    #cook_screen .time_display
+    {
+    }
+
+    #date_time_popup button
+    {
+      margin-left: 10%;
+      margin-right: 10%;
+      margin-bottom: 5%;
+      width: 30%;
+      font-size: 30px;
+      float: left;
+    }
+
     #cook_table{
       width: 100%;
       text-align: center;
@@ -201,6 +215,13 @@
     {
       font-size: 18pt;
     }  
+
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
     body,h1,h2,h3,h4,h5,h6 {font-family:Arial;}
 
@@ -262,8 +283,28 @@
   <script type="text/javascript" src="jq453/scripts/jquery-1.11.2.js"></script>
   <script type="text/javascript" src="js/printing/epos-print-4.1.0.js"></script>
   <script type="text/javascript" src="js/printing/print.js?ver181"></script>
-  
   <script> 
+    function now(){return new Date();}
+
+    function format_time(time) {
+       
+       var timediff = Math.round(((new Date()).getTime() - time.getTime())/1000/60) //difference in minutes;
+       if (Math.abs(timediff) < 60 /* 1 hour */) {
+        result = `${timediff} m`;
+       }
+       else if(Math.abs(timediff) < 60*4) /* 4 hours */ {
+        var hour = Math.trunc(timediff/60);
+        var minute = Math.abs(timediff - hour*60);
+        result = `${hour}h ${minute}m`;
+       }
+       else {
+        result = time.toLocaleTimeString('en-US', {weekday: 'short', hour: '2-digit', minute: '2-digit'});
+        result += '<br>' + time.toLocaleDateString('en-US', {month: 'short', day: '2-digit', year: 'numeric'});
+       }
+
+       return result;
+    }
+
     /********** data transfer utils *************/
     function format_http_params(params)
     {
@@ -359,6 +400,7 @@
     // GRIDWIDTH can be anything from one up.
 
     STAFF_FOOD_RATE = .4;
+    DEFAULT_PICKUP_MINUTES = 30;
 
     g_currentTable = null; 
     g_cook_style = false;
@@ -436,7 +478,7 @@
           price: command.price, 
           taxable: command.taxable,
           parent_item: command.parent_item,
-          minutes_old: 0, minutes_since_mod: null, seconds_since_mod: null}
+          time_display: "not sent yet", pickup_time: null, minutes_since_mod: null, seconds_since_mod: null}
         )  
       }
 
@@ -785,25 +827,6 @@
       leave_receipt_screen();
     }
 
-    function toggle_paid()
-    {
-      console.log('setting table '+ g_currentTable + ' paid to ' + !table_is_paid(g_currentTable));
-      http_request("POST", "close_tab.py/set_paid", "table="+g_currentTable+'&val='+!table_is_paid(g_currentTable));
-      synchronize_now();
-      leave_receipt_screen();
-    }
-
-    function table_is_paid(tab)
-    {
-      for(var idx in g_order_pane_items)
-      {
-        var oi = g_order_pane_items[idx];
-        if (oi.paid_before_close && oi.table_id == tab) {return true;}
-      }  
-
-      return false;
-    }  
-      
 
     function is_staff(tab)
     {
@@ -987,11 +1010,11 @@
 
       //now order the list by held last then created time
       //descending
-      uniq_order_items_list.sort(
-        function (a,b) {return a.is_held - b.is_held || b.created - a.created;}
-      );
+      //uniq_order_items_list.sort(
+      //  function (a,b) {return a.is_held - b.is_held || b.created - a.created;}
+      //);
 
-      return uniq_order_items_list;
+      return uniq_order_items; //uniq_order_items_list;
     }  
 
     function get_child_items(item_id)
@@ -1071,12 +1094,7 @@
          (g_cook_style && item.count > 1 ? item.count + 'X ': '') +  
          item.item_name + get_add_on_string_for(item.id) +
         '</td>';
-        var time_display = (
-          item.minutes_since_mod == null?
-            item.minutes_old : 
-            item.minutes_old + '/' + item.minutes_since_mod
-        )    
-        order_items_html += '<td onclick="cookscreen_timeclick(' + item.id + ')">'+time_display+'</td>'
+        order_items_html += '<td class="time_display" onclick="cookscreen_timeclick(' + item.id + ')">'+item.time_display+'</td>'
         order_items_html += '</tr>'
 
       }  
@@ -1157,14 +1175,13 @@
       else { 
         if (pin_callback != null) pin_callback();
       }  
-      
+      pin_callback=null;
       pinput_screen().style.display = 'none';
     }
 
     function set_pin_and_do(f)
     {
       pin_callback = f;
-      //pin_input().value=9999;
       pinput_screen().style.display = 'table';
       pin_input().focus();
     }
@@ -1241,16 +1258,128 @@
       leave_clock_screen();
     }  
 
+    function get_date_string(dat)
+    {
+      var y= dat.getFullYear();
+      var m = dat.getMonth()+1;
+      if(m<10) m="0"+m;
+      var dt = dat.getDate();
+      if(dt<10) dt = "0"+dt;
+      return y+"-"+m+"-"+dt;
+    }
+
+
+    function set_pickup()
+    {
+      pickup_time = table_pickup_time(g_currentTable);
+
+      date_time_popup_caption = document.getElementById("date_time_popup_caption");
+      date_time_popup_caption.innerHTML = "table: "+ g_currentTable + " pickup time :"+pickup_time;
+
+      if (pickup_time != null){
+        //populate input controls with whatever time was previously set for pickup
+        populate_date = new Date(pickup_time);
+      }else{
+        //populate with reasonable default: now +
+        //DEFAULT_PICKUP_MINUTES, which should be like, 30-ish, I
+        //would think
+        populate_date = now();
+        populate_date.setMinutes(now().getMinutes()+DEFAULT_PICKUP_MINUTES); 
+      }  
+
+      //populate the pickup date/time input controls with the
+      //chosen default
+      document.getElementById("pdate").value = get_date_string(populate_date);
+      document.getElementById("ptime").value = `${populate_date.getHours()}:${populate_date.getMinutes()}`;
+
+      pt_popup = document.getElementById("date_time_popup");
+      pt_popup.style.visibility="visible";
+      pt_popup.focus();
+    }
+
+    function set_pickup_done()
+    {
+      var pdate = document.getElementById("pdate").value;
+      var ptime = document.getElementById("ptime").value;
+
+      if (pdate == null || pdate =='')
+      {
+        alert('set valid date');
+        document.getElementById("pdate").focus();
+        return;
+      } 
+
+      if (ptime == null || ptime =='')
+      {
+        alert('set valid time');
+        document.getElementById("ptime").focus();
+        return;
+      } 
+
+      $.ajax({ url: "close_tab.py/set_pickup", type: "POST", dataType: "json", cache: false, async: true,
+        data: {table:g_currentTable, val: pdate +' '+ ptime},
+        error: ajax_error}
+      );
+
+      synchronize_now();
+
+      pt_popup.style.visibility="hidden";
+      go_to_receipt_sceen();
+    }
+
+    function set_pickup_cancel()
+    {
+      pt_popup.style.visibility="hidden";
+    }
+
+    function toggle_paid()
+    {
+      if (pin() == '') return set_pin_and_do(function(){toggle_paid()});
+
+      console.log('setting table '+ g_currentTable + ' paid to ' + !table_is_paid(g_currentTable));
+
+      $.ajax({ url: "close_tab.py/set_paid", type: "POST", dataType: "json", cache: false, async: false,
+        data: {table:g_currentTable, val: !table_is_paid(g_currentTable), serverpin: pin()},
+        error: ajax_error}
+      );
+
+      synchronize_now();
+      leave_receipt_screen();
+    }
+
+    function table_is_paid(tab)
+    {
+      for(var idx in g_order_pane_items)
+      {
+        var oi = g_order_pane_items[idx];
+        if (oi.paid_before_close && oi.table_id == tab) {return true;}
+      }  
+
+      return false;
+    }  
+      
+    function table_pickup_time(tab)
+    {
+      for(var idx in g_order_pane_items)
+      {
+        var oi = g_order_pane_items[idx];
+        if (oi.table_id == tab && oi.is_pickup) {return oi.pickup_time;}
+      }  
+
+      return null;
+    }  
+      
+
     function close_check(shouldPrint)
     {
-      if (pin() == '') return set_pin_and_do(function(){close_check(shouldPrint)});
+      if (!table_is_paid(g_currentTable) && pin() == '') return set_pin_and_do(function(){close_check(shouldPrint)});
 
       response = http_request("POST", "close_tab.py", 
         "table="+g_currentTable+
         "&shouldPrint="+shouldPrint+
         "&serverpin="+pin()
       );
-      pin_input().value = '';
+
       if (response != null){
         if (shouldPrint) {
           epos_print(response.receipt_text, g_config.printer.ipaddr, g_config.printer.devid, g_config.printer.timeout);
@@ -1264,7 +1393,7 @@
 
       synchronize_now();
       leave_receipt_screen();
-    }  
+    }
 
     g_order_pane_items = null;
     function get_order_pane_item(item_id)
@@ -1351,6 +1480,8 @@
 
     function leave_receipt_screen()
     {
+      console.log("leave receipt_screen");
+      pin_input().value = "";
       receipt_screen.style.display="none";
       main_screen.style.display="inline"; 
     }
@@ -1557,6 +1688,7 @@
       <button id=just_close onclick='close_check(false)'>Just Close</button>
       <button onclick='move_tab()'>Move Tab</button>
       <button id=paid onclick='toggle_paid()'/>Paid</button>
+      <button id=paid onclick='set_pickup()'/>Set Pickup</button>
       <button onclick='leave_receipt_screen()'/>Go Back</button>
     </div>
     </center>
@@ -1584,6 +1716,16 @@
         <input type="button" value="cancel" onclick="cancel_item()"> 
       </div>
     </div>
+  </div>
+
+  <div id ="date_time_popup" class="diaframe centered">
+    <div id="date_time_popup_caption" class="diacapt">---</div>
+    <div class="diabuttons">
+      <input name="date" id="pdate" type="date" value=""> 
+      <input name="time" id="ptime" type="time" value=""> 
+    </div>
+    <button id="set_pickup_done" onclick='set_pickup_done()'>Done</button>
+    <button id="set_pickup_cancel" onclick='set_pickup_cancel()'>Cancel</button>
   </div>
 
   <div id ="scale_popup" class="diaframe">
