@@ -79,7 +79,7 @@ def fodt_text():
     doc += frag
   if config_loader.config_dict['use_wine_fun']:
     doc += open('/var/www/winefun.xml.frag').read()
-  elif utils.hostname() == 'salsrv':
+  else:
     doc += open('/var/www/wineaward.xml.frag').read()
   doc += open('/var/www/winelist_tail.xml.frag').read()
 

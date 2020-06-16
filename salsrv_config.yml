@@ -15,6 +15,11 @@ use_wine_fun: false #plancha true
 coupon:
   #filename: /var/www/coupon.pdf
 
+happy_hour:
+  start: 12
+  end: 18
+  discount: .5
+
 printer:
   ipaddr: SERVER_INSTALL
   devid: local_printer
@@ -78,6 +83,17 @@ menu:
             - name: O2
             - name: O3
             - name: O4
+            - name: O5
+            - name: O6
+            - name: O7
+            - name: O8
+            - name: O9
+            - name: O10
+            - name: O11
+            - name: O12
+            - name: O13
+            - name: O14
+            - name: O15
         - name: takeout
           items: 
             - name: T1 

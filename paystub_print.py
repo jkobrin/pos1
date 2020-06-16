@@ -199,4 +199,4 @@ if __name__ == '__main__':
   #print_recent('Graziose', numweeks=12, table_name = 'WEEKLY_PAY_STUB')
   #print_recent('Gamez', numweeks=30, table_name = 'PAY_STUB')
   #print_recent('Boccio', numweeks=6, table_name = 'PAY_STUB')
-  print_recent('Jean-Pierre', numweeks=666, table_name = 'PAY_STUB')
+  #print_recent('Jean-Pierre', numweeks=6, table_name = 'PAY_STUB')

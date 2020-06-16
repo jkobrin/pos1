@@ -114,8 +114,8 @@ def synchronize(req, crud_commands):
     active_items = queries.get_active_items()
     for item in active_items:
       item['time_display'] = (item['is_pickup'] and 'P' or '') + format_time_from_now(datetime.datetime.now(), item['pickup_time'])
-      if item['minutes_since_mod'] is not None:
-        item['time_display'] += '/%s'%item['minutes_since_mod']
+      if item['minutes_since_mod'] is not None and not item['is_pickup']:
+        item['time_display'] += ' ~%s'%item['minutes_since_mod']
       if datetime.datetime.now().date() == item['pickup_time'].date():
         item['time_category'] = "Today";
       elif datetime.datetime.now().date() < item['pickup_time'].date():  
