@@ -353,6 +353,8 @@
 
     // This is the only script on this page. It does basically
     // everything. 
+    CORONA_WINE_DISCOUNT = 6;
+    CORONA_BEER_DISCOUNT = 3;
     
     MAIN_REFRESH_INTERVAL = 10000; //10 seconds
     GRIDWIDTH = 6; 
@@ -804,11 +806,27 @@
       return false;
     }  
       
+    function is_happy_hour()
+    {
+      var hour_now = (new Date()).getHours();
+      var day_now = (new Date()).getHours();
+      console.log(g_config.happy_hour, hour_now);
+      var is_happy_hour = g_config.happy_hour.start < hour_now && 
+      hour_now < g_config.happy_hour.end && day_now !=0 && day_now != 6;
+      console.log("is_happy_hour: " + is_happy_hour);
+      return is_happy_hour;
+    }
 
     function is_staff(tab)
     {
       var tab = get_config_item(tab);
       return (tab && tab.subcategory=='staff_tabs')
+    }
+
+    function is_takeout(tab)
+    {
+      var tab = get_config_item(tab);
+      return (tab && tab.subcategory=='takeout')
     }
 
     var last_item_added = null;
@@ -850,6 +868,22 @@
         price = cfg_item.wholesale_price || cfg_item.price*STAFF_FOOD_RATE;
         price = price*(cfg_item.fraction || 1);
       }
+      else if (is_takeout(table_id) && cfg_item.subcategory.match('.* Wine|Before.*After|Dessert|Bubbly') && fraction == 1) 
+      {
+        console.log("price:  " + price);
+        price = price - CORONA_WINE_DISCOUNT;
+        console.log("CORONA_WINE_DISCOUNT:  " + CORONA_WINE_DISCOUNT);
+        console.log("price:  " + price);
+      }
+      else if (is_takeout(table_id) && cfg_item.subcategory.match('.*Beer.*'))
+      {
+        price = price - CORONA_BEER_DISCOUNT;
+      }
+      else if (is_happy_hour() && !is_takeout(g_currentTable)  && (cfg_item.name.slice(0,3) == 'qt:' ||cfg_item.subcategory.match('.*Beer.*')))
+      {
+        console.log("applying happy our discount of "+g_config.happy_hour.discount);
+        price = price -price*g_config.happy_hour.discount;
+      }  
 
       var taxable = !(cfg_item.name.match(/\bgift\b|tax-free/) || cfg_item.category == 'market' && 
           cfg_item.subcategory.match(/household|drinks|food|candy|soda/)  == null)

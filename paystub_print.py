@@ -192,10 +192,7 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
     print_stubs(0, sunday, table_name, incursor=incursor)
 
 if __name__ == '__main__':
-<<<<<<< HEAD
-=======
   pass
->>>>>>> a7c0ea15f5cb86c1cdd9146088fbebf566c5f60c
   #print_recent('Fostakovska', numweeks=12, table_name = 'WEEKLY_PAY_STUB')
   #print_recent('Seney', numweeks=12, table_name = 'WEEKLY_PAY_STUB')
   #print_recent('Seney', numweeks=12, table_name = 'PAY_STUB')
@@ -203,7 +200,3 @@ if __name__ == '__main__':
   #print_recent('Gamez', numweeks=30, table_name = 'PAY_STUB')
   #print_recent('Boccio', numweeks=6, table_name = 'PAY_STUB')
   #print_recent('Jean-Pierre', numweeks=6, table_name = 'PAY_STUB')
-<<<<<<< HEAD
-  print_recent('Isaacson', numweeks=6, table_name = 'PAY_STUB')
-=======
->>>>>>> a7c0ea15f5cb86c1cdd9146088fbebf566c5f60c
