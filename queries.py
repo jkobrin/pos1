@@ -219,7 +219,9 @@ def get_active_items(incursor=None):
     where og.is_open = TRUE
     and (oi.is_cancelled = FALSE or TIMESTAMPDIFF(MINUTE, oi.updated, now()) < 1)
     order by 
-      coalesce(if(oi.is_held, now()+interval 20 minute, null), og.pickup_time - interval 20 minute, oip.created, oi.created), 
+      coalesce(
+        if(oi.is_held, greatest(now()+interval 1 minute, ifnull(og.pickup_time - interval 20 minute, 0)), null),
+        og.pickup_time - interval 20 minute, oip.created, oi.created), 
       coalesce(oip.id, oi.id), oi.id'''
     , incursor)
 
