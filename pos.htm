@@ -182,7 +182,7 @@
       float: left;
     }
 
-    #cook_table{
+    .cook_table{
       width: 100%;
       text-align: center;
       border-width: 1px;
@@ -194,7 +194,7 @@
       float: left;
     }
 
-    #cook_table th 
+    .cook_table th 
     {
       border-width: 1px;
       padding: 1px;
@@ -202,7 +202,7 @@
       -moz-border-radius: 0px 0px 0px 0px;
     }
 
-    #cook_table td
+    .cook_table td
     {
       border-width: 1px;
       padding-right: 10px;
@@ -1059,8 +1059,18 @@
 
     function refresh_cook_screen()
     {
-      var order_items_html = "";
+      var current_time_category = null;
 
+      cook_tables_div = document.getElementById("cook_tables_div");
+
+      //hide all time cat divs they will be made visible again if
+      //and when they have items put in them
+      var time_cat_divs = cook_tables_div.getElementsByClassName("cat_div");
+      for (i = 0; i < time_cat_divs.length; i++) {
+        time_cat_divs[i].style.display = "none";
+      }
+
+  
       var items = g_cook_style ? cook_style_order_items() : g_order_pane_items;
       for (var idx in items)
       {
@@ -1084,21 +1094,63 @@
         if (item.is_delivered) {classes += ' delivered_item'}
         if (item.is_cancelled) {classes += ' cancelled_item'}
 
-        order_items_html += '<tr class="'+ classes + '">'
-        order_items_html += 
-        '<td onclick="cookscreen_table_click(\'' + item.table_id + '\')">' +
-          item.table_id +
-        '</td>';
-        order_items_html += 
-        '<td onclick="cookscreen_click(' + item.id + ')">' +
-         (g_cook_style && item.count > 1 ? item.count + 'X ': '') +  
-         item.item_name + get_add_on_string_for(item.id) +
-        '</td>';
-        order_items_html += '<td class="time_display" onclick="cookscreen_timeclick(' + item.id + ')">'+item.time_display+'</td>'
-        order_items_html += '</tr>'
+        if (item.time_category != current_time_category){
+          //new category
+          current_time_category = item.time_category;
 
+          var time_cat_cook_table_id = "time_cat_cook_table_"+item.time_category;
+          var cook_table = document.getElementById(time_cat_cook_table_id);
+
+          if (cook_table != null) {
+            //clear old items and in prepartion for the new items
+            cook_table.innerHTML = "";
+
+            //this time category div could be in wrong order now.
+            //We'll remove each and reattatch it as we go to
+            //ensure propper order as given by items from server
+            //then make it visible again
+            var tc_div = document.getElementById("time_cat_div_"+item.time_category);
+            cook_tables_div.removeChild(tc_div);
+            cook_tables_div.appendChild(tc_div);
+            tc_div.style.display = 'inline';
+          }
+          else {
+            // if a cook_table doesn't already exist for this
+            // category, then make one along with it's various
+            // containing divs which should not exist either   
+
+            console.log("no cook table: " + time_cat_cook_table_id + " Creating..");
+            cat_div = document.createElement('div');
+            cat_div.id = "time_cat_div_"+item.time_category;
+            cat_div.setAttribute("class", "cat_div");
+            cook_tables_div.appendChild(cat_div);
+            var cat_head_div = document.createElement('div');
+            cat_head_div.setAttribute("class", "cat_head");
+            cat_head_div.textContent = item.time_category;
+            cat_div.appendChild(cat_head_div);
+            var cat_content_div = document.createElement('div');
+            cat_content_div.id = 'cat_cd_'+item.time_category;
+            cat_content_div.setAttribute("class", "cat_content_div");
+            cat_div.appendChild(cat_content_div);
+            cat_head_div.onclick = make_closure(toggle_vis, cat_content_div);
+            var cook_table = document.createElement('table');
+            cook_table.id = time_cat_cook_table_id;
+            cook_table.setAttribute("class", "cook_table");
+            cook_table.setAttribute("cellpadding", 2);
+            cook_table.setAttribute("cellspacing", 2);
+            cat_content_div.appendChild(cook_table);
+          }
+        }
+
+        //add new item to current cook_table
+        cook_table.innerHTML += ( 
+        '<tr class="'+ classes + '">' +
+        '<td onclick="cookscreen_table_click(\'' + item.table_id + '\')">' + item.table_id + '</td>' +
+        '<td onclick="cookscreen_click(' + item.id + ')">' + (g_cook_style && item.count > 1 ? item.count + 'X ': '') +
+          item.item_name + get_add_on_string_for(item.id) + '</td>' +
+        '<td class="time_display" onclick="cookscreen_timeclick(' + item.id + ')">'+item.time_display+'</td>' +
+        '</tr>');
       }  
-      cook_table.innerHTML = order_items_html;
     }
 
     function go_to_market()
@@ -1471,6 +1523,7 @@
       var y = mouseY(event);
       popup.style.top= y - popup.clientHeight / 2;
       popup.focus();
+      console.log("orderitem_popup shown");
     }
 
     function receipt_table_html(receipt_text)
@@ -1624,6 +1677,7 @@
     // this function hides the pop-up when any of various things happen
     {
       if (popup) {popup.style.visibility="hidden"; }
+      console.log("popup hidden");
     }
 
   </script>
@@ -1698,7 +1752,8 @@
         <button id=cook_screen_go_back onclick='leave_cook_screen()'>Go Back</button>
         <button id=toggle_cook_style_button onclick='toggle_cook_style()'>X-Style: show</button>
         <button id=toggle_cafe_style_button onclick='toggle_cafe_style()'>MKT: show</button>
-        <table id="cook_table" cellspacing=2 cellpadding=2></table>
+        <!--<table id="cook_table" cellspacing=2 cellpadding=2></table>-->
+        <div id ="cook_tables_div"></div>
   </div>
 
 
