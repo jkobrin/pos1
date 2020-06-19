@@ -3,6 +3,7 @@ import MySQLdb
 from xml.sax.saxutils import escape
 import datetime
 import os, subprocess
+import json
 
 import utils
 import config_loader
@@ -85,7 +86,7 @@ def get_menu_html():
         yield '''<div class="item_name">%s</div>'''%display_name
         yield '''</label>'''
         if listprice != 0:
-          yield '''<div class="item_price">%d</div>'''%listprice
+          yield '''<div class="item_price">%g</div>'''%listprice
 
         yield '''<div class="description content">'''
         if description:
@@ -117,6 +118,8 @@ def generate_and_post():
   outfile = open("/var/www/salumiweb/menu.html", "w")
   outfile.writelines(menu)
   outfile.close()
+
+  return json.dumps(None)
     
 
 

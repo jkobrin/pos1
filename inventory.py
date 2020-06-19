@@ -4,8 +4,6 @@ import datetime
 from time import mktime
 import decimal
 
-import menu
-
 
 def get_catering(req):
   return get_inventory("select * from sku_inv where supercategory = 'catering' and bin != '0' order by id")
@@ -98,8 +96,6 @@ def update(req, edits, newrows):
     insert_ids[rowid] = utils.select("select LAST_INSERT_ID()", cursor, False)[0][0]
 
   cursor.close ()
-
-  menu.generate_and_post()
 
   return json.dumps(insert_ids)
 
