@@ -42,9 +42,9 @@ def get_menu_html():
 
     for cat in cats:
       cat = cat['category']
-      yield '''<div class="cat accordion">'''
+      yield '''<div class="category accordion">'''
       yield '''<input type="checkbox" name="%s%s" id="%s%s">'''% (supercat, cat, supercat, cat)
-      yield '''<h2 class="handle"><label for="%s%s">%s</label></h2>'''%(supercat, cat, escape(cat))
+      yield '''<h2 ><label for="%s%s">%s</label></h2>'''%(supercat, cat, escape(cat))
       yield '''<div class="cat_content content">'''
 
       items = utils.select('''
@@ -61,9 +61,10 @@ def get_menu_html():
       current_subcategory = None
       for item in items:
 
-        sku_id, binnum, name, description, subcategory= (
-          clean(escape(unicode(item[key]))) for key in ['id', 'bin', 'name', 'description', 'subcategory']
+        sku_id, binnum, name, display_name, description, subcategory= (
+          clean(escape(unicode(item[key]))) for key in ['id', 'bin', 'name', 'display_name', 'description', 'subcategory']
         )
+        display_name = display_name or name #if display_name is blank default to name
         listprice = item['retail_price']
 
         # do subcat heading if subcat changed
@@ -75,7 +76,7 @@ def get_menu_html():
         yield '''<input type="checkbox" name="%s" id="%s">'''% (sku_id, sku_id)
         yield '''<div class="binnum">%s</div>'''%binnum
         yield '''<label for="%s">'''%sku_id
-        yield '''<div class="item_name">%s</div>'''%name
+        yield '''<div class="item_name">%s</div>'''%display_name
         yield '''</label>'''
         yield '''<div class="item_price">%d</div>'''%listprice
 

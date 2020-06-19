@@ -69,6 +69,7 @@
                     { name: 'bin',            type: 'string' },
                     { name: 'listorder',      type: 'number' },
                     { name: 'upc',         type: 'string' },
+                    { name: 'display_name',         type: 'string' },
                     { name: 'description',         type: 'string' },
                     { name: 'active',         type: 'boolean' },
                     { name: 'units_in_stock', type: 'float' },
@@ -151,6 +152,7 @@
                     { text: 'units_in_stock',datafield: 'units_in_stock', columntype: 'floatinput' , width:90 },
                     { text: 'inventory_date',datafield: 'inventory_date', columntype: 'datetimeinput', cellsformat: 'yyyy-MM-dd', width:90},
                     { text: 'subcategory', datafield: 'subcategory', width:60  },
+                    { text: 'display_name',  datafield: 'display_name',  width:210},
                     { text: 'description',  datafield: 'description',
                         cellbeginedit: function (row) {
                      // open the popup window when the user clicks a button.

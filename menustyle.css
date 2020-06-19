@@ -54,7 +54,7 @@ body {
 
 .accordion .handle label:before {
   font-family: courier;
-  content: ">";
+  content: "+";
   display: inline-block;
   margin-right: 10px;
   font-size: 100%;
@@ -63,12 +63,12 @@ body {
 }
 
 .accordion > input[type="checkbox"]:checked ~ .handle label:before {
-  content: "^";
+  content: "-";
 }
 
 body {
   font-family:arial;
-  background: white;
+  background: tan;
 }  
 
 @media (min-width: 1024px){
@@ -89,7 +89,7 @@ h1 {
 }
 
 h2 {
-  text-align: left;
+  text-align: center;
   margin-left:.25em;
   padding:0;
   margin-bottom:.5em;
@@ -105,8 +105,12 @@ h3 {
 
 
 div.supercategory {
-  background-color: tan;
-  border: 3px outset grey;
+  #background-color: tan;
+  #border: 3px outset grey;
+}  
+  
+
+div.cat_content {
 }  
   
 
@@ -136,6 +140,7 @@ div.item_price{
 
 
 div.description {
+  text-align: left;
   clear: both;
   width: 70%;
   margin-right: 10%;
