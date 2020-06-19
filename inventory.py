@@ -28,7 +28,7 @@ def get_allbev(req):
 def get_wine(req):
   return get_inventory('''
     select * from sku_inv where supercategory = 'bev' 
-    and bin is not null and bin != 0 and category rlike 'Wine|Before & After|Dessert|Bubbly'
+    and bin is not null and bin != 0 and category rlike '^red|^white &|^bubbly'
     order by category, bin''')
 
 def get_beer(req):
