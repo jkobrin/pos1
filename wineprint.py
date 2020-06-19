@@ -79,8 +79,9 @@ def fodt_text():
     doc += frag
   if config_loader.config_dict['use_wine_fun']:
     doc += open('/var/www/winefun.xml.frag').read()
-  else:
+  elif config_loader.config_dict['use_wine_award']:
     doc += open('/var/www/wineaward.xml.frag').read()
+
   doc += open('/var/www/winelist_tail.xml.frag').read()
 
   return doc
@@ -90,6 +91,7 @@ def index(req):
 
 
 def gen_fodt_and_pdf(req = None):
+  return 'done'
   
   doc = fodt_text()
   winelists_dir = "/var/www/winelists/"

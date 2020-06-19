@@ -1,0 +1,146 @@
+/*
+ CSS for the accordian
+*/
+.accordion > input[type="checkbox"] {
+  position: absolute;
+  left: -100vw;
+}
+
+.accordion .content {
+  overflow-y: hidden;
+  height: 0;
+  /*transition: height 0.3s ease;*/
+}
+
+.accordion > input[type="checkbox"]:checked ~ .content {
+  height: auto;
+  overflow: visible;
+}
+
+.accordion label {
+  #display: block;
+}
+
+/*
+ Styling
+*/
+/*
+body {
+  font: 16px/1.5em "Overpass", "Open Sans", Helvetica, sans-serif;
+  color: #333;
+  font-weight: 300;
+}
+
+.accordion {
+  margin-bottom: 1em;
+}
+*/
+
+.accordion .handle {
+  #margin: 0;
+  #font-size: 1.125em;
+  #line-height: 1.2em;
+}
+
+.accordion label {
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.accordion label:hover,
+.accordion label:focus {
+  #background: #d8d8d8;
+}
+
+.accordion .handle label:before {
+  font-family: courier;
+  content: ">";
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 100%;
+  line-height: 1.556em;
+  vertical-align: middle;
+}
+
+.accordion > input[type="checkbox"]:checked ~ .handle label:before {
+  content: "^";
+}
+
+body {
+  font-family:arial;
+  background: white;
+}  
+
+@media (min-width: 1024px){
+  body {
+    width: 1024px;
+  }
+}
+
+@media (max-width: 1023px){
+  body {
+    text-size-adjust: none;
+    font-size:.4in;
+  }
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: left;
+  margin-left:.25em;
+  padding:0;
+  margin-bottom:.5em;
+  margin-top:0;
+  font-weight: normal;
+}
+
+
+h3 {
+  text-align: center;
+  font-weight: normal;
+}
+
+
+div.supercategory {
+  background-color: tan;
+  border: 3px outset grey;
+}  
+  
+
+div.item_block {
+  clear: both;
+}
+
+div.binnum {
+  float: left;
+  #border: outset 2px gray;
+  width: 10%;
+}  
+
+div.item_name{
+  float: left;
+  width: 70%;
+  font-weight:bold;
+  font-family:arial;
+  #font-size:155%;
+  #border: outset 2px gray;
+}
+div.item_price{
+  float: right;
+  width: 10%;
+  #border: outset 2px gray;
+}
+
+
+div.description {
+  clear: both;
+  width: 70%;
+  margin-right: 10%;
+  padding-left: 10%;
+  #border: outset 1px gray;
+	margin-bottom: 1em;
+}
+
