@@ -4,7 +4,7 @@ import datetime
 from time import mktime
 import decimal
 
-import wineprint
+import menu
 
 
 def get_catering(req):
@@ -99,7 +99,7 @@ def update(req, edits, newrows):
 
   cursor.close ()
 
-  wineprint.gen_fodt_and_pdf()
+  menu.generate_and_post()
 
   return json.dumps(insert_ids)
 

@@ -19,6 +19,7 @@
   visibility: visible;
   margin-bottom: 1em;
   padding-top: 0em;
+  color: black;
 }
 
 .accordion > input[type="checkbox"]:checked ~ .cat_content {
@@ -78,6 +79,7 @@ body {
 body {
   font-family:arial;
   background: tan;
+  color: gray;
 }  
 
 @media (min-width: 1024px){
