@@ -42,7 +42,7 @@ def get_menu_html():
 
     for cat in cats:
       cat = cat['category']
-      yield '''<div class="category accordion">'''
+      yield '''<div class="category accordion" id="%s">'''%cat
       yield '''<input type="checkbox" name="%s%s" id="%s%s">'''% (supercat, cat, supercat, cat)
       yield '''<h2 ><label for="%s%s">%s</label></h2>'''%(supercat, cat, escape(cat))
       yield '''<div class="cat_content content">'''

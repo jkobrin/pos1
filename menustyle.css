@@ -9,12 +9,16 @@
 .accordion .content {
   overflow-y: hidden;
   height: 0;
+  visibility: hidden;
   /*transition: height 0.3s ease;*/
 }
 
 .accordion > input[type="checkbox"]:checked ~ .content {
   height: auto;
   overflow: visible;
+  visibility: visible;
+  margin-bottom: 1em;
+  padding-top: 0em;
 }
 
 .accordion label {
@@ -87,6 +91,7 @@ body {
 h1 {
   text-align: center;
   text-transform: lowercase;
+  margin-top: 1em;
 }
 
 h2 {
@@ -96,15 +101,17 @@ h2 {
   margin-bottom:.5em;
   margin-top:0;
   font-weight: normal;
-  text-transform: uppercase;
-  font-family: courier;
+  text-transform: lowercase;
+  #font-family: Times;
+  color: maroon;
 }
 
 
 h3 {
   text-align: center;
   font-weight: normal;
-  text-transform: lowercase;
+  text-transform: uppercase;
+  font-family: courier;
 }
 
 
@@ -115,6 +122,13 @@ div.supercategory {
   
 
 div.cat_content {
+  margin-left: 1em;
+  margin-right: 1em;
+  /*
+  border: 8px double gold;
+  padding-right: 1em;
+  padding-left: 1em;
+  */
 }  
   
 
@@ -125,10 +139,10 @@ div.item_block {
 div.binnum {
   float: left;
   #border: outset 2px gray;
-  width: 10%;
+  width: 15%;
 }  
 
-div#food div.binnum {
+div#food div.binnum, div#cocktails div.binnum {
   float: left;
   visibility: hidden;
   width: 10%;
@@ -138,8 +152,6 @@ div.item_name{
   width: 70%;
   font-weight:bold;
   font-family:arial;
-  #font-size:155%;
-  #border: outset 2px gray;
 }
 div.item_price{
   float: right;
@@ -152,8 +164,8 @@ div.description {
   text-align: left;
   clear: both;
   width: 70%;
-  margin-right: 10%;
-  padding-left: 10%;
+  margin-right: 15%;
+  padding-left: 15%;
   #border: outset 1px gray;
 	margin-bottom: 1em;
 }
