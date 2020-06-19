@@ -21,6 +21,11 @@
   padding-top: 0em;
 }
 
+.accordion > input[type="checkbox"]:checked ~ .cat_content {
+  margin-top: .5em;
+  padding-top: 1em;
+}  
+
 .accordion label {
   #display: block;
 }
@@ -98,12 +103,12 @@ h2 {
   text-align: center;
   margin-left:.25em;
   padding:0;
-  margin-bottom:.5em;
+  margin-bottom:.0em;
   margin-top:0;
   font-weight: normal;
   text-transform: lowercase;
   #font-family: Times;
-  color: maroon;
+  color: black;
 }
 
 
@@ -124,11 +129,10 @@ div.supercategory {
 div.cat_content {
   margin-left: 1em;
   margin-right: 1em;
-  /*
-  border: 8px double gold;
+  
+  border: 8px double gray;
   padding-right: 1em;
   padding-left: 1em;
-  */
 }  
   
 
