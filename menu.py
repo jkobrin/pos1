@@ -32,7 +32,7 @@ def get_menu_html():
 
   for supercat in supercats:
     supercat = supercat['supercategory']
-    yield '''<h1>%s</h1> <div class="supercategory">''' % escape(supercat)
+    yield '''<h1>%s</h1> <div class="supercategory" id="%s">''' % (escape(supercat), supercat)
 
     cats = utils.select('''
       select category from sku 
@@ -60,7 +60,7 @@ def get_menu_html():
 
       current_subcategory = None
       for item in items:
-
+        utils.expand_extra_fields(item)
         sku_id, binnum, name, display_name, description, subcategory= (
           clean(escape(unicode(item[key]))) for key in ['id', 'bin', 'name', 'display_name', 'description', 'subcategory']
         )
@@ -71,7 +71,13 @@ def get_menu_html():
         if current_subcategory != subcategory and subcategory is not None:
           current_subcategory = subcategory
           yield '''<h3>%s</h3>'''%(current_subcategory)
-
+        if description:
+          descriptions = description.split('|')
+          if len(descriptions) > 1:
+            description = descriptions[1]
+            pre_text = descriptions[0]
+            yield '''<div class="description">%s</div>'''%pre_text
+        
         yield '''<div class="item_block accordion">'''
         yield '''<input type="checkbox" name="%s" id="%s">'''% (sku_id, sku_id)
         yield '''<div class="binnum">%s</div>'''%binnum
@@ -84,6 +90,9 @@ def get_menu_html():
         if description:
           for line in description.splitlines():
             yield '''%s<br>''' % line
+        else:
+            yield '''-no info-'''
+          
         yield '</div>' #description
 
         yield '</div> <!-- item block -->' #item_block
