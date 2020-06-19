@@ -65,7 +65,7 @@ def get_menu_html():
           clean(escape(unicode(item[key]))) for key in ['id', 'bin', 'name', 'display_name', 'description', 'subcategory']
         )
         display_name = display_name or name #if display_name is blank default to name
-        listprice = item['retail_price']
+        listprice = item['retail_price'] 
 
         # do subcat heading if subcat changed
         if current_subcategory != subcategory and subcategory is not None:
@@ -84,7 +84,8 @@ def get_menu_html():
         yield '''<label for="%s">'''%sku_id
         yield '''<div class="item_name">%s</div>'''%display_name
         yield '''</label>'''
-        yield '''<div class="item_price">%d</div>'''%listprice
+        if listprice != 0:
+          yield '''<div class="item_price">%d</div>'''%listprice
 
         yield '''<div class="description content">'''
         if description:
