@@ -105,16 +105,19 @@ def get_menu_html():
 
 
 def index(req):
-  global table_of_contents
-  table_of_contents= []
-  body = "\n".join(get_menu_html())
-  toc_html=''
-  for head in table_of_contents:
-    toc_html += '''<p><a href="#%s">%s</a>'''%(head, head)
-
-  return toc_html + body
+  return "\n".join(get_menu_html())
     
   
+def generate_and_post():
+  # get all lines from generator before touching file, so if
+  # there is an error we don't overwrite old file.
+  menu = list(get_menu_html())
+
+  outfile = open("/var/www/salumiweb/menu.html", "w")
+  outfile.writelines(menu)
+  outfile.close()
+    
+
 
 if __name__ == '__main__':
   print gen_fodt_and_pdf()
