@@ -7,8 +7,7 @@ from texttab import TAXRATE
 log = my_logger
 
 MAX_NAME_LEN = 32
-winecats = re.compile('.* Wine|Before \& After|Dessert|Bubbly')
-beercats = re.compile('.*Beer.*')
+winecats = re.compile('^red$|^white|Dessert|Bubbly')
 
 def load_config():
   cfg = copy.deepcopy(config_loader.config_dict)

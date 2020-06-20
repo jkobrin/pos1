@@ -11,21 +11,16 @@
   height: 0;
   visibility: hidden;
   /*transition: height 0.3s ease;*/
+  color: black;
 }
 
 .accordion > input[type="checkbox"]:checked ~ .content {
   height: auto;
   overflow: visible;
-  visibility: visible;
   margin-bottom: 1em;
   padding-top: 0em;
-  color: black;
+  visibility: visible;
 }
-
-.accordion > input[type="checkbox"]:checked ~ .cat_content {
-  margin-top: .5em;
-  padding-top: 1em;
-}  
 
 .accordion label {
   #display: block;
@@ -148,11 +143,6 @@ div.binnum {
   width: 15%;
 }  
 
-div#food div.binnum, div#cocktails div.binnum {
-  float: left;
-  visibility: hidden;
-  width: 10%;
-}  
 div.item_name{
   float: left;
   width: 70%;

@@ -110,13 +110,14 @@
 #alter table order_item add column subcategory varchar(64);
 #alter table order_item add column parent_item INT;
 
-#create or replace view revenue_item as select oi.* from order_item oi, order_group og 
-#where oi.order_group_id = og.id
-#and is_comped = false 
-#and is_cancelled = false 
-#and item_name not like 'gift%' 
-#and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+;'
-#create or replace view taxable_item as select * from revenue_item where taxable = true;
+create or replace view revenue_item as select oi.* from order_item oi, order_group og 
+where oi.order_group_id = og.id
+and is_comped = false 
+and is_cancelled = false 
+and item_name not like 'gift%' 
+and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+;'
+
+create or replace view taxable_item as select * from revenue_item where taxable = true;
 
 #alter table hours add column paid boolean default false;
 #update hours set paid = true where tip_pay is not null;
@@ -153,18 +154,18 @@
 #)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 #
 #
-#create or replace view sku_inv as 
-#select sku.*, units_in_stock - coalesce(sum(oi.fraction), 0) as estimated_units_remaining
-#from sku left outer join order_item oi on
-#sku.inventory_date <= oi.created
-#and oi.menu_item_id = sku.id 
-#and (oi.is_cancelled is null or oi.is_cancelled = false)
-#where sku.active = true 
-#group by sku.id;
-#
+create or replace view sku_inv as 
+select sku.*, units_in_stock - coalesce(sum(oi.fraction), 0) as estimated_units_remaining
+from sku left outer join order_item oi on
+sku.inventory_date <= oi.created
+and oi.menu_item_id = sku.id 
+and (oi.is_cancelled is null or oi.is_cancelled = false)
+where sku.active = true 
+group by sku.id;
+
 #alter table order_group add column paid_before_close boolean default false;
 
 #alter table order_group add column pickup_time timestamp null default null;
 
-alter table sku add column display_name varchar(64) null default null;
+#alter table sku add column display_name varchar(64) null default null;
 

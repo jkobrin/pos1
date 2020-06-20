@@ -7,7 +7,7 @@ import json
 
 import utils
 import config_loader
-
+from config import winecats
 
 def clean(data_str):
   NULLITIES = ('None', 'null', 'NULL', 'Null', '')
@@ -43,6 +43,7 @@ def get_menu_html():
 
     for cat in cats:
       cat = cat['category']
+      is_wine = winecats.search(cat)
       yield '''<div class="category accordion" id="%s">'''%cat
       yield '''<input type="checkbox" name="%s%s" id="%s%s">'''% (supercat, cat, supercat, cat)
       yield '''<h2 ><label for="%s%s">%s</label></h2>'''%(supercat, cat, escape(cat))
@@ -67,6 +68,7 @@ def get_menu_html():
         )
         display_name = display_name or name #if display_name is blank default to name
         listprice = item['retail_price'] 
+        if not is_wine: binnum = ''
 
         # do subcat heading if subcat changed
         if current_subcategory != subcategory and subcategory is not None:
