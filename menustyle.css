@@ -71,6 +71,20 @@ body {
   content: "-";
 }
 
+.cat_label {
+
+}
+
+/* border around category headings joining to category box
+input[type="checkbox"]:checked ~ center>h2>label {
+  padding-left: 1em;
+  padding-right: 1em;
+  border: 4px solid gray;
+  border-bottom: 0;
+}
+*/
+
+
 body {
   font-family:arial;
   background: tan;
@@ -105,15 +119,16 @@ h2 {
   font-weight: normal;
   text-transform: lowercase;
   #font-family: Times;
-  color: maroon;
+  color: black;
 }
 
 
 h3 {
   text-align: center;
-  font-weight: normal;
+  font-weight: bolder;
   text-transform: uppercase;
   font-family: courier;
+  color: maroon;
 }
 
 

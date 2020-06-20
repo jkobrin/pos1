@@ -35,7 +35,8 @@ def get_menu_html():
 
   for supercat in supercats:
     supercat = supercat['supercategory']
-    yield '''<h1>%s</h1> <div class="supercategory" id="%s">''' % (escape(supercat), supercat)
+    yield '''<h1 onclick="majority_toggle_child_checkboxes(this)">%s</h1>
+             <div class="supercategory" id="%s">''' % (escape(supercat), supercat)
 
     cats = utils.select('''
       select category from sku 
@@ -48,7 +49,8 @@ def get_menu_html():
       is_wine = winecats.search(cat)
       yield '''<div class="category accordion" id="%s">'''%cat
       yield '''<input type="checkbox" name="%s%s" id="%s%s">'''% (supercat, cat, supercat, cat)
-      yield '''<h2 ><label for="%s%s">%s</label></h2>'''%(supercat, cat, escape(cat))
+      #yield '''<h2 ><label for="%s%s">%s</label></h2>'''%(supercat, cat, escape(cat))
+      yield '''<center><h2><label class="cat_label" for="%s%s">%s</label></h2></center>'''%(supercat, cat, escape(cat))
       yield '''<div class="cat_content content">'''
 
       items = utils.select('''
@@ -80,7 +82,7 @@ def get_menu_html():
           current_subcategory = subcategory
           yield '''
           <div class="subcategory">
-          <h3 onclick="majority_toggle_child_checkboxes(this.parentElement)"> > %s < </h3>
+          <h3 onclick="majority_toggle_child_checkboxes(this.parentElement)"> --%s-- </h3>
           '''%(current_subcategory)
 
         if description:
