@@ -18,14 +18,16 @@ def clean(data_str):
 def get_menu_html():  
 
   yield '''
-<html>
+  <html>
     <head>
       <meta charset = "UTF-8">
       <title>MENU</title>
       <link rel = "stylesheet" type = "text/css" href = "menustyle.css?id=%s" />
     </head>
-  <body>
-  '''%datetime.datetime.now()
+    <script type="text/javascript" src="menufuncs.js?id=%s"></script>
+    <body>
+  '''%(datetime.datetime.now(), datetime.datetime.now())
+
   supercats = utils.select('''
     select supercategory from sku 
     where active = true and listorder > 0 and bin is not null 
@@ -61,8 +63,7 @@ def get_menu_html():
 
 
       current_subcategory = None
-      for item in items:
-        utils.expand_extra_fields(item)
+      for number, item in enumerate(items):
         sku_id, binnum, name, display_name, description, subcategory= (
           clean(escape(unicode(item[key]))) for key in ['id', 'bin', 'name', 'display_name', 'description', 'subcategory']
         )
@@ -70,10 +71,18 @@ def get_menu_html():
         listprice = item['retail_price'] 
         if not is_wine: binnum = ''
 
+        if subcategory is None and current_subcategory is None:
+          subcategory = cat
+
         # do subcat heading if subcat changed
         if current_subcategory != subcategory and subcategory is not None:
+          if current_subcategory is not None: yield '''</div>'''
           current_subcategory = subcategory
-          yield '''<h3>%s</h3>'''%(current_subcategory)
+          yield '''
+          <div class="subcategory">
+          <h3 onclick="majority_toggle_child_checkboxes(this.parentElement)"> > %s < </h3>
+          '''%(current_subcategory)
+
         if description:
           descriptions = description.split('|')
           if len(descriptions) > 1:
@@ -100,6 +109,8 @@ def get_menu_html():
         yield '</div>' #description
 
         yield '</div> <!-- item block -->' #item_block
+
+      if current_subcategory is not None: yield '''</div>''' #subcategory
 
       yield '''</div></div> <!-- cat_content and cat -->'''#cat_content and cat
 
