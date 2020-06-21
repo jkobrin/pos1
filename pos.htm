@@ -567,12 +567,12 @@
       {
         return null;
       }
-      for(cat_idx in g_config.menu.categories)
+      for(cat_idx in g_config.menu.supercategories)
       {
-        var cat = g_config.menu.categories[cat_idx];
-        for(subcat_idx in cat.subcategories)
+        var cat = g_config.menu.supercategories[cat_idx];
+        for(subcat_idx in cat.categories)
         {
-          var subcat = cat.subcategories[subcat_idx];
+          var subcat = cat.categories[subcat_idx];
           for(item_idx in subcat.items)
           {
             var citem = subcat.items[item_idx];
@@ -589,8 +589,8 @@
 
     function rotateCategory()
     {
-      var categories = g_config.menu.categories;
-      categories.push(categories.shift());
+      var supercategories = g_config.menu.supercategories;
+      supercategories.push(supercategories.shift());
     }
       
     function make_closure(func, arg)
@@ -615,12 +615,12 @@
     function colorTables()
     {
       var tables = [];
-      for(var cidx in g_config.menu.categories)
+      for(var cidx in g_config.menu.supercategories)
       {
-        if (g_config.menu.categories[cidx].name == 'tables'){
-          for (var scidx in g_config.menu.categories[cidx].subcategories)
+        if (g_config.menu.supercategories[cidx].name == 'tables'){
+          for (var scidx in g_config.menu.supercategories[cidx].categories)
           {
-            tables = tables.concat(g_config.menu.categories[cidx].subcategories[scidx].items);
+            tables = tables.concat(g_config.menu.supercategories[cidx].categories[scidx].items);
           }
           break;
         }  
@@ -731,10 +731,10 @@
       var board=document.getElementById("board");
       board.innerHTML = "";
 
-      for (cidx in g_config.menu.categories)
+      for (cidx in g_config.menu.supercategories)
       {
-        var cat = g_config.menu.categories[cidx];
-        var subcats = cat.subcategories;
+        var cat = g_config.menu.supercategories[cidx];
+        var subcats = cat.categories;
 
         var cat_div = document.createElement('div');
         cat_div.id = cat.name;

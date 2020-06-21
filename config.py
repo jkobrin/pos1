@@ -27,7 +27,7 @@ def load_config():
         if not item.has_key('name'):
            raise Exception('no name for item: ' + str(item))
         item['name'] = unicode(item['name'])[:MAX_NAME_LEN]
-        if 'included' in (subcat.get('tax'), item.get('tax'))  and item.get('price'):
+        if 'included' in (cat.get('tax'), item.get('tax'))  and item.get('price'):
           item['price'] /= (1 + TAXRATE) # remove the tax from price
 
   return cfg
@@ -46,7 +46,7 @@ def load_db_config(cfg):
 
   for supercat in supercats:
     cfg['menu']['supercategories'].append(supercat)
-    supercat['subcategories'] = []
+    supercat['categories'] = []
 
     if supercat['name'] == 'bev':
       scalable = utils.select('''
@@ -58,7 +58,7 @@ def load_db_config(cfg):
       recents = [rec["menu_item_id"] for rec in recent]
 
       btg = {'name':"by_the_glass", 'items': []}
-      supercat['subcategories'].append(btg)
+      supercat['categories'].append(btg)
 
     cats = utils.select('''
       select category as name from sku 
@@ -68,7 +68,7 @@ def load_db_config(cfg):
       group by category order by min(if(listorder>0, listorder, null ))''', args=[supercat['name']])
 
     for cat in cats:
-      supercat['subcategories'].append(cat)
+      supercat['categories'].append(cat)
       cat['items'] = []
       for item in utils.select('''select * from sku where supercategory = %s and category = %s
       and bin is not null and bin != '0' and active=True
@@ -98,9 +98,9 @@ def populate_staff_tabs(cfg):
       ''')
     table_supercat_results = [cat for cat in cfg['menu']['supercategories'] if cat['name'] == 'tables']
     if len(table_supercat_results) != 1: raise Exception('Problem finding tables supercategory')
-    table_supercategory = table_cat_results[0]
+    table_supercategory = table_supercat_results[0]
     staff_cat = {'name': 'staff_tabs', 'items': items}
-    table_category['categories'].append(staff_cat)
+    table_supercategory['categories'].append(staff_cat)
 
 
 
