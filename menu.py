@@ -9,6 +9,8 @@ import utils
 import config_loader
 from config import winecats
 
+BTG = 'by the glass'
+
 def clean(data_str):
   NULLITIES = ('None', 'null', 'NULL', 'Null', '')
   if data_str.strip() in NULLITIES: return None
@@ -31,6 +33,7 @@ def get_menu_html():
   supercats = utils.select('''
     select supercategory from sku 
     where active = true and listorder > 0 and bin is not null 
+    and supercategory is not null
     group by supercategory order by min(listorder)''')
 
   for supercat in supercats:
@@ -44,8 +47,7 @@ def get_menu_html():
       and supercategory = %s
       group by category order by min(listorder)''', args=[supercat])
 
-    for cat in cats:
-      cat = cat['category']
+    for cat in [c['category'] for c in cats]:
       is_wine = winecats.search(cat)
       yield '''<div class="category accordion" id="%s">'''%cat
       yield '''<input type="checkbox" name="%s%s" id="%s%s">'''% (supercat, cat, supercat, cat)
@@ -54,14 +56,14 @@ def get_menu_html():
       yield '''<div class="cat_content content">'''
 
       items = utils.select('''
-        select * from sku
-        where category = '%(cat)s'
-        and listorder > 0
-        and active = true
-        and bin is not null
-        and bin != '0'
-        order by listorder
-        ''' % locals())
+          select * from sku
+          where category = '%(cat)s'
+          and listorder > 0
+          and active = true
+          and bin is not null
+          and bin != '0'
+          order by scalable desc, listorder #put btg first
+          ''' % locals())
 
 
       current_subcategory = None
@@ -72,6 +74,7 @@ def get_menu_html():
         display_name = display_name or name #if display_name is blank default to name
         listprice = item['retail_price'] 
         if not is_wine: binnum = ''
+        if item['scalable'] and is_wine: subcategory = BTG
 
         if subcategory is None and current_subcategory is None:
           subcategory = cat
@@ -81,9 +84,9 @@ def get_menu_html():
           if current_subcategory is not None: yield '''</div>'''
           current_subcategory = subcategory
           yield '''
-          <div class="subcategory">
-          <h3 onclick="majority_toggle_child_checkboxes(this.parentElement)"> --%s-- </h3>
-          '''%(current_subcategory)
+          <div class="subcategory" id="%s">
+          <h3 onclick="majority_toggle_child_checkboxes(this.parentElement)"> &#x2011;&#x2011;%s&#x2011;&#x2011; </h3>
+          '''%(current_subcategory.replace(' ', '_'), current_subcategory)
 
         if description:
           descriptions = description.split('|')
@@ -94,12 +97,18 @@ def get_menu_html():
         
         yield '''<div class="item_block accordion">'''
         yield '''<input type="checkbox" name="%s" id="%s">'''% (sku_id, sku_id)
-        yield '''<div class="binnum">%s</div>'''%binnum
         yield '''<label for="%s">'''%sku_id
+        yield '''<div class="binnum">%s</div>'''%binnum
         yield '''<div class="item_name">%s</div>'''%display_name
+        yield '''<div class="item_price">'''
+        if item['scalable']:
+          yield '''%g'''%item['qtprice']
+          if listprice > 0:
+            description += '<br> Bottle: %g'%listprice
+        elif listprice > 0:
+          yield '''%g'''%listprice
+        yield '''</div>'''
         yield '''</label>'''
-        if listprice != 0:
-          yield '''<div class="item_price">%g</div>'''%listprice
 
         yield '''<div class="description content">'''
         if description:

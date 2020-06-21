@@ -772,7 +772,7 @@
 
           subcat_head_div.onclick = make_closure(uncollapse, subcat_div);
 
-          for (iidx in subcat.items)
+          for (iidx in subcat.items.sort((a,b)=> a.bin < b.bin ? -1 : a.bin > b.bin ? 1: a.name > b.name))
           {
             var item = subcat.items[iidx];
 

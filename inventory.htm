@@ -48,7 +48,6 @@
             
             var theme = 'yellowgreen';
 
-            lastedit = null;
             edits = {};
             newrows = {};
             var source =
@@ -81,37 +80,7 @@
                 url: "inventory.py/get_" + query,
                 //editurl: 'http://localhost/getwine.py/',
                 updaterow: function (rowid, rowdata, commit) {
-                    console.log('updaterow: ' + rowid + ': ' + JSON.stringify(rowdata));
-                    if (lastedit == null) return;
-                    
-                    isnewrow = (rowdata.id == undefined) 
-                    if (isnewrow) {
-                      if (!(rowid in newrows)) {
-                        // first time edited,blank row now being
-                        // used. Add new blank row
-                        newrow();
-                      }  
-
-                      newrows[rowid] = rowdata;
-                      row = newrows[rowid];
-                    }
-                    else {
-                      if (!(rowdata.id in edits)) {edits[rowdata.id] = {};}
-                      edits[rowdata.id][lastedit.datafield] = lastedit.value;
-                      row = edits[rowdata.id];
-                    }
-
-                    commit(true);
-
-                    if (lastedit.datafield == 'units_in_stock')
-                    {
-                      rowindex = lastedit.rowindex;
-                      now = new Date();
-                      lastedit = null;
-                      $("#jqxgrid").jqxGrid('setcellvalue', rowindex, 'inventory_date', now);
-                      row['inventory_date'] = now;
-                    }  
-                    lastedit = null;
+                  commit(true);
                 },
                 deleterow: function (rowid, rowdata, commit) {
                 },
@@ -136,6 +105,7 @@
                     $('#jqxgrid').jqxGrid('autoresizecolumns');
                     },
                 columns: [
+                    { text: 'supercategory',  datafield: 'supercategory', width: 60 },
                     { text: 'category',    datafield: 'category', width:90  },
                     { text: 'name',       datafield: 'name',  width:210},
                     { text: 'display_name',  datafield: 'display_name',  width:210},
@@ -182,14 +152,34 @@
             $("#Cancel").jqxButton({ theme: theme });
             $("#Save").jqxButton({ theme: theme });
 
+            function save_changes(row, datafield, value){
+              //store only what changed as data to be sent to
+              //database
+              isnewrow = (row.id == undefined);
+              if (isnewrow) {
+                if (!(row.uid in newrows)) {
+                  // first time edited,blank row now being
+                  // used. Add new blank row
+                  newrow();
+                }
+                newrows[row.uid] = row;
+                changes_row = row;
+              }
+              else {
+                if (!(row.id in edits)) {edits[row.id] = {};}
+                changes_row = edits[row.id];
+                changes_row[datafield] = value;
+              }
+
+            }
             // update the edited row when the user clicks the 'Save' button.
             $("#Save").click(function () {
                 if (editrow >= 0) {
-                    var rowID = $('#jqxgrid').jqxGrid('getrowid', editrow);
                     var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', editrow);
                     dataRecord.description = customTextArea.value;
-                    lastedit = {datafield: 'description', value: customTextArea.value, rowindex: rowID};
-                    console.log('click ' + JSON.stringify(dataRecord));
+                    save_changes(dataRecord, 'description', customTextArea.value);
+                    console.log('description save: ' + JSON.stringify(dataRecord));
+                    var rowID = $('#jqxgrid').jqxGrid('getrowid', editrow);
                     $('#jqxgrid').jqxGrid('updaterow', rowID, dataRecord);
                     $("#popupWindow").jqxWindow('hide');
                     customTextArea.value = null;
@@ -197,7 +187,17 @@
             });
 
             $("#jqxgrid").on('cellendedit', function (event) {
-                lastedit = event.args;
+                args = event.args;
+                save_changes(args.row, args.datafield, args.value)
+
+                if (args.datafield == 'units_in_stock')
+                {
+                  now = new Date();
+                  save_changes(args.row, 'inventory_date', now)
+                  $("#jqxgrid").jqxGrid('setcellvalue', args.rowindex, 'inventory_date', now);
+                }
+
+
             });
 
 
@@ -205,11 +205,8 @@
             function newrow() {
 
                 //new rows will have the supercategory of row 0,
-                //since we assume you can only edit one
-                //supercategory at a time and the query will have
-                //returned only things within one supercategory
-                //and that this is the supercategory of thing you
-                //now want to create as a new item
+                //as a convenience, since we assume you will
+                //usually be editing one supercategory at a time
                
                 var supercat = $("#jqxgrid").jqxGrid('getcellvalue', 0, 'supercategory');
                 commit = $("#jqxgrid").jqxGrid('addrow', 0, {supercategory: supercat});

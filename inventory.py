@@ -4,6 +4,7 @@ import datetime
 from time import mktime
 import decimal
 
+from mylog import my_logger
 
 def get_catering(req):
   return get_inventory("select * from sku_inv where supercategory = 'catering' and bin != '0' order by id")
@@ -47,6 +48,37 @@ def get_winebeer(req):
     and bin is not null and bin != 0 and category rlike 'Wine|Before & After|Dessert|Bubbly|Beer'
     order by bin''')
 
+def get_test(req, key):
+  recs = utils.select("select * from sku_inv where name rlike '%s'"%key)
+  #for rec in recs:
+  #  rec['scalable'] = str(bool(rec['scalable']))
+
+  return json.dumps(recs, cls=utils.MyJSONEncoder)
+
+def get_seek(req, **kwargs):
+  my_logger.info('seek : '+ repr(kwargs))
+  garbage = ('pagenum', 'pagesize', 'recordendindex', 'groupscount', 'recordstartindex', 'filterscount', '_')
+  for key in garbage: kwargs.pop(key)
+
+  sqltext = 'select * from sku_inv where ' + (' and '.join(col +' rlike %s' for col in kwargs.keys()))
+  recs = utils.select(sqltext, args=kwargs.values())
+  return json.dumps(recs, cls=utils.MyJSONEncoder)
+   
+
+def get_search(req, key):
+  recs = utils.select('''
+    select * from sku_inv where 
+    (name rlike '{key}' or
+    display_name rlike '{key}' or
+    supercategory rlike '{key}' or
+    category rlike '{key}' or
+    subcategory rlike '{key}')
+    and bin > 0
+   '''.format(key=key)
+  )
+
+  return json.dumps(recs, cls=utils.MyJSONEncoder)
+   
 
 def get_by_upc(upc):
   recs = utils.select("select * from sku_inv where upc = %s", args=upc)
@@ -113,4 +145,4 @@ def sql_representation(val):
     return str(val)
 
 if __name__ == '__main__':
-  print get(None)
+  print get_seek(None, name = "orchid")

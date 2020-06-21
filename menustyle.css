@@ -129,6 +129,13 @@ h3 {
   text-transform: uppercase;
   font-family: courier;
   color: maroon;
+  cursor: pointer;
+}
+
+#by_the_glass {
+  /* make by the glass look different if wanted*/
+}
+#by_the_glass h3 {
 }
 
 
@@ -142,10 +149,9 @@ div.supercategory {
 div.cat_content {
   margin-left: 1em;
   margin-right: 1em;
-  
   border: 8px double gray;
-  padding-right: 1em;
-  padding-left: 1em;
+  padding-right: .25em;
+  padding-left: .5em;
 }  
   
 
@@ -153,21 +159,24 @@ div.item_block {
   clear: both;
 }
 
+
 div.binnum {
   float: left;
+  text-align: left;
   #border: outset 2px gray;
   width: 15%;
 }  
 
 div.item_name{
   float: left;
-  width: 70%;
+  width: 65%;
   font-weight:bold;
   font-family:arial;
 }
 div.item_price{
+  text-align: center;
   float: right;
-  width: 10%;
+  width: 15%;
   #border: outset 2px gray;
 }
 

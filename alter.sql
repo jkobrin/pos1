@@ -93,6 +93,7 @@
 #and item_name not like 'gift%' 
 #and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+;'
 #;
+
 #create or replace view taxable_item as select * from revenue_item where taxable = true;
 
 
@@ -115,7 +116,7 @@ where oi.order_group_id = og.id
 and is_comped = false 
 and is_cancelled = false 
 and item_name not like 'gift%' 
-and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+;'
+and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+';
 
 create or replace view taxable_item as select * from revenue_item where taxable = true;
 

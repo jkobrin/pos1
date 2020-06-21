@@ -7,7 +7,7 @@ from texttab import TAXRATE
 log = my_logger
 
 MAX_NAME_LEN = 32
-winecats = re.compile('^red$|^white|Dessert|Bubbly')
+winecats = re.compile('^red$|^white|^bubbly')
 
 def load_config():
   cfg = copy.deepcopy(config_loader.config_dict)
@@ -15,13 +15,13 @@ def load_config():
   populate_staff_tabs(cfg)
   load_db_config(cfg)  
 
-  for category in cfg['menu']['categories']:
-    catname = category['name']
-    for subcat in category['subcategories']:
-      subcatname = subcat['name']
-      for item in subcat['items']:
+  for supercategory in cfg['menu']['supercategories']:
+    supercatname = supercategory['name']
+    for cat in supercategory['categories']:
+      catname = cat['name']
+      for item in cat['items']:
+        item['supercategory'] = supercatname
         item['category'] = catname
-        item['subcategory'] = subcatname
         item['price'] = item.get('retail_price')
 
         if not item.has_key('name'):
@@ -39,30 +39,44 @@ def get():
 
 def load_db_config(cfg):
   
-  supercats = utils.select('''select distinct supercategory as name from sku 
-    where bin is not null and bin != '0' and active=True and supercategory is not null
-    order by supercategory''')
+  supercats = utils.select('''
+    select supercategory as name from sku 
+    where active = true and bin is not null 
+    group by supercategory order by min(if(listorder>0, listorder, null ))''')
+
   for supercat in supercats:
-    cfg['menu']['categories'].append(supercat)
+    cfg['menu']['supercategories'].append(supercat)
     supercat['subcategories'] = []
+
     if supercat['name'] == 'bev':
+      scalable = utils.select('''
+        select distinct id from sku where scalable = true and supercategory = 'bev' ''');
+      scalables = [rec["id"] for rec in scalable]
+
       recent = utils.select('''select distinct menu_item_id from order_item 
-	where item_name rlike 'qt:' and date(created) > curdate() - interval '72' hour''')
+        where item_name rlike 'qt:' and date(created) > curdate() - interval '72' hour''')
       recents = [rec["menu_item_id"] for rec in recent]
+
       btg = {'name':"by_the_glass", 'items': []}
-       
       supercat['subcategories'].append(btg)
 
-    for cat in utils.select('''select distinct category as name from sku where supercategory = %s 
-      and bin is not null and bin != '0' and active = True and category is not null''', 
-        args = (supercat['name'],)):
+    cats = utils.select('''
+      select category as name from sku 
+      where active = true and bin is not null 
+      and bin != '0' and active = True and category is not null
+      and supercategory = %s
+      group by category order by min(if(listorder>0, listorder, null ))''', args=[supercat['name']])
+
+    for cat in cats:
       supercat['subcategories'].append(cat)
       cat['items'] = []
       for item in utils.select('''select * from sku where supercategory = %s and category = %s
       and bin is not null and bin != '0' and active=True
-      order by bin, name''', args = (supercat['name'], cat['name'])):
+      order by listorder, bin, name''', args = (supercat['name'], cat['name'])):
         cat['items'].append(item)
-        if winecats.match(cat['name']):
+
+        #make quartino items
+        if winecats.search(cat['name']):
           item['name'] = item['bin'] + ' ' + item['name']
           my_logger.info('name: modified ' + item['name'])
           if item['qtprice'] > 0: 
@@ -72,7 +86,7 @@ def load_db_config(cfg):
             qtitem['retail_price'] = item['qtprice']
             qtitem['name'] = 'qt: '+item['name']
             cat['items'].append(qtitem)
-            if qtitem['id'] in recents:
+            if qtitem['id'] in scalables:
               btg['items'].append(qtitem)
 
 
@@ -82,11 +96,11 @@ def populate_staff_tabs(cfg):
       select concat(first_name, ' ', last_name) as name
       from person
       ''')
-    table_cat_results = [cat for cat in cfg['menu']['categories'] if cat['name'] == 'tables']
-    if len(table_cat_results) != 1: raise Exception('Problem finding tables category')
-    table_category = table_cat_results[0]
-    staff_subcat = {'name': 'staff_tabs', 'items': items}
-    table_category['subcategories'].append(staff_subcat)
+    table_supercat_results = [cat for cat in cfg['menu']['supercategories'] if cat['name'] == 'tables']
+    if len(table_supercat_results) != 1: raise Exception('Problem finding tables supercategory')
+    table_supercategory = table_cat_results[0]
+    staff_cat = {'name': 'staff_tabs', 'items': items}
+    table_category['categories'].append(staff_cat)
 
 
 

@@ -58,7 +58,7 @@ def get_cursor():
 
 def execute(sql, incursor=None, args= None):
   
-  my_logger.info(sql + repr(args))
+  my_logger.info(sql +' : '+ repr(args))
 
   if not incursor:
     cursor = get_cursor()
