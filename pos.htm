@@ -17,7 +17,6 @@
     .held_item {border: 3px solid yellow;}
 
     .bev_item {color: blue;}
-    .cafe_item {color: green;}
     .board_item {color: maroon;}
     .dessert_item {color: white;}
     .allergy_item {color: red; text-decoration: underline}
@@ -808,7 +807,10 @@
 
           cat_head_div.onclick = make_closure(uncollapse, cat_div);
 
-          for (iidx in cat.items.sort((a,b)=> a.bin < b.bin ? -1 : a.bin > b.bin ? 1: a.name > b.name))
+          for (iidx in cat.items.sort(function(a,b){
+            return a.bin < b.bin ? -1 : a.bin > b.bin ? 1: 
+            a.listorder < b.listorder? -1: a.listorder>b.listorder? 1:
+            a.name - b.name}))
           {
             var item = cat.items[iidx];
 
@@ -846,7 +848,7 @@
 
     function grid_button_clicked(cfg_item)
     {
-      console.log('grid_button_clicked '+cfg_item.name+':'+cfg_item.category+':'+cfg_item.supercategory);
+      console.log('grid_button_clicked '+cfg_item.name+':'+cfg_item.supercategory+':'+cfg_item.category);
       if (cfg_item.supercategory == 'tables')
       {
         table_id = cfg_item.name;
@@ -908,6 +910,12 @@
       return (tab && tab.category=='staff_tabs')
     }
 
+    function is_market(tab)
+    {
+      var tab = get_config_item(tab);
+      return (tab && tab.category=='market')
+    }
+
     function is_takeout(tab)
     {
       var tab = get_config_item(tab);
@@ -928,7 +936,7 @@
       {
         var fraction = .25;
       }
-      else if(cfg_item.scalable)
+      else if(cfg_item.scalable && cfg_item.supercategory != 'bev')
       {
         //for now the only units are lbs.
         cfg_item.scale_units = 'lbs.';
@@ -953,18 +961,7 @@
         price = cfg_item.wholesale_price || cfg_item.price*STAFF_FOOD_RATE;
         price = price*(cfg_item.fraction || 1);
       }
-      else if (is_takeout(table_id) && cfg_item.category.match('.* Wine|Before.*After|Dessert|Bubbly') && fraction == 1) 
-      {
-        console.log("price:  " + price);
-        price = price - CORONA_WINE_DISCOUNT;
-        console.log("CORONA_WINE_DISCOUNT:  " + CORONA_WINE_DISCOUNT);
-        console.log("price:  " + price);
-      }
-      else if (is_takeout(table_id) && cfg_item.category.match('.*Beer.*'))
-      {
-        price = price - CORONA_BEER_DISCOUNT;
-      }
-      else if (is_happy_hour() && !is_takeout(g_currentTable)  && (cfg_item.name.slice(0,3) == 'qt:' ||cfg_item.category.match('.*Beer.*')))
+      else if (is_happy_hour() && !is_market(g_currentTable)  && !is_takeout(g_currentTable)  && (cfg_item.name.slice(0,3) == 'qt:' ||cfg_item.category.match('.*[Bb]eer.*')))
       {
         console.log("applying happy our discount of "+g_config.happy_hour.discount);
         price = price -price*g_config.happy_hour.discount;
@@ -1183,6 +1180,7 @@
         if (item.category == 'cafe') {classes += ' cafe_item'}
         if (item.category == 'boards') {classes += ' board_item'}
         if (item.category == 'desserts') {classes += ' dessert_item'}
+        if (item.category.match(/coffee/)) {classes += ' dessert_item'}
         if (item.category == 'allergy') {classes += ' allergy_item'}
 
         if (item.style) {classes += ' '+item.style}

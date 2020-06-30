@@ -9,7 +9,7 @@ import utils
 import config_loader
 from config import winecats
 
-ONLINE = True
+ONLINE = False
 BTG = 'by the glass'
 
 def clean(data_str):

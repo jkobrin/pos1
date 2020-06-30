@@ -34,9 +34,9 @@ style:
   #backgroundImage: "url(http://salumibarli.com:3681/resources/snowflake.jpg)"
 
 menu:
-  categories:
+  supercategories:
     - name: tables
-      subcategories:
+      categories:
         - name: market
           items: 
             - name: MKT 
@@ -117,6 +117,20 @@ menu:
             - name: T19
             - name: T20
             - name: TEST
+        - name: resys
+          items: 
+            - name: R1
+            - name: R2
+            - name: R3
+            - name: R4
+            - name: R5
+            - name: R6
+            - name: R7
+            - name: R8
+            - name: R10
+            - name: R11
+            - name: R12
+            - name: R13
         - name: floor
           items: 
             - name: 1
