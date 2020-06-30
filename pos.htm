@@ -1185,7 +1185,7 @@
         if (item.category == 'cafe') {classes += ' cafe_item'}
         if (item.category == 'boards') {classes += ' board_item'}
         if (item.category == 'desserts') {classes += ' dessert_item'}
-        if (item.category.match(/coffee/)) {classes += ' dessert_item'}
+        if (item.category && item.category.match(/coffee/)) {classes += ' dessert_item'}
         if (item.category == 'allergy') {classes += ' allergy_item'}
 
         if (item.style) {classes += ' '+item.style}
