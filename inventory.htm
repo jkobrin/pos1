@@ -41,15 +41,23 @@
     <script type="text/javascript" src="js/printing/print.js?ver67"></script>
 
     <script type="text/javascript">
+        
+        function not_empty(cell, value){
+          if (value == null || !value.trim()){
+            return false;
+          }
+
+          return true;
+        }  
 
         var query = window.location.search.match(/[^\?].*$/g);
 
         $(document).ready(function () {
-            
             var theme = 'yellowgreen';
 
             edits = {};
-            newrows = {};
+            unfinished_edits = {};
+
             var source =
             {
                 datatype: "json",
@@ -78,11 +86,11 @@
                     { name: 'id', type: 'int' },
                 ],
                 url: "inventory.py/get_" + query,
-                //editurl: 'http://localhost/getwine.py/',
                 updaterow: function (rowid, rowdata, commit) {
                   commit(true);
                 },
                 deleterow: function (rowid, rowdata, commit) {
+                  commit(true);
                 },
             };
             var dataAdapter = new $.jqx.dataAdapter(source); 
@@ -103,10 +111,10 @@
                 altrows: true,
                 ready: function () {
                     $('#jqxgrid').jqxGrid('autoresizecolumns');
-                    },
+                },
                 columns: [
-                    { text: 'supercategory',  datafield: 'supercategory', width: 60 },
-                    { text: 'category',    datafield: 'category', width:90  },
+                    { text: 'supercategory',  datafield: 'supercategory', width: 60},
+                    { text: 'category',    datafield: 'category', width:90},
                     { text: 'name',       datafield: 'name',  width:210},
                     { text: 'display_name',  datafield: 'display_name',  width:210},
                     { text: 'bin',        datafield: 'bin', width:60  },
@@ -125,16 +133,17 @@
                     { text: 'subcategory', datafield: 'subcategory', width:60  },
                     { text: 'description',  datafield: 'description',
                         cellbeginedit: function (row) {
-                     // open the popup window when the user clicks a button.
-                         editrow = row;
-                         var offset = $("#jqxgrid").offset();
-                         $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 60, y: parseInt(offset.top) + 60 } });
-                         // get the clicked row's data and initialize the input fields.
-                         var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', editrow);
-                         $("#customTextArea").val(dataRecord.description);
-                         // show the popup window.
-                         $("#popupWindow").jqxWindow('open');
-                         return false;
+                        // open the popup window when the user clicks a button.
+                        //editrow is global saved for when user hits save
+                          editrow = row;
+                          var offset = $("#jqxgrid").offset();
+                          $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 60, y: parseInt(offset.top) + 60 } });
+                          // get the clicked row's data and initialize the input fields.
+                          var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', editrow);
+                          $("#customTextArea").val(dataRecord.description);
+                          // show the popup window.
+                          $("#popupWindow").jqxWindow('open');
+                          return false;
                       }
                     },
                     { text: 'mynotes', datafield: 'mynotes', width:150  },
@@ -152,85 +161,84 @@
             $("#Cancel").jqxButton({ theme: theme });
             $("#Save").jqxButton({ theme: theme });
 
-            function save_changes(row, datafield, value){
-              //store only what changed as data to be sent to
-              //database
-              isnewrow = (row.id == undefined);
-              if (isnewrow) {
-                if (!(row.uid in newrows)) {
-                  // first time edited,blank row now being
-                  // used. Add new blank row
-                  newrow();
-                }
-                newrows[row.uid] = row;
-                changes_row = row;
-              }
-              else {
-                if (!(row.id in edits)) {edits[row.id] = {};}
-                changes_row = edits[row.id];
-                changes_row[datafield] = value;
-              }
-
-            }
             // update the edited row when the user clicks the 'Save' button.
             $("#Save").click(function () {
                 if (editrow >= 0) {
-                    var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', editrow);
-                    dataRecord.description = customTextArea.value;
-                    save_changes(dataRecord, 'description', customTextArea.value);
-                    console.log('description save: ' + JSON.stringify(dataRecord));
-                    var rowID = $('#jqxgrid').jqxGrid('getrowid', editrow);
-                    $('#jqxgrid').jqxGrid('updaterow', rowID, dataRecord);
+                    console.log('description save');
+                    $("#jqxgrid").jqxGrid('setcellvalue', editrow, 'description', customTextArea.value);
                     $("#popupWindow").jqxWindow('hide');
                     customTextArea.value = null;
                 }
             });
 
-            $("#jqxgrid").on('cellendedit', function (event) {
-                args = event.args;
-                save_changes(args.row, args.datafield, args.value)
+            $("#jqxgrid").on('cellvaluechanged', function (event) {
+              args = event.args;
+              var database_id = $("#jqxgrid").jqxGrid('getcellvalue', args.rowindex, 'id');
+              if (!(args.rowindex in edits)) {
+                  edits[args.rowindex] = {};
+                  if (database_id == null) {newrow();}
+              }
+              var required_fields= ['supercategory', 'category', 'name'];
+              if (database_id != null && required_fields.includes(args.datafield) && (args.newvalue == null || !args.newvalue.trim()))
+              {
+                $("#jqxgrid").jqxGrid('setcellvalue', args.rowindex, args.datafield, args.oldvalue);
+              }
 
-                if (args.datafield == 'units_in_stock')
-                {
-                  now = new Date();
-                  save_changes(args.row, 'inventory_date', now)
-                  $("#jqxgrid").jqxGrid('setcellvalue', args.rowindex, 'inventory_date', now);
-                }
-
-
+              edits[args.rowindex][args.datafield] = args.newvalue;
+              console.log(`${args.rowindex}:${edits[args.rowindex][args.datafield]} = ${args.newvalue}`);
             });
 
-
             // create new row.
+            
             function newrow() {
-
-                //new rows will have the supercategory of row 0,
-                //as a convenience, since we assume you will
-                //usually be editing one supercategory at a time
-               
-                var supercat = $("#jqxgrid").jqxGrid('getcellvalue', 0, 'supercategory');
-                commit = $("#jqxgrid").jqxGrid('addrow', 0, {supercategory: supercat});
+                commit = $("#jqxgrid").jqxGrid('addrow', 0, {'id': null});
             }
 
-
             $('#submiteditsbutton').jqxButton({ height: 25, theme: theme });
+
+
             $('#submiteditsbutton').click(function () {
-                doit = confirm(JSON.stringify(edits) + '\nNew rows:\n'+JSON.stringify(newrows));
+                alert(JSON.stringify(edits));
+                var newrows = {};
+                var updaterows = {};
+
+                // sort the edits into either newrows, updaterows
+                // or unfinished_edits
+                for (idx in edits){
+                  var row = edits[idx];
+                  var database_id = $("#jqxgrid").jqxGrid('getcellvalue', idx, 'id');
+                  //if new row, it must have necessary keys with good values
+                  if (database_id == null && row['supercategory'] && row['name'] && row['catgeory']) {
+                      newrows[idx] = row;
+                  } 
+                  else if (database_id != null)
+                  {
+                    updaterows[database_id] = row;
+                  }
+                  else{ 
+                    unfinished_edits[idx] = row; 
+                  }
+                }
+                doit = confirm(`Updated ${Object.keys(updaterows).length} row(s) 
+                  \nAdded ${Object.keys(newrows).length} 
+                  \n ${Object.keys(unfinished_edits).length} new rows unsendable due to missing 'supercategory|category|name'`);
+
                 // synchronize with the server - send update command
                 // call commit with parameter true if the synchronization with the server is successful 
                 // and with parameter false if the synchronization failed.
+
                 if (doit)
                 {
                   $.ajax({
                     type: "POST",
                     dataType: "json",
                     url: "inventory.py/update",
-                    data: {'edits' : JSON.stringify(edits), 'newrows':JSON.stringify(newrows)},
+                    data: {'edits' : JSON.stringify(updaterows), 'newrows': JSON.stringify(newrows)},
                     cache: false,
                     success: function (newids, status, xhr) {
                         // update command is executed.
-                        edits={};
-                        newrows={};
+                        edits = unfinished_edits; // these remain to be sent (after fixing by user)
+                        unfinished_edits = {};
                         for(var idx in newids)
                         {
                           var datarow = $("#jqxgrid").jqxGrid('getrowdata', idx);
@@ -277,7 +285,7 @@
                     data: {'query': ''+query},
                     cache: false,
                     success: function (pwi_data, pwi_status, pwi_xhr) {
-			$.ajax({
+			  $.ajax({
 			    type: "GET",
 			    datatype: "json",
 			    url: "config.py/get",
@@ -302,11 +310,11 @@
 
         });
 
-	function err_page(jqxhr, textstatus, errorthrown) {
-	  //console.log(textstatus + ":::" + errorthrown + "\n" + jqxhr.responsetext);
-	  document.write("<p>"+textstatus + ":::" + errorthrown + "</p>" + jqxhr.responsetext)
-			  errwindow = window.open("","msgwindow","width=200,height=100");
-	  errwindow.document.write("<p>"+textstatus + ":::" + errorthrown + "</p>" + jqxhr.responsetext);
+        function err_page(jqxhr, textstatus, errorthrown) {
+          //console.log(textstatus + ":::" + errorthrown + "\n" + jqxhr.responsetext);
+          document.write("<p>"+textstatus + ":::" + errorthrown + "</p>" + jqxhr.responsetext);
+          errwindow = window.open("","msgwindow","width=200,height=100");
+          errwindow.document.write("<p>"+textstatus + ":::" + errorthrown + "</p>" + jqxhr.responsetext);
         }
     </script>
 </head>

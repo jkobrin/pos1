@@ -20,11 +20,6 @@ def object_from_dict(the_dict):
   an_object.__dict__ = the_dict  
   return an_object
 
-def expand_extra_fields(row):
-  if row['mynotes']:
-    for dct in re.findall('{[^}]*}', row['mynotes']):
-      row.update(yaml.load(dct))
-
 def label_query_rows(labels, rows):
   labeled_results = [dict(zip(labels, row)) for row in rows]
   return labeled_results

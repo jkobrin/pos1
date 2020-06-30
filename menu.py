@@ -9,6 +9,7 @@ import utils
 import config_loader
 from config import winecats
 
+ONLINE = True
 BTG = 'by the glass'
 
 def clean(data_str):
@@ -62,8 +63,24 @@ def get_menu_html():
           and active = true
           and bin is not null
           and bin != '0'
-          order by scalable desc, listorder #put btg first
+          order by listorder
           ''' % locals())
+
+
+      if is_wine:
+        btg_items = utils.select('''
+          select *, '%(BTG)s' as subcategory
+          from sku
+          where category = '%(cat)s'
+          and listorder > 0
+          and active = true
+          and bin is not null
+          and bin != '0'
+          and scalable = true
+          order by listorder
+          ''' % {'BTG': BTG, 'cat': cat})
+
+        items = btg_items + items # pu by the glass first
 
 
       current_subcategory = None
@@ -73,8 +90,8 @@ def get_menu_html():
         )
         display_name = display_name or name #if display_name is blank default to name
         listprice = item['retail_price'] 
+        qtprice = item['qtprice'] 
         if not is_wine: binnum = ''
-        if item['scalable'] and is_wine: subcategory = BTG
 
         if subcategory is None and current_subcategory is None:
           subcategory = cat
@@ -96,17 +113,19 @@ def get_menu_html():
             yield '''<div class="description">%s</div>'''%pre_text
         
         yield '''<div class="item_block accordion">'''
-        yield '''<input type="checkbox" name="%s" id="%s">'''% (sku_id, sku_id)
-        yield '''<label for="%s">'''%sku_id
+        yield '''<input class="collapser" type="checkbox" name="%s_%s" id="%s_%s">'''% (subcategory, sku_id, subcategory, sku_id)
+        yield '''<label for="%s_%s">'''%(subcategory, sku_id)
         yield '''<div class="binnum">%s</div>'''%binnum
         yield '''<div class="item_name">%s</div>'''%display_name
         yield '''<div class="item_price">'''
-        if item['scalable']:
-          yield '''%g'''%item['qtprice']
+        if item['subcategory'] == BTG and item['qtprice']:
+          yield '''%g'''%qtprice
           if listprice > 0:
             description += '<br> Bottle: %g'%listprice
         elif listprice > 0:
           yield '''%g'''%listprice
+          if qtprice and item['scalable']> 0:
+            description += '<br> Glass: %g'%qtprice
         yield '''</div>'''
         yield '''</label>'''
 
@@ -117,7 +136,10 @@ def get_menu_html():
         else:
             yield '''-no info-'''
           
+        if ONLINE:
+            yield 'Add to cart: <input type="checkbox" name="order" id="ord">'
         yield '</div>' #description
+
 
         yield '</div> <!-- item block -->' #item_block
 

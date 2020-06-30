@@ -1,8 +1,8 @@
 
 function majority_toggle_child_checkboxes(node) {
 
-  var checked_boxes = node.querySelectorAll('input[type="checkbox"]:checked');
-  var unchecked_boxes = node.querySelectorAll('input[type="checkbox"]:not(:checked)');
+  var checked_boxes = node.querySelectorAll('input.collapser:checked');
+  var unchecked_boxes = node.querySelectorAll('input.collapser:not(:checked)');
   
   if (checked_boxes.length > unchecked_boxes.length) {
     for (let checkbox of checked_boxes) { checkbox.checked = false; }

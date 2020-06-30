@@ -19,7 +19,7 @@
     .bev_item {color: blue;}
     .cafe_item {color: green;}
     .board_item {color: maroon;}
-    .desserts_item {color: white;}
+    .dessert_item {color: white;}
     .allergy_item {color: red; text-decoration: underline}
 
     .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
@@ -40,7 +40,7 @@
     .diaframe
     {
      opacity:0.9;
-     position:absolute;
+     position:fixed;
      width: 75%;
      font-family:arial;
      visibility:hidden;
@@ -233,13 +233,12 @@
 
     h3 {font-size:8pt; margin:0px; font-weight:bold;}
 
-    .cat_div {}
-    .cat_head {clear: both; font-size:24pt; text-align: center; background-color: #8080ff; border: 1px inset white; margin: 6px }
-    .cat_content_div {clear: both; display: none}
+    .supercat_head {clear: both; font-size:24pt; text-align: center; background-color: #8080ff; border: 1px inset white; margin: 6px }
+    .supercat_content_div {clear: both; display: none}
 
-    .subcat_head {min-width: 150px; float:left; font-size:24pt; text-align: center; background-color: pink; border: 1px inset white; margin: 6px }
-    .subcat_button_div {width: 100%; float:left; display: none}
-    .subcat_div {}
+    .cat_head {min-width: 150px; float:left; font-size:24pt; text-align: center; background-color: pink; border: 1px inset white; margin: 6px }
+    .cat_button_div {width: 100%; float:left; display: none}
+    .cat_div {}
 
     .leftLink {float: left; font-size:48}
     #goVerticalLink {float: right; font-size: 56; text-align: right}
@@ -253,6 +252,20 @@
     #rightside {width: 20%; position:fixed; right:2%}
     #order_pane {border: 4px outset; margin-top:10px; background-color: white;}
     #order_pane :hover {background-color: yellow;}
+
+    #tool_tip_box{
+			background-color: white; 
+			border: 2px outset gray;
+			width: 60%;
+			font-size: 24pt;
+      position: absolute;
+			visibility: hidden;
+			padding: 1em;
+			margin: 1em;
+			left: 50%;
+			word-wrap: break-word;
+      transform: translate(-50%, 0);
+		}
     
     #table_display {width: 100%; margin: 5px; color: blue;}
     #order_items {height: 60vh; overflow-y: auto; overflow-x: clip }
@@ -284,6 +297,7 @@
   <script type="text/javascript" src="js/printing/epos-print-4.1.0.js"></script>
   <script type="text/javascript" src="js/printing/print.js?ver181"></script>
   <script> 
+
     function now(){return new Date();}
 
     function format_time(time) {
@@ -398,6 +412,7 @@
     CORONA_BEER_DISCOUNT = 3;
     
     MAIN_REFRESH_INTERVAL = 10000; //10 seconds
+    BUTTON_HOLD_TIME = 1000; //1 second
     GRIDWIDTH = 6; 
     // GRIDWIDTH can be anything from one up.
 
@@ -413,7 +428,8 @@
     function init()
     // This gets called when the document loads.
     {
-      document.body.addEventListener('click', clicked, true)
+      document.addEventListener('click', clicked, true)
+      //document.body.addEventListener('click', clicked, true)
       document.body.addEventListener('keydown', keydown, true)
       GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth - linx.clientWidth) / 120
 
@@ -560,6 +576,26 @@
       
 
      /******* lookup *************/
+    function get_config_item_from_id(menu_item_id)
+    {
+      for(var supercat of g_config.menu.supercategories)
+      {
+        for(var cat of supercat.categories)
+        {
+          for(var cfg_item of cat.items)
+          {
+            if (cfg_item.id == menu_item_id)
+            {
+              return cfg_item;
+            }
+          }
+        }
+      }
+			return null;
+    }
+
+
+     /******* lookup *************/
     function get_config_item(item_name)
     {
       console.log('get_config_item ' + item_name);
@@ -660,7 +696,7 @@
     function is_waiting_tab(input_tab)
     {
       var tab = get_config_item(input_tab);
-      return (tab && (tab.subcategory=='waiting' || tab.subcategory=='takeout'|| tab.subcategory=='other'));
+      return (tab && (tab.category=='waiting' || tab.category=='takeout'|| tab.category=='other'));
     }
 
     function create_tab_descriptor_item()
@@ -686,6 +722,7 @@
 
     function set_current_table(table)
     {
+      console.log("set current table: " + table);
       g_currentTable = table;
       refresh_screen();
       var parent_was_set = set_current_parent();
@@ -716,10 +753,10 @@
       node.style.display = (node.style.display == 'inline' ? 'none' : 'inline');
     }  
 
-    function uncollapse(subcat_div)
+    function uncollapse(cat_div)
     {
-      var head = subcat_div.children[0];
-      var button_div = subcat_div.children[1];
+      var head = cat_div.children[0];
+      var button_div = cat_div.children[1];
       toggle_vis(button_div);
       head.style.backgroundColor = (head.style.backgroundColor == 'white' ? null : 'white');
     }  
@@ -733,67 +770,84 @@
 
       for (cidx in g_config.menu.supercategories)
       {
-        var cat = g_config.menu.supercategories[cidx];
-        var subcats = cat.categories;
+        var supercat = g_config.menu.supercategories[cidx];
+        var cats = supercat.categories;
 
-        var cat_div = document.createElement('div');
-        cat_div.id = cat.name;
-        cat_div.setAttribute("class", "cat_div");
+        var supercat_div = document.createElement('div');
+        supercat_div.id = supercat.name;
+        supercat_div.setAttribute("class", "supercat_div");
 
-        var cat_head_div = document.createElement('div');
-        cat_head_div.setAttribute("class", "cat_head");
-        cat_head_div.textContent = cat.name;
-        cat_div.appendChild(cat_head_div);
+        var supercat_head_div = document.createElement('div');
+        supercat_head_div.setAttribute("class", "supercat_head");
+        supercat_head_div.textContent = supercat.name;
+        supercat_div.appendChild(supercat_head_div);
 
-        var cat_content_div = document.createElement('div');
-        cat_content_div.id = 'cat_cd_'+cat.name;
-        cat_content_div.setAttribute("class", "cat_content_div");
-        cat_div.appendChild(cat_content_div);
+        var supercat_content_div = document.createElement('div');
+        supercat_content_div.id = 'cat_cd_'+supercat.name;
+        supercat_content_div.setAttribute("class", "supercat_content_div");
+        supercat_div.appendChild(supercat_content_div);
 
-        cat_head_div.onclick = make_closure(toggle_vis, cat_content_div);
+        supercat_head_div.onclick = make_closure(toggle_vis, supercat_content_div);
 
-        for (scidx in subcats)
+        for (cidx in cats)
         {
-          subcat = subcats[scidx];
-          var subcat_div = document.createElement('div');
-          subcat_div.id = subcat.name;
-          subcat_div.setAttribute("class", "subcat_div");
+          cat = cats[cidx];
+          var cat_div = document.createElement('div');
+          cat_div.id = cat.name;
+          cat_div.setAttribute("class", "cat_div");
 
-          var subcat_head_div = document.createElement('div');
-          subcat_head_div.setAttribute("class", "subcat_head");
-          subcat_head_div.textContent = subcat.name; //cat.name + " : " + subcat.name;
-          //if (scidx == 0) { subcat_head_div.style.clear = ''; subcat_head_div.style.float = 'left';} 
-          subcat_div.appendChild(subcat_head_div);
+          var cat_head_div = document.createElement('div');
+          cat_head_div.setAttribute("class", "cat_head");
+          cat_head_div.textContent = cat.name;
+          cat_div.appendChild(cat_head_div);
 
-          var subcat_button_div = document.createElement('div');
-          subcat_button_div.id = 'subcat_bd_'+subcat.name;
-          subcat_button_div.setAttribute("class", "subcat_button_div");
-          subcat_div.appendChild(subcat_button_div);
+          var cat_button_div = document.createElement('div');
+          cat_button_div.id = 'cat_bd_'+cat.name;
+          cat_button_div.setAttribute("class", "cat_button_div");
+          cat_div.appendChild(cat_button_div);
 
-          subcat_head_div.onclick = make_closure(uncollapse, subcat_div);
+          cat_head_div.onclick = make_closure(uncollapse, cat_div);
 
-          for (iidx in subcat.items.sort((a,b)=> a.bin < b.bin ? -1 : a.bin > b.bin ? 1: a.name > b.name))
+          for (iidx in cat.items.sort((a,b)=> a.bin < b.bin ? -1 : a.bin > b.bin ? 1: a.name > b.name))
           {
-            var item = subcat.items[iidx];
+            var item = cat.items[iidx];
 
             var grid_button = document.createElement('input');
             grid_button.type = 'button';
             grid_button.onclick=make_closure(grid_button_clicked, item);
+            grid_button.ondblclick=make_closure(context_tool_tip, item);
+            grid_button.oncontextmenu=make_closure(context_tool_tip, {'button': grid_button, 'item': item});
             grid_button.id = item.name;
             grid_button.setAttribute('class', 'menu_button');
             grid_button.value = item.name;
-            subcat_button_div.appendChild(grid_button);
+            cat_button_div.appendChild(grid_button);
           }
-          cat_content_div.appendChild(subcat_div);
+          supercat_content_div.appendChild(cat_div);
         }
-        board.appendChild(cat_div);
+        board.appendChild(supercat_div);
       }
+    }
+
+    function context_tool_tip(args)
+    {
+			var tool_tip_box = document.getElementById('tool_tip_box');
+      var description = args.item.description ? args.item.description.replace('\n', '<br>') : '';
+			tool_tip_box.innerHTML = `${args.item.name}: ${args.item.price} <br> ${description}` ;
+
+			tool_tip_box.style.visibility ="visible";
+			var button_rect  =  args.button.getBoundingClientRect()
+			var buttonx = (button_rect.left + button_rect.right)/2;
+			var buttony  = (button_rect.top + button_rect.bottom)/2;
+			var docy = document.documentElement.clientHeight/2;
+			tool_tip_box.style.top = Math.max(window.scrollY + button_rect.top - tool_tip_box.clientHeight, 0);
+
+			return false;
     }
 
     function grid_button_clicked(cfg_item)
     {
-      console.log('grid_button_clicked '+cfg_item.name+':'+cfg_item.subcategory+':'+cfg_item.category);
-      if (cfg_item.category == 'tables')
+      console.log('grid_button_clicked '+cfg_item.name+':'+cfg_item.category+':'+cfg_item.supercategory);
+      if (cfg_item.supercategory == 'tables')
       {
         table_id = cfg_item.name;
         if(g_currentTable == table_id)
@@ -851,13 +905,13 @@
     function is_staff(tab)
     {
       var tab = get_config_item(tab);
-      return (tab && tab.subcategory=='staff_tabs')
+      return (tab && tab.category=='staff_tabs')
     }
 
     function is_takeout(tab)
     {
       var tab = get_config_item(tab);
-      return (tab && tab.subcategory=='takeout')
+      return (tab && tab.category=='takeout')
     }
 
     var last_item_added = null;
@@ -865,7 +919,7 @@
     {
       if (!table_id) {return}
 
-      console.log('add_item: '+ cfg_item.name+':'+cfg_item.subcategory+':'+cfg_item.category);
+      console.log('add_item: '+ cfg_item.name+':'+cfg_item.category+':'+cfg_item.supercategory);
       var price = cfg_item.price; //usual case
       var item_name = cfg_item.name; //usual case
       //now that price is set to the default, let's see if we need to modify it
@@ -899,25 +953,25 @@
         price = cfg_item.wholesale_price || cfg_item.price*STAFF_FOOD_RATE;
         price = price*(cfg_item.fraction || 1);
       }
-      else if (is_takeout(table_id) && cfg_item.subcategory.match('.* Wine|Before.*After|Dessert|Bubbly') && fraction == 1) 
+      else if (is_takeout(table_id) && cfg_item.category.match('.* Wine|Before.*After|Dessert|Bubbly') && fraction == 1) 
       {
         console.log("price:  " + price);
         price = price - CORONA_WINE_DISCOUNT;
         console.log("CORONA_WINE_DISCOUNT:  " + CORONA_WINE_DISCOUNT);
         console.log("price:  " + price);
       }
-      else if (is_takeout(table_id) && cfg_item.subcategory.match('.*Beer.*'))
+      else if (is_takeout(table_id) && cfg_item.category.match('.*Beer.*'))
       {
         price = price - CORONA_BEER_DISCOUNT;
       }
-      else if (is_happy_hour() && !is_takeout(g_currentTable)  && (cfg_item.name.slice(0,3) == 'qt:' ||cfg_item.subcategory.match('.*Beer.*')))
+      else if (is_happy_hour() && !is_takeout(g_currentTable)  && (cfg_item.name.slice(0,3) == 'qt:' ||cfg_item.category.match('.*Beer.*')))
       {
         console.log("applying happy our discount of "+g_config.happy_hour.discount);
         price = price -price*g_config.happy_hour.discount;
       }  
 
-      var taxable = !(cfg_item.name.match(/\bgift\b|tax-free/) || cfg_item.category == 'market' && 
-          cfg_item.subcategory.match(/household|drinks|food|candy|soda/)  == null)
+      var taxable = !(cfg_item.name.match(/\bgift\b|tax-free/) || cfg_item.supercategory == 'market' && 
+          cfg_item.category.match(/household|drinks|food|candy|soda/)  == null)
 
       if(cfg_item.name.indexOf('special') != -1)
       {
@@ -1112,7 +1166,6 @@
         time_cat_divs[i].style.display = "none";
       }
 
-  
       var items = g_cook_style ? cook_style_order_items() : g_order_pane_items;
       for (var idx in items)
       {
@@ -1126,11 +1179,14 @@
           continue;
         }
 
-        if (item.category == 'bev') {classes += ' bev_item'}
+        if (item.supercategory == 'bev') {classes += ' bev_item'}
         if (item.category == 'cafe') {classes += ' cafe_item'}
-        if (item.subcategory == 'boards') {classes += ' board_item'}
-        if (item.subcategory == 'desserts-apps') {classes += ' desserts_item'}
-        if (item.subcategory == 'allergy') {classes += ' allergy_item'}
+        if (item.category == 'boards') {classes += ' board_item'}
+        if (item.category == 'desserts') {classes += ' dessert_item'}
+        if (item.category == 'allergy') {classes += ' allergy_item'}
+
+        if (item.style) {classes += ' '+item.style}
+
         if (item.is_comped) {classes += ' comped_item'}
         if (item.is_held) {classes += ' held_item'}
         if (item.is_delivered) {classes += ' delivered_item'}
@@ -1167,12 +1223,12 @@
             cat_div.setAttribute("class", "cat_div");
             cook_tables_div.appendChild(cat_div);
             var cat_head_div = document.createElement('div');
-            cat_head_div.setAttribute("class", "cat_head");
+            cat_head_div.setAttribute("class", "supercat_head");
             cat_head_div.textContent = item.time_category;
             cat_div.appendChild(cat_head_div);
             var cat_content_div = document.createElement('div');
             cat_content_div.id = 'cat_cd_'+item.time_category;
-            cat_content_div.setAttribute("class", "cat_content_div");
+            cat_content_div.setAttribute("class", "supercat_content_div");
             cat_div.appendChild(cat_content_div);
             cat_head_div.onclick = make_closure(toggle_vis, cat_content_div);
             var cook_table = document.createElement('table');
@@ -1185,6 +1241,29 @@
         }
 
         //add new item to current cook_table
+        var table_row = document.createElement('tr');
+        table_row.setAttribute('class', classes);
+
+        var tab_col = document.createElement('td');
+        tab_col.textContent = item.table_id;
+        tab_col.onclick = make_closure(cookscreen_table_click, item.table_id);
+        table_row.appendChild(tab_col);
+
+        var name_col = document.createElement('td');
+        name_col.textContent = (g_cook_style && item.count > 1 ? item.count + 'X ': '') + item.item_name + get_add_on_string_for(item.id);
+        name_col.onclick = make_closure(cookscreen_click, item.id);
+        name_col.oncontextmenu = make_closure(context_tool_tip, {'button': name_col, 'item': get_config_item_from_id(item.menu_item_id)});
+        table_row.appendChild(name_col);
+
+        var time_col = document.createElement('td');
+        time_col.setAttribute('class', 'time_display');
+        time_col.textContent = item.time_display;
+        time_col.onclick = make_closure(cookscreen_timeclick, item.id);
+        table_row.appendChild(time_col);
+
+        cook_table.appendChild(table_row);
+
+        /*
         cook_table.innerHTML += ( 
         '<tr class="'+ classes + '">' +
         '<td onclick="cookscreen_table_click(\'' + item.table_id + '\')">' + item.table_id + '</td>' +
@@ -1192,6 +1271,7 @@
           item.item_name + get_add_on_string_for(item.id) + '</td>' +
         '<td class="time_display" onclick="cookscreen_timeclick(' + item.id + ')">'+item.time_display+'</td>' +
         '</tr>');
+        */
       }  
     }
 
@@ -1509,16 +1589,19 @@
       document.getElementById("table_id_display").innerHTML = "Table: " + (table_id || '---');
       document.getElementById("order_pane").style.backgroundColor = table_is_paid(table_id) ? 'aqua' : 'white';
 
-      var order_items_html = "";
+      var order_items = document.getElementById("order_items");
+      order_items.innerHTML = '';
+
       for (idx in g_order_pane_items)
       {
         var item = g_order_pane_items[idx];
+				var cfg_item = get_config_item_from_id(item.menu_item_id);
+
         if (item.table_id != table_id) 
         {
           continue;
         }
         
-
         var classes = "order_item";
         if (item.is_held) {classes += ' held_item'}
         else if (!item.is_delivered) {classes += ' nondelivered_item'}
@@ -1526,16 +1609,23 @@
         if (item.is_cancelled) { classes += ' cancelled_item'}
         if (item.parent_item != null) {classes += ' child_item'}
 
-        order_items_html += '<input' +
+				var item_button = document.createElement('input');
+				item_button.setAttribute('type', 'button');
+        item_button.setAttribute('class', classes);
+        item_button.setAttribute('value', item.item_name);
+				//item_button.textContent = item.item_name;
+        item_button.oncontextmenu=make_closure(context_tool_tip, {'button': item_button, 'item': cfg_item});
+				item_button.onclick=make_closure(orderitem_popup, {'button': item_button, 'item': item});
+
+      	/*  order_items_html += '<input' +
           ' class="'+ classes + '"' +
           ' type=button' +
           ' onclick="orderitem_popup(' + item.id + ', event)"' +
-          ' onmousedown="orderitem_mousedown(' + item.id + ', event, this)"' +
           ' value="'+item.item_name+'"' +
-          '></input>';
+          '></input>';*/
+
+				order_items.appendChild(item_button);
       }  
-      var order_items = document.getElementById("order_items");
-      order_items.innerHTML = order_items_html;
     }
       
     function orderitem_mousedown(item_id, event, button)
@@ -1545,13 +1635,15 @@
       
     // Order popup stuff
     popup = null;
-    function orderitem_popup(item_id, event)
+    function orderitem_popup(args)
     {
+			var item_button = args.button;
+			var item = args.item;
+
       popup = document.getElementById("orderitem_popup");
-      popup.item_id = item_id;
-      var item = get_order_pane_item(item_id);
+      popup.item_id = item.id;
       if (item.is_cancelled) { return;}
-      g_current_parent = item.parent_item || item_id;
+      g_current_parent = item.parent_item || item.id;
       popup.table_id = item.table_id;
       menu_popup_caption = document.getElementById("orderitem_popup_caption");
       menu_popup_caption.innerHTML = "table: "+item.table_id + " - " + item.item_name;
@@ -1562,10 +1654,10 @@
 
       popup.style.visibility="visible";
       popup.style.left= document.body.clientWidth /8;
-      var y = mouseY(event);
-      popup.style.top= y - popup.clientHeight / 2;
+      //var y = mouseY(event);
+      popup.style.top= Math.max(item_button.getBoundingClientRect().top - popup.clientHeight / 2, 0);
       popup.focus();
-      console.log("orderitem_popup shown");
+      console.log("orderitem_popup positioned at " + item_button.getBoundingClientRect().top);
     }
 
     function receipt_table_html(receipt_text)
@@ -1709,17 +1801,17 @@
 
     function clicked()
     {
-      hidePopup();
+      hidePopups();
       if (g_tab_to_move != null)
       {
       }
     }
 
-    function hidePopup()
-    // this function hides the pop-up when any of various things happen
+    function hidePopups()
+    // this function hides the pop-ups when any of various things happen
     {
-      if (popup) {popup.style.visibility="hidden"; }
-      console.log("popup hidden");
+  		var popups = document.getElementsByClassName('click_dismiss');
+    	for (var popup of popups) { popup.style.visibility="hidden";}
     }
 
   </script>
@@ -1798,8 +1890,9 @@
         <div id ="cook_tables_div"></div>
   </div>
 
+  <div id ="tool_tip_box" class="click_dismiss" onclick="this.style.visibility='hidden'"> </div>
 
-  <div id ="orderitem_popup" class="diaframe">
+  <div id ="orderitem_popup" class="click_dismiss diaframe">
     <div id="orderitem_popup_caption" class="diacapt">---</div>
     <div class="diabuttons">
       <div style="float: right; width: 50%">
