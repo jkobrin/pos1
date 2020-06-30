@@ -1144,9 +1144,14 @@
       child_items = get_child_items(item_id);
       for (var idx in child_items)
       {
-        var style_class = child_items[idx].is_cancelled ? 'cancelled_item' : null;
-        add_on_string += "<a class="+style_class+">, " + child_items[idx].item_name + "</a>";
-      }  
+        if(child_items[idx].is_cancelled ){
+          //TODO: show cancelled items as cancelled
+          //var style_class = child_items[idx].is_cancelled ? 'cancelled_item' : null;
+        } else
+        {
+          add_on_string += ", " + child_items[idx].item_name;
+        }
+      }
       return add_on_string;
     }
 
