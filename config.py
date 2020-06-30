@@ -41,8 +41,9 @@ def load_db_config(cfg):
   
   supercats = utils.select('''
     select supercategory as name from sku 
-    where active = true and bin is not null 
-    group by supercategory order by min(if(listorder>0, listorder, null ))''')
+    where active = true and bin >0
+    group by supercategory order by min(if(listorder>0, listorder, ~0 )), supercategory''') 
+    # ~0 (bitwise neg of 0) is MAX_INT so as to put non-list items last
 
   for supercat in supercats:
     cfg['menu']['supercategories'].append(supercat)
@@ -65,7 +66,8 @@ def load_db_config(cfg):
       where active = true and bin is not null 
       and bin != '0' and active = True and category is not null
       and supercategory = %s
-      group by category order by min(if(listorder>0, listorder, null ))''', args=[supercat['name']])
+      group by category order by min(if(listorder>0, listorder, ~0 )), supercategory''', #see ~0 comment above
+      args=[supercat['name']])
 
     for cat in cats:
       supercat['categories'].append(cat)

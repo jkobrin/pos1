@@ -660,7 +660,7 @@
     function is_waiting_tab(input_tab)
     {
       var tab = get_config_item(input_tab);
-      return (tab && (tab.subcategory=='waiting' || tab.subcategory=='takeout'|| tab.subcategory=='other'));
+      return (tab && (tab.category=='waiting' || tab.category=='takeout'|| tab.category=='other'));
     }
 
     function create_tab_descriptor_item()
@@ -686,6 +686,7 @@
 
     function set_current_table(table)
     {
+      console.log("set current table: " + table);
       g_currentTable = table;
       refresh_screen();
       var parent_was_set = set_current_parent();
@@ -772,7 +773,10 @@
 
           subcat_head_div.onclick = make_closure(uncollapse, subcat_div);
 
-          for (iidx in subcat.items.sort((a,b)=> a.bin < b.bin ? -1 : a.bin > b.bin ? 1: a.name > b.name))
+          for (iidx in subcat.items.sort(function(a,b){
+            return a.bin < b.bin ? -1 : a.bin > b.bin ? 1: 
+            a.listorder < b.listorder? -1: a.listorder>b.listorder? 1:
+            a.name - b.name}))
           {
             var item = subcat.items[iidx];
 
@@ -792,8 +796,8 @@
 
     function grid_button_clicked(cfg_item)
     {
-      console.log('grid_button_clicked '+cfg_item.name+':'+cfg_item.subcategory+':'+cfg_item.category);
-      if (cfg_item.category == 'tables')
+      console.log('grid_button_clicked '+cfg_item.name+':'+cfg_item.supercategory+':'+cfg_item.category);
+      if (cfg_item.supercategory == 'tables')
       {
         table_id = cfg_item.name;
         if(g_currentTable == table_id)
@@ -851,13 +855,19 @@
     function is_staff(tab)
     {
       var tab = get_config_item(tab);
-      return (tab && tab.subcategory=='staff_tabs')
+      return (tab && tab.category=='staff_tabs')
+    }
+
+    function is_market(tab)
+    {
+      var tab = get_config_item(tab);
+      return (tab && tab.category=='market')
     }
 
     function is_takeout(tab)
     {
       var tab = get_config_item(tab);
-      return (tab && tab.subcategory=='takeout')
+      return (tab && tab.category=='takeout')
     }
 
     var last_item_added = null;
@@ -865,7 +875,7 @@
     {
       if (!table_id) {return}
 
-      console.log('add_item: '+ cfg_item.name+':'+cfg_item.subcategory+':'+cfg_item.category);
+      console.log('add_item: '+ cfg_item.name+':'+cfg_item.category+':'+cfg_item.category);
       var price = cfg_item.price; //usual case
       var item_name = cfg_item.name; //usual case
       //now that price is set to the default, let's see if we need to modify it
@@ -874,7 +884,7 @@
       {
         var fraction = .25;
       }
-      else if(cfg_item.scalable)
+      else if(cfg_item.scalable && cfg_item.supercategory != 'bev')
       {
         //for now the only units are lbs.
         cfg_item.scale_units = 'lbs.';
@@ -899,25 +909,14 @@
         price = cfg_item.wholesale_price || cfg_item.price*STAFF_FOOD_RATE;
         price = price*(cfg_item.fraction || 1);
       }
-      else if (is_takeout(table_id) && cfg_item.subcategory.match('.* Wine|Before.*After|Dessert|Bubbly') && fraction == 1) 
-      {
-        console.log("price:  " + price);
-        price = price - CORONA_WINE_DISCOUNT;
-        console.log("CORONA_WINE_DISCOUNT:  " + CORONA_WINE_DISCOUNT);
-        console.log("price:  " + price);
-      }
-      else if (is_takeout(table_id) && cfg_item.subcategory.match('.*Beer.*'))
-      {
-        price = price - CORONA_BEER_DISCOUNT;
-      }
-      else if (is_happy_hour() && !is_takeout(g_currentTable)  && (cfg_item.name.slice(0,3) == 'qt:' ||cfg_item.subcategory.match('.*Beer.*')))
+      else if (is_happy_hour() && !is_market(g_currentTable)  && !is_takeout(g_currentTable)  && (cfg_item.name.slice(0,3) == 'qt:' ||cfg_item.category.match('.*[Bb]eer.*')))
       {
         console.log("applying happy our discount of "+g_config.happy_hour.discount);
         price = price -price*g_config.happy_hour.discount;
       }  
 
       var taxable = !(cfg_item.name.match(/\bgift\b|tax-free/) || cfg_item.category == 'market' && 
-          cfg_item.subcategory.match(/household|drinks|food|candy|soda/)  == null)
+          cfg_item.category.match(/household|drinks|food|candy|soda/)  == null)
 
       if(cfg_item.name.indexOf('special') != -1)
       {
@@ -1126,11 +1125,11 @@
           continue;
         }
 
-        if (item.category == 'bev') {classes += ' bev_item'}
-        if (item.category == 'cafe') {classes += ' cafe_item'}
-        if (item.subcategory == 'boards') {classes += ' board_item'}
-        if (item.subcategory == 'desserts-apps') {classes += ' desserts_item'}
-        if (item.subcategory == 'allergy') {classes += ' allergy_item'}
+        if (item.supercategory == 'bev') {classes += ' bev_item'}
+        if (item.supercategory == 'cafe') {classes += ' cafe_item'}
+        if (item.category == 'boards') {classes += ' board_item'}
+        if (item.category == 'desserts-apps') {classes += ' desserts_item'}
+        if (item.category == 'allergy') {classes += ' allergy_item'}
         if (item.is_comped) {classes += ' comped_item'}
         if (item.is_held) {classes += ' held_item'}
         if (item.is_delivered) {classes += ' delivered_item'}

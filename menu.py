@@ -101,7 +101,7 @@ def get_menu_html():
         yield '''<div class="binnum">%s</div>'''%binnum
         yield '''<div class="item_name">%s</div>'''%display_name
         yield '''<div class="item_price">'''
-        if item['scalable']:
+        if item['scalable'] and item['qtprice']:
           yield '''%g'''%item['qtprice']
           if listprice > 0:
             description += '<br> Bottle: %g'%listprice
