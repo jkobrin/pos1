@@ -9,6 +9,7 @@ function epos_print(msg, ipaddr, devid, timeout) {
         data: {'msg' : msg},
         error: function (jqXHR, textStatus, errorThrown) {
           alert("AJAX ERROR: \n" + textStatus + "\n" + errorThrown + "\n" + jqXHR.responseText);
+          console.log(jqXHR.responseText);
         },
         success: function () {console.log('print success')}
       });

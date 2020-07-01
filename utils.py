@@ -38,7 +38,7 @@ def print_slip(text, outfile=None, lang=None):
     if outfile is not None: cmd.append('-o' + outfile)
     if lang is not None: cmd.append('-w' + lang)
 
-    Popen(cmd, stdin=PIPE).communicate(input=text.decode('utf8').encode('latin-1'))
+    Popen(cmd, stdin=PIPE).communicate(input=text.decode('utf8').encode('latin-1', 'replace'))
 
 
 def get_cursor():
