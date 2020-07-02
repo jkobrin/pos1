@@ -11,6 +11,17 @@
       font-size : 24pt;
     }
 
+ 		pre {
+      overflow-x: auto;
+      white-space: pre-wrap;
+      white-space: -moz-pre-wrap;
+      white-space: -pre-wrap;
+      white-space: -o-pre-wrap;
+      word-wrap: break-word;
+			font-size: smaller;
+			font-family: auto;
+    }
+
     .nondelivered_item { color: red; }
 
     .comped_item {font-style:italic; border: 6px solid #a0ffa0;}
@@ -843,15 +854,15 @@
     function context_tool_tip(args)
     {
 			var tool_tip_box = document.getElementById('tool_tip_box');
-      var description = args.item.description ? args.item.description.replace('\n', '<br>') : '';
+      var description = args.item.description;
       var recipe = args.item.recipe;
       var picture = args.item.picture;
 
 			tool_tip_box.innerHTML = 
-        `<h1>${args.item.name}: ${args.item.price}</h1> <h2>${description}</h2>`;
+        `<h1>${args.item.name}: ${args.item.price}</h1> <pre>${description}</pre>`;
 
       if (args.item.recipe) {
-			  tool_tip_box.innerHTML += `<div style="width: 60%; padding-top: .5em; float:left">${recipe}</div>`;
+			  tool_tip_box.innerHTML += `<div style="width: 60%; padding-top: .5em; float:left"><pre>${recipe}</pre></div>`;
       }  
       if (args.item.picture) {
 			  tool_tip_box.innerHTML += `<div style="padding-top: .5em; float:right; width: 40%">

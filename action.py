@@ -9,13 +9,6 @@ import datetime
 import re 
 import yaml
 
-#private helper used internal to this module
-def expand_extra_fields(row):
-  if row.get('extra'):
-    my_logger.info('extra:' + repr(row));
-    row.update(yaml.load(row['extra']))
-    my_logger.info(row);
-
 
 def get_session_id(req):
     #client will use this to create unique ids for order_item commands it sends to server for DB insertion
@@ -121,7 +114,6 @@ def synchronize(req, crud_commands):
   
     active_items = queries.get_active_items()
     for item in active_items:
-      expand_extra_fields(item)
 
       item['time_display'] = (item['is_pickup'] and 'P' or '') + format_time_from_now(datetime.datetime.now(), item['pickup_time'])
       if item['minutes_since_mod'] is not None and not item['is_pickup']:

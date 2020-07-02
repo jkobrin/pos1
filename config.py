@@ -10,6 +10,7 @@ MAX_NAME_LEN = 32
 winecats = re.compile('^red$|^white|^bubbly')
 
 #private helper used internal to this module
+
 def expand_extra_fields(item):
   if item.get('extra'):
     my_logger.info('extra:' + repr(item));
