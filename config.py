@@ -1,5 +1,5 @@
 
-import json, re, copy
+import json, re, copy, yaml
 from mylog import my_logger
 import utils
 import config_loader
@@ -8,6 +8,13 @@ log = my_logger
 
 MAX_NAME_LEN = 32
 winecats = re.compile('^red$|^white|^bubbly')
+
+#private helper used internal to this module
+def expand_extra_fields(item):
+  if item.get('extra'):
+    my_logger.info('extra:' + repr(item));
+    item.update(yaml.load(item['extra']))
+
 
 def load_config():
   cfg = copy.deepcopy(config_loader.config_dict)
@@ -20,6 +27,7 @@ def load_config():
     for cat in supercategory['categories']:
       catname = cat['name']
       for item in cat['items']:
+        expand_extra_fields(item)
         item['supercategory'] = supercatname
         item['category'] = catname
         item['price'] = item.get('retail_price')

@@ -226,6 +226,15 @@
 
     body {color:black; font-size:18;}
 
+		body {
+ 		-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+		}
+
     h1 {font-size:28pt; font-weight:bold; margin:0px;}
 
     h2 {font-size:16pt; margin:0px; font-weight:bold;}
@@ -255,7 +264,7 @@
     #tool_tip_box{
 			background-color: white; 
 			border: 2px outset gray;
-			width: 60%;
+			width: 80%;
 			font-size: 24pt;
       position: absolute;
 			visibility: hidden;
@@ -428,6 +437,7 @@
     // This gets called when the document loads.
     {
       document.addEventListener('click', clicked, true)
+      document.addEventListener('contextmenu', contexted, true)
       //document.body.addEventListener('click', clicked, true)
       document.body.addEventListener('keydown', keydown, true)
       GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth - linx.clientWidth) / 120
@@ -834,7 +844,19 @@
     {
 			var tool_tip_box = document.getElementById('tool_tip_box');
       var description = args.item.description ? args.item.description.replace('\n', '<br>') : '';
-			tool_tip_box.innerHTML = `${args.item.name}: ${args.item.price} <br> ${description}` ;
+      var recipe = args.item.recipe;
+      var picture = args.item.picture;
+
+			tool_tip_box.innerHTML = 
+        `<h1>${args.item.name}: ${args.item.price}</h1> <h2>${description}</h2>`;
+
+      if (args.item.recipe) {
+			  tool_tip_box.innerHTML += `<div style="width: 60%; padding-top: .5em; float:left">${recipe}</div>`;
+      }  
+      if (args.item.picture) {
+			  tool_tip_box.innerHTML += `<div style="padding-top: .5em; float:right; width: 40%">
+          <img width="100%" src="${args.item.picture}"/></div>`;
+      }    
 
 			tool_tip_box.style.visibility ="visible";
 			var button_rect  =  args.button.getBoundingClientRect()
@@ -1802,12 +1824,20 @@
     }
 
 
-    function clicked()
+    function clicked(event)
     {
+      console.dir(event);
       hidePopups();
       if (g_tab_to_move != null)
       {
       }
+    }
+
+    function contexted(event)
+    {
+      hidePopups();
+      event.preventDefault();
+      return false;
     }
 
     function hidePopups()

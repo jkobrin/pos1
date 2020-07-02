@@ -50,6 +50,23 @@
           return true;
         }  
 
+        function open_custom_text_area(row, fieldName) {
+          //set these globals so we know where to save data when
+          //save is clicked after popup is edited
+          editrow = row;
+          editFieldName = fieldName;
+
+          //set the popups value to current contents of field
+          var text = $("#jqxgrid").jqxGrid('getcellvalue', row, fieldName);
+          $("#customTextArea").val(text);
+
+          //position and show the popupWindow
+          var offset = $("#jqxgrid").offset();
+          $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 60, y: parseInt(offset.top) + 60 } });
+          $("#popupWindow").jqxWindow('open');
+          return false;
+        }
+
         var query = window.location.search.match(/[^\?].*$/g);
 
         $(document).ready(function () {
@@ -78,6 +95,7 @@
                     { name: 'listorder',      type: 'number' },
                     { name: 'upc',         type: 'string' },
                     { name: 'description',         type: 'string' },
+                    { name: 'extra',         type: 'string' },
                     { name: 'active',         type: 'boolean' },
                     { name: 'units_in_stock', type: 'float' },
                     { name: 'inventory_date', type: 'date' },
@@ -132,19 +150,10 @@
                     { text: 'inventory_date',datafield: 'inventory_date', columntype: 'datetimeinput', cellsformat: 'yyyy-MM-dd', width:90},
                     { text: 'subcategory', datafield: 'subcategory', width:60  },
                     { text: 'description',  datafield: 'description',
-                        cellbeginedit: function (row) {
-                        // open the popup window when the user clicks a button.
-                        //editrow is global saved for when user hits save
-                          editrow = row;
-                          var offset = $("#jqxgrid").offset();
-                          $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 60, y: parseInt(offset.top) + 60 } });
-                          // get the clicked row's data and initialize the input fields.
-                          var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', editrow);
-                          $("#customTextArea").val(dataRecord.description);
-                          // show the popup window.
-                          $("#popupWindow").jqxWindow('open');
-                          return false;
-                      }
+                        cellbeginedit: function (row) { return open_custom_text_area(row, 'description')}
+                    },
+                    { text: 'extra',  datafield: 'extra',
+                        cellbeginedit: function (row) { return open_custom_text_area(row, 'extra')}
                     },
                     { text: 'mynotes', datafield: 'mynotes', width:150  },
                 ]
@@ -164,8 +173,8 @@
             // update the edited row when the user clicks the 'Save' button.
             $("#Save").click(function () {
                 if (editrow >= 0) {
-                    console.log('description save');
-                    $("#jqxgrid").jqxGrid('setcellvalue', editrow, 'description', customTextArea.value);
+                    console.log(`${editFieldName} save`);
+                    $("#jqxgrid").jqxGrid('setcellvalue', editrow, editFieldName, customTextArea.value);
                     $("#popupWindow").jqxWindow('hide');
                     customTextArea.value = null;
                 }

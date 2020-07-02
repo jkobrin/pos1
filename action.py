@@ -11,9 +11,10 @@ import yaml
 
 #private helper used internal to this module
 def expand_extra_fields(row):
-  if row['mynotes']:
-    for dct in re.findall('{[^}]*}', row['mynotes']):
-      row.update(yaml.load(dct))
+  if row.get('extra'):
+    my_logger.info('extra:' + repr(row));
+    row.update(yaml.load(row['extra']))
+    my_logger.info(row);
 
 
 def get_session_id(req):
