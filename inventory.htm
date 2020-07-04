@@ -186,6 +186,11 @@
 
               edits[args.rowindex][args.datafield] = args.newvalue;
               console.log(`${args.rowindex}:${edits[args.rowindex][args.datafield]} = ${args.newvalue}`);
+
+              if (args.datafield == 'units_in_stock') {
+                 $("#jqxgrid").jqxGrid('setcellvalue', args.rowindex, 'inventory_date', new Date());
+               } 
+ 
             });
 
             // create new row.
