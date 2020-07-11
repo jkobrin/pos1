@@ -45,7 +45,7 @@ def add_item(item_id=None,
     assert len(table_id) <= 64, "table_id must be 64 or fewer chars" + str(locals())
     assert item_name is not None, 'item _name required' + str(locals())
     if price is None: price = 0
-    #Oassert price is not None, 'price required' + str(locals())
+    #assert price is not None, 'price required' + str(locals())
 
 
     cursor = utils.get_cursor()
