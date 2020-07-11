@@ -1,5 +1,5 @@
 db:
-  name: pos
+  name: salsrv
 
 #paystub_buss_info_line: "HAL Corp. Riverdale"
 paystub_buss_info_line: "SALUMI dba Ultraviolet Enterprises 5600 Merrick RD, Massapequa, NY 11758 516-620-0057"
@@ -32,6 +32,8 @@ style:
   backgroundColor: "#2020f0"
   #backgroundImage: "url(http://alpinebakeryandtrattoria.com/wp-content/uploads/2015/12/new-years-eve-alpine.jpg)"
   #backgroundImage: "url(http://salumibarli.com:3681/resources/snowflake.jpg)"
+
+web_menu_filename: "/var/www/salumiweb/menu"
 
 menu:
   supercategories:

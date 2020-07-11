@@ -25,11 +25,13 @@ def get_menu_html():
     <head>
       <meta charset = "UTF-8">
       <title>MENU</title>
-      <link rel = "stylesheet" type = "text/css" href = "menustyle.css?id=%s" />
+      <link rel = "stylesheet" type = "text/css" href = "webcommon/webcommon.css?id=%(stamp)s" />
+      <link rel = "stylesheet" type = "text/css" href = "webcommon/menustyle.css?id=%(stamp)s" />
+      <link rel = "stylesheet" type = "text/css" href = "sitespecific.css?id=%(stamp)s" />
     </head>
-    <script type="text/javascript" src="menufuncs.js?id=%s"></script>
+    <script type="text/javascript" src="webcommon/menufuncs.js?id=%(stamp)s"></script>
     <body>
-  '''%(datetime.datetime.now(), datetime.datetime.now())
+  '''%{'stamp': datetime.datetime.now()}
 
   supercats = utils.select('''
     select supercategory from sku 
@@ -53,7 +55,7 @@ def get_menu_html():
       yield '''<div class="category accordion" id="%s">'''%cat
       yield '''<input type="checkbox" name="%s%s" id="%s%s">'''% (supercat, cat, supercat, cat)
       #yield '''<h2 ><label for="%s%s">%s</label></h2>'''%(supercat, cat, escape(cat))
-      yield '''<center><h2><label class="cat_label" for="%s%s">%s</label></h2></center>'''%(supercat, cat, escape(cat))
+      yield '''<h2><label class="cat_label" for="%s%s">%s</label></h2>'''%(supercat, cat, escape(cat))
       yield '''<div class="cat_content content">'''
 
       items = utils.select('''
@@ -159,9 +161,10 @@ def index(req):
 def generate_and_post():
   # get all lines from generator before touching file, so if
   # there is an error we don't overwrite old file.
-  menu = list(get_menu_html())
+  menu = list(line+'\n' for line in get_menu_html())
 
-  outfile = open("/var/www/salumiweb/menu.html", "w")
+  menu_filename = config_loader.config_dict.get('web_menu_filename')
+  outfile = open(menu_filename, "w")
   outfile.writelines(menu)
   outfile.close()
 

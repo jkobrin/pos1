@@ -54,6 +54,9 @@ def index(req):
   html = (
     '''  
       <html>
+      <!-- css/site.css will be rewritten by apache to salumi.css or plancha.css, etc depending on virtual host.
+        see rewrite rule in apache configuration files-->
+      <link rel="stylesheet" href="css/site.css" type="text/css" />
       <body>
   ''' )
   if populate_response:

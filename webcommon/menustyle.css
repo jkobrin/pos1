@@ -49,26 +49,24 @@ body {
 
 .accordion label {
   cursor: pointer;
-  font-weight: normal;
+  #font-weight: normal;
 }
 
 .accordion label:hover,
 .accordion label:focus {
-  #background: #d8d8d8;
 }
 
 .accordion .handle label:before {
-  font-family: courier;
-  content: "+";
-  display: inline-block;
-  margin-right: 10px;
-  font-size: 100%;
-  line-height: 1.556em;
-  vertical-align: middle;
+  #font-family: courier;
+  #content: "+";
+  #display: inline-block;
+  #margin-right: 10px;
+  #line-height: 1.556em;
+  #vertical-align: middle;
 }
 
 .accordion > input[type="checkbox"]:checked ~ .handle label:before {
-  content: "-";
+  #content: "-";
 }
 
 .cat_label {
@@ -85,29 +83,12 @@ input[type="checkbox"]:checked ~ center>h2>label {
 */
 
 
-body {
-  font-family:arial;
-  background: tan;
-  color: gray;
-}  
-
-@media (min-width: 1024px){
-  body {
-    width: 1024px;
-  }
-}
-
-@media (max-width: 1023px){
-  body {
-    text-size-adjust: none;
-    font-size:.4in;
-  }
-}
-
 h1 {
   text-align: center;
   text-transform: lowercase;
   margin-top: 1em;
+  text-shadow: 5px 5px 25px black;
+  letter-spacing: .4em;
 }
 
 h2 {
@@ -119,7 +100,10 @@ h2 {
   font-weight: normal;
   text-transform: lowercase;
   #font-family: Times;
-  color: black;
+
+  #letter-spacing: .4em;
+	font-size: 36pt;
+	font-family: arial;
 }
 
 
@@ -140,13 +124,13 @@ h3 {
 
 
 div.supercategory {
-  #background-color: tan;
   #border: 3px outset grey;
 }  
   
 
 
 div.cat_content {
+  text-align: left;
   margin-left: 1em;
   margin-right: 1em;
   border: 8px double gray;

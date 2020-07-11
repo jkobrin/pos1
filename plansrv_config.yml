@@ -27,10 +27,12 @@ printer:
   devid: local_printer
   timeout: 30000
 
+web_menu_filename: "/var/www/planchaweb/menu"
+
 menu:
-  categories:
+  supercategories:
     - name: tables
-      subcategories:
+      categories:
         - name: floor
           items: 
             - name: 1
@@ -46,6 +48,7 @@ menu:
             - name: 11
             - name: 12
             - name: 13
+            - name: X9
         - name: bar
           items: 
             - name: B1

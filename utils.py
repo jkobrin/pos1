@@ -144,7 +144,8 @@ def tohtml(title, headings, rows, breakonfirst=False):
         subtab = []
       subtab.append(row)
        
-    ret += tohtml(subtab[0][0], headings, subtab, breakonfirst = False)
+    if subtab:
+      ret += tohtml(subtab[0][0], headings, subtab, breakonfirst = False)
   
     return ret
   else:
