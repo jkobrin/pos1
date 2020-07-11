@@ -11,6 +11,18 @@
       font-size : 24pt;
     }
 
+ 		pre {
+      overflow-x: auto;
+      white-space: pre-wrap;
+      white-space: -moz-pre-wrap;
+      white-space: -pre-wrap;
+      white-space: -o-pre-wrap;
+      word-wrap: break-word;
+			font-size: smaller;
+			font-family: auto;
+    }
+
+
     .nondelivered_item { color: red; }
 
     .comped_item {font-style:italic; border: 6px solid #a0ffa0;}
@@ -34,6 +46,8 @@
       white-space : normal;
     }
 
+    .add_on_button { background-color: gray; color:white}
+
     #message_box { font-size: 32pt; background-color: red;}
 
     .diaframe
@@ -47,7 +61,7 @@
      background-color:#A0A0C0;
     }
 
-    .diacapt
+    .diahead
     {
      height:35px;
      width: 95%;
@@ -55,6 +69,12 @@
      padding-top:2px;
      padding-bottom:0px;
      padding-left:5%;
+    }
+
+    .diacapt
+    {
+     float: left;
+     width: 85%;
      font-weight:bold;
      color:white;	
     }
@@ -226,6 +246,15 @@
 
     body {color:black; font-size:18;}
 
+		body {
+ 		-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+		}
+
     h1 {font-size:28pt; font-weight:bold; margin:0px;}
 
     h2 {font-size:16pt; margin:0px; font-weight:bold;}
@@ -249,13 +278,17 @@
 
 
     #rightside {width: 20%; position:fixed; right:2%}
-    #order_pane {border: 4px outset; margin-top:10px; background-color: white;}
+    #order_pane {
+      border: 4px outset; 
+      margin-top:10px; 
+      background-color: white; 
+    }
     #order_pane :hover {background-color: yellow;}
 
     #tool_tip_box{
 			background-color: white; 
 			border: 2px outset gray;
-			width: 60%;
+			width: 80%;
 			font-size: 24pt;
       position: absolute;
 			visibility: hidden;
@@ -295,7 +328,7 @@
 
   <script type="text/javascript" src="jq453/scripts/jquery-1.11.2.js"></script>
   <script type="text/javascript" src="js/printing/epos-print-4.1.0.js"></script>
-  <script type="text/javascript" src="js/printing/print.js?ver185"></script>
+  <script type="text/javascript" src="js/printing/print.js?ver=197"></script>
   <script> 
 
     function now(){return new Date();}
@@ -429,18 +462,19 @@
     // This gets called when the document loads.
     {
       document.addEventListener('click', clicked, true)
+      document.addEventListener('contextmenu', contexted, true)
       //document.body.addEventListener('click', clicked, true)
       document.body.addEventListener('keydown', keydown, true)
       GRIDWIDTH = Math.floor(window.innerWidth - order_pane.clientWidth - linx.clientWidth) / 120
 
       load_config();
-      document.body.style.backgroundColor = g_config.style.backgroundColor;
-      document.body.style.backgroundSize = 'cover';
-      document.body.style.backgroundRepeat = 'no-repeat';
-      document.body.style.backgroundPosition = 'center';
-      document.body.style.backgroundAttachment = 'fixed';
-      document.body.style.backgroundColor = g_config.style.backgroundColor;
-      document.body.style.backgroundImage = g_config.style.backgroundImage;
+      //document.body.style.backgroundColor = g_config.style.backgroundColor;
+      //document.body.style.backgroundSize = 'cover';
+      //document.body.style.backgroundRepeat = 'no-repeat';
+      //document.body.style.backgroundPosition = 'center';
+      //document.body.style.backgroundAttachment = 'fixed';
+      //document.body.style.backgroundColor = g_config.style.backgroundColor;
+      //document.body.style.backgroundImage = g_config.style.backgroundImage;
 
       //document.getElementById("portal_link").setAttribute("href", g_config.portal_url);
 
@@ -808,10 +842,14 @@
 
           cat_head_div.onclick = make_closure(uncollapse, cat_div);
 
-          for (iidx in cat.items.sort(function(a,b){
-            return a.bin < b.bin ? -1 : a.bin > b.bin ? 1: 
-            a.listorder < b.listorder? -1: a.listorder>b.listorder? 1:
-            a.name - b.name}))
+          if (cat.name != 'by the glass'){
+            cat.items.sort(function(a,b){
+              return a.bin < b.bin ? -1 : a.bin > b.bin ? 1: 
+              a.listorder < b.listorder? -1: a.listorder>b.listorder? 1:
+              a.name - b.name})
+          }    
+
+          for (iidx in cat.items)
           {
             var item = cat.items[iidx];
 
@@ -821,7 +859,10 @@
             grid_button.ondblclick=make_closure(context_tool_tip, item);
             grid_button.oncontextmenu=make_closure(context_tool_tip, {'button': grid_button, 'item': item});
             grid_button.id = item.name;
-            grid_button.setAttribute('class', 'menu_button');
+
+            var button_class = 'menu_button';
+            if (item.add_on){button_class += ' add_on_button' }
+            grid_button.setAttribute('class', button_class);
             grid_button.value = item.name;
             cat_button_div.appendChild(grid_button);
           }
@@ -834,8 +875,20 @@
     function context_tool_tip(args)
     {
 			var tool_tip_box = document.getElementById('tool_tip_box');
-      var description = args.item.description ? args.item.description.replace('\n', '<br>') : '';
-			tool_tip_box.innerHTML = `${args.item.name}: ${args.item.price} <br> ${description}` ;
+      var description = args.item.description;
+      var recipe = args.item.recipe;
+      var picture = args.item.picture;
+
+			tool_tip_box.innerHTML = 
+        `<h1>${args.item.name}: ${args.item.price}</h1> <pre>${description}</pre>`;
+
+      if (args.item.recipe) {
+			  tool_tip_box.innerHTML += `<div style="width: 60%; padding-top: .5em; float:left"><pre>${recipe}</pre></div>`;
+      }  
+      if (args.item.picture) {
+			  tool_tip_box.innerHTML += `<div style="padding-top: .5em; float:right; width: 40%">
+          <img width="100%" src="${args.item.picture}"/></div>`;
+      }    
 
 			tool_tip_box.style.visibility ="visible";
 			var button_rect  =  args.button.getBoundingClientRect()
@@ -1254,7 +1307,8 @@
         table_row.appendChild(tab_col);
 
         var name_col = document.createElement('td');
-        name_col.textContent = (g_cook_style && item.count > 1 ? item.count + 'X ': '') + item.item_name + get_add_on_string_for(item.id);
+        name_col.innerHTML = (g_cook_style && item.count > 1 ? item.count + 'X ': '') + 
+          item.item_name + '<i>' + get_add_on_string_for(item.id) +'</i>';
         name_col.onclick = make_closure(cookscreen_click, item.id);
         name_col.oncontextmenu = make_closure(context_tool_tip, {'button': name_col, 'item': get_config_item_from_id(item.menu_item_id)});
         table_row.appendChild(name_col);
@@ -1554,19 +1608,25 @@
 
       response = http_request("POST", "close_tab.py", 
         "table="+g_currentTable+
-        "&shouldPrint="+shouldPrint+
         "&serverpin="+pin()
       );
 
       if (response != null){
         if (shouldPrint) {
-          epos_print(response.receipt_text, g_config.printer.ipaddr, g_config.printer.devid, g_config.printer.timeout);
+          if (g_config.printer.type == "epson") {
+            epos_print(response.receipt_text, g_config.printer);
+          } else if (g_config.printer.type == "webprint"){
+            web_print(response.receipt_text, g_config.printer);
+          }
         }
 
         for (gci in response.gift_certs){
-          print_gift1(response.gift_certs[gci]);
-          //alert(response.gift_certs[gci]);
-        }  
+          if (g_config.printer.type == "epson") {
+            epos_print_image(response.gift_certs[gci], g_config.printer);
+          } else if (g_config.printer.type == "webprint"){
+            web_print_image(response.gift_certs[gci], g_config.printer);
+          }
+        }
       }
 
       synchronize_now();
@@ -1650,7 +1710,7 @@
       g_current_parent = item.parent_item || item.id;
       popup.table_id = item.table_id;
       menu_popup_caption = document.getElementById("orderitem_popup_caption");
-      menu_popup_caption.innerHTML = "table: "+item.table_id + " - " + item.item_name;
+      menu_popup_caption.textContent = "table: "+item.table_id + " - " + item.item_name;
       
       holdgo_button = document.getElementById("holdgo");
       holdgo_button.style.display = item.is_delivered ? "none" : "inline";
@@ -1708,6 +1768,34 @@
         document.body.scrollTop);
       }
       else return null;
+    }
+
+    function add_note()
+    {
+      var clicked_item = get_order_pane_item(popup.item_id);
+      var parent_item = clicked_item.parent_item ? 
+        get_order_pane_item(clicked_item.parent_item) :
+        clicked_item;
+
+      console.dir(clicked_item);
+
+      var price = prompt('Enter price:', 0);
+      if (price == null) return;
+      item_name = prompt('Enter note:');
+      if (item_name == null) return;
+      new_crud_command ({
+        command: 'add_item',
+        item_id: get_new_item_id(),
+        item_name: item_name,
+        table_id: parent_item.table_id, 
+        is_delivered: false,
+        taxable: parent_item.taxable, 
+        is_comped: parent_item.is_comped,
+        price: price,
+        fraction: 1.0,
+        parent_item: parent_item.id,
+        menu_item_id: parent_item.menu_item_id
+      });
     }
 
     function plus_one()
@@ -1803,12 +1891,19 @@
     }
 
 
-    function clicked()
+    function clicked(event)
     {
       hidePopups();
       if (g_tab_to_move != null)
       {
       }
+    }
+
+    function contexted(event)
+    {
+      hidePopups();
+      event.preventDefault();
+      return false;
     }
 
     function hidePopups()
@@ -1897,12 +1992,14 @@
   <div id ="tool_tip_box" class="click_dismiss" onclick="this.style.visibility='hidden'"> </div>
 
   <div id ="orderitem_popup" class="click_dismiss diaframe">
-    <div id="orderitem_popup_caption" class="diacapt">---</div>
+    <div id="orderitem_popup_head" class="diahead">
+      <div id="orderitem_popup_caption" class="diacapt">---</div>
+    </div>  
     <div class="diabuttons">
       <div style="float: right; width: 50%">
         <input type="button" value="plus 1" onclick="plus_one()"> 
         <input type="button" value="delivered" onclick="toggle_status(popup.item_id, 'is_delivered')"> 
-        <input type="button" value="do nothing"> 
+        <input type="button" value="note" onclick="add_note()"> 
       </div>
       <div style="float: left; width: 50%">
         <input id="holdgo" type="button" value="hold" onclick="toggle_status(popup.item_id, 'is_held')"> 
@@ -1940,10 +2037,8 @@
   <div id="message_box" ></div>
 
     <!-- invisible area for drawing gift certs -->
-  <div style="display:none;">
-      <canvas id="canvas" width="512" height="1200"></canvas>
-      <img id="cert_background" src="img/plancha_cert_back1.png" alt="">
-      <!--<img id="cert_background" src="img/coffee.jpg" alt="">-->
+  <div style="display:inline;">
+      <canvas id="canvas" width="0" height="0"></canvas>
   </div>
 
 

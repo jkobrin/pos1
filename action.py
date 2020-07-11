@@ -9,12 +9,6 @@ import datetime
 import re 
 import yaml
 
-#private helper used internal to this module
-def expand_extra_fields(row):
-  if row['mynotes']:
-    for dct in re.findall('{[^}]*}', row['mynotes']):
-      row.update(yaml.load(dct))
-
 
 def get_session_id(req):
     #client will use this to create unique ids for order_item commands it sends to server for DB insertion
@@ -51,7 +45,7 @@ def add_item(item_id=None,
     assert len(table_id) <= 64, "table_id must be 64 or fewer chars" + str(locals())
     assert item_name is not None, 'item _name required' + str(locals())
     if price is None: price = 0
-    #Oassert price is not None, 'price required' + str(locals())
+    #assert price is not None, 'price required' + str(locals())
 
 
     cursor = utils.get_cursor()
@@ -120,7 +114,6 @@ def synchronize(req, crud_commands):
   
     active_items = queries.get_active_items()
     for item in active_items:
-      expand_extra_fields(item)
 
       item['time_display'] = (item['is_pickup'] and 'P' or '') + format_time_from_now(datetime.datetime.now(), item['pickup_time'])
       if item['minutes_since_mod'] is not None and not item['is_pickup']:

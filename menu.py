@@ -6,11 +6,10 @@ import os, subprocess
 import json
 
 import utils
-import config_loader
-from config import winecats
+import config
 
 ONLINE = False
-BTG = 'by the glass'
+BTG = 'by_the_glass'
 
 def clean(data_str):
   NULLITIES = ('None', 'null', 'NULL', 'Null', '')
@@ -33,70 +32,35 @@ def get_menu_html():
     <body>
   '''%{'stamp': datetime.datetime.now()}
 
-  supercats = utils.select('''
-    select supercategory from sku 
-    where active = true and listorder > 0 and bin is not null 
-    and supercategory is not null
-    group by supercategory order by min(listorder)''')
+  cfg = config.load_config()
+  for supercat in (sc for sc in cfg['menu']['supercategories'] if sc['name'] != 'tables' and sc['listorder'] > 0):
 
-  for supercat in supercats:
-    supercat = supercat['supercategory']
     yield '''<h1 onclick="majority_toggle_child_checkboxes(this)">%s</h1>
-             <div class="supercategory" id="%s">''' % (escape(supercat), supercat)
+             <div class="supercategory" id="%s">''' % (escape(supercat['name']), supercat['name'])
 
-    cats = utils.select('''
-      select category from sku 
-      where active = true and listorder > 0 and bin is not null 
-      and supercategory = %s
-      group by category order by min(listorder)''', args=[supercat])
-
-    for cat in [c['category'] for c in cats]:
-      is_wine = winecats.search(cat)
-      yield '''<div class="category accordion" id="%s">'''%cat
-      yield '''<input type="checkbox" name="%s%s" id="%s%s">'''% (supercat, cat, supercat, cat)
+    for cat in (cat for cat in supercat['categories'] if cat['listorder'] > 0):
+      is_wine = config.winecats.search(cat['name'])
+      yield '''<div class="category accordion" id="%s">'''%cat['name']
+      yield '''<input type="checkbox" name="%s%s" id="%s%s">'''% (supercat['name'], cat['name'], supercat['name'], cat['name'])
       #yield '''<h2 ><label for="%s%s">%s</label></h2>'''%(supercat, cat, escape(cat))
-      yield '''<h2><label class="cat_label" for="%s%s">%s</label></h2>'''%(supercat, cat, escape(cat))
+      yield '''<center><h2><label class="cat_label" for="%s%s">%s</label></h2></center>'''%(supercat['name'], cat['name'], escape(cat['name']))
       yield '''<div class="cat_content content">'''
 
-      items = utils.select('''
-          select * from sku
-          where category = '%(cat)s'
-          and listorder > 0
-          and active = true
-          and bin is not null
-          and bin != '0'
-          order by listorder
-          ''' % locals())
-
-
-      if is_wine:
-        btg_items = utils.select('''
-          select *, '%(BTG)s' as subcategory
-          from sku
-          where category = '%(cat)s'
-          and listorder > 0
-          and active = true
-          and bin is not null
-          and bin != '0'
-          and scalable = true
-          order by listorder
-          ''' % {'BTG': BTG, 'cat': cat})
-
-        items = btg_items + items # pu by the glass first
-
-
       current_subcategory = None
-      for number, item in enumerate(items):
+      for item in (item for item in cat['items'] if item['listorder'] > 0):
+
         sku_id, binnum, name, display_name, description, subcategory= (
           clean(escape(unicode(item[key]))) for key in ['id', 'bin', 'name', 'display_name', 'description', 'subcategory']
         )
+        if cat['name'] != config.BTG_NAME and item.get('is_glass'):
+          continue
+
         display_name = display_name or name #if display_name is blank default to name
         listprice = item['retail_price'] 
-        qtprice = item['qtprice'] 
         if not is_wine: binnum = ''
 
         if subcategory is None and current_subcategory is None:
-          subcategory = cat
+          subcategory = cat['name']
 
         # do subcat heading if subcat changed
         if current_subcategory != subcategory and subcategory is not None:
@@ -107,12 +71,9 @@ def get_menu_html():
           <h3 onclick="majority_toggle_child_checkboxes(this.parentElement)"> &#x2011;&#x2011;%s&#x2011;&#x2011; </h3>
           '''%(current_subcategory.replace(' ', '_'), current_subcategory)
 
-        if description:
-          descriptions = description.split('|')
-          if len(descriptions) > 1:
-            description = descriptions[1]
-            pre_text = descriptions[0]
-            yield '''<div class="description">%s</div>'''%pre_text
+
+        if item.get('pre_text'):
+            yield '''<div class="description">%s</div>'''%item['pre_text']
         
         yield '''<div class="item_block accordion">'''
         yield '''<input class="collapser" type="checkbox" name="%s_%s" id="%s_%s">'''% (subcategory, sku_id, subcategory, sku_id)
@@ -120,14 +81,14 @@ def get_menu_html():
         yield '''<div class="binnum">%s</div>'''%binnum
         yield '''<div class="item_name">%s</div>'''%display_name
         yield '''<div class="item_price">'''
-        if item['subcategory'] == BTG and item['qtprice']:
-          yield '''%g'''%qtprice
-          if listprice > 0:
-            description += '<br> Bottle: %g'%listprice
-        elif listprice > 0:
-          yield '''%g'''%listprice
-          if qtprice and item['scalable']> 0:
-            description += '<br> Glass: %g'%qtprice
+        if item.get('is_glass'):
+          yield '''%g'''%item['qtprice']
+          if item.get('bottle_price') > 0:
+            description += '<br> Bottle: %g'%item['bottle_price']
+        elif item['retail_price'] > 0:
+          yield '''%g'''%item['retail_price']
+          if item['qtprice']and item['scalable']> 0:
+            description += '<br> Glass: %g'%item['qtprice']
         yield '''</div>'''
         yield '''</label>'''
 
@@ -137,7 +98,8 @@ def get_menu_html():
             yield '''%s<br>''' % line
         else:
             yield '''-no info-'''
-          
+        if item.get('picture'):
+            yield '''<img style="float: right" height="200px" width="200px" src="%s"/>'''%item['picture']
         if ONLINE:
             yield 'Add to cart: <input type="checkbox" name="order" id="ord">'
         yield '</div>' #description

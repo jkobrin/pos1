@@ -1,36 +1,36 @@
-﻿//
-// print queue ticket
-//
+﻿
+// our homegrown web printing service functions
 
-function epos_print(msg, ipaddr, devid, timeout) {
+function web_print(msg, printer){
+  $.ajax({ url: printer.web_print_service_url, type: "POST", dataType: "json", cache: false, async: true,
+    data: {'msg' : msg},
+    error: web_print_ajax_error,
+    success: function () {console.log('print success')}
+  });
+}
 
-    if (ipaddr == "SERVER_INSTALL"){
-      $.ajax({ url: "iprint.py", type: "POST", dataType: "json", cache: false, async: true,
-        data: {'msg' : msg},
-        error: function (jqXHR, textStatus, errorThrown) {
-          alert("AJAX ERROR: \n" + textStatus + "\n" + errorThrown + "\n" + jqXHR.responseText);
-          console.log(jqXHR.responseText);
-        },
-        success: function () {console.log('print success')}
-      });
-      return;
-    }
-    //else...
-      
-    //
+function web_print_image(image_url, printer){
+  $.ajax({ url: printer.web_print_image_service_url, type: "POST", dataType: "json", cache: false, async: true,
+    data: {'url' : image_url},
+    error: web_print_ajax_error,
+    success: function () {console.log('print success')}
+  });
+}
+
+function web_print_ajax_error(jqXHR, textStatus, errorThrown) {
+  //alert(`AJAX ERROR: ${textStatus} \n ${errorThrown} \n response in console.` );
+  console.log(jqXHR.responseText);
+}
+
+
+// epson intelligent printer printing functions
+
+function epos_print(msg, printer) {
+
     // build print data
-    //
-
-    // create print data builder object
     var builder = new epson.ePOSBuilder();
-
-    // paper layout
     builder.addLayout(builder.LAYOUT_RECEIPT, 580);
-
-    // initialize (ank mode, smoothing)
     builder.addTextLang('en').addTextSmooth(true);
-
-    // append message
     //builder.addTextStyle(false, false, true);
     builder.addTextFont(builder.FONT_B);
     //builder.addTextAlign(builder.ALIGN_CENTER);
@@ -39,147 +39,74 @@ function epos_print(msg, ipaddr, devid, timeout) {
     builder.addText(msg);
     //builder.addTextStyle(false, false, false);
     builder.addFeedUnit(16);
-
-    // append paper cutting
     builder.addCut();
 
-    //
-    // send print data
-    //
-
     // create print object
-    var url = 'http://' + ipaddr + '/cgi-bin/epos/service.cgi?devid=' + devid + '&timeout=' + timeout;
-    var epos = new epson.ePOSPrint(url);
+    var epos = new epson.ePOSPrint(
+      `http://${printer.ipaddr}/cgi-bin/epos/service.cgi?devid=${printer.devid}&timeout=${printer.timeout}`
+     ); 
 
-    // register callback function
-    epos.onreceive = function (res) {
-        // print failure
-        if (!res.success) {
-          alert('Print Failure\ncode: '+
-            res.code+'\nstatus: '+
-            res.status+'\nbattery: '+
-            res.battery+'\nprintjobid: '+
-            res.printjobid);
-        }
-    }
+    // register callback functions
+    epos.onreceive = epson_onreceive
+    epos.onerror = epson_onerror
 
-    // register callback function
-    epos.onerror = function (err) {
-        // show error message
-        alert('Print Failure\nstatus: '+ err.status+ '\n'+err.responseText);
-    }
-
-    // send
     epos.send(builder.toString());
 }
 
-//function print_gift (amount) {
-    // to be continued
- //   setTimeout(print_gift1, 500, amount);
-//}
 
+function epos_print_image (url, printer) {
 
-var g_gift_height = 1200;
-var g_gift_width = 512;
-var fudge1 = 50;
-var fudge2 = 100;
-
-function print_gift1 (amount) {
-
-    console.log("print_gift1 called with amount: " + amount);
-    //
-    // draw print data
-    //
-
-    // get context of canvas
-    var canvas = $('#canvas').get(0);
+  var img = new Image();
+  img.src = url;
+	img.onload = function() {
+    //var canvas = document.createElement('canvas');
+    var canvas = document.getElementById('canvas');
+    canvas.setAttribute('height', img.height);
+    canvas.setAttribute('width', img.width);
     var context = canvas.getContext('2d');
+		context.drawImage(img, 0, 0);
+    epos_print_canvas(canvas, printer)
+	}
 
-    context.rotate(Math.PI / 2); //rotate 90 degrees for landscape printing
-    context.clearRect(0, -g_gift_width, g_gift_height, g_gift_width);
-    context.drawImage($('#cert_background').get(0), 0, -g_gift_width, g_gift_height, g_gift_width);
-    context.fillStyle = 'rgba(255, 255, 255, 0.5)';
-    context.fillRect(0, 0, g_gift_height, g_gift_width);
-    context.fillStyle = 'rgba(0, 0, 0, 1.0)';
-
-    // draw water mark
-    //context.drawImage($('#wmark').get(0), 0, 0);
-    //context.drawImage($('#wmark').get(0), 256, 324);
-
-    // draw serial number
-    context.textAlign = 'right';
-    context.textBaseline = 'top';
-    context.font = 'normal normal normal 128px "Arial", sans-serif';
-    context.fillText(amount, g_gift_height -fudge1 , -g_gift_width+fudge1);
-
-    context.textAlign = 'left';
-    context.textBaseline = 'bottom';
-    context.font = 'normal normal normal 128px "Arial", sans-serif';
-    context.fillText(amount, 0+fudge1 , 0-fudge1);
+}
 
 
-    context.textAlign = 'left';
-    context.textBaseline = 'top';
-    context.font = 'normal normal normal 36px "Times New Roman", serif';
-    context.fillText("Plancha Money", 0+fudge2, -g_gift_width+fudge2);
-
-    context.font = 'normal normal normal 24px  "Times New Roman", serif';
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.fillText("Use At: ", g_gift_height * 5/6, -g_gift_width/2 + 24);
-    context.fillText("931 Franklin Ave.", g_gift_height * 5/6, -g_gift_width/2 +24*2);
-    context.fillText("Garden City, NY", g_gift_height * 5/6, -g_gift_width/2 +24*3);
-
-    //put it back like it was so next time this func is called it will not rotate already rotated context further
-    context.rotate(-Math.PI / 2);
-
-    //
-    // print
-    //
-
+function epos_print_canvas(canvas, printer) {
+    
     // create print object
-    var url = 'http://' + g_config.printer.ipaddr + '/cgi-bin/epos/service.cgi?devid=' + 
-                g_config.printer.devid + '&timeout=' + g_config.printer.timeout;
-    var epos = new epson.CanvasPrint(url);
+    var epos = new epson.CanvasPrint(
+      `http://${printer.ipaddr}/cgi-bin/epos/service.cgi?devid=${printer.devid}&timeout=${printer.timeout}`
+    ); 
 
     // register callback function
-    epos.onreceive = function (res) {
-        // print failure
-        if (!res.success) {
-          alert('Print Failure\ncode: '+
-            res.code+'\nstatus: '+
-            res.status+'\nbattery: '+
-            res.battery+'\nprintjobid: '+
-            res.printjobid);
-        }
-    }
-
-    // register callback function
-    epos.onerror = function (err) {
-        // show error message
-        alert('Print Failure\nstatus: '+ err.status+ '\n'+err.responseText);
-    }
-
-    var layout = true;
-    var grayscale = false;
+    epos.onreceive = epson_onreceive;
+    epos.onerror = epson_onerror;
 
     // paper layout
-    if (layout) {
-        epos.paper = epos.PAPER_RECEIPT;
-        epos.layout = { width: 580 };
-    }
+    epos.paper = epos.PAPER_RECEIPT;
+    epos.layout = { width: 580 };
 
-    // print
-    if (grayscale) {
-        epos.mode = epos.MODE_GRAY16;
-    }
-    else {
-        epos.mode = epos.MODE_MONO;
-        epos.halftone = epos.HALFTONE_ERROR_DIFFUSION;
-    }
+    //epos.mode = epos.MODE_GRAY16;
+    epos.mode = epos.MODE_MONO;
+    epos.halftone = epos.HALFTONE_ERROR_DIFFUSION;
     epos.cut = true;
-    epos.print(canvas);
 
-    // set next serial number
-    //serial = serial % 999999 + 1;
+    epos.print(canvas);
 }
+
+
+function epson_onreceive(res) {
+  if (!res.success) {
+    alert('Print Failure\ncode: '+
+      res.code+'\nstatus: '+
+      res.status+'\nbattery: '+
+      res.battery+'\nprintjobid: '+
+      res.printjobid);
+  }
+}
+
+
+function epson_onerror(err) {
+  alert('Print Failure\nstatus: '+ err.status+ '\n'+err.responseText);
+}
+

@@ -86,7 +86,10 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   divider = '-'*(NUMWIDTH + TEXTWIDTH) + "\n"
   tabtext += divider
 
-  gift_certs = [GiftCert({'name':'coupon'})]
+  gift_certs = []
+  if config_loader.config_dict.get("autoprint_png"):
+    gift_certs.append(GiftCert({'name': config_loader.config_dict['autoprint_png']}))
+
   gratuity = 0
   gratuity_rate = 0
 

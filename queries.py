@@ -211,8 +211,7 @@ def get_active_items(incursor=None):
       oi.fraction,
       oi.taxable,
       sku.supercategory,
-      sku.category,
-      sku.mynotes
+      sku.category
     FROM order_group og join order_item oi 
       on og.id = oi.order_group_id left outer join order_item oip 
       on oi.parent_item = oip.id

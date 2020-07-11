@@ -16,12 +16,6 @@ use_wine_fun: true
 coupon:
   #filename: /var/www/coupon.pdf
 
-
-style:
-  backgroundColor: "#f0c040"
-  #backgroundImage: "url(http://fullhdwallpapers.ru/image/flags/17421/flag-ssha-granzh.jpg)"
-  #backgroundImage: "url(http://specsrv.barplancha.com:/resources/redgoldstars.jpg)"
-
 printer:
   ipaddr: 192.168.1.151
   devid: local_printer

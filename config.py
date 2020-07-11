@@ -1,5 +1,4 @@
-
-import json, re, copy
+import json, re, copy, yaml
 from mylog import my_logger
 import utils
 import config_loader
@@ -8,6 +7,16 @@ log = my_logger
 
 MAX_NAME_LEN = 32
 winecats = re.compile('^red$|^white|^bubbly')
+BTG_NAME = "by the glass"
+ALLWINE_NAME = 'all wine'
+
+#private helper used internal to this module
+
+def expand_extra_fields(item):
+  if item.get('extra'):
+    my_logger.info('extra:' + repr(item));
+    item.update(yaml.load(item['extra']))
+
 
 def load_config():
   cfg = copy.deepcopy(config_loader.config_dict)
@@ -20,6 +29,7 @@ def load_config():
     for cat in supercategory['categories']:
       catname = cat['name']
       for item in cat['items']:
+        expand_extra_fields(item)
         item['supercategory'] = supercatname
         item['category'] = catname
         item['price'] = item.get('retail_price')
@@ -40,7 +50,7 @@ def get():
 def load_db_config(cfg):
   
   supercats = utils.select('''
-    select supercategory as name from sku 
+    select supercategory as name, min(if(listorder>0, listorder, null)) as listorder from sku
     where active = true and bin >0
     group by supercategory order by min(if(listorder>0, listorder, ~0 )), supercategory''') 
     # ~0 (bitwise neg of 0) is MAX_INT so as to put non-list items last
@@ -49,20 +59,18 @@ def load_db_config(cfg):
     cfg['menu']['supercategories'].append(supercat)
     supercat['categories'] = []
 
-    if supercat['name'] == 'bev':
+    if supercat['name'] == 'wine':
       scalable = utils.select('''
-        select distinct id from sku where scalable = true and supercategory = 'bev' ''');
+        select distinct id from sku where scalable = true and supercategory = %s ''',
+        args=[supercat['name']])
       scalables = [rec["id"] for rec in scalable]
 
-      recent = utils.select('''select distinct menu_item_id from order_item 
-        where item_name rlike 'qt:' and date(created) > curdate() - interval '72' hour''')
-      recents = [rec["menu_item_id"] for rec in recent]
-
-      btg = {'name':"by_the_glass", 'items': []}
+      allwine = {'name':ALLWINE_NAME, 'listorder': 0, 'items': []}
+      btg = {'name':BTG_NAME, 'listorder': 1, 'items': []}
       supercat['categories'].append(btg)
 
     cats = utils.select('''
-      select category as name from sku 
+      select category as name, min(if(listorder>0, listorder, null)) as listorder from sku 
       where active = true and bin is not null 
       and bin != '0' and active = True and category is not null
       and supercategory = %s
@@ -75,21 +83,31 @@ def load_db_config(cfg):
       for item in utils.select('''select * from sku where supercategory = %s and category = %s
       and bin is not null and bin != '0' and active=True
       order by listorder, bin, name''', args = (supercat['name'], cat['name'])):
-        cat['items'].append(item)
 
+        cat['items'].append(item)
         #make quartino items
         if winecats.search(cat['name']):
+          item['display_name'] = item['name']
           item['name'] = item['bin'] + ' ' + item['name']
-          my_logger.info('name: modified ' + item['name'])
+          allwine['items'].append(item)
+
           if item['qtprice'] > 0: 
             my_logger.info('qt: added ' + item['name'])
             qtitem = item.copy()
+            qtitem['subcategory'] = cat['name']
             qtitem['fraction'] = .25
+            qtitem['is_glass'] = True
+            qtitem['bottle_price'] = item['retail_price']
             qtitem['retail_price'] = item['qtprice']
             qtitem['name'] = 'qt: '+item['name']
-            cat['items'].append(qtitem)
+            allwine['items'].append(qtitem)
             if qtitem['id'] in scalables:
               btg['items'].append(qtitem)
+            
+    #this has to be down here cause I want allwine to be the last thing in the supercategory
+    if supercat['name'] == 'wine':
+      supercat['categories'].append(allwine)
+
 
 
 def populate_staff_tabs(cfg):
@@ -107,4 +125,10 @@ def populate_staff_tabs(cfg):
 
 
 if __name__ == '__main__':
-  print load_db_config()
+  cfg= load_config()
+  for supercat in cfg['menu']['supercategories']:
+    if supercat['name'] == 'tables':
+      continue
+
+    print (supercat['name'], supercat['listorder'])
+      
