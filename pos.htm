@@ -328,7 +328,7 @@
 
   <script type="text/javascript" src="jq453/scripts/jquery-1.11.2.js"></script>
   <script type="text/javascript" src="js/printing/epos-print-4.1.0.js"></script>
-  <script type="text/javascript" src="js/printing/print.js?ver=197"></script>
+  <script type="text/javascript" src="js/printing/print.js?ver=201"></script>
   <script> 
 
     function now(){return new Date();}
@@ -337,12 +337,12 @@
        
        var timediff = Math.round(((new Date()).getTime() - time.getTime())/1000/60) //difference in minutes;
        if (Math.abs(timediff) < 60 /* 1 hour */) {
-        result = `${timediff} m`;
+        result = timediff + 'm';
        }
        else if(Math.abs(timediff) < 60*4) /* 4 hours */ {
         var hour = Math.trunc(timediff/60);
         var minute = Math.abs(timediff - hour*60);
-        result = `${hour}h ${minute}m`;
+        result = hour +'h' + minute +'m';
        }
        else {
         result = time.toLocaleTimeString('en-US', {weekday: 'short', hour: '2-digit', minute: '2-digit'});
@@ -441,8 +441,6 @@
 
     // This is the only script on this page. It does basically
     // everything. 
-    CORONA_WINE_DISCOUNT = 6;
-    CORONA_BEER_DISCOUNT = 3;
     
     MAIN_REFRESH_INTERVAL = 10000; //10 seconds
     BUTTON_HOLD_TIME = 1000; //1 second
@@ -612,12 +610,15 @@
      /******* lookup *************/
     function get_config_item_from_id(menu_item_id)
     {
-      for(var supercat of g_config.menu.supercategories)
+      for(var supercat_idx in g_config.menu.supercategories)
       {
-        for(var cat of supercat.categories)
+        var supercat = g_config.menu.supercategories[supercat_idx];
+        for(var cat_idx in supercat.categories)
         {
-          for(var cfg_item of cat.items)
+          var cat = supercat.categories[cat_idx];
+          for(var cfg_item_idx in cat.items)
           {
+            var cfg_item  = cat.items[cfg_item_idx];
             if (cfg_item.id == menu_item_id)
             {
               return cfg_item;
@@ -880,14 +881,13 @@
       var picture = args.item.picture;
 
 			tool_tip_box.innerHTML = 
-        `<h1>${args.item.name}: ${args.item.price}</h1> <pre>${description}</pre>`;
+        '<h1>'+args.item.name+':'+args.item.price +'</h1> <pre>'+description+'</pre>';
 
       if (args.item.recipe) {
-			  tool_tip_box.innerHTML += `<div style="width: 60%; padding-top: .5em; float:left"><pre>${recipe}</pre></div>`;
+			  tool_tip_box.innerHTML += '<div style="width: 60%; padding-top: .5em; float:left"><pre>'+recipe+'</pre></div>';
       }  
       if (args.item.picture) {
-			  tool_tip_box.innerHTML += `<div style="padding-top: .5em; float:right; width: 40%">
-          <img width="100%" src="${args.item.picture}"/></div>`;
+			  tool_tip_box.innerHTML += '<div style="padding-top: .5em; float:right; width: 40%"> <img width="100%" src="'+args.item.picture+'"/></div>';
       }    
 
 			tool_tip_box.style.visibility ="visible";
@@ -990,7 +990,7 @@
       {
         var fraction = .25;
       }
-      else if(cfg_item.scalable && cfg_item.supercategory != 'bev')
+      else if(cfg_item.scalable && cfg_item.supercategory != 'wine')
       {
         //for now the only units are lbs.
         cfg_item.scale_units = 'lbs.';
@@ -1235,7 +1235,7 @@
           continue;
         }
 
-        if (item.supercategory == 'bev') {classes += ' bev_item'}
+        if (item.supercategory == 'wine' || item.supercategory=='bar') {classes += ' bev_item'}
         if (item.category == 'cafe') {classes += ' cafe_item'}
         if (item.category == 'boards') {classes += ' board_item'}
         if (item.category == 'desserts') {classes += ' dessert_item'}
@@ -1522,7 +1522,7 @@
       //populate the pickup date/time input controls with the
       //chosen default
       document.getElementById("pdate").value = get_date_string(populate_date);
-      document.getElementById("ptime").value = `${populate_date.getHours()}:${populate_date.getMinutes()}`;
+      document.getElementById("ptime").value = populate_date.getHours()+':'+ populate_date.getMinutes();
 
       pt_popup = document.getElementById("date_time_popup");
       pt_popup.style.visibility="visible";
@@ -1612,6 +1612,7 @@
       );
 
       if (response != null){
+        console.log('no null from close_tab');
         if (shouldPrint) {
           if (g_config.printer.type == "epson") {
             epos_print(response.receipt_text, g_config.printer);
@@ -1910,7 +1911,11 @@
     // this function hides the pop-ups when any of various things happen
     {
   		var popups = document.getElementsByClassName('click_dismiss');
-    	for (var popup of popups) { popup.style.visibility="hidden";}
+    	for (var popup_idx=0; popup_idx < popups.length; popup_idx++) 
+      { 
+        var popup = popups[popup_idx];
+        popup.style.visibility = "hidden";
+      }
     }
 
   </script>
@@ -2037,7 +2042,7 @@
   <div id="message_box" ></div>
 
     <!-- invisible area for drawing gift certs -->
-  <div style="display:inline;">
+  <div style="display:hidden;">
       <canvas id="canvas" width="0" height="0"></canvas>
   </div>
 

@@ -8,6 +8,7 @@ import json
 import utils
 import config
 
+SHOW_PICTURES_ON_MENU = False
 ONLINE = False
 BTG = 'by_the_glass'
 
@@ -17,7 +18,7 @@ def clean(data_str):
   else: return data_str
 
 
-def get_menu_html():  
+def get_menu_html(cfg):  
 
   yield '''
   <html>
@@ -32,14 +33,13 @@ def get_menu_html():
     <body>
   '''%{'stamp': datetime.datetime.now()}
 
-  cfg = config.load_config()
   for supercat in (sc for sc in cfg['menu']['supercategories'] if sc['name'] != 'tables' and sc['listorder'] > 0):
 
     yield '''<h1 onclick="majority_toggle_child_checkboxes(this)">%s</h1>
              <div class="supercategory" id="%s">''' % (escape(supercat['name']), supercat['name'])
 
     for cat in (cat for cat in supercat['categories'] if cat['listorder'] > 0):
-      is_wine = config.winecats.search(cat['name'])
+      is_wine = supercat['name'] == 'wine'
       yield '''<div class="category accordion" id="%s">'''%cat['name']
       yield '''<input type="checkbox" name="%s%s" id="%s%s">'''% (supercat['name'], cat['name'], supercat['name'], cat['name'])
       #yield '''<h2 ><label for="%s%s">%s</label></h2>'''%(supercat, cat, escape(cat))
@@ -98,7 +98,7 @@ def get_menu_html():
             yield '''%s<br>''' % line
         else:
             yield '''-no info-'''
-        if item.get('picture'):
+        if item.get('picture') and SHOW_PICTURES_ON_MENU:
             yield '''<img style="float: right" height="200px" width="200px" src="%s"/>'''%item['picture']
         if ONLINE:
             yield 'Add to cart: <input type="checkbox" name="order" id="ord">'
@@ -117,18 +117,20 @@ def get_menu_html():
 
 
 def index(req):
-  return "\n".join(get_menu_html())
+  cfg = config.load_config()
+  return "\n".join(get_menu_html(cfg))
     
   
 def generate_and_post():
   # get all lines from generator before touching file, so if
   # there is an error we don't overwrite old file.
-  menu = list(line+'\n' for line in get_menu_html())
 
-  menu_filename = config_loader.config_dict.get('web_menu_filename')
-  outfile = open(menu_filename, "w")
-  outfile.writelines(menu)
-  outfile.close()
+  cfg = config.load_config()
+  menu_filename = cfg.get('web_menu_filename')
+  menu_html = list(line+'\n' for line in get_menu_html(cfg))
+
+  with open(menu_filename, "w") as outfile:
+    outfile.writelines(menu_html)
 
   return json.dumps(None)
     

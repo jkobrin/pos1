@@ -21,9 +21,13 @@ happy_hour:
   discount: .5
 
 printer:
-  ipaddr: SERVER_INSTALL
-  devid: local_printer
-  timeout: 30000
+  type: webprint
+  web_print_service_url: "http://old.salumibarli.com:3681/iprint.py"
+  web_print_image_service_url: "http://old.salumibarli.com:3681/iprint.py/print_url"
+  timeout: 3000
+
+autoprint_png: salumiqrmenu
+
 
 portal_url: "https://sites.google.com/view/salumi/p-o-r-t-a-l"
 #portal_url: "http://sites.google.com/view/plancha/portal"

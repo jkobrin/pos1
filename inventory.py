@@ -55,7 +55,7 @@ def get_test(req, key):
 
   return json.dumps(recs, cls=utils.MyJSONEncoder)
 
-def get_seek(req, **kwargs):
+def seek(req, **kwargs):
   my_logger.info('seek : '+ repr(kwargs))
   garbage = ('pagenum', 'pagesize', 'recordendindex', 'groupscount', 'recordstartindex', 'filterscount', '_')
   for key in garbage: kwargs.pop(key)

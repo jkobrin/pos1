@@ -35,9 +35,9 @@ class GiftCert(object):
 
     # create font object with the font file and specify
     # desired size
-    amt_text_font = ImageFont.truetype('arial.ttf', size=140)
-    pre_text_font = ImageFont.truetype('arial.ttf', size=50)
-    post_text_font = ImageFont.truetype('arial.ttf', size=50)
+    amt_text_font = ImageFont.truetype('DejaVuSans.ttf', size=140)
+    pre_text_font = ImageFont.truetype('DejaVuSans.ttf', size=50)
+    post_text_font = ImageFont.truetype('DejaVuSans.ttf', size=50)
     codefont = ImageFont.truetype('IDAutomationHC39M Free Version.ttf', size=24, encoding='symb')
     #codefont = ImageFont.truetype('FreeSerif.ttf', size=50)
     color = 'rgb(0, 0, 0)' # black
@@ -72,7 +72,7 @@ class GiftCert(object):
     if self.is_gift():
       image_data = self.get_cert_image_data()
     else:
-      with open(path.join(RESOURCE_DIR, '%s.png'%self.item['name'])) as f:
+      with open(path.join(RESOURCE_DIR, '%s.png'%self.item['filename'])) as f:
         image_data = f.read()
 
     return image_data

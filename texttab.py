@@ -2,8 +2,9 @@ import json, re, utils
 import MySQLdb
 from gift_cert import GiftCert
 import config_loader
+from config import expand_extra_fields
+from config import TAXRATE
 
-TAXRATE = .08625
 TEXTWIDTH = 18
 NUMWIDTH = 7 
 
@@ -26,8 +27,8 @@ def is_staff(table_id):
 def is_gift(item):
   return item['name'].startswith('gift')
 
-def is_coupon(item):
-  return item['name'].startswith('coupon')
+def is_printable(item):
+  return item['printable']
 
 def is_gratuity(item):
   return item['name'].startswith('gratuity')
@@ -44,13 +45,16 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
       time_format(timediff(oi.created, og.created), '+%%H:%%i') creat_time,
       time_format(timediff(oi.updated, oi.created), '+%%H:%%i') updat_time,
       oi.created > '%(reopen_time)s' as creat_after,
-      oi.updated > '%(reopen_time)s' as updat_after
+      oi.updated > '%(reopen_time)s' as updat_after,
+      sku.extra
     FROM order_group og 
     JOIN order_item oi ON og.id = oi.order_group_id
+    LEFT OUTER JOIN sku ON oi.menu_item_id = sku.id
     WHERE (og.is_open = TRUE and "%(closed_time)s" = 'None' or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
     and (oi.is_cancelled = FALSE or '%(serverpin)s' = 'NULL' or %(admin_view)s)
     group by oi.item_name, oi.is_comped, oi.is_cancelled, oi.price, IF(item_name like 'gift%%', oi.id, 1)
     '''
+
   if admin_view: items_query += ', oi.id\n' # don't group for admin_view
   items_query  += '''order by oi.created'''
   items_query = items_query % locals()
@@ -88,18 +92,19 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
 
   gift_certs = []
   if config_loader.config_dict.get("autoprint_png"):
-    gift_certs.append(GiftCert({'name': config_loader.config_dict['autoprint_png']}))
+    gift_certs.append(GiftCert({'name': 'auto', 'filename': config_loader.config_dict['autoprint_png']}))
 
   gratuity = 0
   gratuity_rate = 0
 
   for item in items:
+    expand_extra_fields(item)
     if is_gratuity(item):
       gratuity_rate = item['price']
       gratuity = round((taxable_total) * gratuity_rate/100.0, 2)
       total = total + gratuity
       continue
-    if is_gift(item) or is_coupon(item):
+    if is_gift(item) or item.get('printable'):
       gift_certs.append(GiftCert(item))
     if item['price'] == 0 and not admin_view:
       continue

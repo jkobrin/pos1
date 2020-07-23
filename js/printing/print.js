@@ -18,7 +18,6 @@ function web_print_image(image_url, printer){
 }
 
 function web_print_ajax_error(jqXHR, textStatus, errorThrown) {
-  //alert(`AJAX ERROR: ${textStatus} \n ${errorThrown} \n response in console.` );
   console.log(jqXHR.responseText);
 }
 
@@ -43,7 +42,7 @@ function epos_print(msg, printer) {
 
     // create print object
     var epos = new epson.ePOSPrint(
-      `http://${printer.ipaddr}/cgi-bin/epos/service.cgi?devid=${printer.devid}&timeout=${printer.timeout}`
+      'http://'+printer.ipaddr+'/cgi-bin/epos/service.cgi?devid='+printer.devid+'&timeout='+printer.timeout
      ); 
 
     // register callback functions
@@ -75,7 +74,7 @@ function epos_print_canvas(canvas, printer) {
     
     // create print object
     var epos = new epson.CanvasPrint(
-      `http://${printer.ipaddr}/cgi-bin/epos/service.cgi?devid=${printer.devid}&timeout=${printer.timeout}`
+      'http://'+printer.ipaddr+'/cgi-bin/epos/service.cgi?devid='+printer.devid+'&timeout='+printer.timeout
     ); 
 
     // register callback function

@@ -70,7 +70,7 @@
           return false;
         }
 
-        var query = window.location.search.match(/[^\?].*$/g);
+        var query = window.location.search.match(/[^\?].*$/);
 
         $(document).ready(function () {
             var theme = 'yellowgreen';
@@ -106,7 +106,7 @@
                     { name: 'mynotes',        type: 'string' },
                     { name: 'id', type: 'int' },
                 ],
-                url: "inventory.py/get_" + query,
+                url: "inventory.py/seek?" + query,
                 updaterow: function (rowid, rowdata, commit) {
                   commit(true);
                 },
@@ -225,16 +225,17 @@
                   var row = edits[idx];
                   var database_id = $("#jqxgrid").jqxGrid('getcellvalue', idx, 'id');
                   //if new row, it must have necessary keys with good values
-                  if (database_id == null && row['supercategory'] && row['name'] && row['catgeory']) {
+                  if (database_id == null ) //&& row['supercategory'] && row['name'] && row['catgeory'])
+                  {
                       newrows[idx] = row;
                   } 
-                  else if (database_id != null)
+                  else //if (database_id != null)
                   {
                     updaterows[database_id] = row;
                   }
-                  else{ 
-                    unfinished_edits[idx] = row; 
-                  }
+                  //else{ 
+                  //  unfinished_edits[idx] = row; 
+                  //}
                 }
                 doit = confirm(`Updated ${Object.keys(updaterows).length} row(s) 
                   \nAdded ${Object.keys(newrows).length} 

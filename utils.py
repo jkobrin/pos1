@@ -27,6 +27,7 @@ def label_query_rows(labels, rows):
 def now():
   return datetime.datetime.now().strftime("%H:%M %m/%d")
 
+
 def file_slip(text, outfile=None, lang=None):
     slipfile = open(outfile, 'w')
     slipfile.write(text)

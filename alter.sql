@@ -113,9 +113,9 @@ create or replace view taxable_item as select * from revenue_item where taxable 
 #
 #alter table order_group add column paid_before_close boolean default false;
 
-alter table order_group add column pickup_time timestamp null default null;
+#alter table order_group add column pickup_time timestamp null default null;
 
-alter table sku add column display_name varchar(64) null default null;
+#alter table sku add column display_name varchar(64) null default null;
 
 alter table sku add column extra varchar(1024) null default null;
 

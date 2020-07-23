@@ -2,16 +2,15 @@ import json, re, copy, yaml
 from mylog import my_logger
 import utils
 import config_loader
-from texttab import TAXRATE
 log = my_logger
 
 MAX_NAME_LEN = 32
-winecats = re.compile('^red$|^white|^bubbly')
 BTG_NAME = "by the glass"
 ALLWINE_NAME = 'all wine'
 
-#private helper used internal to this module
+TAXRATE = .08625
 
+#private helper used internal to this module
 def expand_extra_fields(item):
   if item.get('extra'):
     my_logger.info('extra:' + repr(item));
@@ -86,7 +85,7 @@ def load_db_config(cfg):
 
         cat['items'].append(item)
         #make quartino items
-        if winecats.search(cat['name']):
+        if supercat['name'] == 'wine':
           item['display_name'] = item['name']
           item['name'] = item['bin'] + ' ' + item['name']
           allwine['items'].append(item)
@@ -103,6 +102,8 @@ def load_db_config(cfg):
             allwine['items'].append(qtitem)
             if qtitem['id'] in scalables:
               btg['items'].append(qtitem)
+          elif item['id'] in scalables:     
+            btg['items'].append(item)
             
     #this has to be down here cause I want allwine to be the last thing in the supercategory
     if supercat['name'] == 'wine':
