@@ -14,7 +14,10 @@ TAXRATE = .08625
 def expand_extra_fields(item):
   if item.get('extra'):
     my_logger.info('extra:' + repr(item));
-    item.update(yaml.load(item['extra']))
+    try:
+      item.update(yaml.load(item['extra']))
+    except:
+      pass
 
 
 def load_config():

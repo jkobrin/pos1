@@ -70,7 +70,16 @@
           return false;
         }
 
-        var query = window.location.search.match(/[^\?].*$/);
+        var query = window.location.search.substring(1); //substring(1) to remove the '?' at start
+        console.log(query);
+        if (query.match(/=/)){
+          var data_url = "inventory.py/seek?" + query;
+        }
+        else {
+          var data_url = "inventory.py/search?key=" + query;
+        }
+
+        console.log("data url: "+data_url);
 
         $(document).ready(function () {
             var theme = 'yellowgreen';
@@ -106,7 +115,7 @@
                     { name: 'mynotes',        type: 'string' },
                     { name: 'id', type: 'int' },
                 ],
-                url: "inventory.py/seek?" + query,
+                url: data_url,
                 updaterow: function (rowid, rowdata, commit) {
                   commit(true);
                 },

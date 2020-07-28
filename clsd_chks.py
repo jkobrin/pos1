@@ -24,7 +24,7 @@ def index(req, lag_days=1):
       sum(ti.price) taxable_sales,
       sum(oi.price) + COALESCE(round(sum(ti.price) * %(TAXRATE)s, 2),0) receipts
     FROM order_group og 
-        left outer join order_item oi on og.id = oi.order_group_id 
+        join order_item oi on og.id = oi.order_group_id 
         left outer join taxable_item ti on ti.id = oi.id
         left outer join reopened ro on ro.order_group_id = og.id
         left outer join person p on p.id = og.closedby

@@ -58,21 +58,20 @@ def get_test(req, key):
 def seek(req, **kwargs):
   my_logger.info('seek : '+ repr(kwargs))
   garbage = ('pagenum', 'pagesize', 'recordendindex', 'groupscount', 'recordstartindex', 'filterscount', '_')
-  for key in garbage: kwargs.pop(key)
+
+  for key in garbage:
+    if key in kwargs: kwargs.pop(key)
 
   sqltext = 'select * from sku_inv where ' + (' and '.join(col +' rlike %s' for col in kwargs.keys()))
+  my_logger.info(sqltext)
   recs = utils.select(sqltext, args=kwargs.values())
   return json.dumps(recs, cls=utils.MyJSONEncoder)
    
 
-def get_search(req, key):
+def search(req, key):
   recs = utils.select('''
     select * from sku_inv where 
-    (name rlike '{key}' or
-    display_name rlike '{key}' or
-    supercategory rlike '{key}' or
-    category rlike '{key}' or
-    subcategory rlike '{key}')
+    (supercategory rlike '{key}' or category rlike '{key}')
     and bin > 0
    '''.format(key=key)
   )

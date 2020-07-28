@@ -737,7 +737,7 @@
     function create_tab_descriptor_item()
     {
       var descriptor = prompt('Description for ' + g_currentTable +':');
-      if (descriptor == null) return;
+      if (!descriptor) return;
 
       new_crud_command ({
         command: 'add_item',
@@ -1226,6 +1226,7 @@
       for (var idx in items)
       {
         var item = items[idx];
+        var cfg_item = get_config_item_from_id(item.menu_item_id);
         var classes = "order_item";
 
         if (item.is_delivered && (item.seconds_since_mod == null || item.seconds_since_mod > 15) || 
@@ -1242,7 +1243,7 @@
         if (item.category && item.category.match(/coffee/)) {classes += ' dessert_item'}
         if (item.category == 'allergy') {classes += ' allergy_item'}
 
-        if (item.style) {classes += ' '+item.style}
+        if (cfg_item.style) {classes += ' '+cfg_item.style}
 
         if (item.is_comped) {classes += ' comped_item'}
         if (item.is_held) {classes += ' held_item'}
@@ -1310,7 +1311,7 @@
         name_col.innerHTML = (g_cook_style && item.count > 1 ? item.count + 'X ': '') + 
           item.item_name + '<i>' + get_add_on_string_for(item.id) +'</i>';
         name_col.onclick = make_closure(cookscreen_click, item.id);
-        name_col.oncontextmenu = make_closure(context_tool_tip, {'button': name_col, 'item': get_config_item_from_id(item.menu_item_id)});
+        name_col.oncontextmenu = make_closure(context_tool_tip, {'button': name_col, 'item': cfg_item});
         table_row.appendChild(name_col);
 
         var time_col = document.createElement('td');
@@ -1611,8 +1612,13 @@
         "&serverpin="+pin()
       );
 
-      if (response != null){
-        console.log('no null from close_tab');
+      if (response == null){
+        console.log('null response from close_tab');
+        leave_receipt_screen();
+        return;
+      }  
+
+      if (response.success){
         if (shouldPrint) {
           if (g_config.printer.type == "epson") {
             epos_print(response.receipt_text, g_config.printer);
@@ -1628,10 +1634,13 @@
             web_print_image(response.gift_certs[gci], g_config.printer);
           }
         }
-      }
 
-      synchronize_now();
-      leave_receipt_screen();
+        synchronize_now();
+        leave_receipt_screen();
+      }
+      else{
+        alert(response.message);
+      }  
     }
 
     g_order_pane_items = null;

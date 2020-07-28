@@ -8,14 +8,17 @@ from mylog import my_logger
 def index(req, table, serverpin):
   my_logger.info(req.get_remote_host()+': server %s closed tab %s'%(serverpin, table))
 
-  cursor = utils.get_cursor()
-  receipt_text, gift_certs = texttab.get_tab_text(table, serverpin, cursor)
-
   results = utils.select('''
-    select paid_before_close 
+    select paid_before_close, (pickup_time > now()) is_before_pickup
     from order_group 
     where is_open = True
     AND table_id = %s''', args = [table])
+
+  if results[0]['is_before_pickup'] == True:
+    return json.dumps({'success': False, 'message': "Can't close before pickup time"})
+    
+  cursor = utils.get_cursor()
+  receipt_text, gift_certs = texttab.get_tab_text(table, serverpin, cursor)
 
   if results[0]['paid_before_close'] == True:
     cursor.execute('''
@@ -37,6 +40,7 @@ def index(req, table, serverpin):
   cursor.close()
 
   return json.dumps({
+    'success': True,
     'receipt_text': receipt_text, 
     'gift_certs': [gc.get_data_url() for gc in gift_certs]
   })

@@ -78,7 +78,11 @@
     {
       for (idx in g_slips){
         slip_text = g_slips[idx];
-        epos_print(slip_text, g_config.printer.ipaddr, g_config.printer.devid, g_config.printer.timeout);
+        if (g_config.printer.type == "epson") {
+          epos_print(slip_text, g_config.printer);
+        } else if (g_config.printer.type == "webprint"){
+          web_print(slip_text, g_config.printer);
+        }
       }
     }  
         

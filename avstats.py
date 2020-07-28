@@ -14,7 +14,7 @@ def index(req):
   FROM order_item join sku on order_item.menu_item_id = sku.id
   WHERE date(order_item.created - INTERVAL '4' hour) = date(now() - INTERVAL '28' hour)
   and order_item.is_cancelled = False
-  and sku.supercategory = 'bev'
+  and sku.supercategory rlike 'wine|bar'
   group by item_name
   order by sku.category, item_name;''',
   incursor=None,
@@ -40,7 +40,7 @@ def index(req):
     eod
     )  +
     utils.tohtml(
-      "Yesterday BEV sales",
+      "Yesterday wine & bar sales",
       ('Name','Count', 'Category', 'Order Times'), 
       bev_sold
     )
@@ -51,7 +51,7 @@ def index(req):
   FROM order_item join sku on order_item.menu_item_id = sku.id
   WHERE yearweek(order_item.created - INTERVAL '4' hour) = yearweek(now() - INTERVAL '28' hour)
   and order_item.is_cancelled = False
-  and sku.supercategory = 'bev'
+  and sku.supercategory rlike 'wine|bar'
   group by item_name
   order by sku.category, item_name;''',
   incursor=None,
@@ -73,7 +73,7 @@ def index(req):
     week_eod
     )  +
     utils.tohtml(
-      "Week BEV sales",
+      "Week wine & bar sales",
       ('Name','Count', 'Category', 'Order Times'), 
       bev_week_sold
     ) +
