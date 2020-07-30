@@ -1,0 +1,31 @@
+
+body {background: tan; text-align: center; color:black}
+
+h1 {
+  padding-top: 10%;
+  text-align: center;
+  font-family: courier;
+  font-size: .75in;
+  font-weight: bold;
+  letter-spacing: .7em;
+  /* offset-x | offset-y | blur-radius | color */
+  text-shadow: 6px 6px 10px black;
+  color: tan;
+}
+
+#title {
+  text-transform: none;
+}
+
+.option {
+  margin: 2em;
+  letter-spacing: .4em;
+}
+
+.option a{
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+

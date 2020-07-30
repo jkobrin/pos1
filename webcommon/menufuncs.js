@@ -1,3 +1,4 @@
+//this is a comment
 
 function majority_toggle_child_checkboxes(node) {
 

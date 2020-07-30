@@ -1,0 +1,27 @@
+
+body {
+  font-family:arial;
+  color: black;
+}  
+
+@media (min-width: 1024px){
+  body {
+    width: 1024px;
+  }
+}
+
+@media (max-width: 1023px){
+  body {
+    text-size-adjust: none;
+    font-size:.4in;
+  }
+}
+
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
