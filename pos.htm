@@ -35,6 +35,7 @@
 
     .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
     .cancelled_item { opacity: 0.3; text-align: right; color: white; background-color:  maroon; transform: scale(.8) skewx(45deg) skewy(2deg); }
+    .closed_item { opacity: 0.3; text-align: right; color: white; background-color:  gray;}
     .child_item {text-align: right; font-size: 20pt;opacity: 0.8}
     
     .menu_button 
@@ -342,13 +343,14 @@
        else if(Math.abs(timediff) < 60*4) /* 4 hours */ {
         var hour = Math.trunc(timediff/60);
         var minute = Math.abs(timediff - hour*60);
-        result = hour +'h' + minute +'m';
+        result = hour +'h ' + minute +'m';
        }
        else {
         result = time.toLocaleTimeString('en-US', {weekday: 'short', hour: '2-digit', minute: '2-digit'});
-        result += '<br>' + time.toLocaleDateString('en-US', {month: 'short', day: '2-digit', year: 'numeric'});
+        result += '\n' + time.toLocaleDateString('en-US', {month: 'short', day: '2-digit', year: 'numeric'});
        }
 
+       if (timediff > 0){result = '+'+result;}
        return result;
     }
 
@@ -518,7 +520,7 @@
       console.log('apply crud ' + JSON.stringify(command));
       if (command.command == "add_item")
       {
-        g_order_pane_items.push({
+        g_order_pane_items[command.item_id] = {
           item_name: command.item_name,
           table_id: command.table_id, 
           id: command.item_id,
@@ -528,8 +530,7 @@
           price: command.price, 
           taxable: command.taxable,
           parent_item: command.parent_item,
-          time_category: "Not Sent Yet", time_display: "---", pickup_time: null, minutes_since_mod: null, seconds_since_mod: null}
-        )  
+          time_category: "Not Sent Yet", pickup_time: null, created_time: null, expected_ready_time: null}
       }
 
       if (command.command == "cancel_item")
@@ -542,7 +543,7 @@
       {
         var item = get_order_pane_item(command.item_id);
         item[command.field] = command.value;
-        item.minutes_since_mod = item.seconds_since_mod = 0;
+        item.mod_time = now();
       }
       
       refresh_screen();
@@ -557,17 +558,62 @@
 
     var g_in_tansit_crud_commands = null;
     var g_last_server_contact = 0;
-    function handle_fresh_items(items)
+    var g_last_update_time = 'NEVER';
+    function handle_fresh_items(data)
     {
-      console.log('fresh items');
+      console.log('fresh items. Update time:' + data.time);
       g_last_server_contact = new Date();
       message_box.innerHTML = '';
       g_in_tansit_crud_commands = null; //release these. they have been handled
-      g_order_pane_items = items; 
-      for(var idx in g_crud_commands)
+      g_last_update_time = data.time;
+
+      for(key in data.items)
+      { // Convert time strings in incoming data to javascript Date objects.
+        // (JSON does not handle any sort of Date type, so they have to be 
+        // sent as JSON strings and then manually converted)
+        data.items[key].pickup_time = new Date(data.items[key].pickup_time);
+        data.items[key].expected_ready_time = new Date(data.items[key].expected_ready_time);
+        data.items[key].mod_time = new Date(data.items[key].mod_time);
+        data.items[key].created_time = new Date(data.items[key].created_time);
+      }
+
+      if (data.update_type == 'replace')
       {
-        apply_crud_command(g_crud_commands[idx]);
-      }  
+        console.log('replace data items');
+        console.log("# of items: "+Object.keys(data.items).length);
+        g_order_pane_items = data.items;
+
+        for(var idx in g_crud_commands)
+        {
+          apply_crud_command(g_crud_commands[idx]);
+        }
+      }
+      else //update
+      {
+        console.log('incremental update data items');
+        console.log("# of items: "+Object.keys(data.items).length);
+        for (var key in data.items)
+        {
+          console.log(data.items[key]);
+        }  
+
+        //first remove old items that were marked cancelled or
+        //closed in previous update. They had the chance to be
+        //seen as 'dead' for one update interval. They will not
+        //be in this new data
+        for(var key in g_order_pane_items)
+        {
+          if (g_order_pane_items[key].is_cancelled || g_order_pane_items[key].is_open == false)
+          {
+            delete g_order_pane_items[key];
+          }
+        }
+
+        // now update g_order_pane_items with new items
+        Object.assign(g_order_pane_items, data.items);
+
+      }
+
       refresh_screen();
       //clearTimeout(g_synchonize_timeout);
       g_synchonize_timeout = setTimeout(synchronize, MAIN_REFRESH_INTERVAL);
@@ -583,6 +629,7 @@
       if (errorThrown != ''){
         g_synchonize_timeout = setTimeout(synchronize, MAIN_REFRESH_INTERVAL);
         document.write("<p>"+textStatus + ":w:w:" + errorThrown + "</p>" + jqXHR.responseText);
+        clearTimeout(g_synchonize_timeout);
       }
       else
       { //probably network error. Silently try again in 1 minute
@@ -602,7 +649,7 @@
 
       console.log('async: ' + async + ' sending: ' + crud_commands);
       $.ajax({ url: "action.py/synchronize", type: "POST", dataType: "json", cache: false, async: async,
-        data: {'crud_commands' : crud_commands},
+        data: {'crud_commands' : crud_commands, 'last_update_time': JSON.stringify(g_last_update_time)},
         success: handle_fresh_items, error: ajax_error });
     }
       
@@ -773,7 +820,7 @@
       for(var idx = g_order_pane_items.length - 1; idx >= 0; --idx)
       {
         var item = g_order_pane_items[idx];
-        if(item.is_cancelled == false && item.table_id == g_currentTable && item.parent_item == null){ 
+        if(item.is_cancelled == false && item.is_open && item.table_id == g_currentTable && item.parent_item == null){ 
           g_current_parent = item.id;
           return true;
         }
@@ -1085,7 +1132,7 @@
     function cookscreen_timeclick(item_id)
     {
       var item = get_order_pane_item(item_id);
-      if (item.is_cancelled) {return;}
+      if (item.is_cancelled || !item.is_open) {return;}
       if (!item.is_delivered)
       {
         toggle_status(item.id, 'is_held');
@@ -1095,7 +1142,7 @@
     function cookscreen_click(item_id)
     {
       var item = get_order_pane_item(item_id);
-      if (item.is_cancelled) {return;}
+      if (item.is_cancelled || !item.is_open) {return;}
 
       if (item.is_held)
       {
@@ -1138,6 +1185,57 @@
       return is_good;
     }
     
+    function cook_screen_order_items()
+    {
+      items_list = [];
+      
+      for (var key in g_order_pane_items)
+      {
+        var item = g_order_pane_items[key];
+        if (item.is_delivered && now().getTime() - item.mod_time.getTime() > 30000 /* 30 seconds old */)
+        {
+          continue;
+        }  
+
+
+        if (item.created_time == null)
+        {
+          item.time_display = '---';
+          item.time_category = "Not sent yet";
+          item.expected_ready_time = new Date(8640000000000000); //most distant future, so it will sort last
+        }
+        else
+        {
+          item.time_display = 
+            item.pickup_time > 0? 'P'+ format_time(item.pickup_time) : format_time(item.created_time);
+
+          var hours_away = (item.expected_ready_time.getTime() - now().getTime()) /1000 / 60 / 60;
+
+          if (Math.abs(hours_away) < 24 && item.expected_ready_time.getDay() == now().getDay() ||
+            Math.abs(hours_away) < 4 )
+          {
+            item.time_category = "Today";
+          }
+          else if (hours_away > 0)
+          {
+            item.time_category = "Future";
+          }  
+          else
+          {
+            item.time_category = "Past";
+          }  
+        }
+
+        items_list.push(item);
+      }
+      
+      items_list.sort(function(a,b){
+        return a.expected_ready_time.getTime() - b.expected_ready_time.getTime();
+      });
+
+      return items_list;
+    }  
+
     function cook_style_order_items()
     {
       var uniq_order_items = {};
@@ -1222,16 +1320,14 @@
         time_cat_divs[i].style.display = "none";
       }
 
-      var items = g_cook_style ? cook_style_order_items() : g_order_pane_items;
+      var items = cook_screen_order_items(); //g_cook_style ? cook_style_order_items() : g_order_pane_items;
       for (var idx in items)
       {
         var item = items[idx];
         var cfg_item = get_config_item_from_id(item.menu_item_id);
         var classes = "order_item";
 
-        if (item.is_delivered && (item.seconds_since_mod == null || item.seconds_since_mod > 15) || 
-            item.table_id == 'MKT' && !g_cafe_style ||
-            item.parent_item != null) 
+        if (item.is_delivered && item.updated || item.parent_item != null) 
         {
           continue;
         }
@@ -1243,12 +1339,13 @@
         if (item.category && item.category.match(/coffee/)) {classes += ' dessert_item'}
         if (item.category == 'allergy') {classes += ' allergy_item'}
 
-        if (cfg_item.style) {classes += ' '+cfg_item.style}
+        //if (cfg_item.style) {classes += ' '+cfg_item.style}
 
         if (item.is_comped) {classes += ' comped_item'}
         if (item.is_held) {classes += ' held_item'}
         if (item.is_delivered) {classes += ' delivered_item'}
         if (item.is_cancelled) {classes += ' cancelled_item'}
+        if (!item.is_open) {classes += ' closed_item'}
 
         if (item.time_category != current_time_category){
           //new category
@@ -1263,7 +1360,7 @@
 
             //this time category div could be in wrong order now.
             //We'll remove each and reattatch it as we go to
-            //ensure propper order as given by items from server
+            //ensure propper order as given by sorted items
             //then make it visible again
             var tc_div = document.getElementById("time_cat_div_"+item.time_category);
             cook_tables_div.removeChild(tc_div);
@@ -1624,6 +1721,8 @@
             epos_print(response.receipt_text, g_config.printer);
           } else if (g_config.printer.type == "webprint"){
             web_print(response.receipt_text, g_config.printer);
+          } else if (g_config.printer.type == "NONE") {
+            console.log("unknow printer type: " + g_config.printer.type);
           }
         }
 
@@ -1632,6 +1731,8 @@
             epos_print_image(response.gift_certs[gci], g_config.printer);
           } else if (g_config.printer.type == "webprint"){
             web_print_image(response.gift_certs[gci], g_config.printer);
+          } else {
+            console.log("unknow printer type: " + g_config.printer.type);
           }
         }
 
@@ -1716,7 +1817,7 @@
 
       popup = document.getElementById("orderitem_popup");
       popup.item_id = item.id;
-      if (item.is_cancelled) { return;}
+      if (item.is_cancelled || !item.is_open) { return;}
       g_current_parent = item.parent_item || item.id;
       popup.table_id = item.table_id;
       menu_popup_caption = document.getElementById("orderitem_popup_caption");

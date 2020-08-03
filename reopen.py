@@ -40,7 +40,7 @@ def index(req, reopen_id):
 
   utils.execute(
     '''update order_group
-       set is_open = True, closedby = null
+       set is_open = True, closedby = null, updated = now()
        where id in %(reopen_id)s''' % locals()
   )
 

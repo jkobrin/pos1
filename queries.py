@@ -194,42 +194,10 @@ def weekly_pay(printmode=0, incursor = None, label=True):
     )    
 
   
-def get_active_items(incursor=None):
-
-  return utils.select(
-  ''' SELECT 
-      og.table_id, og.paid_before_close,
-      coalesce(og.pickup_time, oip.created, oi.created) pickup_time,
-      (pickup_time is not null) is_pickup, 
-      oi.item_name as item_name, oi.id, 
-      oi.is_delivered, oi.is_held, oi.is_comped, oi.price,
-      TIMESTAMPDIFF(MINUTE, oi.updated, now()) minutes_since_mod,
-      TIMESTAMPDIFF(SECOND, oi.updated, now()) seconds_since_mod,
-      oi.is_cancelled,
-      oi.parent_item,
-      oi.menu_item_id,
-      oi.fraction,
-      oi.taxable,
-      sku.supercategory,
-      sku.category
-    FROM order_group og join order_item oi 
-      on og.id = oi.order_group_id left outer join order_item oip 
-      on oi.parent_item = oip.id
-      left outer join sku on oi.menu_item_id = sku.id
-    where og.is_open = TRUE
-    and (oi.is_cancelled = FALSE or TIMESTAMPDIFF(MINUTE, oi.updated, now()) < 1)
-    order by 
-      coalesce(
-        if(oi.is_held, greatest(now()+interval 1 minute, ifnull(og.pickup_time - interval 20 minute, 0)), null),
-        og.pickup_time - interval 20 minute, oip.created, oi.created), 
-      coalesce(oip.id, oi.id), oi.id'''
-    , incursor)
-
-
   
 if __name__ == '__main__':
-  #print new_sales_by_server(True, 0)
-  #print hours(lag_days = 1)
-  print get_active_items()
+  for item in get_active_items_updated_since("2020-07-28 21:00:00"):
+  #for item in get_active_items_updated_since(0):
+    print item
 
   

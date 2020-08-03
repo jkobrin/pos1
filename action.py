@@ -2,7 +2,6 @@ import json
 import MySQLdb
 import utils
 from mylog import my_logger
-import queries
 
 from format_time_diff import format_time_from_now
 import datetime
@@ -100,9 +99,10 @@ def set_status(item_id, field, value, **unused):
     ''' % locals())
 
 
-def synchronize(req, crud_commands):
-    my_logger.info(req.get_remote_host()+': '+crud_commands)
+def synchronize(req, crud_commands, last_update_time):
+    my_logger.info(req.get_remote_host()+': '+crud_commands + '  update_time: ' + last_update_time)
 
+    # first deal with incoming data from this client
     crud_commands = json.loads(crud_commands)
     for command in crud_commands:
       if command['command'] == 'add_item':
@@ -112,21 +112,102 @@ def synchronize(req, crud_commands):
       if command['command'] == 'set_status':
         set_status(**command)
   
-    active_items = queries.get_active_items()
+
+    # now give the client any updates ( which will be those
+    # made by other clients (if any) as well as those this client
+    # just sent and which were just executed (if any))
+
+    last_update_time = json.loads(last_update_time)
+    if last_update_time == 'NEVER':
+      last_update_time = None
+      update_type = 'replace'
+    else:
+      update_type = 'incremental'
+
+    now = utils.select("select now()", label=False)[0]
+    active_items = get_active_items_updated_since(last_update_time)
+    items_by_id = {}
     for item in active_items:
 
-      item['time_display'] = (item['is_pickup'] and 'P' or '') + format_time_from_now(datetime.datetime.now(), item['pickup_time'])
-      if item['minutes_since_mod'] is not None and not item['is_pickup']:
-        item['time_display'] += ' ~%s'%item['minutes_since_mod']
-      if datetime.datetime.now().date() == item['pickup_time'].date():
-        item['time_category'] = "Today";
-      elif datetime.datetime.now().date() < item['pickup_time'].date():  
-        item['time_category'] = "Future";
-      else:  
-        item['time_category'] = "Past";
+      #item['time_display'] = (item['is_pickup'] and 'P' or '') + format_time_from_now(datetime.datetime.now(), item['pickup_time'])
+      #if item['minutes_since_mod'] is not None and not item['is_pickup']:
+      #  item['time_display'] += ' ~%s'%item['minutes_since_mod']
+      #if datetime.datetime.now().date() == item['pickup_time'].date():
+      #  item['time_category'] = "Today";
+      #elif datetime.datetime.now().date() < item['pickup_time'].date():  
+      #  item['time_category'] = "Future";
+      #else:  
+      #  item['time_category'] = "Past";
 
-    return json.dumps(active_items, encoding='latin-1', cls=utils.MyJSONEncoder)
+      items_by_id[item['id']] = item  
+
+    return json.dumps({'update_type': update_type, 'time': now, 'items': items_by_id}, encoding='latin-1', cls=utils.MyJSONEncoder)
     
+
+def get_active_items_updated_since(last_update_time, incursor=None):
+
+  # TODO: Do I really need to join to order_item as oip and get
+  # parent's created to determine a pickup time? What is this
+  # for? Sorting? Time display? Time display, I think, but this
+  # should not be needed for child items anyway. I should axe
+  # this. Time display code needs to deal and not even
+  # create time display for child items. It isn't used.
+  #
+  # REMOVED
+
+  select ='''
+    SELECT
+      og.table_id, og.paid_before_close, og.is_open, og.pickup_time,
+      greatest(
+        if(oi.is_held, now() + interval 21 minute, 0),
+        coalesce(og.pickup_time, oi.created + interval 20 minute)
+        ) expected_ready_time,
+      greatest(oi.updated, oi.created, og.updated, og.created) mod_time,
+      oi.created as created_time,
+      oi.item_name as item_name, 
+      oi.id, 
+      oi.is_delivered, oi.is_held, oi.is_comped, 
+      oi.price,
+      oi.is_cancelled,
+      oi.parent_item,
+      oi.menu_item_id,
+      oi.fraction,
+      oi.taxable,
+      sku.supercategory,
+      sku.category
+    '''
+    
+  if last_update_time is None:
+    # full update
+    return utils.select(
+    select + '''
+    FROM 
+      order_group og join 
+      order_item oi on og.id = oi.order_group_id left outer join 
+      sku on oi.menu_item_id = sku.id
+    WHERE 
+      og.is_open = TRUE
+      and oi.is_cancelled = FALSE
+    ''', 
+    incursor)
+  else:
+    # incremental update
+    return utils.select(
+    select + '''
+    FROM 
+      (select cast(%s as DATETIME) as last_update_time)x join
+      order_group og join 
+      order_item oi on og.id = oi.order_group_id left outer join 
+      sku on oi.menu_item_id = sku.id
+    WHERE
+      og.updated >= last_update_time
+      or og.created >= last_update_time
+      or oi.updated >= last_update_time 
+      or oi.created >= last_update_time
+    '''
+    , incursor, args=[last_update_time])
+
+
 
 
 if __name__ == '__main__':
