@@ -597,13 +597,13 @@
           console.log(data.items[key]);
         }  
 
-        //first remove old items that were marked cancelled or
-        //closed in previous update. They had the chance to be
+        //first remove old items that were marked cancelled
+        //in previous update. They had the chance to be
         //seen as 'dead' for one update interval. They will not
         //be in this new data
         for(var key in g_order_pane_items)
         {
-          if (g_order_pane_items[key].is_cancelled || g_order_pane_items[key].is_open == false)
+          if (g_order_pane_items[key].is_cancelled)
           {
             delete g_order_pane_items[key];
           }
@@ -612,7 +612,17 @@
         // now update g_order_pane_items with new items
         Object.assign(g_order_pane_items, data.items);
 
-      }
+
+        // now remove items that are marked closed, so closing
+        // disappears items immediately
+        for(var key in g_order_pane_items)
+        {
+          if (g_order_pane_items[key].is_open == false)
+          {
+            delete g_order_pane_items[key];
+          }
+        }
+       }
 
       refresh_screen();
       //clearTimeout(g_synchonize_timeout);
@@ -806,10 +816,12 @@
     {
       console.log("set current table: " + table);
       g_currentTable = table;
-      refresh_screen();
-      var parent_was_set = set_current_parent();
-      if (!parent_was_set && is_waiting_tab(g_currentTable)) {
-        // for new tabs was_set will be false so create a descriptor item for convenience when tabs are for waiting ppl
+      update_order_pane(g_currentTable);
+      set_current_parent();
+      if (is_waiting_tab(g_currentTable) && !g_current_parent) {
+        // create a descriptor item for convenience when tabs are for waiting ppl
+        // (for tabs with no items g_current_parent will be
+        // null so we are using that as a proxy for empty tab)
         create_tab_descriptor_item();
       }  
     }
@@ -817,15 +829,17 @@
     g_current_parent = null;
     function set_current_parent()
     {
-      for(var idx = g_order_pane_items.length - 1; idx >= 0; --idx)
+      g_current_parent = null;
+      var table_items = get_sorted_table_items(g_currentTable);
+      for(var idx in table_items)
       {
-        var item = g_order_pane_items[idx];
-        if(item.is_cancelled == false && item.is_open && item.table_id == g_currentTable && item.parent_item == null){ 
+        var item = table_items[idx];
+        if(item.is_cancelled == false && item.is_open && item.parent_item == null){ 
           g_current_parent = item.id;
-          return true;
+          // the last non-child item on the current table will be
+          // left in g_current_parent
         }
       }
-      return false;
     }  
 
 
@@ -1091,6 +1105,11 @@
 
       var new_item_id = get_new_item_id();
       if (cfg_item.add_on) {
+        if (g_current_parent == null) 
+        {
+          alert(cfg_item.name + ' is an add on. It must be attached to something.');
+          return; // We're done here. 
+        }  
         var parent_item = g_current_parent;
       }else{
         var parent_item = null;
@@ -1192,7 +1211,9 @@
       for (var key in g_order_pane_items)
       {
         var item = g_order_pane_items[key];
-        if (item.is_delivered && now().getTime() - item.mod_time.getTime() > 30000 /* 30 seconds old */)
+        if (item.parent_item != null || 
+            item.is_delivered && 
+            now().getTime() - item.mod_time.getTime() > 30000 /* 30 seconds old */)
         {
           continue;
         }  
@@ -1327,11 +1348,6 @@
         var cfg_item = get_config_item_from_id(item.menu_item_id);
         var classes = "order_item";
 
-        if (item.is_delivered && item.updated || item.parent_item != null) 
-        {
-          continue;
-        }
-
         if (item.supercategory == 'wine' || item.supercategory=='bar') {classes += ' bev_item'}
         if (item.category == 'cafe') {classes += ' cafe_item'}
         if (item.category == 'boards') {classes += ' board_item'}
@@ -1339,7 +1355,7 @@
         if (item.category && item.category.match(/coffee/)) {classes += ' dessert_item'}
         if (item.category == 'allergy') {classes += ' allergy_item'}
 
-        //if (cfg_item.style) {classes += ' '+cfg_item.style}
+        if (cfg_item.style) {classes += ' '+cfg_item.style}
 
         if (item.is_comped) {classes += ' comped_item'}
         if (item.is_held) {classes += ' held_item'}
@@ -1418,16 +1434,6 @@
         table_row.appendChild(time_col);
 
         cook_table.appendChild(table_row);
-
-        /*
-        cook_table.innerHTML += ( 
-        '<tr class="'+ classes + '">' +
-        '<td onclick="cookscreen_table_click(\'' + item.table_id + '\')">' + item.table_id + '</td>' +
-        '<td onclick="cookscreen_click(' + item.id + ')">' + (g_cook_style && item.count > 1 ? item.count + 'X ': '') +
-          item.item_name + get_add_on_string_for(item.id) + '</td>' +
-        '<td class="time_display" onclick="cookscreen_timeclick(' + item.id + ')">'+item.time_display+'</td>' +
-        '</tr>');
-        */
       }  
     }
 
@@ -1759,6 +1765,22 @@
       console.log('get_order_pane_item id not found: '+item_id);
     }
       
+    function get_sorted_table_items(table_id)
+    {
+      var table_items = []; // make a list of items on this table that we can sort
+      for (var idx in g_order_pane_items)
+      {
+        var item = g_order_pane_items[idx];
+        if (item.table_id == table_id) 
+        {
+          table_items.push(item);
+        }
+      }  
+
+      table_items.sort(function(a,b){return (a.parent_item || a.id) - (b.parent_item || b.id)});
+      return table_items;
+     } 
+
     function update_order_pane(table_id)
     {
       document.getElementById("table_id_display").innerHTML = "Table: " + (table_id || '---');
@@ -1767,16 +1789,13 @@
       var order_items = document.getElementById("order_items");
       order_items.innerHTML = '';
 
-      for (idx in g_order_pane_items)
+      var table_items = get_sorted_table_items(table_id);
+
+      for (var idx in table_items)
       {
-        var item = g_order_pane_items[idx];
+        var item = table_items[idx];
 				var cfg_item = get_config_item_from_id(item.menu_item_id);
 
-        if (item.table_id != table_id) 
-        {
-          continue;
-        }
-        
         var classes = "order_item";
         if (item.is_held) {classes += ' held_item'}
         else if (!item.is_delivered) {classes += ' nondelivered_item'}
@@ -1792,14 +1811,8 @@
         item_button.oncontextmenu=make_closure(context_tool_tip, {'button': item_button, 'item': cfg_item});
 				item_button.onclick=make_closure(orderitem_popup, {'button': item_button, 'item': item});
 
-      	/*  order_items_html += '<input' +
-          ' class="'+ classes + '"' +
-          ' type=button' +
-          ' onclick="orderitem_popup(' + item.id + ', event)"' +
-          ' value="'+item.item_name+'"' +
-          '></input>';*/
-
 				order_items.appendChild(item_button);
+
       }  
     }
       
