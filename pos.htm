@@ -1228,10 +1228,12 @@
         else
         {
           item.time_display = 
-            item.pickup_time > 0? 'P'+ format_time(item.pickup_time) : format_time(item.created_time);
+            item.pickup_time > 0? 'P'+ format_time(item.pickup_time) : 
+            format_time(item.created_time) + 
+            (item.mod_time.getTime() - item.created_time.getTime() > 60000 ?
+              ' ~'+Math.floor((now().getTime() - item.mod_time.getTime())/60000) : '')
 
           var hours_away = (item.expected_ready_time.getTime() - now().getTime()) /1000 / 60 / 60;
-
           if (Math.abs(hours_away) < 24 && item.expected_ready_time.getDay() == now().getDay() ||
             Math.abs(hours_away) < 4 )
           {
