@@ -12,6 +12,8 @@ guest_check_header: "PLANCHA\n931 Franklin Avenue\nGarden City, NY\n516-246-9459
 new_page_for_white_wine: true
 use_wine_fun: true
 
+portal_link: "https://sites.google.com/view/plancha"
+
 printer:
   type: epson
   ipaddr: 192.168.1.151

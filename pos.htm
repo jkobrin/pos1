@@ -476,7 +476,7 @@
       //document.body.style.backgroundColor = g_config.style.backgroundColor;
       //document.body.style.backgroundImage = g_config.style.backgroundImage;
 
-      //document.getElementById("portal_link").setAttribute("href", g_config.portal_url);
+      document.getElementById("portal_link").setAttribute("href", g_config.portal_link);
 
       get_new_session_id();
       synchronize();
@@ -834,7 +834,7 @@
       for(var idx in table_items)
       {
         var item = table_items[idx];
-        if(item.is_cancelled == false && item.is_open && item.parent_item == null){ 
+        if(item.is_cancelled == false && !(item.is_open== false) && item.parent_item == null){ 
           g_current_parent = item.id;
           // the last non-child item on the current table will be
           // left in g_current_parent
@@ -1151,7 +1151,7 @@
     function cookscreen_timeclick(item_id)
     {
       var item = get_order_pane_item(item_id);
-      if (item.is_cancelled || !item.is_open) {return;}
+      if (item.is_cancelled || item.is_open == false) {return;}
       if (!item.is_delivered)
       {
         toggle_status(item.id, 'is_held');
@@ -1161,7 +1161,7 @@
     function cookscreen_click(item_id)
     {
       var item = get_order_pane_item(item_id);
-      if (item.is_cancelled || !item.is_open) {return;}
+      if (item.is_cancelled || item.is_open == false) {return;}
 
       if (item.is_held)
       {
@@ -1361,7 +1361,7 @@
         if (item.is_held) {classes += ' held_item'}
         if (item.is_delivered) {classes += ' delivered_item'}
         if (item.is_cancelled) {classes += ' cancelled_item'}
-        if (!item.is_open) {classes += ' closed_item'}
+        if (item.is_open == false) {classes += ' closed_item'}
 
         if (item.time_category != current_time_category){
           //new category
@@ -1830,7 +1830,7 @@
 
       popup = document.getElementById("orderitem_popup");
       popup.item_id = item.id;
-      if (item.is_cancelled || !item.is_open) { return;}
+      if (item.is_cancelled || item.is_open == false) { return;}
       g_current_parent = item.parent_item || item.id;
       popup.table_id = item.table_id;
       menu_popup_caption = document.getElementById("orderitem_popup_caption");
@@ -2052,7 +2052,7 @@
     <!--<div><a href="javascript:goLeft()"  class="leftLink" id="goLeftLink">&lt;</a></div>-->
     <div><a href="javascript:go_to_cook_screen()"  class="leftLink" id="cooklink">C</a></div>
     <div><a href="javascript:go_to_clock_screen()"  class="leftLink" id="clocklink">P</a></div>
-    <div><a href="https://sites.google.com/view/salumi/p-o-r-t-a-l" class="leftLink" id="wlink">'I'</a></div>
+    <div><a href="https://sites.google.com/view/salumi/p-o-r-t-a-l" class="leftLink" id="portal_link">I</a></div>
     </div>
     <div id="board"></div>
 

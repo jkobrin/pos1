@@ -3,11 +3,11 @@
     <head>
       <meta charset = "UTF-8">
       <title>MENU</title>
-      <link rel = "stylesheet" type = "text/css" href = "webcommon/webcommon.css?id=2020-07-29 09:35:55.812351" />
-      <link rel = "stylesheet" type = "text/css" href = "webcommon/menustyle.css?id=2020-07-29 09:35:55.812351" />
-      <link rel = "stylesheet" type = "text/css" href = "sitespecific.css?id=2020-07-29 09:35:55.812351" />
+      <link rel = "stylesheet" type = "text/css" href = "webcommon/webcommon.css?id=2020-08-05 11:14:18.649163" />
+      <link rel = "stylesheet" type = "text/css" href = "webcommon/menustyle.css?id=2020-08-05 11:14:18.649163" />
+      <link rel = "stylesheet" type = "text/css" href = "sitespecific.css?id=2020-08-05 11:14:18.649163" />
     </head>
-    <script type="text/javascript" src="webcommon/menufuncs.js?id=2020-07-29 09:35:55.812351"></script>
+    <script type="text/javascript" src="webcommon/menufuncs.js?id=2020-08-05 11:14:18.649163"></script>
     <body>
   
 <h1 onclick="majority_toggle_child_checkboxes(this)">wine</h1>
@@ -182,6 +182,21 @@ The lost Bordeaux grape, Carménère, has found a home in Chile. Velvety rich mo
           <h3 onclick="majority_toggle_child_checkboxes(this.parentElement)"> &#x2011;&#x2011;white &amp; rosé&#x2011;&#x2011; </h3>
           
 <div class="item_block accordion">
+<input class="collapser" type="checkbox" name="white &amp; rosé_2936" id="white &amp; rosé_2936">
+<label for="white &amp; rosé_2936">
+<div class="binnum">1031</div>
+<div class="item_name">Catalunya Xarel-lo 2019</div>
+<div class="item_price">
+8
+</div>
+</label>
+<div class="description content">
+by Bohigas - Catalonia, Spain<br>
+Grape: Xarel-lo<br>
+Bright and light with notes of green apple, lime and green pineapple.<br> Bottle: 24<br>
+</div>
+</div> <!-- item block -->
+<div class="item_block accordion">
 <input class="collapser" type="checkbox" name="white &amp; rosé_2727" id="white &amp; rosé_2727">
 <label for="white &amp; rosé_2727">
 <div class="binnum">401</div>
@@ -212,17 +227,17 @@ Light-bodied with a touch of spritziness; orange zest and peach blossom aromas.<
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
-<input class="collapser" type="checkbox" name="white &amp; rosé_3216" id="white &amp; rosé_3216">
-<label for="white &amp; rosé_3216">
-<div class="binnum">005</div>
-<div class="item_name">Edna Valley Chardonnay 2016</div>
+<input class="collapser" type="checkbox" name="white &amp; rosé_3619" id="white &amp; rosé_3619">
+<label for="white &amp; rosé_3619">
+<div class="binnum">305</div>
+<div class="item_name">Au Bon Climat Chardonnay 2018</div>
 <div class="item_price">
 12
 </div>
 </label>
 <div class="description content">
-by Mount Eden Vineyards - California<br>
-Full-bodied and buttery; aromas of golden apple and papaya, with grilled pineapple and toasted oak on the palate.<br> Bottle: 40<br>
+by Au Bon Climat - Santa Barbara County, California<br>
+On the fuller side without being excessively oaky or buttery. Aromas of ripe apple and pear with a clean lemony finish.<br> Bottle: 36<br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
@@ -893,20 +908,6 @@ lashings of mocha. <br>
 <div class="description content">
 by Quivira Vineyards - Sonoma County, California<br>
 Aromas of red and black berries with jammy concentration. Layers of vanilla, chocolate, and baking spices on the palate.<br>
-</div>
-</div> <!-- item block -->
-<div class="item_block accordion">
-<input class="collapser" type="checkbox" name="None_3261" id="None_3261">
-<label for="None_3261">
-<div class="binnum">703*</div>
-<div class="item_name">Grenache, A Tribute to Grace 2017</div>
-<div class="item_price">
-46
-</div>
-</label>
-<div class="description content">
-by A Tribute to Grace - Santa Barbara, California<br>
-Pale ruby red in the glass, this is a good option for Pinot lovers looking to try something new. Ripe, delicious strawberry flavors that persist.<br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
@@ -1641,7 +1642,7 @@ Abundant notes of jasmine and elderflower on the nose. What appears initially to
 <div class="description content">
 by Bohigas - Catalonia, Spain<br>
 Grape: Xarel-lo<br>
-Bright and light with notes of green apple, lime and green pineapple.<br>
+Bright and light with notes of green apple, lime and green pineapple.<br> Glass: 8<br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
@@ -1704,36 +1705,7 @@ A Burgundian-styled effort, focused and full, but not buttery; melon, ripe green
 </label>
 <div class="description content">
 by Au Bon Climat - Santa Barbara County, California<br>
-On the fuller side without being excessively oaky or buttery. Aromas of ripe apple and pear with a clean lemony finish.<br>
-</div>
-</div> <!-- item block -->
-<div class="item_block accordion">
-<input class="collapser" type="checkbox" name="None_3216" id="None_3216">
-<label for="None_3216">
-<div class="binnum">005</div>
-<div class="item_name">Edna Valley Chardonnay 2016</div>
-<div class="item_price">
-40
-</div>
-</label>
-<div class="description content">
-by Mount Eden Vineyards - California<br>
-Full-bodied and buttery; aromas of golden apple and papaya, with grilled pineapple and toasted oak on the palate.<br> Glass: 12<br>
-</div>
-</div> <!-- item block -->
-<div class="item_block accordion">
-<input class="collapser" type="checkbox" name="None_3421" id="None_3421">
-<label for="None_3421">
-<div class="binnum">928</div>
-<div class="item_name">DuMOL, Wild Mountainside Viognier 2016</div>
-<div class="item_price">
-57
-</div>
-</label>
-<div class="description content">
-by DuMOL - Sonoma, California<br>
-Grape: Viognier<br>
-Full-bodied and oaky, not unlike Chardonnay, but more fragrant. Notes of honeysuckle and nectarine, with a waxy rather than buttery texture.<br>
+On the fuller side without being excessively oaky or buttery. Aromas of ripe apple and pear with a clean lemony finish.<br> Glass: 12<br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
@@ -2264,6 +2236,19 @@ creme de cassis, campari, cava<br>
 tequila, grapefruit, lime, agave<br>
 </div>
 </div> <!-- item block -->
+<div class="item_block accordion">
+<input class="collapser" type="checkbox" name="None_3634" id="None_3634">
+<label for="None_3634">
+<div class="binnum"></div>
+<div class="item_name">thyme out</div>
+<div class="item_price">
+12
+</div>
+</label>
+<div class="description content">
+greenhook gin (Brooklyn), fresh thyme, muddled cucumber - a stiff yet refreshing take on a gin martini<br>
+</div>
+</div> <!-- item block -->
 </div>
 
           <div class="subcategory" id="vermouth">
@@ -2454,20 +2439,6 @@ Brouwerij Huyghe - Melle, Belgium<br>
 <div class="description content">
 5.2% 16oz can<br>
 half acre, IL<br>
-</div>
-</div> <!-- item block -->
-<div class="item_block accordion">
-<input class="collapser" type="checkbox" name="None_3419" id="None_3419">
-<label for="None_3419">
-<div class="binnum"></div>
-<div class="item_name">hazelnut coffee brown ale</div>
-<div class="item_price">
-8
-</div>
-</label>
-<div class="description content">
-9.0% 12oz btl<br>
-founders, MI<br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
@@ -3397,13 +3368,13 @@ spicy house-made bloody mix with kentucky bourbon, peated scotch and white wine.
 <input class="collapser" type="checkbox" name="specials_3625" id="specials_3625">
 <label for="specials_3625">
 <div class="binnum"></div>
-<div class="item_name">hyper-local figs</div>
+<div class="item_name">scallops</div>
 <div class="item_price">
 12
 </div>
 </label>
 <div class="description content">
-tree-ripened figs from Massapequa with buratta, balsamic and tarragon<br>
+two scallops ala plancha with long-island-sweet-corn gazpacho, jalapeno, cilantro<br>
 </div>
 </div> <!-- item block -->
 </div>
@@ -3873,13 +3844,13 @@ chilled hollander mussels in white wine-shallot sauce and basil oil.<br>
 <input class="collapser" type="checkbox" name="None_1273" id="None_1273">
 <label for="None_1273">
 <div class="binnum"></div>
-<div class="item_name">wild mushrooms</div>
+<div class="item_name">king trumpets</div>
 <div class="item_price">
-7
+8
 </div>
 </label>
 <div class="description content">
-wild mushrooms grilled on the plancha.<br>
+king trumpet mushrooms, grilled ala plancha.<br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
@@ -4000,13 +3971,13 @@ rustic bread with good olive oil and maldon sea salt<br>
 <input class="collapser" type="checkbox" name="chef's plates_3626" id="chef's plates_3626">
 <label for="chef's plates_3626">
 <div class="binnum"></div>
-<div class="item_name">heirloom tomatoes</div>
+<div class="item_name">local peaches</div>
 <div class="item_price">
-16
+12
 </div>
 </label>
 <div class="description content">
-local tomatoes with ricotta, lady edison proscuitto, and rustic toast<br>
+local peaches with ricotta, lady edison proscuitto, and rustic toast<br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
@@ -4019,7 +3990,7 @@ local tomatoes with ricotta, lady edison proscuitto, and rustic toast<br>
 </div>
 </label>
 <div class="description content">
-arugula, corn, summer tomatoes, english cucumber, chickpeas, bacon, shallot vinaigrette <br>
+watermelon, charred zucchini, fennel, arugula, pepitas,cana de cabra (goat cheese) <br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
@@ -4075,16 +4046,16 @@ grilled, over roasted corn succotash with a jalapeño vinaigrette  <br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
-<input class="collapser" type="checkbox" name="None_3410" id="None_3410">
-<label for="None_3410">
+<input class="collapser" type="checkbox" name="None_3632" id="None_3632">
+<label for="None_3632">
 <div class="binnum"></div>
-<div class="item_name">fried chicken</div>
+<div class="item_name">crispy wings</div>
 <div class="item_price">
-16
+12
 </div>
 </label>
 <div class="description content">
-crispy legs with spiced yogurt, english cucumber, and creamy chickpeas<br>
+fried crispy wings with smoked paprika and spiced yogurt<br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
@@ -4098,19 +4069,6 @@ crispy legs with spiced yogurt, english cucumber, and creamy chickpeas<br>
 </label>
 <div class="description content">
 half rack of slow-roasted, fall-off-the-bone quince-glazed iberico pork ribs with sweet and sour slaw<br>
-</div>
-</div> <!-- item block -->
-<div class="item_block accordion">
-<input class="collapser" type="checkbox" name="None_3627" id="None_3627">
-<label for="None_3627">
-<div class="binnum"></div>
-<div class="item_name">dry-aged steak</div>
-<div class="item_price">
-65
-</div>
-</label>
-<div class="description content">
-certified angus 18 oz. bone-in strip, sliced, with crispy garlic-potatoes, dressed watercress, black garlic steak sauce. MEDIUM-RARE ONLY<br>
 </div>
 </div> <!-- item block -->
 </div>
@@ -4134,6 +4092,19 @@ certified angus 18 oz. bone-in strip, sliced, with crispy garlic-potatoes, dress
 </label>
 <div class="description content">
 melted dark chocolate and nutella with toast drizzled with good olive oil and sea salt <br>
+</div>
+</div> <!-- item block -->
+<div class="item_block accordion">
+<input class="collapser" type="checkbox" name="None_1277" id="None_1277">
+<label for="None_1277">
+<div class="binnum"></div>
+<div class="item_name">panacotta</div>
+<div class="item_price">
+7
+</div>
+</label>
+<div class="description content">
+vanilla custard topped with amarena cherries<br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
