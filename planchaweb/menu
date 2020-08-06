@@ -3,11 +3,11 @@
     <head>
       <meta charset = "UTF-8">
       <title>MENU</title>
-      <link rel = "stylesheet" type = "text/css" href = "webcommon/webcommon.css?id=2020-07-30 08:51:18.418577" />
-      <link rel = "stylesheet" type = "text/css" href = "webcommon/menustyle.css?id=2020-07-30 08:51:18.418577" />
-      <link rel = "stylesheet" type = "text/css" href = "sitespecific.css?id=2020-07-30 08:51:18.418577" />
+      <link rel = "stylesheet" type = "text/css" href = "webcommon/webcommon.css?id=2020-08-03 19:20:02.403468" />
+      <link rel = "stylesheet" type = "text/css" href = "webcommon/menustyle.css?id=2020-08-03 19:20:02.403468" />
+      <link rel = "stylesheet" type = "text/css" href = "sitespecific.css?id=2020-08-03 19:20:02.403468" />
     </head>
-    <script type="text/javascript" src="webcommon/menufuncs.js?id=2020-07-30 08:51:18.418577"></script>
+    <script type="text/javascript" src="webcommon/menufuncs.js?id=2020-08-03 19:20:02.403468"></script>
     <body>
   
 <h1 onclick="majority_toggle_child_checkboxes(this)">wine</h1>
@@ -187,7 +187,7 @@ Notes of earthy blackberry and violet, with abundant peppery tones. This is a 10
 <div class="binnum">504*</div>
 <div class="item_name">COS Frappato 2018</div>
 <div class="item_price">
-13
+12
 </div>
 </label>
 <div class="description content">
@@ -1341,7 +1341,7 @@ This wine is produced in limited quantity from small parcels of volcanic soil on
 <div class="description content">
 by Azienda Agricola COS - Sicily, Italy<br>
 Grape: Frappato<br>
-Delicate and easy-drinking; abundant red cherry with pulverized stone and smoke.<br> Glass: 13<br>
+Delicate and easy-drinking; abundant red cherry with pulverized stone and smoke.<br> Glass: 12<br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
@@ -1866,20 +1866,6 @@ Citrusy aromas upfront, with notes of sweet caramel and toast. 5.8% ABV<br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
-<input class="collapser" type="checkbox" name="None_1692" id="None_1692">
-<label for="None_1692">
-<div class="binnum"></div>
-<div class="item_name">Surf Wax IPA</div>
-<div class="item_price">
-7
-</div>
-</label>
-<div class="description content">
-by Burial Beer Co. - Asheville, North Carolina<br>
-West Coast style IPA with fresh tropical fruit notes; 65 IBU. 6.8% ABV<br>
-</div>
-</div> <!-- item block -->
-<div class="item_block accordion">
 <input class="collapser" type="checkbox" name="None_1805" id="None_1805">
 <label for="None_1805">
 <div class="binnum"></div>
@@ -1908,6 +1894,21 @@ ABV: 6.1%<br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
+<input class="collapser" type="checkbox" name="None_2074" id="None_2074">
+<label for="None_2074">
+<div class="binnum"></div>
+<div class="item_name">Jai Alai IPA</div>
+<div class="item_price">
+7
+</div>
+</label>
+<div class="description content">
+Cigar City - Tampa, Florida<br>
+Powerful yet well-balanced with assertive citrus aromas. <br>
+ABV 7.5% <br>
+</div>
+</div> <!-- item block -->
+<div class="item_block accordion">
 <input class="collapser" type="checkbox" name="None_2076" id="None_2076">
 <label for="None_2076">
 <div class="binnum"></div>
@@ -1919,6 +1920,20 @@ ABV: 6.1%<br>
 <div class="description content">
 Brooklyn - Dry and refreshing. Light malt and light on hops with a dry finish.<br>
 ABV: 5.5% <br>
+</div>
+</div> <!-- item block -->
+<div class="item_block accordion">
+<input class="collapser" type="checkbox" name="None_2077" id="None_2077">
+<label for="None_2077">
+<div class="binnum"></div>
+<div class="item_name">Weinstephaner Hefeweissbier</div>
+<div class="item_price">
+7
+</div>
+</label>
+<div class="description content">
+Weinstephaner, Germany<br>
+ABV:5.4% <br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
@@ -1947,6 +1962,19 @@ Delicate fruit and toast flavors with a creamy mouthfeel. 5.5% ABV<br>
 <div class="description content">
 Wölffer Estate Vineyard - Sagaponack, Long Island<br>
 Juicy red berry aromas; a little sweet with a clean, tart finish. 6.9% ABV<br>
+</div>
+</div> <!-- item block -->
+<div class="item_block accordion">
+<input class="collapser" type="checkbox" name="None_2079" id="None_2079">
+<label for="None_2079">
+<div class="binnum"></div>
+<div class="item_name">Downeast Unfiltered Apple Cider</div>
+<div class="item_price">
+6
+</div>
+</label>
+<div class="description content">
+-no info-
 </div>
 </div> <!-- item block -->
 </div>
@@ -2693,19 +2721,6 @@ fried fingerling potatoes with our house-made red and white sauces (brava and cu
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
-<input class="collapser" type="checkbox" name="None_1905" id="None_1905">
-<label for="None_1905">
-<div class="binnum"></div>
-<div class="item_name">wild mushrooms</div>
-<div class="item_price">
-7
-</div>
-</label>
-<div class="description content">
-wild mushrooms grilled on the plancha.<br>
-</div>
-</div> <!-- item block -->
-<div class="item_block accordion">
 <input class="collapser" type="checkbox" name="None_2063" id="None_2063">
 <label for="None_2063">
 <div class="binnum"></div>
@@ -2755,6 +2770,19 @@ morcilla de burgos with charred grape relish<br>
 </label>
 <div class="description content">
 crispy deep-fried pork skin <br>
+</div>
+</div> <!-- item block -->
+<div class="item_block accordion">
+<input class="collapser" type="checkbox" name="None_1901" id="None_1901">
+<label for="None_1901">
+<div class="binnum"></div>
+<div class="item_name">bocadillo bites</div>
+<div class="item_price">
+10
+</div>
+</label>
+<div class="description content">
+braised pork belly with kimchi, cilantro and sesame mayo on baguette roll<br>
 </div>
 </div> <!-- item block -->
 <div class="item_block accordion">
@@ -2895,6 +2923,29 @@ grilled, over roasted corn succotash with a jalapeño vinaigrette  <br>
 </label>
 <div class="description content">
 crispy leg and thigh with spanish-style potato salad<br>
+</div>
+</div> <!-- item block -->
+</div>
+</div></div> <!-- cat_content and cat -->
+<div class="category accordion" id="raciones">
+<input type="checkbox" name="foodraciones" id="foodraciones">
+<center><h2><label class="cat_label" for="foodraciones">raciones</label></h2></center>
+<div class="cat_content content">
+
+          <div class="subcategory" id="raciones">
+          <h3 onclick="majority_toggle_child_checkboxes(this.parentElement)"> &#x2011;&#x2011;raciones&#x2011;&#x2011; </h3>
+          
+<div class="item_block accordion">
+<input class="collapser" type="checkbox" name="raciones_2064" id="raciones_2064">
+<label for="raciones_2064">
+<div class="binnum"></div>
+<div class="item_name">dry-aged steak board</div>
+<div class="item_price">
+72
+</div>
+</label>
+<div class="description content">
+certified angus 18 oz. bone-in strip, sliced, with roasted marrow bone, seasonal accompaniments, and vegetables. MEDIUM-RARE ONLY<br>
 </div>
 </div> <!-- item block -->
 </div>
