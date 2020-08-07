@@ -6,22 +6,15 @@ from mylog import my_logger
 log = my_logger
 
 def index(req, p_from, p_to):
+  # What does the 'p' stand for in these argument names? parameter?
+  # I have no recollection.
   log.debug('move tab : ' + p_from + "  " + p_to)
 
-
-  #is_to_tab_open = utils.select(
-  #  '''select 1
-  #     from order_group og
-  #     where og.table_id = "%(p_to)s"
-  #     and og.is_open = true''' % locals()
-  #)
-
-  #if not is_to_tab_open:
   utils.execute(
-    '''update order_group og
-      set table_id = "%(p_to)s"
-      where table_id = "%(p_from)s"
-      and og.is_open = true'''% locals()
+    '''update order_group
+      set table_id = %s, updated = now()
+      where table_id = %s
+      and is_open = true''', args=[p_to, p_from]
   )    
 
   return json.dumps(None)
