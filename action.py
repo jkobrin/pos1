@@ -101,9 +101,10 @@ def set_status(item_id, field, value, **unused):
 
 def synchronize(req, crud_commands, last_update_time):
     my_logger.info(req.get_remote_host()+': '+crud_commands + '  update_time: ' + last_update_time)
+    crud_commands = json.loads(crud_commands)
+    last_update_time = json.loads(last_update_time)
 
     # first deal with incoming data from this client
-    crud_commands = json.loads(crud_commands)
     for command in crud_commands:
       if command['command'] == 'add_item':
         add_item(**command)
@@ -117,7 +118,6 @@ def synchronize(req, crud_commands, last_update_time):
     # made by other clients (if any) as well as those this client
     # just sent and which were just executed (if any))
 
-    last_update_time = json.loads(last_update_time)
     if last_update_time == 'NEVER':
       last_update_time = None
       update_type = 'replace'
@@ -158,10 +158,7 @@ def get_active_items_updated_since(last_update_time, incursor=None):
   select ='''
     SELECT
       og.table_id, og.paid_before_close, og.is_open, og.pickup_time,
-      greatest(
-        if(oi.is_held, now() + interval 21 minute, 0),
-        coalesce(og.pickup_time, oi.created + interval 20 minute)
-        ) expected_ready_time,
+      if(oi.is_held, now() + interval 21 minute, coalesce(og.pickup_time, oi.created + interval 20 minute)) expected_ready_time,
       greatest(oi.updated, oi.created, og.updated, og.created) mod_time,
       oi.created as created_time,
       oi.item_name as item_name, 
@@ -175,16 +172,16 @@ def get_active_items_updated_since(last_update_time, incursor=None):
       oi.taxable,
       sku.supercategory,
       sku.category
+    FROM 
+      order_group og join 
+      order_item oi on og.id = oi.order_group_id left outer join 
+      sku on oi.menu_item_id = sku.id
     '''
     
   if last_update_time is None:
     # full update
     return utils.select(
     select + '''
-    FROM 
-      order_group og join 
-      order_item oi on og.id = oi.order_group_id left outer join 
-      sku on oi.menu_item_id = sku.id
     WHERE 
       og.is_open = TRUE
       and oi.is_cancelled = FALSE
@@ -194,21 +191,16 @@ def get_active_items_updated_since(last_update_time, incursor=None):
     # incremental update
     return utils.select(
     select + '''
-    FROM 
-      (select cast(%s as DATETIME) as last_update_time)x join
-      order_group og join 
-      order_item oi on og.id = oi.order_group_id left outer join 
-      sku on oi.menu_item_id = sku.id
     WHERE
-      og.updated >= last_update_time
-      or og.created >= last_update_time
-      or oi.updated >= last_update_time 
-      or oi.created >= last_update_time
+      og.updated >= FROM_UNIXTIME(%s)
+      or og.created >= FROM_UNIXTIME(%s)
+      or oi.updated >= FROM_UNIXTIME(%s)
+      or oi.created >= FROM_UNIXTIME(%s)
     '''
-    , incursor, args=[last_update_time])
+    , incursor, args=[last_update_time]*4)
 
 
 
 
 if __name__ == '__main__':
-  print order(None, 'XRT', additem='food')
+  print synchronize(None, '[]', '"NEVER"')

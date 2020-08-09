@@ -2,14 +2,12 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-import re, yaml
 from subprocess import Popen, PIPE
 import json
 from decimal import Decimal
 import MySQLdb
-import datetime
+import time, datetime
 import os
-import tempfile, os, subprocess
 import config_loader
 from mylog import my_logger
 
@@ -173,7 +171,8 @@ class MyJSONEncoder(json.JSONEncoder):
 
   def default(self, obj):
       if isinstance(obj, datetime.date):
-          return str(obj)
+          return time.mktime(obj.timetuple()) #number of seconds from the unix epoc
+          #return str(obj)
           #return obj.isoformat() # javascript interperets isoformat time as UTC, which it isn't, it's local
       if isinstance(obj, Decimal):
         #Decimal type has no json encoding
@@ -185,4 +184,4 @@ class MyJSONEncoder(json.JSONEncoder):
 
 
 if __name__ == '__main__':
-  print tohtml('goo', [{3: 'ewew', 5: 'hud'},{3: 'ewjd', 5: 'gf'}, {3: 'ewew', 5: 'hioud'},]) 
+  d = select("select * from order_item order by id desc limit 5")

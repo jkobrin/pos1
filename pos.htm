@@ -341,7 +341,7 @@
         result = timediff + 'm';
        }
        else if(Math.abs(timediff) < 60*4) /* 4 hours */ {
-        var hour = Math.trunc(timediff/60);
+        var hour = Math.floor(timediff/60);
         var minute = Math.abs(timediff - hour*60);
         result = hour +'h ' + minute +'m';
        }
@@ -451,6 +451,7 @@
 
     STAFF_FOOD_RATE = .4;
     DEFAULT_PICKUP_MINUTES = 30;
+    TIME_TO_SHOW_DELIVERED = 15000; //miliseconds, 15 seconds
 
     g_currentTable = null; 
     g_cook_style = false;
@@ -569,12 +570,15 @@
 
       for(key in data.items)
       { // Convert time strings in incoming data to javascript Date objects.
-        // (JSON does not handle any sort of Date type, so they have to be 
-        // sent as JSON strings and then manually converted)
-        data.items[key].pickup_time = new Date(data.items[key].pickup_time);
-        data.items[key].expected_ready_time = new Date(data.items[key].expected_ready_time);
-        data.items[key].mod_time = new Date(data.items[key].mod_time);
-        data.items[key].created_time = new Date(data.items[key].created_time);
+        // (JSON does not handle any sort of Date type, so they
+        // are sent as JSON ints representing a unix timestamp
+        // (which javascript Date constructor can handle on all
+        // browsers I think)  and then manually converted to Date
+        // objects here
+        data.items[key].pickup_time = new Date(data.items[key].pickup_time*1000);
+        data.items[key].expected_ready_time = new Date(data.items[key].expected_ready_time*1000);
+        data.items[key].mod_time = new Date(data.items[key].mod_time*1000);
+        data.items[key].created_time = new Date(data.items[key].created_time*1000);
       }
 
       if (data.update_type == 'replace')
@@ -610,8 +614,11 @@
         }
 
         // now update g_order_pane_items with new items
-        Object.assign(g_order_pane_items, data.items);
-
+        // Object.assign(g_order_pane_items, data.items);
+        for(var key in data.items)
+        {
+          g_order_pane_items[key] = data.items[key];
+        }  
 
         // now remove items that are marked closed, so closing
         // disappears items immediately
@@ -659,7 +666,7 @@
 
       console.log('async: ' + async + ' sending: ' + crud_commands);
       $.ajax({ url: "action.py/synchronize", type: "POST", dataType: "json", cache: false, async: async,
-        data: {'crud_commands' : crud_commands, 'last_update_time': JSON.stringify(g_last_update_time)},
+        data: {crud_commands : crud_commands, last_update_time: JSON.stringify(g_last_update_time)},
         success: handle_fresh_items, error: ajax_error });
     }
       
@@ -1211,13 +1218,13 @@
       for (var key in g_order_pane_items)
       {
         var item = g_order_pane_items[key];
+
         if (item.parent_item != null || 
-            item.is_delivered && 
-            now().getTime() - item.mod_time.getTime() > 30000 /* 30 seconds old */)
+            item.is_delivered && now().getTime() - item.mod_time.getTime() > TIME_TO_SHOW_DELIVERED
+        )
         {
           continue;
         }  
-
 
         if (item.created_time == null)
         {
