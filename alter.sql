@@ -117,5 +117,9 @@ create or replace view taxable_item as select * from revenue_item where taxable 
 
 #alter table sku add column display_name varchar(64) null default null;
 
-alter table sku add column extra varchar(1024) null default null;
+#alter table sku add column extra varchar(1024) null default null;
 
+#CREATE TABLE instructions (
+#  instruction varchar(32),
+#  execute_time timestamp null default null
+#)

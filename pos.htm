@@ -562,6 +562,12 @@
     var g_last_update_time = 'NEVER';
     function handle_fresh_items(data)
     {
+      console.log('instruction: ' + data.instruction)
+      if (data.instruction == 'reload')
+      {
+        location.reload();
+      }
+
       console.log('fresh items. Update time:' + data.time);
       g_last_server_contact = new Date();
       message_box.innerHTML = '';

@@ -184,4 +184,5 @@ class MyJSONEncoder(json.JSONEncoder):
 
 
 if __name__ == '__main__':
-  d = select("select * from order_item order by id desc limit 5")
+  pass
+  #d = select("select * from order_item order by id desc limit 5")

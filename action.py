@@ -103,6 +103,7 @@ def synchronize(req, crud_commands, last_update_time):
     my_logger.info(req.get_remote_host()+': '+crud_commands + '  update_time: ' + last_update_time)
     crud_commands = json.loads(crud_commands)
     last_update_time = json.loads(last_update_time)
+    my_logger.info(last_update_time)
 
     # first deal with incoming data from this client
     for command in crud_commands:
@@ -114,15 +115,21 @@ def synchronize(req, crud_commands, last_update_time):
         set_status(**command)
   
 
+
+
     # now give the client any updates ( which will be those
     # made by other clients (if any) as well as those this client
     # just sent and which were just executed (if any))
 
+    instruction = None
     if last_update_time == 'NEVER':
       last_update_time = None
       update_type = 'replace'
     else:
       update_type = 'incremental'
+
+      if last_update_time[0] % 13 == 0:
+        instruction = 'reload'
 
     now = utils.select("select now()", label=False)[0]
     active_items = get_active_items_updated_since(last_update_time)
@@ -141,7 +148,7 @@ def synchronize(req, crud_commands, last_update_time):
 
       items_by_id[item['id']] = item  
 
-    return json.dumps({'update_type': update_type, 'time': now, 'items': items_by_id}, encoding='latin-1', cls=utils.MyJSONEncoder)
+    return json.dumps({'instruction': instruction, 'update_type': update_type, 'time': now, 'items': items_by_id}, encoding='latin-1', cls=utils.MyJSONEncoder)
     
 
 def get_active_items_updated_since(last_update_time, incursor=None):
@@ -203,4 +210,5 @@ def get_active_items_updated_since(last_update_time, incursor=None):
 
 
 if __name__ == '__main__':
-  print synchronize(None, '[]', '"NEVER"')
+  #print synchronize(None, '[]', '"NEVER"')
+  pass
