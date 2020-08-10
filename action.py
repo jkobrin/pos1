@@ -128,9 +128,6 @@ def synchronize(req, crud_commands, last_update_time):
     else:
       update_type = 'incremental'
 
-      if last_update_time[0] % 13 == 0:
-        instruction = 'reload'
-
     now = utils.select("select now()", label=False)[0]
     active_items = get_active_items_updated_since(last_update_time)
     items_by_id = {}
