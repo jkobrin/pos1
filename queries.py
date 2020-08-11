@@ -2,6 +2,7 @@ import utils, texttab
 
 from time import sleep
 
+
 def nightly_sales_by_server(label=False, lag_days=1):
 
   tax_rate = texttab.TAXRATE
@@ -194,10 +195,7 @@ def weekly_pay(printmode=0, incursor = None, label=True):
     )    
 
   
-  
 if __name__ == '__main__':
-  for item in get_active_items_updated_since("2020-07-28 21:00:00"):
-  #for item in get_active_items_updated_since(0):
-    print item
+    pass
 
   

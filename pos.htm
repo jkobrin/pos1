@@ -23,7 +23,7 @@
     }
 
 
-    .nondelivered_item { color: red; }
+    .nondelivered_item { color: brown; }
 
     .comped_item {font-style:italic; border: 6px solid #a0ffa0;}
     .held_item {border: 3px solid yellow;}
@@ -34,6 +34,7 @@
     .allergy_item {color: red; text-decoration: underline}
 
     .delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
+    .ready_item { opacity: 1.3; background: magenta;}
     .cancelled_item { opacity: 0.3; text-align: right; color: white; background-color:  maroon; transform: scale(.8) skewx(45deg) skewy(2deg); }
     .closed_item { opacity: 0.3; text-align: right; color: white; background-color:  gray;}
     .child_item {text-align: right; font-size: 20pt;opacity: 0.8}
@@ -332,11 +333,11 @@
   <script type="text/javascript" src="js/printing/print.js?ver=201"></script>
   <script> 
 
-    function now(){return new Date();}
+    function now(){return (new Date())/1000;}
 
     function format_time(time) {
        
-       var timediff = Math.round(((new Date()).getTime() - time.getTime())/1000/60) //difference in minutes;
+       var timediff = Math.round((now() - time)/60) //difference in minutes;
        if (Math.abs(timediff) < 60 /* 1 hour */) {
         result = timediff + 'm';
        }
@@ -346,8 +347,8 @@
         result = hour +'h ' + minute +'m';
        }
        else {
-        result = time.toLocaleTimeString('en-US', {weekday: 'short', hour: '2-digit', minute: '2-digit'});
-        result += '\n' + time.toLocaleDateString('en-US', {month: 'short', day: '2-digit', year: 'numeric'});
+        result = new Date(time*1000).toLocaleTimeString('en-US', {weekday: 'short', hour: '2-digit', minute: '2-digit'});
+        result += '\n' + new Date(time*1000).toLocaleDateString('en-US', {month: 'short', day: '2-digit', year: 'numeric'});
        }
 
        if (timediff > 0){result = '+'+result;}
@@ -451,7 +452,14 @@
 
     STAFF_FOOD_RATE = .4;
     DEFAULT_PICKUP_MINUTES = 30;
-    TIME_TO_SHOW_DELIVERED = 15000; //miliseconds, 15 seconds
+    TIME_TO_SHOW_DELIVERED = 15; //15 seconds
+    EXPECTED_COOK_TIME = 20 * 60 //20 minutes
+
+    DELIVERY_STATUS_HELD = 0; MIN_DELIVERY_STATUS = DELIVERY_STATUS_HELD;
+    DELIVERY_STATUS_RELEASED = 1;
+    DELIVERY_STATUS_READY = 2;
+    DELIVERY_STATUS_DELIVERED = 3; MAX_DELIVERY_STATUS = DELIVERY_STATUS_DELIVERED;
+
 
     g_currentTable = null; 
     g_cook_style = false;
@@ -459,6 +467,7 @@
     g_session_id = null;
     g_id_seq = 0;
 
+    
     function init()
     // This gets called when the document loads.
     {
@@ -525,13 +534,12 @@
           item_name: command.item_name,
           table_id: command.table_id, 
           id: command.item_id,
-          is_delivered: command.is_delivered, 
-          is_held: false, 
+          delivery_status: command.delivery_status, 
           is_comped: command.is_comped, 
           price: command.price, 
           taxable: command.taxable,
           parent_item: command.parent_item,
-          time_category: "Not Sent Yet", pickup_time: null, created_time: null, expected_ready_time: null}
+          time_category: "Not Sent Yet", pickup_time: null, created_time: null}
       }
 
       if (command.command == "cancel_item")
@@ -557,7 +565,7 @@
       synchronize(async=false);
     }
 
-    var g_in_tansit_crud_commands = null;
+    var g_in_transit_crud_commands = null;
     var g_last_server_contact = 0;
     var g_last_update_time = 'NEVER';
     function handle_fresh_items(data)
@@ -569,23 +577,10 @@
       }
 
       console.log('fresh items. Update time:' + data.time);
-      g_last_server_contact = new Date();
+      g_last_server_contact = now();
       message_box.innerHTML = '';
-      g_in_tansit_crud_commands = null; //release these. they have been handled
+      g_in_transit_crud_commands = null; //release these. they have been handled
       g_last_update_time = data.time;
-
-      for(key in data.items)
-      { // Convert time strings in incoming data to javascript Date objects.
-        // (JSON does not handle any sort of Date type, so they
-        // are sent as JSON ints representing a unix timestamp
-        // (which javascript Date constructor can handle on all
-        // browsers I think)  and then manually converted to Date
-        // objects here
-        data.items[key].pickup_time = new Date(data.items[key].pickup_time*1000);
-        data.items[key].expected_ready_time = new Date(data.items[key].expected_ready_time*1000);
-        data.items[key].mod_time = new Date(data.items[key].mod_time*1000);
-        data.items[key].created_time = new Date(data.items[key].created_time*1000);
-      }
 
       if (data.update_type == 'replace')
       {
@@ -593,10 +588,6 @@
         console.log("# of items: "+Object.keys(data.items).length);
         g_order_pane_items = data.items;
 
-        for(var idx in g_crud_commands)
-        {
-          apply_crud_command(g_crud_commands[idx]);
-        }
       }
       else //update
       {
@@ -635,7 +626,12 @@
             delete g_order_pane_items[key];
           }
         }
-       }
+      }
+
+      for(var idx in g_crud_commands)
+      {
+        apply_crud_command(g_crud_commands[idx]);
+      }
 
       refresh_screen();
       //clearTimeout(g_synchonize_timeout);
@@ -643,10 +639,10 @@
     }
 
     function ajax_error(jqXHR, textStatus, errorThrown) {
-      if (g_in_tansit_crud_commands != null) {
+      if (g_in_transit_crud_commands != null) {
         //put in transit objects back at from of queue, they need to be tried again
-        g_crud_commands = g_in_tansit_crud_commands.concat(g_crud_commands);
-        g_in_tansit_crud_commands = null;
+        g_crud_commands = g_in_transit_crud_commands.concat(g_crud_commands);
+        g_in_transit_crud_commands = null;
       }  
 
       if (errorThrown != ''){
@@ -657,7 +653,7 @@
       else
       { //probably network error. Silently try again in 1 minute
         g_synchonize_timeout = setTimeout(synchronize, MAIN_REFRESH_INTERVAL);
-        var min_since_last_contact = (((new Date()).getTime() - g_last_server_contact.getTime()) /60000).toFixed(1);
+        var min_since_last_contact = ((now() - g_last_server_contact) /60).toFixed(1);
         message_box.innerHTML = '----- ' + min_since_last_contact  + ' min. since server contact -------';
       }  
     }
@@ -667,7 +663,7 @@
       if (typeof(async) === 'undefined') {async = true} //substitue for default args which is not supported on chrome browser
 
       var crud_commands = JSON.stringify(g_crud_commands); 
-      g_in_tansit_crud_commands = g_crud_commands;
+      g_in_transit_crud_commands = g_crud_commands;
       g_crud_commands = [];
 
       console.log('async: ' + async + ' sending: ' + crud_commands);
@@ -769,26 +765,29 @@
 
       for (idx in tables) {
         var table_id = tables[idx].name;
-        var undelivered = 0; var held = 0; var delivered = 0; var paid_before_close = 0;
+        var released = 0; var held = 0; var ready = 0; var delivered = 0; var paid_before_close = 0;
         for(idx in g_order_pane_items) {
           var item  = g_order_pane_items[idx];
 
           //console.log(table_id + '== ' + item.table_id);
           if(item.table_id == table_id) // && item.is_cancelled == false)
           {
-            //console.log('yes' + tableElem.id);
-            if (!item.is_delivered && !item.is_held) {undelivered += 1;}
-            if (item.is_held) {held += 1;}
-            if (item.is_delivered) {delivered += 1;}
-            if (item.paid_before_close) {paid_before_close += 1;}
+            if (item.paid_before_close) {color = 1; break;}
+
+            if (item.delivery_status == DELIVERY_STATUS_HELD) {held += 1;}
+            else if (item.delivery_status == DELIVERY_STATUS_RELEASED) {released += 1;}
+            else if (item.delivery_status == DELIVERY_STATUS_READY) {ready += 1;}
+            else if (item.delivery_status == DELIVERY_STATUS_DELIVERED) {delivered += 1;}
+
           }  
         }  
         var backgroundColor = 
           paid_before_close > 0 ? 'aqua' : 
-          undelivered > 0 ? 'magenta' : 
+          ready > 0 ? 'magenta' : 
           held > 0 ? 'yellow' : 
+          released > 0 ? 'brown' : 
           delivered > 0 ? 'green' : 
-          "#b0b0b0";
+          "gray";
 
         table_button = document.getElementById(table_id);
         if (table_button != null)
@@ -814,10 +813,9 @@
         item_id: get_new_item_id(),
         item_name: descriptor,
         table_id: g_currentTable, 
-        is_delivered: false,
+        delivery_status: DELIVERY_STATUS_RELEASED,
         taxable: false, 
         is_comped: false,
-        is_held: false,
         price: 0,
         fraction: 0,
         parent_item: null,
@@ -1134,7 +1132,7 @@
         item_id: new_item_id,
         item_name: item_name,
         table_id: table_id, 
-        is_delivered: false,
+        delivery_status: DELIVERY_STATUS_RELEASED,
         taxable: taxable, 
         is_comped: comped,
         price: price,
@@ -1165,25 +1163,36 @@
     {
       var item = get_order_pane_item(item_id);
       if (item.is_cancelled || item.is_open == false) {return;}
-      if (!item.is_delivered)
-      {
-        toggle_status(item.id, 'is_held');
-      }
+      move_delivery_status(item.id, -1);
     }
 
     function cookscreen_click(item_id)
     {
       var item = get_order_pane_item(item_id);
       if (item.is_cancelled || item.is_open == false) {return;}
+      move_delivery_status(item.id, +1);
+    }
 
-      if (item.is_held)
+    function move_delivery_status(item_id, direction)
+    {
+      var items = get_item_and_child_items(item_id);
+      var main_item = items[0];
+      var newstatus = main_item.delivery_status + direction;
+      if (newstatus > MAX_DELIVERY_STATUS) {newstatus = MAX_DELIVERY_STATUS - 1;} //go the other way instead
+      else if (newstatus < MIN_DELIVERY_STATUS) {return;} //do nothing
+      
+      items.forEach(function(item)
       {
-        toggle_status(item.id, 'is_held');
-      }
-      else
+        new_crud_command({command: "set_status", item_id: item.id, field: 'delivery_status', value: newstatus});
+      })
+    }
+
+    function set_delivery_status(item_id, value)
+    {
+      get_item_and_child_items(item_id).forEach(function(item)
       {
-        toggle_status(item.id, 'is_delivered');
-      }  
+        new_crud_command({command: "set_status", item_id: item.id, field: 'delivery_status', value: value});
+      })
     }
 
     function toggle_status(item_id, status_field)
@@ -1226,7 +1235,7 @@
         var item = g_order_pane_items[key];
 
         if (item.parent_item != null || 
-            item.is_delivered && now().getTime() - item.mod_time.getTime() > TIME_TO_SHOW_DELIVERED
+            item.delivery_status == DELIVERY_STATUS_DELIVERED && now() - item.mod_time > TIME_TO_SHOW_DELIVERED
         )
         {
           continue;
@@ -1236,18 +1245,29 @@
         {
           item.time_display = '---';
           item.time_category = "Not sent yet";
-          item.expected_ready_time = new Date(8640000000000000); //most distant future, so it will sort last
+          item.expected_ready_time = 8640000000000000; //most distant future, so it will sort last
         }
         else
         {
           item.time_display = 
-            item.pickup_time > 0? 'P'+ format_time(item.pickup_time) : 
-            format_time(item.created_time) + 
-            (item.mod_time.getTime() - item.created_time.getTime() > 60000 ?
-              ' ~'+Math.floor((now().getTime() - item.mod_time.getTime())/60000) : '')
+            item.pickup_time > 0? 'P'+ format_time(item.pickup_time) : format_time(item.created_time)
+          
+          if (item.mod_time - item.created_time > 60 ){
+            item.time_display +=  ' ~'+Math.floor((now() - item.mod_time)/60);
+          }  
 
-          var hours_away = (item.expected_ready_time.getTime() - now().getTime()) /1000 / 60 / 60;
-          if (Math.abs(hours_away) < 24 && item.expected_ready_time.getDay() == now().getDay() ||
+          if(item.pickup_time){
+            item.expected_ready_time = item.pickup_time;
+          }
+          else if(item.delivery_status == DELIVERY_STATUS_HELD) {
+            item.expected_ready_time = now() + EXPECTED_COOK_TIME;
+          }
+          else {
+            item.expected_ready_time = item.created_time + EXPECTED_COOK_TIME;
+          }
+
+          var hours_away = (item.expected_ready_time - now()) / 60 / 60;
+          if (Math.abs(hours_away) < 24 && new Date(item.expected_ready_time).getDay() == new Date().getDay() ||
             Math.abs(hours_away) < 4 )
           {
             item.time_category = "Today";
@@ -1265,9 +1285,7 @@
         items_list.push(item);
       }
       
-      items_list.sort(function(a,b){
-        return a.expected_ready_time.getTime() - b.expected_ready_time.getTime();
-      });
+      items_list.sort(function(a,b){return a.expected_ready_time - b.expected_ready_time});
 
       return items_list;
     }  
@@ -1280,7 +1298,7 @@
       for(var idx in g_order_pane_items)
       {
         var oi = g_order_pane_items[idx];
-        var key = JSON.stringify([oi.table_id, oi.item_name, oi.is_held, oi.is_delivered, oi.price, oi.is_comped, oi.is_cancelled])
+        var key = JSON.stringify([oi.table_id, oi.item_name, oi.delivery_status, oi.price, oi.is_comped, oi.is_cancelled])
         if (key in uniq_order_items) {uniq_order_items[key].count += 1;}
         else {oi.count = 1; uniq_order_items[key] = oi;}
       }
@@ -1372,11 +1390,13 @@
 
         if (cfg_item.style) {classes += ' '+cfg_item.style}
 
-        if (item.is_comped) {classes += ' comped_item'}
-        if (item.is_held) {classes += ' held_item'}
-        if (item.is_delivered) {classes += ' delivered_item'}
         if (item.is_cancelled) {classes += ' cancelled_item'}
         if (item.is_open == false) {classes += ' closed_item'}
+        if (item.is_comped) {classes += ' comped_item'}
+
+        if (item.delivery_status == DELIVERY_STATUS_HELD) {classes += ' held_item'}
+        else if (item.delivery_status == DELIVERY_STATUS_DELIVERED) {classes += ' delivered_item'}
+        else if (item.delivery_status == DELIVERY_STATUS_READY) {classes += ' ready_item'}
 
         if (item.time_category != current_time_category){
           //new category
@@ -1812,8 +1832,9 @@
 				var cfg_item = get_config_item_from_id(item.menu_item_id);
 
         var classes = "order_item";
-        if (item.is_held) {classes += ' held_item'}
-        else if (!item.is_delivered) {classes += ' nondelivered_item'}
+        if (item.delivery_status == DELIVERY_STATUS_HELD) {classes += ' held_item'}
+        else if (item.delivery_status == DELIVERY_STATUS_RELEASED) {classes += ' nondelivered_item'}
+        else if (item.delivery_status == DELIVERY_STATUS_READY) {classes += ' ready_item'}
         if (item.is_comped) { classes += ' comped_item'}
         if (item.is_cancelled) { classes += ' cancelled_item'}
         if (item.parent_item != null) {classes += ' child_item'}
@@ -1851,9 +1872,9 @@
       menu_popup_caption = document.getElementById("orderitem_popup_caption");
       menu_popup_caption.textContent = "table: "+item.table_id + " - " + item.item_name;
       
-      holdgo_button = document.getElementById("holdgo");
-      holdgo_button.style.display = item.is_delivered ? "none" : "inline";
-      holdgo_button.value = item.is_held ? "release" : "hold";
+      //holdgo_button = document.getElementById("holdgo");
+      //holdgo_button.style.display = item.is_delivered ? "none" : "inline";
+      //holdgo_button.value = item.is_held ? "release" : "hold";
 
       popup.style.visibility="visible";
       popup.style.left= document.body.clientWidth /8;
@@ -1927,7 +1948,7 @@
         item_id: get_new_item_id(),
         item_name: item_name,
         table_id: parent_item.table_id, 
-        is_delivered: false,
+        delivery_status: parent_item.delivery_status,
         taxable: parent_item.taxable, 
         is_comped: parent_item.is_comped,
         price: price,
@@ -1949,7 +1970,7 @@
         item_id: new_item_id,
         item_name: item.item_name,
         table_id: item.table_id, 
-        is_delivered: false,
+        delivery_status: DELIVERY_STATUS_RELEASED,
         taxable: item.taxable, 
         is_comped: item.is_comped,
         price: item.price,
@@ -1974,7 +1995,7 @@
           item_id: get_new_item_id(),
           item_name: item.item_name,
           table_id: item.table_id, 
-          is_delivered: false,
+          delivery_status: DELIVERY_STATUS_RELEASED,
           taxable: item.taxable, 
           is_comped: item.is_comped,
           price: item.price,
@@ -2140,12 +2161,14 @@
     </div>  
     <div class="diabuttons">
       <div style="float: right; width: 50%">
-        <input type="button" value="plus 1" onclick="plus_one()"> 
-        <input type="button" value="delivered" onclick="toggle_status(popup.item_id, 'is_delivered')"> 
-        <input type="button" value="note" onclick="add_note()"> 
+        <input type="button" value="deliver" onclick="set_delivery_status(popup.item_id, DELIVERY_STATUS_DELIVERED)"> 
+        <input type="button" value="hold" onclick="set_delivery_status(popup.item_id, DELIVERY_STATUS_HELD)"> 
+        <input type="button" value="release" onclick="set_delivery_status(popup.item_id, DELIVERY_STATUS_RELEASED)"> 
+        <input type="button" value="ready" onclick="set_delivery_status(popup.item_id, DELIVERY_STATUS_READY)"> 
       </div>
       <div style="float: left; width: 50%">
-        <input id="holdgo" type="button" value="hold" onclick="toggle_status(popup.item_id, 'is_held')"> 
+        <input type="button" value="plus 1" onclick="plus_one()"> 
+        <input type="button" value="note" onclick="add_note()"> 
         <input type="button" value="comped" onclick="toggle_status(popup.item_id, 'is_comped')"> 
         <input type="button" value="cancel" onclick="cancel_item()"> 
       </div>

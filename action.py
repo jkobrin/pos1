@@ -31,9 +31,8 @@ def add_item(item_id=None,
             fraction=None, 
             menu_item_id=None, 
             taxable=True, 
-            is_delivered=False, 
+            delivery_status=0, 
             is_comped=False, 
-            is_held=False,
             parent_item=None,
             incursor=None, **unused):
     
@@ -65,9 +64,9 @@ def add_item(item_id=None,
 
     cursor.execute('''
       INSERT INTO order_item (
-        id, order_group_id, item_name, price, fraction, menu_item_id, taxable, is_delivered, is_comped, is_held, parent_item
-      ) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
-      (item_id, open_order_group, item_name, price, fraction, menu_item_id, taxable, is_delivered, is_comped, is_held, parent_item)
+        id, order_group_id, item_name, price, fraction, menu_item_id, taxable, delivery_status, is_comped, parent_item
+      ) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
+      (item_id, open_order_group, item_name, price, fraction, menu_item_id, taxable, delivery_status, is_comped, parent_item)
     )
 
     cursor.close()
@@ -100,10 +99,10 @@ def set_status(item_id, field, value, **unused):
 
 
 def synchronize(req, crud_commands, last_update_time):
-    my_logger.info(req.get_remote_host()+': '+crud_commands + '  update_time: ' + last_update_time)
+    my_logger.info((req and req.get_remote_host() or 'no host')+': '+crud_commands +':'+last_update_time)
+
     crud_commands = json.loads(crud_commands)
     last_update_time = json.loads(last_update_time)
-    my_logger.info(last_update_time)
 
     # first deal with incoming data from this client
     for command in crud_commands:
@@ -114,8 +113,6 @@ def synchronize(req, crud_commands, last_update_time):
       if command['command'] == 'set_status':
         set_status(**command)
   
-
-
 
     # now give the client any updates ( which will be those
     # made by other clients (if any) as well as those this client
@@ -132,17 +129,6 @@ def synchronize(req, crud_commands, last_update_time):
     active_items = get_active_items_updated_since(last_update_time)
     items_by_id = {}
     for item in active_items:
-
-      #item['time_display'] = (item['is_pickup'] and 'P' or '') + format_time_from_now(datetime.datetime.now(), item['pickup_time'])
-      #if item['minutes_since_mod'] is not None and not item['is_pickup']:
-      #  item['time_display'] += ' ~%s'%item['minutes_since_mod']
-      #if datetime.datetime.now().date() == item['pickup_time'].date():
-      #  item['time_category'] = "Today";
-      #elif datetime.datetime.now().date() < item['pickup_time'].date():  
-      #  item['time_category'] = "Future";
-      #else:  
-      #  item['time_category'] = "Past";
-
       items_by_id[item['id']] = item  
 
     return json.dumps({'instruction': instruction, 'update_type': update_type, 'time': now, 'items': items_by_id}, encoding='latin-1', cls=utils.MyJSONEncoder)
@@ -162,13 +148,13 @@ def get_active_items_updated_since(last_update_time, incursor=None):
   select ='''
     SELECT
       og.table_id, og.paid_before_close, og.is_open, og.pickup_time,
-      if(oi.is_held, now() + interval 21 minute, coalesce(og.pickup_time, oi.created + interval 20 minute)) expected_ready_time,
       greatest(oi.updated, oi.created, og.updated, og.created) mod_time,
       oi.created as created_time,
       oi.item_name as item_name, 
       oi.id, 
-      oi.is_delivered, oi.is_held, oi.is_comped, 
       oi.price,
+      oi.delivery_status,
+      oi.is_comped, 
       oi.is_cancelled,
       oi.parent_item,
       oi.menu_item_id,
@@ -205,7 +191,5 @@ def get_active_items_updated_since(last_update_time, incursor=None):
 
 
 
-
 if __name__ == '__main__':
-  #print synchronize(None, '[]', '"NEVER"')
-  pass
+  print synchronize(None, '[]', '"NEVER"')

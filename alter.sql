@@ -67,14 +67,6 @@
 #alter table order_item add column subcategory varchar(64);
 #alter table order_item add column parent_item INT;
 
-create or replace view revenue_item as select oi.* from order_item oi, order_group og 
-where oi.order_group_id = og.id
-and is_comped = false 
-and is_cancelled = false 
-and item_name not like 'gift%' 
-and og.table_id not rlike '[A-Z][a-z]+ [A-Z][a-z]+';
-
-create or replace view taxable_item as select * from revenue_item where taxable = true;
 
 #alter table hours add column paid boolean default false;
 #update hours set paid = true where tip_pay is not null;
@@ -118,6 +110,12 @@ create or replace view taxable_item as select * from revenue_item where taxable 
 #alter table sku add column display_name varchar(64) null default null;
 
 #alter table sku add column extra varchar(1024) null default null;
+
+alter table order_item change column is_delivered delivery_status tinyint(1);
+update order_item set delivery_status = 3 where delivery_status = 1;
+update order_item set delivery_status = 1 where delivery_status = 0;
+update order_item set delivery_status = 0 where is_held = 1 and delivery_status != 3;
+alter table order_item drop column is_held;
 
 #CREATE TABLE instructions (
 #  instruction varchar(32),
