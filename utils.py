@@ -184,5 +184,11 @@ class MyJSONEncoder(json.JSONEncoder):
 
 
 if __name__ == '__main__':
-  pass
-  #d = select("select * from order_item order by id desc limit 5")
+  cursor = get_cursor()
+  to_tab = select('''
+    select sum(paid_before_close) paid, sum(pickup_time) pickup_time
+    from order_group where table_id = %s and is_open=true''', 
+    args=['T2'], incursor=cursor)[0]
+
+  print to_tab  
+

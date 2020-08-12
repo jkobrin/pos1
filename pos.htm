@@ -991,8 +991,15 @@
         {
           if(confirm("Move all items from table "+g_tab_to_move+" to " + table_id+"?"))
           {
-            http_request("POST", "move_tab.py", "p_from="+g_tab_to_move+"&p_to="+table_id);
-            synchronize_now();
+            var response = http_request("POST", "move_tab.py", "p_from="+g_tab_to_move+"&p_to="+table_id);
+            if(response.success){
+              synchronize_now();
+            }  
+            else {
+              g_tab_to_move = null;
+              alert(response.message);
+              return;
+            }
           }
           g_tab_to_move = null;
         }
@@ -1640,29 +1647,39 @@
     }
 
 
+    function get_time_string(dat)
+    {
+      var h= dat.getHours();
+      var m = dat.getMinutes();
+      if(h<10) h="0"+h;
+      if(m<10) m = "0"+m;
+      return h+":"+m;
+    }
+
+
     function set_pickup()
     {
       var pickup_time = table_pickup_time(g_currentTable);
 
-      date_time_popup_caption = document.getElementById("date_time_popup_caption");
+      var date_time_popup_caption = document.getElementById("date_time_popup_caption");
 
       if (pickup_time != null){
         //populate input controls with whatever time was previously set for pickup
-        populate_date = new Date(pickup_time*1000);
+        var populate_date = new Date(pickup_time*1000);
         date_time_popup_caption.innerHTML = "table: "+ g_currentTable + " pickup time :"+populate_date;
       }else{
         date_time_popup_caption.innerHTML = "table: "+ g_currentTable + " pickup time : None";
         //populate with reasonable default: now +
         //DEFAULT_PICKUP_MINUTES, which should be like, 30-ish, I
         //would think
-        populate_date = new Date();
+        var populate_date = new Date();
         populate_date.setMinutes(populate_date.getMinutes()+DEFAULT_PICKUP_MINUTES); 
       }  
 
       //populate the pickup date/time input controls with the
       //chosen default
       document.getElementById("pdate").value = get_date_string(populate_date);
-      document.getElementById("ptime").value = populate_date.getHours()+':'+ populate_date.getMinutes();
+      document.getElementById("ptime").value = get_time_string(populate_date);
 
       pt_popup = document.getElementById("date_time_popup");
       pt_popup.style.visibility="visible";
