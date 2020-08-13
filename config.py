@@ -13,7 +13,6 @@ TAXRATE = .08625
 #private helper used internal to this module
 def expand_extra_fields(item):
   if item.get('extra'):
-    my_logger.info('extra:' + repr(item));
     try:
       item.update(yaml.load(item['extra']))
     except:
@@ -94,7 +93,6 @@ def load_db_config(cfg):
           allwine['items'].append(item)
 
           if item['qtprice'] > 0: 
-            my_logger.info('qt: added ' + item['name'])
             qtitem = item.copy()
             qtitem['subcategory'] = cat['name']
             qtitem['fraction'] = .25

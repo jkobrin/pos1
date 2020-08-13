@@ -1,12 +1,7 @@
 import json
-import MySQLdb
 import utils
 from mylog import my_logger
-
-from format_time_diff import format_time_from_now
-import datetime
-import re 
-import yaml
+import config_loader
 
 
 def get_session_id(req):
@@ -113,25 +108,31 @@ def synchronize(req, crud_commands, last_update_time):
       if command['command'] == 'set_status':
         set_status(**command)
   
+    # now check if we need a full reload of app
+    if last_update_time is not None and config_loader.reload_time() > last_update_time:
+      return json.dumps({'instruction': 'reload'}, encoding='latin-1', cls=utils.MyJSONEncoder)
 
     # now give the client any updates ( which will be those
     # made by other clients (if any) as well as those this client
     # just sent and which were just executed (if any))
 
-    instruction = None
-    if last_update_time == 'NEVER':
-      last_update_time = None
-      update_type = 'replace'
-    else:
-      update_type = 'incremental'
-
-    now = utils.select("select now()", label=False)[0]
+    now = utils.select("select now()", label=False)[0][0]
     active_items = get_active_items_updated_since(last_update_time)
     items_by_id = {}
     for item in active_items:
       items_by_id[item['id']] = item  
 
-    return json.dumps({'instruction': instruction, 'update_type': update_type, 'time': now, 'items': items_by_id}, encoding='latin-1', cls=utils.MyJSONEncoder)
+    if last_update_time is None:
+      update_type = 'replace'
+    else:
+      update_type = 'incremental'
+
+    return json.dumps({
+      'instruction': None, 
+      'update_type': update_type, 
+      'time': now, 
+      'items': items_by_id}, 
+      encoding='latin-1', cls=utils.MyJSONEncoder)
     
 
 def get_active_items_updated_since(last_update_time, incursor=None):

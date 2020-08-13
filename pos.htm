@@ -545,14 +545,18 @@
       if (command.command == "cancel_item")
       {
         var item = get_order_pane_item(command.item_id);
-        item.is_cancelled = true;
+        if (item) { // item may have been removed by update
+          item.is_cancelled = true;
+        }  
       }  
 
       if (command.command == "set_status")
       {
         var item = get_order_pane_item(command.item_id);
-        item[command.field] = command.value;
-        item.mod_time = now();
+        if (item) { // item may have been removed by update
+          item[command.field] = command.value;
+          item.mod_time = now();
+        }
       }
       
       refresh_screen();
@@ -567,12 +571,18 @@
 
     var g_in_transit_crud_commands = null;
     var g_last_server_contact = 0;
-    var g_last_update_time = 'NEVER';
+    var g_last_update_time = null;
     function handle_fresh_items(data)
     {
       console.log('instruction: ' + data.instruction)
       if (data.instruction == 'reload')
       {
+        // this could lose some recently entered data but it's not
+        // worth dealing with since this should be like a fraction
+        // of a second's worth of data entry and will happen rarely and
+        // the user will probably have a clue that their data may
+        // not have been sent when they see everything suddenly reset
+
         location.reload();
       }
 
