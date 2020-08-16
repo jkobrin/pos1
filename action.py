@@ -168,27 +168,26 @@ def get_active_items_updated_since(last_update_time, incursor=None):
       order_item oi on og.id = oi.order_group_id left outer join 
       sku on oi.menu_item_id = sku.id
     '''
-    
-  if last_update_time is None:
-    # full update
-    return utils.select(
-    select + '''
+
+  full_where = '''
     WHERE 
       og.is_open = TRUE
       and oi.is_cancelled = FALSE
-    ''', 
-    incursor)
+    '''
+
+  incremental_where =  '''
+    WHERE
+      og.is_open = TRUE
+      and (oi.updated >= FROM_UNIXTIME(%s) or oi.created >= FROM_UNIXTIME(%s))
+      or og.updated >= FROM_UNIXTIME(%s)
+    '''
+
+  if last_update_time is None:
+    # full update
+    return utils.select(select + full_where, incursor)
   else:
     # incremental update
-    return utils.select(
-    select + '''
-    WHERE
-      og.updated >= FROM_UNIXTIME(%s)
-      or og.created >= FROM_UNIXTIME(%s)
-      or oi.updated >= FROM_UNIXTIME(%s)
-      or oi.created >= FROM_UNIXTIME(%s)
-    '''
-    , incursor, args=[last_update_time]*4)
+    return utils.select(select + incremental_where, incursor, args=[last_update_time]*3)
 
 
 
