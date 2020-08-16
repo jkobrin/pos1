@@ -342,7 +342,8 @@
         result = timediff + 'm';
        }
        else if(Math.abs(timediff) < 60*4) /* 4 hours */ {
-        var hour = Math.floor(timediff/60);
+        if (timediff > 0) { var hour = Math.floor(timediff/60);}
+        else if (timediff < 0) { var hour = Math.ceil(timediff/60);}
         var minute = Math.abs(timediff - hour*60);
         result = hour +'h ' + minute +'m';
        }
