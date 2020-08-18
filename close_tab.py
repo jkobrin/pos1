@@ -9,7 +9,7 @@ def index(req, table, serverpin):
   my_logger.info(req.get_remote_host()+': server %s closed tab %s'%(serverpin, table))
 
   results = utils.select('''
-    select paid_before_close, (pickup_time > now()) is_before_pickup
+    select (paid_time is not null) paid_before_close, (pickup_time > now()) is_before_pickup
     from order_group 
     where is_open = True
     AND table_id = %s''', args = [table])
@@ -30,7 +30,7 @@ def index(req, table, serverpin):
   elif serverpin:    
     cursor.execute('''
         UPDATE order_group
-        SET is_open = FALSE, closedby = %s, updated = now()
+        SET is_open = FALSE, closedby = %s, updated = now(), paid_time = now()
         WHERE is_open = TRUE
         AND table_id = %s
       ''', args=[serverpin, table])
@@ -51,12 +51,20 @@ def set_paid(req, table, val, serverpin):
 
   val = json.loads(val) #convert from string to boolean
 
-  utils.execute('''
-      UPDATE order_group
-      SET paid_before_close = %s, updated = now(), closedby = %s
-      WHERE is_open = TRUE
-      AND table_id = %s
-    ''', args=[val, serverpin, table])
+  if val:
+    utils.execute('''
+        UPDATE order_group
+        SET updated = now(), closedby = %s, paid_time = now()
+        WHERE is_open = TRUE
+        AND table_id = %s
+      ''', args=[serverpin, table])
+  else:
+    utils.execute('''
+        UPDATE order_group
+        SET updated = now(), closedby = %s, paid_time = null
+        WHERE is_open = TRUE
+        AND table_id = %s
+      ''', args=[serverpin, table])
 
   return json.dumps(None)
   

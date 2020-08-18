@@ -1285,7 +1285,7 @@
           }
 
           var hours_away = (item.expected_ready_time - now()) / 60 / 60;
-          if (Math.abs(hours_away) < 24 && new Date(item.expected_ready_time).getDay() == new Date().getDay() ||
+          if (Math.abs(hours_away) < 24 && new Date(item.expected_ready_time*1000).getDay() == new Date().getDay() ||
             Math.abs(hours_away) < 4 )
           {
             item.time_category = "Today";

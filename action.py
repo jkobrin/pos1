@@ -148,7 +148,10 @@ def get_active_items_updated_since(last_update_time, incursor=None):
 
   select ='''
     SELECT
-      og.table_id, og.paid_before_close, og.is_open, og.pickup_time,
+      og.table_id, 
+      og.is_open, 
+      og.pickup_time,
+      (og.paid_time is not null) as paid_before_close, 
       greatest(oi.updated, oi.created, og.updated, og.created) mod_time,
       oi.created as created_time,
       oi.item_name as item_name, 
@@ -192,4 +195,4 @@ def get_active_items_updated_since(last_update_time, incursor=None):
 
 
 if __name__ == '__main__':
-  print synchronize(None, '[]', '"NEVER"')
+  print synchronize(None, '[]', 'null')

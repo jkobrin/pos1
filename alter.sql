@@ -111,13 +111,13 @@
 
 #alter table sku add column extra varchar(1024) null default null;
 
-alter table order_item change column is_delivered delivery_status tinyint(1);
-update order_item set delivery_status = 3 where delivery_status = 1;
-update order_item set delivery_status = 1 where delivery_status = 0;
-update order_item set delivery_status = 0 where is_held = 1 and delivery_status != 3;
-alter table order_item drop column is_held;
+#alter table order_item change column is_delivered delivery_status tinyint(1);
+#update order_item set delivery_status = 3 where delivery_status = 1;
+#update order_item set delivery_status = 1 where delivery_status = 0;
+#update order_item set delivery_status = 0 where is_held = 1 and delivery_status != 3;
+#alter table order_item drop column is_held;
 
-#CREATE TABLE instructions (
-#  instruction varchar(32),
-#  execute_time timestamp null default null
-#)
+alter table order_group add column paid_time timestamp null default null;
+update order_group set paid_time = created where paid_before_close = true;
+update order_group set paid_time = updated where paid_before_close = false and is_open = false;
+alter table order_group drop column paid_before_close;

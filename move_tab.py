@@ -13,7 +13,7 @@ def index(req, p_from, p_to):
   cursor = utils.get_cursor()
 
   paid_pickup = utils.select('''
-    select sum(paid_before_close) paid, sum(pickup_time) pickup_time
+    select sum(paid_time) paid, sum(pickup_time) pickup_time
     from order_group 
     where is_open=true
     and table_id in (%s, %s)''',
@@ -42,7 +42,7 @@ def index(req, p_from, p_to):
 if __name__ == '__main__':
   cursor = utils.get_cursor()
   paid_pickup = utils.select('''
-    select sum(paid_before_close) paid, sum(pickup_time) pickup_time
+    select sum(paid_time) paid, sum(pickup_time) pickup_time
     from order_group 
     where is_open=true
     and table_id in (%s, %s)''',
