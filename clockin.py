@@ -55,5 +55,16 @@ def server_tip_share(serverpin):
   return ts
 
 
+def get_server_first_name_last_name(serverpin):
+  ret = utils.select('SELECT first_name, last_name from person where id = %s', args=[serverpin])
+  if ret:
+    response = ret[0]
+  else: 
+   response = None
+
+  return json.dumps(response)
+
+
+
 if __name__ == '__main__':
   print index(4008, 'false')

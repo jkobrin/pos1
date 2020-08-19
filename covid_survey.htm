@@ -1,0 +1,40 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+<head>
+<link rel = "stylesheet" type = "text/css" href = "webcommon/webcommon.css" />
+<script>
+function init(){
+  var fname_param = /[&?]fname=([^&]+)/.exec(location.search);
+  if(fname_param) document.getElementById('fname').value = fname_param[1];
+
+  var lname_param = /[&?]lname=([^&]+)/.exec(location.search);
+  if(lname_param) document.getElementById('lname').value = lname_param[1];
+}
+</script>  
+</head>
+
+<body onLoad="init()">
+
+<center>
+<h3>The health department has told us they want everyone to fill out this survey every day. So go ahead.</h3>
+<p> - yours truly, Josh
+<form style="padding: 1em; border: 2px solid black" action="covid_survey.py" enctype="multipart/form-data" method="post">
+<p>In the past 14 days, have you tested positive for COVID-19? 
+<p>YES<input type="radio" name="q1" id="q1yes" value="yes">NO<input type="radio" name="q1" id="q1no" value="no" required>
+
+<p>In the past 14 days, have you experienced symptoms of COVID-19 that you cannot attribute to another health condition? (A list of potential symptoms can be found <a href="https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html">HERE</a>)
+<p>YES<input type="radio" name="q2" id="q2yes" value="yes">NO<input type="radio" name="q2" id="q2no" value="no" required>
+
+<p>In the past 14 days, have you been in close contact (within 6 feet) for more than 10 minutes with anyone who has tested positive for COVID-19 in the last 14 days, or who has or had symptoms of COVID-19 in the last 14 days?
+<p>YES<input type="radio" name="q3" id="q3yes" value="yes">NO<input type="radio" name="q3" id="q3no" value="no" required>
+
+<p>In the past 14 days, have you spent longer than a 24-hour period of time in a state that is, or was before you left the state, subject to quarantine restrictions on travelers arriving in New York State? (A current list of travel restricted states can be found <a href="https://coronavirus.health.ny.gov/covid-19-travel-advisory">HERE</a>)
+<p>YES<input type="radio" name="q4" id="q4yes" value="yes">NO<input type="radio" name="q4" id="q4no" value="no" required>
+<p>First Name<input type="text" name="fname" id="fname" value="" required>
+<p>Last Name<input type="text" name="lname" id="lname" value="" required>
+<p><input type="submit" value="done">
+</form>
+<center>
+
+</body>
+</html>

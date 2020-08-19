@@ -1644,6 +1644,12 @@
       }  
 
       alert(resp);
+
+      if (in_){ //covid survey
+        var resp = http_request("POST", "clockin.py/get_server_first_name_last_name", "serverpin="+pin());
+        window.open("./covid_survey.htm?fname="+resp.first_name+"&lname="+resp.last_name, '_blank');
+      }
+
       leave_clock_screen();
     }  
 
