@@ -1847,7 +1847,13 @@
         }
       }  
 
-      table_items.sort(function(a,b){return (a.parent_item || a.id) - (b.parent_item || b.id)});
+      table_items.sort(function(a,b){
+        var akey = a.parent_item ? a.parent_item + .1 : a.id;
+        var bkey = b.parent_item ? b.parent_item + .1 : b.id;
+        return akey - bkey;
+        }
+      );
+
       return table_items;
      } 
 
