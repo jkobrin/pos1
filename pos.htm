@@ -1,3 +1,4 @@
+<meta id="meta" name="viewport">
 <html>
 
 <head>
@@ -274,7 +275,7 @@
     #goVerticalLink {float: right; font-size: 56; text-align: right}
 
     #linx {float: left; height: 95%; width: 5%; position: fixed ; background-color: #ffffb0}
-    #linx a {height: 33%; width: 100%}
+    #linx a {height: 20%; width: 100%}
     #board {padding-left: 6%; width:70%; float: left}
     
 
@@ -959,18 +960,19 @@
     function context_tool_tip(args)
     {
 			var tool_tip_box = document.getElementById('tool_tip_box');
-      var description = args.item.description;
-      var recipe = args.item.recipe;
+      var description = args.item.description || '-no description-';
       var picture = args.item.picture;
 
 			tool_tip_box.innerHTML = 
         '<h1>'+args.item.name+':'+args.item.price +'</h1> <pre>'+description+'</pre>';
-
-      if (args.item.recipe) {
-			  tool_tip_box.innerHTML += '<div style="width: 60%; padding-top: .5em; float:left"><pre>'+recipe+'</pre></div>';
+      tool_tip_box.innerHTML += '<div><a target="inventory" href="inventory?id='+args.item.id+'">edit</a></div>';
+      if (args.item.mynotes) {
+			  tool_tip_box.innerHTML += 
+          '<pre style="width: 60%; padding-top: .5em; float:left; font-size: smaller; text-align: left">'+args.item.mynotes+'</pre>';
       }  
       if (args.item.picture) {
-			  tool_tip_box.innerHTML += '<div style="padding-top: .5em; float:right; width: 40%"> <img width="100%" src="'+args.item.picture+'"/></div>';
+			  tool_tip_box.innerHTML += 
+          '<div style="padding-top: .5em; float:right; width: 40%"> <img width="100%" src="'+args.item.picture+'"/></div>';
       }    
 
 			tool_tip_box.style.visibility ="visible";
@@ -2114,6 +2116,14 @@
 
   </script>
 
+  <script>
+    g_scale = .5;
+    function zoom(inout){
+      g_scale += inout;
+      document.getElementById("meta").setAttribute("content", 'initial-scale='+g_scale);
+    }
+  </script>
+
 </head>
 
 <body onLoad="init()" id='main'>
@@ -2124,7 +2134,10 @@
     <div><a href="javascript:go_to_cook_screen()"  class="leftLink" id="cooklink">C</a></div>
     <div><a href="javascript:go_to_clock_screen()"  class="leftLink" id="clocklink">P</a></div>
     <div><a href="https://sites.google.com/view/salumi/p-o-r-t-a-l" class="leftLink" id="portal_link">I</a></div>
+    <div style='font-size: 48pt' onclick='zoom(.05)'>+</div>
+    <div style='font-size: 48pt' onclick='zoom(-.05)'>-</div>
     </div>
+
     <div id="board"></div>
 
     <div id="rightside">

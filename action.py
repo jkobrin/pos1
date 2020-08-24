@@ -183,6 +183,7 @@ def get_active_items_updated_since(last_update_time, incursor=None):
       og.is_open = TRUE
       and (oi.updated >= FROM_UNIXTIME(%s) or oi.created >= FROM_UNIXTIME(%s))
       or og.updated >= FROM_UNIXTIME(%s)
+      and (oi.is_cancelled = FALSE or oi.updated >= FROM_UNIXTIME(%s))
     '''
 
   if last_update_time is None:
@@ -190,7 +191,7 @@ def get_active_items_updated_since(last_update_time, incursor=None):
     return utils.select(select + full_where, incursor)
   else:
     # incremental update
-    return utils.select(select + incremental_where, incursor, args=[last_update_time]*3)
+    return utils.select(select + incremental_where, incursor, args=[last_update_time]*4)
 
 
 

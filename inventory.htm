@@ -167,7 +167,9 @@
                     { text: 'extra',  datafield: 'extra',
                         cellbeginedit: function (row) { return open_custom_text_area(row, 'extra')}
                     },
-                    { text: 'mynotes', datafield: 'mynotes', width:150  },
+                    { text: 'mynotes', datafield: 'mynotes', 
+                        cellbeginedit: function (row) { return open_custom_text_area(row, 'mynotes')}
+                    },
                 ]
             });
             // initialize the popup window and buttons.
