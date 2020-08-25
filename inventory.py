@@ -1,10 +1,24 @@
 import json
 import utils
 import datetime
-from time import mktime
+import time 
 import decimal
+import datetime
 
 from mylog import my_logger
+
+class MiliSecondDateJSONEncoder(json.JSONEncoder):
+
+  def default(self, obj):
+      if isinstance(obj, datetime.date):
+          return time.mktime(obj.timetuple())*1000 
+          #number of miliseconds from the unix epoc (javascript Date contructor uses miliseconds since epoc)
+      if isinstance(obj, Decimal):
+        #Decimal type has no json encoding
+          return str(obj)
+
+      return json.JSONEncoder.default(self, obj)
+
 
 def get_catering(req):
   return get_inventory("select * from sku_inv where supercategory = 'catering' and bin != '0' order by id")
@@ -53,7 +67,7 @@ def get_test(req, key):
   #for rec in recs:
   #  rec['scalable'] = str(bool(rec['scalable']))
 
-  return json.dumps(recs, cls=utils.MyJSONEncoder)
+  return json.dumps(recs, cls=MiliSecondDateJSONEncoder)
 
 def seek(req, **kwargs):
   my_logger.info('seek : '+ repr(kwargs))
@@ -65,7 +79,7 @@ def seek(req, **kwargs):
   sqltext = 'select * from sku_inv where ' + (' and '.join(col +' rlike %s' for col in kwargs.keys()))
   my_logger.info(sqltext)
   recs = utils.select(sqltext, args=kwargs.values())
-  return json.dumps(recs, cls=utils.MyJSONEncoder)
+  return json.dumps(recs, cls=MiliSecondDateJSONEncoder)
    
 
 def search(req, key):
@@ -76,24 +90,24 @@ def search(req, key):
    '''.format(key=key)
   )
 
-  return json.dumps(recs, cls=utils.MyJSONEncoder)
+  return json.dumps(recs, cls=MiliSecondDateJSONEncoder)
    
 
 def get_by_upc(upc):
   recs = utils.select("select * from sku_inv where upc = %s", args=upc)
-  return json.dumps(recs, cls=utils.MyJSONEncoder)
+  return json.dumps(recs, cls=MiliSecondDateJSONEncoder)
 
 def get_by_id(id):
   recs = utils.select("select * from sku_inv where id= %s", args=id)
-  return json.dumps(recs, cls=utils.MyJSONEncoder)
+  return json.dumps(recs, cls=MiliSecondDateJSONEncoder)
 
 def get_by_name(name):
   recs = utils.select("select * from sku_inv where name = %s", args=name)
-  return json.dumps(recs, cls=utils.MyJSONEncoder)
+  return json.dumps(recs, cls=MiliSecondDateJSONEncoder)
 
 def get_inventory(select):
   recs = utils.select(select)
-  return json.dumps(recs, cls=utils.MyJSONEncoder)
+  return json.dumps(recs, cls=MiliSecondDateJSONEncoder)
 
 def field_names():
   fields = utils.select('desc sku_inv')
