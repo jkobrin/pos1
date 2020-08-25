@@ -51,9 +51,9 @@ def get():
 def load_db_config(cfg):
   
   supercats = utils.select('''
-    select supercategory as name, min(if(listorder>0, listorder, null)) as listorder from sku
-    where active = true and bin >0
-    group by supercategory order by min(if(listorder>0, listorder, ~0 )), supercategory''') 
+    select supercategory as name, min(if(onmenu, listorder, null)) as listorder from sku
+    where onpos = true or onmenu = true
+    group by supercategory order by min(if(onmenu, listorder, ~0 )), supercategory''') 
     # ~0 (bitwise neg of 0) is MAX_INT so as to put non-list items last
 
   for supercat in supercats:
@@ -71,25 +71,24 @@ def load_db_config(cfg):
       supercat['categories'].append(btg)
 
     cats = utils.select('''
-      select category as name, min(if(listorder>0, listorder, null)) as listorder from sku 
-      where active = true and bin is not null 
-      and bin != '0' and active = True and category is not null
+      select category as name, min(if(onmenu, listorder, null)) as listorder from sku 
+      where (onmenu = true or onpos=true) and category is not null
       and supercategory = %s
-      group by category order by min(if(listorder>0, listorder, ~0 )), supercategory''', #see ~0 comment above
+      group by category order by min(if(onmenu, listorder, ~0 )), supercategory''', #see ~0 comment above
       args=[supercat['name']])
 
     for cat in cats:
       supercat['categories'].append(cat)
       cat['items'] = []
       for item in utils.select('''select * from sku where supercategory = %s and category = %s
-      and bin is not null and bin != '0' and active=True
+      and (onmenu = true or onpos = true)
       order by listorder, bin, name''', args = (supercat['name'], cat['name'])):
 
         cat['items'].append(item)
         #make quartino items
         if supercat['name'] == 'wine':
           item['display_name'] = item['name']
-          item['name'] = item['bin'] + ' ' + item['name']
+          item['name'] = str(item['bin']) + ' ' + str(item['name'])
           allwine['items'].append(item)
 
           if item['qtprice'] > 0: 

@@ -117,7 +117,14 @@
 #update order_item set delivery_status = 0 where is_held = 1 and delivery_status != 3;
 #alter table order_item drop column is_held;
 
-alter table order_group add column paid_time timestamp null default null;
-update order_group set paid_time = created where paid_before_close = true;
-update order_group set paid_time = updated where paid_before_close = false and is_open = false;
-alter table order_group drop column paid_before_close;
+#alter table order_group add column paid_time timestamp null default null;
+#update order_group set paid_time = created where paid_before_close = true;
+#update order_group set paid_time = updated where paid_before_close = false and is_open = false;
+#alter table order_group drop column paid_before_close;
+
+ALTER TABLE sku CHANGE `active` `onpos` boolean default true;
+alter table sku add column onmenu boolean default true;
+update sku set onpos = false, onmenu = false where bin = '0' or bin = '' or bin is null; #also false where active was already false
+update sku set onmenu = false where listorder < 1 or listorder is null or onpos = false;
+
+source views.sql

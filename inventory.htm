@@ -91,6 +91,8 @@
             {
                 datatype: "json",
                 datafields: [
+                    { name: 'onmenu',         type: 'boolean' },
+                    { name: 'onpos',         type: 'boolean' },
                     { name: 'name',           type: 'string' },
                     { name: 'display_name',         type: 'string' },
                     { name: 'supercategory',       type: 'string' },
@@ -108,7 +110,6 @@
                     { name: 'upc',         type: 'string' },
                     { name: 'description',         type: 'string' },
                     { name: 'extra',         type: 'string' },
-                    { name: 'active',         type: 'boolean' },
                     { name: 'units_in_stock', type: 'float' },
                     { name: 'inventory_date', type: 'date' },
                     { name: 'estimated_units_remaining', type: 'string' },
@@ -147,6 +148,8 @@
                     { text: 'category',    datafield: 'category', width:90},
                     { text: 'name',       datafield: 'name',  width:210},
                     { text: 'display_name',  datafield: 'display_name',  width:210},
+                    { text: 'onmenu',    datafield: 'onmenu',    columntype: 'checkbox'},
+                    { text: 'onpos',    datafield: 'onpos', columntype: 'checkbox'},
                     { text: 'bin',        datafield: 'bin', width:60  },
                     { text: 'listorder',  datafield: 'listorder',  columntype: 'numberinput' , width:60 },
                     { text: 'wholesale', datafield: 'wholesale_price', columntype: 'floatinput' , width: 60 },

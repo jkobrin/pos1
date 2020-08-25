@@ -134,14 +134,13 @@ where item_name rlike "([0-9]+ )|(^qt:)|(pint )|flight|cktail|cosmo|vodka"
 group by year(created), month(created)
 ;
 
-create VIEW sku_inv 
+create or replace VIEW sku_inv 
 AS 
 select sku.*,
 sku.units_in_stock - coalesce(sum(oi.fraction),0) AS estimated_units_remaining 
 FROM sku 
 left join order_item oi on
 oi.menu_item_id = sku.id and sku.inventory_date <= oi.created and oi.is_cancelled != TRUE 
-where sku.active = TRUE 
 group by sku.id;
 
 
