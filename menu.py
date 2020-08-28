@@ -33,12 +33,17 @@ def get_menu_html(cfg):
     <body>
   '''%{'stamp': datetime.datetime.now()}
 
-  for supercat in (sc for sc in cfg['menu']['supercategories'] if sc['name'] != 'tables' and sc['listorder'] > 0):
+  for supercat in cfg['menu']['supercategories']:
+    if supercat.get('onmenu') != True:
+      continue
 
     yield '''<h1 onclick="majority_toggle_child_checkboxes(this)">%s</h1>
              <div class="supercategory" id="%s">''' % (escape(supercat['name']), supercat['name'])
 
-    for cat in (cat for cat in supercat['categories'] if cat['listorder'] > 0):
+    for cat in supercat['categories']:
+      if cat.get('onmenu') != True:
+        continue
+
       is_wine = supercat['name'] == 'wine'
       yield '''<div class="category accordion" id="%s">'''%cat['name']
       yield '''<input type="checkbox" name="%s%s" id="%s%s">'''% (supercat['name'], cat['name'], supercat['name'], cat['name'])
@@ -47,7 +52,9 @@ def get_menu_html(cfg):
       yield '''<div class="cat_content content">'''
 
       current_subcategory = None
-      for item in (item for item in cat['items'] if item['listorder'] > 0):
+      for item in cat['items']:
+        if item.get('onmenu') != True:
+          continue
 
         sku_id, binnum, name, display_name, description, subcategory= (
           clean(escape(unicode(item[key]))) for key in ['id', 'bin', 'name', 'display_name', 'description', 'subcategory']

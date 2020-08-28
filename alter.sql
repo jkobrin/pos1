@@ -127,4 +127,33 @@ alter table sku add column onmenu boolean default true;
 update sku set onpos = false, onmenu = false where bin = '0' or bin = '' or bin is null; #also false where active was already false
 update sku set onmenu = false where listorder < 1 or listorder is null or onpos = false;
 
+delete from sku where supercategory is null or category is null or name is null;
+
+insert into sku(supercategory, category, name, listorder, onmenu, onpos)
+select 
+supercategory, 
+'HEAD' as category, 
+'HEAD' as name, 
+min(if(onmenu, listorder, null)) as listorder,
+if(sum(onmenu) > 0, 1, 0),
+if(sum(onpos) > 0, 1, 0)
+from sku
+where (onpos = true or onmenu = true) and name != 'HEAD'
+group by supercategory;
+
+
+insert into sku(supercategory, category, name, listorder, onmenu, onpos)
+select 
+supercategory, 
+category, 
+'HEAD' as name, 
+min(if(onmenu, listorder, null)) as listorder,
+if(sum(onmenu) > 0, 1, 0) as onmenu,
+if(sum(onpos) > 0, 1, 0) as onpos
+from sku
+where (onpos = true or onmenu = true) and name != 'HEAD'
+group by supercategory, category;
+
 source views.sql
+
+

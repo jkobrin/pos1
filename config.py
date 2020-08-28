@@ -6,7 +6,7 @@ log = my_logger
 
 MAX_NAME_LEN = 32
 BTG_NAME = "by the glass"
-ALLWINE_NAME = 'all wine'
+ALLWINE_NAME = 'wine by bin'
 
 TAXRATE = .08625
 
@@ -51,10 +51,11 @@ def get():
 def load_db_config(cfg):
   
   supercats = utils.select('''
-    select supercategory as name, min(if(onmenu, listorder, null)) as listorder from sku
-    where onpos = true or onmenu = true
-    group by supercategory order by min(if(onmenu, listorder, ~0 )), supercategory''') 
-    # ~0 (bitwise neg of 0) is MAX_INT so as to put non-list items last
+    select supercategory as name, onmenu, onpos, description
+    from sku
+    where category='HEAD' and name = 'HEAD' 
+    and (onpos = true or onmenu = true)
+    order by listorder''') 
 
   for supercat in supercats:
     cfg['menu']['supercategories'].append(supercat)
@@ -62,34 +63,40 @@ def load_db_config(cfg):
 
     if supercat['name'] == 'wine':
       scalable = utils.select('''
-        select distinct id from sku where scalable = true and supercategory = %s ''',
+        select distinct id from sku where scalable = true and supercategory = %s and name != 'HEAD' ''',
         args=[supercat['name']])
       scalables = [rec["id"] for rec in scalable]
 
-      allwine = {'name':ALLWINE_NAME, 'listorder': 0, 'items': []}
-      btg = {'name':BTG_NAME, 'listorder': 1, 'items': []}
+      allwine = {'name':ALLWINE_NAME, 'onmenu': False, 'onpos': True, 'items': []}
+      btg = {'name':BTG_NAME, 'onmenu': True, 'onpos': True, 'items': []}
       supercat['categories'].append(btg)
 
     cats = utils.select('''
-      select category as name, min(if(onmenu, listorder, null)) as listorder from sku 
-      where (onmenu = true or onpos=true) and category is not null
-      and supercategory = %s
-      group by category order by min(if(onmenu, listorder, ~0 )), supercategory''', #see ~0 comment above
+      select category as name, onmenu, onpos, description
+      from sku 
+      where (onmenu = true or onpos=true)
+      and supercategory = %s and category != 'HEAD' and name = 'HEAD'
+      order by ifnull(listorder, ~0)''',
+      # ~0 (bitwise neg of 0) is MAX_INT so as to put non-list items last
       args=[supercat['name']])
 
     for cat in cats:
       supercat['categories'].append(cat)
       cat['items'] = []
-      for item in utils.select('''select * from sku where supercategory = %s and category = %s
-      and (onmenu = true or onpos = true)
-      order by listorder, bin, name''', args = (supercat['name'], cat['name'])):
+      for item in utils.select('''
+      select * from sku 
+      where supercategory = %s and category = %s
+      and (onmenu = true or onpos = true) and name != 'HEAD'
+      order by ifnull(listorder, ~0), name''', args = (supercat['name'], cat['name'])):
 
         cat['items'].append(item)
         #make quartino items
         if supercat['name'] == 'wine':
           item['display_name'] = item['name']
           item['name'] = str(item['bin']) + ' ' + str(item['name'])
-          allwine['items'].append(item)
+          allwine_item = item.copy()
+          allwine_item['subcategory'] = 'bottle'
+          allwine['items'].append(allwine_item)
 
           if item['qtprice'] > 0: 
             qtitem = item.copy()
@@ -99,7 +106,9 @@ def load_db_config(cfg):
             qtitem['bottle_price'] = item['retail_price']
             qtitem['retail_price'] = item['qtprice']
             qtitem['name'] = 'qt: '+item['name']
-            allwine['items'].append(qtitem)
+            allwine_qtitem = qtitem.copy()
+            allwine_qtitem['subcategory'] = 'quartino'
+            allwine['items'].append(allwine_qtitem)
             if qtitem['id'] in scalables:
               btg['items'].append(qtitem)
           elif item['id'] in scalables:     
@@ -107,6 +116,7 @@ def load_db_config(cfg):
             
     #this has to be down here cause I want allwine to be the last thing in the supercategory
     if supercat['name'] == 'wine':
+      allwine['items'].sort(key=lambda wine: wine['subcategory'] + ':' + wine['bin'])
       supercat['categories'].append(allwine)
 
 

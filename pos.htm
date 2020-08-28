@@ -51,6 +51,12 @@
 
     .add_on_button { background-color: gray; color:white}
 
+    .notonmenu
+    {
+      background: transparent;
+    }
+
+
     #message_box { font-size: 32pt; background-color: red;}
 
     .diaframe
@@ -271,6 +277,8 @@
     .cat_button_div {width: 100%; float:left; display: none}
     .cat_div {}
 
+    .subcat_divider {clear: both; font-size:larger; text-transform: uppercase; text-color: black; border-bottom: solid 6px white}
+
     .leftLink {float: left; font-size:48}
     #goVerticalLink {float: right; font-size: 56; text-align: right}
 
@@ -327,7 +335,7 @@
   </style>
   <!-- css/site.css will be rewritten by apache to salumi.css or plancha.css, etc 
     depending on virtual host. see rewrite rule in apache configuration files-->
-  <link rel="stylesheet" href="css/site.css" type="text/css" />
+  <link rel="stylesheet" href="css/site.css?ves=97" type="text/css" />
 
   <script type="text/javascript" src="jq453/scripts/jquery-1.11.2.js"></script>
   <script type="text/javascript" src="js/printing/epos-print-4.1.0.js"></script>
@@ -880,6 +888,16 @@
       head.style.backgroundColor = (head.style.backgroundColor == 'white' ? null : 'white');
     }  
 
+    function allowdrop(event){
+      event.preventDefault();
+    }  
+
+    function drop(event){
+      event.preventDefault();
+      console.log('drop');
+      console.dir(event);
+    }  
+
     function drawCurrentCategory()
     // This function is called when the page a new category is
     // selected and the items in the table change. 
@@ -898,6 +916,7 @@
 
         var supercat_head_div = document.createElement('div');
         supercat_head_div.setAttribute("class", "supercat_head");
+        supercat_head_div.setAttribute("draggable", true);
         supercat_head_div.textContent = supercat.name;
         supercat_div.appendChild(supercat_head_div);
 
@@ -917,6 +936,9 @@
 
           var cat_head_div = document.createElement('div');
           cat_head_div.setAttribute("class", "cat_head");
+          cat_head_div.setAttribute("draggable", true);
+          cat_head_div.setAttribute("ondrop", "drop(event)");
+          cat_head_div.setAttribute("ondragover", "allowdrop(event)");
           cat_head_div.textContent = cat.name;
           cat_div.appendChild(cat_head_div);
 
@@ -927,16 +949,19 @@
 
           cat_head_div.onclick = make_closure(uncollapse, cat_div);
 
-          if (cat.name != 'by the glass'){
-            cat.items.sort(function(a,b){
-              return a.bin < b.bin ? -1 : a.bin > b.bin ? 1: 
-              a.listorder < b.listorder? -1: a.listorder>b.listorder? 1:
-              a.name - b.name})
-          }    
-
+          current_subcategory = null;
           for (iidx in cat.items)
           {
             var item = cat.items[iidx];
+
+            subcategory = item.subcategory;
+            if (current_subcategory != subcategory && subcategory){
+              current_subcategory = subcategory;
+              var subcat_divider = document.createElement('div');
+              subcat_divider.setAttribute('class', 'subcat_divider');
+              subcat_divider.appendChild(document.createTextNode(subcategory));
+              cat_button_div.appendChild(subcat_divider);
+            }
 
             var grid_button = document.createElement('input');
             grid_button.type = 'button';
@@ -947,7 +972,9 @@
 
             var button_class = 'menu_button';
             if (item.add_on){button_class += ' add_on_button' }
+            if (!item.onmenu) {button_class +=' notonmenu'}
             grid_button.setAttribute('class', button_class);
+            grid_button.setAttribute('draggable', true);
             grid_button.value = item.name;
             cat_button_div.appendChild(grid_button);
           }

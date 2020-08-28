@@ -69,6 +69,13 @@ def get_test(req, key):
 
   return json.dumps(recs, cls=MiliSecondDateJSONEncoder)
 
+orderby = '''
+order by 
+(select listorder from sku where sku.category = 'HEAD' and si.supercategory = sku.supercategory), supercategory,
+if(category='HEAD', null, (select listorder from sku where sku.name = 'HEAD' and si.supercategory = sku.supercategory and si.category = sku.category)), category,
+if(name='HEAD', null, listorder), name
+'''
+
 def seek(req, **kwargs):
   my_logger.info('seek : '+ repr(kwargs))
   garbage = ('pagenum', 'pagesize', 'recordendindex', 'groupscount', 'recordstartindex', 'filterscount', '_')
@@ -76,18 +83,19 @@ def seek(req, **kwargs):
   for key in garbage:
     if key in kwargs: kwargs.pop(key)
 
-  sqltext = 'select * from sku_inv where ' + (' and '.join(col +' rlike %s' for col in kwargs.keys()))
-  my_logger.info(sqltext)
+  sqltext = 'select * from sku_inv si where ' + (' and '.join(col +' rlike %s' for col in kwargs.keys()))
+  sqltext += orderby
+
   recs = utils.select(sqltext, args=kwargs.values())
   return json.dumps(recs, cls=MiliSecondDateJSONEncoder)
    
 
 def search(req, key):
   recs = utils.select('''
-    select * from sku_inv where 
+    select * from sku_inv si where 
     (supercategory rlike '{key}' or category rlike '{key}')
-    and bin > 0
-   '''.format(key=key)
+    and (onpos or onmenu)
+   '''.format(key=key) + orderby
   )
 
   return json.dumps(recs, cls=MiliSecondDateJSONEncoder)
