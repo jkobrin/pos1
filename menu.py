@@ -49,7 +49,9 @@ def get_menu_html(cfg):
       yield '''<input type="checkbox" name="%s%s" id="%s%s">'''% (supercat['name'], cat['name'], supercat['name'], cat['name'])
       #yield '''<h2 ><label for="%s%s">%s</label></h2>'''%(supercat, cat, escape(cat))
       yield '''<center><h2><label class="cat_label" for="%s%s">%s</label></h2></center>'''%(supercat['name'], cat['name'], escape(cat['name']))
-      yield '''<div class="cat_content content">'''
+      if cat.get('description'):
+        yield '''<center>%s</center>'''%cat.get('description')
+      yield '''<div class="cat_content content"> click any title for more info'''
 
       current_subcategory = None
       for item in cat['items']:
