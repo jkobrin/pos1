@@ -5,6 +5,7 @@ import json
 import MySQLdb
 import utils
 
+from config import expand_extra_fields
 
 
 def index(req):
@@ -76,12 +77,38 @@ def index(req):
       "Week wine & bar sales",
       ('Name','Count', 'Category', 'Order Times'), 
       bev_week_sold
-    ) +
-    '''</body></html>'''  
+    )
   )
 
-  return html
+  winebar = utils.select('''
+    SELECT supplier, category, name, estimated_units_remaining as eur, extra
+    FROM sku_inv
+    WHERE onpos = true
+    order by supplier
+  ''',
+  incursor=None,
+  label=True
+  )
+  
+  par_alerts = []
+  for item in winebar:
+    expand_extra_fields(item)
 
+    if item.has_key('par') and int(item['eur']) <= item['par']:
+      par_alerts.append((item['supplier'], item['category'], item['name'], item['eur'], item['par']))
+
+
+  html += (
+    utils.tohtml(
+    "Par Alerts",
+    ('supplier', 'category', 'name', 'estimated_units_remaining', 'par'),
+    par_alerts
+    ) +
+    '''</body></html>'''
+  )
+
+
+  return html
 
 
 

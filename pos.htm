@@ -962,6 +962,7 @@
               subcat_divider.appendChild(document.createTextNode(subcategory));
               cat_button_div.appendChild(subcat_divider);
             }
+            if (item.onpos==false){continue;}
 
             var grid_button = document.createElement('input');
             grid_button.type = 'button';
