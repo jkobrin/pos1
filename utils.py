@@ -44,7 +44,7 @@ def get_cursor():
     conn = MySQLdb.connect (host = "localhost",
                           user = "pos",
                           passwd = "pos",
-                          db = config_loader.config_dict['db']['name'],
+                          db = config_loader.get_config_dict()['db']['name'],
                           charset = "utf8")
 
     return conn.cursor()

@@ -79,7 +79,7 @@ def fodt_text():
     doc += frag
   if config_loader.config_dict['use_wine_fun']:
     doc += open('/var/www/winefun.xml.frag').read()
-  elif config_loader.config_dict['use_wine_award']:
+  elif config_loader.get_config_dict()['use_wine_award']:
     doc += open('/var/www/wineaward.xml.frag').read()
 
   doc += open('/var/www/winelist_tail.xml.frag').read()

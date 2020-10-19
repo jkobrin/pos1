@@ -5,6 +5,7 @@ import time
 import decimal
 import datetime
 
+from config_loader import set_newconfig_time_now
 from mylog import my_logger
 
 class MiliSecondDateJSONEncoder(json.JSONEncoder):
@@ -149,6 +150,7 @@ def update(req, edits, newrows):
     insert_ids[rowid] = utils.select("select LAST_INSERT_ID()", cursor, False)[0][0]
 
   cursor.close ()
+  set_newconfig_time_now()
 
   return json.dumps(insert_ids)
 

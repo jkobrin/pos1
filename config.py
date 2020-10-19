@@ -13,14 +13,14 @@ TAXRATE = .08625
 #private helper used internal to this module
 def expand_extra_fields(item):
   if item.get('extra'):
-    try:
-      item.update(yaml.load(item['extra']))
-    except:
-      pass
+    #try:
+    item.update(yaml.load(item['extra']))
+    #except:
+    #  pass
 
 
 def load_config():
-  cfg = copy.deepcopy(config_loader.config_dict)
+  cfg = copy.deepcopy(config_loader.get_config_dict())
 
   populate_staff_tabs(cfg)
   load_db_config(cfg)  

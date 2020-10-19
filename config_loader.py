@@ -1,6 +1,7 @@
 import inspect
 import yaml
-import os
+import os, io
+
 
 def passed_options():
   # mod_python for Apache does not put SetEnv directives from apache config into
@@ -42,12 +43,34 @@ def reload_time():
     return os.path.getmtime(RELOAD_TIME_FILE_NAME)
   except OSError:
     return 0
-  
+
+def set_reload_time_now():
+    os.utime(RELOAD_TIME_FILE_NAME, None)
+      
+def newconfig_time():
+  try:
+    return os.path.getmtime(CONFIG_FILE_NAME)
+  except OSError:
+    return 0
+
+def set_newconfig_time_now():
+    os.utime(CONFIG_FILE_NAME, None)
+      
+    
+config_dict_time = 0
+config_dict = None
+def get_config_dict():
+  global config_dict_time, config_dict
+
+  if config_dict_time < newconfig_time():
+    config_dict_time = newconfig_time()
+    config_dict = yaml.load(open(CONFIG_FILE_NAME))
+
+  return config_dict
+
 
 # having these globals here works because modpython creates a
 # separate python sub-interpreter for each virtual host in the
 # apache config file
 RELOAD_TIME_FILE_NAME = '/var/www/' + hostname() + '_reload_time'
-
 CONFIG_FILE_NAME = '/var/www/' + hostname() + '_config.yml'
-config_dict = yaml.load(open(CONFIG_FILE_NAME))

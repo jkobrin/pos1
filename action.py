@@ -2,6 +2,7 @@ import json
 import utils
 from mylog import my_logger
 import config_loader
+import config
 
 
 def get_session_id(req):
@@ -116,21 +117,25 @@ def synchronize(req, crud_commands, last_update_time):
     # made by other clients (if any) as well as those this client
     # just sent and which were just executed (if any))
 
-    now = utils.select("select now()", label=False)[0][0]
-    active_items = get_active_items_updated_since(last_update_time)
-    items_by_id = {}
-    for item in active_items:
-      items_by_id[item['id']] = item  
-
     if last_update_time is None:
       update_type = 'replace'
     else:
       update_type = 'incremental'
 
+    if last_update_time is None or config_loader.newconfig_time() > last_update_time:
+      newconfig = config.load_config()
+    else:
+      newconfig = None
+
+    now = utils.select("select now()", label=False)[0][0] #TODO: use fetchOne?
+    active_items = get_active_items_updated_since(last_update_time)
+    items_by_id = dict((item['id'], item) for item in active_items)
+
     return json.dumps({
       'instruction': None, 
       'update_type': update_type, 
       'time': now, 
+      'config': newconfig,
       'items': items_by_id}, 
       encoding='latin-1', cls=utils.MyJSONEncoder)
     

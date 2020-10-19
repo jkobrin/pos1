@@ -52,7 +52,7 @@ def get_stub_data(person_id, week_of, table_name, incursor):
   # make one dictionary of the two result sets
   result = stub_data[0] # start with stub_data
   result.update(stub_ytd_data[0]) #add the YTD stuff to it
-  result["BUSS_INFO_LINE"] = config_loader.config_dict['paystub_buss_info_line']
+  result["BUSS_INFO_LINE"] = config_loader.get_config_dict()['paystub_buss_info_line']
 
   return result
 

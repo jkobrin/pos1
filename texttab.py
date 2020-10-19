@@ -77,7 +77,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   total = foodtotal + tax
 
   tabtext = ''
-  for line in config_loader.config_dict['guest_check_header'].splitlines():
+  for line in config_loader.get_config_dict()['guest_check_header'].splitlines():
     tabtext += line.center(NUMWIDTH + TEXTWIDTH) + '\n'
 
   now = utils.now()
@@ -91,8 +91,8 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   tabtext += divider
 
   gift_certs = []
-  if config_loader.config_dict.get("autoprint_png"):
-    gift_certs.append(GiftCert({'name': 'auto', 'filename': config_loader.config_dict['autoprint_png']}))
+  if config_loader.get_config_dict().get("autoprint_png"):
+    gift_certs.append(GiftCert({'name': 'auto', 'filename': config_loader.get_config_dict()['autoprint_png']}))
 
   gratuity = 0
   gratuity_rate = 0

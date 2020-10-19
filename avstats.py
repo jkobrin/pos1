@@ -80,6 +80,31 @@ def index(req):
     '''</body></html>'''  
   )
 
+  winebar = utils.select('''
+  SELECT item_name, sku_inv.category, sku_inv.estima
+  FROM sku_inv
+  WHERE 
+  and sku_inv.supercategory rlike 'wine|bar'
+  ''',
+  incursor=None,
+  label=False
+  )
+
+  for item in winebar
+
+  html += (
+    utils.tohtml(
+    "Week Totals",
+    ('Dinner','Lunch'), 
+    week_eod
+    )  +
+    utils.tohtml(
+      "Week wine & bar sales",
+      ('Name','Count', 'Category', 'Order Times'), 
+      bev_week_sold
+    ) +
+    '''</body></html>'''  
+  )
   return html
 
 
