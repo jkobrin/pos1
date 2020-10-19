@@ -57,6 +57,7 @@
 
     g_config = null;
     g_slips = null;
+
     function init(){
       g_config = http_request("GET", "config.py/get", null);
       g_slips = http_request("GET", "print_pay_slips.py/go");
@@ -72,7 +73,7 @@
         slip_div.appendChild(pre);
 
       }
-    }  
+    }
 
     function print_slips()
     {
@@ -84,7 +85,7 @@
           web_print(slip_text, g_config.printer);
         }
       }
-    }  
+    }
         
   </script>
 </head>
@@ -92,6 +93,7 @@
 <body onLoad="init()" id='main'>
 
   <button onclick="print_slips()">print all slips</button>
+  <button onclick="email_stubs()">email all stubs</button>
   <div id="slip_display"/>
 
 </body>

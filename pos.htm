@@ -1435,10 +1435,9 @@
         if (item.category == 'cafe') {classes += ' cafe_item'}
         if (item.category == 'boards') {classes += ' board_item'}
         if (item.category == 'desserts') {classes += ' dessert_item'}
-        if (item.category && item.category.match(/coffee/)) {classes += ' dessert_item'}
         if (item.category == 'allergy') {classes += ' allergy_item'}
 
-        if (cfg_item.style) {classes += ' '+cfg_item.style}
+        if (cfg_item && cfg_item.style) {classes += ' '+cfg_item.style}
 
         if (item.is_cancelled) {classes += ' cancelled_item'}
         if (item.is_open == false) {classes += ' closed_item'}
