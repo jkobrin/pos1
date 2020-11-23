@@ -253,15 +253,6 @@
       document.body.style.cursor = 'default';
     }  
       
-    function print_tip_slips()
-    {
-      response = http_request("GET", "print_pay_slips.py/go");
-      for (idx in response){
-        slip_text = response[idx];
-        alert (slip_text);
-      }
-    }  
-        
     function getTableHTML()
     {
       s="";
@@ -431,7 +422,6 @@
     <div id="hours_table">
     </div>  
     <button onclick="calc_tip_pay()">calculate tip pay</button>
-    <button onclick="print_tip_slips()">print tip slips</button>
 
   </div>
 

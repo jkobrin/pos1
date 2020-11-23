@@ -10,13 +10,14 @@ ALLWINE_NAME = 'wine by bin'
 
 TAXRATE = .08625
 
-#private helper used internal to this module
+
 def expand_extra_fields(item):
   if item.get('extra'):
-    #try:
-    item.update(yaml.load(item['extra']))
-    #except:
-    #  pass
+    try:
+      item.update(yaml.load(item['extra']))
+    except ValueError as e:
+      log.warn(e.message + ' when parsing: %s'%item)
+      
 
 
 def load_config():
@@ -92,7 +93,7 @@ def load_db_config(cfg):
         cat['items'].append(item)
         #make quartino items
         if supercat['name'] == 'wine':
-          item['display_name'] = item['name']
+          item['display_name'] = item['display_name'] or item['name'] 
           item['name'] = str(item['bin']) + ' ' + str(item['name'])
           allwine_item = item.copy()
           allwine_item['subcategory'] = 'bottle'

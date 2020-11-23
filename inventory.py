@@ -72,8 +72,9 @@ def get_test(req, key):
 
 orderby = '''
 order by 
-(select listorder from sku where sku.category = 'HEAD' and si.supercategory = sku.supercategory), supercategory,
-if(category='HEAD', null, (select listorder from sku where sku.name = 'HEAD' and si.supercategory = sku.supercategory and si.category = sku.category)), category,
+(select max(listorder) from sku where sku.category = 'HEAD' and si.supercategory = sku.supercategory), supercategory,
+if(category='HEAD', null, 
+  (select max(listorder) from sku where sku.name = 'HEAD' and si.supercategory = sku.supercategory and si.category = sku.category)), category,
 if(name='HEAD', null, listorder), name
 '''
 
@@ -94,7 +95,7 @@ def seek(req, **kwargs):
 def search(req, key):
   recs = utils.select('''
     select * from sku_inv si where 
-    (supercategory rlike '{key}' or category rlike '{key}')
+    (supercategory rlike "{key}" or category rlike "{key}")
     and (onpos or onmenu)
    '''.format(key=key) + orderby
   )

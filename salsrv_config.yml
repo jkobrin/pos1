@@ -2,7 +2,11 @@ db:
   name: salsrv
 
 #paystub_buss_info_line: "HAL Corp. Riverdale"
-paystub_buss_info_line: "SALUMI dba Ultraviolet Enterprises 5600 Merrick RD, Massapequa, NY 11758 516-620-0057"
+paystub_buss_info: 
+  - "SALUMI dba Ultraviolet Enterprises"
+  - "5600 Merrick RD, Massapequa, NY 11758"
+  - "516-620-0057"
+
 #paystub_buss_info_line: "PLANCHA dba Infrared Enterprises 931 Franklin AVE, GardenCity, NY 516-246-9459"
 
 #guest_check_header: "HALUMI\nRiverndale Run\nThe Massapequas\n516-555-5557"
@@ -26,7 +30,7 @@ printer:
   web_print_image_service_url: "http://old.salumibarli.com:3681/iprint.py/print_url"
   timeout: 3000
 
-autoprint_png: salumiqrmenu
+#autoprint_png: salumiqrmenu
 
 
 portal_url: "https://sites.google.com/view/salumi/p-o-r-t-a-l"

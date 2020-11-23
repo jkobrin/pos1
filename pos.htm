@@ -189,6 +189,7 @@
               subcat_divider.appendChild(document.createTextNode(subcategory));
               cat_button_div.appendChild(subcat_divider);
             }
+            if (item.onpos==false){continue;}
 
             var grid_button = document.createElement('input');
             grid_button.type = 'button';
@@ -509,6 +510,40 @@
         var dialog = dialogs[idx++];
         dialog.style.visibility = 'hidden';
       }
+
+    }
+
+    function go_to_market()
+    {
+      set_current_table('MKT');
+    }
+
+    function go_to_cook_screen()
+    {
+      refresh_cook_screen();
+      main_screen.style.display = "none";
+      cook_screen.style.display = "inline";
+    }
+
+    function toggle_cafe_style()
+    {
+      g_cafe_style = !g_cafe_style;
+      toggle_cafe_style_button.innerHTML = g_cafe_style ? 'MKT: hide': 'MKT: show';
+      refresh_cook_screen();
+    }
+
+    function toggle_cook_style()
+    {
+      g_cook_style = !g_cook_style;
+      toggle_cook_style_button.innerHTML = g_cook_style ? 'X-Style: hide': 'X-Style: show';
+      refresh_cook_screen();
+    }
+
+    function leave_cook_screen()
+    {
+      cook_screen.style.display="none";
+      main_screen.style.display="inline"; 
+      refresh_screen();
     }
 
     function go_to_clock_screen()

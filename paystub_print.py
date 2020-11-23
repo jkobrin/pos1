@@ -52,13 +52,13 @@ def get_stub_data(person_id, week_of, table_name, incursor):
   # make one dictionary of the two result sets
   result = stub_data[0] # start with stub_data
   result.update(stub_ytd_data[0]) #add the YTD stuff to it
-  result["BUSS_INFO_LINE"] = config_loader.get_config_dict()['paystub_buss_info_line']
+  result["BUSS_INFO_LINE"] = '<br>'.join(config_loader.get_config_dict()['paystub_buss_info'])
 
   return result
 
 
 def fodt_text(stub_data):
-  doc = open('/var/www/paystub_template.fodt').read()
+  doc = open('/var/www/paystub_template.html').read()
 
   for key, value in stub_data.items():
     doc = re.sub(r'\$'+key+r'\b', str(value), doc)
@@ -70,31 +70,28 @@ def gen_fodt_and_pdf(stub_data, table_name):
   
   doc = fodt_text(stub_data)
   stubdir = "/var/www/paystubs/"
-  fodtname = stubdir + "{LAST_NAME}_{FIRST_NAME}_{PERIOD_END}".format(**stub_data)+"_{table_name}.fodt".format(**locals())
+  fodtname = stubdir + "{LAST_NAME}_{FIRST_NAME}_{PERIOD_END}".format(**stub_data)+"_{table_name}.html".format(**locals())
   new_fodt = open(fodtname, 'w')
+  new_fodt.write('''Subject: earnings statement {PERIOD_END}
+To: josh@salumibarli.com
+From: stubs@salumibarli.com
+Content-Type: text/html
+
+'''.format(**stub_data))
+
   new_fodt.write(doc)
   new_fodt.close()
 
   #os.system('soffice --headless --convert-to pdf --outdir ' + stubdir + ' ' + fodtname)
-  subprocess.call(['soffice', '-env:HOME=/tmp/libreoffice', '--headless', '--convert-to', 'pdf', '--outdir', stubdir, fodtname])
+  #subprocess.call(['soffice', '-env:HOME=/tmp/libreoffice', '--headless', '--convert-to', 'pdf', '--outdir', stubdir, fodtname])
 
 
 def print_stubs(person_id, week_of, table_name, incursor = None):
   
     stub_data = get_stub_data(person_id, week_of, table_name, incursor)
     gen_fodt_and_pdf(stub_data, table_name)
+    return stub_data
 
-
-def print_r_stubs():
-
-  for table_name in ('PAY_STUB',):
-    stub_keys = utils.select('''
-      select person_id, week_of from %(table_name)s where last_name  = 'Sinitean'
-    '''%locals(), label=False
-    )
-
-    for person_id, week_of in stub_keys:
-      print_stubs(person_id, week_of, table_name)
 
 def print_recent(person_lastname, numweeks=6, table_name='PAY_STUB'):
 
@@ -105,7 +102,9 @@ def print_recent(person_lastname, numweeks=6, table_name='PAY_STUB'):
     '''%locals(), label=False
     )
 
+    print "stub_keys %s"% repr(stub_keys)
     for person_id, week_of in stub_keys:
+      print (person_id, week_of)
       print_stubs(person_id, week_of, table_name)
 
 
@@ -134,11 +133,11 @@ def print_this_week_stubs():
 
   for table_name in ('PAY_STUB', 'WEEKLY_PAY_STUB'):
     stub_keys = utils.select('''
-      select person_id, week_of from {table_name} where yearweek(week_of) = yearweek(now() - interval '1' week)'''.
+      select person_id, week_of from {table_name} where yearweek(week_of) = yearweek(now() - interval '2' week)'''.
       format(**locals()), label=False) 
 
     for person_id, week_of in stub_keys:
-      print_stubs(person_id, week_of, table_name)
+      yield print_stubs(person_id, week_of, table_name)
   
 
 
@@ -191,8 +190,13 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
   for sunday in last_sundays(12):
     print_stubs(0, sunday, table_name, incursor=incursor)
 
+def index(req): #, lname, numweeks=6, table_name= 'PAY_STUB'):
+  return 'THIS:' + '\n\n'.join(repr(feedback) for feedback in print_this_week_stubs())
+    
+
 if __name__ == '__main__':
   pass
+  #print_recent('Rubio', numweeks=6, table_name = 'PAY_STUB')
   #print_recent('Fostakovska', numweeks=12, table_name = 'WEEKLY_PAY_STUB')
   #print_recent('Seney', numweeks=12, table_name = 'WEEKLY_PAY_STUB')
   #print_recent('Seney', numweeks=12, table_name = 'PAY_STUB')
