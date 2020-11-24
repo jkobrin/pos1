@@ -2,6 +2,8 @@ import json, re, copy, yaml
 from mylog import my_logger
 import utils
 import config_loader
+import whiteboard
+
 log = my_logger
 
 MAX_NAME_LEN = 32
@@ -119,6 +121,8 @@ def load_db_config(cfg):
     if supercat['name'] == 'wine':
       allwine['items'].sort(key=lambda wine: wine['subcategory'] + ':' + wine['bin'])
       supercat['categories'].append(allwine)
+
+  cfg['whiteboard_content'] = whiteboard.get_content()
 
 
 

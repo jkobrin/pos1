@@ -19,6 +19,8 @@ use_wine_fun: false #plancha true
 coupon:
   #filename: /var/www/coupon.pdf
 
+post_it_note: Watch this space!
+
 happy_hour:
   start: 12
   end: 18

@@ -160,4 +160,10 @@
 #alter table person add column ssn varchar(12);
 #alter table person add column phone varchar(12);
 
+create table whiteboard (
+  content text,
+  updated timestamp
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+insert into whiteboard values ("Write what you want.", now());
+
 source views.sql

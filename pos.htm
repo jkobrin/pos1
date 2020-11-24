@@ -6,7 +6,7 @@
   <!-- css/site.css will be rewritten by apache to salumi.css or plancha.css, etc 
     depending on virtual host. see rewrite rule in apache configuration files-->
   <link rel="stylesheet" href="css/site.css?vers=103" type="text/css" />
-  <link rel="stylesheet" href="pos_entry.css?vers=114" type="text/css" />
+  <link rel="stylesheet" href="pos_entry.css?vers=115" type="text/css" />
 
   <script type="text/javascript" src="jq453/scripts/jquery-1.11.2.js"></script>
   <script type="text/javascript" src="jsutils.js"></script>
@@ -75,7 +75,6 @@
       update_order_pane(g_currentTable);
       refresh_cook_screen();
       receipt_screen_init();
-      drawPostItNote();
     }
 
     function colorTables()
@@ -208,6 +207,8 @@
           supercat_content_div.appendChild(cat_div);
         }
         board.appendChild(supercat_div);
+
+        drawWhiteboard();
       }
 
       // restore collapse-state from old nodes
@@ -285,8 +286,8 @@
       head.style.backgroundColor = (head.style.backgroundColor == 'white' ? null : 'white');
     }  
 
-    function drawPostItNote(){
-      document.getElementById('post_it_note').innerHTML = g_config.post_it_note;
+    function drawWhiteboard(){
+      document.getElementById('whiteboard_div').innerHTML = g_config.whiteboard_content;
     }
 
     function grid_button_clicked(cfg_item)
@@ -921,6 +922,20 @@
       }
     }
 
+    function whiteboard_blur(whiteboard_div)
+    {
+      var newcontent = whiteboard_div.innerHTML;
+      if (newcontent != g_config.whiteboard_content) {
+        var response = confirm("Alter whiteboard content?")
+        if (response == false){
+          whiteboard_div.innerHTML = g_config.whiteboard_content;
+        }  
+        else {
+          http_request("POST", "whiteboard.py", "newcontent="+whiteboard_div.innerHTML);
+          g_config.whiteboard_content = whiteboard_div.innerHTML;
+        }
+      }
+    }
 
   g_scale = .5;
   function zoom(inout){
@@ -1043,7 +1058,7 @@
   <div id="add_item_box" ></div>
   <div id="message_box" ></div>
 
-  <div id="post_it_note">
+  <div id="whiteboard_div" contenteditable=true onblur="whiteboard_blur(this)">
   </div>
 
     <!-- invisible area for drawing gift certs -->
