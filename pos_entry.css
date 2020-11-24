@@ -1,0 +1,346 @@
+
+.screen {display: none;}
+
+#main_screen
+{
+  display: inline;
+}
+
+.order_item { 
+  width: 100%; 
+  background-color:transparent;
+  border: none;
+  font-size : 24pt;
+}
+
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  font-size: smaller;
+  font-family: auto;
+}
+
+
+.nondelivered_item { color: magenta; }
+
+.comped_item {font-style:italic; border: 6px solid #a0ffa0;}
+.held_item {border: 3px solid yellow;}
+
+.bev_item {color: blue;}
+.board_item {color: maroon;}
+.dessert_item {color: white;}
+.allergy_item {color: red; text-decoration: underline}
+
+.delivered_item { opacity: 0.3; text-align: right; text-decoration: line-through;}
+.ready_item { opacity: 1.3; background: red; color:white}
+.cancelled_item { opacity: 0.3; text-align: right; color: white; background-color:  maroon; transform: scale(.8) skewx(45deg) skewy(2deg); }
+.closed_item { opacity: 0.3; text-align: right; color: white; background-color:  gray;}
+.child_item {text-align: right; font-size: 20pt;opacity: 0.8}
+
+.menu_button 
+{
+  float: left;
+  margin: 5px;
+  font-size:14pt; font-weight:bold; height:100px; width:100px;
+  background-color: #b0b0b0;
+  white-space : normal;
+}
+
+.add_on_button { background-color: gray; color:white}
+
+.notonmenu
+{
+  background: transparent;
+}
+
+
+#message_box { font-size: 32pt; background-color: red;}
+
+.diaframe
+{
+ opacity:0.9;
+ position:fixed;
+ width: 75%;
+ font-family:arial;
+ visibility:hidden;
+ border:2px outset black;
+ background-color:#A0A0C0;
+}
+
+.diahead
+{
+ height:35px;
+ width: 95%;
+ background-color:#5070B0;	
+ padding-top:2px;
+ padding-bottom:0px;
+ padding-left:5%;
+}
+
+.diacapt
+{
+ float: left;
+ width: 85%;
+ font-weight:bold;
+ color:white;	
+}
+
+.diabutt a{
+ height:15px;
+ font-family:arial;
+ font-weight:bold;
+ font-style:italic;
+ background-color:#A0F0FF;
+ text-align:center;
+ text-decoration:none;
+ padding-top:1px;
+ padding-bottom:3px;
+ margin-right:2px;
+ border:2px solid gray;
+}
+
+.diabody
+{
+ padding-top:5%;
+ padding-left:5%;
+ padding-right:5%;
+ position:absolute;
+ top:17px
+}
+
+.diainput
+{
+ padding-top:5%;
+ padding-bottom:5%;
+}
+
+.diabuttons
+{
+ padding-top:0%;
+}
+
+.diabuttons input
+{
+  height: 60px;
+  width: 90%;
+  font-size: 36px;
+  margin: 2%;
+}
+
+.diabuttons input:hover
+{
+ color:red;
+}
+
+#receipt_screen
+{
+}
+
+#receipt_table
+{
+  background-color: white;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+#clock_screen
+{
+  #position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  #background-color:gray; 
+}
+
+#clock_screen button
+{
+  width:48%;
+  height:20%;
+  font-size: 72pt;
+  color: black;
+}
+
+#clock_screen label
+{
+  font-size: 72pt;
+  color: black;
+}
+
+#clock_screen input
+{
+  font-size: 72pt;
+  color: black;
+}
+
+#receipts_table 
+{
+  width:100%;
+  height:50%;
+  color: black;
+  text-align: right;
+  font-size: 72pt;
+  display: none;
+}
+
+#receipts_table input
+{
+  height: 100%;
+  width: 5em;
+  color: black;
+  float: left;
+  font-size: 72pt;
+}
+
+#cook_screen button
+{
+  width:50%;
+  font-size: 30px;
+  float: left;
+  text-align: center;
+  border: 3px solid outset gray;
+}
+
+#cook_screen .time_display
+{
+}
+
+#date_time_popup button
+{
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
+  width: 30%;
+  font-size: 30px;
+  float: left;
+}
+
+.cook_table{
+  width: 100%;
+  text-align: center;
+  border-width: 1px;
+  border-spacing: 2px;
+  border-style: outset;
+  border-color: transparent;
+  border-collapse: collapse;
+  background-color: #B0B080;
+  float: left;
+}
+
+.cook_table th 
+{
+  border-width: 1px;
+  padding: 1px;
+  border-style: inset;
+  -moz-border-radius: 0px 0px 0px 0px;
+}
+
+.cook_table td
+{
+  border-width: 1px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-style: inset;
+  -moz-border-radius: 0px 0px 0px 0px;
+}
+
+#receipt_screen button
+{
+  font-size: 18pt;
+}  
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+body,h1,h2,h3,h4,h5,h6 {font-family:Arial;}
+
+body {color:black; font-size:18;}
+
+body {
+#-webkit-touch-callout: none;
+#-webkit-user-select: none;
+#-khtml-user-select: none;
+#-moz-user-select: none;
+#-ms-user-select: none;
+#user-select: none;
+}
+
+h1 {font-size:28pt; font-weight:bold; margin:0px;}
+
+h2 {font-size:16pt; margin:0px; font-weight:bold;}
+
+h3 {font-size:8pt; margin:0px; font-weight:bold;}
+
+.supercat_head {clear: both; font-size:24pt; text-align: center; background-color: #8080ff; border: 1px inset white; margin: 6px }
+.supercat_content_div {clear: both; display: none}
+
+.cat_head {min-width: 150px; float:left; font-size:24pt; text-align: center; background-color: pink; border: 1px inset white; margin: 6px }
+.cat_button_div {width: 100%; float:left; display: none}
+.cat_div {}
+
+.subcat_divider {clear: both; font-size:larger; text-transform: uppercase; text-color: black; border-bottom: solid 6px white}
+
+.leftLink {float: left; font-size:48}
+#goVerticalLink {float: right; font-size: 56; text-align: right}
+
+#linx {float: left; height: 95%; width: 5%; position: fixed ; background-color: #ffffb0}
+#linx a {height: 20%; width: 100%}
+#board {padding-left: 6%; width:70%; float: left}
+
+
+
+#rightside {width: 20%; position:fixed; right:2%}
+#order_pane {
+  border: 4px outset; 
+  margin-top:10px; 
+  background-color: white; 
+}
+
+#tool_tip_box{
+  background-color: white; 
+  border: 2px outset gray;
+  width: 80%;
+  font-size: 24pt;
+  position: absolute;
+  visibility: hidden;
+  padding: 1em;
+  margin: 1em;
+  left: 50%;
+  word-wrap: break-word;
+  transform: translate(-50%, 0);
+}
+
+#table_display {}
+#table_id_display {padding-bottom: .25em;}
+#order_items {height: 60vh; overflow-y: auto; overflow-x: clip }
+
+#receipt_text {font-family: monospace; font-size: 14pt;}
+#pinput_screen {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  font-family: monospace; font-size: 28pt; 
+  background-color:gray; 
+  border:none;
+  display: none;
+}  
+
+#pinput_screen input {
+  font-family: monospace; font-size: 72pt; 
+  background-color:transparent; 
+}  
+#pinput_screen div {
+  font-family: monospace; font-size: 72pt; 
+  background-color:transparent; 
+}  
+
+#post_it_note {
+  clear: both;
+  background: white;
+  width: 60%;
+  margin-left: 10%;
+}  
+
+
