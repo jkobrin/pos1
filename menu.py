@@ -93,11 +93,11 @@ def get_menu_html(cfg):
         if item.get('is_glass'):
           yield '''%g'''%item['qtprice']
           if item.get('bottle_price') > 0:
-            description += '<br> Bottle: %g'%item['bottle_price']
+            description = (description or '') + '<br> Bottle: %g'%item['bottle_price']
         elif item['retail_price'] > 0:
           yield '''%g'''%item['retail_price']
           if item['qtprice']and item['scalable']> 0:
-            description += '<br> Glass: %g'%item['qtprice']
+            description = (description or '') + '<br> Glass: %g'%item['qtprice']
         yield '''</div>'''
         yield '''</label>'''
 
