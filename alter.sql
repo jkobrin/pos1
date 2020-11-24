@@ -158,6 +158,6 @@
 #alter table person add column email varchar(254);
 #alter table person add column street_address varchar(256);
 #alter table person add column ssn varchar(12);
-alter table person add column phone varchar(12);
+#alter table person add column phone varchar(12);
 
 source views.sql

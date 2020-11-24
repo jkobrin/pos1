@@ -1,6 +1,11 @@
 db:
   name: plansrv
 
+paystub_buss_info: 
+  - "Infrared Enterprises, dba PLANCHA"
+  - "931 Franklin AVE, GardenCity, NY"
+  - "516-246-9459"
+
 paystub_buss_info_line: "PLANCHA dba Infrared Enterprises 931 Franklin AVE, GardenCity, NY 516-246-9459"
 #"HAL Corp. Riverdale"
 #"SALUMI dba Ultraviolet Enterprises 5600 Merrick RD, Massapequa, NY 11758 516-620-0057"

@@ -42,6 +42,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
     SELECT count(*) cnt, og.table_id, oi.id, oi.item_name name, sum(oi.price) price, oi.is_comped, oi.taxable, 
       oi.is_cancelled,
       og.pickup_time,
+      og.closedby,
       time_format(timediff(oi.created, og.created), '+%%H:%%i') creat_time,
       time_format(timediff(oi.updated, oi.created), '+%%H:%%i') updat_time,
       oi.created > '%(reopen_time)s' as creat_after,
@@ -52,7 +53,7 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
     LEFT OUTER JOIN sku ON oi.menu_item_id = sku.id
     WHERE (og.is_open = TRUE and "%(closed_time)s" = 'None' or og.updated = "%(closed_time)s") and og.table_id = "%(table)s"
     and (oi.is_cancelled = FALSE or '%(serverpin)s' = 'NULL' or %(admin_view)s)
-    group by oi.item_name, oi.is_comped, oi.is_cancelled, oi.price, IF(item_name like 'gift%%', oi.id, 1)
+    group by oi.item_name, oi.is_comped, oi.is_cancelled, oi.price, IF(item_name rlike 'gift|QR', oi.id, 1)
     '''
 
   if admin_view: items_query += ', oi.id\n' # don't group for admin_view
@@ -60,17 +61,20 @@ def get_tab_text(table, serverpin = None, cursor = None, ogid = None, closed_tim
   items_query = items_query % locals()
 
   items = utils.select(items_query, cursor)
+  if not items: 
+    return "no tab opened for table %s" %table, []
 
-  if serverpin and serverpin != 'NULL':
+  original_serverpin = items[0]['closedby']
+  if not serverpin or serverpin == 'NULL':
+    serverpin = original_serverpin
+
+  if serverpin:
     servername = utils.select(
       "select coalesce(nickname, first_name) name from person where id = %(serverpin)s"
       % locals(), cursor)[0]['name']
   else:
     servername = 'staff'
  
-  if not items: 
-    return "no tab opened for table %s" %table, []
-
   foodtotal = sum(item['price'] for item in items if not item['is_cancelled'] and not item['is_comped'])
   taxable_total = sum(item['price'] for item in items if not item['is_cancelled'] and not item['is_comped'] and item['taxable'])
   tax = round(taxable_total*TAXRATE, 2)
