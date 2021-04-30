@@ -18,6 +18,7 @@ def index(req, the_tip, lag_days):
       order_group
     where si.order_group_id = order_group.id 
     and (order_group.table_id not rlike '^M|Couch' or time(si.created) > '16:00:00')
+    and (order_group.table_id not rlike '^T')
     and DATE(si.created- INTERVAL '4' HOUR) =  DATE(NOW()) - INTERVAL '%(lag_days)s' DAY 
     '''
   )
@@ -30,8 +31,7 @@ def index(req, the_tip, lag_days):
     '''
     create temporary table person_hours_items
     as
-    select si.id as si_id, si.price, h.tip_share, h.id as h_id, h.person_id,
-    IF(h.tip_share >=.8, 'FOH', 'BOH') pool_group
+    select si.id as si_id, si.price, h.tip_share, h.id as h_id, h.person_id
     from 
       last_night_items si
       ,hours h
@@ -43,9 +43,9 @@ def index(req, the_tip, lag_days):
     '''
     create temporary table item_split
     as
-    select si_id, pool_group, price * IF(pool_group = "FOH", .62, .38) / sum(tip_share) split_price 
+    select si_id, price / sum(tip_share) split_price 
     from person_hours_items  
-    group by si_id, pool_group; 
+    group by si_id; 
     ''', cursor
   )
 
@@ -63,7 +63,6 @@ def index(req, the_tip, lag_days):
   ,person p
   where spl.si_id = phi.si_id
   and p.id = phi.person_id
-  and phi.pool_group = spl.pool_group
   group by phi.h_id;
   '''%locals(), cursor
   )

@@ -37,7 +37,7 @@ group by year(created), week(created)
 
 create or replace view sales_by_month
 as
-select sum(price) total, year(created) year, month(created) month
+select round(sum(price),2) total, year(created) as year, monthname(created) as month
 from
 revenue_item
 group by year(created), month(created)
@@ -128,7 +128,7 @@ group by wl.id;
 
 create or replace view liquor_sales_by_month
 as
-select sum(price) total, year(created), month(created)
+select round(sum(price),2) total, year(created) as year, monthname(created) as month
 from revenue_item
 where item_name rlike "([0-9]+ )|(^qt:)|(pint )|flight|cktail|cosmo|vodka"
 group by year(created), month(created)

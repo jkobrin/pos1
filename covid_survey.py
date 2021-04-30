@@ -19,12 +19,13 @@ def index(req, **formdata):
     
   for key, val in formdata.items():
     if key in ('q1', 'q2', 'q3', 'q4') and val == 'yes':
-      return '''
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      pass
+      '''
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <html>
     <body style="background: yellow">
-    <H1> WARNING! YOU ARE A POTENTIAL COVID HAZARD!</H1>
-    <H2> Your responses have been recorded. Please leave work <i>immediately</i> and call or text your manager. Thank you.</H2>
+    <H1> Practice Social Distancing</H1>
+    <H2> Thank you.</H2>
     </body>
     </html>
     '''
@@ -33,7 +34,7 @@ def index(req, **formdata):
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <html>
     <body>
-    Thank you. Your responses have been recorded. It is safe for you to begin work.
+    Thank you. Your responses have been recorded.
     <p>
     <center><button id=done onclick='window.close()'>OK</button></center>
     </body>

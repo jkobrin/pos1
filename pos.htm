@@ -225,7 +225,8 @@
     function is_waiting_tab(input_tab)
     {
       var tab = get_config_item(input_tab);
-      return (tab && (tab.category=='waiting' || tab.category=='takeout'|| tab.category=='other'));
+      return (tab && (tab.category=='waiting' || tab.category=='takeout'
+        || tab.category=='other' || tab.category=='resys'));
     }
 
     function create_tab_descriptor_item()
@@ -931,7 +932,7 @@
           whiteboard_div.innerHTML = g_config.whiteboard_content;
         }  
         else {
-          http_request("POST", "whiteboard.py", "newcontent="+whiteboard_div.innerHTML);
+          http_request("POST", "whiteboard.py", "newcontent="+encodeURIComponent(whiteboard_div.innerHTML));
           g_config.whiteboard_content = whiteboard_div.innerHTML;
         }
       }

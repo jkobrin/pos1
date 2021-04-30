@@ -15,9 +15,10 @@ def get_stub_data(person_id, week_of, table_name, incursor):
   print person_id, week_of
   stub_data = utils.select('''
     select 
-    last_name as LAST_NAME,
-    first_name as FIRST_NAME,
-    "000-00-0000" as SOCIAL,
+    stub.last_name as LAST_NAME,
+    stub.first_name as FIRST_NAME,
+    coalesce(person.ssn, "") as SOCIAL,
+    coalesce(person.street_address, "") as ADDRESS,
     week_of + interval '1' week as PERIOD_END,
     concat(week_of, ' - ', week_of + interval '6' day) as PERIOD_SPAN,
     fed_withholding as FED,
@@ -26,9 +27,9 @@ def get_stub_data(person_id, week_of, table_name, incursor):
     nys_withholding as STATE,
     gross_wages as GROSS,
     gross_wages - fed_withholding - social_security_tax - medicare_tax - nys_withholding as NET,
-    round(gross_wages / pay_rate,2) as HOURS,
-    pay_rate as RATE
-    from {table_name}
+    round(gross_wages / stub.pay_rate,2) as HOURS,
+    stub.pay_rate as RATE
+    from {table_name} stub join person on stub.person_id = person.id
     where person_id = {person_id}
     and week_of = "{week_of}"
   '''.format(**locals()), incursor
@@ -72,12 +73,13 @@ def gen_fodt_and_pdf(stub_data, table_name):
   stubdir = "/var/www/paystubs/"
   fodtname = stubdir + "{LAST_NAME}_{FIRST_NAME}_{PERIOD_END}".format(**stub_data)+"_{table_name}.html".format(**locals())
   new_fodt = open(fodtname, 'w')
-  new_fodt.write('''Subject: earnings statement {PERIOD_END}
-To: josh@salumibarli.com
-From: stubs@salumibarli.com
-Content-Type: text/html
+  
+  #new_fodt.write('''Subject: earnings statement {PERIOD_END}
+  #To: josh@salumibarli.com
+  #From: stubs@salumibarli.com
+  #Content-Type: text/html
 
-'''.format(**stub_data))
+  #'''.format(**stub_data))
 
   new_fodt.write(doc)
   new_fodt.close()
@@ -105,7 +107,7 @@ def print_recent(person_lastname, numweeks=6, table_name='PAY_STUB'):
     print "stub_keys %s"% repr(stub_keys)
     for person_id, week_of in stub_keys:
       print (person_id, week_of)
-      print_stubs(person_id, week_of, table_name)
+      yield print_stubs(person_id, week_of, table_name)
 
 
 def print_2016_stubs():
@@ -131,7 +133,7 @@ def print_one_week_stubs(week_of):
 
 def print_this_week_stubs():
 
-  for table_name in ('PAY_STUB', 'WEEKLY_PAY_STUB'):
+  for table_name in ('WEEKLY_PAY_STUB',):# 'PAY_STUB'):
     stub_keys = utils.select('''
       select person_id, week_of from {table_name} where yearweek(week_of) = yearweek(now() - interval '2' week)'''.
       format(**locals()), label=False) 
@@ -150,7 +152,7 @@ def last_sundays(num):
     yield sunday.isoformat()
 
 
-def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_variance):
+def make_estub(first_name, last_name, person_id, baserate, rate_variance, basehours, hour_variance):
 
   incursor = utils.get_cursor()
   table_name = 'E_STUB'
@@ -166,7 +168,7 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
 
     row = {
       'week_of' : sunday,
-      'person_id' : 0,
+      'person_id' : person_id,
       'last_name': last_name, 
       'first_name': first_name,
       'hours_worked' : hours,
@@ -187,15 +189,20 @@ def make_estub(first_name, last_name, baserate, rate_variance, basehours, hour_v
     #my_logger.debug('pay stub: ' + sqltext)
     utils.execute(sqltext, incursor=incursor)
     
-  for sunday in last_sundays(12):
-    print_stubs(0, sunday, table_name, incursor=incursor)
+  for sunday in last_sundays(2):
+    yield print_stubs(person_id, sunday, table_name, incursor=incursor)
 
 def index(req): #, lname, numweeks=6, table_name= 'PAY_STUB'):
-  return 'THIS:' + '\n\n'.join(repr(feedback) for feedback in print_this_week_stubs())
+  #allfeedback = list(make_estub('Adeliya', 'Geistrikh', 6667, 32, 0 , 40, 0))
+  #allfeedback += list(make_estub('Roman', 'Geistrikh', 6668, 33, 0 , 40, 0))
+  allfeedback = print_recent('Mitten', numweeks=8, table_name = 'WEEKLY_PAY_STUB')
+  #allfeedback = print_recent('Russo', numweeks=12, table_name = 'WEEKLY_PAY_STUB')
+  return 'THIS:' + '\n\n'.join(repr(feedback) for feedback in allfeedback)
     
 
 if __name__ == '__main__':
-  pass
+  make_estub('Jonathan', 'Labossier', 2222, 35, 0 , 40, 0)
+  #print_this_week_stubs()
   #print_recent('Rubio', numweeks=6, table_name = 'PAY_STUB')
   #print_recent('Fostakovska', numweeks=12, table_name = 'WEEKLY_PAY_STUB')
   #print_recent('Seney', numweeks=12, table_name = 'WEEKLY_PAY_STUB')
