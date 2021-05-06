@@ -5,8 +5,8 @@
 
   <!-- css/site.css will be rewritten by apache to salumi.css or plancha.css, etc 
     depending on virtual host. see rewrite rule in apache configuration files-->
-  <link rel="stylesheet" href="css/site.css?vers=103" type="text/css" />
-  <link rel="stylesheet" href="pos_entry.css?vers=115" type="text/css" />
+  <link rel="stylesheet" href="css/site.css?vers=104" type="text/css" />
+  <link rel="stylesheet" href="pos_entry.css?vers=116" type="text/css" />
 
   <script type="text/javascript" src="jq453/scripts/jquery-1.11.2.js"></script>
   <script type="text/javascript" src="jsutils.js"></script>
@@ -527,20 +527,6 @@
       cook_screen.style.display = "inline";
     }
 
-    function toggle_cafe_style()
-    {
-      g_cafe_style = !g_cafe_style;
-      toggle_cafe_style_button.innerHTML = g_cafe_style ? 'MKT: hide': 'MKT: show';
-      refresh_cook_screen();
-    }
-
-    function toggle_cook_style()
-    {
-      g_cook_style = !g_cook_style;
-      toggle_cook_style_button.innerHTML = g_cook_style ? 'X-Style: hide': 'X-Style: show';
-      refresh_cook_screen();
-    }
-
     function leave_cook_screen()
     {
       cook_screen.style.display="none";
@@ -997,9 +983,7 @@
   </div>
 
   <div id="cook_screen" class='screen'>
-    <button class='link' onclick='go_to_screen("main_screen")'>POS</button>
-    <button class='link' onclick='toggle_cook_style(this)'>X-Style: show</button>
-    <!--<button id=toggle_cook_style_button onclick='toggle_cook_style()'>X-Style: show</button>-->
+    <button onclick='go_to_screen("main_screen")'>POS</button>
     <div id ="cook_tables_div"></div>
   </div>
 

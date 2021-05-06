@@ -1,45 +1,6 @@
 
-g_cook_style = false;
 EXPECTED_COOK_TIME = 20 * 60 //20 minutes
 TIME_TO_SHOW_DELIVERED = 15; //15 seconds
-
-function toggle_cook_style(linknode)
-{
-  g_cook_style = !g_cook_style;
-  linknode.innerHTML = g_cook_style ? 'X-Style: hide': 'X-Style: show';
-  console.log(linknode);
-  refresh_cook_screen();
-}
-
-function cook_style_order_items()
-{
-  //not sure if this works anymore
-
-  var uniq_order_items = {};
-  //put all items into a dictionary whose key is all
-  //properties that make us care that the items are different 
-  var order_items = get_order_items();
-  for(var idx in order_items)
-  {
-    var oi = order_items[idx];
-    var key = JSON.stringify([oi.table_id, oi.item_name, oi.delivery_status, oi.price, oi.is_comped, oi.is_cancelled])
-    if (key in uniq_order_items) {uniq_order_items[key].count += 1;}
-    else {oi.count = 1; uniq_order_items[key] = oi;}
-  }
-
-  //now change it back to a list
-  var uniq_order_items_list = [];
-  for(var key in uniq_order_items) { uniq_order_items_list.push(uniq_order_items[key]); }
-
-  //now order the list by held last then created time
-  //descending
-  //uniq_order_items_list.sort(
-  //  function (a,b) {return a.is_held - b.is_held || b.created - a.created;}
-  //);
-
-  return uniq_order_items; //uniq_order_items_list;
-}  
-
 
 function format_time(time) {
    
@@ -175,7 +136,7 @@ function refresh_cook_screen()
     time_cat_divs[i].style.display = "none";
   }
 
-  var items = g_cook_style ? cook_style_order_items() : get_order_items();
+  var items = get_order_items();
   for (var idx in items)
   {
     var item = items[idx];
@@ -190,6 +151,9 @@ function refresh_cook_screen()
       else if (cfg_item.category == 'desserts') {classes += ' dessert_item'}
       else if (cfg_item.category.match(/coffee/)) {classes += ' dessert_item'}
       else if (cfg_item.category == 'allergy') {classes += ' allergy_item'}
+    }
+    else {
+      classes += ' header_item';
     }
 
     if (item.is_cancelled) {classes += ' cancelled_item'}
@@ -262,8 +226,7 @@ function refresh_cook_screen()
     table_row.appendChild(tab_col);
 
     var name_col = document.createElement('td');
-    name_col.innerHTML = (g_cook_style && item.count > 1 ? item.count + 'X ': '') + 
-      item.item_name + '<i>' + get_add_on_string_for(item.id) +'</i>';
+    name_col.innerHTML = item.item_name + '<i>' + get_add_on_string_for(item.id) +'</i>';
     name_col.onclick = make_closure(cookscreen_click, item.id);
     if (cfg_item && cfg_item.id){
       name_col.oncontextmenu = make_closure(context_tool_tip, {'button': name_col, 'item': cfg_item});
@@ -278,13 +241,5 @@ function refresh_cook_screen()
 
     cook_table.appendChild(table_row);
   }  
-}
-
-function no_good_init(){
-  load_config();
-  persist_cook_style('restore');
-  synchronize_now();
-  persist_node_vis('restore');
-  window.onbeforeunload = function(){synchronize(); persist_node_vis('save'); persist_cook_style('save')};
 }
 

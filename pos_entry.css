@@ -25,6 +25,7 @@ pre {
 }
 
 
+.header_item {color: white; background-color: gray}
 .nondelivered_item { color: magenta; }
 
 .comped_item {font-style:italic; border: 6px solid #a0ffa0;}
@@ -194,7 +195,7 @@ pre {
 
 #cook_screen button
 {
-  width:50%;
+  width:100%;
   font-size: 30px;
   float: left;
   text-align: center;
