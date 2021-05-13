@@ -195,7 +195,7 @@ def make_estub(first_name, last_name, person_id, baserate, rate_variance, baseho
 def index(req): #, lname, numweeks=6, table_name= 'PAY_STUB'):
   #allfeedback = list(make_estub('Adeliya', 'Geistrikh', 6667, 32, 0 , 40, 0))
   #allfeedback += list(make_estub('Roman', 'Geistrikh', 6668, 33, 0 , 40, 0))
-  allfeedback = print_recent('Mitten', numweeks=8, table_name = 'WEEKLY_PAY_STUB')
+  allfeedback = print_recent('Brewster', numweeks=8, table_name = 'WEEKLY_PAY_STUB')
   #allfeedback = print_recent('Russo', numweeks=12, table_name = 'WEEKLY_PAY_STUB')
   return 'THIS:' + '\n\n'.join(repr(feedback) for feedback in allfeedback)
     
